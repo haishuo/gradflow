@@ -1,0 +1,40 @@
+# Forge system symlinks (local development only)
+data
+artifacts
+reference-fortran
+
+# Data files (belong in /mnt/data/)
+*.dat
+*.npz
+*.hdf5
+*.pkl
+*.csv
+
+# Artifacts (belong in /mnt/artifacts/)
+results/
+models/
+plots/
+benchmarks/
+validation_reports/
+checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
