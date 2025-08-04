@@ -7,7 +7,7 @@ Built on Chi-Wang Shu's proven FORTRAN foundation
 
 ### Automatic Setup
 ```bash
-git clone [your-repo]/gradflow
+git clone haishuo/gradflow
 cd gradflow
 python setup_gradflow.py
 ```
