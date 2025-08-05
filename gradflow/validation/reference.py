@@ -26,7 +26,28 @@ class WENOReference:
             reference_dir: Path to reference data. If None, uses default location.
         """
         if reference_dir is None:
-            reference_dir = DATA_ROOT / "validation" / "canonical_reference"
+            # Check multiple possible locations for reference data
+            possible_locations = [
+                Path("/mnt/projects/weno-reference/reference/sod_shock_working"),
+                Path("/mnt/projects/weno-reference/reference"),
+                Path(__file__).parent.parent.parent
+                / "reference-fortran"
+                / "sod_shock_working",
+                Path(__file__).parent.parent.parent / "reference-fortran",
+                DATA_ROOT / "validation" / "canonical_reference",
+            ]
+
+            # Find the first location that exists
+            for loc in possible_locations:
+                if loc.exists():
+                    reference_dir = loc
+                    break
+
+            if reference_dir is None:
+                raise FileNotFoundError(
+                    f"Could not find reference data. Searched in: {possible_locations\
+    }"
+                )
 
         self.reference_dir = Path(reference_dir)
         self._data = {}
@@ -38,7 +59,7 @@ class WENOReference:
             with open(metadata_file, "r") as f:
                 self._metadata = json.load(f)
 
-    def load_sod_shock_reference(self, format: str = "hdf5") -> Dict[str, Any]:
+    def load_sod_shock_reference(self, format: str = "fortran") -> Dict[str, Any]:
         """
         Load Sod shock tube reference data
 
@@ -70,7 +91,8 @@ class WENOReference:
         h5_file = self.reference_dir / "sod_shock_reference.h5"
 
         if not h5_file.exists():
-            raise FileNotFoundError(f"HDF5 reference file not found: {h5_file}")
+            # If HDF5 doesn't exist, try to load from FORTRAN files directly
+            return self._load_fortran_files()
 
         data = {}
 
@@ -107,7 +129,8 @@ class WENOReference:
             for state_name in ["left_state", "right_state"]:
                 state_data = {}
                 for key in f[f"validation_points/{state_name}"].attrs:
-                    state_data[key] = f[f"validation_points/{state_name}"].attrs[key]
+                    state_data[key] = f[f"validation_points/{state_name}"].attrs[key]\
+    
                 validation[state_name] = state_data
 
             ratios = {}
@@ -124,7 +147,8 @@ class WENOReference:
         npz_file = self.reference_dir / "sod_shock_reference.npz"
 
         if not npz_file.exists():
-            raise FileNotFoundError(f"NumPy reference file not found: {npz_file}")
+            # If NPZ doesn't exist, try FORTRAN files
+            return self._load_fortran_files()
 
         npz_data = np.load(npz_file)
 
@@ -149,26 +173,129 @@ class WENOReference:
 
     def _load_fortran_files(self) -> Dict[str, Any]:
         """Load directly from FORTRAN output files"""
-        fort8_file = self.reference_dir / "sod_shock_reference_1d.dat"
-        fort9_file = self.reference_dir / "sod_shock_reference_2d.dat"
+        # Try different possible names for the FORTRAN output files
+        fort8_candidates = [
+            self.reference_dir / "sod_shock_reference_1d.dat",
+            self.reference_dir / "fort.8",
+            self.reference_dir / "fort8.dat",
+        ]
 
-        if not fort8_file.exists():
-            raise FileNotFoundError(f"FORTRAN fort.8 file not found: {fort8_file}")
-        if not fort9_file.exists():
-            raise FileNotFoundError(f"FORTRAN fort.9 file not found: {fort9_file}")
+        fort9_candidates = [
+            self.reference_dir / "sod_shock_reference_2d.dat",
+            self.reference_dir / "fort.9",
+            self.reference_dir / "fort9.dat",
+        ]
+
+        fort8_file = None
+        fort9_file = None
+
+        for candidate in fort8_candidates:
+            if candidate.exists():
+                fort8_file = candidate
+                break
+
+        for candidate in fort9_candidates:
+            if candidate.exists():
+                fort9_file = candidate
+                break
+
+        if not fort8_file or not fort9_file:
+            available_files = list(self.reference_dir.glob("*"))
+            raise FileNotFoundError(
+                f"FORTRAN output files not found in {self.reference_dir}. "
+                f"Available files: {[f.name for f in available_files[:10]]}"
+            )
 
         fort8_data = np.loadtxt(fort8_file)
 
-        # Load fort.9 (skip header line)
+        # Load fort.9 - it includes boundary points, so it's (nx+1)*(ny+1) = 21*11 = \
+    231
         with open(fort9_file, "r") as f:
             lines = f.readlines()
 
-        data_lines = [line for line in lines if not line.strip().startswith("zone")]
-        fort9_data = np.array(
-            [list(map(float, line.split())) for line in data_lines if line.strip()]
-        )
+        # Skip any header lines
+        data_lines = []
+        for line in lines:
+            line = line.strip()
+            if line and not line.startswith("zone") and not line.startswith("ZONE"):
+                try:
+                    # Try to parse as floats
+                    values = list(map(float, line.split()))
+                    if len(values) == 6:  # x, y, rho, u, v, p
+                        data_lines.append(values)
+                except ValueError:
+                    continue
 
-        data = {"fort8": {"data": fort8_data}, "fort9": {"data": fort9_data}}
+        fort9_data = np.array(data_lines)
+
+        # The grid is actually 21x11 (includes boundaries)
+        nx_with_boundary = 21
+        ny_with_boundary = 11
+        total_points = nx_with_boundary * ny_with_boundary
+
+        if len(fort9_data) != total_points:
+            raise ValueError(
+                f"Expected {total_points} points in fort.9, got {len(fort9_data)}. "
+                f"This suggests nx={nx_with_boundary}, ny={ny_with_boundary} with bou\
+    ndaries."
+            )
+
+        # Extract the interior points (remove boundaries)
+        # FORTRAN outputs with boundaries, so actual grid is 20x10
+        nx = 20
+        ny = 10
+
+        # Reshape including boundaries
+        full_data = fort9_data.reshape(ny_with_boundary, nx_with_boundary, 6)
+
+        # Extract interior points (skip first and last in each dimension)
+        interior_data = full_data[0:ny, 0:nx, :]
+
+        # Extract fields
+        x_coords = interior_data[0, :, 0]
+        y_coords = interior_data[:, 0, 1]
+        density = interior_data[:, :, 2]
+        u_velocity = interior_data[:, :, 3]
+        v_velocity = interior_data[:, :, 4]
+        pressure = interior_data[:, :, 5]
+
+        data = {
+            "fort8": {"data": fort8_data},
+            "fort9": {"data": fort9_data},
+            "structured": {
+                "grid": {
+                    "x_coords": x_coords,
+                    "y_coords": y_coords,
+                    "nx": nx,
+                    "ny": ny,
+                },
+                "fields": {
+                    "density": density,
+                    "pressure": pressure,
+                    "u_velocity": u_velocity,
+                    "v_velocity": v_velocity,
+                },
+            },
+            "validation_points": {
+                "shock_location": 5.0,
+                "left_state": {
+                    "density": 1.0,
+                    "pressure": 1.0,
+                    "u_velocity": 0.0,
+                    "v_velocity": 0.0,
+                },
+                "right_state": {
+                    "density": 0.125,
+                    "pressure": 0.1,
+                    "u_velocity": 0.0,
+                    "v_velocity": 0.0,
+                },
+                "expected_ratios": {
+                    "density_ratio": 8.0,
+                    "pressure_ratio": 10.0,
+                },
+            },
+        }
 
         return data
 
@@ -226,13 +353,19 @@ class WENOReference:
         Compare GradFlow solution against reference
 
         Args:
-            gradflow_result: GradFlow computed solution
+            gradflow_result: GradFlow computed solution (numpy array)
             field_name: Field being compared
             tolerance: Numerical tolerance
 
         Returns:
             Comparison results
         """
+        # Ensure we have numpy array
+        if hasattr(gradflow_result, "detach"):
+            gradflow_result = gradflow_result.detach().cpu().numpy()
+        elif hasattr(gradflow_result, "numpy"):
+            gradflow_result = gradflow_result.numpy()
+
         reference_data = self.get_structured_field(field_name)
 
         # Ensure shapes match
@@ -340,9 +473,19 @@ class WENOReference:
 
 
 # Convenience functions
-def load_sod_reference(format: str = "hdf5") -> WENOReference:
+def load_sod_reference(format: str = "fortran") -> WENOReference:
     """Load Sod shock tube reference data"""
-    ref = WENOReference()
+    # Use the actual Sod shock working directory
+    ref_dir = Path("/mnt/projects/weno-reference/reference/sod_shock_working")
+    if not ref_dir.exists():
+        # Fall back to symlink
+        ref_dir = (
+            Path(__file__).parent.parent.parent
+            / "reference-fortran"
+            / "sod_shock_working"
+        )
+
+    ref = WENOReference(reference_dir=ref_dir)
     ref.load_sod_shock_reference(format=format)
     return ref
 
