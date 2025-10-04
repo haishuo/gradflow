@@ -130,7 +130,7 @@ class WENOReference:
                 state_data = {}
                 for key in f[f"validation_points/{state_name}"].attrs:
                     state_data[key] = f[f"validation_points/{state_name}"].attrs[key]\
-    
+
                 validation[state_name] = state_data
 
             ratios = {}

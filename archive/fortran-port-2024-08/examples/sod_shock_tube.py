@@ -13,7 +13,7 @@ import torch
 
 # Clear gradflow modules from cache
 modules_to_remove = [key for key in sys.modules.keys() if key.startswith("gradflow")]\
-    
+
 for module in modules_to_remove:
     del sys.modules[module]
 
@@ -290,7 +290,7 @@ def compare_with_fortran():
             print(f"  Shock location: {validation['shock_location']}")
             print(f"  Density ratio: {validation['actual_ratios']['density']:.2f}")
             print(f"  Pressure ratio: {validation['actual_ratios']['pressure']:.2f}")\
-    
+
 
             # Run detailed comparison
             device = "cuda" if torch.cuda.is_available() else "cpu"

@@ -67,7 +67,7 @@ class DifferentiableWENO:
         # f⁰_{i+1/2} = c00*f_{i-2} + c01*f_{i-1} + c02*f_i
         self.c0 = torch.tensor(
             [1.0 / 3.0, -7.0 / 6.0, 11.0 / 6.0], device=self.device, dtype=self.dtype\
-    
+
         )
 
         # f¹_{i+1/2} = c10*f_{i-1} + c11*f_i + c12*f_{i+1}
