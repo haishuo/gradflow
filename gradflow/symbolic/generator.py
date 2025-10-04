@@ -1,321 +1,237 @@
 """
-SymPy to PyTorch code generation.
+Conversion utilities for symbolic coefficients to PyTorch tensors.
 
-This module converts symbolic expressions (SymPy) into executable
-PyTorch operations that can run on GPU.
+Simplified module that handles converting exact rational coefficients
+from stencil generation into efficient PyTorch tensors.
 """
 
-import sympy as sp
 import torch
-from typing import List, Callable, Dict, Any
-import warnings
+import sympy as sp
+from typing import List, Union
 
 
-def sympy_to_torch_function(
-    expr: sp.Expr,
-    variables: List[sp.Symbol],
-    dtype: torch.dtype = torch.float64,
-    device: str = 'cuda'
-) -> Callable:
+def rational_to_float(value: Union[sp.Rational, float, int]) -> float:
     """
-    Convert a SymPy expression to a PyTorch function.
-
-    Takes a symbolic expression and returns a function that can be called
-    with PyTorch tensors as arguments.
+    Convert SymPy rational to Python float.
 
     Parameters
     ----------
-    expr : sp.Expr
-        SymPy expression to convert
-    variables : List[sp.Symbol]
-        Ordered list of symbolic variables in the expression.
-        The returned function will expect arguments in this order.
-    dtype : torch.dtype, optional
-        PyTorch dtype for computations. Default: torch.float64
-    device : str, optional
-        Device for computation ('cuda' or 'cpu'). Default: 'cuda'
+    value : sp.Rational, float, or int
+        Value to convert
 
     Returns
     -------
-    torch_func : Callable
-        Function that takes PyTorch tensors and returns a PyTorch tensor.
-        Signature: torch_func(*tensors) -> torch.Tensor
-
-    Raises
-    ------
-    ValueError
-        If expression contains symbols not in variables list
-
-    Notes
-    -----
-    This function uses SymPy's lambdify with PyTorch as the backend.
-    All operations are translated to their PyTorch equivalents:
-        - Addition, multiplication, etc. → torch operations
-        - Powers → torch.pow
-        - Trigonometric → torch.sin, torch.cos, etc.
-
-    The conversion happens at function creation time, so there's no
-    symbolic overhead during actual computation.
+    float_value : float
+        Floating point representation
 
     Examples
     --------
-    >>> x, y = sp.symbols('x y')
-    >>> expr = x**2 + 2*x*y + y**2
-    >>> f = sympy_to_torch_function(expr, [x, y])
-    >>> result = f(torch.tensor([1.0, 2.0]), torch.tensor([3.0, 4.0]))
-    >>> result
-    tensor([16., 36.])  # (1+3)^2, (2+4)^2
+    >>> rational_to_float(sp.Rational(11, 6))
+    1.8333333333333333
     """
-    # Validate that all symbols in expression are in variables list
-    expr_symbols = expr.free_symbols
-    var_symbols = set(variables)
-
-    if not expr_symbols.issubset(var_symbols):
-        missing = expr_symbols - var_symbols
-        raise ValueError(
-            f"Expression contains symbols {missing} not in variables list. "
-            f"Provided variables: {variables}"
-        )
-
-    # Create lambdified function with torch module
-    # This converts SymPy operations to PyTorch operations
-    try:
-        # Use 'torch' as the module for lambdify
-        # This makes sp.sin → torch.sin, sp.exp → torch.exp, etc.
-        base_func = sp.lambdify(variables, expr, modules='torch')
-    except Exception as e:
-        raise RuntimeError(
-            f"Failed to convert SymPy expression to PyTorch: {e}\n"
-            f"Expression: {expr}\n"
-            f"Variables: {variables}"
-        )
-
-    def torch_func(*args):
-        """
-        Wrapper that ensures correct dtype and device.
-        """
-        # Validate number of arguments
-        if len(args) != len(variables):
-            raise ValueError(
-                f"Expected {len(variables)} arguments, got {len(args)}"
-            )
-
-        # Ensure all arguments are tensors on correct device with correct dtype
-        args_converted = []
-        for i, arg in enumerate(args):
-            if not isinstance(arg, torch.Tensor):
-                # Convert to tensor if needed
-                arg = torch.tensor(arg, dtype=dtype, device=device)
-            else:
-                # Ensure correct dtype and device
-                arg = arg.to(dtype=dtype, device=device)
-            args_converted.append(arg)
-
-        # Call the lambdified function
-        result = base_func(*args_converted)
-
-        # Ensure result is a tensor (sometimes scalars are returned)
-        if not isinstance(result, torch.Tensor):
-            result = torch.tensor(result, dtype=dtype, device=device)
-
-        return result
-
-    return torch_func
+    if isinstance(value, (float, int)):
+        return float(value)
+    elif isinstance(value, sp.Rational):
+        return float(value)
+    else:
+        # Try to convert via SymPy
+        return float(sp.sympify(value))
 
 
-def batch_sympy_to_torch(
-    expressions: List[sp.Expr],
-    variables: List[sp.Symbol],
-    dtype: torch.dtype = torch.float64,
-    device: str = 'cuda'
-) -> List[Callable]:
-    """
-    Convert multiple SymPy expressions to PyTorch functions.
-
-    Convenience function for converting a list of expressions that
-    share the same variables.
-
-    Parameters
-    ----------
-    expressions : List[sp.Expr]
-        List of SymPy expressions to convert
-    variables : List[sp.Symbol]
-        Ordered list of variables (same for all expressions)
-    dtype : torch.dtype, optional
-        PyTorch dtype. Default: torch.float64
-    device : str, optional
-        Device ('cuda' or 'cpu'). Default: 'cuda'
-
-    Returns
-    -------
-    torch_funcs : List[Callable]
-        List of PyTorch functions, one per expression
-
-    Examples
-    --------
-    >>> x = sp.Symbol('x')
-    >>> exprs = [x**2, x**3, x**4]
-    >>> funcs = batch_sympy_to_torch(exprs, [x])
-    >>> [f(torch.tensor(2.0)) for f in funcs]
-    [tensor(4.), tensor(8.), tensor(16.)]
-    """
-    return [
-        sympy_to_torch_function(expr, variables, dtype, device)
-        for expr in expressions
-    ]
-
-
-def compile_stencil_operations(
+def stencils_to_torch(
     stencil_coeffs: List[List[sp.Rational]],
     dtype: torch.dtype = torch.float64,
     device: str = 'cuda'
 ) -> torch.Tensor:
     """
-    Convert stencil coefficients to a compiled PyTorch kernel.
+    Convert stencil coefficients to PyTorch tensor.
 
-    This is a specialized version for stencil coefficients that
-    creates a tensor ready for convolution operations.
+    Takes the exact rational coefficients from symbolic stencil generation
+    and converts them to a PyTorch tensor ready for GPU computation.
 
     Parameters
     ----------
     stencil_coeffs : List[List[sp.Rational]]
-        Stencil coefficients from core.stencils
-    dtype : torch.dtype
-        PyTorch dtype
-    device : str
-        Device for tensor
+        Stencil coefficients from core.stencils.generate_all_stencils()
+        Shape: [r, r] where r = (order+1)//2
+        Each inner list contains exact rational coefficients
+    dtype : torch.dtype, optional
+        PyTorch data type. Default: torch.float64
+        Use float64 for research/accuracy, float32 for speed
+    device : str, optional
+        Device placement. Default: 'cuda'
+        Use 'cuda' for GPU, 'cpu' for CPU
 
     Returns
     -------
-    kernel_tensor : torch.Tensor
-        Tensor of shape [num_stencils, stencil_width]
-        Ready for use with F.conv1d
-
-    Notes
-    -----
-    This is essentially a wrapper around direct tensor creation,
-    but it's here in the symbolic module for consistency and
-    future extensibility (e.g., JIT compilation).
-    """
-    # Convert symbolic rationals to floats
-    float_coeffs = [[float(c) for c in stencil] for stencil in stencil_coeffs]
-
-    # Create tensor
-    kernel = torch.tensor(float_coeffs, dtype=dtype, device=device)
-
-    return kernel
-
-
-def verify_conversion(
-    sympy_expr: sp.Expr,
-    torch_func: Callable,
-    variables: List[sp.Symbol],
-    test_points: int = 100,
-    tolerance: float = 1e-10
-) -> bool:
-    """
-    Verify that PyTorch function produces same results as SymPy expression.
-
-    Tests the converted function against the original symbolic expression
-    at random points to ensure correctness.
-
-    Parameters
-    ----------
-    sympy_expr : sp.Expr
-        Original SymPy expression
-    torch_func : Callable
-        Converted PyTorch function
-    variables : List[sp.Symbol]
-        Variables in the expression
-    test_points : int, optional
-        Number of random test points. Default: 100
-    tolerance : float, optional
-        Maximum allowed difference. Default: 1e-10
-
-    Returns
-    -------
-    verified : bool
-        True if all test points match within tolerance
+    stencil_tensor : torch.Tensor
+        Tensor of shape [r, r] ready for convolution operations
+        Can be used with torch.nn.functional.conv1d
 
     Raises
     ------
-    AssertionError
-        If any test point fails (with details about the failure)
+    RuntimeError
+        If CUDA requested but not available
 
     Notes
     -----
-    This is primarily for testing during development. In production,
-    you should trust that lambdify works correctly.
+    This conversion loses exact rational arithmetic but preserves
+    sufficient precision for numerical computation. Float64 provides
+    ~16 decimal digits, which is more than adequate for WENO schemes.
+
+    Examples
+    --------
+    >>> from gradflow.core.stencils import generate_all_stencils
+    >>> stencils = generate_all_stencils(5)
+    >>> tensor = stencils_to_torch(stencils)
+    >>> tensor.shape
+    torch.Size([3, 3])
     """
-    # Generate random test points
-    test_values = torch.randn(test_points, len(variables), dtype=torch.float64)
-
-    max_error = 0.0
-
-    for i in range(test_points):
-        point = test_values[i]
-
-        # Evaluate SymPy expression (slow, exact)
-        subs_dict = {var: float(point[j]) for j, var in enumerate(variables)}
-        sympy_result = float(sympy_expr.subs(subs_dict))
-
-        # Evaluate PyTorch function (fast, numerical)
-        torch_args = [point[j:j+1] for j in range(len(variables))]
-        torch_result = float(torch_func(*torch_args))
-
-        # Check error
-        error = abs(sympy_result - torch_result)
-        max_error = max(max_error, error)
-
-        if error > tolerance:
-            raise AssertionError(
-                f"Conversion verification failed at test point {i}\n"
-                f"Point: {[float(p) for p in point]}\n"
-                f"SymPy result: {sympy_result}\n"
-                f"PyTorch result: {torch_result}\n"
-                f"Error: {error} > tolerance {tolerance}"
-            )
-
-    if max_error > tolerance / 10:
-        warnings.warn(
-            f"Conversion verification passed, but maximum error {max_error} "
-            f"is close to tolerance {tolerance}. Consider using higher precision."
+    # Validate device
+    if device == 'cuda' and not torch.cuda.is_available():
+        raise RuntimeError(
+            "CUDA device requested but not available. "
+            "Install CUDA-enabled PyTorch or use device='cpu'."
         )
 
-    return True
+    # Convert to nested Python floats
+    float_coeffs = [
+        [rational_to_float(c) for c in stencil]
+        for stencil in stencil_coeffs
+    ]
 
+    # Create PyTorch tensor
+    tensor = torch.tensor(float_coeffs, dtype=dtype, device=device)
+
+    return tensor
+
+
+def coefficients_dict_to_torch(
+    coeffs_dict: dict,
+    dtype: torch.dtype = torch.float64,
+    device: str = 'cuda'
+) -> dict:
+    """
+    Convert a dictionary of coefficients to PyTorch tensors.
+
+    Useful for converting smoothness indicator coefficients or
+    other structured coefficient dictionaries.
+
+    Parameters
+    ----------
+    coeffs_dict : dict
+        Dictionary with numeric values (may contain sp.Rational)
+    dtype : torch.dtype, optional
+        Target PyTorch dtype. Default: torch.float64
+    device : str, optional
+        Target device. Default: 'cuda'
+
+    Returns
+    -------
+    tensor_dict : dict
+        Same structure but with PyTorch tensors
+
+    Examples
+    --------
+    >>> coeffs = {0: sp.Rational(13, 12), 1: sp.Rational(1, 4)}
+    >>> torch_coeffs = coefficients_dict_to_torch(coeffs)
+    """
+    if device == 'cuda' and not torch.cuda.is_available():
+        raise RuntimeError("CUDA not available")
+
+    result = {}
+    for key, value in coeffs_dict.items():
+        if isinstance(value, dict):
+            # Recursively handle nested dicts
+            result[key] = coefficients_dict_to_torch(value, dtype, device)
+        elif isinstance(value, list):
+            # Convert list of coefficients
+            float_list = [rational_to_float(v) for v in value]
+            result[key] = torch.tensor(float_list, dtype=dtype, device=device)
+        else:
+            # Convert single coefficient
+            result[key] = torch.tensor(
+                rational_to_float(value),
+                dtype=dtype,
+                device=device
+            )
+
+    return result
+
+
+# ============================================================================
+# TESTING
+# ============================================================================
 
 if __name__ == "__main__":
-    # Self-test: convert simple expressions
-    print("Testing SymPy → PyTorch conversion...")
+    print("Testing symbolic → PyTorch conversion...")
 
-    # Test 1: Polynomial
-    x, y = sp.symbols('x y')
-    expr = x**2 + 2*x*y + y**2
-    f = sympy_to_torch_function(expr, [x, y], device='cpu')
+    # Test 1: Convert SymPy rationals
+    print("\n" + "="*60)
+    print("Test 1: SymPy Rational conversion")
 
-    result = f(torch.tensor(2.0), torch.tensor(3.0))
-    expected = (2 + 3)**2
-    print(f"\nTest 1: (x+y)² at x=2, y=3")
-    print(f"Result: {result.item()}, Expected: {expected}")
-    assert abs(result.item() - expected) < 1e-10, "Polynomial test failed"
+    test_rationals = [
+        sp.Rational(2, 6),
+        sp.Rational(-7, 6),
+        sp.Rational(11, 6),
+    ]
 
-    # Test 2: Batch conversion
-    exprs = [x**2, x**3, x**4]
-    funcs = batch_sympy_to_torch(exprs, [x], device='cpu')
+    for rat in test_rationals:
+        flt = rational_to_float(rat)
+        print(f"  {rat} → {flt}")
 
-    x_val = torch.tensor(2.0)
-    results = [f(x_val).item() for f in funcs]
-    expected = [4.0, 8.0, 16.0]
-    print(f"\nTest 2: Powers of 2")
-    print(f"Results: {results}, Expected: {expected}")
-    assert results == expected, "Batch conversion test failed"
+    print("✓ Rational conversion working")
 
-    # Test 3: Verify conversion
-    expr = x**3 - 3*x**2 + 2*x - 1
-    f = sympy_to_torch_function(expr, [x], device='cpu')
-    verified = verify_conversion(expr, f, [x], test_points=50)
-    print(f"\nTest 3: Verification with 50 random points")
-    print(f"Verified: {verified}")
+    # Test 2: Stencil conversion
+    print("\n" + "="*60)
+    print("Test 2: Stencil coefficient conversion")
 
-    print("\n✓ All SymPy → PyTorch conversion tests passed")
+    # Mock stencil coefficients (like what stencils.py produces)
+    mock_stencils = [
+        [sp.Rational(2, 6), sp.Rational(-7, 6), sp.Rational(11, 6)],
+        [sp.Rational(-1, 6), sp.Rational(5, 6), sp.Rational(2, 6)],
+        [sp.Rational(2, 6), sp.Rational(5, 6), sp.Rational(-1, 6)],
+    ]
+
+    tensor = stencils_to_torch(mock_stencils, device='cpu')
+
+    print(f"  Input: 3 stencils with 3 coefficients each")
+    print(f"  Output shape: {tensor.shape}")
+    print(f"  Output dtype: {tensor.dtype}")
+    print(f"  Output device: {tensor.device}")
+    print(f"\n  First stencil:")
+    print(f"  {tensor[0]}")
+
+    # Verify values are correct
+    expected_first = [2/6, -7/6, 11/6]
+    computed_first = tensor[0].tolist()
+
+    for exp, comp in zip(expected_first, computed_first):
+        assert abs(exp - comp) < 1e-15, f"Mismatch: {exp} vs {comp}"
+
+    print("✓ Stencil conversion accurate")
+
+    # Test 3: Dictionary conversion
+    print("\n" + "="*60)
+    print("Test 3: Dictionary conversion")
+
+    coeffs_dict = {
+        0: sp.Rational(13, 12),
+        1: sp.Rational(1, 4),
+        2: [sp.Rational(1, 1), sp.Rational(-2, 1), sp.Rational(1, 1)]
+    }
+
+    torch_dict = coefficients_dict_to_torch(coeffs_dict, device='cpu')
+
+    print(f"  Converted {len(torch_dict)} entries")
+    print(f"  Entry 0: {torch_dict[0].item()}")
+    print(f"  Entry 1: {torch_dict[1].item()}")
+    print(f"  Entry 2 (list): {torch_dict[2].tolist()}")
+
+    assert abs(torch_dict[0].item() - 13/12) < 1e-15
+    assert abs(torch_dict[1].item() - 1/4) < 1e-15
+
+    print("✓ Dictionary conversion working")
+
+    print("\n" + "="*60)
+    print("✓ All conversion tests passed")
