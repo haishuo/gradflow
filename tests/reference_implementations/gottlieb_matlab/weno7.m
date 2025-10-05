@@ -1,0 +1,68 @@
+function rhs = weno7(u, dx, f,fp)
+
+wenoeps=1.e-29;
+md=4;
+npoints = length(u);
+nstart = md + 1;
+np = npoints+md;
+% Combine everything into a single vector
+u = [ u(npoints-md:end-1), u, u(2:md+2)];
+
+%flux splitting
+em = max(abs(fp(u)));
+for i=nstart-md:np+md
+    dfp(i)= (f(u(i+1))-f(u(i)) + em*(u(i+1) - u(i)))/2.0;
+    dfm(i)= (f(u(i+1))-f(u(i)) - em*(u(i+1) - u(i)))/2.0;
+end
+for j = nstart-1:np+1
+    jm1 = j-1;
+    jm2 = j-2;
+    jm3 = j-3;
+    jp1 = j+1;
+    jp2 = j+2;
+    jp3 = j+3;
+    IS0 = f(jm3) * (547*f(jm3) - 3882*f(jm2) + 4642*f(jm1) - 1854*f(j) )   ....
+         + f(jm2) * (7043*f(jm2) - 17246*f(jm1) + 7042*f(j) )   ...
+         + f(jm1) * (11003*f(jm1) - 9402*f(j) )   ...
+         + 2107*f(j)^2;
+    IS1 = f(jm2) * (267*f(jm2) - 1642*f(jm1) + 1602*f(j) - 494*f(jp1) ) + f(jm1) * (2843*f(jm1) - 5966*f(j) ...
+         + 1922*f(jp1) ) + f(j) * (3443*f(j) - 2522*f(jp1) ) + 547*f(jp1)^2;
+    IS2 = f(jm1) * (547*f(jm1) - 2522*f(j) + 1922*f(jp1) - 494*f(jp2) ) + f(j) * (3443*f(j) - 5966*f(jp1) ...
+         + 1602*f(jp2) ) + f(jp1) * (2843*f(jp1) - 1642*f(jp2) ) + 267*f(jp2)^2;
+    IS3 = f(j) * (2107*f(j) - 9402*f(jp1) + 7042*f(jp2) - 1854*f(jp3) ) + f(jp1) * (11003*f(jp1) - 17246*f(jp2) ...
+         + 4642*f(jp3) ) + f(jp2) * (7043*f(jp2) - 3882*f(jp3) ) + 547*f(jp3)^2;
+% ideal weights
+C = [1./35., 12./35., 18./35., 4./35.];
+p = 2; % power of the method. Often p=2 but for higher order p=r
+w = C ./ (wenoeps + IS) .^ p;
+w = w / sum(w);
+
+% weights for each stencil reconstruction
+aa=[-1/4   13/12        -23/12    25/12;
+    1/12       -5/12     13/12    1/4;
+     -1/12     7/12    7/12              -1/12;
+               1/4   13/12  -5/12          1/12;];
+
+% Smoothness indicators
+
+IS = [IS0 IS1 IS2 IS3];
+% Stencils
+S = {};
+S{1} = [jm3 jm2 jm1 j];
+S{2} = [jm2 jm1 j jp1];
+S{3} = [jm1 j jp1 jp2];
+S{4} = [j jp1 jp2 jp3];
+
+
+
+
+end
+
+% Balsara & Shu suggest p=2
+% Very high-order WENO paper: suggests p=r
+
+
+fjph_weno = 0;
+for k=1:r
+  fjph_weno = fjph_weno + w(k) * aa(k,:) * transpose(f(S{k}));
+end
