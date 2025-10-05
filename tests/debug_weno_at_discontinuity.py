@@ -164,14 +164,17 @@ def debug_gradflow_reconstruction():
     
     # Setup - match Gottlieb exactly
     x = torch.linspace(-1, 1, 101, dtype=torch.float64)
-    u0 = torch.sign(x).unsqueeze(0)  # Add batch dimension
+    u0 = torch.sign(x)
+    u0[50] = 0.0  # CRITICAL FIX: Force sign(0) = 0 at discontinuity
+    u0 = u0.unsqueeze(0)  # Add batch dimension
     
     print(f"\nGrid setup:")
     print(f"  Physical grid: {u0.shape[1]} points")
     print(f"  u0 range: [{u0.min():.1f}, {u0.max():.1f}]")
     
     # Apply periodic BCs to add ghost cells
-    n_ghost = 3  # For WENO-5
+    n_ghost = 4  # Match Gottlieb's ghost cell count
+
     u_extended = torch.cat([
         u0[:, -n_ghost:],
         u0,
@@ -182,8 +185,7 @@ def debug_gradflow_reconstruction():
     print(f"  Ghost cells: {n_ghost} on each side")
     
     # The discontinuity is at physical index 50
-    # After adding 3 left ghost cells, this becomes extended index 53
-    disc_idx = 53
+    disc_idx = 54  # Match Gottlieb's discontinuity index
     
     print(f"\nDiscontinuity location:")
     print(f"  Physical index: 50 (x = 0.0)")

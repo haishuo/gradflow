@@ -25,11 +25,10 @@ def lax_friedrichs_splitting(
     alpha: Optional[float] = None
 ) -> Tuple[torch.Tensor, torch.Tensor]:
     """
-    Split flux into positive and negative components using Lax-Friedrichs.
+    Lax-Friedrichs flux splitting for finite difference WENO.
     
-    The splitting ensures upwinding:
-    - f⁺(u) propagates left-to-right (use left-biased stencils)
-    - f⁻(u) propagates right-to-left (use right-biased stencils)
+    Computes flux DIFFERENCES (not pointwise fluxes) that WENO will reconstruct.
+    This matches Gottlieb's MATLAB implementation.
     
     Parameters
     ----------
@@ -38,54 +37,42 @@ def lax_friedrichs_splitting(
     u : torch.Tensor
         Conservative variables at grid points. Shape: [batch, nx]
     alpha : float, optional
-        Maximum wave speed. If None, computed as max(|df/du|).
-        For Burgers: alpha = max(|u|)
-        For Euler: alpha = max(|u| + c) where c is sound speed
+        Maximum wave speed. If None, computed as max(|u|).
         
     Returns
     -------
-    f_plus : torch.Tensor
-        Positive flux component. Shape: [batch, nx]
-    f_minus : torch.Tensor
-        Negative flux component. Shape: [batch, nx]
+    dfp : torch.Tensor
+        Positive flux differences. Shape: [batch, nx-1]
+        dfp[i] = (f[i+1] - f[i] + α*(u[i+1] - u[i])) / 2
+    dfm : torch.Tensor
+        Negative flux differences. Shape: [batch, nx-1]
+        dfm[i] = (f[i+1] - f[i] - α*(u[i+1] - u[i])) / 2
         
     Notes
     -----
-    Lax-Friedrichs flux splitting:
-        f⁺(u) = 0.5 * (f(u) + α*u)
-        f⁻(u) = 0.5 * (f(u) - α*u)
+    This computes flux DIFFERENCES between consecutive grid points,
+    which is what WENO reconstructs in the finite difference formulation.
+    
+    Formula from Gottlieb/Shu:
+        dfp[i] = (f[i+1] - f[i] + α*(u[i+1] - u[i])) / 2
+        dfm[i] = (f[i+1] - f[i] - α*(u[i+1] - u[i])) / 2
         
-    where α ≥ max|λ| is the maximum characteristic speed.
-    
-    This splitting satisfies:
-    - f(u) = f⁺(u) + f⁻(u)
-    - df⁺/du ≥ 0 (positive characteristics)
-    - df⁻/du ≤ 0 (negative characteristics)
-    
-    Examples
-    --------
-    >>> u = torch.linspace(-1, 1, 100)
-    >>> flux = 0.5 * u**2  # Burgers equation
-    >>> f_plus, f_minus = lax_friedrichs_splitting(flux, u)
-    >>> torch.allclose(flux, f_plus + f_minus)
-    True
+    These satisfy:
+        (f[i+1] - f[i]) = dfp[i] + dfm[i]
     """
     # Compute maximum wave speed if not provided
     if alpha is None:
-        # For general case, estimate from flux derivative
-        # df/du ≈ (f[i+1] - f[i-1]) / (u[i+1] - u[i-1])
-        # For now, use conservative estimate: max(|u|)
         alpha = torch.abs(u).max().item()
-        
-        # Add safety factor
-        # alpha *= 1.1
     
-    # Lax-Friedrichs splitting
-    f_plus = 0.5 * (flux + alpha * u)
-    f_minus = 0.5 * (flux - alpha * u)
+    # Compute differences
+    flux_diff = flux[:, 1:] - flux[:, :-1]  # f[i+1] - f[i]
+    u_diff = u[:, 1:] - u[:, :-1]           # u[i+1] - u[i]
     
-    return f_plus, f_minus
-
+    # Lax-Friedrichs flux differences
+    dfp = 0.5 * (flux_diff + alpha * u_diff)
+    dfm = 0.5 * (flux_diff - alpha * u_diff)
+    
+    return dfp, dfm
 
 # ============================================================================
 # WENO RECONSTRUCTION

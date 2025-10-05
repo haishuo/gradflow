@@ -98,12 +98,27 @@ class WENOSolver:
         self.device = device
         self.dtype = dtype
         
-        # Create grid - match Gottlieb's approach
-        # For domain [-1, 1], use linspace to get actual points
-        # Then compute dx from the actual spacing
-        x = torch.linspace(-domain_length/2, domain_length/2, grid_size, dtype=dtype, device=device)
+        # Create grid with exact zero at midpoint to match Gottlieb's sign(x) = 0 at x=0
+        # This is critical for discontinuous initial conditions like sign(x)
+        if grid_size % 2 == 1:  # Odd number of points - can have exact zero
+            # Create grid with guaranteed exact zero at center
+            half_size = grid_size // 2
+            x_left = torch.linspace(-domain_length/2, 0, half_size + 1, dtype=dtype, device=device)[:-1]
+            x_center = torch.tensor([0.0], dtype=dtype, device=device)
+            x_right = torch.linspace(0, domain_length/2, half_size + 1, dtype=dtype, device=device)[1:]
+            x = torch.cat([x_left, x_center, x_right])
+        else:  # Even number of points - regular linspace
+            x = torch.linspace(-domain_length/2, domain_length/2, grid_size, dtype=dtype, device=device)
+
         self.x = x
         self.dx = float((x[1] - x[0]).item())  # Get actual grid spacing
+
+        # Verify the middle point is exactly zero for odd grids
+        if grid_size % 2 == 1:
+            mid_idx = grid_size // 2
+            if abs(self.x[mid_idx].item()) > 1e-15:
+                import warnings
+                warnings.warn(f"Middle point not exactly zero: {self.x[mid_idx].item()}")
         
         # Compute ghost cell requirements
         self.r = (order + 1) // 2
