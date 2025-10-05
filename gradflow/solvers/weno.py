@@ -94,13 +94,16 @@ class WENOSolver:
         self.order = order
         self.nx = grid_size
         self.L = domain_length
-        self.dx = domain_length / grid_size
         self.bc_type = boundary_condition
         self.device = device
         self.dtype = dtype
         
-        # Create grid
-        self.x = torch.linspace(0, domain_length, grid_size, dtype=dtype, device=device)
+        # Create grid - match Gottlieb's approach
+        # For domain [-1, 1], use linspace to get actual points
+        # Then compute dx from the actual spacing
+        x = torch.linspace(-domain_length/2, domain_length/2, grid_size, dtype=dtype, device=device)
+        self.x = x
+        self.dx = float((x[1] - x[0]).item())  # Get actual grid spacing
         
         # Compute ghost cell requirements
         self.r = (order + 1) // 2
@@ -108,7 +111,7 @@ class WENOSolver:
         
         print(f"WENO-{order} Solver initialized:")
         print(f"  Grid: {grid_size} points, dx = {self.dx:.6f}")
-        print(f"  Domain: [0, {domain_length}]")
+        print(f"  Domain: [{-domain_length/2}, {domain_length/2}]")
         print(f"  Boundary: {boundary_condition}")
         print(f"  Device: {device}")
     
@@ -161,7 +164,7 @@ class WENOSolver:
         self,
         u: torch.Tensor,
         flux_function: Callable[[torch.Tensor], torch.Tensor],
-        epsilon: float = 1e-6
+        epsilon: float = 1e-29
     ) -> torch.Tensor:
         """
         Compute spatial derivative du/dt = -df/dx using WENO.
@@ -193,7 +196,7 @@ class WENOSolver:
         
         # Total flux at interfaces: F_{i+1/2} = f⁺_{i+1/2} + f⁻_{i+1/2}
         F_interface = f_plus + f_minus
-        
+
         # The reconstruction gives us fluxes at nx-1 interfaces
         # We need fluxes at nx+1 interfaces to cover all cells
         # But with ghost cells, we have enough

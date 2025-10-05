@@ -78,7 +78,7 @@ def lax_friedrichs_splitting(
         alpha = torch.abs(u).max().item()
         
         # Add safety factor
-        alpha *= 1.1
+        # alpha *= 1.1
     
     # Lax-Friedrichs splitting
     f_plus = 0.5 * (flux + alpha * u)
