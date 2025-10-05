@@ -103,7 +103,9 @@ class WENOSolver:
         self.order = order
         self.nx = grid_size
         self.L = domain_length
-        self.dx = domain_length / grid_size
+        # CRITICAL: dx = domain_length / (grid_size - 1) to match linspace spacing
+        # linspace with N points creates N-1 intervals
+        self.dx = domain_length / (grid_size - 1)
         self.bc_type = boundary_condition
         self.device = device
         self.dtype = dtype
@@ -137,11 +139,15 @@ class WENOSolver:
         batch_size = u.shape[0]
         
         if self.bc_type == 'periodic':
-            # Periodic: wrap around
+            # Periodic: wrap around (matching Gottlieb's convention)
+            # Gottlieb MATLAB: u = [ u(i-md:end-1), u, u(2:md+2)]
+            # For md=4, i=101: u(97:100), u, u(2:6) in MATLAB 1-based
+            # Python 0-based: u[96:100], u, u[1:6]
+            # Translation: u[-5:-1] skips last element, u[1:6] gives 5 elements
             u_extended = torch.cat([
-                u[:, -self.n_ghost:],  # Left ghost cells (from right end)
-                u,                      # Physical domain
-                u[:, :self.n_ghost]    # Right ghost cells (from left end)
+                u[:, -self.n_ghost-1:-1],  # Last 4, skipping the very last element
+                u,                          # Physical domain
+                u[:, 1:self.n_ghost+2]     # Elements at indices 1,2,3,4,5 (5 elements)
             ], dim=1)
             
         elif self.bc_type == 'outflow':
@@ -168,7 +174,9 @@ class WENOSolver:
         self,
         u: torch.Tensor,
         flux_function: Callable[[torch.Tensor], torch.Tensor],
-        epsilon: float = 1e-29
+        epsilon: float = 1e-29,
+        alpha: Optional[float] = None,
+        flux_derivative: Optional[Callable[[torch.Tensor], torch.Tensor]] = None
     ) -> torch.Tensor:
         """
         Compute spatial derivative using Gottlieb's finite difference WENO.
@@ -185,7 +193,16 @@ class WENOSolver:
         flux_function : callable
             Function f(u) that computes flux
         epsilon : float, optional
-            Small parameter for WENO weights. Default: 1e-29 (Gottlieb's value)
+            Small parameter for WENO weights. Default: 1e-29
+        alpha : float, optional
+            Maximum wave speed for Lax-Friedrichs splitting.
+            For linear advection f(u)=u, use alpha=1.0.
+            If None, auto-computed from flux_derivative or estimated.
+            Default: None
+        flux_derivative : callable, optional
+            Function that computes df/du. Enables CORRECT alpha estimation.
+            Example: for f(u)=u, use lambda u: torch.ones_like(u)
+            Default: None
             
         Returns
         -------
@@ -220,27 +237,31 @@ class WENOSolver:
             flux_function,
             order=self.order,
             epsilon=epsilon,
-            alpha=None  # Let it auto-compute
+            alpha=alpha,
+            flux_derivative=flux_derivative
         )
         
         # Gottlieb's FD-WENO returns interface fluxes such that:
-        # du/dt[i] = (fh[i-1] - fh[i]) / dx
+        # du/dt[i] = (fh[i-1] - fh[i]) / dx (in Gottlieb's extended indexing)
         #
-        # The number of interfaces returned is n_interfaces = nx_extended - 2*md + 1
-        # where md = 4 for WENO-5
-        # For u_extended with shape [batch, nx + 8], this gives:
-        #   n_interfaces = (nx + 8) - 8 + 1 = nx + 1
+        # After the boundary condition fix:
+        # - u_extended has nx + n_ghost + (n_ghost+1) = nx + 9 points (for nx=101: 110 points)
+        # - n_interfaces = nx_extended - 2*md + 1 = 110 - 8 + 1 = 103 interfaces
+        # - We need 101 derivatives for 101 physical cells
+        # 
+        # Gottlieb computes:
+        # - fh for extended indices 3 to 105 (103 values)
+        # - rhs for extended indices 4 to 104 (101 values)
+        # - Formula: rhs[i] = (fh[i-1] - fh[i]) / dx
         #
-        # These correspond to interfaces from extended index 3 to nx+4
-        # In terms of physical cells:
-        #   - fh[0] is at extended interface 3 (left of physical cell 0)
-        #   - fh[nx] is at extended interface nx+3 (right of physical cell nx-1)
-        #
-        # So fh has exactly the nx+1 interfaces we need for nx physical cells.
+        # In our indexing (fh starts from 0):
+        # - fh[0:103] are the 103 interface fluxes
+        # - We use fh[0:102] to compute 101 derivatives
+        # - dudt[i] = (fh[i] - fh[i+1]) / dx for i = 0 to 100
         
-        # Compute derivative: du/dt[i] = (fh[i] - fh[i+1]) / dx
-        # Note: Physical cell i uses fh[i] and fh[i+1]
-        dudt = (fh[:, :-1] - fh[:, 1:]) / self.dx
+        # Compute derivative using the first 102 of 103 interface fluxes
+        # dudt[i] = (fh[i] - fh[i+1]) / dx
+        dudt = (fh[:, :-2] - fh[:, 1:-1]) / self.dx
         
         # Verify shape
         assert dudt.shape == (batch_size, self.nx), \
@@ -258,6 +279,8 @@ class WENOSolver:
         flux_function: Callable[[torch.Tensor], torch.Tensor],
         cfl_number: float = 0.5,
         epsilon: float = 1e-29,
+        alpha: Optional[float] = None,
+        flux_derivative: Optional[Callable[[torch.Tensor], torch.Tensor]] = None,
         time_method: str = 'ssp_rk3',
         save_interval: Optional[float] = None,
         verbose: bool = True
@@ -310,7 +333,7 @@ class WENOSolver:
         
         # Define RHS function for time integration
         def rhs_function(u_current):
-            return self.compute_spatial_derivative(u_current, flux_function, epsilon)
+            return self.compute_spatial_derivative(u_current, flux_function, epsilon, alpha, flux_derivative)
         
         # Time integration using the correct signature
         result = integrate_to_time(

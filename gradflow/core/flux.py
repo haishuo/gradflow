@@ -25,7 +25,8 @@ def reconstruct_interface_fluxes_fd_weno(
     flux_function: Callable,
     order: int = 5,
     epsilon: float = 1e-29,
-    alpha: Optional[float] = None
+    alpha: Optional[float] = None,
+    flux_derivative: Optional[Callable] = None
 ) -> torch.Tensor:
     """
     Gottlieb's finite difference WENO reconstruction.
@@ -45,7 +46,13 @@ def reconstruct_interface_fluxes_fd_weno(
     epsilon : float, optional
         Small parameter for WENO weights. Default: 1e-29 (Gottlieb's value)
     alpha : float, optional
-        Maximum wave speed. If None, computed as max(|df/du|).
+        Maximum wave speed. If None, computed from flux_derivative or estimated.
+        Default: None
+    flux_derivative : callable, optional
+        Function that computes df/du. If provided, alpha = max(|fp(u)|).
+        This is the CORRECT method (Gottlieb's approach).
+        Example: for f(u)=u, flux_derivative = lambda u: torch.ones_like(u)
+        Default: None
         
     Returns
     -------
@@ -73,10 +80,28 @@ def reconstruct_interface_fluxes_fd_weno(
     # Step 1: Compute flux at all points
     flux = flux_function(u_extended)
     
+    # Compute differences needed for alpha estimation and flux splitting
+    flux_diff = flux[:, 1:] - flux[:, :-1]
+    u_diff = u_extended[:, 1:] - u_extended[:, :-1]
+    
     # Step 2: Compute maximum wave speed if not provided
     if alpha is None:
-        # Estimate from finite differences of flux
-        alpha = torch.abs(flux[:, 1:] - flux[:, :-1]).max().item()
+        if flux_derivative is not None:
+            # Gottlieb's method: alpha = max(|df/du|)
+            fp = flux_derivative(u_extended)
+            alpha = torch.abs(fp).max().item()
+        else:
+            # Fallback: estimate from (Δf / Δu)
+            # This is less accurate for discontinuous data
+            u_nonzero = torch.abs(u_diff) > 1e-14
+            if u_nonzero.any():
+                # alpha ≈ |Δf / Δu| where Δu is non-zero
+                alpha_estimates = torch.abs(flux_diff[u_nonzero] / u_diff[u_nonzero])
+                alpha = alpha_estimates.max().item()
+            else:
+                # If all Δu are zero, estimate from flux differences
+                alpha = torch.abs(flux_diff).max().item()
+        
         # Make sure alpha > 0
         if alpha < 1e-10:
             alpha = 1.0
@@ -84,9 +109,6 @@ def reconstruct_interface_fluxes_fd_weno(
     # Step 3: Compute flux differences (Lax-Friedrichs splitting)
     # dfp[i] = (f[i+1] - f[i] + α*(u[i+1] - u[i])) / 2
     # dfm[i] = (f[i+1] - f[i] - α*(u[i+1] - u[i])) / 2
-    flux_diff = flux[:, 1:] - flux[:, :-1]
-    u_diff = u_extended[:, 1:] - u_extended[:, :-1]
-    
     dfp = 0.5 * (flux_diff + alpha * u_diff)
     dfm = 0.5 * (flux_diff - alpha * u_diff)
     
