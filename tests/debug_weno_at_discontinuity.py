@@ -174,7 +174,6 @@ def debug_gradflow_reconstruction():
     
     # Apply periodic BCs to add ghost cells
     n_ghost = 4  # Match Gottlieb's ghost cell count
-
     u_extended = torch.cat([
         u0[:, -n_ghost:],
         u0,
@@ -197,16 +196,21 @@ def debug_gradflow_reconstruction():
     # Compute flux
     flux = u_extended  # f(u) = u for linear advection
     
-    # Flux splitting
+    # Flux splitting - compute flux DIFFERENCES like Gottlieb
     alpha = torch.abs(u_extended).max().item()
-    f_plus = 0.5 * (flux + alpha * u_extended)
-    f_minus = 0.5 * (flux - alpha * u_extended)
+    
+    # Compute flux differences: dfp[i] = (f[i+1] - f[i] + alpha*(u[i+1] - u[i]))/2
+    flux_diff = flux[:, 1:] - flux[:, :-1]
+    u_diff = u_extended[:, 1:] - u_extended[:, :-1]
+    
+    dfp = 0.5 * (flux_diff + alpha * u_diff)
+    dfm = 0.5 * (flux_diff - alpha * u_diff)
     
     print(f"\nFlux splitting:")
     print(f"  alpha (max wave speed): {alpha:.6f}")
-    print(f"  f_plus at discontinuity:")
+    print(f"  dfp at discontinuity:")
     for i in range(disc_idx - 2, disc_idx + 3):
-        print(f"    f_plus[0,{i}] = {f_plus[0,i].item():.6f}")
+        print(f"    dfp[0,{i}] = {dfp[0,i].item():.6f}")
     
     # Now manually compute WENO reconstruction using GradFlow's functions
     # Extract the stencil values needed for reconstruction at disc_idx + 1/2
@@ -215,11 +219,11 @@ def debug_gradflow_reconstruction():
     
     # For WENO-5 reconstruction at point j, we need values at j-2, j-1, j, j+1, j+2
     stencil_indices = [disc_idx-2, disc_idx-1, disc_idx, disc_idx+1, disc_idx+2]
-    stencil_vals = f_plus[0, stencil_indices]
+    stencil_vals = dfp[0, stencil_indices]
     
     print(f"  Stencil values (indices {stencil_indices}):")
     for idx, val in zip(stencil_indices, stencil_vals):
-        print(f"    f_plus[{idx}] = {val.item():.6f}")
+        print(f"    dfp[{idx}] = {val.item():.6f}")
     
     # Compute smoothness indicators manually
     # IS0 uses points [j-2, j-1, j]
@@ -250,8 +254,8 @@ def debug_gradflow_reconstruction():
     C = torch.tensor([0.1, 0.6, 0.3], dtype=torch.float64).unsqueeze(0)
     
     # Nonlinear weights
-    alpha = C / (epsilon + IS_tensor)**2
-    omega = alpha / alpha.sum(dim=-1, keepdim=True)
+    alpha_weights = C / (epsilon + IS_tensor)**2
+    omega = alpha_weights / alpha_weights.sum(dim=-1, keepdim=True)
     
     print(f"\n  Nonlinear weights:")
     print(f"    ω0 = {omega[0,0].item():.10f}")

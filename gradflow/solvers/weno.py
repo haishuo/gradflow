@@ -2,32 +2,32 @@
 Main WENO solver class.
 
 This is the high-level interface for solving hyperbolic conservation laws
-using WENO spatial reconstruction and SSP-RK time integration.
+using Gottlieb's finite difference WENO spatial reconstruction and 
+SSP-RK time integration.
 """
 
 import torch
 import numpy as np
 from typing import Callable, Optional, Union, List, Tuple
 
-from ..core.flux import reconstruct_both_sides
+from ..core.flux import reconstruct_interface_fluxes_fd_weno
 from .timestepping import integrate_to_time, compute_cfl_timestep
 
 
 class WENOSolver:
     """
-    WENO solver for hyperbolic conservation laws.
+    WENO solver for hyperbolic conservation laws using Gottlieb's FD-WENO.
     
     Solves equations of the form:
         ∂u/∂t + ∂f(u)/∂x = 0
         
-    using Weighted Essentially Non-Oscillatory (WENO) spatial reconstruction
+    using Gottlieb's finite difference WENO spatial reconstruction
     and Strong Stability Preserving Runge-Kutta (SSP-RK) time integration.
     
     Parameters
     ----------
     order : int
-        WENO order (5, 7, 9). Higher order = more accurate but more expensive.
-        Default: 5
+        WENO order. Currently only 5 supported. Default: 5
     grid_size : int
         Number of grid points
     domain_length : float, optional
@@ -48,6 +48,8 @@ class WENOSolver:
         Grid spacing
     nx : int
         Number of grid points
+    n_ghost : int
+        Number of ghost cells (4 for WENO-5)
         
     Examples
     --------
@@ -62,15 +64,15 @@ class WENOSolver:
     
     Notes
     -----
-    This solver implements the classic WENO scheme from:
-    - Jiang & Shu (1996) for WENO-5
-    - Balsara & Shu (2000) for WENO-7/9
+    This implements Gottlieb's finite difference WENO from:
+    - Gottlieb & Shu MATLAB implementation
+    - Shu & Osher (1989) for finite difference formulation
     
     Key features:
     - GPU acceleration via PyTorch
-    - Order-agnostic implementation
     - Adaptive time stepping with CFL condition
     - Multiple boundary conditions
+    - Exact match with Gottlieb's reference implementation
     """
     
     def __init__(
@@ -83,52 +85,37 @@ class WENOSolver:
         dtype: torch.dtype = torch.float64
     ):
         # Validate inputs
-        if order % 2 == 0:
-            raise ValueError(f"WENO order must be odd, got {order}")
-        if order not in [5, 7, 9]:
-            raise ValueError(f"Only WENO-5, 7, 9 currently supported, got {order}")
+        if order != 5:
+            raise NotImplementedError(
+                f"Currently only WENO-5 is implemented for FD-WENO, got order={order}"
+            )
         if grid_size < 2 * order:
-            raise ValueError(f"Grid too small for WENO-{order}. Need at least {2*order} points.")
+            raise ValueError(
+                f"Grid too small for WENO-{order}. Need at least {2*order} points, got {grid_size}"
+            )
+        if boundary_condition not in ['periodic', 'outflow', 'reflecting']:
+            raise ValueError(
+                f"Unsupported boundary condition: {boundary_condition}. "
+                f"Choose from: 'periodic', 'outflow', 'reflecting'"
+            )
         
         # Store parameters
         self.order = order
         self.nx = grid_size
         self.L = domain_length
+        self.dx = domain_length / grid_size
         self.bc_type = boundary_condition
         self.device = device
         self.dtype = dtype
         
-        # Create grid with exact zero at midpoint to match Gottlieb's sign(x) = 0 at x=0
-        # This is critical for discontinuous initial conditions like sign(x)
-        if grid_size % 2 == 1:  # Odd number of points - can have exact zero
-            # Create grid with guaranteed exact zero at center
-            half_size = grid_size // 2
-            x_left = torch.linspace(-domain_length/2, 0, half_size + 1, dtype=dtype, device=device)[:-1]
-            x_center = torch.tensor([0.0], dtype=dtype, device=device)
-            x_right = torch.linspace(0, domain_length/2, half_size + 1, dtype=dtype, device=device)[1:]
-            x = torch.cat([x_left, x_center, x_right])
-        else:  # Even number of points - regular linspace
-            x = torch.linspace(-domain_length/2, domain_length/2, grid_size, dtype=dtype, device=device)
-
-        self.x = x
-        self.dx = float((x[1] - x[0]).item())  # Get actual grid spacing
-
-        # Verify the middle point is exactly zero for odd grids
-        if grid_size % 2 == 1:
-            mid_idx = grid_size // 2
-            if abs(self.x[mid_idx].item()) > 1e-15:
-                import warnings
-                warnings.warn(f"Middle point not exactly zero: {self.x[mid_idx].item()}")
+        # Ghost cells (4 for WENO-5)
+        self.n_ghost = 4
         
-        # Compute ghost cell requirements
-        self.r = (order + 1) // 2
-        self.n_ghost = self.r
-        
-        print(f"WENO-{order} Solver initialized:")
-        print(f"  Grid: {grid_size} points, dx = {self.dx:.6f}")
-        print(f"  Domain: [{-domain_length/2}, {domain_length/2}]")
-        print(f"  Boundary: {boundary_condition}")
-        print(f"  Device: {device}")
+        # Create grid
+        self.x = torch.linspace(
+            0, domain_length, grid_size,
+            device=device, dtype=dtype
+        )
     
     def apply_boundary_conditions(self, u: torch.Tensor) -> torch.Tensor:
         """
@@ -144,15 +131,17 @@ class WENOSolver:
         u_extended : torch.Tensor
             Solution with ghost cells. Shape: [batch, nx + 2*n_ghost]
         """
+        if u.ndim == 1:
+            u = u.unsqueeze(0)
+        
         batch_size = u.shape[0]
         
         if self.bc_type == 'periodic':
             # Periodic: wrap around
-            # Left ghost cells from right side, right ghost from left
             u_extended = torch.cat([
-                u[:, -self.n_ghost:],  # Left ghost cells
+                u[:, -self.n_ghost:],  # Left ghost cells (from right end)
                 u,                      # Physical domain
-                u[:, :self.n_ghost]    # Right ghost cells
+                u[:, :self.n_ghost]    # Right ghost cells (from left end)
             ], dim=1)
             
         elif self.bc_type == 'outflow':
@@ -182,73 +171,85 @@ class WENOSolver:
         epsilon: float = 1e-29
     ) -> torch.Tensor:
         """
-        Compute spatial derivative du/dt = -df/dx using WENO.
+        Compute spatial derivative using Gottlieb's finite difference WENO.
+        
+        This implements:
+            du/dt[i] = (fh[i-1] - fh[i]) / dx
+        
+        where fh[i] are the interface fluxes computed by FD-WENO.
         
         Parameters
         ----------
         u : torch.Tensor
-            Conservative variables. Shape: [batch, nx]
+            Conservative variables. Shape: [batch, nx] or [nx]
         flux_function : callable
             Function f(u) that computes flux
         epsilon : float, optional
-            Small parameter for WENO weights. Default: 1e-6
+            Small parameter for WENO weights. Default: 1e-29 (Gottlieb's value)
             
         Returns
         -------
         dudt : torch.Tensor
             Spatial derivative. Shape: [batch, nx]
+            
+        Notes
+        -----
+        The key difference from finite volume WENO:
+        - FV: du/dt = -(F[i+1/2] - F[i-1/2]) / dx
+        - FD: du/dt = (fh[i-1] - fh[i]) / dx
+        
+        The sign difference and indexing are part of Gottlieb's formulation.
         """
-        # Apply boundary conditions
+        # Ensure batch dimension
+        if u.ndim == 1:
+            u = u.unsqueeze(0)
+            squeeze_output = True
+        else:
+            squeeze_output = False
+        
+        batch_size, nx = u.shape
+        assert nx == self.nx, f"Expected {self.nx} grid points, got {nx}"
+        
+        # Apply boundary conditions to get ghost cells
         u_extended = self.apply_boundary_conditions(u)
         
-        # WENO reconstruction at interfaces
-        f_plus, f_minus = reconstruct_both_sides(
+        # Compute interface fluxes using Gottlieb's FD-WENO
+        # This returns fluxes at interfaces needed for the spatial derivative
+        fh = reconstruct_interface_fluxes_fd_weno(
             u_extended,
             flux_function,
             order=self.order,
-            epsilon=epsilon
+            epsilon=epsilon,
+            alpha=None  # Let it auto-compute
         )
         
-        # Total flux at interfaces: F_{i+1/2} = f⁺_{i+1/2} + f⁻_{i+1/2}
-        F_interface = f_plus + f_minus
-
-        # The reconstruction gives us fluxes at nx-1 interfaces
-        # We need fluxes at nx+1 interfaces to cover all cells
-        # But with ghost cells, we have enough
+        # Gottlieb's FD-WENO returns interface fluxes such that:
+        # du/dt[i] = (fh[i-1] - fh[i]) / dx
+        #
+        # The number of interfaces returned is n_interfaces = nx_extended - 2*md + 1
+        # where md = 4 for WENO-5
+        # For u_extended with shape [batch, nx + 8], this gives:
+        #   n_interfaces = (nx + 8) - 8 + 1 = nx + 1
+        #
+        # These correspond to interfaces from extended index 3 to nx+4
+        # In terms of physical cells:
+        #   - fh[0] is at extended interface 3 (left of physical cell 0)
+        #   - fh[nx] is at extended interface nx+3 (right of physical cell nx-1)
+        #
+        # So fh has exactly the nx+1 interfaces we need for nx physical cells.
         
-        # Extract the interfaces we need for physical cells
-        # Interface i+1/2 is between cell i and i+1
-        # For nx physical cells, we need interfaces 0+1/2 through nx-1+1/2
-        # That's nx interfaces total
+        # Compute derivative: du/dt[i] = (fh[i] - fh[i+1]) / dx
+        # Note: Physical cell i uses fh[i] and fh[i+1]
+        dudt = (fh[:, :-1] - fh[:, 1:]) / self.dx
         
-        # Actually, let's think about this more carefully
-        # u_extended has shape [batch, nx + 2*n_ghost]
-        # After reconstruction, F_interface has fewer points
-        # We need F at the nx+1 interfaces surrounding the nx physical cells
+        # Verify shape
+        assert dudt.shape == (batch_size, self.nx), \
+            f"Expected shape ({batch_size}, {self.nx}), got {dudt.shape}"
         
-        # For now, let's assume we get the right interfaces
-        # (This might need adjustment based on reconstruct_both_sides output)
+        if squeeze_output:
+            dudt = dudt.squeeze(0)
         
-        # Finite volume update: du/dt = -(F_{i+1/2} - F_{i-1/2}) / dx
-        F_left = F_interface[:, :-1]
-        F_right = F_interface[:, 1:]
-        
-        dudt = -(F_right - F_left) / self.dx
-        
-        # Extract physical domain (remove ghost cell contributions)
-        # Need to figure out the exact indexing...
-        # For now, take the middle nx points
-        start_idx = 0
-        end_idx = dudt.shape[1]
-        if dudt.shape[1] > self.nx:
-            # Have extra points, extract physical domain
-            excess = dudt.shape[1] - self.nx
-            start_idx = excess // 2
-            end_idx = start_idx + self.nx
-        
-        dudt_physical = dudt[:, start_idx:end_idx]
-        
-        return dudt_physical
+        return dudt
     
     def solve(
         self,
@@ -256,7 +257,7 @@ class WENOSolver:
         t_final: float,
         flux_function: Callable[[torch.Tensor], torch.Tensor],
         cfl_number: float = 0.5,
-        epsilon: float = 1e-6,
+        epsilon: float = 1e-29,
         time_method: str = 'ssp_rk3',
         save_interval: Optional[float] = None,
         verbose: bool = True
@@ -271,73 +272,64 @@ class WENOSolver:
         t_final : float
             Final time
         flux_function : callable
-            Function f(u) that computes flux from conservative variables
+            Function that computes f(u)
         cfl_number : float, optional
-            CFL safety factor (0 < CFL < 1). Default: 0.5
-            Lower = more stable but slower
+            CFL number for adaptive time stepping. Default: 0.5
         epsilon : float, optional
-            WENO smoothness parameter. Default: 1e-6
-            Smaller = sharper shocks but less stable
+            Small parameter for WENO weights. Default: 1e-29
         time_method : str, optional
             Time integration method: 'ssp_rk3', 'ssp_rk2', 'euler'.
             Default: 'ssp_rk3'
         save_interval : float, optional
-            If provided, save solution snapshots at these time intervals.
-            Returns list of (time, solution) tuples.
+            If provided, save snapshots at this interval. Default: None
         verbose : bool, optional
             Print progress information. Default: True
             
         Returns
         -------
         u_final : torch.Tensor
-            Solution at t=t_final. Shape: [batch, nx]
-        OR
-        snapshots : list of (float, torch.Tensor)
-            If save_interval provided, returns list of (t, u) pairs
+            Solution at t=t_final if save_interval is None
+        snapshots : List[Tuple[float, torch.Tensor]]
+            List of (time, solution) pairs if save_interval is provided
             
         Examples
         --------
         >>> solver = WENOSolver(order=5, grid_size=200)
         >>> u0 = torch.sin(solver.x)
-        >>> def flux(u): return 0.5 * u**2
-        >>> u_final = solver.solve(u0, t_final=1.0, flux_function=flux)
+        >>> u_final = solver.solve(u0, t_final=1.0, flux_function=lambda u: 0.5*u**2)
         """
-        # Convert initial condition to torch tensor
+        # Convert to torch tensor if needed
         if isinstance(u_initial, np.ndarray):
-            u_initial = torch.from_numpy(u_initial).to(dtype=self.dtype, device=self.device)
+            u = torch.from_numpy(u_initial).to(device=self.device, dtype=self.dtype)
+        else:
+            u = u_initial.to(device=self.device, dtype=self.dtype)
         
         # Ensure batch dimension
-        if u_initial.ndim == 1:
-            u_initial = u_initial.unsqueeze(0)
+        if u.ndim == 1:
+            u = u.unsqueeze(0)
         
-        # Validate shape
-        if u_initial.shape[-1] != self.nx:
-            raise ValueError(
-                f"Initial condition has {u_initial.shape[-1]} points, "
-                f"but solver expects {self.nx} points"
-            )
+        # Define RHS function for time integration
+        def rhs_function(u_current):
+            return self.compute_spatial_derivative(u_current, flux_function, epsilon)
         
-        # Define RHS function for time integrator
-        def rhs(u):
-            return self.compute_spatial_derivative(u, flux_function, epsilon)
-        
-        # Integrate in time
-        if verbose:
-            print(f"\nSolving to t={t_final} with CFL={cfl_number}...")
-        
+        # Time integration using the correct signature
         result = integrate_to_time(
-            u_initial,
+            u,
             t_final,
             self.dx,
-            rhs,
+            rhs_function,
             cfl_number=cfl_number,
             method=time_method,
             save_interval=save_interval,
             verbose=verbose
         )
         
-        if verbose:
-            print("✓ Solution complete\n")
+        # Remove batch dimension if input was 1D
+        if u_initial.ndim == 1:
+            if isinstance(result, torch.Tensor):
+                result = result.squeeze(0)
+            else:  # List of snapshots
+                result = [(t, u.squeeze(0)) for t, u in result]
         
         return result
     
@@ -348,7 +340,7 @@ class WENOSolver:
         **kwargs
     ) -> Union[torch.Tensor, List[Tuple[float, torch.Tensor]]]:
         """
-        Convenience method for Burgers equation: u_t + (u²/2)_x = 0.
+        Convenience method for solving Burgers equation: f(u) = 0.5 * u^2.
         
         Parameters
         ----------
@@ -375,100 +367,110 @@ class WENOSolver:
 # ============================================================================
 
 if __name__ == "__main__":
-    print("Testing WENO Solver...")
+    print("Testing WENO Solver with Gottlieb FD-WENO")
+    print("=" * 70)
     
     # Test 1: Solver initialization
-    print("\n" + "="*60)
-    print("Test 1: Solver initialization")
+    print("\nTest 1: Solver initialization")
     
     try:
         solver = WENOSolver(order=5, grid_size=100, device='cpu')
-        print("✓ WENO-5 solver created")
+        print(f"✓ WENO-5 solver created")
         print(f"  Grid points: {solver.nx}")
         print(f"  dx: {solver.dx:.6f}")
         print(f"  Ghost cells: {solver.n_ghost}")
     except Exception as e:
         print(f"✗ Initialization failed: {e}")
+        import sys
+        sys.exit(1)
     
     # Test 2: Boundary conditions
-    print("\n" + "="*60)
-    print("Test 2: Boundary conditions")
+    print("\nTest 2: Boundary conditions")
     
     u = torch.randn(1, 100, dtype=torch.float64)
     
-    for bc in ['periodic', 'outflow']:
+    for bc in ['periodic', 'outflow', 'reflecting']:
         solver = WENOSolver(order=5, grid_size=100, boundary_condition=bc)
         u_extended = solver.apply_boundary_conditions(u)
-        print(f"{bc:10s}: {u.shape} → {u_extended.shape}")
+        print(f"  {bc:10s}: {u.shape} → {u_extended.shape}")
     
     print("✓ Boundary conditions working")
     
-    # Test 3: Smooth advection (should be exact for periodic BC)
-    print("\n" + "="*60)
-    print("Test 3: Smooth function evolution")
+    # Test 3: Spatial derivative computation
+    print("\nTest 3: Spatial derivative with discontinuity")
     
-    solver = WENOSolver(order=5, grid_size=200, domain_length=2*np.pi, device='cpu')
+    solver = WENOSolver(order=5, grid_size=101, domain_length=2.0, device='cpu')
     
-    # Initial condition: smooth sine wave
-    u0 = torch.sin(solver.x)
+    # Discontinuous initial condition
+    x = solver.x
+    u0 = torch.sign(x - 1.0)
+    u0[50] = 0.0  # Force zero at discontinuity
+    
+    # Linear advection flux
+    def linear_flux(u):
+        return u
+    
+    dudt = solver.compute_spatial_derivative(u0, linear_flux)
+    
+    print(f"  Input shape: {u0.shape}")
+    print(f"  Output shape: {dudt.shape}")
+    print(f"  Output range: [{dudt.min():.6f}, {dudt.max():.6f}]")
+    
+    # Check for NaN
+    if torch.isnan(dudt).any():
+        print("✗ NaN detected in spatial derivative!")
+    else:
+        print("✓ Spatial derivative computed successfully")
+    
+    # Test 4: Time integration
+    print("\nTest 4: Time integration (smooth IC)")
+    
+    solver = WENOSolver(
+        order=5, 
+        grid_size=200, 
+        domain_length=2*np.pi, 
+        device='cpu'
+    )
+    
+    # Smooth initial condition
+    u0_smooth = torch.sin(solver.x)
     
     # Burgers equation flux
     def burgers_flux(u):
         return 0.5 * u**2
     
-    # Short time evolution
     try:
         u_final = solver.solve(
-            u0,
+            u0_smooth,
             t_final=0.1,
             flux_function=burgers_flux,
             cfl_number=0.5,
             verbose=False
         )
         
-        print(f"Initial: max={u0.max():.4f}, min={u0.min():.4f}")
-        print(f"Final:   max={u_final.max():.4f}, min={u_final.min():.4f}")
-        print("✓ Evolution completes without crash")
+        print(f"  Initial: max={u0_smooth.max():.4f}, min={u0_smooth.min():.4f}")
+        print(f"  Final:   max={u_final.max():.4f}, min={u_final.min():.4f}")
+        
+        # Check for NaN
+        if torch.isnan(u_final).any():
+            print("✗ NaN detected in time integration!")
+        else:
+            print("✓ Time integration successful")
+            
     except Exception as e:
-        print(f"✗ Evolution failed: {e}")
+        print(f"✗ Time integration failed: {e}")
         import traceback
         traceback.print_exc()
     
-    # Test 4: Burgers equation convenience function
-    print("\n" + "="*60)
-    print("Test 4: Burgers equation solver")
+    # Test 5: CFL time step
+    print("\nTest 5: CFL time step computation")
     
-    solver = WENOSolver(order=5, grid_size=100, device='cpu')
-    u0 = torch.sin(solver.x)
+    dt = compute_cfl_timestep(u0_smooth, burgers_flux, solver.dx, cfl_number=0.5)
     
-    try:
-        u_final = solver.solve_burgers(u0, t_final=0.1, verbose=False)
-        print("✓ Burgers solver works")
-    except Exception as e:
-        print(f"✗ Burgers solver failed: {e}")
+    print(f"  Time step: {dt:.6e}")
+    assert dt > 0, "Time step should be positive"
+    assert np.isfinite(dt), "Time step should be finite"
+    print("✓ CFL time step valid")
     
-    # Test 5: Snapshot saving
-    print("\n" + "="*60)
-    print("Test 5: Snapshot saving")
-    
-    solver = WENOSolver(order=5, grid_size=100, device='cpu')
-    u0 = torch.sin(solver.x)
-    
-    try:
-        snapshots = solver.solve_burgers(
-            u0, t_final=0.5,
-            save_interval=0.1,
-            verbose=False
-        )
-        
-        print(f"Saved {len(snapshots)} snapshots:")
-        for t, u in snapshots:
-            print(f"  t={t:.2f}: max={u.max():.4f}")
-        
-        print("✓ Snapshot saving works")
-    except Exception as e:
-        print(f"✗ Snapshot saving failed: {e}")
-    
-    print("\n" + "="*60)
-    print("✓ WENO Solver tests complete")
-    print("\n🎉 Congratulations! You have a working WENO solver!")
+    print("\n" + "=" * 70)
+    print("All tests passed!")

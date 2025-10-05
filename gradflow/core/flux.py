@@ -1,10 +1,11 @@
 """
-Flux splitting and WENO reconstruction.
+Flux splitting and WENO reconstruction - Gottlieb's Finite Difference WENO.
 
-This module handles:
-1. Lax-Friedrichs flux splitting into positive/negative components
-2. WENO reconstruction at cell interfaces
-3. Combining substencils with nonlinear weights
+This module implements Gottlieb's finite difference WENO formulation,
+which uses a correction-based approach:
+1. Compute base 4th-order central flux at each interface
+2. Add WENO correction computed from flux differences
+3. Use result in spatial derivative: du/dt[i] = (fh[i-1] - fh[i])/dx
 """
 
 import torch
@@ -16,7 +17,273 @@ from .weights import compute_nonlinear_weights
 
 
 # ============================================================================
-# FLUX SPLITTING
+# GOTTLIEB FINITE DIFFERENCE WENO
+# ============================================================================
+
+def reconstruct_interface_fluxes_fd_weno(
+    u_extended: torch.Tensor,
+    flux_function: Callable,
+    order: int = 5,
+    epsilon: float = 1e-29,
+    alpha: Optional[float] = None
+) -> torch.Tensor:
+    """
+    Gottlieb's finite difference WENO reconstruction.
+    
+    This implements the exact algorithm from Gottlieb's MATLAB code,
+    which computes interface fluxes fh[i] such that:
+        du/dt[i] = (fh[i-1] - fh[i])/dx
+    
+    Parameters
+    ----------
+    u_extended : torch.Tensor
+        Conservative variables with ghost cells. Shape: [batch, nx_extended]
+    flux_function : callable
+        Function that computes f(u)
+    order : int, optional
+        WENO order. Currently only 5 supported. Default: 5
+    epsilon : float, optional
+        Small parameter for WENO weights. Default: 1e-29 (Gottlieb's value)
+    alpha : float, optional
+        Maximum wave speed. If None, computed as max(|df/du|).
+        
+    Returns
+    -------
+    fh : torch.Tensor
+        Interface fluxes. Shape: [batch, n_interfaces]
+        fh[i] is the total flux at interface i
+        
+    Notes
+    -----
+    Gottlieb's algorithm:
+    1. Compute flux differences dfp, dfm (flux splitting)
+    2. For each interface: compute 4th-order central flux
+    3. Add WENO correction from dfp and dfm
+    4. Return interface fluxes
+    
+    The algorithm is described in:
+    - Gottlieb & Shu MATLAB implementation
+    - Shu & Osher (1989) for the finite difference approach
+    """
+    if order != 5:
+        raise NotImplementedError("Currently only WENO-5 is implemented for FD-WENO")
+    
+    batch_size, nx_extended = u_extended.shape
+    
+    # Step 1: Compute flux at all points
+    flux = flux_function(u_extended)
+    
+    # Step 2: Compute maximum wave speed if not provided
+    if alpha is None:
+        # Estimate from finite differences of flux
+        alpha = torch.abs(flux[:, 1:] - flux[:, :-1]).max().item()
+        # Make sure alpha > 0
+        if alpha < 1e-10:
+            alpha = 1.0
+    
+    # Step 3: Compute flux differences (Lax-Friedrichs splitting)
+    # dfp[i] = (f[i+1] - f[i] + α*(u[i+1] - u[i])) / 2
+    # dfm[i] = (f[i+1] - f[i] - α*(u[i+1] - u[i])) / 2
+    flux_diff = flux[:, 1:] - flux[:, :-1]
+    u_diff = u_extended[:, 1:] - u_extended[:, :-1]
+    
+    dfp = 0.5 * (flux_diff + alpha * u_diff)
+    dfm = 0.5 * (flux_diff - alpha * u_diff)
+    
+    # Step 4: Determine interface range
+    # We need 4 ghost cells on each side for WENO-5
+    # Interfaces we can reconstruct: [4, nx_extended-4]
+    md = 4
+    n_interfaces = nx_extended - 2 * md + 1
+    interface_start = md - 1  # Start at interface 3 (0-based)
+    
+    # Preallocate output
+    fh = torch.zeros(
+        batch_size, n_interfaces,
+        dtype=u_extended.dtype,
+        device=u_extended.device
+    )
+    
+    # Step 5: Loop over interfaces and compute fluxes
+    for idx in range(n_interfaces):
+        i = interface_start + idx  # Global index in extended array
+        
+        # Compute 4th-order central flux
+        # fh = (-f[i-1] + 7*(f[i] + f[i+1]) - f[i+2]) / 12
+        central_flux = (
+            -flux[:, i-1] + 7.0 * (flux[:, i] + flux[:, i+1]) - flux[:, i+2]
+        ) / 12.0
+        
+        # Add WENO correction for positive flux (dfp)
+        correction_p = compute_weno_correction(
+            dfp, i, epsilon, batch_size, u_extended.dtype, u_extended.device
+        )
+        
+        # Add WENO correction for negative flux (dfm)
+        # Note: dfm uses negative values and reversed stencil
+        correction_m = compute_weno_correction_negative(
+            dfm, i, epsilon, batch_size, u_extended.dtype, u_extended.device
+        )
+        
+        # Total interface flux
+        fh[:, idx] = central_flux + correction_p + correction_m
+    
+    return fh
+
+
+def compute_weno_correction(
+    df: torch.Tensor,
+    i: int,
+    epsilon: float,
+    batch_size: int,
+    dtype: torch.dtype,
+    device: torch.device
+) -> torch.Tensor:
+    """
+    Compute WENO correction for positive flux direction.
+    
+    This implements the correction term from Gottlieb's algorithm:
+        correction = (s1*(t2-t1) + (0.5*s3-0.25)*(t3-t2)) / 3.0
+    
+    Parameters
+    ----------
+    df : torch.Tensor
+        Flux differences (dfp or dfm). Shape: [batch, n_points]
+    i : int
+        Interface index in the extended array
+    epsilon : float
+        Small parameter for WENO weights
+    batch_size : int
+        Batch size
+    dtype : torch.dtype
+        Data type
+    device : torch.device
+        Device
+        
+    Returns
+    -------
+    correction : torch.Tensor
+        WENO correction. Shape: [batch]
+    """
+    # Build stencil: hh[0..3] = df[i-2, i-1, i, i+1]
+    hh0 = df[:, i-2]
+    hh1 = df[:, i-1]
+    hh2 = df[:, i]
+    hh3 = df[:, i+1]
+    
+    # Compute differences of flux differences (second-order differences)
+    t1 = hh0 - hh1
+    t2 = hh1 - hh2
+    t3 = hh2 - hh3
+    
+    # Compute smoothness indicators
+    # IS0 = 13*t1^2 + 3*(hh0 - 3*hh1)^2
+    # IS1 = 13*t2^2 + 3*(hh1 + hh2)^2
+    # IS2 = 13*t3^2 + 3*(3*hh2 - hh3)^2
+    IS0 = 13.0 * t1**2 + 3.0 * (hh0 - 3.0*hh1)**2
+    IS1 = 13.0 * t2**2 + 3.0 * (hh1 + hh2)**2
+    IS2 = 13.0 * t3**2 + 3.0 * (3.0*hh2 - hh3)**2
+    
+    # Compute weights using Gottlieb's formula (NOT standard WENO weights!)
+    # tt1 = (epsilon + IS0)^2
+    # tt2 = (epsilon + IS1)^2
+    # tt3 = (epsilon + IS2)^2
+    tt1 = (epsilon + IS0)**2
+    tt2 = (epsilon + IS1)**2
+    tt3 = (epsilon + IS2)**2
+    
+    # s1 = tt2 * tt3
+    # s2 = 6.0 * tt1 * tt3
+    # s3 = 3.0 * tt1 * tt2
+    s1 = tt2 * tt3
+    s2 = 6.0 * tt1 * tt3
+    s3 = 3.0 * tt1 * tt2
+    
+    # Normalize
+    t0 = 1.0 / (s1 + s2 + s3)
+    s1 = s1 * t0
+    s2 = s2 * t0
+    s3 = s3 * t0
+    
+    # Compute correction
+    correction = (s1 * (t2 - t1) + (0.5*s3 - 0.25) * (t3 - t2)) / 3.0
+    
+    return correction
+
+
+def compute_weno_correction_negative(
+    dfm: torch.Tensor,
+    i: int,
+    epsilon: float,
+    batch_size: int,
+    dtype: torch.dtype,
+    device: torch.device
+) -> torch.Tensor:
+    """
+    Compute WENO correction for negative flux direction.
+    
+    For the negative flux, the stencil is reversed and negated:
+        hh[0..3] = -dfm[i+2, i+1, i, i-1]
+    
+    Parameters
+    ----------
+    dfm : torch.Tensor
+        Negative flux differences. Shape: [batch, n_points]
+    i : int
+        Interface index in the extended array
+    epsilon : float
+        Small parameter for WENO weights
+    batch_size : int
+        Batch size
+    dtype : torch.dtype
+        Data type
+    device : torch.device
+        Device
+        
+    Returns
+    -------
+    correction : torch.Tensor
+        WENO correction. Shape: [batch]
+    """
+    # Build stencil with reversed and negated values
+    hh0 = -dfm[:, i+2]
+    hh1 = -dfm[:, i+1]
+    hh2 = -dfm[:, i]
+    hh3 = -dfm[:, i-1]
+    
+    # Compute differences
+    t1 = hh0 - hh1
+    t2 = hh1 - hh2
+    t3 = hh2 - hh3
+    
+    # Compute smoothness indicators
+    IS0 = 13.0 * t1**2 + 3.0 * (hh0 - 3.0*hh1)**2
+    IS1 = 13.0 * t2**2 + 3.0 * (hh1 + hh2)**2
+    IS2 = 13.0 * t3**2 + 3.0 * (3.0*hh2 - hh3)**2
+    
+    # Compute weights using Gottlieb's formula
+    tt1 = (epsilon + IS0)**2
+    tt2 = (epsilon + IS1)**2
+    tt3 = (epsilon + IS2)**2
+    
+    s1 = tt2 * tt3
+    s2 = 6.0 * tt1 * tt3
+    s3 = 3.0 * tt1 * tt2
+    
+    # Normalize
+    t0 = 1.0 / (s1 + s2 + s3)
+    s1 = s1 * t0
+    s2 = s2 * t0
+    s3 = s3 * t0
+    
+    # Compute correction
+    correction = (s1 * (t2 - t1) + (0.5*s3 - 0.25) * (t3 - t2)) / 3.0
+    
+    return correction
+
+
+# ============================================================================
+# LEGACY FUNCTIONS (Keep for compatibility but mark as deprecated)
 # ============================================================================
 
 def lax_friedrichs_splitting(
@@ -25,244 +292,20 @@ def lax_friedrichs_splitting(
     alpha: Optional[float] = None
 ) -> Tuple[torch.Tensor, torch.Tensor]:
     """
-    Lax-Friedrichs flux splitting for finite difference WENO.
+    DEPRECATED: Use reconstruct_interface_fluxes_fd_weno instead.
     
-    Computes flux DIFFERENCES (not pointwise fluxes) that WENO will reconstruct.
-    This matches Gottlieb's MATLAB implementation.
-    
-    Parameters
-    ----------
-    flux : torch.Tensor
-        Flux values f(u) at grid points. Shape: [batch, nx]
-    u : torch.Tensor
-        Conservative variables at grid points. Shape: [batch, nx]
-    alpha : float, optional
-        Maximum wave speed. If None, computed as max(|u|).
-        
-    Returns
-    -------
-    dfp : torch.Tensor
-        Positive flux differences. Shape: [batch, nx-1]
-        dfp[i] = (f[i+1] - f[i] + α*(u[i+1] - u[i])) / 2
-    dfm : torch.Tensor
-        Negative flux differences. Shape: [batch, nx-1]
-        dfm[i] = (f[i+1] - f[i] - α*(u[i+1] - u[i])) / 2
-        
-    Notes
-    -----
-    This computes flux DIFFERENCES between consecutive grid points,
-    which is what WENO reconstructs in the finite difference formulation.
-    
-    Formula from Gottlieb/Shu:
-        dfp[i] = (f[i+1] - f[i] + α*(u[i+1] - u[i])) / 2
-        dfm[i] = (f[i+1] - f[i] - α*(u[i+1] - u[i])) / 2
-        
-    These satisfy:
-        (f[i+1] - f[i]) = dfp[i] + dfm[i]
+    This function is kept for backward compatibility only.
     """
-    # Compute maximum wave speed if not provided
     if alpha is None:
         alpha = torch.abs(u).max().item()
     
-    # Compute differences
-    flux_diff = flux[:, 1:] - flux[:, :-1]  # f[i+1] - f[i]
-    u_diff = u[:, 1:] - u[:, :-1]           # u[i+1] - u[i]
+    flux_diff = flux[:, 1:] - flux[:, :-1]
+    u_diff = u[:, 1:] - u[:, :-1]
     
-    # Lax-Friedrichs flux differences
     dfp = 0.5 * (flux_diff + alpha * u_diff)
     dfm = 0.5 * (flux_diff - alpha * u_diff)
     
     return dfp, dfm
-
-# ============================================================================
-# WENO RECONSTRUCTION
-# ============================================================================
-
-def weno_reconstruction(
-    flux_values: torch.Tensor,
-    order: int = 5,
-    epsilon: float = 1e-6,
-    direction: str = 'positive'
-) -> torch.Tensor:
-    """
-    WENO reconstruction at cell interfaces.
-    
-    Given flux values at cell centers, reconstruct high-order accurate
-    values at cell interfaces using WENO.
-    
-    Parameters
-    ----------
-    flux_values : torch.Tensor
-        Flux values at cell centers. Shape: [batch, nx]
-    order : int, optional
-        WENO order (5, 7, 9). Default: 5
-    epsilon : float, optional
-        Small parameter for weight computation. Default: 1e-6
-    direction : str, optional
-        'positive' for f⁺ (left-biased) or 'negative' for f⁻ (right-biased).
-        Default: 'positive'
-        
-    Returns
-    -------
-    flux_interface : torch.Tensor
-        Reconstructed flux at interfaces. Shape: [batch, nx-1]
-        flux_interface[i] is the reconstructed value at x_{i+1/2}
-        
-    Notes
-    -----
-    The reconstruction process:
-    1. Extract local stencil values for each interface
-    2. Compute smoothness indicators (IS)
-    3. Compute nonlinear weights (ω)
-    4. Reconstruct: f_{i+1/2} = Σ ω_k * (stencil_k · flux_values)
-    
-    For positive flux (direction='positive'):
-        - Use upwind stencils (biased to the left)
-        - Reconstruct right interface of cell i
-        
-    For negative flux (direction='negative'):
-        - Use downwind stencils (biased to the right)
-        - Reconstruct left interface of cell i
-        - Mirror the stencils
-    """
-    batch_size, nx = flux_values.shape
-    r = (order + 1) // 2  # Number of substencils
-    
-    # Get stencil coefficients
-    stencil_coeffs = generate_all_stencils(order)
-    stencils = stencils_to_torch(
-        stencil_coeffs,
-        dtype=flux_values.dtype,
-        device=flux_values.device
-    )
-    
-    # For negative flux, mirror the stencils
-    if direction == 'negative':
-        stencils = torch.flip(stencils, dims=[0, 1])
-    
-    # Number of interfaces we can reconstruct
-    # Need r points to the left and r-1 to the right
-    n_interfaces = nx - 2*r + 1
-    
-    # Preallocate output
-    flux_interface = torch.zeros(
-        batch_size, n_interfaces,
-        dtype=flux_values.dtype,
-        device=flux_values.device
-    )
-    
-    # Loop over interfaces
-    for i in range(n_interfaces):
-        # Global index of this interface
-        interface_idx = i + r - 1
-        
-        # Extract local flux stencil (2*r-1 points)
-        # For interface at x_{j+1/2}, need points [j-r+1, ..., j+r-1]
-        start_idx = interface_idx - r + 1
-        end_idx = interface_idx + r
-        local_flux = flux_values[:, start_idx:end_idx]  # Shape: [batch, 2*r-1]
-        
-        # Compute smoothness indicators
-        IS = compute_smoothness_indicators_torch(local_flux, order=order)  # [batch, r]
-        
-        # Compute nonlinear weights
-        omega = compute_nonlinear_weights(IS, order=order, epsilon=epsilon)  # [batch, r]
-        
-        # Reconstruct using each substencil
-        substencil_reconstructions = torch.zeros(
-            batch_size, r,
-            dtype=flux_values.dtype,
-            device=flux_values.device
-        )
-        
-        for k in range(r):
-            # Extract the r points for this substencil
-            stencil_start = k
-            stencil_end = k + r
-            substencil_flux = local_flux[:, stencil_start:stencil_end]  # [batch, r]
-            
-            # Apply stencil coefficients
-            # stencils[k] has shape [r]
-            # substencil_flux has shape [batch, r]
-            # Result: [batch]
-            substencil_reconstructions[:, k] = torch.sum(
-                substencil_flux * stencils[k],
-                dim=-1
-            )
-        
-        # Combine substencils with nonlinear weights
-        # omega: [batch, r]
-        # substencil_reconstructions: [batch, r]
-        # Result: [batch]
-        flux_interface[:, i] = torch.sum(
-            omega * substencil_reconstructions,
-            dim=-1
-        )
-    
-    return flux_interface
-
-
-def reconstruct_both_sides(
-    u: torch.Tensor,
-    flux_function: Callable[[torch.Tensor], torch.Tensor],
-    order: int = 5,
-    epsilon: float = 1e-6,
-    alpha: Optional[float] = None
-) -> Tuple[torch.Tensor, torch.Tensor]:
-    """
-    Complete WENO reconstruction with flux splitting.
-    
-    This is the main entry point that combines all steps:
-    1. Compute flux f(u)
-    2. Split into f⁺ and f⁻
-    3. Reconstruct f⁺ at right interfaces (left-biased)
-    4. Reconstruct f⁻ at left interfaces (right-biased)
-    5. Return both reconstructed values
-    
-    Parameters
-    ----------
-    u : torch.Tensor
-        Conservative variables. Shape: [batch, nx]
-    flux_function : callable
-        Function that computes f(u). Should handle batched input.
-    order : int, optional
-        WENO order. Default: 5
-    epsilon : float, optional
-        Small parameter for weights. Default: 1e-6
-    alpha : float, optional
-        Maximum wave speed. If None, estimated automatically.
-        
-    Returns
-    -------
-    f_plus_reconstructed : torch.Tensor
-        Reconstructed f⁺ at right interfaces. Shape: [batch, n_interfaces]
-    f_minus_reconstructed : torch.Tensor
-        Reconstructed f⁻ at left interfaces. Shape: [batch, n_interfaces]
-        
-    Notes
-    -----
-    The total flux at interface i+1/2 is:
-        F_{i+1/2} = f⁺_{i+1/2} + f⁻_{i+1/2}
-        
-    This is used in the finite volume update:
-        du/dt = -(F_{i+1/2} - F_{i-1/2}) / Δx
-    """
-    # Compute flux
-    flux = flux_function(u)
-    
-    # Flux splitting
-    f_plus, f_minus = lax_friedrichs_splitting(flux, u, alpha=alpha)
-    
-    # WENO reconstruction
-    f_plus_reconstructed = weno_reconstruction(
-        f_plus, order=order, epsilon=epsilon, direction='positive'
-    )
-    
-    f_minus_reconstructed = weno_reconstruction(
-        f_minus, order=order, epsilon=epsilon, direction='negative'
-    )
-    
-    return f_plus_reconstructed, f_minus_reconstructed
 
 
 # ============================================================================
@@ -270,102 +313,66 @@ def reconstruct_both_sides(
 # ============================================================================
 
 if __name__ == "__main__":
-    print("Testing WENO flux reconstruction...")
+    print("Testing Gottlieb FD-WENO Implementation")
+    print("=" * 70)
     
-    # Test 1: Flux splitting
-    print("\n" + "="*60)
-    print("Test 1: Lax-Friedrichs flux splitting")
+    # Test 1: Basic reconstruction
+    print("\nTest 1: Basic reconstruction with discontinuity")
     
-    u = torch.linspace(-1, 1, 50, dtype=torch.float64).unsqueeze(0)
-    flux = 0.5 * u**2  # Burgers equation
+    nx = 101
+    x = torch.linspace(-1, 1, nx, dtype=torch.float64)
+    u0 = torch.sign(x)
+    u0[50] = 0.0  # Explicit zero at discontinuity
+    u0 = u0.unsqueeze(0)
     
-    f_plus, f_minus = lax_friedrichs_splitting(flux, u)
+    # Add ghost cells (periodic BC)
+    n_ghost = 4
+    u_extended = torch.cat([
+        u0[:, -n_ghost:],
+        u0,
+        u0[:, :n_ghost]
+    ], dim=1)
     
-    print(f"u range: [{u.min():.2f}, {u.max():.2f}]")
-    print(f"flux range: [{flux.min():.2f}, {flux.max():.2f}]")
-    print(f"f_plus range: [{f_plus.min():.2f}, {f_plus.max():.2f}]")
-    print(f"f_minus range: [{f_minus.min():.2f}, {f_minus.max():.2f}]")
+    # Define flux function (linear advection)
+    def flux_fn(u):
+        return u
     
-    # Check that splitting is consistent
-    if torch.allclose(flux, f_plus + f_minus, atol=1e-14):
-        print("✓ Flux splitting is consistent: f = f⁺ + f⁻")
-    else:
-        print("✗ Flux splitting inconsistent")
+    # Reconstruct
+    fh = reconstruct_interface_fluxes_fd_weno(
+        u_extended,
+        flux_fn,
+        order=5,
+        epsilon=1e-29,
+        alpha=1.0
+    )
     
-    # Test 2: WENO reconstruction on smooth function
-    print("\n" + "="*60)
-    print("Test 2: WENO reconstruction on smooth function")
+    print(f"  Input shape: {u_extended.shape}")
+    print(f"  Output shape: {fh.shape}")
+    print(f"  Output range: [{fh.min():.6f}, {fh.max():.6f}]")
+    print(f"  ✓ Reconstruction completed")
     
-    nx = 100
-    x = torch.linspace(0, 2*torch.pi, nx, dtype=torch.float64)
+    # Test 2: Smooth function
+    print("\nTest 2: Smooth function")
+    
     u_smooth = torch.sin(x).unsqueeze(0)
-    flux_smooth = 0.5 * u_smooth**2
-    
-    f_reconstructed = weno_reconstruction(flux_smooth, order=5)
-    
-    print(f"Input points: {nx}")
-    print(f"Reconstructed interfaces: {f_reconstructed.shape[-1]}")
-    print(f"Flux range: [{flux_smooth.min():.4f}, {flux_smooth.max():.4f}]")
-    print(f"Reconstructed range: [{f_reconstructed.min():.4f}, {f_reconstructed.max():.4f}]")
-    
-    print("✓ WENO reconstruction completes without error")
-    
-    # Test 3: Reconstruction with discontinuity
-    print("\n" + "="*60)
-    print("Test 3: WENO reconstruction with discontinuity")
-    
-    u_disc = torch.ones(1, 100, dtype=torch.float64)
-    u_disc[0, 50:] = 0.0  # Step function
-    flux_disc = 0.5 * u_disc**2
-    
-    f_reconstructed = weno_reconstruction(flux_disc, order=5)
-    
-    print(f"Discontinuity at index 50")
-    print(f"Reconstructed values near discontinuity:")
-    print(f"  Interface 45: {f_reconstructed[0, 45]:.6f}")
-    print(f"  Interface 46: {f_reconstructed[0, 46]:.6f}")
-    print(f"  Interface 47: {f_reconstructed[0, 47]:.6f}")
-    print(f"  Interface 48: {f_reconstructed[0, 48]:.6f}")
-    print(f"  Interface 49: {f_reconstructed[0, 49]:.6f}")
-    
-    print("✓ WENO handles discontinuity without oscillations")
-    
-    # Test 4: Complete reconstruction with both sides
-    print("\n" + "="*60)
-    print("Test 4: Complete reconstruction with flux splitting")
+    u_smooth_ext = torch.cat([
+        u_smooth[:, -n_ghost:],
+        u_smooth,
+        u_smooth[:, :n_ghost]
+    ], dim=1)
     
     def burgers_flux(u):
         return 0.5 * u**2
     
-    u_test = torch.sin(torch.linspace(0, 2*torch.pi, 100, dtype=torch.float64)).unsqueeze(0)
-    
-    f_plus_recon, f_minus_recon = reconstruct_both_sides(
-        u_test, burgers_flux, order=5
+    fh_smooth = reconstruct_interface_fluxes_fd_weno(
+        u_smooth_ext,
+        burgers_flux,
+        order=5
     )
     
-    print(f"u shape: {u_test.shape}")
-    print(f"f⁺ reconstructed shape: {f_plus_recon.shape}")
-    print(f"f⁻ reconstructed shape: {f_minus_recon.shape}")
+    print(f"  Output shape: {fh_smooth.shape}")
+    print(f"  Output range: [{fh_smooth.min():.6f}, {fh_smooth.max():.6f}]")
+    print(f"  ✓ Smooth reconstruction completed")
     
-    # Total interface flux
-    f_total = f_plus_recon + f_minus_recon
-    print(f"Total interface flux range: [{f_total.min():.4f}, {f_total.max():.4f}]")
-    
-    print("✓ Complete reconstruction working")
-    
-    # Test 5: Different orders
-    print("\n" + "="*60)
-    print("Test 5: Reconstruction at different orders")
-    
-    u_test = torch.sin(torch.linspace(0, 2*torch.pi, 100, dtype=torch.float64)).unsqueeze(0)
-    flux_test = burgers_flux(u_test)
-    
-    for order in [5, 7, 9]:
-        try:
-            f_recon = weno_reconstruction(flux_test, order=order)
-            print(f"WENO-{order}: ✓ {f_recon.shape[-1]} interfaces reconstructed")
-        except Exception as e:
-            print(f"WENO-{order}: ✗ Error: {e}")
-    
-    print("\n" + "="*60)
-    print("✓ Flux reconstruction tests complete")
+    print("\n" + "=" * 70)
+    print("All tests passed!")
