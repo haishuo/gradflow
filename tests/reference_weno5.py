@@ -6,6 +6,8 @@ WENO (Weighted Essentially Non-Oscillatory) Solver
 Based on Jiang & Shu's fifth-order WENO method
 Educational implementation following Field et al. 2020
 
+Wrtitten by Hai-Shuo Shu (2025) - "following the math"
+
 This solver implements WENO for problems of the form:
     u_t + f(u)_x = 0
 """
