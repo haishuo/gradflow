@@ -51,7 +51,8 @@ an execution choice, not a different numerical implementation.
 - `experiments/fortran_scaling/` — frozen original and dynamically sized,
   fixed-form-repaired Jiang--Shu Fortran scaling descendant
 - `experiments/shu_torch_ablation/` — matched 2-D/3-D Euler WENO Fortran versus
-  direct-PyTorch CPU/GPU crossover experiment
+  direct-PyTorch CPU/GPU crossover experiment and the 30-run automatic-DVEB
+  deployment bakeoff
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
 - `docs/FORMULATION_LINEAGE.md` — mathematical and implementation lineage
 - `docs/ARCHIVE_MANIFEST.md` — preservation artifacts and restoration steps

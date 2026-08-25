@@ -215,14 +215,37 @@ precise cause.  The persistent cache absorbs compilation but still pays
 graph/cache reconstruction during the fresh process, which is why its ten-step
 execution interval is much longer than AOT's 0.700 seconds.
 
-These are single observations, not averages or publication measurements.  Raw
+These are single observations, not averages or publication measurements. Raw
 accepted records are `results/bakeoff_3d_final_steps1_2026-08-25.json` and
 `results/bakeoff_3d_final_n128_steps10_2026-08-25.json`.  Five earlier records
 are retained with explicit `disposition: rejected` fields: two omitted the
 Python CFL calculation, one left CFL outside the compiled/AOT graph, and two
-used an uncontrolled AOT extraction-cache state.  No DVEB or handwritten-CUDA
-number is included because a mathematically matched three-dimensional Shu
-implementation does not yet exist in either lane.
+used an uncontrolled AOT extraction-cache state. At the time of that
+preliminary campaign, a mathematically matched three-dimensional DVEB lane did
+not yet exist; the follow-up below supersedes that capability statement.
+
+## Automatic DVEB follow-up
+
+The matched automatic-placement campaign is frozen in
+`DVEB_BAKEOFF_PROTOCOL.md`, and its complete result is in
+`DVEB_BAKEOFF_RESULTS.md`. Unlike the preliminary probes, it uses 30
+randomized-order fresh processes per lane at each of nine grid/step points.
+The committed raw records include all 1,080 counted lane-runs, calibration,
+full-array correctness, environment telemetry, and SHA-256 identities.
+
+Automatic DVEB won 8 of 9 regions. For one step it selected six CPU threads at
+N=8, 16, and 32, then CUDA at N=64, 96, and 128. For ten steps it selected
+CUDA beginning at N=32. Fortran won only the N=8 / one-step point, by 0.314 ms;
+DVEB won at N=16 and every larger or longer point. At N=128 / ten steps, the
+fresh-process medians were 0.343 s for DVEB, 3.377 s for prepared AOT PyTorch,
+5.432 s for eager PyTorch, and 30.582 s for Fortran.
+
+This is strong bounded evidence that DVEB earns a WENO role as a native
+automatic-placement backend. It is not a universal DVEB result: the campaign
+covers one float32 3-D Shu Euler WENO-5 formulation and one Ryzen 7600X / RTX
+5070 Ti machine. The qualified executable was produced while DVEB's compiler
+placement work remained uncommitted; its exact binary is hash-frozen, but a
+clean-source rebuild and held-out selector validation remain required.
 
 ## Redistribution status
 

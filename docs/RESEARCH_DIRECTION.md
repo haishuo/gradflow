@@ -111,6 +111,32 @@ before timing. A compiler-generated low-level kernel remains evidence about
 ordinary PyTorch compilation; it does not turn the source into handwritten
 Triton.
 
+## Matched 3-D deployment evidence
+
+The later matched Shu Euler WENO-5 campaign asks a different question from
+DVEB trunk-001. It compares complete fresh-process latency for the same
+float32 3-D characteristic finite-difference formulation, including pageable
+host initialization, CFL recomputation, all SSP-RK3 stages, transfers, final
+host materialization, validation, and process exit.
+
+On the Ryzen 7600X / RTX 5070 Ti machine, a hash-frozen automatic-placement
+DVEB artifact won 8 of 9 declared points over Fortran, direct eager PyTorch,
+and fixed-shape AOTInductor PyTorch. It selected a six-thread CPU schedule for
+one-step N=8--32 work and CUDA for one-step N=64--128 work; for ten steps it
+selected CUDA beginning at N=32. Fortran retained the N=8 / one-step win. At
+N=128 / ten steps, median complete latency was 0.343 s for DVEB, 3.377 s for
+AOT PyTorch, 5.432 s for eager PyTorch, and 30.582 s for Fortran.
+
+This establishes a bounded engineering result: automatic native CPU/CUDA
+placement can be substantially more effective than forcing every job through
+Python or one device. It does not reverse trunk-001's scalar result, prove a
+general language claim, or establish novelty. The campaign covers one 3-D
+formulation, one initial condition, float32, and one machine. The DVEB artifact
+was produced from an uncommitted compiler worktree state; its executable and
+model are hash-frozen, but clean-source reproducibility and held-out selector
+validation remain required. See
+`experiments/shu_torch_ablation/DVEB_BAKEOFF_RESULTS.md`.
+
 ## Seed gate before arbitrary order
 
 Work on arbitrary order is gated on the bounded checks in
