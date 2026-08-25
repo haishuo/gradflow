@@ -32,10 +32,12 @@ competitive under the frozen 10% rule even though DVEB wins all pairs.
 
 At N=128 / ten steps, DVEB's 0.343 s median is 9.84x faster than AOT PyTorch, 15.83x faster than eager PyTorch, and 89.12x faster than Fortran at the complete start-to-finish endpoint.
 
-This validates a bounded reason for DVEB to exist in WENO: one native
-artifact spans the near-Fortran small CPU region and the high-throughput
-CUDA region without exposing placement machinery to the caller. It is
-not evidence that DVEB wins other formulations or machines.
+This validates a bounded reason for DVEB to exist in WENO: one
+target-neutral source produced competitive native CPU code and
+ceiling-class CUDA code, and application-specific calibrated dispatch
+selected the winning family at these points. It is not evidence that
+DVEB wins other formulations or machines, or that its general selector
+is production-qualified.
 
 ## Preparation and limitations
 
@@ -45,12 +47,19 @@ but this first harness did not record one enclosing wall-clock duration
 for calibration including warmups.
 
 The selector was calibrated at the same grid/step points with separate
-observations. That is valid profile-guided deployment evidence, not a
-held-out generalization test. The campaign covers one float32 3-D Shu
+observations. That is valid application-specific profile-guided
+deployment evidence, not a held-out generalization test. DVEB's later
+generic disjoint-point campaign at commit `2f1f3ab` recorded NO-GO for
+the initial automatic selector because fresh-process maximum regret and
+CPU-schedule proximity missed their frozen bands. This WENO result does
+not override that decision.
+
+The campaign covers one float32 3-D Shu
 Euler WENO-5 workload, one vortex, and one Ryzen 7600X / RTX 5070 Ti
 machine. The frozen DVEB executable came from an uncommitted compiler
-worktree state, so its hash makes this run auditable but a clean-source
-rebuild remains unresolved until DVEB commits and requalifies it.
+worktree state. DVEB subsequently committed and requalified a different
+final artifact; therefore this exact run is auditable by binary hash but
+is not a clean-source reproduction of that later artifact.
 
 Full-array correctness maximum: `7.152557373e-07` (bound `2.0e-05`).
 

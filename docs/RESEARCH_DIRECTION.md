@@ -127,14 +127,18 @@ selected CUDA beginning at N=32. Fortran retained the N=8 / one-step win. At
 N=128 / ten steps, median complete latency was 0.343 s for DVEB, 3.377 s for
 AOT PyTorch, 5.432 s for eager PyTorch, and 30.582 s for Fortran.
 
-This establishes a bounded engineering result: automatic native CPU/CUDA
-placement can be substantially more effective than forcing every job through
-Python or one device. It does not reverse trunk-001's scalar result, prove a
-general language claim, or establish novelty. The campaign covers one 3-D
+This establishes a bounded engineering result: application-calibrated native
+CPU/CUDA dispatch can be substantially more effective than forcing every job
+through Python or one device, and DVEB's emitted WENO CUDA is a strong backend
+candidate. It does not reverse trunk-001's scalar result, prove a general
+language claim, or establish novelty. DVEB's later generic disjoint-point
+campaign at commit `2f1f3ab` recorded NO-GO for the initial automatic selector
+because fresh-process maximum regret and CPU-schedule proximity missed their
+frozen bands. The WENO campaign trained on its evaluated points, so it does not
+override that held-out decision. The campaign covers one 3-D
 formulation, one initial condition, float32, and one machine. The DVEB artifact
-was produced from an uncommitted compiler worktree state; its executable and
-model are hash-frozen, but clean-source reproducibility and held-out selector
-validation remain required. See
+was produced from an uncommitted compiler worktree state and is hash-frozen;
+DVEB subsequently committed and qualified a different final artifact. See
 `experiments/shu_torch_ablation/DVEB_BAKEOFF_RESULTS.md`.
 
 ## Seed gate before arbitrary order

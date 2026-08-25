@@ -241,11 +241,16 @@ fresh-process medians were 0.343 s for DVEB, 3.377 s for prepared AOT PyTorch,
 5.432 s for eager PyTorch, and 30.582 s for Fortran.
 
 This is strong bounded evidence that DVEB earns a WENO role as a native
-automatic-placement backend. It is not a universal DVEB result: the campaign
+CPU/CUDA code-generation backend, and that application-specific calibrated
+dispatch can work. It is not a universal DVEB result: the campaign
 covers one float32 3-D Shu Euler WENO-5 formulation and one Ryzen 7600X / RTX
 5070 Ti machine. The qualified executable was produced while DVEB's compiler
-placement work remained uncommitted; its exact binary is hash-frozen, but a
-clean-source rebuild and held-out selector validation remain required.
+placement work remained uncommitted, so its exact binary is hash-frozen. DVEB's
+later generic disjoint-point campaign at commit `2f1f3ab` recorded NO-GO for
+the initial automatic selector: fresh-process maximum regret and CPU-schedule
+proximity missed their frozen bands. The present WENO campaign calibrated at
+its own evaluation points and therefore does not overturn that held-out
+decision.
 
 ## Redistribution status
 
