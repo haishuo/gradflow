@@ -1,0 +1,52 @@
+--- weno_storage_only.f
++++ weno_dynamic.f
+@@ -58 +58 @@
+-call bc(io)
++      call bc(io)
+@@ -65 +65 @@
+-call fx(io)
++      call fx(io)
+@@ -69 +69 @@
+-call gy(io)
++      call gy(io)
+@@ -81 +81 @@
+-call cflc(aam)
++      call cflc(aam)
+@@ -96 +96 @@
+-call rk(io)
++      call rk(io)
+@@ -182 +182 @@
+-cdx = 1./dx
++      cdx = 1./dx
+@@ -184 +184 @@
+-cdy = 1./dy
++      cdy = 1./dy
+@@ -199 +199 @@
+-coefk=rkap/(2.*pi*exp(-0.5))
++      coefk=rkap/(2.*pi*exp(-0.5))
+@@ -230 +230 @@
+-cij=dri
++      cij=dri
+@@ -335 +335 @@
+-cvel = sqrt( gamma * pre * t0 )
++      cvel = sqrt( gamma * pre * t0 )
+@@ -367 +367 @@
+-cm = sqrt( gm1 * ( hm - qm ) )
++      cm = sqrt( gm1 * ( hm - qm ) )
+@@ -412 +412 @@
+-call weno(nx)
++      call weno(nx)
+@@ -454 +454 @@
+-cvel = sqrt( gamma * pre * t0 )
++      cvel = sqrt( gamma * pre * t0 )
+@@ -486 +486 @@
+-cm = sqrt( gm1 * ( hm - qm ) )
++      cm = sqrt( gm1 * ( hm - qm ) )
+@@ -531 +531 @@
+-call weno(ny)
++      call weno(ny)
+@@ -781,2 +781,2 @@
+-c2=gamma*pij/uc(i,j,1,0)
+-cij=sqrt(abs(c2))
++      c2=gamma*pij/uc(i,j,1,0)
++      cij=sqrt(abs(c2))

@@ -48,6 +48,8 @@ an execution choice, not a different numerical implementation.
 - `references/` — byte-preserved Gottlieb MATLAB and Jiang--Shu Fortran sources
 - `baselines/` — exact DVEB screened comparator and its evidence
 - `legacy/` — noncanonical historical representation experiments
+- `experiments/fortran_scaling/` — frozen original and dynamically sized,
+  fixed-form-repaired Jiang--Shu Fortran scaling descendant
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
 - `docs/FORMULATION_LINEAGE.md` — mathematical and implementation lineage
 - `docs/ARCHIVE_MANIFEST.md` — preservation artifacts and restoration steps
