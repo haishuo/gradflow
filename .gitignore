@@ -1,40 +1,26 @@
-# Forge system symlinks (local development only)
-data
-artifacts
-reference-fortran
-
-# Data files (belong in /mnt/data/)
-*.dat
-*.npz
-*.hdf5
-*.pkl
-
-# Artifacts (belong in /mnt/artifacts/)
-results/
-models/
-plots/
-benchmarks/
-validation_reports/
-checkpoints/
-
-# Python
+# Python environments and generated files
+.venv/
 __pycache__/
 *.py[cod]
 *.so
 *.egg-info/
 .pytest_cache/
+.coverage
+htmlcov/
 
-# Jupyter
-.ipynb_checkpoints/
-*.ipynb
+# Local Forge symlinks and research outputs (root level only)
+/artifacts
+/data
+/reference-fortran
+/results/
+/benchmarks/
+/plots/
+/checkpoints/
 
-# IDEs
+# Editors and operating systems
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# OS
 .DS_Store
 Thumbs.db
-.pre-commit-config.yaml

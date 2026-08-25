@@ -1,146 +1,71 @@
 # GradFlow
 
-Modern WENO (Weighted Essentially Non-Oscillatory) framework for solving hyperbolic partial differential equations, built from mathematical principles using symbolic computation.
+GradFlow is restarting as a research project for general, differentiable,
+high-performance finite-difference WENO in ordinary PyTorch.
 
-## Motivation
+The current repository deliberately contains only a validated scalar WENO-5
+seed. Its numerical path is written as readable shifts, slicing/indexing, and
+elementwise tensor operations. `conv1d` is an implementation hypothesis to be
+tested later, not the project premise. No handwritten CUDA, Triton, C++, or
+custom operator is part of the canonical code.
 
-Existing WENO implementations on GPU are limited to 5th order due to the complexity of hand-coding CUDA kernels. This project uses SymPy for symbolic derivation and PyTorch for automatic GPU acceleration, enabling easy experimentation with higher-order schemes (WENO-7, WENO-9, WENO-11+).
+The central research question is:
 
-**Key differences from traditional implementations:**
-- Mathematical first principles (no FORTRAN archaeology)
-- Symbolic generation of stencil coefficients and smoothness indicators
-- Automatic GPU parallelization via PyTorch
-- Clean, modular design following UNIX philosophy
-- Order-agnostic framework: change one parameter to get WENO-7, WENO-9, etc.
+> Can a direct, maintainable PyTorch system construct, verify, differentiate,
+> and efficiently execute arbitrary-order finite-difference WENO schemes—including
+> a realistic WENO-15 case—without bespoke CUDA or Triton engineering?
 
-## Project Structure
+This is a question, not a completed capability or novelty claim. WENO-15 has
+not been implemented here.
 
-```
-gradflow/
-├── gradflow/
-│   ├── __init__.py
-│   ├── core/
-│   │   ├── __init__.py
-│   │   ├── stencils.py          # Symbolic stencil generation
-│   │   ├── smoothness.py        # Smoothness indicator generation
-│   │   ├── weights.py           # WENO weight computation
-│   │   └── flux.py              # Flux splitting and reconstruction
-│   ├── solvers/
-│   │   ├── __init__.py
-│   │   ├── weno.py              # Main WENO solver class
-│   │   └── timestepping.py      # SSP-RK and other time integrators
-│   ├── symbolic/
-│   │   ├── __init__.py
-│   │   ├── generator.py         # SymPy → PyTorch code generation
-│   │   └── verification.py      # Symbolic verification of correctness
-│   ├── utils/
-│   │   ├── __init__.py
-│   │   ├── boundary.py          # Boundary condition handling
-│   │   ├── profiling.py         # Performance profiling utilities
-│   │   └── validation.py        # Convergence testing, order verification
-│   └── examples/
-│       ├── __init__.py
-│       ├── burgers.py           # Burgers equation example
-│       ├── euler.py             # Euler equations example
-│       └── benchmarks.py        # Performance benchmarks
-├── tests/
-│   ├── test_stencils.py
-│   ├── test_smoothness.py
-│   ├── test_convergence.py
-│   └── test_symbolic.py
-├── docs/
-│   ├── mathematical_derivation.md
-│   ├── api_reference.md
-│   └── examples.md
-├── setup.py
-├── requirements.txt
-└── README.md
-```
+## Current seed
 
-## Design Principles
-
-1. **UNIX Philosophy**: Each module does one thing well (< 400 lines)
-2. **Math First**: Correctness before performance
-3. **No Defaults**: Explicit parameters everywhere (except top-level API)
-4. **Fail Fast**: Validate inputs immediately with clear error messages
-5. **Profile-Driven Optimization**: Build with profiling in mind, optimize after verification
-
-## Installation
-
-```bash
-pip install -e .
-```
-
-## Quick Start
+`gradflow.weno5_rhs` operates on unique periodic point samples along the last
+tensor dimension. It preserves the caller's tensor, device, and float64 dtype;
+it does not perform hidden host/device conversion. A separate
+`gradflow.weno5_rhs_gottlieb_periodic` adapter preserves the duplicated-endpoint
+convention needed by the committed MATLAB oracle.
 
 ```python
-from gradflow.solvers import WENOSolver
+import math
+import torch
 
-# Create WENO-5 solver
-solver = WENOSolver(order=5, grid_size=200, domain_length=2*np.pi)
+from gradflow import weno5_rhs
 
-# Initial condition
-u0 = np.sin(solver.x)
-
-# Solve Burgers' equation
-def burgers_flux(u):
-    return 0.5 * u**2
-
-u_final = solver.solve(u0, t_final=1.0, flux_function=burgers_flux)
+n = 128
+x = torch.arange(n, dtype=torch.float64) / n
+u = torch.sin(2.0 * math.pi * x)
+rhs = weno5_rhs(u, 1.0 / n, lambda q: q, alpha=1.0)
 ```
 
-Change `order=5` to `order=7` or `order=11` to use higher-order schemes - everything else is automatic.
+The same function is intended to be passed to `torch.compile`; compilation is
+an execution choice, not a different numerical implementation.
 
-## Mathematical Foundation
+## Repository map
 
-WENO schemes adaptively combine polynomial reconstructions from multiple stencils:
+- `src/gradflow/weno5.py` — canonical direct PyTorch WENO-5 seed
+- `tests/` — bounded oracle, convergence, conservation, device, and compiler gate
+- `references/` — byte-preserved Gottlieb MATLAB and Jiang--Shu Fortran sources
+- `baselines/` — exact DVEB screened comparator and its evidence
+- `legacy/` — noncanonical historical representation experiments
+- `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
+- `docs/FORMULATION_LINEAGE.md` — mathematical and implementation lineage
+- `docs/ARCHIVE_MANIFEST.md` — preservation artifacts and restoration steps
 
-1. **Stencil coefficients** from Lagrange interpolation
-2. **Smoothness indicators** measuring L² norm of derivatives
-3. **Nonlinear weights** that penalize non-smooth stencils
-4. **Flux reconstruction** via weighted combination
+## Development gate
 
-See `docs/mathematical_derivation.md` for detailed derivations.
-
-## Testing
+Install the project with its test dependencies and run:
 
 ```bash
-pytest tests/
+python -m pip install -e '.[test]'
+python -m pytest
 ```
 
-Convergence tests verify order of accuracy. Symbolic tests validate that generated formulas match theoretical results.
+CUDA checks skip with an explicit reason when CUDA is unavailable. MPS is
+recorded as untested in the gate documentation; it is not simulated.
 
-## Performance
+## Reference redistribution
 
-PyTorch handles GPU parallelization automatically. For optimal performance:
-- Use `dtype=torch.float64` for most applications
-- Mixed precision available for specialized cases
-- Profiling tools in `utils/profiling.py`
-
-## Applications
-
-Higher-order WENO on GPU enables:
-- MHD turbulence simulations with shock capturing
-- Relativistic jet propagation
-- Shock-turbulence interaction studies
-- Combustion detonation modeling
-
-See `examples/` for complete working examples.
-
-## References
-
-- Jiang & Shu (1996): "Efficient Implementation of Weighted ENO Schemes"
-- Field et al. (2020): "A GPU-accelerated mixed-precision WENO method"
-- Shu & Osher (1988): "Efficient implementation of essentially non-oscillatory shock-capturing schemes"
-
-## License
-
-MIT
-
-## Contributing
-
-This is a research project. Contributions welcome, especially:
-- Additional test cases
-- Higher-order formulas (WENO-9+)
-- Performance optimizations
-- Application examples
+The local research references have strong recorded provenance, but no public
+redistribution permission was found in the supplied material. See
+`references/README.md` before preparing any public release.
