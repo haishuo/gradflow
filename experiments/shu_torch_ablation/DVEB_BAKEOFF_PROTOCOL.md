@@ -28,23 +28,30 @@ two-dimensional implementation or GradFlow's scalar pointwise oracle.
   untested.
 - **3-D:** this campaign performs the matched comparison.
 
-GradFlow does not modify DVEB.  The input executable is the already-built
-FMA-enabled artifact from DVEB commit `4c6a330`/branch state `5dddf95`, with
-SHA-256:
+GradFlow does not modify DVEB. The input executable is a hash-frozen copy of
+the first automatic-placement artifact produced after DVEB commit `9b551ef`
+(with the placement implementation still uncommitted in that checkout). The
+executable, program, and mathematical-module SHA-256 values are respectively:
 
 ```text
-389946b2f1fe6c2df180e910f965814f3b6f67100ff5a73c38adfee1b88424a3
-```
-
-The module used to produce it has SHA-256:
-
-```text
+884d874308dc7b1fd12f56491ae9addd85d1872ffcea4c2f26a0157c9c55c03c
+c6e5bd916f951ff412eac99863a74f8c98e5e14b044097a7ad59fe26f704c381
 555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260
 ```
 
-At campaign setup the DVEB repository had unrelated in-progress automatic
-placement changes.  GradFlow treats DVEB as read-only and refuses any binary
-whose hash differs from the frozen value above.
+The separately authored diagnostic ceiling was relinked by the same DVEB
+development work and is frozen independently with SHA-256:
+
+```text
+873a9227196664398012e7d42a27e29ec9cd3610c45a4c61ab40a0688aed3caa
+```
+
+At campaign setup the DVEB repository had in-progress automatic-placement
+changes. GradFlow treats DVEB as read-only, copies the executable before use,
+and refuses any artifact whose hash differs from the frozen values above. The
+uncommitted compiler state is a provenance limitation; this campaign qualifies
+the exact executable, not a claim that DVEB can yet reproduce it from a clean
+commit.
 
 ## Frozen mathematics
 
@@ -71,15 +78,16 @@ unique periodic nodes, a reduced z calculation, or another dtype.
 Primary deployable lanes:
 
 1. repaired/extended Fortran CPU;
-2. DVEB generated OpenMP C++ (`--target cpu`);
-3. DVEB generated CUDA (`--target cuda`);
-4. direct eager PyTorch CUDA;
-5. prepared fixed-shape PyTorch AOTInductor CUDA.
+2. DVEB automatic placement using a hash-verified calibration model;
+3. direct eager PyTorch CUDA;
+4. prepared fixed-shape PyTorch AOTInductor CUDA.
 
 Diagnostic ceilings:
 
-6. separately authored matched OpenMP C++;
-7. separately authored matched CUDA.
+5. DVEB forced six-thread CPU execution through its calibration-only hook;
+6. DVEB forced CUDA execution through its calibration-only hook;
+7. separately authored matched OpenMP C++;
+8. separately authored matched CUDA.
 
 The diagnostic ceilings determine DVEB's implementation distance but are not
 treated as high-level user-facing systems.  The convolutional PyTorch lane,
@@ -88,10 +96,22 @@ one-shot campaign but are not repeated: they were already dominated at the
 accepted points or answer compilation questions rather than prepared runtime
 placement.  Their prior records remain committed.
 
-DVEB automatic placement is not included because it does not yet exist in a
-committed, qualified artifact.  `min(DVEB CPU, DVEB CUDA)` will be reported as
-an offline oracle envelope, clearly labeled as such; it is not attributed to
-a selector.
+The forced DVEB lanes are diagnostic and do not represent public user syntax.
+Their lower median is reported as an offline two-target oracle envelope. The
+automatic lane is the user-facing result and its selected target is recorded
+on every run.
+
+Before correctness or counted timing, GradFlow calibrates the frozen DVEB copy
+without writing to the DVEB repository. A screen at the smallest calibration
+sizes plus a timed `N=128`, ten-step probe eliminates the one- and two-thread
+schedules before the full calibration: the one-thread probe alone took
+107.16 seconds end-to-end after initialization. The retained contenders are
+four, six, and twelve CPU threads plus CUDA. Calibration uses one warmup and three
+observations at every pilot one-step size and every counted ten-step size. Its
+raw measurements, model, hashes, and elapsed deployment work are retained.
+Calibration is machine- and artifact-specific deployment preparation; it is
+excluded from run latency, just like AOT compilation, and is never described
+as free.
 
 ## Correctness gate
 
@@ -140,10 +160,15 @@ Primary counted points:
 - one step at `N in {8, 16, 32, 64, 96, 128}`;
 - ten steps at `N in {32, 64, 128}`.
 
-Every eligible lane receives one uncounted warmup and 30 counted fresh-process
-runs per point.  Lane order is randomized within each repetition using a
-fixed recorded seed.  A prepared AOT package and cache are specific to each
-shape; build/preparation records and hashes are retained.
+Every deployable lane receives one uncounted warmup and 30 counted fresh-process
+runs per point. Diagnostic forced-target and ceiling lanes are exercised in
+the correctness gate, pilot, calibration, and retained earlier ceiling study;
+they are not repeated 30 times because they are not competing user-facing
+systems. Lane order is randomized within each repetition using a fixed
+recorded seed. A prepared AOT package and cache are specific to each
+shape; build/preparation records and hashes are retained. The automatic DVEB
+selector uses separate calibration observations and the 30 counted
+observations remain independent.
 
 If a lane cannot execute a point, record the exact failure and classify it as
 unsupported, out-of-memory, or defective.  Do not silently shrink the grid.
