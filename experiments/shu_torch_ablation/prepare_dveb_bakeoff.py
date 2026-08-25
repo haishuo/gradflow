@@ -165,6 +165,19 @@ def main() -> None:
         "sizes": arguments.sizes,
         "python": sys.executable,
         "native": native,
+        "gradflow_inputs": {
+            name: {
+                "path": str((EXPERIMENT / name).resolve()),
+                "sha256": sha256(EXPERIMENT / name),
+            }
+            for name in (
+                "shu_euler_torch.py",
+                "bakeoff_worker.py",
+                "build_aot_package.py",
+                "fortran/shu_euler_3d.f90",
+                "build/shu_euler_3d",
+            )
+        },
         "aot_packages": packages,
     }
     manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")

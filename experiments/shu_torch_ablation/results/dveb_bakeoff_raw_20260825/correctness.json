@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "manifest": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/manifest.json",
+  "bound": 2e-05,
+  "maximum_error": 7.152557373046875e-07,
+  "passed": true,
+  "points": [
+    {
+      "size": 6,
+      "steps": 1,
+      "errors": {
+        "dveb-cpu_vs_torch": 2.384185791015625e-07,
+        "dveb-cuda_vs_torch": 2.384185791015625e-07,
+        "ceiling-cpu_vs_torch": 2.384185791015625e-07,
+        "ceiling-cuda_vs_torch": 2.384185791015625e-07,
+        "dveb_cpu_vs_cuda": 0.0,
+        "dveb_vs_ceiling_cpu": 8.028614217892027e-08,
+        "dveb_vs_ceiling_cuda": 7.996560213996418e-08
+      },
+      "records": {
+        "dveb-cpu": {
+          "function": "solve",
+          "pipeline": "shu_euler3d_portable",
+          "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+          "size": 6,
+          "steps": 1,
+          "execution_seconds": 0.002185416,
+          "process_seconds_after_main": 0.002240456,
+          "peak_bytes": 27440,
+          "checksum": 1185.4654795502606,
+          "finite": true
+        },
+        "dveb-cuda": {
+          "function": "solve",
+          "pipeline": "shu_euler3d_portable",
+          "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+          "size": 6,
+          "steps": 1,
+          "execution_seconds": 0.000425687,
+          "process_seconds_after_main": 0.184176198,
+          "peak_bytes": 29208,
+          "checksum": 1185.4654795502606,
+          "finite": true
+        },
+        "ceiling-cpu": {
+          "lane": "native-cpu",
+          "size": 6,
+          "steps": 1,
+          "execution_seconds": 0.000577636,
+          "process_seconds_after_main": 0.000630246,
+          "peak_bytes": 27440,
+          "checksum": 1185.465478958684,
+          "finite": true
+        },
+        "ceiling-cuda": {
+          "lane": "native-cuda",
+          "size": 6,
+          "steps": 1,
+          "execution_seconds": 0.000403697,
+          "process_seconds_after_main": 0.116418314,
+          "peak_bytes": 29208,
+          "checksum": 1185.4654789548197,
+          "finite": true
+        }
+      }
+    },
+    {
+      "size": 6,
+      "steps": 10,
+      "errors": {
+        "dveb-cpu_vs_torch": 2.384185791015625e-07,
+        "dveb-cuda_vs_torch": 2.384185791015625e-07,
+        "ceiling-cpu_vs_torch": 7.152557373046875e-07,
+        "ceiling-cuda_vs_torch": 7.152557373046875e-07,
+        "dveb_cpu_vs_cuda": 0.0,
+        "dveb_vs_ceiling_cpu": 7.152557373046875e-07,
+        "dveb_vs_ceiling_cuda": 7.152557373046875e-07
+      },
+      "records": {
+        "dveb-cpu": {
+          "function": "solve",
+          "pipeline": "shu_euler3d_portable",
+          "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+          "size": 6,
+          "steps": 10,
+          "execution_seconds": 0.003762447,
+          "process_seconds_after_main": 0.003814757,
+          "peak_bytes": 27440,
+          "checksum": 1185.4483174173,
+          "finite": true
+        },
+        "dveb-cuda": {
+          "function": "solve",
+          "pipeline": "shu_euler3d_portable",
+          "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+          "size": 6,
+          "steps": 10,
+          "execution_seconds": 0.001509351,
+          "process_seconds_after_main": 0.120010532,
+          "peak_bytes": 29208,
+          "checksum": 1185.4483174173,
+          "finite": true
+        },
+        "ceiling-cpu": {
+          "lane": "native-cpu",
+          "size": 6,
+          "steps": 10,
+          "execution_seconds": 0.003064261,
+          "process_seconds_after_main": 0.003118471,
+          "peak_bytes": 27440,
+          "checksum": 1185.4483298794203,
+          "finite": true
+        },
+        "ceiling-cuda": {
+          "lane": "native-cuda",
+          "size": 6,
+          "steps": 10,
+          "execution_seconds": 0.001410281,
+          "process_seconds_after_main": 0.116546113,
+          "peak_bytes": 29208,
+          "checksum": 1185.4483299653843,
+          "finite": true
+        }
+      }
+    },
+    {
+      "size": 32,
+      "steps": 1,
+      "errors": {
+        "dveb-cpu_vs_torch": 4.76837158203125e-07,
+        "dveb-cuda_vs_torch": 4.76837158203125e-07,
+        "ceiling-cpu_vs_torch": 4.76837158203125e-07,
+        "ceiling-cuda_vs_torch": 4.76837158203125e-07,
+        "dveb_cpu_vs_cuda": 0.0,
+        "dveb_vs_ceiling_cpu": 4.76837158203125e-07,
+        "dveb_vs_ceiling_cuda": 4.76837158203125e-07
+      },
+      "records": {
+        "dveb-cpu": {
+          "function": "solve",
+          "pipeline": "shu_euler3d_portable",
+          "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+          "size": 32,
+          "steps": 1,
+          "execution_seconds": 0.030438143,
+          "process_seconds_after_main": 0.032575959,
+          "peak_bytes": 2874960,
+          "checksum": 124008.57117201106,
+          "finite": true
+        },
+        "dveb-cuda": {
+          "function": "solve",
+          "pipeline": "shu_euler3d_portable",
+          "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+          "size": 32,
+          "steps": 1,
+          "execution_seconds": 0.000591197,
+          "process_seconds_after_main": 0.119002618,
+          "peak_bytes": 2914168,
+          "checksum": 124008.57117201106,
+          "finite": true
+        },
+        "ceiling-cpu": {
+          "lane": "native-cpu",
+          "size": 32,
+          "steps": 1,
+          "execution_seconds": 0.020983811,
+          "process_seconds_after_main": 0.023150838,
+          "peak_bytes": 2874960,
+          "checksum": 124008.57132782342,
+          "finite": true
+        },
+        "ceiling-cuda": {
+          "lane": "native-cuda",
+          "size": 32,
+          "steps": 1,
+          "execution_seconds": 0.000530806,
+          "process_seconds_after_main": 0.117028271,
+          "peak_bytes": 2914168,
+          "checksum": 124008.57132781573,
+          "finite": true
+        }
+      }
+    },
+    {
+      "size": 128,
+      "steps": 1,
+      "errors": {
+        "dveb-cpu_vs_torch": 7.152557373046875e-07,
+        "dveb-cuda_vs_torch": 7.152557373046875e-07,
+        "ceiling-cpu_vs_torch": 7.152557373046875e-07,
+        "ceiling-cuda_vs_torch": 7.152557373046875e-07,
+        "dveb_cpu_vs_cuda": 0.0,
+        "dveb_vs_ceiling_cpu": 4.76837158203125e-07,
+        "dveb_vs_ceiling_cuda": 4.76837158203125e-07
+      },
+      "records": {
+        "dveb-cpu": {
+          "function": "solve",
+          "pipeline": "shu_euler3d_portable",
+          "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+          "size": 128,
+          "steps": 1,
+          "execution_seconds": 2.053687494,
+          "process_seconds_after_main": 2.179881728,
+          "peak_bytes": 171735120,
+          "checksum": 7402647.965330367,
+          "finite": true
+        },
+        "dveb-cuda": {
+          "function": "solve",
+          "pipeline": "shu_euler3d_portable",
+          "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+          "size": 128,
+          "steps": 1,
+          "execution_seconds": 0.010721504,
+          "process_seconds_after_main": 0.208917036,
+          "peak_bytes": 172334200,
+          "checksum": 7402647.965330367,
+          "finite": true
+        },
+        "ceiling-cpu": {
+          "lane": "native-cpu",
+          "size": 128,
+          "steps": 1,
+          "execution_seconds": 1.681396181,
+          "process_seconds_after_main": 1.805948466,
+          "peak_bytes": 171735120,
+          "checksum": 7402647.964895578,
+          "finite": true
+        },
+        "ceiling-cuda": {
+          "lane": "native-cuda",
+          "size": 128,
+          "steps": 1,
+          "execution_seconds": 0.009586891,
+          "process_seconds_after_main": 0.2051442,
+          "peak_bytes": 172334200,
+          "checksum": 7402647.964903387,
+          "finite": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "purpose": "excluded DVEB automatic-placement preparation",
+  "manifest": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/manifest.json",
+  "artifact_sha256": "884d874308dc7b1fd12f56491ae9addd85d1872ffcea4c2f26a0157c9c55c03c",
+  "program_sha256": "c6e5bd916f951ff412eac99863a74f8c98e5e14b044097a7ad59fe26f704c381",
+  "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+  "model": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/calibration.placement.tsv",
+  "model_sha256": "f535d75a9df66a2d647ddfd4244648ac72127ed2302701fb2c868c2b016f23f1",
+  "raw": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/calibration.raw.json",
+  "raw_sha256": "642932049117ac807d52e6c6c4cdf50d475d02a0c78a47571a87f3d412583a71",
+  "sizes_one_step": [
+    8,
+    16,
+    32,
+    48,
+    64,
+    96,
+    128,
+    160
+  ],
+  "sizes_ten_steps": [
+    32,
+    64,
+    128
+  ],
+  "repetitions": 3,
+  "warmups": 1,
+  "seed": 53483,
+  "candidates": [
+    "cpu_simd[4]",
+    "cpu_simd[6]",
+    "cpu_simd[12]",
+    "cuda"
+  ],
+  "machine": {
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "cpu": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           48 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  12\nOn-line CPU(s) list:                     0-11\nVendor ID:                               AuthenticAMD\nModel name:                              AMD Ryzen 5 7600X 6-Core Processor\nCPU family:                              25\nModel:                                   97\nThread(s) per core:                      2\nCore(s) per socket:                      6\nSocket(s):                               1\nStepping:                                2\nCPU(s) scaling MHz:                      65%\nCPU max MHz:                             5453.0000\nCPU min MHz:                             545.0000\nBogoMIPS:                                9400.07\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc amd_ibpb_ret arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d ibpb_exit_to_user\nVirtualization:                          AMD-V\nL1d cache:                               192 KiB (6 instances)\nL1i cache:                               192 KiB (6 instances)\nL2 cache:                                6 MiB (6 instances)\nL3 cache:                                32 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-11\nVulnerability Gather data sampling:      Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Not affected\nVulnerability Spec rstack overflow:      Mitigation; Safe RET\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; STIBP always-on; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Mitigation; Clear CPU buffers\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Mitigation; IBPB before exit to userspace",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti, 12.0, 580.173.02",
+    "affinity": "OMP_PROC_BIND=close;OMP_PLACES=cores;schedule=static"
+  }
+}

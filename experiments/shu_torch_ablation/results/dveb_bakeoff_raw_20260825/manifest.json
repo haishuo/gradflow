@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "purpose": "GradFlow DVEB-inclusive bakeoff preparation",
+  "sizes": [
+    8,
+    16,
+    32,
+    48,
+    64,
+    96,
+    128,
+    160
+  ],
+  "python": "/mnt/projects/dveb/.venv-torch/bin/python",
+  "native": {
+    "dveb": {
+      "source": "/mnt/projects/dveb/build/shu_euler3d_portable/shu_euler3d_portable",
+      "frozen_copy": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/bin/dveb_shu3d",
+      "sha256": "884d874308dc7b1fd12f56491ae9addd85d1872ffcea4c2f26a0157c9c55c03c"
+    },
+    "ceiling": {
+      "source": "/mnt/projects/dveb/tools/shu_euler3d_ceiling/build/shu_ceiling",
+      "frozen_copy": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/bin/shu3d_ceiling",
+      "sha256": "873a9227196664398012e7d42a27e29ec9cd3610c45a4c61ab40a0688aed3caa"
+    }
+  },
+  "aot_packages": {
+    "8": {
+      "path": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot/shu3d_n8.pt2",
+      "sha256": "8ffc526b68851cd07f394b4e7dc6b9a206ec75a2b5349c33ace09a9fb728f650",
+      "bytes": 4300701,
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot_runtime_cache/n8",
+      "build": {
+        "size": 8,
+        "export_seconds": 2.298808007966727,
+        "compile_package_seconds": 26.842639780137688,
+        "package_bytes": 4300701,
+        "external_seconds": 32.86287537496537,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)"
+      },
+      "extraction_cache_preparation": {
+        "lane": "aot",
+        "size": 8,
+        "steps": 1,
+        "cfl": 0.1,
+        "execution_seconds": 0.0035045286640524864,
+        "end_to_host_after_import_seconds": 4.6310059991665184,
+        "peak_allocated_bytes": 1046528,
+        "peak_reserved_bytes": 2097152,
+        "checksum": 2522.1505407488344,
+        "finite": true,
+        "torch_version": "2.13.0+cu130",
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "external_seconds": 5.709132830612361
+      }
+    },
+    "16": {
+      "path": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot/shu3d_n16.pt2",
+      "sha256": "d23c19414650a7505497ec33beeb177916281d08c39797df8053adc75fd30c9d",
+      "bytes": 4617467,
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot_runtime_cache/n16",
+      "build": {
+        "size": 16,
+        "export_seconds": 1.5771167110651731,
+        "compile_package_seconds": 26.50591447064653,
+        "package_bytes": 4617467,
+        "external_seconds": 30.953761925920844,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)"
+      },
+      "extraction_cache_preparation": {
+        "lane": "aot",
+        "size": 16,
+        "steps": 1,
+        "cfl": 0.1,
+        "execution_seconds": 0.004253964871168137,
+        "end_to_host_after_import_seconds": 4.813328477088362,
+        "peak_allocated_bytes": 6679552,
+        "peak_reserved_bytes": 27262976,
+        "checksum": 16967.41853212207,
+        "finite": true,
+        "torch_version": "2.13.0+cu130",
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "external_seconds": 5.920764464884996
+      }
+    },
+    "32": {
+      "path": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot/shu3d_n32.pt2",
+      "sha256": "3a6bd2ca7e0ba8b6dc29002e93bd69f5f5d45ef117488bf29310b6ad910b8e95",
+      "bytes": 5434747,
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot_runtime_cache/n32",
+      "build": {
+        "size": 32,
+        "export_seconds": 2.078507556114346,
+        "compile_package_seconds": 31.698608783073723,
+        "package_bytes": 5434747,
+        "external_seconds": 36.692245485726744,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)"
+      },
+      "extraction_cache_preparation": {
+        "lane": "aot",
+        "size": 32,
+        "steps": 1,
+        "cfl": 0.1,
+        "execution_seconds": 0.005190527066588402,
+        "end_to_host_after_import_seconds": 4.59330217866227,
+        "peak_allocated_bytes": 48050176,
+        "peak_reserved_bytes": 71303168,
+        "checksum": 124008.57381342236,
+        "finite": true,
+        "torch_version": "2.13.0+cu130",
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "external_seconds": 5.655455898027867
+      }
+    },
+    "48": {
+      "path": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot/shu3d_n48.pt2",
+      "sha256": "61c7255803bc39cdaf8f29a0c7cd6d6336f4e3626497f96797db02097430914c",
+      "bytes": 5347707,
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot_runtime_cache/n48",
+      "build": {
+        "size": 48,
+        "export_seconds": 1.5635606949217618,
+        "compile_package_seconds": 25.902080859057605,
+        "package_bytes": 5347707,
+        "external_seconds": 30.229142922908068,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)"
+      },
+      "extraction_cache_preparation": {
+        "lane": "aot",
+        "size": 48,
+        "steps": 1,
+        "cfl": 0.1,
+        "execution_seconds": 0.0069916159845888615,
+        "end_to_host_after_import_seconds": 4.614645081106573,
+        "peak_allocated_bytes": 155185152,
+        "peak_reserved_bytes": 190840832,
+        "checksum": 405854.9947483041,
+        "finite": true,
+        "torch_version": "2.13.0+cu130",
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "external_seconds": 5.683861894067377
+      }
+    },
+    "64": {
+      "path": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot/shu3d_n64.pt2",
+      "sha256": "c06fdec4cafc6c5a638a6e91e909dcb818794586f2e4485957b62294f142548b",
+      "bytes": 5373819,
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot_runtime_cache/n64",
+      "build": {
+        "size": 64,
+        "export_seconds": 1.5670258929021657,
+        "compile_package_seconds": 27.698954425752163,
+        "package_bytes": 5373819,
+        "external_seconds": 32.062225232832134,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)"
+      },
+      "extraction_cache_preparation": {
+        "lane": "aot",
+        "size": 64,
+        "steps": 1,
+        "cfl": 0.1,
+        "execution_seconds": 0.012054444290697575,
+        "end_to_host_after_import_seconds": 4.741244949400425,
+        "peak_allocated_bytes": 359025664,
+        "peak_reserved_bytes": 469762048,
+        "checksum": 947234.7443941631,
+        "finite": true,
+        "torch_version": "2.13.0+cu130",
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "external_seconds": 5.8611555700190365
+      }
+    },
+    "96": {
+      "path": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot/shu3d_n96.pt2",
+      "sha256": "cbba79f585283f572ee32202d0228f242999285a664d05da61878bca3d133b57",
+      "bytes": 5602244,
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot_runtime_cache/n96",
+      "build": {
+        "size": 96,
+        "export_seconds": 1.6074129678308964,
+        "compile_package_seconds": 29.139777410775423,
+        "package_bytes": 5602244,
+        "external_seconds": 33.53587426804006,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)"
+      },
+      "extraction_cache_preparation": {
+        "lane": "aot",
+        "size": 96,
+        "steps": 1,
+        "cfl": 0.1,
+        "execution_seconds": 0.03245853492990136,
+        "end_to_host_after_import_seconds": 4.647778043989092,
+        "peak_allocated_bytes": 1187891712,
+        "peak_reserved_bytes": 1472200704,
+        "checksum": 3147506.4358872287,
+        "finite": true,
+        "torch_version": "2.13.0+cu130",
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "external_seconds": 5.746614643838257
+      }
+    },
+    "128": {
+      "path": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot/shu3d_n128.pt2",
+      "sha256": "526a42ef1dd5ac6a6f3651e3aaf86454a9878ea3391fe7f58076d996d9c1adfb",
+      "bytes": 5719827,
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot_runtime_cache/n128",
+      "build": {
+        "size": 128,
+        "export_seconds": 1.5622481307946146,
+        "compile_package_seconds": 29.84125212719664,
+        "package_bytes": 5719827,
+        "external_seconds": 34.17420490691438,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)"
+      },
+      "extraction_cache_preparation": {
+        "lane": "aot",
+        "size": 128,
+        "steps": 1,
+        "cfl": 0.1,
+        "execution_seconds": 0.07179304910823703,
+        "end_to_host_after_import_seconds": 4.700528770219535,
+        "peak_allocated_bytes": 2780240896,
+        "peak_reserved_bytes": 3409969152,
+        "checksum": 7402648.0826724665,
+        "finite": true,
+        "torch_version": "2.13.0+cu130",
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "external_seconds": 5.800605367403477
+      }
+    },
+    "160": {
+      "path": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot/shu3d_n160.pt2",
+      "sha256": "5bef52dbb77aa6dc6f8cc569b03636d1c60eb1b3d659dc46b8ae362ae57d3961",
+      "bytes": 5956499,
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/aot_runtime_cache/n160",
+      "build": {
+        "size": 160,
+        "export_seconds": 1.5586170088499784,
+        "compile_package_seconds": 30.74618706293404,
+        "package_bytes": 5956499,
+        "external_seconds": 35.30681461002678,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)"
+      },
+      "extraction_cache_preparation": {
+        "lane": "aot",
+        "size": 160,
+        "steps": 1,
+        "cfl": 0.1,
+        "execution_seconds": 0.14246286125853658,
+        "end_to_host_after_import_seconds": 4.9336226671002805,
+        "peak_allocated_bytes": 5384132096,
+        "peak_reserved_bytes": 6582960128,
+        "checksum": 14390484.131778179,
+        "finite": true,
+        "torch_version": "2.13.0+cu130",
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "external_seconds": 6.132673160172999
+      }
+    }
+  }
+}

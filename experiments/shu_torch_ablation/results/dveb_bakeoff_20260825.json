@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "endpoint": "external fresh process through final pageable-host materialization",
+  "repetitions_per_lane_per_point": 30,
+  "rows": [
+    {
+      "size": 8,
+      "steps": 1,
+      "cells": 729,
+      "fresh_process_median_seconds": {
+        "fortran": 0.0024629049003124237,
+        "dveb-auto": 0.0027767985593527555,
+        "direct-eager": 1.1546846476849169,
+        "aot-inductor": 2.6099288936238736
+      },
+      "winner": "fortran",
+      "dveb_selected": [
+        "cpu_simd[6]"
+      ],
+      "dveb_speedup_over_next_best": 0.8869584334869803,
+      "next_best_non_dveb": "fortran",
+      "dveb_paired_wins": 3,
+      "dveb_paired_losses": 27,
+      "raw_file": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_bakeoff_raw_20260825/counted_n8_s1.json",
+      "raw_sha256": "b76b9bf6f6a79750691510828ca5f54d2250021797ceaad66d8ba53967c78904"
+    },
+    {
+      "size": 16,
+      "steps": 1,
+      "cells": 4913,
+      "fresh_process_median_seconds": {
+        "fortran": 0.009010996203869581,
+        "dveb-auto": 0.006971742492169142,
+        "direct-eager": 1.1591735056135803,
+        "aot-inductor": 2.6083609166089445
+      },
+      "winner": "dveb-auto",
+      "dveb_selected": [
+        "cpu_simd[6]"
+      ],
+      "dveb_speedup_over_next_best": 1.292502729983356,
+      "next_best_non_dveb": "fortran",
+      "dveb_paired_wins": 26,
+      "dveb_paired_losses": 4,
+      "raw_file": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_bakeoff_raw_20260825/counted_n16_s1.json",
+      "raw_sha256": "dcaafe78075ecc920c1d4443f8cdcc0660ba7e3b36d0eefbe1549735876c3232"
+    },
+    {
+      "size": 32,
+      "steps": 1,
+      "cells": 35937,
+      "fresh_process_median_seconds": {
+        "fortran": 0.055639846017584205,
+        "dveb-auto": 0.05120621249079704,
+        "direct-eager": 1.1719277950469404,
+        "aot-inductor": 2.636619597906247
+      },
+      "winner": "dveb-auto",
+      "dveb_selected": [
+        "cpu_simd[6]"
+      ],
+      "dveb_speedup_over_next_best": 1.0865838989279668,
+      "next_best_non_dveb": "fortran",
+      "dveb_paired_wins": 30,
+      "dveb_paired_losses": 0,
+      "raw_file": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_bakeoff_raw_20260825/counted_n32_s1.json",
+      "raw_sha256": "4bdb1e672693a945c049ca74d2254a8172a209fc1f06ff6182219b11496fcc7d"
+    },
+    {
+      "size": 64,
+      "steps": 1,
+      "cells": 274625,
+      "fresh_process_median_seconds": {
+        "fortran": 0.4109288251493126,
+        "dveb-auto": 0.20277941413223743,
+        "direct-eager": 1.2281638085842133,
+        "aot-inductor": 2.686338162049651
+      },
+      "winner": "dveb-auto",
+      "dveb_selected": [
+        "cuda"
+      ],
+      "dveb_speedup_over_next_best": 2.026481962717063,
+      "next_best_non_dveb": "fortran",
+      "dveb_paired_wins": 30,
+      "dveb_paired_losses": 0,
+      "raw_file": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_bakeoff_raw_20260825/counted_n64_s1.json",
+      "raw_sha256": "57d354b261e1fc53229f2f1fefc6cbf15a8ea373f35148ef64d406b6fef88d19"
+    },
+    {
+      "size": 96,
+      "steps": 1,
+      "cells": 912673,
+      "fresh_process_median_seconds": {
+        "fortran": 1.3391732193995267,
+        "dveb-auto": 0.20497279590927064,
+        "direct-eager": 1.3169770119711757,
+        "aot-inductor": 2.6832433487288654
+      },
+      "winner": "dveb-auto",
+      "dveb_selected": [
+        "cuda"
+      ],
+      "dveb_speedup_over_next_best": 6.425130740540435,
+      "next_best_non_dveb": "direct-eager",
+      "dveb_paired_wins": 30,
+      "dveb_paired_losses": 0,
+      "raw_file": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_bakeoff_raw_20260825/counted_n96_s1.json",
+      "raw_sha256": "ff6fe71c6672b27626fc265e6d3bf8d3cf74864f89bf2ab86f86c9f678de6d61"
+    },
+    {
+      "size": 128,
+      "steps": 1,
+      "cells": 2146689,
+      "fresh_process_median_seconds": {
+        "fortran": 3.1530746780335903,
+        "dveb-auto": 0.2525871149264276,
+        "direct-eager": 1.612690693931654,
+        "aot-inductor": 2.7417664632666856
+      },
+      "winner": "dveb-auto",
+      "dveb_selected": [
+        "cuda"
+      ],
+      "dveb_speedup_over_next_best": 6.384691057583801,
+      "next_best_non_dveb": "direct-eager",
+      "dveb_paired_wins": 30,
+      "dveb_paired_losses": 0,
+      "raw_file": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_bakeoff_raw_20260825/counted_n128_s1.json",
+      "raw_sha256": "64ad1f61a93bb430cdb16c66f934e9f539e9e9daacf84ff6c77c1d140535b9fb"
+    },
+    {
+      "size": 32,
+      "steps": 10,
+      "cells": 35937,
+      "fresh_process_median_seconds": {
+        "fortran": 0.5170429276768118,
+        "dveb-auto": 0.1748938299715519,
+        "direct-eager": 1.2444174953270704,
+        "aot-inductor": 2.611618757015094
+      },
+      "winner": "dveb-auto",
+      "dveb_selected": [
+        "cuda"
+      ],
+      "dveb_speedup_over_next_best": 2.9563245756634964,
+      "next_best_non_dveb": "fortran",
+      "dveb_paired_wins": 30,
+      "dveb_paired_losses": 0,
+      "raw_file": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_bakeoff_raw_20260825/counted_n32_s10.json",
+      "raw_sha256": "811a1f081dd9c9d22b40c964a05335ef71f8b026f8c7220cff370390a2ec9f89"
+    },
+    {
+      "size": 64,
+      "steps": 10,
+      "cells": 274625,
+      "fresh_process_median_seconds": {
+        "fortran": 3.8756610271520913,
+        "dveb-auto": 0.19734889408573508,
+        "direct-eager": 1.5474731323774904,
+        "aot-inductor": 2.6964313564822078
+      },
+      "winner": "dveb-auto",
+      "dveb_selected": [
+        "cuda"
+      ],
+      "dveb_speedup_over_next_best": 7.841306329820198,
+      "next_best_non_dveb": "direct-eager",
+      "dveb_paired_wins": 30,
+      "dveb_paired_losses": 0,
+      "raw_file": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_bakeoff_raw_20260825/counted_n64_s10.json",
+      "raw_sha256": "d70a3db9b6f662a91f5f2b534daaedf98c89ac66920d29cc8cdaec761716c04c"
+    },
+    {
+      "size": 128,
+      "steps": 10,
+      "cells": 2146689,
+      "fresh_process_median_seconds": {
+        "fortran": 30.58241113787517,
+        "dveb-auto": 0.34317828505299985,
+        "direct-eager": 5.431873878464103,
+        "aot-inductor": 3.3768286367412657
+      },
+      "winner": "dveb-auto",
+      "dveb_selected": [
+        "cuda"
+      ],
+      "dveb_speedup_over_next_best": 9.839866867508107,
+      "next_best_non_dveb": "aot-inductor",
+      "dveb_paired_wins": 30,
+      "dveb_paired_losses": 0,
+      "raw_file": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_bakeoff_raw_20260825/counted_n128_s10.json",
+      "raw_sha256": "8035f0f1faca1bcea12e480fd671f3b770815a0fec8bfa7ff5c16900c8c9fd91"
+    }
+  ],
+  "correctness_maximum_error": 7.152557373046875e-07,
+  "correctness_bound": 2e-05,
+  "dveb_artifact_sha256": "884d874308dc7b1fd12f56491ae9addd85d1872ffcea4c2f26a0157c9c55c03c",
+  "dveb_model_sha256": "f535d75a9df66a2d647ddfd4244648ac72127ed2302701fb2c868c2b016f23f1",
+  "input_hashes": {
+    "manifest": "daf3bf81d70f5095d5c1f317d6c5230f8b679d9bea397846c20be36e3483eeae",
+    "calibration": "fb57822ad2d5a6439c54d52f58837686f5657eb225d4fdc1e1a5d3e73665220b",
+    "correctness": "9da01d982ee0b9206c762759ff15794da2c2edee28d6457c63aba5e905b891ac"
+  },
+  "gradflow_source_hashes": {
+    "shu_euler_torch.py": "4d32c2ad223985422182ba4dc9b14f0b2b1c3e568681b5207e7fe4ad9912ed5c",
+    "bakeoff_worker.py": "1083330eed28d996258987c3bc70ae8b6a404d2eec6244a487ac35c41320599c",
+    "build_aot_package.py": "2833b5b91caafd5a3cbf3d2840a98d6d09353b3572d7901e2ba14fdeedc2742e",
+    "fortran/shu_euler_3d.f90": "1c114112f74f32f34f0261a428387b2d58f14dcb844a89a70808296804cb9c83",
+    "build/shu_euler_3d": "22afba830f3adff8dc3b0bc9188a65ff54bd6a0e97249ca5512955a9d656291f",
+    "DVEB_BAKEOFF_PROTOCOL.md": "7f52e749b0b232ac75936a581a074de9606595f2d51411a28a3ae5e6f5706c14",
+    "run_dveb_bakeoff.py": "18d6d980eb8fd79716395e4beaf4eeb74f86540b5ec0a4f2c8fb8845ed1f72f3"
+  }
+}

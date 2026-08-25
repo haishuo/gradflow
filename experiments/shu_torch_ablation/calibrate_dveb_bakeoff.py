@@ -72,6 +72,7 @@ def run_candidate(
 
 
 def main() -> None:
+    calibration_started = time.perf_counter()
     parser = argparse.ArgumentParser()
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--sizes-one-step", type=int, nargs="+", required=True)
@@ -184,6 +185,9 @@ def main() -> None:
         "seed": arguments.seed,
         "candidates": CANDIDATES,
         "machine": machine,
+        "calibration_wall_seconds_including_warmups": (
+            time.perf_counter() - calibration_started
+        ),
     }
     arguments.output.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report, indent=2))

@@ -1,0 +1,2645 @@
+{
+  "schema_version": 1,
+  "protocol": "DVEB_BAKEOFF_PROTOCOL.md",
+  "size": 128,
+  "steps": 1,
+  "repetitions": 30,
+  "warmups": 1,
+  "seed": 20260825,
+  "lanes": [
+    "fortran",
+    "dveb-auto",
+    "direct-eager",
+    "aot-inductor"
+  ],
+  "manifest": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/manifest.json",
+  "calibration": "/mnt/artifacts/gradflow/dveb_bakeoff_20260825/calibration.json",
+  "environment": {
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "cpu": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           48 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  12\nOn-line CPU(s) list:                     0-11\nVendor ID:                               AuthenticAMD\nModel name:                              AMD Ryzen 5 7600X 6-Core Processor\nCPU family:                              25\nModel:                                   97\nThread(s) per core:                      2\nCore(s) per socket:                      6\nSocket(s):                               1\nStepping:                                2\nCPU(s) scaling MHz:                      60%\nCPU max MHz:                             5453.0000\nCPU min MHz:                             545.0000\nBogoMIPS:                                9400.07\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc amd_ibpb_ret arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d ibpb_exit_to_user\nVirtualization:                          AMD-V\nL1d cache:                               192 KiB (6 instances)\nL1i cache:                               192 KiB (6 instances)\nL2 cache:                                6 MiB (6 instances)\nL3 cache:                                32 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-11\nVulnerability Gather data sampling:      Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Not affected\nVulnerability Spec rstack overflow:      Mitigation; Safe RET\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; STIBP always-on; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Mitigation; Clear CPU buffers\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Mitigation; IBPB before exit to userspace",
+    "governor": "powersave",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti, 580.173.02, 16303 MiB",
+    "gfortran": "GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "omp": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "CLOSE",
+      "OMP_PLACES": "CORES"
+    }
+  },
+  "warmup_records": [
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.157329512294382,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010729046,
+      "process_seconds_after_main": 0.259923603,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.3198803230188787,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5273101110942662,
+      "end_to_host_after_import_seconds": 0.6338305119425058,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.5892176777124405,
+      "returncode": 0,
+      "success": true
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07175009092316031,
+      "end_to_host_after_import_seconds": 1.6390053099021316,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.731481264345348,
+      "returncode": 0,
+      "success": true
+    }
+  ],
+  "blocks": [
+    {
+      "repetition": 0,
+      "order": [
+        "fortran",
+        "dveb-auto",
+        "aot-inductor",
+        "direct-eager"
+      ],
+      "telemetry_before": {
+        "gpu": "42, 2475, 14001, P0, 58.69, 0x0000000000000000",
+        "cpu_mhz": "3418.1"
+      },
+      "telemetry_after": {
+        "gpu": "44, 2902, 14001, P0, 112.38, 0x0000000000000000",
+        "cpu_mhz": "2595.1"
+      }
+    },
+    {
+      "repetition": 1,
+      "order": [
+        "fortran",
+        "aot-inductor",
+        "direct-eager",
+        "dveb-auto"
+      ],
+      "telemetry_before": {
+        "gpu": "44, 2902, 14001, P0, 112.38, 0x0000000000000000",
+        "cpu_mhz": "3349.5"
+      },
+      "telemetry_after": {
+        "gpu": "44, 2902, 14001, P0, 111.23, 0x0000000000000000",
+        "cpu_mhz": "2729.9"
+      }
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "aot-inductor",
+        "dveb-auto",
+        "direct-eager",
+        "fortran"
+      ],
+      "telemetry_before": {
+        "gpu": "44, 2902, 14001, P0, 118.47, 0x0000000000000000",
+        "cpu_mhz": "3284.5"
+      },
+      "telemetry_after": {
+        "gpu": "41, 367, 7001, P3, 36.22, 0x0000000000000000",
+        "cpu_mhz": "3253.0"
+      }
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "dveb-auto",
+        "aot-inductor",
+        "direct-eager",
+        "fortran"
+      ],
+      "telemetry_before": {
+        "gpu": "41, 367, 7001, P3, 36.22, 0x0000000000000000",
+        "cpu_mhz": "3312.9"
+      },
+      "telemetry_after": {
+        "gpu": "41, 420, 7001, P3, 35.59, 0x0000000000000000",
+        "cpu_mhz": "3355.5"
+      }
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "dveb-auto",
+        "fortran",
+        "direct-eager",
+        "aot-inductor"
+      ],
+      "telemetry_before": {
+        "gpu": "41, 420, 7001, P3, 35.59, 0x0000000000000000",
+        "cpu_mhz": "3700.7"
+      },
+      "telemetry_after": {
+        "gpu": "43, 2475, 14001, P0, 60.65, 0x0000000000000000",
+        "cpu_mhz": "2703.0"
+      }
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "direct-eager",
+        "fortran",
+        "dveb-auto",
+        "aot-inductor"
+      ],
+      "telemetry_before": {
+        "gpu": "43, 2475, 14001, P0, 60.65, 0x0000000000000000",
+        "cpu_mhz": "3727.7"
+      },
+      "telemetry_after": {
+        "gpu": "43, 2475, 14001, P0, 60.04, 0x0000000000000000",
+        "cpu_mhz": "3082.6"
+      }
+    },
+    {
+      "repetition": 6,
+      "order": [
+        "aot-inductor",
+        "fortran",
+        "dveb-auto",
+        "direct-eager"
+      ],
+      "telemetry_before": {
+        "gpu": "43, 2475, 14001, P0, 60.04, 0x0000000000000000",
+        "cpu_mhz": "3693.0"
+      },
+      "telemetry_after": {
+        "gpu": "44, 2895, 14001, P0, 106.27, 0x0000000000000000",
+        "cpu_mhz": "3150.9"
+      }
+    },
+    {
+      "repetition": 7,
+      "order": [
+        "dveb-auto",
+        "aot-inductor",
+        "fortran",
+        "direct-eager"
+      ],
+      "telemetry_before": {
+        "gpu": "44, 2902, 14001, P0, 106.27, 0x0000000000000000",
+        "cpu_mhz": "2900.4"
+      },
+      "telemetry_after": {
+        "gpu": "44, 2902, 14001, P0, 72.72, 0x0000000000000000",
+        "cpu_mhz": "3056.1"
+      }
+    },
+    {
+      "repetition": 8,
+      "order": [
+        "fortran",
+        "direct-eager",
+        "aot-inductor",
+        "dveb-auto"
+      ],
+      "telemetry_before": {
+        "gpu": "44, 2902, 14001, P0, 72.30, 0x0000000000000000",
+        "cpu_mhz": "3097.8"
+      },
+      "telemetry_after": {
+        "gpu": "43, 2482, 14001, P0, 61.19, 0x0000000000000000",
+        "cpu_mhz": "2755.7"
+      }
+    },
+    {
+      "repetition": 9,
+      "order": [
+        "aot-inductor",
+        "dveb-auto",
+        "fortran",
+        "direct-eager"
+      ],
+      "telemetry_before": {
+        "gpu": "43, 2482, 14001, P0, 61.19, 0x0000000000000000",
+        "cpu_mhz": "3059.0"
+      },
+      "telemetry_after": {
+        "gpu": "45, 2895, 14001, P0, 73.53, 0x0000000000000000",
+        "cpu_mhz": "2533.0"
+      }
+    },
+    {
+      "repetition": 10,
+      "order": [
+        "dveb-auto",
+        "fortran",
+        "aot-inductor",
+        "direct-eager"
+      ],
+      "telemetry_before": {
+        "gpu": "44, 2895, 14001, P0, 73.53, 0x0000000000000000",
+        "cpu_mhz": "3312.3"
+      },
+      "telemetry_after": {
+        "gpu": "45, 2902, 13801, P0, 105.97, 0x0000000000000000",
+        "cpu_mhz": "3519.4"
+      }
+    },
+    {
+      "repetition": 11,
+      "order": [
+        "direct-eager",
+        "dveb-auto",
+        "fortran",
+        "aot-inductor"
+      ],
+      "telemetry_before": {
+        "gpu": "45, 2902, 14001, P0, 113.94, 0x0000000000000000",
+        "cpu_mhz": "3182.7"
+      },
+      "telemetry_after": {
+        "gpu": "43, 2475, 14001, P0, 60.19, 0x0000000000000000",
+        "cpu_mhz": "3014.2"
+      }
+    },
+    {
+      "repetition": 12,
+      "order": [
+        "fortran",
+        "direct-eager",
+        "aot-inductor",
+        "dveb-auto"
+      ],
+      "telemetry_before": {
+        "gpu": "43, 2475, 14001, P0, 60.19, 0x0000000000000000",
+        "cpu_mhz": "3763.3"
+      },
+      "telemetry_after": {
+        "gpu": "43, 2482, 14001, P0, 60.41, 0x0000000000000000",
+        "cpu_mhz": "3084.7"
+      }
+    },
+    {
+      "repetition": 13,
+      "order": [
+        "aot-inductor",
+        "dveb-auto",
+        "fortran",
+        "direct-eager"
+      ],
+      "telemetry_before": {
+        "gpu": "43, 2482, 14001, P0, 62.66, 0x0000000000000000",
+        "cpu_mhz": "3099.5"
+      },
+      "telemetry_after": {
+        "gpu": "44, 2902, 14001, P0, 74.65, 0x0000000000000000",
+        "cpu_mhz": "2839.5"
+      }
+    },
+    {
+      "repetition": 14,
+      "order": [
+        "aot-inductor",
+        "direct-eager",
+        "dveb-auto",
+        "fortran"
+      ],
+      "telemetry_before": {
+        "gpu": "44, 2902, 14001, P0, 74.65, 0x0000000000000000",
+        "cpu_mhz": "3259.0"
+      },
+      "telemetry_after": {
+        "gpu": "41, 420, 810, P5, 23.71, 0x0000000000000000",
+        "cpu_mhz": "2704.5"
+      }
+    },
+    {
+      "repetition": 15,
+      "order": [
+        "fortran",
+        "aot-inductor",
+        "dveb-auto",
+        "direct-eager"
+      ],
+      "telemetry_before": {
+        "gpu": "41, 420, 810, P5, 23.71, 0x0000000000000000",
+        "cpu_mhz": "3390.2"
+      },
+      "telemetry_after": {
+        "gpu": "44, 2902, 14001, P0, 112.27, 0x0000000000000000",
+        "cpu_mhz": "2989.2"
+      }
+    },
+    {
+      "repetition": 16,
+      "order": [
+        "fortran",
+        "direct-eager",
+        "aot-inductor",
+        "dveb-auto"
+      ],
+      "telemetry_before": {
+        "gpu": "44, 2902, 14001, P0, 114.24, 0x0000000000000000",
+        "cpu_mhz": "3024.7"
+      },
+      "telemetry_after": {
+        "gpu": "43, 2475, 13801, P0, 62.60, 0x0000000000000000",
+        "cpu_mhz": "2795.6"
+      }
+    },
+    {
+      "repetition": 17,
+      "order": [
+        "direct-eager",
+        "dveb-auto",
+        "aot-inductor",
+        "fortran"
+      ],
+      "telemetry_before": {
+        "gpu": "43, 2475, 14001, P0, 61.21, 0x0000000000000000",
+        "cpu_mhz": "3615.8"
+      },
+      "telemetry_after": {
+        "gpu": "41, 652, 7001, P3, 36.04, 0x0000000000000000",
+        "cpu_mhz": "3083.6"
+      }
+    },
+    {
+      "repetition": 18,
+      "order": [
+        "aot-inductor",
+        "dveb-auto",
+        "direct-eager",
+        "fortran"
+      ],
+      "telemetry_before": {
+        "gpu": "41, 652, 7001, P3, 36.04, 0x0000000000000000",
+        "cpu_mhz": "3143.5"
+      },
+      "telemetry_after": {
+        "gpu": "41, 412, 7001, P3, 28.72, 0x0000000000000000",
+        "cpu_mhz": "3072.2"
+      }
+    },
+    {
+      "repetition": 19,
+      "order": [
+        "dveb-auto",
+        "direct-eager",
+        "fortran",
+        "aot-inductor"
+      ],
+      "telemetry_before": {
+        "gpu": "41, 412, 7001, P3, 28.72, 0x0000000000000000",
+        "cpu_mhz": "3113.3"
+      },
+      "telemetry_after": {
+        "gpu": "43, 2475, 13801, P0, 60.21, 0x0000000000000000",
+        "cpu_mhz": "3029.4"
+      }
+    },
+    {
+      "repetition": 20,
+      "order": [
+        "dveb-auto",
+        "aot-inductor",
+        "direct-eager",
+        "fortran"
+      ],
+      "telemetry_before": {
+        "gpu": "43, 2475, 14001, P0, 60.21, 0x0000000000000000",
+        "cpu_mhz": "2547.0"
+      },
+      "telemetry_after": {
+        "gpu": "41, 375, 810, P5, 28.62, 0x0000000000000000",
+        "cpu_mhz": "2973.3"
+      }
+    },
+    {
+      "repetition": 21,
+      "order": [
+        "direct-eager",
+        "fortran",
+        "aot-inductor",
+        "dveb-auto"
+      ],
+      "telemetry_before": {
+        "gpu": "41, 375, 810, P5, 28.62, 0x0000000000000000",
+        "cpu_mhz": "4109.0"
+      },
+      "telemetry_after": {
+        "gpu": "43, 2482, 13801, P0, 62.70, 0x0000000000000000",
+        "cpu_mhz": "3278.6"
+      }
+    },
+    {
+      "repetition": 22,
+      "order": [
+        "aot-inductor",
+        "fortran",
+        "dveb-auto",
+        "direct-eager"
+      ],
+      "telemetry_before": {
+        "gpu": "43, 2482, 14001, P0, 62.70, 0x0000000000000000",
+        "cpu_mhz": "3139.6"
+      },
+      "telemetry_after": {
+        "gpu": "44, 2902, 14001, P0, 113.81, 0x0000000000000000",
+        "cpu_mhz": "3114.5"
+      }
+    },
+    {
+      "repetition": 23,
+      "order": [
+        "aot-inductor",
+        "fortran",
+        "direct-eager",
+        "dveb-auto"
+      ],
+      "telemetry_before": {
+        "gpu": "44, 2902, 14001, P0, 113.81, 0x0000000000000000",
+        "cpu_mhz": "3883.1"
+      },
+      "telemetry_after": {
+        "gpu": "45, 2902, 14001, P0, 118.23, 0x0000000000000000",
+        "cpu_mhz": "3572.9"
+      }
+    },
+    {
+      "repetition": 24,
+      "order": [
+        "aot-inductor",
+        "direct-eager",
+        "dveb-auto",
+        "fortran"
+      ],
+      "telemetry_before": {
+        "gpu": "45, 2902, 14001, P0, 118.23, 0x0000000000000000",
+        "cpu_mhz": "3998.6"
+      },
+      "telemetry_after": {
+        "gpu": "41, 427, 810, P5, 20.82, 0x0000000000000000",
+        "cpu_mhz": "3138.2"
+      }
+    },
+    {
+      "repetition": 25,
+      "order": [
+        "dveb-auto",
+        "fortran",
+        "direct-eager",
+        "aot-inductor"
+      ],
+      "telemetry_before": {
+        "gpu": "41, 427, 810, P5, 20.82, 0x0000000000000000",
+        "cpu_mhz": "3780.0"
+      },
+      "telemetry_after": {
+        "gpu": "43, 2497, 14001, P0, 60.41, 0x0000000000000000",
+        "cpu_mhz": "3157.3"
+      }
+    },
+    {
+      "repetition": 26,
+      "order": [
+        "fortran",
+        "dveb-auto",
+        "direct-eager",
+        "aot-inductor"
+      ],
+      "telemetry_before": {
+        "gpu": "43, 2497, 14001, P0, 60.41, 0x0000000000000000",
+        "cpu_mhz": "3379.2"
+      },
+      "telemetry_after": {
+        "gpu": "43, 2565, 13801, P0, 60.52, 0x0000000000000000",
+        "cpu_mhz": "3546.3"
+      }
+    },
+    {
+      "repetition": 27,
+      "order": [
+        "dveb-auto",
+        "aot-inductor",
+        "direct-eager",
+        "fortran"
+      ],
+      "telemetry_before": {
+        "gpu": "43, 2565, 14001, P0, 60.52, 0x0000000000000000",
+        "cpu_mhz": "3619.9"
+      },
+      "telemetry_after": {
+        "gpu": "41, 487, 7001, P3, 36.37, 0x0000000000000000",
+        "cpu_mhz": "2738.9"
+      }
+    },
+    {
+      "repetition": 28,
+      "order": [
+        "fortran",
+        "direct-eager",
+        "dveb-auto",
+        "aot-inductor"
+      ],
+      "telemetry_before": {
+        "gpu": "41, 487, 7001, P3, 36.37, 0x0000000000000000",
+        "cpu_mhz": "4235.8"
+      },
+      "telemetry_after": {
+        "gpu": "43, 2475, 13801, P0, 59.36, 0x0000000000000000",
+        "cpu_mhz": "3043.2"
+      }
+    },
+    {
+      "repetition": 29,
+      "order": [
+        "fortran",
+        "dveb-auto",
+        "direct-eager",
+        "aot-inductor"
+      ],
+      "telemetry_before": {
+        "gpu": "43, 2475, 14001, P0, 59.36, 0x0000000000000000",
+        "cpu_mhz": "3212.0"
+      },
+      "telemetry_after": {
+        "gpu": "43, 2580, 14001, P0, 59.24, 0x0000000000000000",
+        "cpu_mhz": "3678.9"
+      }
+    }
+  ],
+  "records": [
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1342105912044644,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 0
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010725686,
+      "process_seconds_after_main": 0.222276008,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.2816245830617845,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 0
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07309806207194924,
+      "end_to_host_after_import_seconds": 1.6600185637362301,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.752835736144334,
+      "returncode": 0,
+      "success": true,
+      "repetition": 0
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5353080029599369,
+      "end_to_host_after_import_seconds": 0.6418401752598584,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6259827981702983,
+      "returncode": 0,
+      "success": true,
+      "repetition": 0
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1526331920176744,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 1
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.0717465290799737,
+      "end_to_host_after_import_seconds": 1.6414494556374848,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7969010728411376,
+      "returncode": 0,
+      "success": true,
+      "repetition": 1
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5250536538660526,
+      "end_to_host_after_import_seconds": 0.6307013514451683,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.5905751902610064,
+      "returncode": 0,
+      "success": true,
+      "repetition": 1
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010739056,
+      "process_seconds_after_main": 0.186197695,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.24089199677109718,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 1
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07176318997517228,
+      "end_to_host_after_import_seconds": 1.6291132788173854,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7211471470072865,
+      "returncode": 0,
+      "success": true,
+      "repetition": 2
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010736676,
+      "process_seconds_after_main": 0.193309632,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.25348927127197385,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 2
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5272027021273971,
+      "end_to_host_after_import_seconds": 0.6365326470695436,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.587313880212605,
+      "returncode": 0,
+      "success": true,
+      "repetition": 2
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1656982339918613,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 2
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010727476,
+      "process_seconds_after_main": 0.226082256,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.28747436683624983,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 3
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07177852001041174,
+      "end_to_host_after_import_seconds": 1.626433216035366,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7233658637851477,
+      "returncode": 0,
+      "success": true,
+      "repetition": 3
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5289710713550448,
+      "end_to_host_after_import_seconds": 0.6376370806246996,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6024114699102938,
+      "returncode": 0,
+      "success": true,
+      "repetition": 3
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.131817517336458,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 3
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010722876,
+      "process_seconds_after_main": 0.221521933,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.2820795699954033,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 4
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.158167219720781,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 4
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.516422145999968,
+      "end_to_host_after_import_seconds": 0.6270717941224575,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6376287788152695,
+      "returncode": 0,
+      "success": true,
+      "repetition": 4
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07180383987724781,
+      "end_to_host_after_import_seconds": 1.6429973673075438,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7344772778451443,
+      "returncode": 0,
+      "success": true,
+      "repetition": 4
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5272157611325383,
+      "end_to_host_after_import_seconds": 0.6352085648104548,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6167551139369607,
+      "returncode": 0,
+      "success": true,
+      "repetition": 5
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.2462111632339656,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 5
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010722715,
+      "process_seconds_after_main": 0.22525174,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.2835936709307134,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 5
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07214856799691916,
+      "end_to_host_after_import_seconds": 1.6457171007059515,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7335198749788105,
+      "returncode": 0,
+      "success": true,
+      "repetition": 5
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07198765873908997,
+      "end_to_host_after_import_seconds": 1.6362847480922937,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.738196556456387,
+      "returncode": 0,
+      "success": true,
+      "repetition": 6
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.2655941769480705,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 6
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010731826,
+      "process_seconds_after_main": 0.226139486,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.2864421643316746,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 6
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5224965498782694,
+      "end_to_host_after_import_seconds": 0.6281826058402658,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.5870922827161849,
+      "returncode": 0,
+      "success": true,
+      "repetition": 6
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010751755,
+      "process_seconds_after_main": 0.186625303,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.2424576380290091,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 7
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07179747009649873,
+      "end_to_host_after_import_seconds": 1.637962156906724,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7496138280257583,
+      "returncode": 0,
+      "success": true,
+      "repetition": 7
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1399818803183734,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 7
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5335425240918994,
+      "end_to_host_after_import_seconds": 0.6500283759087324,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6400552247650921,
+      "returncode": 0,
+      "success": true,
+      "repetition": 7
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.151282812934369,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 8
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5265880962833762,
+      "end_to_host_after_import_seconds": 0.6376374196261168,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6179282669909298,
+      "returncode": 0,
+      "success": true,
+      "repetition": 8
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07173783984035254,
+      "end_to_host_after_import_seconds": 1.6361248693428934,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7459780401550233,
+      "returncode": 0,
+      "success": true,
+      "repetition": 8
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010733716,
+      "process_seconds_after_main": 0.19371704,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.25352553091943264,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 8
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07177702896296978,
+      "end_to_host_after_import_seconds": 1.6311533390544355,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7271690941415727,
+      "returncode": 0,
+      "success": true,
+      "repetition": 9
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010732745,
+      "process_seconds_after_main": 0.19367725,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.25232396833598614,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 9
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1760831447318196,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 9
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5257474803365767,
+      "end_to_host_after_import_seconds": 0.6357591017149389,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.640886140987277,
+      "returncode": 0,
+      "success": true,
+      "repetition": 9
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010749746,
+      "process_seconds_after_main": 0.186745832,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.2436970309354365,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 10
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.163032942917198,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 10
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.0717496988363564,
+      "end_to_host_after_import_seconds": 1.6316667767241597,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7591701322235167,
+      "returncode": 0,
+      "success": true,
+      "repetition": 10
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5417557046748698,
+      "end_to_host_after_import_seconds": 0.659486809745431,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6233228659257293,
+      "returncode": 0,
+      "success": true,
+      "repetition": 10
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.525981429964304,
+      "end_to_host_after_import_seconds": 0.6318329460918903,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6086262739263475,
+      "returncode": 0,
+      "success": true,
+      "repetition": 11
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010753806,
+      "process_seconds_after_main": 0.198230173,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.26081292796880007,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 11
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1598721528425813,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 11
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07175939995795488,
+      "end_to_host_after_import_seconds": 1.642934957984835,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.796619278844446,
+      "returncode": 0,
+      "success": true,
+      "repetition": 11
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.300838058348745,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 12
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.520305753685534,
+      "end_to_host_after_import_seconds": 0.6327483900822699,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6220605438575149,
+      "returncode": 0,
+      "success": true,
+      "repetition": 12
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07200280763208866,
+      "end_to_host_after_import_seconds": 1.6342047341167927,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.720765072852373,
+      "returncode": 0,
+      "success": true,
+      "repetition": 12
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010728615,
+      "process_seconds_after_main": 0.190971446,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.25019430089741945,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 12
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07176293898373842,
+      "end_to_host_after_import_seconds": 1.6412997413426638,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.728307867888361,
+      "returncode": 0,
+      "success": true,
+      "repetition": 13
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010744316,
+      "process_seconds_after_main": 0.192752006,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.25233111903071404,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 13
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.126268384978175,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 13
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5269713327288628,
+      "end_to_host_after_import_seconds": 0.6415851372294128,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.647126514930278,
+      "returncode": 0,
+      "success": true,
+      "repetition": 13
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07237897720187902,
+      "end_to_host_after_import_seconds": 1.6344377361238003,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7183812842704356,
+      "returncode": 0,
+      "success": true,
+      "repetition": 14
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5273832972161472,
+      "end_to_host_after_import_seconds": 0.636656554415822,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.5861226641573012,
+      "returncode": 0,
+      "success": true,
+      "repetition": 14
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010750197,
+      "process_seconds_after_main": 0.187853449,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.24524202616885304,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 14
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1335296942852437,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 14
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1338458973914385,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 15
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07173167262226343,
+      "end_to_host_after_import_seconds": 1.648342803120613,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.812242978718132,
+      "returncode": 0,
+      "success": true,
+      "repetition": 15
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010726637,
+      "process_seconds_after_main": 0.192274148,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.25172813795506954,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 15
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5319794868119061,
+      "end_to_host_after_import_seconds": 0.6396731496788561,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6044134250842035,
+      "returncode": 0,
+      "success": true,
+      "repetition": 15
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.174631414934993,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 16
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5271753510460258,
+      "end_to_host_after_import_seconds": 0.641480075661093,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6760631841607392,
+      "returncode": 0,
+      "success": true,
+      "repetition": 16
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07176852831616998,
+      "end_to_host_after_import_seconds": 1.6365072266198695,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7322658239863813,
+      "returncode": 0,
+      "success": true,
+      "repetition": 16
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010726526,
+      "process_seconds_after_main": 0.194014021,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.2581457472406328,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 16
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5259891874156892,
+      "end_to_host_after_import_seconds": 0.6310912291519344,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.5824553458951414,
+      "returncode": 0,
+      "success": true,
+      "repetition": 17
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010747006,
+      "process_seconds_after_main": 0.189004941,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.251181008759886,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 17
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07174118096008897,
+      "end_to_host_after_import_seconds": 1.6578824361786246,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.741164046805352,
+      "returncode": 0,
+      "success": true,
+      "repetition": 17
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1389191020280123,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 17
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.0717412531375885,
+      "end_to_host_after_import_seconds": 1.6375727308914065,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7698053983040154,
+      "returncode": 0,
+      "success": true,
+      "repetition": 18
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010728185,
+      "process_seconds_after_main": 0.189729019,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.2480562231503427,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 18
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5262570600025356,
+      "end_to_host_after_import_seconds": 0.6329558617435396,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.5912253959104419,
+      "returncode": 0,
+      "success": true,
+      "repetition": 18
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.2480798312462866,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 18
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010739054,
+      "process_seconds_after_main": 0.226117175,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.284888057038188,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 19
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5261154342442751,
+      "end_to_host_after_import_seconds": 0.6349175260402262,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.5914898440241814,
+      "returncode": 0,
+      "success": true,
+      "repetition": 19
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.136282693129033,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 19
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07170108007267118,
+      "end_to_host_after_import_seconds": 1.618422294035554,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7443677140399814,
+      "returncode": 0,
+      "success": true,
+      "repetition": 19
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010728524,
+      "process_seconds_after_main": 0.193450334,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.25267395190894604,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 20
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07172662578523159,
+      "end_to_host_after_import_seconds": 1.641839669086039,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.768471796065569,
+      "returncode": 0,
+      "success": true,
+      "repetition": 20
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.518690959084779,
+      "end_to_host_after_import_seconds": 0.6236769431270659,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.581686703953892,
+      "returncode": 0,
+      "success": true,
+      "repetition": 20
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.165733707137406,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 20
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5281258099712431,
+      "end_to_host_after_import_seconds": 0.6388928680680692,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.652923812624067,
+      "returncode": 0,
+      "success": true,
+      "repetition": 21
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.153516164049506,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 21
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07179210986942053,
+      "end_to_host_after_import_seconds": 1.6430599312298,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7980201640166342,
+      "returncode": 0,
+      "success": true,
+      "repetition": 21
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010715393,
+      "process_seconds_after_main": 0.191017442,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.25250027794390917,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 21
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07177654886618257,
+      "end_to_host_after_import_seconds": 1.6405536979436874,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7364428476430476,
+      "returncode": 0,
+      "success": true,
+      "repetition": 22
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1254383460618556,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 22
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010734452,
+      "process_seconds_after_main": 0.222722854,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.2825218429788947,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 22
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5427404479123652,
+      "end_to_host_after_import_seconds": 0.6587020540609956,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.624020277056843,
+      "returncode": 0,
+      "success": true,
+      "repetition": 22
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.0717433555983007,
+      "end_to_host_after_import_seconds": 1.6401484431698918,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.730521566234529,
+      "returncode": 0,
+      "success": true,
+      "repetition": 23
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.143133757635951,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 23
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.544628179166466,
+      "end_to_host_after_import_seconds": 0.6664741230197251,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6509868372231722,
+      "returncode": 0,
+      "success": true,
+      "repetition": 23
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010739542,
+      "process_seconds_after_main": 0.190672425,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.24552194401621819,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 23
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07250856095924973,
+      "end_to_host_after_import_seconds": 1.649219075217843,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7479383372701705,
+      "returncode": 0,
+      "success": true,
+      "repetition": 24
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5275008189491928,
+      "end_to_host_after_import_seconds": 0.6340965400449932,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.5879954169504344,
+      "returncode": 0,
+      "success": true,
+      "repetition": 24
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010755292,
+      "process_seconds_after_main": 0.188433766,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.24456272879615426,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 24
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1687841648235917,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 24
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010722042,
+      "process_seconds_after_main": 0.255400385,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.3156877257861197,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 25
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1180808460339904,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 25
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5170669718645513,
+      "end_to_host_after_import_seconds": 0.6375781102105975,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.6630894001573324,
+      "returncode": 0,
+      "success": true,
+      "repetition": 25
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07171498984098434,
+      "end_to_host_after_import_seconds": 1.6429826109670103,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7423688797280192,
+      "returncode": 0,
+      "success": true,
+      "repetition": 25
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1197539176791906,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 26
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010717861,
+      "process_seconds_after_main": 0.229835159,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.2884917603805661,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 26
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5271102609112859,
+      "end_to_host_after_import_seconds": 0.6331586241722107,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.5929518467746675,
+      "returncode": 0,
+      "success": true,
+      "repetition": 26
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07178283482789993,
+      "end_to_host_after_import_seconds": 1.6374492258764803,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.742846339009702,
+      "returncode": 0,
+      "success": true,
+      "repetition": 26
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.010726471,
+      "process_seconds_after_main": 0.191848807,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.25087653612717986,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 27
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07241829531267285,
+      "end_to_host_after_import_seconds": 1.6599868359044194,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7592428480274975,
+      "returncode": 0,
+      "success": true,
+      "repetition": 27
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5275007500313222,
+      "end_to_host_after_import_seconds": 0.6347058448009193,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.5982306166552007,
+      "returncode": 0,
+      "success": true,
+      "repetition": 27
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.150443168822676,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 27
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1790504050441086,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 28
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5264440602622926,
+      "end_to_host_after_import_seconds": 0.6389060048386455,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.659988665021956,
+      "returncode": 0,
+      "success": true,
+      "repetition": 28
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.01074203,
+      "process_seconds_after_main": 0.193316979,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.2500090296380222,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 28
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.07174778915941715,
+      "end_to_host_after_import_seconds": 1.6291018091142178,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.7334462720900774,
+      "returncode": 0,
+      "success": true,
+      "repetition": 28
+    },
+    {
+      "lane": "fortran",
+      "fresh_process_seconds": 3.1664880253374577,
+      "finite": true,
+      "size": 128,
+      "steps": 1,
+      "returncode": 0,
+      "success": true,
+      "repetition": 29
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 128,
+      "steps": 1,
+      "execution_seconds": 0.0107341,
+      "process_seconds_after_main": 0.22280936,
+      "peak_bytes": 172334200,
+      "checksum": 7402647.965330367,
+      "finite": true,
+      "fresh_process_seconds": 0.28202628204599023,
+      "lane": "dveb-auto",
+      "selected": "cuda",
+      "returncode": 0,
+      "stderr": "[placement] policy=auto selected=cuda endpoint=cpu-resident workers=0\n[placement] predicted cpu_simd[4] 3.467654662 s\n[placement] predicted cpu_simd[6] 2.363245091 s\n[placement] predicted cpu_simd[12] 2.017495295 s\n[placement] predicted cuda 0.254311552 s\n[placement] reason=CUDA clears the declared 5% and 0.25ms crossover hysteresis",
+      "success": true,
+      "repetition": 29
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.5204012040048838,
+      "end_to_host_after_import_seconds": 0.6281098076142371,
+      "peak_allocated_bytes": 4433880064,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.083326292,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 1.581317575648427,
+      "returncode": 0,
+      "success": true,
+      "repetition": 29
+    },
+    {
+      "lane": "aot-inductor",
+      "size": 128,
+      "steps": 1,
+      "cfl": 0.1,
+      "execution_seconds": 0.0717652840539813,
+      "end_to_host_after_import_seconds": 1.6436274689622223,
+      "peak_allocated_bytes": 2780240896,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.0826724665,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 2.739080131985247,
+      "returncode": 0,
+      "success": true,
+      "repetition": 29
+    }
+  ],
+  "summary": {
+    "fortran": {
+      "successes": 30,
+      "failures": 0,
+      "fresh_process_seconds": {
+        "mean": 3.164246753572176,
+        "median": 3.1530746780335903,
+        "minimum": 3.1180808460339904,
+        "maximum": 3.300838058348745,
+        "p95": 3.2655941769480705
+      }
+    },
+    "dveb-auto": {
+      "successes": 30,
+      "failures": 0,
+      "fresh_process_seconds": {
+        "mean": 0.26250171397502226,
+        "median": 0.2525871149264276,
+        "minimum": 0.24089199677109718,
+        "maximum": 0.3156877257861197,
+        "p95": 0.2884917603805661
+      },
+      "execution_seconds": {
+        "mean": 0.0107344774,
+        "median": 0.0107332305,
+        "minimum": 0.010715393,
+        "maximum": 0.010755292,
+        "p95": 0.010753806
+      },
+      "process_seconds_after_main": {
+        "mean": 0.20339993546666665,
+        "median": 0.1933836565,
+        "minimum": 0.186197695,
+        "maximum": 0.255400385,
+        "p95": 0.229835159
+      }
+    },
+    "direct-eager": {
+      "successes": 30,
+      "failures": 0,
+      "fresh_process_seconds": {
+        "mean": 1.6157575452234596,
+        "median": 1.612690693931654,
+        "minimum": 1.581317575648427,
+        "maximum": 1.6760631841607392,
+        "p95": 1.6630894001573324
+      },
+      "execution_seconds": {
+        "mean": 0.5276223829326531,
+        "median": 0.5270407968200743,
+        "minimum": 0.516422145999968,
+        "maximum": 0.544628179166466,
+        "p95": 0.5427404479123652
+      },
+      "end_to_host_after_import_seconds": {
+        "mean": 0.6379109238740057,
+        "median": 0.6361458743922412,
+        "minimum": 0.6236769431270659,
+        "maximum": 0.6664741230197251,
+        "p95": 0.659486809745431
+      }
+    },
+    "aot-inductor": {
+      "successes": 30,
+      "failures": 0,
+      "fresh_process_seconds": {
+        "mean": 2.748155775712803,
+        "median": 2.7417664632666856,
+        "minimum": 2.7183812842704356,
+        "maximum": 2.812242978718132,
+        "p95": 2.7980201640166342
+      },
+      "execution_seconds": {
+        "mean": 0.0718984212881575,
+        "median": 0.07176690618507564,
+        "minimum": 0.07170108007267118,
+        "maximum": 0.07309806207194924,
+        "p95": 0.07250856095924973
+      },
+      "end_to_host_after_import_seconds": {
+        "mean": 1.639949810008208,
+        "median": 1.6403510705567896,
+        "minimum": 1.618422294035554,
+        "maximum": 1.6600185637362301,
+        "p95": 1.6599868359044194
+      }
+    }
+  }
+}
