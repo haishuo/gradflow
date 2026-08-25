@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "method": "sum of separately measured one-shot CPU preparation, H2D, recorded GPU step, and D2H",
+  "source_benchmark": "experiments/shu_torch_ablation/results/rough_2d_2026-08-25.json",
+  "records": [
+    {
+      "dimension": 2,
+      "size": 32,
+      "cpu_preparation_seconds": 0.001161973923444748,
+      "host_to_device_seconds": 0.00025629764422774315,
+      "device_to_host_seconds": 2.8290320187807083e-05,
+      "gpu_step_wall_seconds_from_benchmark": 0.000663386657834053,
+      "transfer_inclusive_estimate_seconds": 0.002109948545694351,
+      "fortran_process_seconds": 0.0018414589576423168,
+      "fortran_over_transfer_inclusive_estimate": 0.87275064664495
+    },
+    {
+      "dimension": 2,
+      "size": 64,
+      "cpu_preparation_seconds": 0.0007562250830233097,
+      "host_to_device_seconds": 0.00012266961857676506,
+      "device_to_host_seconds": 2.291891723871231e-05,
+      "gpu_step_wall_seconds_from_benchmark": 0.0006130659021437168,
+      "transfer_inclusive_estimate_seconds": 0.0015148795209825039,
+      "fortran_process_seconds": 0.002085568383336067,
+      "fortran_over_transfer_inclusive_estimate": 1.3767222768867007
+    },
+    {
+      "dimension": 2,
+      "size": 128,
+      "cpu_preparation_seconds": 0.0007820650935173035,
+      "host_to_device_seconds": 0.00011277012526988983,
+      "device_to_host_seconds": 3.330875188112259e-05,
+      "gpu_step_wall_seconds_from_benchmark": 0.0007723961025476456,
+      "transfer_inclusive_estimate_seconds": 0.0017005400732159615,
+      "fortran_process_seconds": 0.004847303032875061,
+      "fortran_over_transfer_inclusive_estimate": 2.8504491656630746
+    },
+    {
+      "dimension": 2,
+      "size": 256,
+      "cpu_preparation_seconds": 0.0011376133188605309,
+      "host_to_device_seconds": 0.0002451087348163128,
+      "device_to_host_seconds": 9.727897122502327e-05,
+      "gpu_step_wall_seconds_from_benchmark": 0.000951054971665144,
+      "transfer_inclusive_estimate_seconds": 0.002431055996567011,
+      "fortran_process_seconds": 0.01385460002347827,
+      "fortran_over_transfer_inclusive_estimate": 5.699004894598434
+    },
+    {
+      "dimension": 2,
+      "size": 512,
+      "cpu_preparation_seconds": 0.004508564248681068,
+      "host_to_device_seconds": 0.00046663684770464897,
+      "device_to_host_seconds": 0.0015953611582517624,
+      "gpu_step_wall_seconds_from_benchmark": 0.003657730296254158,
+      "transfer_inclusive_estimate_seconds": 0.010228292550891638,
+      "fortran_process_seconds": 0.051093698013573885,
+      "fortran_over_transfer_inclusive_estimate": 4.995330135440823
+    },
+    {
+      "dimension": 2,
+      "size": 1024,
+      "cpu_preparation_seconds": 0.020779401063919067,
+      "host_to_device_seconds": 0.001311643049120903,
+      "device_to_host_seconds": 0.00744380708783865,
+      "gpu_step_wall_seconds_from_benchmark": 0.014525807928293943,
+      "transfer_inclusive_estimate_seconds": 0.044060659129172564,
+      "fortran_process_seconds": 0.27387215476483107,
+      "fortran_over_transfer_inclusive_estimate": 6.215797951681124
+    },
+    {
+      "dimension": 2,
+      "size": 2048,
+      "cpu_preparation_seconds": 0.09810925694182515,
+      "host_to_device_seconds": 0.0037319990806281567,
+      "device_to_host_seconds": 0.026208288967609406,
+      "gpu_step_wall_seconds_from_benchmark": 0.0585961751639843,
+      "transfer_inclusive_estimate_seconds": 0.186645720154047,
+      "fortran_process_seconds": 1.4715065020136535,
+      "fortran_over_transfer_inclusive_estimate": 7.883955232400474
+    },
+    {
+      "dimension": 2,
+      "size": 4096,
+      "cpu_preparation_seconds": 0.5101401270367205,
+      "host_to_device_seconds": 0.013114285189658403,
+      "device_to_host_seconds": 0.10656618885695934,
+      "gpu_step_wall_seconds_from_benchmark": 0.2350549870170653,
+      "transfer_inclusive_estimate_seconds": 0.8648755881004035,
+      "fortran_process_seconds": 6.6268656039610505,
+      "fortran_over_transfer_inclusive_estimate": 7.662218352718422
+    }
+  ]
+}

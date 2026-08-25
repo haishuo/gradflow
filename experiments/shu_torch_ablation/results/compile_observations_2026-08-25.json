@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "notes": [
+    "Compilation observations depend strongly on the existing TorchInductor cache and input-shape guards.",
+    "They are reported separately and are not included in warm step timings.",
+    "The raw 3-D N=8 record includes a generalized-shape recompile and is rejected as an execution measurement."
+  ],
+  "observations": [
+    {
+      "case": "2-D dynamic benchmark calibration",
+      "seconds": 31.60986735438928,
+      "cache_state": "experiment cache present but this dynamic graph was not yet calibrated"
+    },
+    {
+      "case": "2-D cached small-grid calibration",
+      "seconds": 5.040074555203319,
+      "cache_state": "compiled kernels already present"
+    },
+    {
+      "case": "3-D first fullgraph probe at 16 cubed",
+      "seconds": 70.08616147236899,
+      "cache_state": "fresh 3-D graph"
+    },
+    {
+      "case": "3-D benchmark calibration at 4 cubed",
+      "seconds": 29.08228137670085,
+      "cache_state": "partially populated cache"
+    },
+    {
+      "case": "3-D generalized-shape recompile encountered at 8 cubed",
+      "seconds": 73.29042284144089,
+      "cache_state": "recorded inside the raw N=8 step field; excluded from performance conclusions"
+    },
+    {
+      "case": "3-D corrected cached calibration at 8 cubed",
+      "seconds": 9.03213697206229,
+      "cache_state": "generalized kernels already present"
+    }
+  ]
+}

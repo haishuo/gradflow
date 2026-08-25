@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "method": "sum of separately measured one-shot CPU preparation, H2D, recorded GPU step, and D2H",
+  "source_benchmark": "experiments/shu_torch_ablation/results/rough_3d_2026-08-25.json",
+  "records": [
+    {
+      "dimension": 3,
+      "size": 4,
+      "cpu_preparation_seconds": 0.0011599031277000904,
+      "host_to_device_seconds": 0.00024494901299476624,
+      "device_to_host_seconds": 2.6930123567581177e-05,
+      "gpu_step_wall_seconds_from_benchmark": 0.0007884851656854153,
+      "transfer_inclusive_estimate_seconds": 0.002220267429947853,
+      "fortran_process_seconds": 0.0018970891833305359,
+      "fortran_over_transfer_inclusive_estimate": 0.8544417477560766
+    },
+    {
+      "dimension": 3,
+      "size": 8,
+      "cpu_preparation_seconds": 0.0004635271616280079,
+      "host_to_device_seconds": 0.00011450890451669693,
+      "device_to_host_seconds": 1.917034387588501e-05,
+      "gpu_step_wall_seconds_from_benchmark": 73.29042284144089,
+      "transfer_inclusive_estimate_seconds": 73.2910200478509,
+      "fortran_process_seconds": 0.002471195999532938,
+      "fortran_over_transfer_inclusive_estimate": 3.3717582289338054e-05
+    },
+    {
+      "dimension": 3,
+      "size": 12,
+      "cpu_preparation_seconds": 0.0004762471653521061,
+      "host_to_device_seconds": 0.00010354910045862198,
+      "device_to_host_seconds": 1.9700266420841217e-05,
+      "gpu_step_wall_seconds_from_benchmark": 0.0011747432872653008,
+      "transfer_inclusive_estimate_seconds": 0.00177423981949687,
+      "fortran_process_seconds": 0.005025670863687992,
+      "fortran_over_transfer_inclusive_estimate": 2.8325769766080136
+    },
+    {
+      "dimension": 3,
+      "size": 16,
+      "cpu_preparation_seconds": 0.0004111877642571926,
+      "host_to_device_seconds": 0.00010054884478449821,
+      "device_to_host_seconds": 2.1280255168676376e-05,
+      "gpu_step_wall_seconds_from_benchmark": 0.000998334027826786,
+      "transfer_inclusive_estimate_seconds": 0.0015313508920371532,
+      "fortran_process_seconds": 0.008903918787837029,
+      "fortran_over_transfer_inclusive_estimate": 5.81442100183333
+    },
+    {
+      "dimension": 3,
+      "size": 24,
+      "cpu_preparation_seconds": 0.00063350610435009,
+      "host_to_device_seconds": 0.00011056894436478615,
+      "device_to_host_seconds": 3.4559983760118484e-05,
+      "gpu_step_wall_seconds_from_benchmark": 0.0010319841094315052,
+      "transfer_inclusive_estimate_seconds": 0.0018106191419064999,
+      "fortran_process_seconds": 0.027566931676119566,
+      "fortran_over_transfer_inclusive_estimate": 15.225140968681485
+    },
+    {
+      "dimension": 3,
+      "size": 32,
+      "cpu_preparation_seconds": 0.0009388341568410397,
+      "host_to_device_seconds": 0.00013795914128422737,
+      "device_to_host_seconds": 6.355997174978256e-05,
+      "gpu_step_wall_seconds_from_benchmark": 0.0015343809500336647,
+      "transfer_inclusive_estimate_seconds": 0.0026747342199087143,
+      "fortran_process_seconds": 0.05440664803609252,
+      "fortran_over_transfer_inclusive_estimate": 20.340954862404743
+    },
+    {
+      "dimension": 3,
+      "size": 48,
+      "cpu_preparation_seconds": 0.0015774508938193321,
+      "host_to_device_seconds": 0.0002626189962029457,
+      "device_to_host_seconds": 0.00015135854482650757,
+      "gpu_step_wall_seconds_from_benchmark": 0.003898878116160631,
+      "transfer_inclusive_estimate_seconds": 0.005890306551009417,
+      "fortran_process_seconds": 0.17305495031177998,
+      "fortran_over_transfer_inclusive_estimate": 29.3796169712294
+    },
+    {
+      "dimension": 3,
+      "size": 64,
+      "cpu_preparation_seconds": 0.004990900866687298,
+      "host_to_device_seconds": 0.000576825812458992,
+      "device_to_host_seconds": 0.001947798766195774,
+      "gpu_step_wall_seconds_from_benchmark": 0.009137827903032303,
+      "transfer_inclusive_estimate_seconds": 0.016653353348374367,
+      "fortran_process_seconds": 0.39813961181789637,
+      "fortran_over_transfer_inclusive_estimate": 23.90747397771159
+    },
+    {
+      "dimension": 3,
+      "size": 96,
+      "cpu_preparation_seconds": 0.018886311911046505,
+      "host_to_device_seconds": 0.001404091715812683,
+      "device_to_host_seconds": 0.006735610775649548,
+      "gpu_step_wall_seconds_from_benchmark": 0.029851368628442287,
+      "transfer_inclusive_estimate_seconds": 0.05687738303095102,
+      "fortran_process_seconds": 1.3235571961849928,
+      "fortran_over_transfer_inclusive_estimate": 23.270360302349903
+    },
+    {
+      "dimension": 3,
+      "size": 128,
+      "cpu_preparation_seconds": 0.051950992085039616,
+      "host_to_device_seconds": 0.002508224919438362,
+      "device_to_host_seconds": 0.016327406745404005,
+      "gpu_step_wall_seconds_from_benchmark": 0.07171613862738013,
+      "transfer_inclusive_estimate_seconds": 0.14250276237726212,
+      "fortran_process_seconds": 3.1548298872075975,
+      "fortran_over_transfer_inclusive_estimate": 22.138727941676628
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "method": "sum of separately measured one-shot CPU preparation, H2D, recorded GPU step, and D2H",
+  "source_benchmark": "experiments/shu_torch_ablation/results/rough_3d_n8_corrected_2026-08-25.json",
+  "records": [
+    {
+      "dimension": 3,
+      "size": 8,
+      "cpu_preparation_seconds": 0.0011800029315054417,
+      "host_to_device_seconds": 0.00025085918605327606,
+      "device_to_host_seconds": 2.6760157197713852e-05,
+      "gpu_step_wall_seconds_from_benchmark": 0.001138472929596901,
+      "transfer_inclusive_estimate_seconds": 0.0025960952043533325,
+      "fortran_process_seconds": 0.0029608728364109993,
+      "fortran_over_transfer_inclusive_estimate": 1.140510113591358
+    }
+  ]
+}

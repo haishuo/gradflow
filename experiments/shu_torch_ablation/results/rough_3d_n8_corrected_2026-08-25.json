@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "precision": "float32",
+  "runs_per_grid": 1,
+  "dimension": 3,
+  "sizes": [
+    8
+  ],
+  "fortran_binary": "/mnt/projects/gradflow/experiments/shu_torch_ablation/build/shu_euler_3d",
+  "torch_version": "2.13.0+cu130",
+  "gpu": "NVIDIA GeForce RTX 5070 Ti",
+  "compile_and_calibration_seconds": 9.03213697206229,
+  "records": [
+    {
+      "dimension": 3,
+      "size": 8,
+      "fortran_process_seconds": 0.0029608728364109993,
+      "gpu_initialization_seconds": 0.0009164046496152878,
+      "gpu_step_wall_seconds": 0.001138472929596901,
+      "gpu_step_device_seconds": 0.0011093440055847169,
+      "gpu_initialized_plus_step_seconds": 0.0020548775792121887,
+      "fortran_over_gpu_step": 2.6007406583302384,
+      "fortran_over_gpu_initialized_plus_step": 1.4408998698336843,
+      "gpu_peak_allocated_bytes": 849920,
+      "gpu_peak_reserved_bytes": 2097152,
+      "dt": 0.0010000000474974513
+    }
+  ]
+}
