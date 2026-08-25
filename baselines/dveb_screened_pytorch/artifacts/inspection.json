@@ -1,0 +1,58 @@
+{
+ "point": {
+  "n": 1024,
+  "nb": 1024
+ },
+ "dynamo_explain": {
+  "graph_count": 1,
+  "graph_break_count": 0,
+  "break_reasons": []
+ },
+ "compile": {
+  "compiled_ok": true,
+  "unique_graphs": 1,
+  "calls_captured": 395,
+  "graph_breaks": {}
+ },
+ "compile-ro": {
+  "compiled_ok": false,
+  "error": "RuntimeError('Error: accessing tensor output of CUDAGraphs that has been overwritten by a subsequent run. Stack trace: File \"/mnt/projects/dveb/comparator/weno5_torch.py\", line 119, in <lambda>\\n    step = lambda u, dx, dt, a, em: rk3_step(u, dx, dt, a, em, rhs)\\n                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \"/mnt/projects/dveb/comparator/weno5_torch.py\", line 88, in rk3_step\\n    return (u + 2.0 * (u2 + dt * rhs(u2, dx, a, em))) / 3.0\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^. To prevent overwriting, clone the tensor outside of torch.compile() or call torch.compiler.cudagraph_mark_step_begin() before each model invocation.')"
+ },
+ "compile-ta": {
+  "compiled_ok": false,
+  "error": "RuntimeError('Error: accessing tensor output of CUDAGraphs that has been overwritten by a subsequent run. Stack trace: File \"/mnt/projects/dveb/comparator/weno5_torch.py\", line 119, in <lambda>\\n    step = lambda u, dx, dt, a, em: rk3_step(u, dx, dt, a, em, rhs)\\n                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \"/mnt/projects/dveb/comparator/weno5_torch.py\", line 88, in rk3_step\\n    return (u + 2.0 * (u2 + dt * rhs(u2, dx, a, em))) / 3.0\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^. To prevent overwriting, clone the tensor outside of torch.compile() or call torch.compiler.cudagraph_mark_step_begin() before each model invocation.')"
+ },
+ "launch_counts": {
+  "eager/rhs": {
+   "kernels": 128,
+   "memcpy": 0
+  },
+  "eager/rk_step": {
+   "kernels": 396,
+   "memcpy": 0
+  },
+  "conv/rhs": {
+   "kernels": 126,
+   "memcpy": 4
+  },
+  "conv/rk_step": {
+   "kernels": 390,
+   "memcpy": 12
+  },
+  "compile/rhs": {
+   "kernels": 2,
+   "memcpy": 0,
+   "kernel_names": {
+    "triton_poi_fused_add_div_mul_neg_pow_reciprocal_roll_sub_0": 1,
+    "triton_poi_fused_roll_sub_1": 1
+   }
+  },
+  "compile/rk_step": {
+   "kernels": 6,
+   "memcpy": 0
+  }
+ },
+ "generated_code_probe": {
+  "captured_blobs": 0
+ }
+}

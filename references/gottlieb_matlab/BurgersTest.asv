@@ -1,0 +1,25 @@
+%This code produces the Burgers' equation example 
+
+clear all
+%f = @(u) -0.5*u^2; %Burgers'
+%fp = @(u) -u; % Burgers f'(u)
+f = @(u) (-u); %linear advection
+fp = @(u) (-1;
+f = @(u)  u; %linear advection
+fp = @(u) 1;
+x = linspace(-1, 1, 100);
+u0 = sin(pi*x); %sine wave IC
+%u0=sign(x); %step function IC
+dx = max(diff(x));
+h=0.5*dx; %what size is dt
+u=u0;
+N=75;
+for j=1:N
+   rhs=weno(u0,dx,f,fp);
+	u = u0 + h*rhs;
+   rhs=weno(u,dx,f,fp);
+   u=0.75*u0+0.25*(u+h*rhs);
+   rhs=weno(u,dx,f,fp);
+   u=(u0+2.0*(u+h*rhs))/3.0;
+   u0=u;
+end
