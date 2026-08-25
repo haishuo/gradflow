@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "runs_per_configuration": 1,
+  "precision": "float32",
+  "dimension": 3,
+  "steps": 10,
+  "sizes": [
+    128
+  ],
+  "timing_endpoint": "fresh process to final state materialized in host memory",
+  "timestep_policy": "recompute Shu sum-of-directional-speeds CFL with cfl=0.1 before every step",
+  "aot_build_excluded_from_run": true,
+  "persistent_cache_preparation_excluded_from_run": true,
+  "aot_load_cache_preparation_excluded_from_cached_run": true,
+  "records": [
+    {
+      "lane": "fortran",
+      "size": 128,
+      "steps": 10,
+      "cfl": 0.1,
+      "fresh_process_seconds": 30.56910881632939,
+      "finite": true
+    },
+    {
+      "lane": "direct-eager",
+      "size": 128,
+      "steps": 10,
+      "cfl": 0.1,
+      "execution_seconds": 4.375320644583553,
+      "end_to_host_after_import_seconds": 4.489142139907926,
+      "peak_allocated_bytes": 4476814336,
+      "peak_reserved_bytes": 5869928448,
+      "checksum": 7402648.137947374,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 5.52743542380631
+    },
+    {
+      "lane": "conv-eager",
+      "size": 128,
+      "steps": 10,
+      "cfl": 0.1,
+      "execution_seconds": 4.8973583211191,
+      "end_to_host_after_import_seconds": 5.008226353209466,
+      "peak_allocated_bytes": 6036509184,
+      "peak_reserved_bytes": 6668943360,
+      "checksum": 7402648.13735629,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 6.00213413592428
+    },
+    {
+      "lane": "compile-cold",
+      "size": 128,
+      "steps": 10,
+      "cfl": 0.1,
+      "execution_seconds": 64.522661132738,
+      "end_to_host_after_import_seconds": 65.26778192492202,
+      "peak_allocated_bytes": 2871797248,
+      "peak_reserved_bytes": 3479175168,
+      "checksum": 7402648.1398640415,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 67.45703148888424,
+      "stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/_dynamo/pgo.py:605: UserWarning: dynamo_pgo force disabled by torch.compiler.config.force_disable_caches\n  warn_once("
+    },
+    {
+      "lane": "compile-persistent-cache",
+      "size": 128,
+      "steps": 10,
+      "cfl": 0.1,
+      "execution_seconds": 4.38509408198297,
+      "end_to_host_after_import_seconds": 5.130136424675584,
+      "peak_allocated_bytes": 2823175168,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.1398640415,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 6.755851283669472
+    },
+    {
+      "lane": "aot-inductor-cold-package",
+      "size": 128,
+      "steps": 10,
+      "cfl": 0.1,
+      "execution_seconds": 0.7002677330747247,
+      "end_to_host_after_import_seconds": 5.342720068059862,
+      "peak_allocated_bytes": 2823175168,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.1398640415,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 6.452910162042826
+    },
+    {
+      "lane": "aot-inductor-cached-package",
+      "size": 128,
+      "steps": 10,
+      "cfl": 0.1,
+      "execution_seconds": 0.6999962986446917,
+      "end_to_host_after_import_seconds": 2.2648276118561625,
+      "peak_allocated_bytes": 2823175168,
+      "peak_reserved_bytes": 3409969152,
+      "checksum": 7402648.1398640415,
+      "finite": true,
+      "torch_version": "2.13.0+cu130",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "fresh_process_seconds": 3.358275316655636
+    }
+  ],
+  "builds": [
+    {
+      "lane": "compile-cache-preparation",
+      "size": 128,
+      "seconds": 37.21326523507014
+    },
+    {
+      "size": 128,
+      "export_seconds": 1.558064638171345,
+      "compile_package_seconds": 29.77026166114956,
+      "package_bytes": 5623390,
+      "fresh_process_seconds": 34.12146064825356,
+      "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)",
+      "lane": "aot-package-build"
+    },
+    {
+      "lane": "aot-load-cache-preparation",
+      "size": 128,
+      "seconds": 6.416155464015901
+    }
+  ]
+}

@@ -157,6 +157,73 @@ This comparison also does not establish a best-possible CPU result: it retains
 the ancestral program's single-threaded line loops and does not add OpenMP,
 SIMD-specific rewriting, or another multicore backend.
 
+## Preliminary deployment bake-off
+
+The follow-up bake-off changes the primary endpoint from warm device time to
+the user's observable latency: a fresh process starts, constructs the same
+three-dimensional vortex in pageable host memory, transfers it to the GPU,
+recomputes Shu's sum-of-directional-speeds CFL timestep before every step,
+executes the complete SSP-RK3/WENO update, returns the full final state to host
+memory, verifies finiteness and a checksum, and exits.  AOT and persistent-cache
+preparation are excluded from this run timer but reported independently.  Cold
+`torch.compile` compilation occurs after launch and is therefore counted.
+
+The exact convolutional candidate is implemented in
+`shu_euler_torch_conv.py`.  Grouped convolutions emit the adjacent differences,
+central flux, and six linear features used by the three Jiang--Shu smoothness
+indicators.  Squares, nonlinear weights, and their normalization remain
+ordinary pointwise tensor operations and are parallel over all interfaces.
+Roe projection remains explicit because its matrix varies by interface.  The
+feature-bank step agrees with the direct step within 8.7e-19 in float64 CPU
+tests and 8.7e-19 in the float64 CUDA probe; the float32 CUDA probe differed by
+at most 4.7e-10.
+
+Fresh-process seconds from the final one-run probes are:
+
+| grid / steps | Fortran | direct eager | conv eager | compile cold | persistent cache | AOT cold package | AOT cached package |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 64 cubed / 1 | **0.397** | 1.276 | 1.278 | 31.812 | 5.532 | 5.692 | 2.617 |
+| 128 cubed / 1 | 3.140 | **1.668** | 1.737 | 35.723 | 5.571 | 5.791 | 2.725 |
+| 128 cubed / 10 | 30.569 | 5.527 | 6.002 | 67.457 | 6.756 | 6.453 | **3.358** |
+
+At 64 cubed, process/runtime startup makes Fortran the clear one-step winner.
+At 128 cubed, direct eager PyTorch is the one-step winner: it is 1.89 times
+faster end to end than Fortran and avoids AOT package-loading latency.  Over
+ten 128-cubed steps, an installed AOT package with its extraction cache already
+prepared becomes 1.65 times faster than direct eager and 9.10 times faster than
+Fortran.  A pristine package load takes 6.453 seconds and does not yet recover
+its extraction cost; direct eager remains faster under that stricter endpoint.
+
+The convolution hypothesis did not win at either tested size or duration.  At
+128 cubed its numerical execution was 0.645 versus 0.533 seconds for one eager
+direct step, and 4.901 versus 4.367 seconds for ten steps.  Peak allocated GPU
+memory was 5.99 GB for convolution versus 4.44 GB for direct eager.  The nearly
+equal 64-cubed fresh-process times arise because common runtime startup hides
+the convolution candidate's slower numerical work; they are not a convolution
+throughput win.  This result rejects this particular exact feature-bank layout
+at the tested points, not every possible convolutional organization.
+
+AOT packages included the complete CFL-plus-RK3 operation and were fixed to
+the measured shape.  The 128-cubed package was about 5.6 MB; export took 1.56
+seconds and package compilation took 29.77 seconds, both excluded by the
+declared deployment rule.  Package extraction is a separate deployment choice:
+loading with an empty runtime cache added about 3.1 seconds, while an explicitly
+prepared cache avoided that cost.  Both endpoints are retained.  The ten-step
+cold-JIT result contains a second approximately 30-second compiler event after
+feedback begins; guard and layout logging is still needed before assigning its
+precise cause.  The persistent cache absorbs compilation but still pays
+graph/cache reconstruction during the fresh process, which is why its ten-step
+execution interval is much longer than AOT's 0.700 seconds.
+
+These are single observations, not averages or publication measurements.  Raw
+accepted records are `results/bakeoff_3d_final_steps1_2026-08-25.json` and
+`results/bakeoff_3d_final_n128_steps10_2026-08-25.json`.  Five earlier records
+are retained with explicit `disposition: rejected` fields: two omitted the
+Python CFL calculation, one left CFL outside the compiled/AOT graph, and two
+used an uncontrolled AOT extraction-cache state.  No DVEB or handwritten-CUDA
+number is included because a mathematically matched three-dimensional Shu
+implementation does not yet exist in either lane.
+
 ## Redistribution status
 
 The PyTorch translation and 3-D Fortran extension are derived from the locally
