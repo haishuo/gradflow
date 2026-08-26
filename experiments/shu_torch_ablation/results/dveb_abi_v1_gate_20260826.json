@@ -1,0 +1,117 @@
+{
+  "artifact": {
+    "library": "/mnt/projects/dveb/build/shu_euler3d_portable/shu_euler3d_portable_abi_v1.so",
+    "library_sha256": "cfa939a5b492ed5711a432391d604ceda65ed55c6df7a4a77b6bfabdd7bd1b1c",
+    "manifest": "/mnt/projects/dveb/build/shu_euler3d_portable/artifact.json",
+    "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+    "program_sha256": "c6e5bd916f951ff412eac99863a74f8c98e5e14b044097a7ad59fe26f704c381"
+  },
+  "cases": [
+    {
+      "backends": {
+        "cpu-simd": {
+          "abi_copy_and_adapter_seconds": 1.6999999999999871e-06,
+          "abi_total_seconds": 0.000330818,
+          "execution_seconds": 0.000329118,
+          "linf_vs_pytorch": 4.76837158203125e-07,
+          "peak_bytes": 27440,
+          "python_above_abi_seconds": 0.0005477973048276901,
+          "python_call_seconds": 0.0008786153048276901,
+          "selected": "dveb-cpu"
+        },
+        "cuda-native": {
+          "abi_copy_and_adapter_seconds": 0.183359563,
+          "abi_total_seconds": 0.183757581,
+          "execution_seconds": 0.000398018,
+          "linf_vs_pytorch": 4.76837158203125e-07,
+          "peak_bytes": 29208,
+          "python_above_abi_seconds": 0.00013582902330183666,
+          "python_call_seconds": 0.18389341002330184,
+          "selected": "dveb-cuda"
+        }
+      },
+      "cpu_cuda_linf": 2.384185791015625e-07,
+      "elements": 1715,
+      "intervals": 6,
+      "passed": true,
+      "pytorch_eager_wall_seconds": 0.007221926935017109,
+      "steps": 1
+    },
+    {
+      "backends": {
+        "cpu-simd": {
+          "abi_copy_and_adapter_seconds": 2.110000000000046e-06,
+          "abi_total_seconds": 0.003104972,
+          "execution_seconds": 0.003102862,
+          "linf_vs_pytorch": 7.152557373046875e-07,
+          "peak_bytes": 27440,
+          "python_above_abi_seconds": 0.00043453667429375637,
+          "python_call_seconds": 0.0035395086742937565,
+          "selected": "dveb-cpu"
+        },
+        "cuda-native": {
+          "abi_copy_and_adapter_seconds": 0.000131279,
+          "abi_total_seconds": 0.001188053,
+          "execution_seconds": 0.001056774,
+          "linf_vs_pytorch": 8.344650268554688e-07,
+          "peak_bytes": 29208,
+          "python_above_abi_seconds": 9.748926830601703e-05,
+          "python_call_seconds": 0.001285542268306017,
+          "selected": "dveb-cuda"
+        }
+      },
+      "cpu_cuda_linf": 8.344650268554688e-07,
+      "elements": 1715,
+      "intervals": 6,
+      "passed": true,
+      "pytorch_eager_wall_seconds": 0.06089953286573291,
+      "steps": 10
+    },
+    {
+      "backends": {
+        "cpu-simd": {
+          "abi_copy_and_adapter_seconds": 0.00013173999999999825,
+          "abi_total_seconds": 0.027754477,
+          "execution_seconds": 0.027622737,
+          "linf_vs_pytorch": 4.76837158203125e-07,
+          "peak_bytes": 2874960,
+          "python_above_abi_seconds": 0.000690526088563681,
+          "python_call_seconds": 0.02844500308856368,
+          "selected": "dveb-cpu"
+        },
+        "cuda-native": {
+          "abi_copy_and_adapter_seconds": 0.0005859659999999999,
+          "abi_total_seconds": 0.000876835,
+          "execution_seconds": 0.000290869,
+          "linf_vs_pytorch": 4.76837158203125e-07,
+          "peak_bytes": 2914168,
+          "python_above_abi_seconds": 0.00023819840303897861,
+          "python_call_seconds": 0.0011150334030389786,
+          "selected": "dveb-cuda"
+        }
+      },
+      "cpu_cuda_linf": 4.76837158203125e-07,
+      "elements": 179685,
+      "intervals": 32,
+      "passed": true,
+      "pytorch_eager_wall_seconds": 0.09503526194021106,
+      "steps": 1
+    }
+  ],
+  "created_utc": "2026-08-26T07:03:02.887877+00:00",
+  "environment": {
+    "cuda_available": true,
+    "cuda_runtime": "13.0",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "pytorch": "2.13.0+cu130",
+    "torch_cpu_threads": 6
+  },
+  "passed": true,
+  "purpose": "correctness and ABI-overhead observation; not a benchmark",
+  "schema": "gradflow-dveb-abi-v1-gate-v1",
+  "state": "non-vortex physically admissible periodic perturbation",
+  "tolerance": {
+    "atol": 2e-05,
+    "rtol": 0.0
+  }
+}

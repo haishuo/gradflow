@@ -76,17 +76,37 @@ restriction without weakening the transfer contract.
 
 ## Backend behavior
 
-`backend="auto"`, `"pytorch"`, and `"pytorch-eager"` currently select direct
-eager PyTorch on the state device. The decision and reason are inspectable via
-`solver.explain_backend(state)` and `solver.last_run` but do not clutter a
-normal successful call.
+`backend="pytorch"` and `"pytorch-eager"` select direct eager PyTorch on the
+state device. With no installed native artifact, `backend="auto"` does the
+same. The decision and reason are inspectable via
+`solver.explain_backend(state)` and `solver.last_run`.
 
-Explicit DVEB/native requests are refused. Although DVEB's internal generated
-runtime accepts a `std::vector<float>` initial state, the qualified executable
-does not expose that interface: it always constructs the benchmark vortex.
-Calling it for an arbitrary `initial_state` would silently solve a different
-problem. DVEB becomes eligible only after a versioned arbitrary-state ABI is
-implemented and independently parity-tested.
+DVEB portable ABI v1 now makes three forward-only native requests legal after
+the caller or installation supplies a `DvebArtifact` verified from its v2
+manifest:
+
+- `backend="cpu-simd"` uses the declared CPU worker count;
+- `backend="cuda-native"` performs the ABI's CPU-to-GPU and GPU-to-CPU path;
+- `backend="dveb"` asks a supplied, verified bounded model to choose; and
+- `backend="auto"` may use that bounded model, but falls back to PyTorch when
+  the point is outside its envelope.
+
+The ordinary installation can configure the artifact through
+`GRADFLOW_DVEB_ARTIFACT`, with optional `GRADFLOW_DVEB_MODEL` and
+`GRADFLOW_DVEB_MODEL_SHA256`. Expert code may instead pass a
+`DvebArtifact.from_manifest(...)` object to the constructor. The solver checks
+the library, header, program, module, and model identities before execution.
+
+ABI v1 accepts caller-owned CPU memory only. Its CUDA target includes required
+H2D/D2H copies and reports those transfers. It cannot satisfy autograd,
+GPU-resident input, adaptive `final_time`, noncubic grids, alternate spacing or
+CFL, or a different mathematical formulation; `auto` uses PyTorch in those
+cases and explicit native requests refuse.
+
+The arbitrary-state gate passed at N=6 for one and ten steps and N=32 for one
+step. CPU ABI, CUDA ABI, the unchanged direct portable runner, and independent
+PyTorch all agreed within `2e-5`; the largest observed difference was
+`8.345e-7`. See `DVEB_ABI_V1.md`.
 
 ## Explicitly unsupported
 
@@ -99,7 +119,6 @@ The constructor rejects rather than approximates:
 - componentwise reconstruction;
 - unique-node periodic grids or nonperiodic boundaries;
 - dtypes other than float32;
-- native DVEB/CUDA/CPU-SIMD execution; and
 - CUDA adaptive `final_time` control.
 
 WENO-11 and WENO-15 have not begun.

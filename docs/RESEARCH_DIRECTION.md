@@ -181,8 +181,11 @@ PyTorch on the caller's CPU or CUDA device, fixed-step differentiation with a
 finite-gradient gate, physical-state validation, explicit backend diagnostics,
 and exact rejection of unsupported mathematics.
 
-This is not the general API target achieved. Navier--Stokes, JS-11/JS-15,
-general boundaries, and native arbitrary-state execution remain unsupported.
-The qualified DVEB executable cannot yet serve the public solver because it
-always constructs its benchmark vortex; the next native-backend requirement
-is a versioned arbitrary-state ABI, not another benchmark shortcut.
+This is not the general API target achieved. Navier--Stokes, JS-11/JS-15 and
+general boundaries remain unsupported. A subsequent DVEB portable ABI v1 gate
+did enable hash-qualified arbitrary-state forward execution for this one exact
+formulation on CPU or CUDA. The gate's worst CPU/CUDA/PyTorch difference was
+`8.345e-7` against a `2e-5` bound. It establishes an honest integration
+surface, not arbitrary equations, gradients through native code, or a new
+performance claim. The existing fresh-process selector record is not a
+substitute for future ABI-endpoint calibration.

@@ -126,18 +126,20 @@ The final DVEB WENO requalification at GradFlow branch
   `{8,16,32,48,64}` and steps in `{1,10}`.
 
 Therefore DVEB's generated implementation is a qualified optional native
-forward-backend candidate for this exact formulation. It is not yet eligible
-behind `Solver.run(initial_state, ...)`: the qualified executable exposes only
-its hard-coded vortex initializer and cannot accept the caller's state. The
-internal native functions do accept an initial vector, so a versioned general
-ABI is the concrete missing piece. Until that ABI passes parity, `auto` falls
-back to direct PyTorch and explicit DVEB requests fail clearly.
+forward backend for this exact formulation. Portable ABI v1 now exposes the
+internal native functions to `Solver.run(initial_state, ...)` through
+caller-owned CPU float32 buffers. It is versioned, hash-qualified, and has
+passed arbitrary-state CPU/CUDA/PyTorch parity. It does not provide autograd or
+device-pointer input.
 
-Once the arbitrary-state ABI exists, automatic DVEB placement may be enabled
-only inside the qualified envelope on the recorded Ryzen 7600X / RTX 5070 Ti
-machine. The tested model refuses N=96/128 because they fall outside its
-bounded training range; GradFlow must not turn the forced-CUDA diagnostic into
-an automatic claim.
+Automatic DVEB placement is enabled only when an installation explicitly
+supplies both the ABI artifact and a verified model. The tested model refuses
+outside its bounded N=7--72 range; GradFlow catches that placement-only refusal
+and uses the correctness-qualified PyTorch fallback. The existing model was
+measured through the fresh-process executable endpoint. It is sufficient to
+gate bounded selector mechanics, but it is not an ABI-specific in-process
+latency calibration; a future performance decision must measure that endpoint
+directly.
 
 DVEB's generic automatic selector remains **NO-GO** at DVEB commit `2f1f3ab`.
 That result and the bounded WENO pass answer different questions and must both
@@ -151,8 +153,8 @@ The first code slice is deliberately narrow:
    an internal typed problem description;
 2. validate periodic duplicated-endpoint shape, spacing, dtype, and positivity;
 3. provide eager PyTorch as the correctness fallback;
-4. refuse DVEB until its hash/version-qualified forward deployment exposes an
-   arbitrary-state ABI;
+4. allow the hash/version-qualified DVEB ABI only for its exact forward
+   eligibility envelope;
 5. expose selection diagnostics and explicit target override; and
 6. reproduce the committed parity tests through the new surface.
 

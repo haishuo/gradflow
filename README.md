@@ -64,17 +64,21 @@ solver = gradflow.Solver(
 result = solver.run(state, steps=1)
 ```
 
-Automatic placement currently selects direct eager PyTorch on the existing
-state device. DVEB is not yet wired into this API because its qualified
-executable always constructs the benchmark vortex and cannot accept the
-caller's state. See `docs/SOLVER_VERTICAL_SLICE.md` for the exact supported and
-rejected surface.
+Direct eager PyTorch remains the zero-configuration path. A hash-qualified
+DVEB portable ABI v1 artifact can now accept the same caller-owned CPU state
+and execute the matched forward step on CPU SIMD/OpenMP or CUDA. Native use is
+restricted to the exact compiled 3-D Euler formulation, positive fixed step
+counts, cubic grids, spacing `10/N`, CFL 0.1, contiguous float32 state, and no
+autograd. Automatic DVEB dispatch additionally requires an explicitly
+verified bounded placement model; otherwise `auto` falls back to PyTorch.
+See `docs/SOLVER_VERTICAL_SLICE.md` and `docs/DVEB_ABI_V1.md`.
 
 ## Repository map
 
 - `src/gradflow/weno5.py` — canonical direct PyTorch WENO-5 seed
 - `src/gradflow/euler3d.py` — differentiable characteristic Euler JS-WENO-5
 - `src/gradflow/solver.py` — narrow validated problem and backend surface
+- `src/gradflow/dveb_abi.py` — hash-checked DVEB portable ABI v1 adapter
 - `tests/` — bounded oracle, convergence, conservation, device, and compiler gate
 - `references/` — byte-preserved Gottlieb MATLAB and Jiang--Shu Fortran sources
 - `baselines/` — exact DVEB screened comparator and its evidence
