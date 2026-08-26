@@ -114,6 +114,8 @@ def main() -> None:
     parser.add_argument("--python", type=Path, default=Path(sys.executable))
     parser.add_argument("--sizes", nargs="+", type=int, default=[8, 16, 32, 64, 96, 128, 160])
     args = parser.parse_args()
+    counted_sizes = list(dict.fromkeys(args.sizes))
+    prepared_sizes = sorted(set(counted_sizes) | {6})
     output = args.output_dir.resolve()
     if output.exists():
         raise SystemExit(f"refusing existing preparation directory: {output}")
@@ -168,7 +170,7 @@ def main() -> None:
     python = str(args.python.absolute())
     packages: dict[str, object] = {}
     compile_caches: dict[str, object] = {}
-    for size in args.sizes:
+    for size in prepared_sizes:
         key = str(size)
         package = output / "aot" / f"shu3d_n{size}.pt2"
         package.parent.mkdir(parents=True, exist_ok=True)
@@ -232,7 +234,8 @@ def main() -> None:
         "gradflow_protocol_commit": "e5df176",
         "gradflow_worktree_commit_at_preparation": command_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"]),
         "dveb_commit": "f71d86717c065841c002b41287ff943e9f0a7898",
-        "sizes": args.sizes,
+        "counted_and_capacity_sizes": counted_sizes,
+        "prepared_sizes": prepared_sizes,
         "python": python,
         "dveb": {
             "manifest": artifact_copy,
