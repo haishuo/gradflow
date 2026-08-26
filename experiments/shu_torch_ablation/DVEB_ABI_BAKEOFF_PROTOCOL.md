@@ -202,12 +202,18 @@ constructs the solver/backend configuration, and then performs no numerical
 backend call. The monotonic timer surrounds exactly the first call that
 advances the ready CPU state and returns a complete CPU result.
 
-For GradFlow this is the wall interval around `Solver.run`. Artifact-manifest
-verification performed by solver construction is excluded and
-reported as setup. DVEB's lazy `ctypes` library load, first CUDA runtime use,
-H2D/D2H copies, and numerical execution occur inside the first call and are
-charged if the implementation performs them there. No earlier CUDA tensor,
-allocation, synchronization, or kernel call is permitted in a cold worker.
+For the native DVEB lanes this is the wall interval around `Solver.run`. The
+public direct-PyTorch solver deliberately forbids hidden device transfers, so
+the PyTorch CUDA lanes use a named deployment adapter whose `run` consists of
+explicit H2D, the canonical numerical call, synchronization, and explicit D2H.
+This adapter is benchmark infrastructure, not a new public GradFlow backend.
+Artifact-manifest verification performed by solver or adapter construction is
+excluded and reported as setup. DVEB's lazy `ctypes` library load, first CUDA
+runtime use, H2D/D2H copies, and numerical execution occur inside the first
+call and are charged if the implementation performs them there. No earlier
+CUDA tensor, allocation, synchronization, or kernel call is permitted in a
+cold worker, except that loading an AOT package as configuration may initialize
+its loader; pristine package loading remains a separate diagnostic.
 
 E2 is measured in a new process for every observation so every CUDA
 observation is genuinely first-use. It answers, “The application is running
@@ -257,8 +263,9 @@ steps=10: N={16,32,64,128}
 
 E1 and E2 receive one uncounted infrastructure smoke test and 30 independent
 counted processes for every eligible primary lane and point. E3 receives the
-six-by-five blocked design above. E4 receives five warmup calls and 30 counted
-calls in six randomized five-call blocks where supported.
+six-by-five blocked design above. E4 uses six independent workers per lane and
+point; each receives five warmup calls followed by one randomized five-call
+counted block, yielding 30 counted calls where supported.
 
 Cold `torch.compile` is limited to three independently empty-cache observations
 at `(N,steps)={(64,1),(128,1),(128,10)}` because it characterizes compilation,
@@ -326,7 +333,10 @@ after viewing counted data.
 Commit:
 
 - preparation manifest with all hashes and excluded preparation durations;
-- correctness arrays or their lossless compressed records and pairwise errors;
+- pairwise full-array errors and hashes for losslessly compressed correctness
+  arrays archived outside Git; the preparation manifest must identify and hash
+  that archive so the large binary states do not enter ordinary repository
+  history;
 - every raw timing observation with block/order identifiers;
 - stdout/stderr and exact command/environment for every failure;
 - capacity and memory records;
