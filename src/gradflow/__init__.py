@@ -6,6 +6,11 @@ from .weno5 import (
     weno5_rhs,
     weno5_rhs_gottlieb_periodic,
 )
+from .weno_js import QUALIFIED_ORDERS, SMOOTHNESS_SCALE, WENOJS
+from .weno_js_coefficients import (
+    WENOJSCoefficients,
+    generate_weno_js_coefficients,
+)
 from .euler3d import (
     EULER_GAMMA,
     EULER_LF_ENLARGEMENT,
@@ -34,6 +39,11 @@ from .dveb_abi import (
 
 __all__ = [
     "DEFAULT_EPSILON",
+    "QUALIFIED_ORDERS",
+    "SMOOTHNESS_SCALE",
+    "WENOJS",
+    "WENOJSCoefficients",
+    "generate_weno_js_coefficients",
     "DvebAbiError",
     "DvebArtifact",
     "DvebDeviceContext",
