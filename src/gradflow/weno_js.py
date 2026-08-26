@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable
+from collections.abc import Callable, Sequence
 
 import torch
 
@@ -111,13 +111,8 @@ class WENOJS:
         if bias not in {"left", "right"}:
             raise ValueError("bias must be 'left' or 'right'")
 
-        candidates = []
-        indicators = []
-        for offsets, coefficients, factors in zip(
-            self._candidate_offsets,
-            self._candidate_coefficients,
-            self._smoothness_factors,
-        ):
+        candidate_stencils = []
+        for offsets in self._candidate_offsets:
             if bias == "left":
                 stencil = [
                     self._shift(values, offset, normalized_axis) for offset in offsets
@@ -127,10 +122,38 @@ class WENOJS:
                     self._shift(values, 1 - offset, normalized_axis)
                     for offset in offsets
                 ]
-            candidates.append(_linear_combination(coefficients, stencil))
+            candidate_stencils.append(stencil)
+
+        return self.reconstruct_stencils(candidate_stencils)
+
+    def reconstruct_stencils(
+        self,
+        candidate_stencils: Sequence[Sequence[torch.Tensor]],
+    ) -> torch.Tensor:
+        """Reconstruct from candidate samples already aligned at each face.
+
+        This is the system-facing form of :meth:`reconstruct`. Every sample
+        tensor has the same shape, and each inner sequence follows the exact
+        generated offset ordering for that candidate. It permits a caller to
+        freeze a face-dependent characteristic projection before applying the
+        same scalar WENO-JS algebra.
+        """
+        if len(candidate_stencils) != self.substencil_width:
+            raise ValueError("wrong number of WENO-JS candidate stencils")
+
+        candidates = []
+        indicators = []
+        for stencil, coefficients, factors in zip(
+            candidate_stencils,
+            self._candidate_coefficients,
+            self._smoothness_factors,
+        ):
+            if len(stencil) != self.substencil_width:
+                raise ValueError("a WENO-JS candidate stencil has the wrong width")
+            candidates.append(_linear_combination(coefficients, list(stencil)))
             indicator = None
             for factor_weight, factor_coefficients in factors:
-                factor = _linear_combination(factor_coefficients, stencil)
+                factor = _linear_combination(factor_coefficients, list(stencil))
                 term = factor_weight * factor.square()
                 indicator = term if indicator is None else indicator + term
             assert indicator is not None

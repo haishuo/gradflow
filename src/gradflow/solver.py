@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import math
+from dataclasses import dataclass
 from numbers import Real
 from typing import Any
 
@@ -13,6 +13,7 @@ from torch import Tensor
 from .dveb_abi import DvebAbiError, DvebArtifact, DvebPortableAbi
 from .euler3d import (
     EULER_GAMMA,
+    QUALIFIED_EULER_WENO_ORDERS,
     euler_cfl_timestep,
     euler_ssp_rk3_step,
     synchronize_duplicate_endpoints,
@@ -52,15 +53,15 @@ class RunDiagnostics:
 
 
 class Solver:
-    """Validated 3-D Euler characteristic JS-WENO-5 vertical slice.
+    """Validated 3-D Euler characteristic WENO-JS vertical slice.
 
     The deliberately narrow implementation supports only:
 
     - three-dimensional compressible Euler;
-    - characteristic Jiang--Shu finite-difference WENO-5;
+    - characteristic Jiang--Shu finite-difference orders 5 through 15;
     - the preserved per-line global-LF policy;
     - duplicated periodic endpoints on all three axes;
-    - float32; and
+    - float32 or float64; and
     - direct eager PyTorch on the caller's existing device.
 
     Unsupported requests fail rather than being silently approximated.
@@ -120,12 +121,17 @@ class Solver:
         if self.dimension != 3:
             raise UnsupportedProblemError("the Solver vertical slice is 3-D only")
         if not isinstance(self.weno, tuple) or len(self.weno) != 2:
-            raise UnsupportedProblemError("weno must be the pair ('JS', 5)")
+            raise UnsupportedProblemError("weno must be a pair such as ('JS', 11)")
         family, order = self.weno
-        if str(family).upper() not in {"JS", "JIANG-SHU"} or order != 5:
+        if (
+            str(family).upper() not in {"JS", "JIANG-SHU"}
+            or order not in QUALIFIED_EULER_WENO_ORDERS
+        ):
             raise UnsupportedProblemError(
-                "only characteristic Jiang--Shu WENO-5 is implemented"
+                "characteristic Jiang--Shu orders 5, 7, 9, 11, 13, and 15 "
+                "are qualified"
             )
+        self.weno_order = order
         if self.flux_split.lower() != "global_lf":
             raise UnsupportedProblemError(
                 "only the preserved per-line global_lf policy is implemented"
@@ -134,9 +140,9 @@ class Solver:
             raise UnsupportedProblemError(
                 "only periodic_duplicated boundaries are implemented"
             )
-        if self.dtype is not torch.float32:
+        if self.dtype not in (torch.float32, torch.float64):
             raise UnsupportedProblemError(
-                "the matched Euler slice requires torch.float32"
+                "the PyTorch Euler slice requires torch.float32 or torch.float64"
             )
 
     @staticmethod
@@ -174,8 +180,11 @@ class Solver:
             raise TypeError(f"initial_state must have dtype {self.dtype}")
         if state.ndim != 4 or state.shape[0] != 5:
             raise ValueError("initial_state layout must be (5, nz+1, ny+1, nx+1)")
-        if any(size < 5 for size in state.shape[1:]):
-            raise ValueError("each spatial axis needs at least four intervals")
+        if any(size - 1 < self.weno_order for size in state.shape[1:]):
+            raise ValueError(
+                f"WENO-JS order {self.weno_order} requires at least "
+                f"{self.weno_order} unique cells per axis"
+            )
         if state.layout is not torch.strided:
             raise ValueError("initial_state must use torch.strided layout")
 
@@ -214,6 +223,10 @@ class Solver:
     ) -> str | None:
         if self._dveb_artifact is None:
             return "no hash-qualified DVEB ABI artifact is configured"
+        if self.weno_order != 5:
+            return "the qualified DVEB artifact implements only WENO-5"
+        if self.dtype is not torch.float32:
+            return "the qualified DVEB artifact implements only float32"
         if steps is None or steps < 1:
             return "DVEB ABI v1 supports only positive fixed step counts"
         if state.device.type != "cpu":
@@ -429,7 +442,9 @@ class Solver:
             elapsed: Tensor = torch.zeros((), dtype=state.dtype, device=state.device)
             for _ in range(steps):
                 dt = euler_cfl_timestep(state, run_spacing, cfl_value)
-                state = euler_ssp_rk3_step(state, run_spacing, dt)
+                state = euler_ssp_rk3_step(
+                    state, run_spacing, dt, order=self.weno_order
+                )
                 elapsed = elapsed + dt
             completed_steps = steps
             simulated_time: float | Tensor = elapsed
@@ -443,7 +458,9 @@ class Solver:
                 dt = euler_cfl_timestep(state, run_spacing, cfl_value)
                 remaining = dt.new_tensor(final_time_value - elapsed_host)
                 dt = torch.minimum(dt, remaining)
-                state = euler_ssp_rk3_step(state, run_spacing, dt)
+                state = euler_ssp_rk3_step(
+                    state, run_spacing, dt, order=self.weno_order
+                )
                 elapsed_host += float(dt.detach())
                 completed_steps += 1
             simulated_time = elapsed_host

@@ -1,8 +1,8 @@
 import ast
 import importlib.util
 import inspect
-from pathlib import Path
 import textwrap
+from pathlib import Path
 
 import pytest
 import torch
@@ -17,7 +17,6 @@ from gradflow import (
     periodic_vortex,
 )
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -29,7 +28,7 @@ def _solver(**overrides: object) -> Solver:
         "flux_split": "global_lf",
         "boundaries": "periodic_duplicated",
         "dtype": torch.float32,
-        "spacing": (2.5, 2.5, 2.5),
+        "spacing": (2.0, 2.0, 2.0),
     }
     arguments.update(overrides)
     return Solver(**arguments)  # type: ignore[arg-type]
@@ -46,8 +45,8 @@ def _historical_module():
 
 def test_packaged_step_agrees_with_bakeoff_authority() -> None:
     historical = _historical_module()
-    state, spacing = periodic_vortex((4, 4, 4))
-    historical_state, historical_spacing = historical.periodic_vortex((4, 4, 4))
+    state, spacing = periodic_vortex((5, 5, 5))
+    historical_state, historical_spacing = historical.periodic_vortex((5, 5, 5))
     dt = euler_cfl_timestep(state, spacing, 0.1)
     historical_dt = historical.cfl_timestep(
         historical_state, historical_spacing, 0.1
@@ -62,7 +61,7 @@ def test_packaged_step_agrees_with_bakeoff_authority() -> None:
 
 
 def test_solver_fixed_step_matches_scientific_function() -> None:
-    state, spacing = periodic_vortex((4, 4, 4))
+    state, spacing = periodic_vortex((5, 5, 5))
     solver = _solver(spacing=spacing)
     result = solver.run(state, steps=1)
     expected = euler_ssp_rk3_step(
@@ -78,7 +77,7 @@ def test_solver_fixed_step_matches_scientific_function() -> None:
 
 
 def test_cpu_final_time_lands_on_requested_time() -> None:
-    state, spacing = periodic_vortex((4, 4, 4))
+    state, spacing = periodic_vortex((5, 5, 5))
     solver = _solver(spacing=spacing)
     result = solver.run(state, final_time=0.01)
     assert result.shape == state.shape
@@ -88,7 +87,7 @@ def test_cpu_final_time_lands_on_requested_time() -> None:
 
 
 def test_fixed_step_path_is_differentiable() -> None:
-    state, spacing = periodic_vortex((4, 4, 4))
+    state, spacing = periodic_vortex((5, 5, 5))
     state.requires_grad_()
     result = _solver(spacing=spacing).run(state, steps=1)
     loss = result.square().mean()
@@ -99,7 +98,7 @@ def test_fixed_step_path_is_differentiable() -> None:
 
 
 def test_euler_step_is_one_compile_graph() -> None:
-    state, spacing = periodic_vortex((4, 4, 4))
+    state, spacing = periodic_vortex((5, 5, 5))
 
     def step(value: torch.Tensor) -> torch.Tensor:
         dt = euler_cfl_timestep(value, spacing, 0.1)
@@ -113,7 +112,7 @@ def test_euler_step_is_one_compile_graph() -> None:
 
 
 def test_native_backend_is_rejected_for_arbitrary_state() -> None:
-    state, spacing = periodic_vortex((4, 4, 4))
+    state, spacing = periodic_vortex((5, 5, 5))
     solver = _solver(spacing=spacing)
     with pytest.raises(BackendUnavailableError, match="no hash-qualified DVEB ABI"):
         solver.run(state, steps=1, backend="dveb")
@@ -124,10 +123,10 @@ def test_native_backend_is_rejected_for_arbitrary_state() -> None:
     [
         ({"equations": "navier-stokes"}, "viscous terms"),
         ({"dimension": 2}, "3-D only"),
-        ({"weno": ("JS", 11)}, "WENO-5"),
+        ({"weno": ("JS", 4)}, "orders 5, 7, 9, 11, 13, and 15"),
         ({"flux_split": "local_lf"}, "global_lf"),
         ({"boundaries": "periodic"}, "periodic_duplicated"),
-        ({"dtype": torch.float64}, "float32"),
+        ({"dtype": torch.float16}, "float32 or torch.float64"),
     ],
 )
 def test_unsupported_mathematics_fails_explicitly(
@@ -138,7 +137,7 @@ def test_unsupported_mathematics_fails_explicitly(
 
 
 def test_run_contract_validation() -> None:
-    state, spacing = periodic_vortex((4, 4, 4))
+    state, spacing = periodic_vortex((5, 5, 5))
     solver = _solver(spacing=spacing)
     with pytest.raises(ValueError, match="exactly one"):
         solver.run(state)
@@ -160,9 +159,9 @@ def test_fixed_step_numerical_path_has_no_transfer_or_scalar_extraction() -> Non
     forbidden = {"item", "cpu", "cuda", "to", "numpy"}
     functions = (
         implementation.synchronize_duplicate_endpoints,
-        implementation._flux_and_roe_matrices,
-        implementation._nonlinear_flux_correction,
-        implementation._line_rhs,
+        implementation._flux_and_roe_faces,
+        implementation._generated_line_rhs,
+        implementation.euler_weno_rhs,
         implementation.euler_weno5_rhs,
         implementation.euler_cfl_timestep,
         implementation.euler_ssp_rk3_step,
@@ -179,7 +178,7 @@ def test_fixed_step_numerical_path_has_no_transfer_or_scalar_extraction() -> Non
 
 @pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA is unavailable")
 def test_solver_cpu_cuda_agreement_and_device_preservation() -> None:
-    cpu_state, spacing = periodic_vortex((4, 4, 4))
+    cpu_state, spacing = periodic_vortex((5, 5, 5))
     cpu = _solver(spacing=spacing).run(cpu_state, steps=1)
     cuda_state = cpu_state.cuda()
     cuda_solver = _solver(spacing=spacing)
@@ -193,6 +192,6 @@ def test_solver_cpu_cuda_agreement_and_device_preservation() -> None:
 
 @pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA is unavailable")
 def test_cuda_final_time_refuses_hidden_control_transfer() -> None:
-    state, spacing = periodic_vortex((4, 4, 4), device="cuda")
+    state, spacing = periodic_vortex((5, 5, 5), device="cuda")
     with pytest.raises(UnsupportedProblemError, match="hidden host scalar transfer"):
         _solver(spacing=spacing).run(state, final_time=0.01)

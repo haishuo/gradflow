@@ -1,9 +1,10 @@
-"""Characteristic finite-difference JS-WENO-5 for compressible Euler.
+"""Generated characteristic finite-difference WENO-JS for compressible Euler.
 
-This is the package form of the matched direct-PyTorch formulation used by the
-Shu Euler bakeoff. It deliberately preserves the ancestral duplicated-periodic
-grid, Roe characteristic reconstruction, line-wise global LF policy, and
-SSP-RK3 algebra. It contains no convolution or custom native operation.
+The order-five path preserves the matched direct-PyTorch formulation used by
+the Shu Euler bakeoff. Every qualified order shares the ancestral
+duplicated-periodic grid, Roe characteristic reconstruction, line-wise global
+LF policy, and SSP-RK3 algebra. The module contains no convolution or custom
+native operation.
 """
 
 from __future__ import annotations
@@ -14,22 +15,22 @@ from collections.abc import Sequence
 import torch
 from torch import Tensor
 
+from .weno_js import QUALIFIED_ORDERS, WENOJS
 
 EULER_GAMMA = 1.4
 EULER_WENO_EPSILON = 1.0e-6
 EULER_LF_ENLARGEMENT = 1.1
+QUALIFIED_EULER_WENO_ORDERS = QUALIFIED_ORDERS
+_EULER_WENO_SCHEMES = {
+    order: WENOJS(order, epsilon=EULER_WENO_EPSILON)
+    for order in QUALIFIED_EULER_WENO_ORDERS
+}
 
 
 def _component_order(ndim: int, axis: int) -> tuple[int, ...]:
     momenta = list(range(1, ndim + 1))
     normal = momenta.pop(axis)
     return (0, normal, *momenta, ndim + 1)
-
-
-def _periodic_ghosts_with_duplicate_endpoint(line: Tensor) -> Tensor:
-    if line.shape[-1] < 5:
-        raise ValueError("each axis needs at least four intervals")
-    return torch.cat((line[..., -4:-1], line, line[..., 1:4]), dim=-1)
 
 
 def synchronize_duplicate_endpoints(state: Tensor) -> Tensor:
@@ -48,7 +49,8 @@ def synchronize_duplicate_endpoints(state: Tensor) -> Tensor:
     return synchronized
 
 
-def _flux_and_roe_matrices(line: Tensor) -> tuple[Tensor, Tensor, Tensor, Tensor]:
+def _flux_and_roe_faces(line: Tensor) -> tuple[Tensor, Tensor, Tensor, Tensor]:
+    """Return physical flux, line LF speeds, and Roe matrices at every face."""
     equations = line.shape[-2]
     ndim = equations - 2
     gamma_minus_one = EULER_GAMMA - 1.0
@@ -80,18 +82,17 @@ def _flux_and_roe_matrices(line: Tensor) -> tuple[Tensor, Tensor, Tensor, Tensor
     )
     alpha = torch.clamp_min(alpha, 1.0e-15)
 
-    sqrt_density = torch.sqrt(density)
-    left_weight = sqrt_density[..., 2:-3]
-    right_weight = sqrt_density[..., 3:-2]
+    right_density = torch.roll(density, shifts=-1, dims=-1)
+    right_velocity = torch.roll(velocity, shifts=-1, dims=-1)
+    right_enthalpy = torch.roll(enthalpy, shifts=-1, dims=-1)
+    left_weight = torch.sqrt(density)
+    right_weight = torch.sqrt(right_density)
     fraction = left_weight / (left_weight + right_weight)
     roe_velocity = (
-        fraction.unsqueeze(-2) * velocity[..., 2:-3]
-        + (1.0 - fraction).unsqueeze(-2) * velocity[..., 3:-2]
+        fraction.unsqueeze(-2) * velocity
+        + (1.0 - fraction).unsqueeze(-2) * right_velocity
     )
-    roe_enthalpy = (
-        fraction * enthalpy[..., 2:-3]
-        + (1.0 - fraction) * enthalpy[..., 3:-2]
-    )
+    roe_enthalpy = fraction * enthalpy + (1.0 - fraction) * right_enthalpy
     roe_q = 0.5 * (roe_velocity * roe_velocity).sum(dim=-2)
     roe_sound = torch.sqrt(gamma_minus_one * (roe_enthalpy - roe_q))
 
@@ -102,8 +103,12 @@ def _flux_and_roe_matrices(line: Tensor) -> tuple[Tensor, Tensor, Tensor, Tensor
 
     right_columns = [
         torch.stack(
-            (one, normal - roe_sound, *tangential,
-             roe_enthalpy - normal * roe_sound),
+            (
+                one,
+                normal - roe_sound,
+                *tangential,
+                roe_enthalpy - normal * roe_sound,
+            ),
             dim=-1,
         )
     ]
@@ -116,15 +121,19 @@ def _flux_and_roe_matrices(line: Tensor) -> tuple[Tensor, Tensor, Tensor, Tensor
     right_columns.append(torch.stack((one, normal, *tangential, roe_q), dim=-1))
     right_columns.append(
         torch.stack(
-            (one, normal + roe_sound, *tangential,
-             roe_enthalpy + normal * roe_sound),
+            (
+                one,
+                normal + roe_sound,
+                *tangential,
+                roe_enthalpy + normal * roe_sound,
+            ),
             dim=-1,
         )
     )
     right_eigenvectors = torch.stack(right_columns, dim=-1)
 
     reciprocal_sound = 1.0 / roe_sound
-    b1 = gamma_minus_one * reciprocal_sound * reciprocal_sound
+    b1 = gamma_minus_one * reciprocal_sound.square()
     b2 = roe_q * b1
     normal_over_sound = normal * reciprocal_sound
     b1_normal = b1 * normal
@@ -166,85 +175,62 @@ def _flux_and_roe_matrices(line: Tensor) -> tuple[Tensor, Tensor, Tensor, Tensor
     return flux, alpha, left_eigenvectors, right_eigenvectors
 
 
-def _nonlinear_flux_correction(h: Tensor) -> Tensor:
-    t1 = h[..., 0, :] - h[..., 1, :]
-    t2 = h[..., 1, :] - h[..., 2, :]
-    t3 = h[..., 2, :] - h[..., 3, :]
-
-    indicator1 = 13.0 * t1.square() + 3.0 * (
-        h[..., 0, :] - 3.0 * h[..., 1, :]
-    ).square()
-    indicator2 = 13.0 * t2.square() + 3.0 * (
-        h[..., 1, :] + h[..., 2, :]
-    ).square()
-    indicator3 = 13.0 * t3.square() + 3.0 * (
-        3.0 * h[..., 2, :] - h[..., 3, :]
-    ).square()
-
-    # This is algebraically identical to Shu's product form
-    # q2*q3 : 6*q1*q3 : 3*q1*q2, after division by q1*q2*q3.
-    # The inverse form avoids a reciprocal of ~1e-24 in smooth float32 regions,
-    # whose backward pass otherwise overflows before normalization cancels it.
-    weight1 = 1.0 / (EULER_WENO_EPSILON + indicator1).square()
-    weight2 = 6.0 / (EULER_WENO_EPSILON + indicator2).square()
-    weight3 = 3.0 / (EULER_WENO_EPSILON + indicator3).square()
-    reciprocal_sum = 1.0 / (weight1 + weight2 + weight3)
-    weight1 = weight1 * reciprocal_sum
-    weight3 = weight3 * reciprocal_sum
-    return (
-        weight1 * (t2 - t1)
-        + (0.5 * weight3 - 0.25) * (t3 - t2)
-    ) / 3.0
-
-
-def _line_rhs(line: Tensor, inverse_spacing: float) -> Tensor:
-    ghosted = _periodic_ghosts_with_duplicate_endpoint(line)
-    flux, alpha, left, right = _flux_and_roe_matrices(ghosted)
-
-    flux_difference = flux[..., 1:] - flux[..., :-1]
-    state_difference = ghosted[..., 1:] - ghosted[..., :-1]
-    split_positive = 0.5 * (
-        flux_difference.unsqueeze(-3)
-        + alpha[..., :, None, None] * state_difference.unsqueeze(-3)
+def _generated_line_rhs(
+    line: Tensor,
+    inverse_spacing: float,
+    scheme: WENOJS,
+) -> Tensor:
+    """Apply generated WENO-JS to one family of component-ordered lines."""
+    unique = line[..., :-1]
+    flux, alpha, left, right = _flux_and_roe_faces(unique)
+    offsets = scheme.exact_coefficients.candidate_offsets
+    positive_offsets = tuple(
+        sorted({offset for candidate in offsets for offset in candidate})
     )
-    split_negative = split_positive - flux_difference.unsqueeze(-3)
-    positive_candidates = torch.stack(
-        (
-            split_positive[..., 0:-4], split_positive[..., 1:-3],
-            split_positive[..., 2:-2], split_positive[..., 3:-1],
-        ),
-        dim=-2,
+    negative_offsets = tuple(
+        sorted({1 - offset for candidate in offsets for offset in candidate})
     )
-    negative_candidates = torch.stack(
-        (
-            split_negative[..., 4:], split_negative[..., 3:-1],
-            split_negative[..., 2:-2], split_negative[..., 1:-3],
-        ),
-        dim=-2,
+
+    def project(offset: int, sign: float) -> Tensor:
+        state_sample = torch.roll(unique, shifts=-offset, dims=-1)
+        flux_sample = torch.roll(flux, shifts=-offset, dims=-1)
+        state_by_field = state_sample.movedim(-2, -1).unsqueeze(-2)
+        flux_by_field = flux_sample.movedim(-2, -1).unsqueeze(-2)
+        projected_state = (left * state_by_field).sum(dim=-1)
+        projected_flux = (left * flux_by_field).sum(dim=-1)
+        return 0.5 * (
+            projected_flux + sign * alpha.unsqueeze(-2) * projected_state
+        )
+
+    positive = {offset: project(offset, 1.0) for offset in positive_offsets}
+    negative = {offset: project(offset, -1.0) for offset in negative_offsets}
+    positive_stencils = tuple(
+        tuple(positive[offset] for offset in candidate) for candidate in offsets
     )
-    left_by_field = left.movedim(-3, -1).unsqueeze(-2)
-    projected_positive = (left_by_field * positive_candidates).sum(dim=-3)
-    projected_negative = (left_by_field * negative_candidates).sum(dim=-3)
-    characteristic_flux = (
-        _nonlinear_flux_correction(projected_positive)
-        + _nonlinear_flux_correction(projected_negative)
+    negative_stencils = tuple(
+        tuple(negative[1 - offset] for offset in candidate)
+        for candidate in offsets
     )
-    characteristic_flux = characteristic_flux.movedim(-1, -2).unsqueeze(-2)
-    nonlinear_flux = (right * characteristic_flux).sum(dim=-1)
-    central_flux = (
-        -flux[..., 1:-4]
-        + 7.0 * (flux[..., 2:-3] + flux[..., 3:-2])
-        - flux[..., 4:-1]
-    ).movedim(-2, -1) / 12.0
-    numerical_flux = nonlinear_flux + central_flux
-    derivative = (
-        numerical_flux[..., :-1, :] - numerical_flux[..., 1:, :]
+    characteristic_flux = scheme.reconstruct_stencils(
+        positive_stencils
+    ) + scheme.reconstruct_stencils(negative_stencils)
+    numerical_flux = (right * characteristic_flux.unsqueeze(-2)).sum(dim=-1)
+    unique_derivative = (
+        torch.roll(numerical_flux, shifts=1, dims=-2) - numerical_flux
     ) * inverse_spacing
-    return derivative.movedim(-1, -2)
+    unique_derivative = unique_derivative.movedim(-1, -2)
+    return torch.cat(
+        (unique_derivative, unique_derivative[..., :1]), dim=-1
+    )
 
 
-def euler_weno5_rhs(state: Tensor, spacing: Sequence[float]) -> Tensor:
-    """Compute characteristic JS-WENO-5 Euler RHS on a duplicated grid."""
+def euler_weno_rhs(
+    state: Tensor,
+    spacing: Sequence[float],
+    *,
+    order: int = 5,
+) -> Tensor:
+    """Compute generated characteristic WENO-JS Euler RHS."""
     ndim = state.ndim - 1
     if ndim not in (2, 3):
         raise ValueError("state must be a 2-D or 3-D Euler field")
@@ -252,20 +238,35 @@ def euler_weno5_rhs(state: Tensor, spacing: Sequence[float]) -> Tensor:
         raise ValueError(f"expected {ndim + 2} Euler components")
     if len(spacing) != ndim:
         raise ValueError(f"expected {ndim} grid spacings")
+    if order not in QUALIFIED_EULER_WENO_ORDERS:
+        raise ValueError(
+            f"Euler WENO-JS order must be one of {QUALIFIED_EULER_WENO_ORDERS}"
+        )
+    if any(size - 1 < order for size in state.shape[1:]):
+        raise ValueError(
+            f"Euler WENO-JS order {order} requires at least {order} unique "
+            "cells per axis"
+        )
 
     state = synchronize_duplicate_endpoints(state)
+    scheme = _EULER_WENO_SCHEMES[order]
     result = torch.zeros_like(state)
     for axis in range(ndim):
         order = _component_order(ndim, axis)
         tensor_axis = state.ndim - 1 - axis
         line = torch.movedim(state[list(order)], tensor_axis, -1)
         line = torch.movedim(line, 0, -2)
-        line_result = _line_rhs(line, 1.0 / spacing[axis])
+        line_result = _generated_line_rhs(line, 1.0 / spacing[axis], scheme)
         canonical_result = torch.movedim(line_result, -2, 0)
         canonical_result = torch.movedim(canonical_result, -1, tensor_axis)
         inverse_order = tuple(sorted(range(ndim + 2), key=order.__getitem__))
         result = result + canonical_result[list(inverse_order)]
     return result
+
+
+def euler_weno5_rhs(state: Tensor, spacing: Sequence[float]) -> Tensor:
+    """Compute generated characteristic JS-WENO-5 Euler RHS."""
+    return euler_weno_rhs(state, spacing, order=5)
 
 
 def euler_cfl_timestep(
@@ -290,17 +291,21 @@ def euler_cfl_timestep(
 
 
 def euler_ssp_rk3_step(
-    state: Tensor, spacing: Sequence[float], dt: Tensor
+    state: Tensor,
+    spacing: Sequence[float],
+    dt: Tensor,
+    *,
+    order: int = 5,
 ) -> Tensor:
     """Advance one full three-stage SSP-RK3 step."""
     state = synchronize_duplicate_endpoints(state)
-    rhs0 = euler_weno5_rhs(state, spacing)
+    rhs0 = euler_weno_rhs(state, spacing, order=order)
     stage1 = synchronize_duplicate_endpoints(state + dt * rhs0)
-    rhs1 = euler_weno5_rhs(stage1, spacing)
+    rhs1 = euler_weno_rhs(stage1, spacing, order=order)
     stage2 = synchronize_duplicate_endpoints(
         0.75 * state + 0.25 * (stage1 + dt * rhs1)
     )
-    rhs2 = euler_weno5_rhs(stage2, spacing)
+    rhs2 = euler_weno_rhs(stage2, spacing, order=order)
     return synchronize_duplicate_endpoints(
         (state + 2.0 * (stage2 + dt * rhs2)) / 3.0
     )

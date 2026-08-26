@@ -1,23 +1,22 @@
 """GradFlow: research code for differentiable finite-difference WENO."""
 
-from .weno5 import (
-    DEFAULT_EPSILON,
-    ssp_rk3_step,
-    weno5_rhs,
-    weno5_rhs_gottlieb_periodic,
-)
-from .weno_js import QUALIFIED_ORDERS, SMOOTHNESS_SCALE, WENOJS
-from .weno_js_coefficients import (
-    WENOJSCoefficients,
-    generate_weno_js_coefficients,
+from .dveb_abi import (
+    DvebAbiError,
+    DvebArtifact,
+    DvebDeviceContext,
+    DvebDeviceRunResult,
+    DvebPortableAbi,
+    DvebRunResult,
 )
 from .euler3d import (
     EULER_GAMMA,
     EULER_LF_ENLARGEMENT,
     EULER_WENO_EPSILON,
+    QUALIFIED_EULER_WENO_ORDERS,
     euler_cfl_timestep,
     euler_ssp_rk3_step,
     euler_weno5_rhs,
+    euler_weno_rhs,
     periodic_vortex,
     synchronize_duplicate_endpoints,
 )
@@ -28,13 +27,16 @@ from .solver import (
     Solver,
     UnsupportedProblemError,
 )
-from .dveb_abi import (
-    DvebAbiError,
-    DvebArtifact,
-    DvebDeviceContext,
-    DvebDeviceRunResult,
-    DvebPortableAbi,
-    DvebRunResult,
+from .weno5 import (
+    DEFAULT_EPSILON,
+    ssp_rk3_step,
+    weno5_rhs,
+    weno5_rhs_gottlieb_periodic,
+)
+from .weno_js import QUALIFIED_ORDERS, SMOOTHNESS_SCALE, WENOJS
+from .weno_js_coefficients import (
+    WENOJSCoefficients,
+    generate_weno_js_coefficients,
 )
 
 __all__ = [
@@ -58,11 +60,13 @@ __all__ = [
     "EULER_GAMMA",
     "EULER_LF_ENLARGEMENT",
     "EULER_WENO_EPSILON",
+    "QUALIFIED_EULER_WENO_ORDERS",
     "RunDiagnostics",
     "Solver",
     "UnsupportedProblemError",
     "euler_cfl_timestep",
     "euler_ssp_rk3_step",
+    "euler_weno_rhs",
     "euler_weno5_rhs",
     "periodic_vortex",
     "synchronize_duplicate_endpoints",
