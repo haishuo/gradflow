@@ -252,6 +252,21 @@ proximity missed their frozen bands. The present WENO campaign calibrated at
 its own evaluation points and therefore does not overturn that held-out
 decision.
 
+## Forced-target arbitrary-state ABI follow-up
+
+DVEB portable ABI v1 subsequently closed the benchmark-initializer gap and
+passed independent arbitrary-state CPU/CUDA/PyTorch correctness gates. The
+next campaign is frozen in `DVEB_ABI_BAKEOFF_PROTOCOL.md` before harness work
+or timing. It excludes automatic placement and compares forced DVEB CPU-6,
+CPU-12, and CUDA against the eligible prepared deployment lanes.
+
+That protocol separates fresh-application latency, the first `Solver.run`
+from an already available CPU state, warm repeated `Solver.run`, and true
+device-resident execution. ABI v1 is ineligible for the public resident
+endpoint because it accepts CPU pointers only; its internal CUDA execution
+timer is diagnostic rather than a transfer-subtracted substitute. No counted
+measurements have begun.
+
 ## Redistribution status
 
 The PyTorch translation and 3-D Fortran extension are derived from the locally
