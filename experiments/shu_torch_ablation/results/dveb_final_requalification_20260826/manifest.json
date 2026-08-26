@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "purpose": "final committed DVEB WENO requalification",
+  "protocol": "DVEB_FINAL_REQUALIFICATION_PROTOCOL.md",
+  "gradflow_commit": "f306cf16b239d1b63c7b4b5a64d8db4417c4220f",
+  "dveb_commit": "2f1f3ab2c98349cc3fa1eab2b76d3f20b2eefedc",
+  "program_sha256": "c6e5bd916f951ff412eac99863a74f8c98e5e14b044097a7ad59fe26f704c381",
+  "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+  "native": {
+    "dveb": {
+      "source": "/mnt/projects/dveb/build/shu_euler3d_portable/shu_euler3d_portable",
+      "frozen_copy": "/mnt/artifacts/gradflow/dveb_final_requalification_20260826/bin/dveb_shu3d",
+      "sha256": "2b087aed48f999ae2ab0e81dd5fb48a40c289d3ef5292f7dceb491f330a970f8"
+    },
+    "ceiling": {
+      "source": "/mnt/projects/dveb/tools/shu_euler3d_ceiling/build/shu_ceiling",
+      "frozen_copy": "/mnt/artifacts/gradflow/dveb_final_requalification_20260826/bin/shu3d_ceiling",
+      "sha256": "873a9227196664398012e7d42a27e29ec9cd3610c45a4c61ab40a0688aed3caa"
+    }
+  },
+  "external_manifest_sha256": "9048299f51e05fd7372f6e8fdfd730e767cdf0e5434c8dbd68a886ff3a4ae51e"
+}

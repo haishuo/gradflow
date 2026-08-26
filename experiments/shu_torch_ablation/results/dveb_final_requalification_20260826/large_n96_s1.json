@@ -1,0 +1,1627 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "protocol": "DVEB_FINAL_REQUALIFICATION_PROTOCOL.md",
+  "mode": "large",
+  "size": 96,
+  "steps": 1,
+  "repetitions": 30,
+  "warmups": 1,
+  "seed": 20260826,
+  "lanes": [
+    "auto",
+    "cuda",
+    "ceiling-cuda"
+  ],
+  "manifest": "/mnt/artifacts/gradflow/dveb_final_requalification_20260826/manifest.json",
+  "calibration": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/calibration.json",
+  "environment": {
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "omp": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "close",
+      "OMP_PLACES": "cores"
+    }
+  },
+  "warmup_records": [
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.001673318911343813,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range"
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004147791,
+      "process_seconds_after_main": 0.219707969,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.27650631312280893,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0"
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004135231,
+      "process_seconds_after_main": 0.148756924,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.204760423861444,
+      "success": true
+    }
+  ],
+  "blocks": [
+    {
+      "repetition": 0,
+      "order": [
+        "ceiling-cuda",
+        "cuda",
+        "auto"
+      ]
+    },
+    {
+      "repetition": 1,
+      "order": [
+        "auto",
+        "cuda",
+        "ceiling-cuda"
+      ]
+    },
+    {
+      "repetition": 2,
+      "order": [
+        "ceiling-cuda",
+        "auto",
+        "cuda"
+      ]
+    },
+    {
+      "repetition": 3,
+      "order": [
+        "cuda",
+        "auto",
+        "ceiling-cuda"
+      ]
+    },
+    {
+      "repetition": 4,
+      "order": [
+        "ceiling-cuda",
+        "auto",
+        "cuda"
+      ]
+    },
+    {
+      "repetition": 5,
+      "order": [
+        "auto",
+        "ceiling-cuda",
+        "cuda"
+      ]
+    },
+    {
+      "repetition": 6,
+      "order": [
+        "ceiling-cuda",
+        "cuda",
+        "auto"
+      ]
+    },
+    {
+      "repetition": 7,
+      "order": [
+        "auto",
+        "ceiling-cuda",
+        "cuda"
+      ]
+    },
+    {
+      "repetition": 8,
+      "order": [
+        "ceiling-cuda",
+        "cuda",
+        "auto"
+      ]
+    },
+    {
+      "repetition": 9,
+      "order": [
+        "auto",
+        "cuda",
+        "ceiling-cuda"
+      ]
+    },
+    {
+      "repetition": 10,
+      "order": [
+        "ceiling-cuda",
+        "cuda",
+        "auto"
+      ]
+    },
+    {
+      "repetition": 11,
+      "order": [
+        "ceiling-cuda",
+        "cuda",
+        "auto"
+      ]
+    },
+    {
+      "repetition": 12,
+      "order": [
+        "auto",
+        "ceiling-cuda",
+        "cuda"
+      ]
+    },
+    {
+      "repetition": 13,
+      "order": [
+        "cuda",
+        "auto",
+        "ceiling-cuda"
+      ]
+    },
+    {
+      "repetition": 14,
+      "order": [
+        "auto",
+        "ceiling-cuda",
+        "cuda"
+      ]
+    },
+    {
+      "repetition": 15,
+      "order": [
+        "ceiling-cuda",
+        "cuda",
+        "auto"
+      ]
+    },
+    {
+      "repetition": 16,
+      "order": [
+        "auto",
+        "cuda",
+        "ceiling-cuda"
+      ]
+    },
+    {
+      "repetition": 17,
+      "order": [
+        "auto",
+        "ceiling-cuda",
+        "cuda"
+      ]
+    },
+    {
+      "repetition": 18,
+      "order": [
+        "ceiling-cuda",
+        "cuda",
+        "auto"
+      ]
+    },
+    {
+      "repetition": 19,
+      "order": [
+        "cuda",
+        "ceiling-cuda",
+        "auto"
+      ]
+    },
+    {
+      "repetition": 20,
+      "order": [
+        "cuda",
+        "ceiling-cuda",
+        "auto"
+      ]
+    },
+    {
+      "repetition": 21,
+      "order": [
+        "auto",
+        "cuda",
+        "ceiling-cuda"
+      ]
+    },
+    {
+      "repetition": 22,
+      "order": [
+        "auto",
+        "cuda",
+        "ceiling-cuda"
+      ]
+    },
+    {
+      "repetition": 23,
+      "order": [
+        "auto",
+        "ceiling-cuda",
+        "cuda"
+      ]
+    },
+    {
+      "repetition": 24,
+      "order": [
+        "ceiling-cuda",
+        "cuda",
+        "auto"
+      ]
+    },
+    {
+      "repetition": 25,
+      "order": [
+        "auto",
+        "cuda",
+        "ceiling-cuda"
+      ]
+    },
+    {
+      "repetition": 26,
+      "order": [
+        "auto",
+        "ceiling-cuda",
+        "cuda"
+      ]
+    },
+    {
+      "repetition": 27,
+      "order": [
+        "ceiling-cuda",
+        "cuda",
+        "auto"
+      ]
+    },
+    {
+      "repetition": 28,
+      "order": [
+        "auto",
+        "ceiling-cuda",
+        "cuda"
+      ]
+    },
+    {
+      "repetition": 29,
+      "order": [
+        "auto",
+        "cuda",
+        "ceiling-cuda"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004131091,
+      "process_seconds_after_main": 0.147044806,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20316893514245749,
+      "success": true,
+      "repetition": 0
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004136971,
+      "process_seconds_after_main": 0.145924803,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.2016052957624197,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 0
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.002048076130449772,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 0
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0012524309568107128,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 1
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004148471,
+      "process_seconds_after_main": 0.148882174,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20560144819319248,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 1
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004147191,
+      "process_seconds_after_main": 0.15081359,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.2063089138828218,
+      "success": true,
+      "repetition": 1
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004138691,
+      "process_seconds_after_main": 0.146699008,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20276831788942218,
+      "success": true,
+      "repetition": 2
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.001977396197617054,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 2
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004168571,
+      "process_seconds_after_main": 0.147220986,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.2031531250104308,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 2
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004147781,
+      "process_seconds_after_main": 0.148489106,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20590540580451488,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 3
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.002041795291006565,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 3
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004142641,
+      "process_seconds_after_main": 0.146890267,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.2026427099481225,
+      "success": true,
+      "repetition": 3
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004143091,
+      "process_seconds_after_main": 0.147000487,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20275825913995504,
+      "success": true,
+      "repetition": 4
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0016926480457186699,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 4
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004144981,
+      "process_seconds_after_main": 0.14514818,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20030711637809873,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 4
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0019404757767915726,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 5
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004139631,
+      "process_seconds_after_main": 0.147874101,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20431964797899127,
+      "success": true,
+      "repetition": 5
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004152461,
+      "process_seconds_after_main": 0.145434348,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20198907516896725,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 5
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004149321,
+      "process_seconds_after_main": 0.148451107,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.2038969909772277,
+      "success": true,
+      "repetition": 6
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004147981,
+      "process_seconds_after_main": 0.145976125,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20164852822199464,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 6
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.001776278018951416,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 6
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.001371100079268217,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 7
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004143031,
+      "process_seconds_after_main": 0.14670168,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20219059381633997,
+      "success": true,
+      "repetition": 7
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004150691,
+      "process_seconds_after_main": 0.149947487,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20775369415059686,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 7
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004151091,
+      "process_seconds_after_main": 0.148463648,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20462046610191464,
+      "success": true,
+      "repetition": 8
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004152321,
+      "process_seconds_after_main": 0.147144036,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.2033036262728274,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 8
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0018193181604146957,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 8
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0013398099690675735,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 9
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004144052,
+      "process_seconds_after_main": 0.145423979,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20034703705459833,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 9
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004145531,
+      "process_seconds_after_main": 0.145721437,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20218725455924869,
+      "success": true,
+      "repetition": 9
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004139741,
+      "process_seconds_after_main": 0.146409272,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20228545321151614,
+      "success": true,
+      "repetition": 10
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004148221,
+      "process_seconds_after_main": 0.149182163,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20490956539288163,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 10
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0018849368207156658,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 10
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004139801,
+      "process_seconds_after_main": 0.14519377,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.2003718768246472,
+      "success": true,
+      "repetition": 11
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004148551,
+      "process_seconds_after_main": 0.146041435,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20235468400642276,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 11
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0018047676421701908,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 11
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0012450520880520344,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 12
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004144561,
+      "process_seconds_after_main": 0.147272596,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.2039020829834044,
+      "success": true,
+      "repetition": 12
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004159741,
+      "process_seconds_after_main": 0.147968842,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20588092971593142,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 12
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004151021,
+      "process_seconds_after_main": 0.147134637,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20370720513164997,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 13
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0016113589517772198,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 13
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004163621,
+      "process_seconds_after_main": 0.148564637,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.2048132661730051,
+      "success": true,
+      "repetition": 13
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0018149381503462791,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 14
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004145602,
+      "process_seconds_after_main": 0.146675751,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20400589192286134,
+      "success": true,
+      "repetition": 14
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004155881,
+      "process_seconds_after_main": 0.147098028,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20357957622036338,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 14
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004148411,
+      "process_seconds_after_main": 0.14687265,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20317363878712058,
+      "success": true,
+      "repetition": 15
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004143141,
+      "process_seconds_after_main": 0.146962999,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20264828205108643,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 15
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0020912745967507362,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 15
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.001431609969586134,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 16
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004161581,
+      "process_seconds_after_main": 0.145594929,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20166687900200486,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 16
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004137151,
+      "process_seconds_after_main": 0.147567826,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20432602241635323,
+      "success": true,
+      "repetition": 16
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.002009555697441101,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 17
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004145801,
+      "process_seconds_after_main": 0.145845107,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20184433786198497,
+      "success": true,
+      "repetition": 17
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004155781,
+      "process_seconds_after_main": 0.146556533,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20265256287530065,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 17
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004138791,
+      "process_seconds_after_main": 0.146142205,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20205993624404073,
+      "success": true,
+      "repetition": 18
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004168781,
+      "process_seconds_after_main": 0.149310823,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20719654113054276,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 18
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0019174572080373764,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 18
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004144371,
+      "process_seconds_after_main": 0.148249571,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20442540105432272,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 19
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004147321,
+      "process_seconds_after_main": 0.148141422,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.2042405023239553,
+      "success": true,
+      "repetition": 19
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0019056270830333233,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 19
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004152312,
+      "process_seconds_after_main": 0.14556156,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.2009622547775507,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 20
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004147242,
+      "process_seconds_after_main": 0.147016559,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20415987307205796,
+      "success": true,
+      "repetition": 20
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0017401478253304958,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 20
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0016140593215823174,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 21
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004149511,
+      "process_seconds_after_main": 0.14846185,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20419913297519088,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 21
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004141172,
+      "process_seconds_after_main": 0.145790419,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.2023715558461845,
+      "success": true,
+      "repetition": 21
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0018196478486061096,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 22
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004143692,
+      "process_seconds_after_main": 0.148916527,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20613254001364112,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 22
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004133691,
+      "process_seconds_after_main": 0.150152938,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.2059890409000218,
+      "success": true,
+      "repetition": 22
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.001816528383642435,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 23
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004148851,
+      "process_seconds_after_main": 0.146624773,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20244082529097795,
+      "success": true,
+      "repetition": 23
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004150781,
+      "process_seconds_after_main": 0.147126669,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.2042503128759563,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 23
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004144462,
+      "process_seconds_after_main": 0.145471722,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20289204316213727,
+      "success": true,
+      "repetition": 24
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004164591,
+      "process_seconds_after_main": 0.152099665,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20858789328485727,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 24
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0018941867165267467,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 24
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0012639309279620647,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 25
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004135472,
+      "process_seconds_after_main": 0.146262556,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20276696421205997,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 25
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004137491,
+      "process_seconds_after_main": 0.14718228,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.205470975022763,
+      "success": true,
+      "repetition": 25
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0015000789426267147,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 26
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004143361,
+      "process_seconds_after_main": 0.148839558,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20500277867540717,
+      "success": true,
+      "repetition": 26
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004147092,
+      "process_seconds_after_main": 0.146743043,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20286801317706704,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 26
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004154411,
+      "process_seconds_after_main": 0.147985634,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20478396071121097,
+      "success": true,
+      "repetition": 27
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004149282,
+      "process_seconds_after_main": 0.147844846,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20418898481875658,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 27
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.00163273885846138,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 27
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0018035480752587318,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 28
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004142141,
+      "process_seconds_after_main": 0.147101781,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20359071902930737,
+      "success": true,
+      "repetition": 28
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004145581,
+      "process_seconds_after_main": 0.145444002,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.20164970308542252,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 28
+    },
+    {
+      "lane": "auto",
+      "size": 96,
+      "steps": 1,
+      "returncode": 2,
+      "fresh_process_seconds": 0.0017598280683159828,
+      "success": false,
+      "stderr": "DVEB portable pipeline failed: runtime size is outside bounded calibration range",
+      "repetition": 29
+    },
+    {
+      "function": "solve",
+      "pipeline": "shu_euler3d_portable",
+      "module_sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004150252,
+      "process_seconds_after_main": 0.146646034,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "lane": "cuda",
+      "returncode": 0,
+      "fresh_process_seconds": 0.2042970540933311,
+      "success": true,
+      "stderr": "[placement] policy=calibration selected=cuda endpoint=cpu-resident workers=0",
+      "repetition": 29
+    },
+    {
+      "lane": "ceiling-cuda",
+      "size": 96,
+      "steps": 1,
+      "execution_seconds": 0.004133152,
+      "process_seconds_after_main": 0.146529075,
+      "peak_bytes": 73352568,
+      "checksum": 3147506.3852297035,
+      "finite": true,
+      "returncode": 0,
+      "fresh_process_seconds": 0.20379870804026723,
+      "success": true,
+      "repetition": 29
+    }
+  ],
+  "summary": {
+    "auto": {
+      "successes": 0,
+      "failures": 30
+    },
+    "cuda": {
+      "successes": 30,
+      "failures": 0,
+      "fresh_process_seconds": {
+        "mean": 0.20368462773039936,
+        "median": 0.20344160124659538,
+        "minimum": 0.20030711637809873,
+        "maximum": 0.20858789328485727,
+        "p95": 0.20775369415059686
+      },
+      "process_seconds_after_main": {
+        "mean": 0.14729326453333333,
+        "median": 0.1471123485,
+        "minimum": 0.14514818,
+        "maximum": 0.152099665,
+        "p95": 0.149947487
+      },
+      "execution_seconds": {
+        "mean": 0.0041506639,
+        "median": 0.004149396499999999,
+        "minimum": 0.004135472,
+        "maximum": 0.004168781,
+        "p95": 0.004168571
+      }
+    },
+    "ceiling-cuda": {
+      "successes": 30,
+      "failures": 0,
+      "fresh_process_seconds": {
+        "mean": 0.20354618593119084,
+        "median": 0.2036947135347873,
+        "minimum": 0.2003718768246472,
+        "maximum": 0.2063089138828218,
+        "p95": 0.2059890409000218
+      },
+      "process_seconds_after_main": {
+        "mean": 0.1472346702,
+        "median": 0.147008523,
+        "minimum": 0.14519377,
+        "maximum": 0.15081359,
+        "p95": 0.150152938
+      },
+      "execution_seconds": {
+        "mean": 0.0041436028333333335,
+        "median": 0.004143226,
+        "minimum": 0.004131091,
+        "maximum": 0.004163621,
+        "p95": 0.004154411
+      }
+    }
+  }
+}

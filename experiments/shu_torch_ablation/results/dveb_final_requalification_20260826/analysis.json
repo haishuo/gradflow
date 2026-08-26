@@ -1,0 +1,308 @@
+{
+  "schema_version": 1,
+  "selector_rows": [
+    {
+      "size": 8,
+      "steps": 1,
+      "medians_seconds": {
+        "auto": 0.002436863724142313,
+        "cpu_simd[6]": 0.002247640397399664,
+        "cpu_simd[12]": 0.0022297499235719442,
+        "cuda": 0.1689810431562364
+      },
+      "selected": [
+        "cpu_simd[6]"
+      ],
+      "best_candidate": "cpu_simd[12]",
+      "regret": 1.0928865602285045,
+      "absolute_loss_seconds": 0.00020711380057036877,
+      "stable_and_complete": true,
+      "cpu_proximity": 1.0080235337777521,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/selector_n8_s1.json",
+      "raw_sha256": "06a6ceceec0e2b97816edab8258f6a1f0423d55900c1f2cc8d614a6106ab86ee"
+    },
+    {
+      "size": 16,
+      "steps": 1,
+      "medians_seconds": {
+        "auto": 0.005034731002524495,
+        "cpu_simd[6]": 0.006015033228322864,
+        "cpu_simd[12]": 0.005181885091587901,
+        "cuda": 0.1682232222519815
+      },
+      "selected": [
+        "cpu_simd[12]"
+      ],
+      "best_candidate": "cpu_simd[12]",
+      "regret": 0.9716022091454148,
+      "absolute_loss_seconds": -0.000147154089063406,
+      "stable_and_complete": true,
+      "cpu_proximity": 1.0,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/selector_n16_s1.json",
+      "raw_sha256": "f13cb03ecb6e2dffac964aa73cdf0ac4c5234bccad28fb50d0c3719a62d489c0"
+    },
+    {
+      "size": 32,
+      "steps": 1,
+      "medians_seconds": {
+        "auto": 0.024898291565477848,
+        "cpu_simd[6]": 0.030779905850067735,
+        "cpu_simd[12]": 0.024884691927582026,
+        "cuda": 0.17068057297728956
+      },
+      "selected": [
+        "cpu_simd[12]"
+      ],
+      "best_candidate": "cpu_simd[12]",
+      "regret": 1.0005465061787946,
+      "absolute_loss_seconds": 1.3599637895822525e-05,
+      "stable_and_complete": true,
+      "cpu_proximity": 1.0,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/selector_n32_s1.json",
+      "raw_sha256": "56f78f4b596a4dc6e145401c55533beb8d8d54350e5e038e43e30ec4117a17eb"
+    },
+    {
+      "size": 48,
+      "steps": 1,
+      "medians_seconds": {
+        "auto": 0.0767439384944737,
+        "cpu_simd[6]": 0.09561336552724242,
+        "cpu_simd[12]": 0.07672747736796737,
+        "cuda": 0.17409140756353736
+      },
+      "selected": [
+        "cpu_simd[12]"
+      ],
+      "best_candidate": "cpu_simd[12]",
+      "regret": 1.0002145401761013,
+      "absolute_loss_seconds": 1.6461126506328583e-05,
+      "stable_and_complete": true,
+      "cpu_proximity": 1.0,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/selector_n48_s1.json",
+      "raw_sha256": "2cc2eb3f9d602d69ca73084f65ad11e1d2277160d8995d8cc1029e42a846ba71"
+    },
+    {
+      "size": 64,
+      "steps": 1,
+      "medians_seconds": {
+        "auto": 0.18069413327611983,
+        "cpu_simd[6]": 0.22158866212703288,
+        "cpu_simd[12]": 0.17704613250680268,
+        "cuda": 0.1809146055020392
+      },
+      "selected": [
+        "cuda"
+      ],
+      "best_candidate": "cpu_simd[12]",
+      "regret": 1.0206048034919768,
+      "absolute_loss_seconds": 0.00364800076931715,
+      "stable_and_complete": true,
+      "cpu_proximity": null,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/selector_n64_s1.json",
+      "raw_sha256": "9495d98a465584e79b01467e7dd2c5e7cce28d762ca167cc2d47f2228005274e"
+    },
+    {
+      "size": 8,
+      "steps": 10,
+      "medians_seconds": {
+        "auto": 0.006499496987089515,
+        "cpu_simd[6]": 0.007523708511143923,
+        "cpu_simd[12]": 0.006385073531419039,
+        "cuda": 0.16971010388806462
+      },
+      "selected": [
+        "cpu_simd[12]"
+      ],
+      "best_candidate": "cpu_simd[12]",
+      "regret": 1.0179204601336902,
+      "absolute_loss_seconds": 0.00011442345567047596,
+      "stable_and_complete": true,
+      "cpu_proximity": 1.0,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/selector_n8_s10.json",
+      "raw_sha256": "6a4d63f71c5b7d1f263fd0fad95822a6402ff5bdcd37fc9c28aaed373fff0495"
+    },
+    {
+      "size": 16,
+      "steps": 10,
+      "medians_seconds": {
+        "auto": 0.03147152764722705,
+        "cpu_simd[6]": 0.039175816578790545,
+        "cpu_simd[12]": 0.031438317615538836,
+        "cuda": 0.17006589006632566
+      },
+      "selected": [
+        "cpu_simd[12]"
+      ],
+      "best_candidate": "cpu_simd[12]",
+      "regret": 1.0010563552443976,
+      "absolute_loss_seconds": 3.321003168821335e-05,
+      "stable_and_complete": true,
+      "cpu_proximity": 1.0,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/selector_n16_s10.json",
+      "raw_sha256": "aef8a73177d983b021bbae3db1eee52bf38603637eefea4928aad0e7f7ab4757"
+    },
+    {
+      "size": 32,
+      "steps": 10,
+      "medians_seconds": {
+        "auto": 0.17399423499591649,
+        "cpu_simd[6]": 0.273841138696298,
+        "cpu_simd[12]": 0.21590318251401186,
+        "cuda": 0.1736888971645385
+      },
+      "selected": [
+        "cuda"
+      ],
+      "best_candidate": "cuda",
+      "regret": 1.001757958259639,
+      "absolute_loss_seconds": 0.0003053378313779831,
+      "stable_and_complete": true,
+      "cpu_proximity": null,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/selector_n32_s10.json",
+      "raw_sha256": "7eb7cf300b09bb1115e6586b9f34257befb489a9e02ec1a3b1c9c69cce232164"
+    },
+    {
+      "size": 48,
+      "steps": 10,
+      "medians_seconds": {
+        "auto": 0.18200944317504764,
+        "cpu_simd[6]": 0.8947227147873491,
+        "cpu_simd[12]": 0.7037485023029149,
+        "cuda": 0.18264311901293695
+      },
+      "selected": [
+        "cuda"
+      ],
+      "best_candidate": "cuda",
+      "regret": 0.9965305244385121,
+      "absolute_loss_seconds": -0.0006336758378893137,
+      "stable_and_complete": true,
+      "cpu_proximity": null,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/selector_n48_s10.json",
+      "raw_sha256": "17133eeafc52574e957e8f025a4759049813f38055be8118279cf8f0196657a1"
+    },
+    {
+      "size": 64,
+      "steps": 10,
+      "medians_seconds": {
+        "auto": 0.2551616586279124,
+        "cpu_simd[6]": 2.088399787200615,
+        "cpu_simd[12]": 1.6594838639721274,
+        "cuda": 0.20820884592831135
+      },
+      "selected": [
+        "cuda"
+      ],
+      "best_candidate": "cuda",
+      "regret": 1.2255082510556128,
+      "absolute_loss_seconds": 0.046952812699601054,
+      "stable_and_complete": true,
+      "cpu_proximity": null,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/selector_n64_s10.json",
+      "raw_sha256": "b5d4557803c3825745acd91b12d67fe22d4bd7f537759f9dd0b3d6d6790e962b"
+    }
+  ],
+  "selector_median_regret": 1.0014071567520184,
+  "selector_maximum_regret": 1.2255082510556128,
+  "pass_conditions": {
+    "stable_and_complete": true,
+    "median_regret_le_1_10": true,
+    "at_least_80pct_le_1_15": true,
+    "no_large_regret_without_tie": true,
+    "cpu_proximity": true
+  },
+  "selector_passed": true,
+  "automatic_qualified_envelope": {
+    "workload": "matched 3-D Shu Euler JS-WENO-5 float32",
+    "machine_specific": true,
+    "sizes": [
+      8,
+      16,
+      32,
+      48,
+      64
+    ],
+    "steps": [
+      1,
+      10
+    ],
+    "endpoint": "external fresh process"
+  },
+  "automatic_large_grid_status": "refused outside bounded model range",
+  "generated_cuda_status": "qualified against independent native ceiling",
+  "generic_dveb_selector_status": "NO-GO at DVEB commit 2f1f3ab",
+  "large_rows": [
+    {
+      "size": 96,
+      "steps": 1,
+      "medians_seconds": {
+        "cuda": 0.20344160124659538,
+        "ceiling-cuda": 0.2036947135347873
+      },
+      "selected": [],
+      "automatic_successes": 0,
+      "automatic_failures": 30,
+      "automatic_failure_messages": [
+        "DVEB portable pipeline failed: runtime size is outside bounded calibration range"
+      ],
+      "auto_vs_forced_cuda": null,
+      "forced_cuda_vs_ceiling": 0.9987573939264325,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/large_n96_s1.json",
+      "raw_sha256": "f89c8b4814452908ad7f67c1bddaa8941bdcf5428523a7ba46ae653f73c6d5f2"
+    },
+    {
+      "size": 128,
+      "steps": 1,
+      "medians_seconds": {
+        "cuda": 0.24557727971114218,
+        "ceiling-cuda": 0.24541419581510127
+      },
+      "selected": [],
+      "automatic_successes": 0,
+      "automatic_failures": 30,
+      "automatic_failure_messages": [
+        "DVEB portable pipeline failed: runtime size is outside bounded calibration range"
+      ],
+      "auto_vs_forced_cuda": null,
+      "forced_cuda_vs_ceiling": 1.000664525112328,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/large_n128_s1.json",
+      "raw_sha256": "6e7f0e04ff0969bae4a2749c1ee95cefeda1462fbe127e9d9c715bb2dce320ef"
+    },
+    {
+      "size": 96,
+      "steps": 10,
+      "medians_seconds": {
+        "cuda": 0.2460938743315637,
+        "ceiling-cuda": 0.24335069418884814
+      },
+      "selected": [],
+      "automatic_successes": 0,
+      "automatic_failures": 30,
+      "automatic_failure_messages": [
+        "DVEB portable pipeline failed: runtime size is outside bounded calibration range"
+      ],
+      "auto_vs_forced_cuda": null,
+      "forced_cuda_vs_ceiling": 1.0112725388019101,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/large_n96_s10.json",
+      "raw_sha256": "18a74cb994c50a0c29193f4a040aa2cf0509207b58e7b146663adb36f964ca8a"
+    },
+    {
+      "size": 128,
+      "steps": 10,
+      "medians_seconds": {
+        "cuda": 0.330570618622005,
+        "ceiling-cuda": 0.32520420593209565
+      },
+      "selected": [],
+      "automatic_successes": 0,
+      "automatic_failures": 30,
+      "automatic_failure_messages": [
+        "DVEB portable pipeline failed: runtime size is outside bounded calibration range"
+      ],
+      "auto_vs_forced_cuda": null,
+      "forced_cuda_vs_ceiling": 1.0165016706180912,
+      "raw": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_final_requalification_20260826/large_n128_s10.json",
+      "raw_sha256": "97e2e617a3826469f29b1b5db89ff44e207fa2d8a662c27a105fe4d60e30c102"
+    }
+  ]
+}
