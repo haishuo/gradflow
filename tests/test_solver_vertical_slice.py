@@ -115,7 +115,7 @@ def test_euler_step_is_one_compile_graph() -> None:
 def test_native_backend_is_rejected_for_arbitrary_state() -> None:
     state, spacing = periodic_vortex((4, 4, 4))
     solver = _solver(spacing=spacing)
-    with pytest.raises(BackendUnavailableError, match="no arbitrary-state input ABI"):
+    with pytest.raises(BackendUnavailableError, match="no hash-qualified DVEB ABI"):
         solver.run(state, steps=1, backend="dveb")
 
 

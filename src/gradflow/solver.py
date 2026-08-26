@@ -10,6 +10,7 @@ from typing import Any
 import torch
 from torch import Tensor
 
+from .dveb_abi import DvebAbiError, DvebArtifact, DvebPortableAbi
 from .euler3d import (
     EULER_GAMMA,
     euler_cfl_timestep,
@@ -42,9 +43,12 @@ class RunDiagnostics:
 
     backend: BackendDecision
     steps: int
-    simulated_time: float | Tensor
+    simulated_time: float | Tensor | None
     hidden_device_transfers: int
     validation_device_synchronizations: int
+    native_execution_seconds: float | None = None
+    native_total_seconds: float | None = None
+    native_peak_bytes: int | None = None
 
 
 class Solver:
@@ -62,7 +66,7 @@ class Solver:
     Unsupported requests fail rather than being silently approximated.
     """
 
-    _PYTORCH_BACKENDS = {"auto", "pytorch", "pytorch-eager"}
+    _PYTORCH_BACKENDS = {"pytorch", "pytorch-eager"}
     _NATIVE_BACKENDS = {"dveb", "cuda-native", "cpu-simd"}
 
     def __init__(
@@ -76,6 +80,8 @@ class Solver:
         dtype: torch.dtype,
         spacing: tuple[float, float, float] | None = None,
         backend: str = "auto",
+        dveb_artifact: DvebArtifact | None = None,
+        cpu_workers: int = 6,
     ) -> None:
         self.equations = equations
         self.dimension = dimension
@@ -87,8 +93,20 @@ class Solver:
             self._validate_spacing(spacing) if spacing is not None else None
         )
         self.backend = self._normalize_backend(backend)
-        self.last_run: RunDiagnostics | None = None
+        if (
+            isinstance(cpu_workers, bool)
+            or not isinstance(cpu_workers, int)
+            or not 1 <= cpu_workers <= 256
+        ):
+            raise ValueError("cpu_workers must be an integer in 1..256")
+        self.cpu_workers = cpu_workers
         self._validate_problem()
+        self._dveb_artifact = (
+            dveb_artifact if dveb_artifact is not None
+            else DvebArtifact.from_environment()
+        )
+        self._dveb_runtime: DvebPortableAbi | None = None
+        self.last_run: RunDiagnostics | None = None
 
     def _validate_problem(self) -> None:
         equations = self.equations.lower().replace("_", "-")
@@ -117,7 +135,9 @@ class Solver:
                 "only periodic_duplicated boundaries are implemented"
             )
         if self.dtype is not torch.float32:
-            raise UnsupportedProblemError("the matched Euler slice requires torch.float32")
+            raise UnsupportedProblemError(
+                "the matched Euler slice requires torch.float32"
+            )
 
     @staticmethod
     def _normalize_backend(backend: str) -> str:
@@ -132,7 +152,9 @@ class Solver:
         try:
             raw_values = tuple(spacing)
         except TypeError as error:
-            raise TypeError("spacing must contain three positive real values") from error
+            raise TypeError(
+                "spacing must contain three positive real values"
+            ) from error
         if len(raw_values) != 3 or any(
             isinstance(value, bool) or not isinstance(value, Real)
             for value in raw_values
@@ -182,34 +204,125 @@ class Solver:
             )
         return int(state.device.type == "cuda")
 
-    def _select_backend(self, requested: str, state: Tensor) -> BackendDecision:
+    def _native_eligibility(
+        self,
+        state: Tensor,
+        *,
+        steps: int | None,
+        spacing: tuple[float, float, float],
+        cfl: float,
+    ) -> str | None:
+        if self._dveb_artifact is None:
+            return "no hash-qualified DVEB ABI artifact is configured"
+        if steps is None or steps < 1:
+            return "DVEB ABI v1 supports only positive fixed step counts"
+        if state.device.type != "cpu":
+            return "DVEB ABI v1 accepts CPU-resident state only"
+        if state.requires_grad:
+            return "DVEB ABI v1 is not an autograd backend"
+        if not state.is_contiguous():
+            return "DVEB ABI v1 requires contiguous component-major state"
+        if len(set(state.shape[1:])) != 1:
+            return "the qualified DVEB artifact requires a cubic grid"
+        intervals = state.shape[-1] - 1
+        expected_spacing = 10.0 / intervals
+        if any(
+            not math.isclose(value, expected_spacing, rel_tol=0.0, abs_tol=1e-12)
+            for value in spacing
+        ):
+            return "the qualified DVEB artifact requires spacing 10/intervals"
+        if not math.isclose(cfl, 0.1, rel_tol=0.0, abs_tol=1e-12):
+            return "the qualified DVEB artifact has CFL 0.1 compiled into it"
+        return None
+
+    def _select_backend(
+        self,
+        requested: str,
+        state: Tensor,
+        *,
+        steps: int | None,
+        spacing: tuple[float, float, float],
+        cfl: float,
+    ) -> BackendDecision:
         if requested in self._PYTORCH_BACKENDS:
-            reason = (
-                "direct PyTorch is the only arbitrary-state qualified backend"
-                if requested == "auto"
-                else "explicit direct-PyTorch request"
-            )
             return BackendDecision(
                 requested=requested,
                 selected="pytorch-eager",
-                reason=reason,
+                reason="explicit direct-PyTorch request",
+                device=str(state.device),
+            )
+        if requested == "auto":
+            ineligible = self._native_eligibility(
+                state, steps=steps, spacing=spacing, cfl=cfl
+            )
+            if (
+                ineligible is None
+                and self._dveb_artifact is not None
+                and self._dveb_artifact.model is not None
+            ):
+                return BackendDecision(
+                    requested=requested,
+                    selected="dveb-auto",
+                    reason=(
+                        "hash-qualified ABI and bounded placement model are eligible"
+                    ),
+                    device="cpu",
+                )
+            reason = ineligible or "no verified DVEB placement model is configured"
+            return BackendDecision(
+                requested=requested,
+                selected="pytorch-eager",
+                reason=f"direct PyTorch fallback: {reason}",
                 device=str(state.device),
             )
         if requested in self._NATIVE_BACKENDS:
-            raise BackendUnavailableError(
-                "the screened DVEB executable always constructs its benchmark vortex; "
-                "it has no arbitrary-state input ABI and is therefore ineligible for "
-                "Solver.run(initial_state, ...). Use backend='pytorch-eager'."
+            ineligible = self._native_eligibility(
+                state, steps=steps, spacing=spacing, cfl=cfl
+            )
+            if ineligible is not None:
+                raise BackendUnavailableError(ineligible)
+            selected = {
+                "dveb": "dveb-auto",
+                "cuda-native": "dveb-cuda",
+                "cpu-simd": "dveb-cpu",
+            }[requested]
+            if selected == "dveb-auto" and (
+                self._dveb_artifact is None or self._dveb_artifact.model is None
+            ):
+                raise BackendUnavailableError(
+                    "backend='dveb' requires a verified placement model; request "
+                    "'cpu-simd' or 'cuda-native' for an explicit target"
+                )
+            return BackendDecision(
+                requested=requested,
+                selected=selected,
+                reason="explicit hash-qualified DVEB ABI request",
+                device="cpu",
             )
         raise BackendUnavailableError(f"unknown backend: {requested}")
 
+    def _native_backend(self) -> DvebPortableAbi:
+        assert self._dveb_artifact is not None
+        if self._dveb_runtime is None:
+            self._dveb_runtime = DvebPortableAbi(self._dveb_artifact)
+        return self._dveb_runtime
+
     def explain_backend(
-        self, initial_state: Tensor, *, backend: str | None = None
+        self, initial_state: Tensor, *, backend: str | None = None,
+        steps: int = 1, cfl: float = 0.1,
     ) -> BackendDecision:
         """Return the decision without executing or moving the state."""
         self._validate_state(initial_state)
-        requested = self.backend if backend is None else self._normalize_backend(backend)
-        return self._select_backend(requested, initial_state)
+        requested = (
+            self.backend if backend is None else self._normalize_backend(backend)
+        )
+        if self.spacing is None:
+            raise ValueError(
+                "Solver spacing is required to explain backend eligibility"
+            )
+        return self._select_backend(
+            requested, initial_state, steps=steps, spacing=self.spacing, cfl=cfl
+        )
 
     def run(
         self,
@@ -264,9 +377,52 @@ class Solver:
                 or max_steps < 1
             ):
                 raise ValueError("max_steps must be a positive integer")
-        requested = self.backend if backend is None else self._normalize_backend(backend)
-        decision = self._select_backend(requested, initial_state)
+        requested = (
+            self.backend if backend is None else self._normalize_backend(backend)
+        )
+        decision = self._select_backend(
+            requested, initial_state, steps=steps, spacing=run_spacing, cfl=cfl_value
+        )
         validation_synchronizations = self._validate_physical_state(initial_state)
+
+        if decision.selected.startswith("dveb-"):
+            target = decision.selected.removeprefix("dveb-")
+            try:
+                native = self._native_backend().run(
+                    initial_state,
+                    steps=steps if steps is not None else 0,
+                    target=target,
+                    cpu_workers=self.cpu_workers,
+                )
+            except DvebAbiError as error:
+                if requested != "auto" or error.status != 7:
+                    raise
+                decision = BackendDecision(
+                    requested="auto", selected="pytorch-eager",
+                    reason=("direct PyTorch fallback: DVEB placement model refused "
+                            f"this point ({error.message})"),
+                    device=str(initial_state.device),
+                )
+            else:
+                decision = BackendDecision(
+                    requested=requested,
+                    selected=f"dveb-{native.selected_target}",
+                    reason=decision.reason,
+                    device="cpu",
+                )
+                self.last_run = RunDiagnostics(
+                    backend=decision,
+                    steps=steps if steps is not None else 0,
+                    simulated_time=None,
+                    hidden_device_transfers=(
+                        2 if native.selected_target == "cuda" else 0
+                    ),
+                    validation_device_synchronizations=validation_synchronizations,
+                    native_execution_seconds=native.execution_seconds,
+                    native_total_seconds=native.total_seconds,
+                    native_peak_bytes=native.peak_bytes,
+                )
+                return native.state
 
         state = synchronize_duplicate_endpoints(initial_state)
         if steps is not None:

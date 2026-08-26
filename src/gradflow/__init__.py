@@ -23,9 +23,14 @@ from .solver import (
     Solver,
     UnsupportedProblemError,
 )
+from .dveb_abi import DvebAbiError, DvebArtifact, DvebPortableAbi, DvebRunResult
 
 __all__ = [
     "DEFAULT_EPSILON",
+    "DvebAbiError",
+    "DvebArtifact",
+    "DvebPortableAbi",
+    "DvebRunResult",
     "ssp_rk3_step",
     "weno5_rhs",
     "weno5_rhs_gottlieb_periodic",
