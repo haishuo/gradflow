@@ -256,16 +256,33 @@ decision.
 
 DVEB portable ABI v1 subsequently closed the benchmark-initializer gap and
 passed independent arbitrary-state CPU/CUDA/PyTorch correctness gates. The
-next campaign is frozen in `DVEB_ABI_BAKEOFF_PROTOCOL.md` before harness work
-or timing. It excludes automatic placement and compares forced DVEB CPU-6,
-CPU-12, and CUDA against the eligible prepared deployment lanes.
+completed campaign is specified by `DVEB_ABI_BAKEOFF_PROTOCOL.md`; its full
+analysis is in `DVEB_ABI_BAKEOFF_RESULTS.md`, with hashed raw results under
+`results/dveb_abi_bakeoff_20260826/`. It excludes automatic placement and
+compares forced DVEB CPU-6, CPU-12, and CUDA against the eligible prepared
+deployment lanes.
 
 That protocol separates fresh-application latency, the first `Solver.run`
 from an already available CPU state, warm repeated `Solver.run`, and true
 device-resident execution. ABI v1 is ineligible for the public resident
 endpoint because it accepts CPU pointers only; its internal CUDA execution
-timer is diagnostic rather than a transfer-subtracted substitute. No counted
-measurements have begun.
+timer is diagnostic rather than a transfer-subtracted substitute.
+
+All frozen gates passed. For standalone applications, Fortran won the smaller
+counted points and DVEB-CUDA won at `N>=96` for one step and `N>=64` for ten
+steps. With a ready CPU state, DVEB CPU-12 won the small first-call region,
+AOT PyTorch won the middle, and DVEB-CUDA won the large ten-step points. For
+warm CPU-in/CPU-out calls, DVEB-CUDA won every counted point. At `N=128`, ten
+steps, the medians were 1.221 seconds for a standalone DVEB-CUDA invocation
+versus 30.504 seconds for Fortran, and 0.162 seconds for a warm DVEB-CUDA call
+versus 0.718 seconds for AOT PyTorch. AOT and persistent compiled PyTorch were
+effectively tied in the separate device-resident endpoint, where ABI v1 is
+unsupported. Empty-cache TorchInductor compilation cost about 45--48 seconds
+inside the first call at the three cold diagnostic points.
+
+DVEB therefore qualifies for this matched WENO workload in bounded CPU and
+CUDA regions. This is not an automatic-placement result, a general DVEB
+claim, or evidence for arbitrary-order WENO.
 
 ## Redistribution status
 

@@ -1,0 +1,1060 @@
+{
+  "aot_packages": {
+    "128": {
+      "build": {
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/build_abi_aot_package.py",
+          "--size",
+          "128",
+          "--output",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n128.pt2"
+        ],
+        "compile_package_seconds": 29.008369156625122,
+        "cuda_runtime": "13.0",
+        "export_seconds": 1.5675335619598627,
+        "external_seconds": 33.339615121949464,
+        "package_bytes": 5779155,
+        "size": 128,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)",
+        "torch_version": "2.13.0+cu130"
+      },
+      "build_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-build/n128",
+      "bytes": 5779155,
+      "extraction_cache_preparation": {
+        "checksum_float64": 7402648.082672467,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "aot-inductor",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "128",
+          "--steps",
+          "1",
+          "--package",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n128.pt2"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 2780240896,
+          "peak_reserved_bytes": 3409969152,
+          "selected": "aot-inductor"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 5.800981010310352,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "aot-inductor",
+        "max_rss_kib": 970848,
+        "observations": [
+          {
+            "call_seconds": 0.15915257204324007,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 10733445,
+        "process_seconds_after_main": 4.770628648810089,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 4.560898188035935,
+        "size": 128,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      },
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n128.pt2",
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-runtime/n128",
+      "sha256": "4242fe38a821ccfe9bdd635e2ef3d0555b7c6d27d91ad8969629a9f080465dff"
+    },
+    "16": {
+      "build": {
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/build_abi_aot_package.py",
+          "--size",
+          "16",
+          "--output",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n16.pt2"
+        ],
+        "compile_package_seconds": 25.53222975693643,
+        "cuda_runtime": "13.0",
+        "export_seconds": 1.5594648006372154,
+        "external_seconds": 29.84691275609657,
+        "package_bytes": 4486715,
+        "size": 16,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)",
+        "torch_version": "2.13.0+cu130"
+      },
+      "build_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-build/n16",
+      "bytes": 4486715,
+      "extraction_cache_preparation": {
+        "checksum_float64": 16967.418532633328,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "aot-inductor",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "16",
+          "--steps",
+          "1",
+          "--package",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n16.pt2"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 6679552,
+          "peak_reserved_bytes": 27262976,
+          "selected": "aot-inductor"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 5.668764252681285,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "aot-inductor",
+        "max_rss_kib": 793712,
+        "observations": [
+          {
+            "call_seconds": 0.07695040386170149,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 24565,
+        "process_seconds_after_main": 4.651831790339202,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 4.573062584735453,
+        "size": 16,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      },
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n16.pt2",
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-runtime/n16",
+      "sha256": "7dfea1cbb0513398ed78834426d688ac6a027ebcece64ca1ad74fe2bdfd78fd2"
+    },
+    "160": {
+      "build": {
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/build_abi_aot_package.py",
+          "--size",
+          "160",
+          "--output",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n160.pt2"
+        ],
+        "compile_package_seconds": 29.894234547857195,
+        "cuda_runtime": "13.0",
+        "export_seconds": 1.5576017270796,
+        "external_seconds": 34.21555629000068,
+        "package_bytes": 5929363,
+        "size": 160,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)",
+        "torch_version": "2.13.0+cu130"
+      },
+      "build_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-build/n160",
+      "bytes": 5929363,
+      "extraction_cache_preparation": {
+        "checksum_float64": 14390484.131778179,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "aot-inductor",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "160",
+          "--steps",
+          "1",
+          "--package",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n160.pt2"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 5384132096,
+          "peak_reserved_bytes": 6582960128,
+          "selected": "aot-inductor"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 5.988325112033635,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "aot-inductor",
+        "max_rss_kib": 1123968,
+        "observations": [
+          {
+            "call_seconds": 0.25129438703879714,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 20866405,
+        "process_seconds_after_main": 4.938081755768508,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 4.578027734998614,
+        "size": 160,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      },
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n160.pt2",
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-runtime/n160",
+      "sha256": "08d08d319bd691f9c487d2fafc96f49db61aedd2c7b512ffc30f015e38b2b8fd"
+    },
+    "32": {
+      "build": {
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/build_abi_aot_package.py",
+          "--size",
+          "32",
+          "--output",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n32.pt2"
+        ],
+        "compile_package_seconds": 25.185151545796543,
+        "cuda_runtime": "13.0",
+        "export_seconds": 1.5699994429014623,
+        "external_seconds": 29.488587473053485,
+        "package_bytes": 5299579,
+        "size": 32,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)",
+        "torch_version": "2.13.0+cu130"
+      },
+      "build_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-build/n32",
+      "bytes": 5299579,
+      "extraction_cache_preparation": {
+        "checksum_float64": 124008.5738134215,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "aot-inductor",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "32",
+          "--steps",
+          "1",
+          "--package",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n32.pt2"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 48050176,
+          "peak_reserved_bytes": 71303168,
+          "selected": "aot-inductor"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 5.72866099094972,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "aot-inductor",
+        "max_rss_kib": 798916,
+        "observations": [
+          {
+            "call_seconds": 0.07836897298693657,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 179685,
+        "process_seconds_after_main": 4.713415774982423,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 4.631790748331696,
+        "size": 32,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      },
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n32.pt2",
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-runtime/n32",
+      "sha256": "e048eea4f30baaf67e796e7a0b6e570c7d16f02a013e05508d70b306e8fc760a"
+    },
+    "6": {
+      "build": {
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/build_abi_aot_package.py",
+          "--size",
+          "6",
+          "--output",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n6.pt2"
+        ],
+        "compile_package_seconds": 24.06359831802547,
+        "cuda_runtime": "13.0",
+        "export_seconds": 1.5633776877075434,
+        "external_seconds": 28.413364024367183,
+        "package_bytes": 4224605,
+        "size": 6,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)",
+        "torch_version": "2.13.0+cu130"
+      },
+      "build_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-build/n6",
+      "bytes": 4224605,
+      "extraction_cache_preparation": {
+        "checksum_float64": 1185.46551122254,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "aot-inductor",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "6",
+          "--steps",
+          "1",
+          "--package",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n6.pt2"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 508416,
+          "peak_reserved_bytes": 2097152,
+          "selected": "aot-inductor"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 5.655661867931485,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "aot-inductor",
+        "max_rss_kib": 793356,
+        "observations": [
+          {
+            "call_seconds": 0.07591461390256882,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 1715,
+        "process_seconds_after_main": 4.638799192849547,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 4.561789664905518,
+        "size": 6,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      },
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n6.pt2",
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-runtime/n6",
+      "sha256": "aefc13388a1935f1f3629fff548cc286c6dfc468bb949006eb388d79f7be9666"
+    },
+    "64": {
+      "build": {
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/build_abi_aot_package.py",
+          "--size",
+          "64",
+          "--output",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n64.pt2"
+        ],
+        "compile_package_seconds": 27.413687736727297,
+        "cuda_runtime": "13.0",
+        "export_seconds": 1.5588811836205423,
+        "external_seconds": 31.70862326491624,
+        "package_bytes": 5390139,
+        "size": 64,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)",
+        "torch_version": "2.13.0+cu130"
+      },
+      "build_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-build/n64",
+      "bytes": 5390139,
+      "extraction_cache_preparation": {
+        "checksum_float64": 947234.7443941614,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "aot-inductor",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "64",
+          "--steps",
+          "1",
+          "--package",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n64.pt2"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 358987264,
+          "peak_reserved_bytes": 469762048,
+          "selected": "aot-inductor"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 5.68197882687673,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "aot-inductor",
+        "max_rss_kib": 820988,
+        "observations": [
+          {
+            "call_seconds": 0.08936199406161904,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 1373125,
+        "process_seconds_after_main": 4.65288973832503,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 4.555276007857174,
+        "size": 64,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      },
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n64.pt2",
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-runtime/n64",
+      "sha256": "3dfdfc594fcaceefff24ba2e58f066b133c49fcdf3b4214cddaf4974ca8e5f04"
+    },
+    "8": {
+      "build": {
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/build_abi_aot_package.py",
+          "--size",
+          "8",
+          "--output",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n8.pt2"
+        ],
+        "compile_package_seconds": 24.33210952905938,
+        "cuda_runtime": "13.0",
+        "export_seconds": 1.5588071402162313,
+        "external_seconds": 28.60650982800871,
+        "package_bytes": 4193245,
+        "size": 8,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)",
+        "torch_version": "2.13.0+cu130"
+      },
+      "build_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-build/n8",
+      "bytes": 4193245,
+      "extraction_cache_preparation": {
+        "checksum_float64": 2522.1505407463615,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "aot-inductor",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "8",
+          "--steps",
+          "1",
+          "--package",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n8.pt2"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 1046528,
+          "peak_reserved_bytes": 2097152,
+          "selected": "aot-inductor"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 5.645876463036984,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "aot-inductor",
+        "max_rss_kib": 793264,
+        "observations": [
+          {
+            "call_seconds": 0.07688701618462801,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 3645,
+        "process_seconds_after_main": 4.63689344888553,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 4.558892969042063,
+        "size": 8,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      },
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n8.pt2",
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-runtime/n8",
+      "sha256": "9e877a66cf8a5aac5296c5eb4eddf51645b5245bc2b6b25b87368e7640ca774e"
+    },
+    "96": {
+      "build": {
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/build_abi_aot_package.py",
+          "--size",
+          "96",
+          "--output",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n96.pt2"
+        ],
+        "compile_package_seconds": 28.354143685661256,
+        "cuda_runtime": "13.0",
+        "export_seconds": 1.5667470078915358,
+        "external_seconds": 32.702033318113536,
+        "package_bytes": 5572484,
+        "size": 96,
+        "stderr": "/usr/lib/python3.12/copyreg.py:99: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.\n  return cls.__new__(cls, *args)",
+        "torch_version": "2.13.0+cu130"
+      },
+      "build_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-build/n96",
+      "bytes": 5572484,
+      "extraction_cache_preparation": {
+        "checksum_float64": 3147506.4358872287,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "aot-inductor",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "96",
+          "--steps",
+          "1",
+          "--package",
+          "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n96.pt2"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 1187891712,
+          "peak_reserved_bytes": 1472200704,
+          "selected": "aot-inductor"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 5.733708980027586,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "aot-inductor",
+        "max_rss_kib": 867256,
+        "observations": [
+          {
+            "call_seconds": 0.1140629998408258,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 4563365,
+        "process_seconds_after_main": 4.716057202313095,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 4.57737919408828,
+        "size": 96,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      },
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/aot/shu3d_n96.pt2",
+      "runtime_cache": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/aot-runtime/n96",
+      "sha256": "418c705e5495017b9556d97949863b13ba84032fed38b12669f54b91cf36a5f6"
+    }
+  },
+  "compile_caches": {
+    "128": {
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/torch-compile/n128",
+      "preparation": {
+        "checksum_float64": 7402648.082672467,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "persistent-compile",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "128",
+          "--steps",
+          "1"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 2827836928,
+          "peak_reserved_bytes": 3479175168,
+          "selected": "persistent-compile"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 32.566175275016576,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "persistent-compile",
+        "max_rss_kib": 1396032,
+        "observations": [
+          {
+            "call_seconds": 29.864472075831145,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 10733445,
+        "process_seconds_after_main": 30.546594285406172,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 0.6314740008674562,
+        "size": 128,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      }
+    },
+    "16": {
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/torch-compile/n16",
+      "preparation": {
+        "checksum_float64": 16967.418532633328,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "persistent-compile",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "16",
+          "--steps",
+          "1"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 57019904,
+          "peak_reserved_bytes": 106954752,
+          "selected": "persistent-compile"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 28.229487045202404,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "persistent-compile",
+        "max_rss_kib": 1128796,
+        "observations": [
+          {
+            "call_seconds": 25.640957084018737,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 24565,
+        "process_seconds_after_main": 26.289721078705043,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 0.6471072142012417,
+        "size": 16,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      }
+    },
+    "160": {
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/torch-compile/n160",
+      "preparation": {
+        "checksum_float64": 14390484.131778179,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "persistent-compile",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "160",
+          "--steps",
+          "1"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 5434472960,
+          "peak_reserved_bytes": 6641680384,
+          "selected": "persistent-compile"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 33.13719011284411,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "persistent-compile",
+        "max_rss_kib": 1634712,
+        "observations": [
+          {
+            "call_seconds": 30.34773655096069,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 20866405,
+        "process_seconds_after_main": 31.091368516441435,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 0.6482718787156045,
+        "size": 160,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      }
+    },
+    "32": {
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/torch-compile/n32",
+      "preparation": {
+        "checksum_float64": 124008.5738134215,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "persistent-compile",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "32",
+          "--steps",
+          "1"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 97865216,
+          "peak_reserved_bytes": 117440512,
+          "selected": "persistent-compile"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 28.284794428851455,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "persistent-compile",
+        "max_rss_kib": 1126912,
+        "observations": [
+          {
+            "call_seconds": 25.608499828260392,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 179685,
+        "process_seconds_after_main": 26.25511870905757,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 0.6437503648921847,
+        "size": 32,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      }
+    },
+    "6": {
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/torch-compile/n6",
+      "preparation": {
+        "checksum_float64": 1185.46551122254,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "persistent-compile",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "6",
+          "--steps",
+          "1"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 50849280,
+          "peak_reserved_bytes": 52428800,
+          "selected": "persistent-compile"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 27.46658310526982,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "persistent-compile",
+        "max_rss_kib": 1087420,
+        "observations": [
+          {
+            "call_seconds": 24.840029223356396,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 1715,
+        "process_seconds_after_main": 25.493529930710793,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 0.6524418340995908,
+        "size": 6,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      }
+    },
+    "64": {
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/torch-compile/n64",
+      "preparation": {
+        "checksum_float64": 947234.7443941614,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "persistent-compile",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "64",
+          "--steps",
+          "1"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 408662528,
+          "peak_reserved_bytes": 551550976,
+          "selected": "persistent-compile"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 30.25185893010348,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "persistent-compile",
+        "max_rss_kib": 1141716,
+        "observations": [
+          {
+            "call_seconds": 27.628303178120404,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 1373125,
+        "process_seconds_after_main": 28.288624279666692,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 0.6518945773132145,
+        "size": 64,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      }
+    },
+    "8": {
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/torch-compile/n8",
+      "preparation": {
+        "checksum_float64": 2522.1505407463615,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "persistent-compile",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "8",
+          "--steps",
+          "1"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 51387392,
+          "peak_reserved_bytes": 52428800,
+          "selected": "persistent-compile"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 27.458643379155546,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "persistent-compile",
+        "max_rss_kib": 1099964,
+        "observations": [
+          {
+            "call_seconds": 24.839471846818924,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 3645,
+        "process_seconds_after_main": 25.494467739015818,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 0.6539184967987239,
+        "size": 8,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      }
+    },
+    "96": {
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/cache/torch-compile/n96",
+      "preparation": {
+        "checksum_float64": 3147506.4358872287,
+        "command": [
+          "/mnt/projects/dveb/.venv-torch/bin/python",
+          "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+          "--lane",
+          "persistent-compile",
+          "--endpoint",
+          "prepare",
+          "--size",
+          "96",
+          "--steps",
+          "1"
+        ],
+        "cuda_runtime": "13.0",
+        "diagnostics": {
+          "peak_allocated_bytes": 1236852736,
+          "peak_reserved_bytes": 1572864000,
+          "selected": "persistent-compile"
+        },
+        "endpoint": "prepare",
+        "external_seconds": 31.464891071897,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "lane": "persistent-compile",
+        "max_rss_kib": 1220412,
+        "observations": [
+          {
+            "call_seconds": 28.75058860098943,
+            "repetition_in_worker": 0
+          }
+        ],
+        "output_elements": 4563365,
+        "process_seconds_after_main": 29.41285855928436,
+        "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+        "setup_seconds": 0.6381925172172487,
+        "size": 96,
+        "steps": 1,
+        "torch_version": "2.13.0+cu130",
+        "warmups": 0
+      }
+    }
+  },
+  "counted_and_capacity_sizes": [
+    8,
+    16,
+    32,
+    64,
+    96,
+    128,
+    160
+  ],
+  "created_utc": "2026-08-26T10:15:03.920660+00:00",
+  "dveb": {
+    "header": {
+      "bytes": 2850,
+      "frozen_copy": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/dveb/shu_euler3d_portable_abi_v1.h",
+      "sha256": "c14731d87423f95f9b19f216ddb7d4d2719e7196b6bd0d19205598ab23015c2a",
+      "source": "/mnt/projects/dveb/build/shu_euler3d_portable/shu_euler3d_portable_abi_v1.h"
+    },
+    "library": {
+      "bytes": 465624,
+      "frozen_copy": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/dveb/shu_euler3d_portable_abi_v1.so",
+      "sha256": "cfa939a5b492ed5711a432391d604ceda65ed55c6df7a4a77b6bfabdd7bd1b1c",
+      "source": "/mnt/projects/dveb/build/shu_euler3d_portable/shu_euler3d_portable_abi_v1.so"
+    },
+    "manifest": {
+      "bytes": 891,
+      "frozen_copy": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/dveb/artifact.json",
+      "sha256": "96c89aaeb01bce66928f57916b36eb3d3db01582aeabecabf04046db3179e0d0",
+      "source": "/mnt/projects/dveb/build/shu_euler3d_portable/artifact.json"
+    },
+    "module": {
+      "bytes": 13698,
+      "frozen_copy": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/dveb/source/shu_portable_math.h",
+      "sha256": "555c6cd2d7947160ce25182a860bab8288727d251d546c22232da27b59aa6260",
+      "source": "/mnt/projects/dveb/examples/shu_euler3d/shu_portable_math.h"
+    },
+    "program": {
+      "bytes": 413,
+      "frozen_copy": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/dveb/source/shu_euler3d_portable.dveb",
+      "sha256": "c6e5bd916f951ff412eac99863a74f8c98e5e14b044097a7ad59fe26f704c381",
+      "source": "/mnt/projects/dveb/examples/shu_euler3d/shu_euler3d_portable.dveb"
+    }
+  },
+  "dveb_commit": "f71d86717c065841c002b41287ff943e9f0a7898",
+  "environment": {
+    "gfortran": "GNU Fortran (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "kernel": "6.8.0-134-generic",
+    "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2023 NVIDIA Corporation\nBuilt on Fri_Jan__6_16:45:21_PST_2023\nCuda compilation tools, release 12.0, V12.0.140\nBuild cuda_12.0.r12.0/compiler.32267302_0",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python_version": "Python 3.12.3",
+    "torch": "2.13.0+cu130 13.0"
+  },
+  "gradflow_commit_before_harness": "0f37bb463cf14dc690701071adcec7ad339e6295",
+  "gradflow_protocol_commit": "e5df176",
+  "gradflow_worktree_commit_at_preparation": "f7c9620dab79520c257f4f406b4d0e746629e020",
+  "inputs": {
+    "DVEB_ABI_BAKEOFF_PROTOCOL.md": {
+      "bytes": 17205,
+      "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/DVEB_ABI_BAKEOFF_PROTOCOL.md",
+      "sha256": "df77178e7610c0791d42209595efeced0c9136037d5776e0ad16414ace470eba"
+    },
+    "abi_bakeoff_worker.py": {
+      "bytes": 8745,
+      "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/abi_bakeoff_worker.py",
+      "sha256": "5b74e52dafbb230a5db897b5e6e7af0d1617d615636d02dc59bd90e4d3ece0db"
+    },
+    "analyze_dveb_abi_bakeoff.py": {
+      "bytes": 8951,
+      "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/analyze_dveb_abi_bakeoff.py",
+      "sha256": "a7aa381fe3de645591d6348a96664fb13b8bc497bfa59dbaf83b9c0905f50703"
+    },
+    "build_abi_aot_package.py": {
+      "bytes": 1611,
+      "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/build_abi_aot_package.py",
+      "sha256": "023b9e03b567cb2517cf2c751b5912f32caf325c91e628984be11bed17265a4e"
+    },
+    "check_dveb_abi_bakeoff.py": {
+      "bytes": 9834,
+      "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/check_dveb_abi_bakeoff.py",
+      "sha256": "4dee8b9a8658947f439156b30691bdeac2ad3b51a0ad240c7343da3ed88e9dcc"
+    },
+    "prepare_dveb_abi_bakeoff.py": {
+      "bytes": 10683,
+      "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/prepare_dveb_abi_bakeoff.py",
+      "sha256": "dba7e2e60fe50dee503e715798a0b100065b16192c3cc21b7cb71623c9dc0dc1"
+    },
+    "run_dveb_abi_bakeoff.py": {
+      "bytes": 12879,
+      "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/run_dveb_abi_bakeoff.py",
+      "sha256": "7f5fb5d1e5170eafa8e46d079cd4014e138f44cdb05e5f3924fd636434fff940"
+    },
+    "src/gradflow/__init__.py": {
+      "bytes": 1144,
+      "path": "/mnt/projects/gradflow/src/gradflow/__init__.py",
+      "sha256": "12e93c4e8263bb3c6f63dc0f1ad8ab9193b90f39418a87d3dc6b9652fbf9f614"
+    },
+    "src/gradflow/dveb_abi.py": {
+      "bytes": 12762,
+      "path": "/mnt/projects/gradflow/src/gradflow/dveb_abi.py",
+      "sha256": "ca8f8485ff7a8a4ebbf0f4e96efc0367a9cd4b4d378ebbf2e09f834103f195c7"
+    },
+    "src/gradflow/euler3d.py": {
+      "bytes": 13294,
+      "path": "/mnt/projects/gradflow/src/gradflow/euler3d.py",
+      "sha256": "5cdede4de1ff9247b82a5c0a4e6f1c0bad12f4181760b817d74100aee4bfabc2"
+    },
+    "src/gradflow/solver.py": {
+      "bytes": 18281,
+      "path": "/mnt/projects/gradflow/src/gradflow/solver.py",
+      "sha256": "ce6f63d516b6ce7ab76fb51db17457f4b168c679ca3b7eef71f9bfaae3232b5e"
+    },
+    "src/gradflow/weno5.py": {
+      "bytes": 6940,
+      "path": "/mnt/projects/gradflow/src/gradflow/weno5.py",
+      "sha256": "719042dbbc3b5cc341f71505dd0fa4cda48955ef9f0cb1ebee860b5f632cfc31"
+    }
+  },
+  "native": {
+    "ceiling": {
+      "bytes": 407904,
+      "frozen_copy": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/bin/shu3d_ceiling",
+      "sha256": "873a9227196664398012e7d42a27e29ec9cd3610c45a4c61ab40a0688aed3caa",
+      "source": "/mnt/projects/dveb/tools/shu_euler3d_ceiling/build/shu_ceiling"
+    },
+    "fortran": {
+      "build_command": [
+        "gfortran",
+        "-O3",
+        "-march=native",
+        "-std=f2008",
+        "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/source/shu_euler_3d.f90",
+        "-o",
+        "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/bin/shu_euler_3d"
+      ],
+      "build_seconds": 0.40686476370319724,
+      "bytes": 52000,
+      "path": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/bin/shu_euler_3d",
+      "sha256": "9c4bb1b8cd976b3b3ebd0c4a124d3aa0a85720fa2b837d54833d74d2b526c29f",
+      "source": {
+        "bytes": 17078,
+        "frozen_copy": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/source/shu_euler_3d.f90",
+        "sha256": "1c114112f74f32f34f0261a428387b2d58f14dcb844a89a70808296804cb9c83",
+        "source": "/mnt/projects/gradflow/experiments/shu_torch_ablation/fortran/shu_euler_3d.f90"
+      }
+    }
+  },
+  "prepared_sizes": [
+    6,
+    8,
+    16,
+    32,
+    64,
+    96,
+    128,
+    160
+  ],
+  "protocol": "DVEB_ABI_BAKEOFF_PROTOCOL.md",
+  "python": "/mnt/projects/dveb/.venv-torch/bin/python",
+  "schema": "gradflow-dveb-abi-bakeoff-preparation-v1"
+}

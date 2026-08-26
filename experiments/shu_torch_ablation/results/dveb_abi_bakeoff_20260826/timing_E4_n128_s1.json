@@ -1,0 +1,1014 @@
+{
+  "blocks": [
+    {
+      "block": 0,
+      "order": [
+        "aot-inductor",
+        "persistent-compile",
+        "direct-eager"
+      ],
+      "telemetry_after": {
+        "cpu_mhz": "4649.4",
+        "gpu": "49, 2895, 14001, P0, 165.41, 0x0000000000000000"
+      },
+      "telemetry_before": {
+        "cpu_mhz": "2121.0",
+        "gpu": "46, 2902, 14001, P0, 109.39, 0x0000000000000000"
+      }
+    },
+    {
+      "block": 1,
+      "order": [
+        "persistent-compile",
+        "aot-inductor",
+        "direct-eager"
+      ],
+      "telemetry_after": {
+        "cpu_mhz": "3006.1",
+        "gpu": "49, 2895, 14001, P0, 165.18, 0x0000000000000000"
+      },
+      "telemetry_before": {
+        "cpu_mhz": "3742.0",
+        "gpu": "49, 2895, 14001, P0, 156.51, 0x0000000000000000"
+      }
+    },
+    {
+      "block": 2,
+      "order": [
+        "persistent-compile",
+        "aot-inductor",
+        "direct-eager"
+      ],
+      "telemetry_after": {
+        "cpu_mhz": "3079.8",
+        "gpu": "50, 2895, 14001, P0, 171.67, 0x0000000000000000"
+      },
+      "telemetry_before": {
+        "cpu_mhz": "3763.6",
+        "gpu": "49, 2895, 14001, P0, 165.18, 0x0000000000000000"
+      }
+    },
+    {
+      "block": 3,
+      "order": [
+        "direct-eager",
+        "persistent-compile",
+        "aot-inductor"
+      ],
+      "telemetry_after": {
+        "cpu_mhz": "2236.0",
+        "gpu": "50, 2895, 14001, P0, 180.64, 0x0000000000000000"
+      },
+      "telemetry_before": {
+        "cpu_mhz": "3428.3",
+        "gpu": "50, 2895, 14001, P0, 159.42, 0x0000000000000000"
+      }
+    },
+    {
+      "block": 4,
+      "order": [
+        "aot-inductor",
+        "persistent-compile",
+        "direct-eager"
+      ],
+      "telemetry_after": {
+        "cpu_mhz": "2584.2",
+        "gpu": "52, 2895, 14001, P0, 167.56, 0x0000000000000000"
+      },
+      "telemetry_before": {
+        "cpu_mhz": "3406.8",
+        "gpu": "50, 2895, 14001, P0, 180.64, 0x0000000000000000"
+      }
+    },
+    {
+      "block": 5,
+      "order": [
+        "persistent-compile",
+        "direct-eager",
+        "aot-inductor"
+      ],
+      "telemetry_after": {
+        "cpu_mhz": "3183.2",
+        "gpu": "52, 2895, 14001, P0, 186.70, 0x0000000000000000"
+      },
+      "telemetry_before": {
+        "cpu_mhz": "2540.8",
+        "gpu": "52, 2895, 14001, P0, 154.66, 0x0000000000000000"
+      }
+    }
+  ],
+  "created_utc": "2026-08-26T14:37:39.993128+00:00",
+  "environment": {
+    "cpu": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           48 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  12\nOn-line CPU(s) list:                     0-11\nVendor ID:                               AuthenticAMD\nModel name:                              AMD Ryzen 5 7600X 6-Core Processor\nCPU family:                              25\nModel:                                   97\nThread(s) per core:                      2\nCore(s) per socket:                      6\nSocket(s):                               1\nStepping:                                2\nCPU(s) scaling MHz:                      55%\nCPU max MHz:                             5453.0000\nCPU min MHz:                             545.0000\nBogoMIPS:                                9400.07\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd cppc amd_ibpb_ret arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid overflow_recov succor smca fsrm flush_l1d ibpb_exit_to_user\nVirtualization:                          AMD-V\nL1d cache:                               192 KiB (6 instances)\nL1i cache:                               192 KiB (6 instances)\nL2 cache:                                6 MiB (6 instances)\nL3 cache:                                32 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-11\nVulnerability Gather data sampling:      Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Not affected\nVulnerability Spec rstack overflow:      Mitigation; Safe RET\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; STIBP always-on; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Mitigation; Clear CPU buffers\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Mitigation; IBPB before exit to userspace",
+    "governor": "powersave\npowersave\npowersave\npowersave\npowersave\npowersave\npowersave\npowersave\npowersave\npowersave\npowersave\npowersave",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti, 580.173.02, 16303 MiB",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]"
+  },
+  "lanes": [
+    "direct-eager",
+    "persistent-compile",
+    "aot-inductor"
+  ],
+  "manifest": "/mnt/artifacts/gradflow/dveb_abi_bakeoff_20260826_v2/manifest.json",
+  "mode": "E4",
+  "records": [
+    {
+      "block": 0,
+      "checksum_float64": 7402648.082672467,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 2823175168,
+        "peak_reserved_bytes": 3409969152,
+        "selected": "aot-inductor"
+      },
+      "endpoint": "E4",
+      "external_seconds": 3.369920721743256,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "aot-inductor",
+      "max_rss_kib": 970940,
+      "observations": [
+        {
+          "call_seconds": 0.06977250892668962,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.06980321928858757,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.06979533890262246,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.06978778913617134,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.06977028865367174,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 2.337153514381498,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 1.4985912372358143,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 0,
+      "checksum_float64": 7402648.082672467,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 2823175168,
+        "peak_reserved_bytes": 3409969152,
+        "selected": "persistent-compile"
+      },
+      "endpoint": "E4",
+      "external_seconds": 5.907980373129249,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "persistent-compile",
+      "max_rss_kib": 1126396,
+      "observations": [
+        {
+          "call_seconds": 0.06994959805160761,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.07006060844287276,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.07011278718709946,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.07011885708197951,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.07001089723780751,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 3.828719928395003,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 0.6447340929880738,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 0,
+      "checksum_float64": 7402648.083326292,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 4476814336,
+        "peak_reserved_bytes": 5869928448,
+        "selected": "direct-eager"
+      },
+      "endpoint": "E4",
+      "external_seconds": 5.458105917088687,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "direct-eager",
+      "max_rss_kib": 1153800,
+      "observations": [
+        {
+          "call_seconds": 0.42559777293354273,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.4255394241772592,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.42565099196508527,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.42570760287344456,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.4255706029944122,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 4.5547087411396205,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 5.2918680012226105e-05,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 1,
+      "checksum_float64": 7402648.082672467,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 2823175168,
+        "peak_reserved_bytes": 3409969152,
+        "selected": "persistent-compile"
+      },
+      "endpoint": "E4",
+      "external_seconds": 5.886669273022562,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "persistent-compile",
+      "max_rss_kib": 1126480,
+      "observations": [
+        {
+          "call_seconds": 0.0699660568498075,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.07016246719285846,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.07010858738794923,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.07006711699068546,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.07005986804142594,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 3.844164114911109,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 0.6350970780476928,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 1,
+      "checksum_float64": 7402648.082672467,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 2823175168,
+        "peak_reserved_bytes": 3409969152,
+        "selected": "aot-inductor"
+      },
+      "endpoint": "E4",
+      "external_seconds": 3.4091505049727857,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "aot-inductor",
+      "max_rss_kib": 970828,
+      "observations": [
+        {
+          "call_seconds": 0.06978410901501775,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.06982588907703757,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.06977673899382353,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.06979879876598716,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.06977790920063853,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 2.375671365298331,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 1.5361676812171936,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 1,
+      "checksum_float64": 7402648.083326292,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 4476814336,
+        "peak_reserved_bytes": 5869928448,
+        "selected": "direct-eager"
+      },
+      "endpoint": "E4",
+      "external_seconds": 5.457383584231138,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "direct-eager",
+      "max_rss_kib": 1153672,
+      "observations": [
+        {
+          "call_seconds": 0.4257592218928039,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.4258350017480552,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.42559900181367993,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.4255786328576505,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.42587436083704233,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 4.553503246046603,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 4.906998947262764e-05,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 2,
+      "checksum_float64": 7402648.082672467,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 2823175168,
+        "peak_reserved_bytes": 3409969152,
+        "selected": "persistent-compile"
+      },
+      "endpoint": "E4",
+      "external_seconds": 5.8975489740259945,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "persistent-compile",
+      "max_rss_kib": 1126752,
+      "observations": [
+        {
+          "call_seconds": 0.06996686803176999,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.0699961269274354,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.07014338718727231,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.07009742688387632,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.0700229280628264,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 3.7934453021734953,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 0.6376493126153946,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 2,
+      "checksum_float64": 7402648.082672467,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 2823175168,
+        "peak_reserved_bytes": 3409969152,
+        "selected": "aot-inductor"
+      },
+      "endpoint": "E4",
+      "external_seconds": 3.4200282650999725,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "aot-inductor",
+      "max_rss_kib": 971104,
+      "observations": [
+        {
+          "call_seconds": 0.06978387804701924,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.06977357901632786,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.06977106910198927,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.06979597918689251,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.06982026901096106,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 2.3770425557158887,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 1.5375552154146135,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 2,
+      "checksum_float64": 7402648.083326292,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 4476814336,
+        "peak_reserved_bytes": 5869928448,
+        "selected": "direct-eager"
+      },
+      "endpoint": "E4",
+      "external_seconds": 5.456609653774649,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "direct-eager",
+      "max_rss_kib": 1154064,
+      "observations": [
+        {
+          "call_seconds": 0.4253965341486037,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.42556595196947455,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.4254452842287719,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.4257574020884931,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.4258967498317361,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 4.551293924916536,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 4.656985402107239e-05,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 3,
+      "checksum_float64": 7402648.083326292,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 4476814336,
+        "peak_reserved_bytes": 5869928448,
+        "selected": "direct-eager"
+      },
+      "endpoint": "E4",
+      "external_seconds": 5.454011118039489,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "direct-eager",
+      "max_rss_kib": 1153848,
+      "observations": [
+        {
+          "call_seconds": 0.42546988325193524,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.42565171187743545,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.4257710911333561,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.4256039117462933,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.4257261520251632,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 4.549690723884851,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 4.8290006816387177e-05,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 3,
+      "checksum_float64": 7402648.082672467,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 2823175168,
+        "peak_reserved_bytes": 3409969152,
+        "selected": "persistent-compile"
+      },
+      "endpoint": "E4",
+      "external_seconds": 5.92312038782984,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "persistent-compile",
+      "max_rss_kib": 1121548,
+      "observations": [
+        {
+          "call_seconds": 0.0699698580428958,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.06999847711995244,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.07014102721586823,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.07014904683455825,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.07011251710355282,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 3.803428180050105,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 0.6551994099281728,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 3,
+      "checksum_float64": 7402648.082672467,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 2823175168,
+        "peak_reserved_bytes": 3409969152,
+        "selected": "aot-inductor"
+      },
+      "endpoint": "E4",
+      "external_seconds": 3.4051570571027696,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "aot-inductor",
+      "max_rss_kib": 970744,
+      "observations": [
+        {
+          "call_seconds": 0.06976856896653771,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.06984686898067594,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.06982301827520132,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.06979805883020163,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.0697568291798234,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 2.3532842942513525,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 1.5121497809886932,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 4,
+      "checksum_float64": 7402648.082672467,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 2823175168,
+        "peak_reserved_bytes": 3409969152,
+        "selected": "aot-inductor"
+      },
+      "endpoint": "E4",
+      "external_seconds": 3.3841584590263665,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "aot-inductor",
+      "max_rss_kib": 970628,
+      "observations": [
+        {
+          "call_seconds": 0.06980071915313601,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.06977990875020623,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.06982852797955275,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.0697875889018178,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.06978577887639403,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 2.3509590066969395,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 1.5092567168176174,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 4,
+      "checksum_float64": 7402648.082672467,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 2823175168,
+        "peak_reserved_bytes": 3409969152,
+        "selected": "persistent-compile"
+      },
+      "endpoint": "E4",
+      "external_seconds": 5.865230051334947,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "persistent-compile",
+      "max_rss_kib": 1126996,
+      "observations": [
+        {
+          "call_seconds": 0.07007078686729074,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.06993296835571527,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.07005073688924313,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.0701018269173801,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.07001412706449628,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 3.7818865147419274,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 0.6316638379357755,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 4,
+      "checksum_float64": 7402648.083326292,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 4476814336,
+        "peak_reserved_bytes": 5869928448,
+        "selected": "direct-eager"
+      },
+      "endpoint": "E4",
+      "external_seconds": 5.476296208798885,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "direct-eager",
+      "max_rss_kib": 1141864,
+      "observations": [
+        {
+          "call_seconds": 0.42564702220261097,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.42574669141322374,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.4257767810486257,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.4259376898407936,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.4255146631039679,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 4.569038575980812,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 4.942994564771652e-05,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 5,
+      "checksum_float64": 7402648.082672467,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 2823175168,
+        "peak_reserved_bytes": 3409969152,
+        "selected": "persistent-compile"
+      },
+      "endpoint": "E4",
+      "external_seconds": 5.873157782014459,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "persistent-compile",
+      "max_rss_kib": 1126316,
+      "observations": [
+        {
+          "call_seconds": 0.06994589790701866,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.07000364689156413,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.07011065725237131,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.07016355684027076,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.07001897692680359,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 3.7831625659018755,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 0.6277253800071776,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 5,
+      "checksum_float64": 7402648.083326292,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 4476814336,
+        "peak_reserved_bytes": 5869928448,
+        "selected": "direct-eager"
+      },
+      "endpoint": "E4",
+      "external_seconds": 5.455031922087073,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "direct-eager",
+      "max_rss_kib": 1153700,
+      "observations": [
+        {
+          "call_seconds": 0.42566647194325924,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.4257438597269356,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.4255123329348862,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.42556686187162995,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.42551904171705246,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 4.548833752982318,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 5.5369921028614044e-05,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    },
+    {
+      "block": 5,
+      "checksum_float64": 7402648.082672467,
+      "cuda_runtime": "13.0",
+      "diagnostics": {
+        "peak_allocated_bytes": 2823175168,
+        "peak_reserved_bytes": 3409969152,
+        "selected": "aot-inductor"
+      },
+      "endpoint": "E4",
+      "external_seconds": 3.396184074226767,
+      "finite": true,
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "lane": "aot-inductor",
+      "max_rss_kib": 970396,
+      "observations": [
+        {
+          "call_seconds": 0.06980087887495756,
+          "repetition_in_worker": 0
+        },
+        {
+          "call_seconds": 0.06981853907927871,
+          "repetition_in_worker": 1
+        },
+        {
+          "call_seconds": 0.06979579897597432,
+          "repetition_in_worker": 2
+        },
+        {
+          "call_seconds": 0.06979349814355373,
+          "repetition_in_worker": 3
+        },
+        {
+          "call_seconds": 0.0697665992192924,
+          "repetition_in_worker": 4
+        }
+      ],
+      "output_elements": 10733445,
+      "process_seconds_after_main": 2.349688623100519,
+      "returncode": 0,
+      "schema": "gradflow-dveb-abi-bakeoff-worker-v1",
+      "setup_seconds": 1.5107210278511047,
+      "size": 128,
+      "steps": 1,
+      "success": true,
+      "torch_version": "2.13.0+cu130",
+      "warmups": 5
+    }
+  ],
+  "schema": "gradflow-dveb-abi-bakeoff-timing-v1",
+  "seed": 20260826,
+  "size": 128,
+  "steps": 1,
+  "summary": {
+    "aot-inductor": {
+      "counted_observations": 30,
+      "failures": 0,
+      "maximum": 0.06984686898067594,
+      "mean": 0.06979295155033469,
+      "median": 0.06979064363986254,
+      "minimum": 0.0697568291798234,
+      "processes": 6
+    },
+    "direct-eager": {
+      "counted_observations": 30,
+      "failures": 0,
+      "maximum": 0.4259376898407936,
+      "mean": 0.4256542900732408,
+      "median": 0.4256490070838481,
+      "minimum": 0.4253965341486037,
+      "processes": 6
+    },
+    "persistent-compile": {
+      "counted_observations": 30,
+      "failures": 0,
+      "maximum": 0.07016355684027076,
+      "mean": 0.07005425632620851,
+      "median": 0.07006023824214935,
+      "minimum": 0.06993296835571527,
+      "processes": 6
+    }
+  }
+}
