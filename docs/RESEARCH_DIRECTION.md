@@ -6,8 +6,10 @@ GradFlow's new research question is:
 
 > Can a direct, maintainable PyTorch system construct, verify, differentiate, and efficiently execute arbitrary-order finite-difference WENO schemes—including a realistic WENO-15 case—without bespoke CUDA or Triton engineering?
 
-The repository currently establishes only a scalar finite-difference WENO-5
-seed. It does not yet answer the research question.
+The repository now establishes an exact-rational scalar finite-difference
+WENO-JS constructor qualified for orders 5--15. It does not yet answer the
+full research question because systems, boundaries, representation
+performance, native lowering, and the general `Solver` surface remain open.
 
 ## Conclusions and claim boundaries
 
@@ -50,20 +52,19 @@ seed. It does not yet answer the research question.
    generated Triton code was compiler output, not comparator source or bespoke
    engineering.
 
-9. WENO-15 is a proposed stress case, not “WENO-5 with a longer stencil.” It
-   raises serious questions about:
+9. Scalar periodic WENO-15 has now served as the first construction and
+   compiler stress case; it was not implemented as “WENO-5 with a longer
+   stencil.” The completed seed addresses automatic candidate polynomials,
+   optimal weights, exact smoothness matrices, expression growth through
+   full-graph compilation, critical-point characterization, and independent
+   validation. It leaves serious questions about:
 
-   - automatic candidate-polynomial generation;
-   - optimal linear weights;
-   - smoothness-indicator matrices;
    - coefficient conditioning;
-   - critical-point accuracy;
    - boundary closures;
-   - expression growth;
-   - compiler behavior;
    - register pressure and spilling;
-   - floating-point stability; and
-   - validation against independent mathematics.
+   - floating-point stability;
+   - characteristic/system reconstruction; and
+   - compiler performance as order and dimension increase.
 
 10. Potential research contributions may include:
 
@@ -150,8 +151,22 @@ spatial convergence, conservation, float64 CPU/CUDA agreement, eager and
 host/device transfers. MPS is recorded as untested when Apple Silicon is not
 available; it is never simulated.
 
-The next phase, if separately authorized after this gate, is mathematical and
-literature design—not WENO-15 benchmarking or broad optimization.
+That gate passed before the separately frozen arbitrary-order trunk began.
+
+## Arbitrary-order scalar seed result
+
+One exact-rational constructor now generates candidate reconstructions,
+positive optimal weights, Jiang--Shu smoothness matrices, and stable exact
+LDLT factors for any odd order of at least three. Orders 5, 7, 9, 11, 13, and
+15 passed exact polynomial, smooth convergence, conservation, differentiable,
+CPU/CUDA, and fixed-shape full-graph compiler gates. Generated order five
+agrees with the canonical seed within `1.715e-13` on the frozen probes.
+
+The critical family `sin(2*pi*x)^3` records material JS order loss—including
+approximately second-order point behavior for WENO-5—without post-hoc epsilon
+changes or substitution of WENO-Z. This result is part of the mathematical
+characterization, not a failed compiler gate. No performance timing was
+collected. See `ARBITRARY_ORDER_WENO_JS_RESULTS.md`.
 
 ## Final DVEB WENO requalification
 
@@ -181,9 +196,11 @@ PyTorch on the caller's CPU or CUDA device, fixed-step differentiation with a
 finite-gradient gate, physical-state validation, explicit backend diagnostics,
 and exact rejection of unsupported mathematics.
 
-This is not the general API target achieved. Navier--Stokes, JS-11/JS-15 and
-general boundaries remain unsupported. A subsequent DVEB portable ABI v1 gate
-did enable hash-qualified arbitrary-state forward execution for this one exact
+This is not the general API target achieved. Navier--Stokes, general
+boundaries, and JS-11/JS-15 *within `Solver`* remain unsupported; the generated
+scalar interface qualified elsewhere does not silently extend the Euler
+system implementation. A subsequent DVEB portable ABI v1 gate did enable
+hash-qualified arbitrary-state forward execution for this one exact
 formulation on CPU or CUDA. The gate's worst CPU/CUDA/PyTorch difference was
 `8.345e-7` against a `2e-5` bound. It establishes an honest integration
 surface, not arbitrary equations, gradients through native code, or a new

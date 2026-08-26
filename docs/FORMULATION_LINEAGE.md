@@ -1,4 +1,4 @@
-# WENO-5 formulation lineage
+# WENO formulation lineage
 
 ## Relationship at a glance
 
@@ -9,6 +9,7 @@
 | Upstream GradFlow PyTorch translation at `4c861fd` | Readable literal translation | Scalar Gottlieb loops, extended arrays, indexed assignment, host scalar extraction | Correct oracle bridge; archived, not canonical |
 | DVEB screened comparator | Compiler/performance evidence | Batched unique-node right-moving linear specialization using rolls; optional `conv1d` variant | Correct for the screened workload; not a general oracle |
 | Canonical `src/gradflow/weno5.py` | Restarted WENO-5 seed | Direct shifts/slices and elementwise operations, general scalar flux, corrected two-sided LF split, explicit grid conventions | Must pass the bounded Gottlieb gate |
+| Generated `src/gradflow/weno_js.py` | Arbitrary-order scalar seed | Exact-rational auxiliary-flux reconstruction, generated JS matrices, stable LDLT indicators, orders 5--15 qualified | Reproduces the canonical WENO-5 seed; higher orders use independent algebraic and convergence gates |
 | Packaged 3-D Euler slice | Direct PyTorch system seed | Shu characteristic JS-WENO-5 policies, duplicated endpoints, algebraically equivalent inverse-form nonlinear weights for stable float32 autograd | Forward-gated against the frozen bakeoff source; not the scalar oracle |
 | Old GradFlow package | Historical experiments | Premature symbolic/order-general surface and convolution-oriented coefficient ideas, with a loop-based active solver | Noncanonical; recoverable from history/archives |
 
@@ -112,15 +113,24 @@ inverse form yields finite gradients. The benchmark source remains untouched,
 and the package is forward-gated against it rather than declared bitwise
 identical.
 
-## Old GradFlow and future arbitrary order
+## Old GradFlow and generated arbitrary order
 
 The old package exposed symbolic generation and multiple orders before those
 claims had an adequate numerical gate. Its limited convolution-oriented
 coefficient material remains under `legacy/conv1d/`; the full implementation
 is in the pre-refoundation archive and Git history.
 
-Nothing in the WENO-5 correction form establishes that a higher-order scheme
-can be produced by lengthening a stencil. Candidate polynomials, optimal
-weights, smoothness matrices, conditioning, critical points, boundaries, and
-independent validation must all be reconstructed deliberately before WENO-15
-implementation begins.
+The restarted generator does not lengthen the WENO-5 correction stencil. For
+every order `p=2r-1`, it independently reconstructs the auxiliary flux
+polynomials from cell averages, solves for optimal weights, integrates the
+Jiang--Shu derivative indicators, and factors their exact matrices. Generated
+order five agrees with the canonical Gottlieb seed, while orders 7--15 are
+qualified by exact polynomial reproduction and independent convergence gates.
+
+The generator retains Gottlieb's 12-times indicator scaling, epsilon `1e-29`,
+and nonlinear power two. Its critical-point record demonstrates expected
+WENO-JS accuracy loss rather than conflating a generated higher-order stencil
+with uniform high-order behavior. It currently applies only to scalar unique
+periodic nodes. The characteristic Euler implementation and Shu Fortran
+lineage remain separate until a future system-migration gate proves their
+equivalence.

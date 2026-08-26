@@ -3,9 +3,10 @@
 GradFlow is restarting as a research project for general, differentiable,
 high-performance finite-difference WENO in ordinary PyTorch.
 
-The current repository contains a validated scalar WENO-5 seed and one narrow
-3-D Euler characteristic JS-WENO-5 `Solver` vertical slice. Their numerical
-paths are written as readable shifts, slicing/indexing, and elementwise tensor
+The current repository contains a validated exact-rational scalar WENO-JS
+constructor, qualified for orders 5 through 15, and one narrow 3-D Euler
+characteristic JS-WENO-5 `Solver` vertical slice. Their numerical paths are
+written as readable shifts, slicing/indexing, and elementwise tensor
 operations. `conv1d` is an implementation hypothesis to be tested later, not
 the project premise. No handwritten CUDA, Triton, C++, or custom operator is
 part of the canonical package code.
@@ -16,8 +17,10 @@ The central research question is:
 > and efficiently execute arbitrary-order finite-difference WENO schemes—including
 > a realistic WENO-15 case—without bespoke CUDA or Triton engineering?
 
-This is a question, not a completed capability or novelty claim. WENO-15 has
-not been implemented here.
+This remains a research question, not a completed general capability or
+novelty claim. Scalar periodic WENO-15 is now constructed and correctness-
+qualified, but characteristic systems, general boundaries, performance, and
+the target `Solver` surface remain open.
 
 ## Current seed
 
@@ -41,6 +44,21 @@ rhs = weno5_rhs(u, 1.0 / n, lambda q: q, alpha=1.0)
 
 The same function is intended to be passed to `torch.compile`; compilation is
 an execution choice, not a different numerical implementation.
+
+The generated scalar interface is:
+
+```python
+from gradflow import WENOJS
+
+scheme = WENOJS(order=11)
+rhs = scheme.rhs(u, 1.0 / n, lambda q: q, alpha=1.0)
+```
+
+One exact-rational constructor generates candidate polynomials, optimal
+weights, and smoothness indicators for every odd order. Orders 5, 7, 9, 11,
+13, and 15 have passed the bounded scalar periodic gate. See
+`docs/ARBITRARY_ORDER_WENO_JS_RESULTS.md`. This class has not yet replaced the
+separately validated characteristic Euler WENO-5 implementation in `Solver`.
 
 ## Current Solver slice
 
@@ -85,6 +103,8 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 ## Repository map
 
 - `src/gradflow/weno5.py` — canonical direct PyTorch WENO-5 seed
+- `src/gradflow/weno_js_coefficients.py` — exact-rational arbitrary-order construction
+- `src/gradflow/weno_js.py` — generated axis-general scalar PyTorch WENO-JS
 - `src/gradflow/euler3d.py` — differentiable characteristic Euler JS-WENO-5
 - `src/gradflow/solver.py` — narrow validated problem and backend surface
 - `src/gradflow/dveb_abi.py` — hash-checked DVEB CPU-state v1 and CUDA-state v2 adapters
@@ -97,7 +117,9 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `experiments/shu_torch_ablation/` — matched 2-D/3-D Euler WENO Fortran versus
   direct-PyTorch CPU/GPU crossover experiment and the 30-run automatic-DVEB
   deployment bakeoff
+- `experiments/weno_js_arbitrary_order/` — scalar orders 5--15 qualification record
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
+- `docs/ARBITRARY_ORDER_WENO_JS_RESULTS.md` — generated scalar qualification
 - `docs/BACKEND_SELECTION_CONTRACT.md` — evidence-bound automatic placement
   and explicit-backend rules
 - `docs/SOLVER_VERTICAL_SLICE.md` — implemented API, gates, and limitations
