@@ -8,15 +8,14 @@ count.  The compiled pipeline may then execute on CPU SIMD/OpenMP or CUDA.
 from __future__ import annotations
 
 import ctypes
-from dataclasses import dataclass
 import hashlib
 import json
 import os
+from dataclasses import dataclass
 from pathlib import Path
 
 import torch
 from torch import Tensor
-
 
 ABI_VERSION = 1
 DEVICE_ABI_VERSION = 2
@@ -191,16 +190,18 @@ class DvebArtifact:
             device_library = Path(device_abi["library"])
             if not device_library.is_absolute():
                 device_library = path.parent / device_library
-            if (not device_library.is_file()
-                    or _sha256(device_library) != device_abi.get("library_sha256")):
+            if not device_library.is_file() or _sha256(
+                device_library
+            ) != device_abi.get("library_sha256"):
                 raise ValueError(
                     "DVEB device ABI library is missing or differs from its manifest"
                 )
             device_header = Path(device_abi["header"])
             if not device_header.is_absolute():
                 device_header = path.parent / device_header
-            if (not device_header.is_file()
-                    or _sha256(device_header) != device_abi.get("header_sha256")):
+            if not device_header.is_file() or _sha256(device_header) != device_abi.get(
+                "header_sha256"
+            ):
                 raise ValueError(
                     "DVEB device ABI header is missing or differs from its manifest"
                 )
@@ -287,12 +288,16 @@ class DvebPortableAbi:
         self._library = ctypes.CDLL(str(artifact.library))
         self._library.dveb_portable_abi_version.restype = ctypes.c_uint32
         self._library.dveb_portable_query_v1.argtypes = [
-            ctypes.c_int32, ctypes.POINTER(_Query), ctypes.c_char_p,
+            ctypes.c_int32,
+            ctypes.POINTER(_Query),
+            ctypes.c_char_p,
             ctypes.c_size_t,
         ]
         self._library.dveb_portable_query_v1.restype = ctypes.c_int
         self._library.dveb_portable_run_v1.argtypes = [
-            ctypes.POINTER(_Request), ctypes.POINTER(_Result), ctypes.c_char_p,
+            ctypes.POINTER(_Request),
+            ctypes.POINTER(_Result),
+            ctypes.c_char_p,
             ctypes.c_size_t,
         ]
         self._library.dveb_portable_run_v1.restype = ctypes.c_int
@@ -349,7 +354,8 @@ class DvebPortableAbi:
         if target_key not in _TARGETS:
             raise ValueError(f"unknown DVEB target {target!r}")
         if target_key == "cpu" and (
-            isinstance(cpu_workers, bool) or not isinstance(cpu_workers, int)
+            isinstance(cpu_workers, bool)
+            or not isinstance(cpu_workers, int)
             or not 1 <= cpu_workers <= 256
         ):
             raise ValueError("cpu_workers must be in 1..256")
@@ -366,26 +372,28 @@ class DvebPortableAbi:
             raise ValueError("DVEB ABI query disagrees with the caller state shape")
         output = torch.empty_like(state)
         float_pointer = ctypes.POINTER(ctypes.c_float)
-        model_bytes = (
-            str(self.artifact.model).encode() if self.artifact.model else None
-        )
+        model_bytes = str(self.artifact.model).encode() if self.artifact.model else None
         model_hash_bytes = (
             self.artifact.verified_model_sha256.encode()
-            if self.artifact.verified_model_sha256 else None
+            if self.artifact.verified_model_sha256
+            else None
         )
         request = _Request(
-            struct_size=ctypes.sizeof(_Request), abi_version=ABI_VERSION,
-            intervals=intervals, steps=steps, target=_TARGETS[target_key],
-            cpu_workers=cpu_workers, endpoint=2,
+            struct_size=ctypes.sizeof(_Request),
+            abi_version=ABI_VERSION,
+            intervals=intervals,
+            steps=steps,
+            target=_TARGETS[target_key],
+            cpu_workers=cpu_workers,
+            endpoint=2,
             input=ctypes.cast(state.data_ptr(), float_pointer),
             input_count=state.numel(),
             output=ctypes.cast(output.data_ptr(), float_pointer),
-            output_capacity=output.numel(), model_path=model_bytes,
+            output_capacity=output.numel(),
+            model_path=model_bytes,
             verified_model_sha256=model_hash_bytes,
         )
-        result = _Result(
-            struct_size=ctypes.sizeof(_Result), abi_version=ABI_VERSION
-        )
+        result = _Result(struct_size=ctypes.sizeof(_Result), abi_version=ABI_VERSION)
         error = ctypes.create_string_buffer(512)
         status = self._library.dveb_portable_run_v1(
             ctypes.byref(request), ctypes.byref(result), error, len(error)
@@ -423,7 +431,11 @@ class DvebDeviceContext:
             raise ValueError("DVEB artifact does not provide device ABI v2")
         if _sha256(artifact.device_library) != artifact.device_library_sha256:
             raise ValueError("DVEB device ABI library changed after configuration")
-        if isinstance(intervals, bool) or not isinstance(intervals, int) or intervals < 4:
+        if (
+            isinstance(intervals, bool)
+            or not isinstance(intervals, int)
+            or intervals < 4
+        ):
             raise ValueError("intervals must be an integer of at least four")
         if not torch.cuda.is_available():
             raise RuntimeError("DVEB device ABI v2 requires CUDA")
@@ -435,7 +447,9 @@ class DvebDeviceContext:
             resolved = torch.device(device)
         if resolved.type != "cuda":
             raise ValueError("DVEB device ABI v2 requires a CUDA device")
-        ordinal = torch.cuda.current_device() if resolved.index is None else resolved.index
+        ordinal = (
+            torch.cuda.current_device() if resolved.index is None else resolved.index
+        )
         assert ordinal is not None
 
         self.artifact = artifact
@@ -444,17 +458,25 @@ class DvebDeviceContext:
         self._library = ctypes.CDLL(str(artifact.device_library))
         self._library.dveb_portable_device_abi_version.restype = ctypes.c_uint32
         self._library.dveb_portable_device_create_v2.argtypes = [
-            ctypes.POINTER(_DeviceCreateRequest), ctypes.POINTER(ctypes.c_void_p),
-            ctypes.POINTER(_DeviceCreateResult), ctypes.c_char_p, ctypes.c_size_t,
+            ctypes.POINTER(_DeviceCreateRequest),
+            ctypes.POINTER(ctypes.c_void_p),
+            ctypes.POINTER(_DeviceCreateResult),
+            ctypes.c_char_p,
+            ctypes.c_size_t,
         ]
         self._library.dveb_portable_device_create_v2.restype = ctypes.c_int
         self._library.dveb_portable_device_run_v2.argtypes = [
-            ctypes.c_void_p, ctypes.POINTER(_DeviceRunRequest),
-            ctypes.POINTER(_DeviceRunResult), ctypes.c_char_p, ctypes.c_size_t,
+            ctypes.c_void_p,
+            ctypes.POINTER(_DeviceRunRequest),
+            ctypes.POINTER(_DeviceRunResult),
+            ctypes.c_char_p,
+            ctypes.c_size_t,
         ]
         self._library.dveb_portable_device_run_v2.restype = ctypes.c_int
         self._library.dveb_portable_device_destroy_v2.argtypes = [
-            ctypes.c_void_p, ctypes.c_char_p, ctypes.c_size_t,
+            ctypes.c_void_p,
+            ctypes.c_char_p,
+            ctypes.c_size_t,
         ]
         self._library.dveb_portable_device_destroy_v2.restype = ctypes.c_int
         if self._library.dveb_portable_device_abi_version() != DEVICE_ABI_VERSION:
@@ -474,8 +496,11 @@ class DvebDeviceContext:
         error = ctypes.create_string_buffer(512)
         with torch.cuda.device(self.device):
             status = self._library.dveb_portable_device_create_v2(
-                ctypes.byref(request), ctypes.byref(context), ctypes.byref(result),
-                error, len(error),
+                ctypes.byref(request),
+                ctypes.byref(context),
+                ctypes.byref(result),
+                error,
+                len(error),
             )
         if status != _OK:
             raise DvebAbiError(status, error.value.decode())
@@ -529,13 +554,19 @@ class DvebDeviceContext:
         error = ctypes.create_string_buffer(512)
         with torch.cuda.device(self.device):
             status = self._library.dveb_portable_device_run_v2(
-                self._context, ctypes.byref(request), ctypes.byref(result),
-                error, len(error),
+                self._context,
+                ctypes.byref(request),
+                ctypes.byref(result),
+                error,
+                len(error),
             )
         if status != _OK:
             raise DvebAbiError(status, error.value.decode())
-        if (result.synchronized != 1 or result.output_count != output.numel()
-                or result.device_ordinal != self.device.index):
+        if (
+            result.synchronized != 1
+            or result.output_count != output.numel()
+            or result.device_ordinal != self.device.index
+        ):
             raise RuntimeError("DVEB device ABI returned invalid run metadata")
         return DvebDeviceRunResult(
             state=output,

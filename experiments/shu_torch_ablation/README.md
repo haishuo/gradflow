@@ -284,6 +284,23 @@ DVEB therefore qualifies for this matched WENO workload in bounded CPU and
 CUDA regions. This is not an automatic-placement result, a general DVEB
 claim, or evidence for arbitrary-order WENO.
 
+## Device-resident ABI v2 follow-up
+
+DVEB device ABI v2 subsequently added a versioned public interface for
+caller-owned CUDA state, a caller stream, a caller output buffer, and reusable
+native workspace. The frozen bounded addendum is
+`DVEB_DEVICE_ABI_E4_PROTOCOL.md`; the completed report is
+`DVEB_DEVICE_ABI_E4_RESULTS.md`, with raw records under
+`results/dveb_device_e4_20260827/`.
+
+The full-array gate passed at the predeclared tolerance. Across ten E4 points,
+DVEB v2 won all ten median comparisons and all 60 randomized worker blocks. It
+was 2.53--7.36 times faster than packaged AOTInductor. At `N=128`, its public
+wall medians were 9.638 ms for one step and 94.910 ms for ten steps, within
+0.13% and 0.02% respectively of its internal total timers. This qualifies the
+device ABI for this fixed program and machine, but not automatic placement,
+arbitrary order, other hardware, or a universal DVEB claim.
+
 ## Redistribution status
 
 The PyTorch translation and 3-D Fortran extension are derived from the locally

@@ -10,7 +10,6 @@ from gradflow import (
     periodic_vortex,
 )
 
-
 MANIFEST = os.environ.get("GRADFLOW_TEST_DVEB_DEVICE_MANIFEST")
 
 pytestmark = pytest.mark.skipif(
@@ -21,9 +20,13 @@ pytestmark = pytest.mark.skipif(
 
 def _expected(state: torch.Tensor, intervals: int, steps: int) -> torch.Tensor:
     solver = Solver(
-        equations="euler", dimension=3, weno=("JS", 5),
-        flux_split="global_lf", boundaries="periodic_duplicated",
-        dtype=torch.float32, spacing=(10.0 / intervals,) * 3,
+        equations="euler",
+        dimension=3,
+        weno=("JS", 5),
+        flux_split="global_lf",
+        boundaries="periodic_duplicated",
+        dtype=torch.float32,
+        spacing=(10.0 / intervals,) * 3,
     )
     return solver.run(state, steps=steps, backend="pytorch-eager")
 

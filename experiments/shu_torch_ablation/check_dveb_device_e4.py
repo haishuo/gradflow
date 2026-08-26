@@ -4,11 +4,11 @@
 from __future__ import annotations
 
 import argparse
-from datetime import datetime, timezone
 import hashlib
 import json
-from pathlib import Path
 import sys
+from datetime import datetime, timezone
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -24,7 +24,6 @@ from gradflow import (  # noqa: E402
     periodic_vortex,
 )
 
-
 POINTS = ((6, 1), (6, 10), (32, 1))
 BOUND = 2.0e-5
 
@@ -37,8 +36,9 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def advance(state: torch.Tensor, spacing: tuple[float, float, float],
-            steps: int) -> torch.Tensor:
+def advance(
+    state: torch.Tensor, spacing: tuple[float, float, float], steps: int
+) -> torch.Tensor:
     result = state
     with torch.inference_mode():
         for _ in range(steps):
@@ -79,16 +79,21 @@ def main() -> None:
             pytorch=expected.detach().cpu().numpy(),
             dveb_device=result.state.detach().cpu().numpy(),
         )
-        points.append({
-            "size": size,
-            "steps": steps,
-            "maximum_absolute_error": error,
-            "finite": bool(torch.isfinite(result.state).all()),
-            "archive": {"path": str(archive.resolve()), "sha256": sha256(archive),
-                        "bytes": archive.stat().st_size},
-            "dveb_execution_seconds": result.execution_seconds,
-            "dveb_total_seconds": result.total_seconds,
-        })
+        points.append(
+            {
+                "size": size,
+                "steps": steps,
+                "maximum_absolute_error": error,
+                "finite": bool(torch.isfinite(result.state).all()),
+                "archive": {
+                    "path": str(archive.resolve()),
+                    "sha256": sha256(archive),
+                    "bytes": archive.stat().st_size,
+                },
+                "dveb_execution_seconds": result.execution_seconds,
+                "dveb_total_seconds": result.total_seconds,
+            }
+        )
 
     state_cpu, _ = periodic_vortex((6,) * 3, dtype=torch.float32)
     aliased = state_cpu.cuda().contiguous()
@@ -107,9 +112,14 @@ def main() -> None:
         "bound": BOUND,
         "maximum_absolute_error": maximum,
         "nondefault_stream_exact_alias_pass": alias_pass,
-        "pass": maximum <= BOUND and alias_pass and all(item["finite"] for item in points),
-        "environment": {"torch": torch.__version__, "cuda": torch.version.cuda,
-                        "gpu": torch.cuda.get_device_name(0)},
+        "pass": maximum <= BOUND
+        and alias_pass
+        and all(item["finite"] for item in points),
+        "environment": {
+            "torch": torch.__version__,
+            "cuda": torch.version.cuda,
+            "gpu": torch.cuda.get_device_name(0),
+        },
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")

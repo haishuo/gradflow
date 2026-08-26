@@ -1,0 +1,609 @@
+{
+  "correctness": {
+    "bound": 2e-05,
+    "created_utc": "2026-08-26T15:27:59.157711+00:00",
+    "environment": {
+      "cuda": "13.0",
+      "gpu": "NVIDIA GeForce RTX 5070 Ti",
+      "torch": "2.13.0+cu130"
+    },
+    "manifest": "/mnt/artifacts/gradflow/dveb_device_e4_20260827/manifest.json",
+    "maximum_absolute_error": 1.430511474609375e-06,
+    "nondefault_stream_exact_alias_pass": true,
+    "pass": true,
+    "points": [
+      {
+        "archive": {
+          "bytes": 1509,
+          "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/correctness_arrays/device_e4_correctness_n6_s1.npz",
+          "sha256": "9cbdac6488fbdbd4fd0747f62991bc8ca2f4ced9f31e62fccc56494ef7c3a2f0"
+        },
+        "dveb_execution_seconds": 0.000355109,
+        "dveb_total_seconds": 0.000357519,
+        "finite": true,
+        "maximum_absolute_error": 2.384185791015625e-07,
+        "size": 6,
+        "steps": 1
+      },
+      {
+        "archive": {
+          "bytes": 1604,
+          "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/correctness_arrays/device_e4_correctness_n6_s10.npz",
+          "sha256": "262eb91125f2c694456a11110f5137a67c64662a5f5d416c2f1780a425ce8da9"
+        },
+        "dveb_execution_seconds": 0.001156125,
+        "dveb_total_seconds": 0.001158815,
+        "finite": true,
+        "maximum_absolute_error": 1.430511474609375e-06,
+        "size": 6,
+        "steps": 10
+      },
+      {
+        "archive": {
+          "bytes": 30205,
+          "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/correctness_arrays/device_e4_correctness_n32_s1.npz",
+          "sha256": "ea769cb8b01781455c3a768b23d009f83ffab199e2e80101273be8b441c8a572"
+        },
+        "dveb_execution_seconds": 0.000301989,
+        "dveb_total_seconds": 0.000303259,
+        "finite": true,
+        "maximum_absolute_error": 4.76837158203125e-07,
+        "size": 32,
+        "steps": 1
+      }
+    ],
+    "schema": "gradflow-dveb-device-e4-correctness-v1"
+  },
+  "correctness_sha256": "1b6dfeca3fd0da890d63b31fd1c9585f11018cb8eda9706d61b057f6ced86f6a",
+  "created_utc": "2026-08-26T15:58:42.821044+00:00",
+  "points": [
+    {
+      "block_wins": {
+        "aot-inductor": 0,
+        "direct-eager": 0,
+        "dveb-device": 6,
+        "persistent-compile": 0
+      },
+      "competitive": [
+        "dveb-device"
+      ],
+      "dveb_speedup_over_aot": 2.5272420101653714,
+      "dveb_speedup_over_compile": 3.8334473391754593,
+      "lanes": {
+        "aot-inductor": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.0003356877714395523,
+          "mean": 0.0003288027054319779,
+          "median": 0.00032774312421679497,
+          "minimum": 0.0003252788446843624
+        },
+        "direct-eager": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.01033812016248703,
+          "mean": 0.009408940157542626,
+          "median": 0.00930696097202599,
+          "minimum": 0.009244135115295649
+        },
+        "dveb-device": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.00020011886954307556,
+          "mean": 0.0001359477173537016,
+          "median": 0.0001296841073781252,
+          "median_internal_total_seconds": 0.0001177545,
+          "minimum": 0.00012669898569583893,
+          "wall_over_internal_ratio": 1.1013091421400047
+        },
+        "persistent-compile": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.0005074469372630119,
+          "mean": 0.0004971639097978672,
+          "median": 0.0004971371963620186,
+          "minimum": 0.0004889080300927162
+        }
+      },
+      "size": 8,
+      "source": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/timings/e4_n8_s1.json",
+      "source_sha256": "1eac64fdb231b82244609ba5dcb371b4a8a7a00912f26034ba3b0235b42e32c7",
+      "steps": 1,
+      "winner": "dveb-device"
+    },
+    {
+      "block_wins": {
+        "aot-inductor": 0,
+        "direct-eager": 0,
+        "dveb-device": 6,
+        "persistent-compile": 0
+      },
+      "competitive": [
+        "dveb-device"
+      ],
+      "dveb_speedup_over_aot": 2.9508878435931383,
+      "dveb_speedup_over_compile": 3.818405577143185,
+      "lanes": {
+        "aot-inductor": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.00039875833317637444,
+          "mean": 0.00038521204454203446,
+          "median": 0.00038297800347208977,
+          "minimum": 0.0003797076642513275
+        },
+        "direct-eager": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.009622022975236177,
+          "mean": 0.009403606162716944,
+          "median": 0.009376588044688106,
+          "minimum": 0.009335643146187067
+        },
+        "dveb-device": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.0001321001909673214,
+          "mean": 0.00012962939217686653,
+          "median": 0.0001297839917242527,
+          "median_internal_total_seconds": 0.000118659,
+          "minimum": 0.00012673018500208855,
+          "wall_over_internal_ratio": 1.0937559875294136
+        },
+        "persistent-compile": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.0005121068097651005,
+          "mean": 0.0004954012110829353,
+          "median": 0.0004955679178237915,
+          "minimum": 0.00048223696649074554
+        }
+      },
+      "size": 16,
+      "source": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/timings/e4_n16_s1.json",
+      "source_sha256": "f801235c1a8931247bd823e07f25e3b0507f144babbcca9de70ddd44cd2423bf",
+      "steps": 1,
+      "winner": "dveb-device"
+    },
+    {
+      "block_wins": {
+        "aot-inductor": 0,
+        "direct-eager": 0,
+        "dveb-device": 6,
+        "persistent-compile": 0
+      },
+      "competitive": [
+        "dveb-device"
+      ],
+      "dveb_speedup_over_aot": 3.428305645003703,
+      "dveb_speedup_over_compile": 3.5303942159114983,
+      "lanes": {
+        "aot-inductor": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.0009817546233534813,
+          "mean": 0.0009721433899054925,
+          "median": 0.0009721950627863407,
+          "minimum": 0.0009657451882958412
+        },
+        "direct-eager": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.009629860986024141,
+          "mean": 0.009536798888196548,
+          "median": 0.00953666609711945,
+          "minimum": 0.009415563195943832
+        },
+        "dveb-device": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.0002898280508816242,
+          "mean": 0.00028402619063854216,
+          "median": 0.00028357887640595436,
+          "median_internal_total_seconds": 0.0002737185,
+          "minimum": 0.000280928798019886,
+          "wall_over_internal_ratio": 1.036023785041765
+        },
+        "persistent-compile": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.0010098242200911045,
+          "mean": 0.001000590886299809,
+          "median": 0.0010011452250182629,
+          "minimum": 0.0009900950826704502
+        }
+      },
+      "size": 32,
+      "source": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/timings/e4_n32_s1.json",
+      "source_sha256": "a64886550b60ecacfe7b68d8bf233554731c976ba653b8770df0123826792666",
+      "steps": 1,
+      "winner": "dveb-device"
+    },
+    {
+      "block_wins": {
+        "aot-inductor": 0,
+        "direct-eager": 0,
+        "dveb-device": 6,
+        "persistent-compile": 0
+      },
+      "competitive": [
+        "dveb-device"
+      ],
+      "dveb_speedup_over_aot": 6.823928820423058,
+      "dveb_speedup_over_compile": 6.841675875930815,
+      "lanes": {
+        "aot-inductor": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.008595205843448639,
+          "mean": 0.0085716320356975,
+          "median": 0.008568695513531566,
+          "minimum": 0.0085572749376297
+        },
+        "direct-eager": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.03989584185183048,
+          "mean": 0.03982614865526557,
+          "median": 0.03982031741179526,
+          "minimum": 0.039782402105629444
+        },
+        "dveb-device": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.001262602861970663,
+          "mean": 0.0012560104485601186,
+          "median": 0.0012556836009025574,
+          "median_internal_total_seconds": 0.0012444635,
+          "minimum": 0.001248813234269619,
+          "wall_over_internal_ratio": 1.0090160144532623
+        },
+        "persistent-compile": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.008619575295597315,
+          "mean": 0.008589931732664506,
+          "median": 0.008590980200096965,
+          "minimum": 0.008563525043427944
+        }
+      },
+      "size": 64,
+      "source": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/timings/e4_n64_s1.json",
+      "source_sha256": "e1aafb96abdfa58a1db76a316067d2fb2803bf1176cb70a6323de42bc103ec23",
+      "steps": 1,
+      "winner": "dveb-device"
+    },
+    {
+      "block_wins": {
+        "aot-inductor": 0,
+        "direct-eager": 0,
+        "dveb-device": 6,
+        "persistent-compile": 0
+      },
+      "competitive": [
+        "dveb-device"
+      ],
+      "dveb_speedup_over_aot": 7.263618629516329,
+      "dveb_speedup_over_compile": 7.295901192747735,
+      "lanes": {
+        "aot-inductor": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.02921990677714348,
+          "mean": 0.02917638930181662,
+          "median": 0.029180454555898905,
+          "minimum": 0.029118144884705544
+        },
+        "direct-eager": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.14960579294711351,
+          "mean": 0.14948036265559494,
+          "median": 0.1494695337023586,
+          "minimum": 0.14936982281506062
+        },
+        "dveb-device": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.004022258799523115,
+          "mean": 0.004017320446049174,
+          "median": 0.004017343977466226,
+          "median_internal_total_seconds": 0.004005319,
+          "minimum": 0.004011399112641811,
+          "wall_over_internal_ratio": 1.0030022521217974
+        },
+        "persistent-compile": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.02939868299290538,
+          "mean": 0.029316872963681816,
+          "median": 0.029310144716873765,
+          "minimum": 0.029270694125443697
+        }
+      },
+      "size": 96,
+      "source": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/timings/e4_n96_s1.json",
+      "source_sha256": "f5bcd0092c247db55a7e715c75bff5ccbdf9c81e8df8ec7f079de9445b4fa503",
+      "steps": 1,
+      "winner": "dveb-device"
+    },
+    {
+      "block_wins": {
+        "aot-inductor": 0,
+        "direct-eager": 0,
+        "dveb-device": 6,
+        "persistent-compile": 0
+      },
+      "competitive": [
+        "dveb-device"
+      ],
+      "dveb_speedup_over_aot": 7.240734444871583,
+      "dveb_speedup_over_compile": 7.259688919897096,
+      "lanes": {
+        "aot-inductor": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.06984942825511098,
+          "mean": 0.06979041445689897,
+          "median": 0.06978962291032076,
+          "minimum": 0.06973954988643527
+        },
+        "direct-eager": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.4259120128117502,
+          "mean": 0.4256418626445035,
+          "median": 0.4256555112078786,
+          "minimum": 0.42531738011166453
+        },
+        "dveb-device": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.009644596837460995,
+          "mean": 0.009637854201719165,
+          "median": 0.00963847292587161,
+          "median_internal_total_seconds": 0.0096259025,
+          "minimum": 0.009630827233195305,
+          "wall_over_internal_ratio": 1.001305895823442
+        },
+        "persistent-compile": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.0700764493085444,
+          "mean": 0.06997386575676501,
+          "median": 0.06997231510467827,
+          "minimum": 0.06989720277488232
+        }
+      },
+      "size": 128,
+      "source": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/timings/e4_n128_s1.json",
+      "source_sha256": "809fca638990cc68b1c8000cd2b3ae3071e25ecdd8885d79eb3553e018419199",
+      "steps": 1,
+      "winner": "dveb-device"
+    },
+    {
+      "block_wins": {
+        "aot-inductor": 0,
+        "direct-eager": 0,
+        "dveb-device": 6,
+        "persistent-compile": 0
+      },
+      "competitive": [
+        "dveb-device"
+      ],
+      "dveb_speedup_over_aot": 3.233314881862027,
+      "dveb_speedup_over_compile": 4.034167547644626,
+      "lanes": {
+        "aot-inductor": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.003942549228668213,
+          "mean": 0.003703700564801693,
+          "median": 0.0036950942594558,
+          "minimum": 0.0036814487539231777
+        },
+        "direct-eager": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.09510000376030803,
+          "mean": 0.09414717365677158,
+          "median": 0.0939872907474637,
+          "minimum": 0.0935942130163312
+        },
+        "dveb-device": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.0011502644047141075,
+          "mean": 0.00114381971458594,
+          "median": 0.0011428191792219877,
+          "median_internal_total_seconds": 0.0011329835,
+          "minimum": 0.0011407239362597466,
+          "wall_over_internal_ratio": 1.0086812201783943
+        },
+        "persistent-compile": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.004703454207628965,
+          "mean": 0.0046194870956242085,
+          "median": 0.00461032404564321,
+          "minimum": 0.004562525078654289
+        }
+      },
+      "size": 16,
+      "source": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/timings/e4_n16_s10.json",
+      "source_sha256": "db0a90f86686471d2f0b11d92b8901d86b52a0794ccfc6275a9f5803738e3fd3",
+      "steps": 10,
+      "winner": "dveb-device"
+    },
+    {
+      "block_wins": {
+        "aot-inductor": 0,
+        "direct-eager": 0,
+        "dveb-device": 6,
+        "persistent-compile": 0
+      },
+      "competitive": [
+        "dveb-device"
+      ],
+      "dveb_speedup_over_aot": 3.6102999559659192,
+      "dveb_speedup_over_compile": 3.609783866052519,
+      "lanes": {
+        "aot-inductor": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.009654045570641756,
+          "mean": 0.009618739085271954,
+          "median": 0.009621106553822756,
+          "minimum": 0.009588685818016529
+        },
+        "direct-eager": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.09802068211138248,
+          "mean": 0.09574228494117658,
+          "median": 0.09579614107497036,
+          "minimum": 0.09466587100178003
+        },
+        "dveb-device": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.002671055030077696,
+          "mean": 0.0026644940798481306,
+          "median": 0.0026649050414562225,
+          "median_internal_total_seconds": 0.0026542255000000002,
+          "minimum": 0.002659735269844532,
+          "wall_over_internal_ratio": 1.0040235998999416
+        },
+        "persistent-compile": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.009646156337112188,
+          "mean": 0.009619477748249968,
+          "median": 0.009619731223210692,
+          "minimum": 0.009597545955330133
+        }
+      },
+      "size": 32,
+      "source": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/timings/e4_n32_s10.json",
+      "source_sha256": "a80cdedfef7b2010bb217b7bae2e39c7f1d114d37b6f52d8a0f06e7ee6ebd795",
+      "steps": 10,
+      "winner": "dveb-device"
+    },
+    {
+      "block_wins": {
+        "aot-inductor": 0,
+        "direct-eager": 0,
+        "dveb-device": 6,
+        "persistent-compile": 0
+      },
+      "competitive": [
+        "dveb-device"
+      ],
+      "dveb_speedup_over_aot": 6.935842357323104,
+      "dveb_speedup_over_compile": 6.938946089877172,
+      "lanes": {
+        "aot-inductor": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.08545995177701116,
+          "mean": 0.08539259019307792,
+          "median": 0.08539343974553049,
+          "minimum": 0.08532709768041968
+        },
+        "direct-eager": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.3982039508409798,
+          "mean": 0.3976935135976722,
+          "median": 0.39768678694963455,
+          "minimum": 0.3974854052066803
+        },
+        "dveb-device": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.012322079855948687,
+          "mean": 0.012311356437082092,
+          "median": 0.012311906088143587,
+          "median_internal_total_seconds": 0.0123071445,
+          "minimum": 0.012300570961087942,
+          "wall_over_internal_ratio": 1.000386896257177
+        },
+        "persistent-compile": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.0856363931670785,
+          "mean": 0.08543846899022658,
+          "median": 0.08543165260925889,
+          "minimum": 0.08534564869478345
+        }
+      },
+      "size": 64,
+      "source": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/timings/e4_n64_s10.json",
+      "source_sha256": "a4fc93efadea2de53fc6a72c7881b8984424761b66fd6e3338b2b56dbeb2b561",
+      "steps": 10,
+      "winner": "dveb-device"
+    },
+    {
+      "block_wins": {
+        "aot-inductor": 0,
+        "direct-eager": 0,
+        "dveb-device": 6,
+        "persistent-compile": 0
+      },
+      "competitive": [
+        "dveb-device"
+      ],
+      "dveb_speedup_over_aot": 7.35568260368718,
+      "dveb_speedup_over_compile": 7.361305521567196,
+      "lanes": {
+        "aot-inductor": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.6983198551461101,
+          "mean": 0.6981449871324003,
+          "median": 0.6981308585964143,
+          "minimum": 0.6980140660889447
+        },
+        "direct-eager": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 4.257491890806705,
+          "mean": 4.256708614962796,
+          "median": 4.256767846643925,
+          "minimum": 4.255323535762727
+        },
+        "dveb-device": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.09497436322271824,
+          "mean": 0.09491388175326089,
+          "median": 0.0949104109313339,
+          "median_internal_total_seconds": 0.0948918815,
+          "minimum": 0.094890465028584,
+          "wall_over_internal_ratio": 1.0001952688790758
+        },
+        "persistent-compile": {
+          "count": 30,
+          "failures": 0,
+          "maximum": 0.6989648542366922,
+          "mean": 0.6986561560537666,
+          "median": 0.6986645320430398,
+          "minimum": 0.6983619700185955
+        }
+      },
+      "size": 128,
+      "source": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/timings/e4_n128_s10.json",
+      "source_sha256": "400cc5b90df18d3b08920529b8632bff9f8e65cbb1483b977684f2ecac93ee82",
+      "steps": 10,
+      "winner": "dveb-device"
+    }
+  ],
+  "schema": "gradflow-dveb-device-e4-analysis-v1",
+  "totals": {
+    "blocks": 60,
+    "counted_observations": 1200,
+    "dveb_block_wins": 60,
+    "dveb_point_wins": 10,
+    "failed_workers": 0
+  }
+}

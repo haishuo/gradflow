@@ -189,3 +189,11 @@ formulation on CPU or CUDA. The gate's worst CPU/CUDA/PyTorch difference was
 surface, not arbitrary equations, gradients through native code, or a new
 performance claim. The existing fresh-process selector record is not a
 substitute for future ABI-endpoint calibration.
+
+Portable device ABI v2 then exposed the same fixed generated CUDA solver to
+caller-owned resident tensors and reusable workspace. In its separately frozen
+E4 addendum, it passed the full-array gate and won all ten points and all 60
+randomized blocks, running 2.53--7.36 times faster than packaged AOTInductor.
+This is strong evidence that DVEB deserves a fixed-program native CUDA role.
+It remains a result for one float32 formulation, GPU, and endpoint—not evidence
+for general automatic placement, arbitrary-order WENO, or novelty.

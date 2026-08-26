@@ -73,12 +73,21 @@ autograd. Automatic DVEB dispatch additionally requires an explicitly
 verified bounded placement model; otherwise `auto` falls back to PyTorch.
 See `docs/SOLVER_VERTICAL_SLICE.md` and `docs/DVEB_ABI_V1.md`.
 
+DVEB portable device ABI v2 is a separate explicit CUDA-resident interface.
+`gradflow.DvebDeviceContext` binds one cubic grid to one CUDA device, owns a
+reusable native workspace, and accepts caller-owned contiguous CUDA float32
+input/output tensors on the current PyTorch stream. It performs no implicit
+H2D/D2H conversion and is not an autograd backend. The first frozen E4
+requalification found it 2.53--7.36x faster than packaged AOTInductor across
+all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
+`docs/DVEB_DEVICE_ABI_V2.md`; automatic selection remains future work.
+
 ## Repository map
 
 - `src/gradflow/weno5.py` — canonical direct PyTorch WENO-5 seed
 - `src/gradflow/euler3d.py` — differentiable characteristic Euler JS-WENO-5
 - `src/gradflow/solver.py` — narrow validated problem and backend surface
-- `src/gradflow/dveb_abi.py` — hash-checked DVEB portable ABI v1 adapter
+- `src/gradflow/dveb_abi.py` — hash-checked DVEB CPU-state v1 and CUDA-state v2 adapters
 - `tests/` — bounded oracle, convergence, conservation, device, and compiler gate
 - `references/` — byte-preserved Gottlieb MATLAB and Jiang--Shu Fortran sources
 - `baselines/` — exact DVEB screened comparator and its evidence

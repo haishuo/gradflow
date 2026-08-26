@@ -4,23 +4,32 @@
 from __future__ import annotations
 
 import argparse
-from datetime import datetime, timezone
 import hashlib
 import json
 import os
-from pathlib import Path
 import platform
 import random
 import statistics
 import subprocess
 import sys
-
+from datetime import datetime, timezone
+from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 WORKER = HERE / "device_abi_e4_worker.py"
 LANES = ("dveb-device", "direct-eager", "persistent-compile", "aot-inductor")
-POINTS = {(8, 1), (16, 1), (32, 1), (64, 1), (96, 1), (128, 1),
-          (16, 10), (32, 10), (64, 10), (128, 10)}
+POINTS = {
+    (8, 1),
+    (16, 1),
+    (32, 1),
+    (64, 1),
+    (96, 1),
+    (128, 1),
+    (16, 10),
+    (32, 10),
+    (64, 10),
+    (128, 10),
+}
 
 
 def sha256(path: Path) -> str:
@@ -47,10 +56,15 @@ def command_output(command: list[str]) -> str:
 
 
 def telemetry() -> dict[str, str]:
-    return {"gpu": command_output([
-        "nvidia-smi", "--query-gpu=temperature.gpu,clocks.sm,clocks.mem,pstate,power.draw",
-        "--format=csv,noheader,nounits",
-    ])}
+    return {
+        "gpu": command_output(
+            [
+                "nvidia-smi",
+                "--query-gpu=temperature.gpu,clocks.sm,clocks.mem,pstate,power.draw",
+                "--format=csv,noheader,nounits",
+            ]
+        )
+    }
 
 
 def validate(manifest: dict[str, object]) -> dict[str, object]:
@@ -72,27 +86,49 @@ def validate(manifest: dict[str, object]) -> dict[str, object]:
     return base
 
 
-def run_lane(manifest: dict[str, object], base: dict[str, object], lane: str,
-             size: int, steps: int) -> dict[str, object]:
-    command = [sys.executable, str(WORKER), "--lane", lane, "--size", str(size),
-               "--steps", str(steps), "--warmups", "5", "--repetitions", "5"]
+def run_lane(
+    manifest: dict[str, object],
+    base: dict[str, object],
+    lane: str,
+    size: int,
+    steps: int,
+) -> dict[str, object]:
+    command = [
+        sys.executable,
+        str(WORKER),
+        "--lane",
+        lane,
+        "--size",
+        str(size),
+        "--steps",
+        str(steps),
+        "--warmups",
+        "5",
+        "--repetitions",
+        "5",
+    ]
     environment = os.environ.copy()
     if lane == "dveb-device":
         command += ["--artifact-manifest", manifest["device_artifact_manifest"]]
     elif lane == "persistent-compile":
-        environment["TORCHINDUCTOR_CACHE_DIR"] = base["compile_caches"][str(size)]["path"]
+        environment["TORCHINDUCTOR_CACHE_DIR"] = base["compile_caches"][str(size)][
+            "path"
+        ]
     elif lane == "aot-inductor":
         package = base["aot_packages"][str(size)]
         command += ["--package", package["path"]]
         environment["TORCHINDUCTOR_CACHE_DIR"] = package["runtime_cache"]
-    completed = subprocess.run(command, cwd=HERE, env=environment, text=True,
-                               capture_output=True, timeout=1800)
+    completed = subprocess.run(
+        command, cwd=HERE, env=environment, text=True, capture_output=True, timeout=1800
+    )
     try:
         record = last_json(completed.stdout)
     except RuntimeError:
         record = {"lane": lane, "stdout": completed.stdout}
-    record.update(returncode=completed.returncode,
-                  success=completed.returncode == 0 and bool(record.get("finite")))
+    record.update(
+        returncode=completed.returncode,
+        success=completed.returncode == 0 and bool(record.get("finite")),
+    )
     if completed.stderr.strip():
         record["stderr"] = completed.stderr.strip()
     return record
@@ -102,14 +138,24 @@ def summarize(records: list[dict[str, object]]) -> dict[str, object]:
     summary = {}
     for lane in LANES:
         selected = [item for item in records if item["lane"] == lane]
-        values = [float(value["call_seconds"]) for item in selected if item["success"]
-                  for value in item["observations"]]
-        entry = {"workers": len(selected),
-                 "failures": sum(not item["success"] for item in selected),
-                 "count": len(values)}
+        values = [
+            float(value["call_seconds"])
+            for item in selected
+            if item["success"]
+            for value in item["observations"]
+        ]
+        entry = {
+            "workers": len(selected),
+            "failures": sum(not item["success"] for item in selected),
+            "count": len(values),
+        }
         if values:
-            entry.update(minimum=min(values), median=statistics.median(values),
-                         mean=statistics.fmean(values), maximum=max(values))
+            entry.update(
+                minimum=min(values),
+                median=statistics.median(values),
+                mean=statistics.fmean(values),
+                maximum=max(values),
+            )
         summary[lane] = entry
     return summary
 
@@ -138,27 +184,44 @@ def main() -> None:
             record = run_lane(manifest, base, lane, args.size, args.steps)
             record["block"] = block
             records.append(record)
-            print(json.dumps({"block": block, "lane": lane,
-                              "success": record["success"]}), flush=True)
+            print(
+                json.dumps(
+                    {"block": block, "lane": lane, "success": record["success"]}
+                ),
+                flush=True,
+            )
         block_record["telemetry_after"] = telemetry()
         blocks.append(block_record)
     report = {
         "schema": "gradflow-dveb-device-e4-timing-v1",
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "manifest": str(args.manifest.resolve()),
-        "size": args.size, "steps": args.steps, "seed": 20260827,
-        "lanes": LANES, "blocks": blocks, "records": records,
+        "size": args.size,
+        "steps": args.steps,
+        "seed": 20260827,
+        "lanes": LANES,
+        "blocks": blocks,
+        "records": records,
         "summary": summarize(records),
         "environment": {
-            "platform": platform.platform(), "python": sys.version,
-            "gpu": command_output(["nvidia-smi", "--query-gpu=name,driver_version,memory.total",
-                                   "--format=csv,noheader"]),
+            "platform": platform.platform(),
+            "python": sys.version,
+            "gpu": command_output(
+                [
+                    "nvidia-smi",
+                    "--query-gpu=name,driver_version,memory.total",
+                    "--format=csv,noheader",
+                ]
+            ),
         },
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
-    print(json.dumps({"output": str(args.output), "summary": report["summary"]},
-                     sort_keys=True))
+    print(
+        json.dumps(
+            {"output": str(args.output), "summary": report["summary"]}, sort_keys=True
+        )
+    )
     if any(not item["success"] for item in records):
         raise SystemExit("a counted lane failed")
 

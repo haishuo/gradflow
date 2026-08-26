@@ -4,14 +4,13 @@
 from __future__ import annotations
 
 import argparse
-from datetime import datetime, timezone
 import hashlib
 import json
-from pathlib import Path
 import platform
 import shutil
 import subprocess
-
+from datetime import datetime, timezone
+from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -35,7 +34,11 @@ def sha256(path: Path) -> str:
 
 
 def record(path: Path) -> dict[str, object]:
-    return {"path": str(path.resolve()), "sha256": sha256(path), "bytes": path.stat().st_size}
+    return {
+        "path": str(path.resolve()),
+        "sha256": sha256(path),
+        "bytes": path.stat().st_size,
+    }
 
 
 def copy(source: Path, destination: Path, expected: str) -> dict[str, object]:
@@ -65,14 +68,33 @@ def main() -> None:
     source = json.loads((DVEB_BUILD / "artifact.json").read_text())
     if source.get("schema") != "dveb-artifact-v3":
         raise SystemExit("expected DVEB artifact schema v3")
-    if source["program_sha256"] != EXPECTED["program"] or source["module_sha256"] != EXPECTED["module"]:
+    if (
+        source["program_sha256"] != EXPECTED["program"]
+        or source["module_sha256"] != EXPECTED["module"]
+    ):
         raise SystemExit("DVEB mathematical identity changed")
     frozen = output / "dveb"
     copies = {
-        "v1_library": copy(DVEB_BUILD / source["abi"]["library"], frozen / source["abi"]["library"], EXPECTED["v1_library"]),
-        "v1_header": copy(DVEB_BUILD / source["abi"]["header"], frozen / source["abi"]["header"], EXPECTED["v1_header"]),
-        "v2_library": copy(DVEB_BUILD / source["device_abi"]["library"], frozen / source["device_abi"]["library"], EXPECTED["v2_library"]),
-        "v2_header": copy(DVEB_BUILD / source["device_abi"]["header"], frozen / source["device_abi"]["header"], EXPECTED["v2_header"]),
+        "v1_library": copy(
+            DVEB_BUILD / source["abi"]["library"],
+            frozen / source["abi"]["library"],
+            EXPECTED["v1_library"],
+        ),
+        "v1_header": copy(
+            DVEB_BUILD / source["abi"]["header"],
+            frozen / source["abi"]["header"],
+            EXPECTED["v1_header"],
+        ),
+        "v2_library": copy(
+            DVEB_BUILD / source["device_abi"]["library"],
+            frozen / source["device_abi"]["library"],
+            EXPECTED["v2_library"],
+        ),
+        "v2_header": copy(
+            DVEB_BUILD / source["device_abi"]["header"],
+            frozen / source["device_abi"]["header"],
+            EXPECTED["v2_header"],
+        ),
     }
     shutil.copy2(DVEB_BUILD / "artifact.json", frozen / "artifact.json")
     copies["artifact_manifest"] = record(frozen / "artifact.json")
@@ -95,8 +117,10 @@ def main() -> None:
         "seed": 20260827,
         "dveb_commit": "0d12788",
         "gradflow_commit": subprocess.run(
-            ["git", "-C", str(ROOT), "rev-parse", "HEAD"], check=True,
-            text=True, capture_output=True,
+            ["git", "-C", str(ROOT), "rev-parse", "HEAD"],
+            check=True,
+            text=True,
+            capture_output=True,
         ).stdout.strip(),
         "device_artifact_manifest": str((frozen / "artifact.json").resolve()),
         "device_artifacts": copies,

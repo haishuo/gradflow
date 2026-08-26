@@ -1,0 +1,31 @@
+{
+  "schema": "gradflow-dveb-device-e4-postfix-sentinel-v1",
+  "purpose": "Uncounted continuity check after the ABI v1 allocation-ownership fix; not part of the frozen winner analysis.",
+  "dveb_commit": "1e7fec3",
+  "device_abi_library_sha256": "fdd56a78be2c9396c77eb945fb40f5a8eab0875474b1efe8b34fe9c9ec99e5e5",
+  "points": [
+    {
+      "size": 128,
+      "steps": 1,
+      "warmups": 5,
+      "call_seconds": [0.009617222007364035, 0.009611811954528093, 0.009604642167687416, 0.009606151841580868, 0.009611961897462606],
+      "median_seconds": 0.009611811954528093,
+      "frozen_median_seconds": 0.00963847292587161,
+      "relative_change": -0.0027661
+    },
+    {
+      "size": 128,
+      "steps": 10,
+      "warmups": 5,
+      "call_seconds": [0.09456042805686593, 0.09456237917765975, 0.09457917837426066, 0.0945792580023408, 0.09457254782319069],
+      "median_seconds": 0.09457254782319069,
+      "frozen_median_seconds": 0.0949104109313339,
+      "relative_change": -0.0035598
+    }
+  ],
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "torch": "2.13.0+cu130",
+    "cuda": "13.0"
+  }
+}

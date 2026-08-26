@@ -1,0 +1,55 @@
+{
+  "bound": 2e-05,
+  "created_utc": "2026-08-26T15:27:59.157711+00:00",
+  "environment": {
+    "cuda": "13.0",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "torch": "2.13.0+cu130"
+  },
+  "manifest": "/mnt/artifacts/gradflow/dveb_device_e4_20260827/manifest.json",
+  "maximum_absolute_error": 1.430511474609375e-06,
+  "nondefault_stream_exact_alias_pass": true,
+  "pass": true,
+  "points": [
+    {
+      "archive": {
+        "bytes": 1509,
+        "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/correctness_arrays/device_e4_correctness_n6_s1.npz",
+        "sha256": "9cbdac6488fbdbd4fd0747f62991bc8ca2f4ced9f31e62fccc56494ef7c3a2f0"
+      },
+      "dveb_execution_seconds": 0.000355109,
+      "dveb_total_seconds": 0.000357519,
+      "finite": true,
+      "maximum_absolute_error": 2.384185791015625e-07,
+      "size": 6,
+      "steps": 1
+    },
+    {
+      "archive": {
+        "bytes": 1604,
+        "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/correctness_arrays/device_e4_correctness_n6_s10.npz",
+        "sha256": "262eb91125f2c694456a11110f5137a67c64662a5f5d416c2f1780a425ce8da9"
+      },
+      "dveb_execution_seconds": 0.001156125,
+      "dveb_total_seconds": 0.001158815,
+      "finite": true,
+      "maximum_absolute_error": 1.430511474609375e-06,
+      "size": 6,
+      "steps": 10
+    },
+    {
+      "archive": {
+        "bytes": 30205,
+        "path": "/mnt/projects/gradflow/experiments/shu_torch_ablation/results/dveb_device_e4_20260827/correctness_arrays/device_e4_correctness_n32_s1.npz",
+        "sha256": "ea769cb8b01781455c3a768b23d009f83ffab199e2e80101273be8b441c8a572"
+      },
+      "dveb_execution_seconds": 0.000301989,
+      "dveb_total_seconds": 0.000303259,
+      "finite": true,
+      "maximum_absolute_error": 4.76837158203125e-07,
+      "size": 32,
+      "steps": 1
+    }
+  ],
+  "schema": "gradflow-dveb-device-e4-correctness-v1"
+}

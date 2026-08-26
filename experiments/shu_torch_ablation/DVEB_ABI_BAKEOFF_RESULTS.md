@@ -2,6 +2,11 @@
 
 Status: **completed; all frozen correctness and timing gates passed**.
 
+Historical scope note: this report concerns portable ABI v1. The later frozen
+device-ABI v2 addendum made DVEB eligible for E4 and supersedes only the v1
+“unsupported” conclusion there. See `DVEB_DEVICE_ABI_E4_RESULTS.md`; E1--E3
+below remain unchanged.
+
 All primary values are medians of the frozen 30-observation design. 
 Fresh application, first call, warm call, and resident execution remain separate.
 

@@ -108,6 +108,13 @@ step. CPU ABI, CUDA ABI, the unchanged direct portable runner, and independent
 PyTorch all agreed within `2e-5`; the largest observed difference was
 `8.345e-7`. See `DVEB_ABI_V1.md`.
 
+Device-resident ABI v2 is exposed explicitly through `DvebDeviceContext`, not
+through `Solver.run` automatic placement. It accepts and returns CUDA tensors
+without host transfers and passed the separate E4 gate. See
+`DVEB_DEVICE_ABI_V2.md`. Keeping this boundary explicit prevents the new
+performance result from silently changing the older CPU-state `Solver`
+contract before resident-state dispatch has its own design and calibration.
+
 ## Explicitly unsupported
 
 The constructor rejects rather than approximates:

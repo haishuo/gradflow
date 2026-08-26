@@ -24,7 +24,6 @@ from gradflow import (  # noqa: E402
     periodic_vortex,
 )
 
-
 LANES = ("dveb-device", "direct-eager", "persistent-compile", "aot-inductor")
 
 
@@ -127,10 +126,12 @@ def main() -> None:
     for repetition in range(args.repetitions):
         started = time.perf_counter()
         last_state = run()
-        observations.append({
-            "repetition_in_worker": repetition,
-            "call_seconds": time.perf_counter() - started,
-        })
+        observations.append(
+            {
+                "repetition_in_worker": repetition,
+                "call_seconds": time.perf_counter() - started,
+            }
+        )
     assert last_state is not None
     validation_state = last_state.detach().cpu()
     if args.output_state is not None:

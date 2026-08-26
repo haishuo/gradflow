@@ -132,6 +132,13 @@ caller-owned CPU float32 buffers. It is versioned, hash-qualified, and has
 passed arbitrary-state CPU/CUDA/PyTorch parity. It does not provide autograd or
 device-pointer input.
 
+Portable device ABI v2 is now separately qualified as an explicit resident
+CUDA endpoint for this exact fixed program. It accepts caller-owned CUDA
+buffers and a caller stream through a reusable context. The E4 addendum found
+it materially faster than the tested PyTorch resident lanes, but it has not
+been calibrated for `auto`; this evidence must not be turned into an implicit
+selection rule yet.
+
 Automatic DVEB placement is enabled only when an installation explicitly
 supplies both the ABI artifact and a verified model. The tested model refuses
 outside its bounded N=7--72 range; GradFlow catches that placement-only refusal
