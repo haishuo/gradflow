@@ -3,11 +3,12 @@
 GradFlow is restarting as a research project for general, differentiable,
 high-performance finite-difference WENO in ordinary PyTorch.
 
-The current repository deliberately contains only a validated scalar WENO-5
-seed. Its numerical path is written as readable shifts, slicing/indexing, and
-elementwise tensor operations. `conv1d` is an implementation hypothesis to be
-tested later, not the project premise. No handwritten CUDA, Triton, C++, or
-custom operator is part of the canonical code.
+The current repository contains a validated scalar WENO-5 seed and one narrow
+3-D Euler characteristic JS-WENO-5 `Solver` vertical slice. Their numerical
+paths are written as readable shifts, slicing/indexing, and elementwise tensor
+operations. `conv1d` is an implementation hypothesis to be tested later, not
+the project premise. No handwritten CUDA, Triton, C++, or custom operator is
+part of the canonical package code.
 
 The central research question is:
 
@@ -41,9 +42,39 @@ rhs = weno5_rhs(u, 1.0 / n, lambda q: q, alpha=1.0)
 The same function is intended to be passed to `torch.compile`; compilation is
 an execution choice, not a different numerical implementation.
 
+## Current Solver slice
+
+The first system API accepts arbitrary caller-provided states, but only for
+the formulation that has actually passed the current gate:
+
+```python
+import torch
+import gradflow
+
+state, spacing = gradflow.periodic_vortex((32, 32, 32))
+solver = gradflow.Solver(
+    equations="euler",
+    dimension=3,
+    weno=("JS", 5),
+    flux_split="global_lf",
+    boundaries="periodic_duplicated",
+    dtype=torch.float32,
+    spacing=spacing,
+)
+result = solver.run(state, steps=1)
+```
+
+Automatic placement currently selects direct eager PyTorch on the existing
+state device. DVEB is not yet wired into this API because its qualified
+executable always constructs the benchmark vortex and cannot accept the
+caller's state. See `docs/SOLVER_VERTICAL_SLICE.md` for the exact supported and
+rejected surface.
+
 ## Repository map
 
 - `src/gradflow/weno5.py` — canonical direct PyTorch WENO-5 seed
+- `src/gradflow/euler3d.py` — differentiable characteristic Euler JS-WENO-5
+- `src/gradflow/solver.py` — narrow validated problem and backend surface
 - `tests/` — bounded oracle, convergence, conservation, device, and compiler gate
 - `references/` — byte-preserved Gottlieb MATLAB and Jiang--Shu Fortran sources
 - `baselines/` — exact DVEB screened comparator and its evidence
@@ -56,6 +87,7 @@ an execution choice, not a different numerical implementation.
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
 - `docs/BACKEND_SELECTION_CONTRACT.md` — evidence-bound automatic placement
   and explicit-backend rules
+- `docs/SOLVER_VERTICAL_SLICE.md` — implemented API, gates, and limitations
 - `docs/FORMULATION_LINEAGE.md` — mathematical and implementation lineage
 - `docs/ARCHIVE_MANIFEST.md` — preservation artifacts and restoration steps
 

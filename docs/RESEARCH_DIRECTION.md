@@ -172,3 +172,17 @@ WENO-specific automatic placement is qualified only within the tested
 machine-specific envelope. Its generic selector remains NO-GO. See
 `experiments/shu_torch_ablation/DVEB_FINAL_REQUALIFICATION_RESULTS.md` and
 `docs/BACKEND_SELECTION_CONTRACT.md`.
+
+## First system vertical slice
+
+The package now exposes an intentionally restricted 3-D Euler characteristic
+JS-WENO-5 `Solver` accepting caller-provided states. It provides direct eager
+PyTorch on the caller's CPU or CUDA device, fixed-step differentiation with a
+finite-gradient gate, physical-state validation, explicit backend diagnostics,
+and exact rejection of unsupported mathematics.
+
+This is not the general API target achieved. Navier--Stokes, JS-11/JS-15,
+general boundaries, and native arbitrary-state execution remain unsupported.
+The qualified DVEB executable cannot yet serve the public solver because it
+always constructs its benchmark vortex; the next native-backend requirement
+is a versioned arbitrary-state ABI, not another benchmark shortcut.

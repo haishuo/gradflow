@@ -22,9 +22,10 @@ compiled/AOT PyTorch, or another qualified backend without exposing that
 machinery. An explicit backend override remains legal for experiments and
 expert use even when it is slower.
 
-This document is a contract for future implementation, not a claim that the
-general `Solver` surface above exists today. The currently validated package
-surface remains the scalar WENO-5 seed.
+This document is a contract for future generalization, not a claim that the
+general surface above exists today. A narrow 3-D Euler JS-WENO-5 `Solver`
+slice now exists; it rejects the shown Navier--Stokes/JS-11 request. See
+`SOLVER_VERTICAL_SLICE.md`.
 
 ## Semantics precede placement
 
@@ -124,30 +125,38 @@ The final DVEB WENO requalification at GradFlow branch
 - a WENO-specific, machine-specific held-out selector pass for N in
   `{8,16,32,48,64}` and steps in `{1,10}`.
 
-Therefore DVEB is eligible as an optional native forward backend for this
-exact formulation. Automatic DVEB placement is eligible only inside that
-qualified envelope on the recorded Ryzen 7600X / RTX 5070 Ti machine. The
-tested model refuses N=96/128 because they fall outside its bounded training
-range; GradFlow must not turn the forced-CUDA diagnostic into an automatic
-claim.
+Therefore DVEB's generated implementation is a qualified optional native
+forward-backend candidate for this exact formulation. It is not yet eligible
+behind `Solver.run(initial_state, ...)`: the qualified executable exposes only
+its hard-coded vortex initializer and cannot accept the caller's state. The
+internal native functions do accept an initial vector, so a versioned general
+ABI is the concrete missing piece. Until that ABI passes parity, `auto` falls
+back to direct PyTorch and explicit DVEB requests fail clearly.
+
+Once the arbitrary-state ABI exists, automatic DVEB placement may be enabled
+only inside the qualified envelope on the recorded Ryzen 7600X / RTX 5070 Ti
+machine. The tested model refuses N=96/128 because they fall outside its
+bounded training range; GradFlow must not turn the forced-CUDA diagnostic into
+an automatic claim.
 
 DVEB's generic automatic selector remains **NO-GO** at DVEB commit `2f1f3ab`.
 That result and the bounded WENO pass answer different questions and must both
 remain visible.
 
-## Next implementation slice
+## Implemented vertical slice
 
-The next code slice should be deliberately narrow:
+The first code slice is deliberately narrow:
 
 1. expose the existing direct-PyTorch 3-D Euler JS-WENO-5 formulation through
    an internal typed problem description;
-2. validate periodic duplicated-endpoint state, spacing, dtype, and positivity;
+2. validate periodic duplicated-endpoint shape, spacing, dtype, and positivity;
 3. provide eager PyTorch as the correctness fallback;
-4. connect DVEB only as an optional, hash/version-qualified forward deployment
-   backend;
+4. refuse DVEB until its hash/version-qualified forward deployment exposes an
+   arbitrary-state ABI;
 5. expose selection diagnostics and explicit target override; and
 6. reproduce the committed parity tests through the new surface.
 
-It must not pretend to implement arbitrary equations, JS-11, JS-15, general
-boundaries, characteristic policy generation, or backward differentiation.
-Those capabilities require independent mathematical gates.
+The slice does not pretend to implement arbitrary equations, JS-11, JS-15,
+general boundaries, or characteristic policy generation. Its fixed-step
+direct PyTorch path has a bounded autograd gate; broader backward claims still
+require independent mathematical tests.

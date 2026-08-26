@@ -9,6 +9,7 @@
 | Upstream GradFlow PyTorch translation at `4c861fd` | Readable literal translation | Scalar Gottlieb loops, extended arrays, indexed assignment, host scalar extraction | Correct oracle bridge; archived, not canonical |
 | DVEB screened comparator | Compiler/performance evidence | Batched unique-node right-moving linear specialization using rolls; optional `conv1d` variant | Correct for the screened workload; not a general oracle |
 | Canonical `src/gradflow/weno5.py` | Restarted WENO-5 seed | Direct shifts/slices and elementwise operations, general scalar flux, corrected two-sided LF split, explicit grid conventions | Must pass the bounded Gottlieb gate |
+| Packaged 3-D Euler slice | Direct PyTorch system seed | Shu characteristic JS-WENO-5 policies, duplicated endpoints, algebraically equivalent inverse-form nonlinear weights for stable float32 autograd | Forward-gated against the frozen bakeoff source; not the scalar oracle |
 | Old GradFlow package | Historical experiments | Premature symbolic/order-general surface and convolution-oriented coefficient ideas, with a loop-based active solver | Noncanonical; recoverable from history/archives |
 
 ## Shared scalar reconstruction algebra
@@ -92,6 +93,24 @@ No input is silently converted to a device or dtype. The validated seed
 requires float64, computes alpha on-device when a derivative is supplied, and
 accepts an already compatible explicit alpha otherwise. The exact DVEB file
 is preserved so this cleanup cannot rewrite what the screen actually tested.
+
+## Packaged Euler solver relationship
+
+`src/gradflow/euler3d.py` packages the direct 2-D/3-D characteristic Euler
+formulation frozen in `experiments/shu_torch_ablation/shu_euler_torch.py`; the
+public `Solver` currently admits only its validated 3-D case. The flux,
+characteristic projection, epsilon, LF enlargement, duplicated endpoints,
+CFL, and SSP-RK3 stages are unchanged.
+
+One expression is deliberately algebraically refactored. The frozen source
+normalizes product-form weights
+`q2*q3 : 6*q1*q3 : 3*q1*q2`. Dividing all three by the common product gives
+the packaged inverse form `1/q1 : 6/q2 : 3/q3`. In perfectly smooth float32
+regions, autograd through the product form first differentiates a reciprocal
+near `1e-24`, overflows, and produces NaNs despite finite final weights. The
+inverse form yields finite gradients. The benchmark source remains untouched,
+and the package is forward-gated against it rather than declared bitwise
+identical.
 
 ## Old GradFlow and future arbitrary order
 
