@@ -23,12 +23,21 @@ from .solver import (
     Solver,
     UnsupportedProblemError,
 )
-from .dveb_abi import DvebAbiError, DvebArtifact, DvebPortableAbi, DvebRunResult
+from .dveb_abi import (
+    DvebAbiError,
+    DvebArtifact,
+    DvebDeviceContext,
+    DvebDeviceRunResult,
+    DvebPortableAbi,
+    DvebRunResult,
+)
 
 __all__ = [
     "DEFAULT_EPSILON",
     "DvebAbiError",
     "DvebArtifact",
+    "DvebDeviceContext",
+    "DvebDeviceRunResult",
     "DvebPortableAbi",
     "DvebRunResult",
     "ssp_rk3_step",
