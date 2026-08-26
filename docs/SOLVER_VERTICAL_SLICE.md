@@ -15,7 +15,7 @@ state, spacing = gradflow.periodic_vortex(
 solver = gradflow.Solver(
     equations="euler",
     dimension=3,
-    weno=("JS", 5),
+    weno=("JS", 11),
     flux_split="global_lf",
     boundaries="periodic_duplicated",
     dtype=torch.float32,
@@ -36,22 +36,26 @@ no host/device transfer or scalar extraction.
 
 ## Mathematics
 
-The slice is exactly the preserved Shu Euler specialization:
+The slice extends the preserved Shu Euler specialization with exact generated
+reconstruction data:
 
 - 3-D compressible Euler with gamma 1.4;
-- dimension-by-dimension Roe characteristic JS-WENO-5;
-- Shu's central-flux-plus-nonlinear-correction form;
+- dimension-by-dimension Roe characteristic WENO-JS orders 5, 7, 9, 11, 13,
+  and 15;
+- face-frozen projection of split flux samples followed by generated
+  candidate, weight, and smoothness algebra;
 - `epsilon=1e-6` with the preserved 12-times-scaled indicators;
 - per-line, per-family global LF speeds enlarged by 10 percent;
 - duplicated periodic endpoints; and
 - adaptive-CFL SSP-RK3.
 
-For differentiability, the package evaluates the nonlinear weights as
-normalized inverse squared indicators. This is algebraically identical to the
-historical product form, but avoids float32 autograd overflow in perfectly
-smooth regions. The frozen benchmark source remains unchanged.
+For differentiability, the package evaluates normalized inverse squared
+indicators with a scale-invariant denominator normalization. Generated order
+five is algebraically equivalent to the historical central-correction form,
+while avoiding float32 autograd overflow in perfectly smooth regions. The
+frozen benchmark source remains unchanged.
 
-Forward gates observed:
+Order-five preservation gates observed:
 
 | Point | Package versus frozen PyTorch | Package CPU versus CUDA |
 |---|---:|---:|
@@ -59,9 +63,13 @@ Forward gates observed:
 | N=6, ten steps | `7.451e-9` | `1.192e-6` |
 | N=32, one step | `3.638e-11` | `4.768e-7` |
 
-One-step autograd on the smooth vortex produces finite, nonzero gradients.
-TorchDynamo records the scientific Euler step as one graph with zero graph
-breaks. These are seed gates, not a general differentiable-CFD claim.
+The higher-order gate uses an exact smooth entropy wave. Orders 5--15 refine
+monotonically and meet the frozen characteristic convergence criterion.
+One-step autograd produces finite, nonzero gradients for orders 5, 11, and 15.
+Their characteristic RHS probes each capture as one Dynamo graph with zero
+graph breaks on CPU and CUDA. See
+`CHARACTERISTIC_ARBITRARY_ORDER_RESULTS.md`. These are bounded system gates,
+not a general differentiable-CFD claim.
 
 ## Time control
 
@@ -100,8 +108,8 @@ the library, header, program, module, and model identities before execution.
 ABI v1 accepts caller-owned CPU memory only. Its CUDA target includes required
 H2D/D2H copies and reports those transfers. It cannot satisfy autograd,
 GPU-resident input, adaptive `final_time`, noncubic grids, alternate spacing or
-CFL, or a different mathematical formulation; `auto` uses PyTorch in those
-cases and explicit native requests refuse.
+CFL, float64, higher-order WENO, or a different mathematical formulation;
+`auto` uses PyTorch in those cases and explicit native requests refuse.
 
 The arbitrary-state gate passed at N=6 for one and ten steps and N=32 for one
 step. CPU ABI, CUDA ABI, the unchanged direct portable runner, and independent
@@ -121,11 +129,13 @@ The constructor rejects rather than approximates:
 
 - Navier--Stokes viscosity;
 - dimensions other than 3;
-- WENO orders other than JS-5;
+- WENO families other than JS and JS orders outside 5, 7, 9, 11, 13, and 15;
 - local LF or other flux splitting;
 - componentwise reconstruction;
 - unique-node periodic grids or nonperiodic boundaries;
-- dtypes other than float32;
+- dtypes other than float32 and float64;
 - CUDA adaptive `final_time` control.
 
-WENO-11 and WENO-15 have not begun.
+Every spatial direction must contain at least as many unique periodic cells as
+the requested WENO order. Orders beyond 15 remain constructible only at the
+scalar coefficient level and are not qualified for this system API.

@@ -1,0 +1,289 @@
+{
+  "autograd": {
+    "11": {
+      "finite": true,
+      "maximum_absolute_gradient": 0.00458681105618337,
+      "nonzero_count": 6655
+    },
+    "15": {
+      "finite": true,
+      "maximum_absolute_gradient": 0.0019392452851950419,
+      "nonzero_count": 16875
+    },
+    "5": {
+      "finite": true,
+      "maximum_absolute_gradient": 0.03641953338300052,
+      "nonzero_count": 625
+    }
+  },
+  "claim_boundary": {
+    "boundaries": "duplicated periodic endpoints only",
+    "dveb_changed": false,
+    "equations": "three-dimensional ideal-gas compressible Euler only",
+    "native_backend_orders": [
+      5
+    ],
+    "performance_measured": false,
+    "solver_orders_beyond_15_are_qualified": false
+  },
+  "created_utc": "2026-08-26T19:31:06.152153+00:00",
+  "environment": {
+    "cuda_available": true,
+    "cuda_runtime": "13.0",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "torch": "2.13.0+cu130"
+  },
+  "exact_coefficient_payload_sha256": "bee81f0ba84338fc2136039e4ef4a680c89cab38fb124391a354bdcd58ae553b",
+  "gradflow_commit": "2fe0b47a5c0d173a8a11ab83ed780a74e26628f2",
+  "gradflow_dirty_before_record": false,
+  "orders": {
+    "11": {
+      "conservation": {
+        "maximum_absolute_component_sum": 1.4432899320127035e-14,
+        "maximum_roundoff_ratio": 0.1660781986583728
+      },
+      "convergence": {
+        "l2_errors": [
+          2.7492250115642238e-05,
+          2.7292090767092166e-07,
+          3.916431201966063e-09,
+          6.555400401587138e-11
+        ],
+        "rates": [
+          11.375768962621448,
+          10.466994869304848,
+          10.087333624845432
+        ],
+        "sizes": [
+          24,
+          36,
+          54,
+          81
+        ]
+      },
+      "cpu_cuda_max_abs_float32": 2.0265579223632812e-05,
+      "cpu_cuda_max_abs_float64": 3.019806626980426e-14,
+      "uniform_max_abs_float32": 0.0,
+      "uniform_max_abs_float64": 0.0
+    },
+    "13": {
+      "conservation": {
+        "maximum_absolute_component_sum": 3.760880495917718e-15,
+        "maximum_roundoff_ratio": 0.13514613369667183
+      },
+      "convergence": {
+        "l2_errors": [
+          6.618975835394126e-06,
+          1.8439040251132335e-08,
+          1.228584805038012e-10,
+          9.105849539923044e-13
+        ],
+        "rates": [
+          14.509820060998793,
+          12.359120971134285,
+          12.096481569615475
+        ],
+        "sizes": [
+          24,
+          36,
+          54,
+          81
+        ]
+      },
+      "cpu_cuda_max_abs_float32": 2.0265579223632812e-05,
+      "cpu_cuda_max_abs_float64": 2.2648549702353193e-14,
+      "uniform_max_abs_float32": 0.0,
+      "uniform_max_abs_float64": 0.0
+    },
+    "15": {
+      "conservation": {
+        "maximum_absolute_component_sum": 1.9387269567516796e-14,
+        "maximum_roundoff_ratio": 0.20300983739493747
+      },
+      "convergence": {
+        "l2_errors": [
+          1.769204376471806e-06,
+          1.16162390370852e-09,
+          3.0662603090810627e-12,
+          4.2722148265727453e-14
+        ],
+        "rates": [
+          18.074221751773994,
+          14.642728621269823,
+          10.539739158107846
+        ],
+        "sizes": [
+          24,
+          36,
+          54,
+          81
+        ]
+      },
+      "cpu_cuda_max_abs_float32": 2.0265579223632812e-05,
+      "cpu_cuda_max_abs_float64": 2.2648549702353193e-14,
+      "uniform_max_abs_float32": 0.0,
+      "uniform_max_abs_float64": 0.0
+    },
+    "5": {
+      "conservation": {
+        "maximum_absolute_component_sum": 1.6459056340067946e-14,
+        "maximum_roundoff_ratio": 0.17235319265216228
+      },
+      "convergence": {
+        "l2_errors": [
+          0.006961180083374787,
+          0.0009844725434339987,
+          0.00014005491199386172,
+          2.1180912432004376e-05
+        ],
+        "rates": [
+          4.824085336083051,
+          4.809467931064515,
+          4.6586848469319895
+        ],
+        "sizes": [
+          24,
+          36,
+          54,
+          81
+        ]
+      },
+      "cpu_cuda_max_abs_float32": 1.2159347534179688e-05,
+      "cpu_cuda_max_abs_float64": 3.774758283725532e-14,
+      "uniform_max_abs_float32": 0.0,
+      "uniform_max_abs_float64": 0.0
+    },
+    "7": {
+      "conservation": {
+        "maximum_absolute_component_sum": 4.7878367936959876e-15,
+        "maximum_roundoff_ratio": 0.2242066205436485
+      },
+      "convergence": {
+        "l2_errors": [
+          0.0010031163961506224,
+          7.924251109937391e-05,
+          6.454964111123355e-06,
+          5.617256442312883e-07
+        ],
+        "rates": [
+          6.26035105697646,
+          6.1846590410643,
+          6.021704806188026
+        ],
+        "sizes": [
+          24,
+          36,
+          54,
+          81
+        ]
+      },
+      "cpu_cuda_max_abs_float32": 1.621246337890625e-05,
+      "cpu_cuda_max_abs_float64": 3.019806626980426e-14,
+      "uniform_max_abs_float32": 0.0,
+      "uniform_max_abs_float64": 0.0
+    },
+    "9": {
+      "conservation": {
+        "maximum_absolute_component_sum": 7.41073868937292e-15,
+        "maximum_roundoff_ratio": 0.16929596177052492
+      },
+      "convergence": {
+        "l2_errors": [
+          0.00012950193574274026,
+          3.8852488953332495e-06,
+          1.190628947145602e-07,
+          4.369389640418366e-09
+        ],
+        "rates": [
+          8.648114748316422,
+          8.595783894280938,
+          8.151203359905121
+        ],
+        "sizes": [
+          24,
+          36,
+          54,
+          81
+        ]
+      },
+      "cpu_cuda_max_abs_float32": 1.621246337890625e-05,
+      "cpu_cuda_max_abs_float64": 3.774758283725532e-14,
+      "uniform_max_abs_float32": 0.0,
+      "uniform_max_abs_float64": 0.0
+    }
+  },
+  "protocol": "/mnt/projects/gradflow/docs/CHARACTERISTIC_ARBITRARY_ORDER_PROTOCOL.md",
+  "qualified_orders": [
+    5,
+    7,
+    9,
+    11,
+    13,
+    15
+  ],
+  "schema": "gradflow-characteristic-arbitrary-order-qualification-v1",
+  "source_sha256": {
+    "experiments/characteristic_arbitrary_order/qualify.py": "a12b289c4043bea513a0602827cd0febd9bdce03b84c68fd325f34e945da91b2",
+    "src/gradflow/euler3d.py": "25a138cf7b35ae4c3c5a3e6b63f5c458dba6689d8c589b85cc21972951a0d304",
+    "src/gradflow/solver.py": "359678161e642d79d49ccd494bb66d21ca646c72e3df2ebfaf375f0ae32f3c48",
+    "src/gradflow/weno_js.py": "857f0642f8c4a4d29c1fe3e9f1f8ee304ac35bfeac1640f70a18a6d99fa81ce3",
+    "src/gradflow/weno_js_coefficients.py": "46960ede8546891e58c30cef2e949ae1db56ed20041b9ae9fec7de5cb2a67ef7",
+    "tests/test_euler_arbitrary_order.py": "53e421c89630d9c04ca16bbc96cd6fb41debee062564a9f043695851f59b342a"
+  },
+  "torch_compile": {
+    "11": {
+      "cpu": {
+        "finite": true,
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_error": 1.9984014443252818e-14
+      },
+      "cuda": {
+        "finite": true,
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_error": 2.5033950805664062e-05
+      }
+    },
+    "15": {
+      "cpu": {
+        "finite": true,
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_error": 2.6645352591003757e-14
+      },
+      "cuda": {
+        "finite": true,
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_error": 2.1457672119140625e-05
+      }
+    },
+    "5": {
+      "cpu": {
+        "finite": true,
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_error": 2.6645352591003757e-14
+      },
+      "cuda": {
+        "finite": true,
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_error": 2.86102294921875e-05
+      }
+    }
+  },
+  "weno5_preservation": {
+    "float32": {
+      "rhs_maximum_absolute_difference": 2.5331974029541016e-07,
+      "step_maximum_absolute_difference": 5.960464477539063e-08
+    },
+    "float64": {
+      "rhs_maximum_absolute_difference": 1.2212453270876722e-15,
+      "step_maximum_absolute_difference": 1.1102230246251565e-16
+    }
+  }
+}

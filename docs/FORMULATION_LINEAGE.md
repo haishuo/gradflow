@@ -10,7 +10,7 @@
 | DVEB screened comparator | Compiler/performance evidence | Batched unique-node right-moving linear specialization using rolls; optional `conv1d` variant | Correct for the screened workload; not a general oracle |
 | Canonical `src/gradflow/weno5.py` | Restarted WENO-5 seed | Direct shifts/slices and elementwise operations, general scalar flux, corrected two-sided LF split, explicit grid conventions | Must pass the bounded Gottlieb gate |
 | Generated `src/gradflow/weno_js.py` | Arbitrary-order scalar seed | Exact-rational auxiliary-flux reconstruction, generated JS matrices, stable LDLT indicators, orders 5--15 qualified | Reproduces the canonical WENO-5 seed; higher orders use independent algebraic and convergence gates |
-| Packaged 3-D Euler slice | Direct PyTorch system seed | Shu characteristic JS-WENO-5 policies, duplicated endpoints, algebraically equivalent inverse-form nonlinear weights for stable float32 autograd | Forward-gated against the frozen bakeoff source; not the scalar oracle |
+| Packaged 3-D Euler slice | Generated characteristic system seed | Shu Roe/global-LF/epsilon policies with exact generated WENO-JS reconstruction, duplicated endpoints, orders 5--15 qualified | Order five is forward-gated against the frozen bakeoff source; higher orders use an exact entropy-wave oracle |
 | Old GradFlow package | Historical experiments | Premature symbolic/order-general surface and convolution-oriented coefficient ideas, with a loop-based active solver | Noncanonical; recoverable from history/archives |
 
 ## Shared scalar reconstruction algebra
@@ -97,21 +97,30 @@ is preserved so this cleanup cannot rewrite what the screen actually tested.
 
 ## Packaged Euler solver relationship
 
-`src/gradflow/euler3d.py` packages the direct 2-D/3-D characteristic Euler
+`src/gradflow/euler3d.py` retains the direct 2-D/3-D characteristic Euler
 formulation frozen in `experiments/shu_torch_ablation/shu_euler_torch.py`; the
-public `Solver` currently admits only its validated 3-D case. The flux,
-characteristic projection, epsilon, LF enlargement, duplicated endpoints,
-CFL, and SSP-RK3 stages are unchanged.
+public `Solver` admits its validated 3-D case at orders 5--15. The physical
+flux, Roe projection, epsilon, LF enlargement, duplicated endpoints, CFL, and
+SSP-RK3 policies are unchanged.
 
-One expression is deliberately algebraically refactored. The frozen source
-normalizes product-form weights
+Order five is deliberately written in an algebraically refactored form. The
+frozen source normalizes product-form weights
 `q2*q3 : 6*q1*q3 : 3*q1*q2`. Dividing all three by the common product gives
 the packaged inverse form `1/q1 : 6/q2 : 3/q3`. In perfectly smooth float32
 regions, autograd through the product form first differentiates a reciprocal
 near `1e-24`, overflows, and produces NaNs despite finite final weights. The
-inverse form yields finite gradients. The benchmark source remains untouched,
-and the package is forward-gated against it rather than declared bitwise
-identical.
+normalized inverse form yields finite gradients. The benchmark source remains
+untouched, and generated order five is forward-gated against it rather than
+declared bitwise identical.
+
+For every face and order, the package freezes the Roe matrices, projects the
+required positive and negative split-flux samples, applies the same exact
+candidate and smoothness algebra qualified in the scalar trunk, and transforms
+the reconstructed characteristic flux back to conserved variables. Orders
+7--15 are independently gated on an analytic 3-D Euler entropy wave,
+conservation, uniform-state preservation, differentiation, devices, and
+compiler behavior. They are descendants of Shu's system policy, not scalar
+Gottlieb oracles.
 
 ## Old GradFlow and generated arbitrary order
 
@@ -127,10 +136,14 @@ Jiang--Shu derivative indicators, and factors their exact matrices. Generated
 order five agrees with the canonical Gottlieb seed, while orders 7--15 are
 qualified by exact polynomial reproduction and independent convergence gates.
 
-The generator retains Gottlieb's 12-times indicator scaling, epsilon `1e-29`,
-and nonlinear power two. Its critical-point record demonstrates expected
-WENO-JS accuracy loss rather than conflating a generated higher-order stencil
-with uniform high-order behavior. It currently applies only to scalar unique
-periodic nodes. The characteristic Euler implementation and Shu Fortran
-lineage remain separate until a future system-migration gate proves their
-equivalence.
+The scalar generator retains Gottlieb's 12-times indicator scaling, epsilon
+`1e-29`, and nonlinear power two. Its critical-point record demonstrates
+expected WENO-JS accuracy loss rather than conflating a generated higher-order
+stencil with uniform high-order behavior.
+
+The characteristic migration reuses the exact candidates, weights, and
+smoothness factors but deliberately supplies Shu's `1e-6` epsilon and system
+flux policy. Generated order five matches the preserved characteristic
+implementation within floating-point roundoff-scale bounds; the higher orders
+extend that lineage under their separately frozen gate. The two epsilon and
+problem policies therefore remain explicit rather than being conflated.

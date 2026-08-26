@@ -3,10 +3,10 @@
 GradFlow is restarting as a research project for general, differentiable,
 high-performance finite-difference WENO in ordinary PyTorch.
 
-The current repository contains a validated exact-rational scalar WENO-JS
-constructor, qualified for orders 5 through 15, and one narrow 3-D Euler
-characteristic JS-WENO-5 `Solver` vertical slice. Their numerical paths are
-written as readable shifts, slicing/indexing, and elementwise tensor
+The current repository contains a validated exact-rational WENO-JS
+constructor and a narrow 3-D Euler characteristic `Solver`, both qualified for
+orders 5 through 15. Their numerical paths are written as readable shifts,
+slicing/indexing, and elementwise tensor
 operations. `conv1d` is an implementation hypothesis to be tested later, not
 the project premise. No handwritten CUDA, Triton, C++, or custom operator is
 part of the canonical package code.
@@ -18,9 +18,9 @@ The central research question is:
 > a realistic WENO-15 case—without bespoke CUDA or Triton engineering?
 
 This remains a research question, not a completed general capability or
-novelty claim. Scalar periodic WENO-15 is now constructed and correctness-
-qualified, but characteristic systems, general boundaries, performance, and
-the target `Solver` surface remain open.
+novelty claim. Scalar and one characteristic Euler periodic WENO-15 path are
+now correctness-qualified, but general equations, boundaries, geometry,
+performance, and the target `Solver` surface remain open.
 
 ## Current seed
 
@@ -57,13 +57,14 @@ rhs = scheme.rhs(u, 1.0 / n, lambda q: q, alpha=1.0)
 One exact-rational constructor generates candidate polynomials, optimal
 weights, and smoothness indicators for every odd order. Orders 5, 7, 9, 11,
 13, and 15 have passed the bounded scalar periodic gate. See
-`docs/ARBITRARY_ORDER_WENO_JS_RESULTS.md`. This class has not yet replaced the
-separately validated characteristic Euler WENO-5 implementation in `Solver`.
+`docs/ARBITRARY_ORDER_WENO_JS_RESULTS.md`. The same exact generated
+reconstruction data now drives the separately qualified characteristic Euler
+path.
 
 ## Current Solver slice
 
-The first system API accepts arbitrary caller-provided states, but only for
-the formulation that has actually passed the current gate:
+The first system API accepts arbitrary caller-provided states for the
+formulation and orders that have passed the current gate:
 
 ```python
 import torch
@@ -73,7 +74,7 @@ state, spacing = gradflow.periodic_vortex((32, 32, 32))
 solver = gradflow.Solver(
     equations="euler",
     dimension=3,
-    weno=("JS", 5),
+    weno=("JS", 11),
     flux_split="global_lf",
     boundaries="periodic_duplicated",
     dtype=torch.float32,
@@ -83,11 +84,12 @@ result = solver.run(state, steps=1)
 ```
 
 Direct eager PyTorch remains the zero-configuration path. A hash-qualified
-DVEB portable ABI v1 artifact can now accept the same caller-owned CPU state
-and execute the matched forward step on CPU SIMD/OpenMP or CUDA. Native use is
-restricted to the exact compiled 3-D Euler formulation, positive fixed step
-counts, cubic grids, spacing `10/N`, CFL 0.1, contiguous float32 state, and no
-autograd. Automatic DVEB dispatch additionally requires an explicitly
+DVEB portable ABI v1 artifact can accept a matching caller-owned CPU state and
+execute the WENO-5 forward step on CPU SIMD/OpenMP or CUDA. Native use is
+restricted to the exact compiled 3-D Euler WENO-5 formulation, positive fixed
+step counts, cubic grids, spacing `10/N`, CFL 0.1, contiguous float32 state,
+and no autograd. Higher-order and float64 requests remain on PyTorch.
+Automatic DVEB dispatch additionally requires an explicitly
 verified bounded placement model; otherwise `auto` falls back to PyTorch.
 See `docs/SOLVER_VERTICAL_SLICE.md` and `docs/DVEB_ABI_V1.md`.
 
@@ -105,7 +107,7 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `src/gradflow/weno5.py` — canonical direct PyTorch WENO-5 seed
 - `src/gradflow/weno_js_coefficients.py` — exact-rational arbitrary-order construction
 - `src/gradflow/weno_js.py` — generated axis-general scalar PyTorch WENO-JS
-- `src/gradflow/euler3d.py` — differentiable characteristic Euler JS-WENO-5
+- `src/gradflow/euler3d.py` — generated characteristic Euler WENO-JS orders 5--15
 - `src/gradflow/solver.py` — narrow validated problem and backend surface
 - `src/gradflow/dveb_abi.py` — hash-checked DVEB CPU-state v1 and CUDA-state v2 adapters
 - `tests/` — bounded oracle, convergence, conservation, device, and compiler gate
@@ -118,8 +120,10 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
   direct-PyTorch CPU/GPU crossover experiment and the 30-run automatic-DVEB
   deployment bakeoff
 - `experiments/weno_js_arbitrary_order/` — scalar orders 5--15 qualification record
+- `experiments/characteristic_arbitrary_order/` — Euler orders 5--15 qualification
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
 - `docs/ARBITRARY_ORDER_WENO_JS_RESULTS.md` — generated scalar qualification
+- `docs/CHARACTERISTIC_ARBITRARY_ORDER_RESULTS.md` — characteristic Euler qualification
 - `docs/BACKEND_SELECTION_CONTRACT.md` — evidence-bound automatic placement
   and explicit-backend rules
 - `docs/SOLVER_VERTICAL_SLICE.md` — implemented API, gates, and limitations

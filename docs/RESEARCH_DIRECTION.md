@@ -6,10 +6,11 @@ GradFlow's new research question is:
 
 > Can a direct, maintainable PyTorch system construct, verify, differentiate, and efficiently execute arbitrary-order finite-difference WENO schemes—including a realistic WENO-15 case—without bespoke CUDA or Triton engineering?
 
-The repository now establishes an exact-rational scalar finite-difference
-WENO-JS constructor qualified for orders 5--15. It does not yet answer the
-full research question because systems, boundaries, representation
-performance, native lowering, and the general `Solver` surface remain open.
+The repository now establishes an exact-rational finite-difference WENO-JS
+constructor qualified for orders 5--15 in both a scalar periodic path and one
+3-D Roe-characteristic Euler path. It does not yet answer the full research
+question because general equations, boundaries, geometry, representation
+performance, native lowering, and the broader `Solver` surface remain open.
 
 ## Conclusions and claim boundaries
 
@@ -52,18 +53,19 @@ performance, native lowering, and the general `Solver` surface remain open.
    generated Triton code was compiler output, not comparator source or bespoke
    engineering.
 
-9. Scalar periodic WENO-15 has now served as the first construction and
-   compiler stress case; it was not implemented as “WENO-5 with a longer
-   stencil.” The completed seed addresses automatic candidate polynomials,
-   optimal weights, exact smoothness matrices, expression growth through
+9. Scalar periodic and 3-D characteristic Euler WENO-15 have now served as
+   construction and compiler stress cases; neither was implemented as
+   “WENO-5 with a longer stencil.” The completed seeds address automatic
+   candidate polynomials, optimal weights, exact smoothness matrices,
+   face-frozen characteristic projection, expression growth through
    full-graph compilation, critical-point characterization, and independent
-   validation. It leaves serious questions about:
+   validation. They leave serious questions about:
 
    - coefficient conditioning;
    - boundary closures;
    - register pressure and spilling;
    - floating-point stability;
-   - characteristic/system reconstruction; and
+   - characteristic boundary treatment and other systems; and
    - compiler performance as order and dimension increase.
 
 10. Potential research contributions may include:
@@ -168,6 +170,22 @@ changes or substitution of WENO-Z. This result is part of the mathematical
 characterization, not a failed compiler gate. No performance timing was
 collected. See `ARBITRARY_ORDER_WENO_JS_RESULTS.md`.
 
+## Characteristic arbitrary-order result
+
+The same generated reconstruction data now drives a face-frozen Roe
+characteristic split-flux path for 3-D ideal-gas Euler. Orders 5--15 pass a
+smooth entropy-wave convergence gate, exact uniform-state preservation,
+conservation, CPU/CUDA agreement, fixed-step differentiation, and fixed-shape
+full-graph execution. Generated order five preserves the historical Shu
+bakeoff RHS within `2.534e-7` in float32 and `1.222e-15` in float64.
+
+This establishes one realistic system WENO-15 path through the public
+`Solver`; it does not establish Navier--Stokes, general equations, boundary
+closures, geometric complexity, or application performance. Fresh-cache
+compiler preparation was operationally substantial, but no timing protocol
+was run and no performance conclusion is claimed. See
+`CHARACTERISTIC_ARBITRARY_ORDER_RESULTS.md`.
+
 ## Final DVEB WENO requalification
 
 GradFlow subsequently requalified DVEB's final reproducible Shu Euler artifact
@@ -191,21 +209,22 @@ machine-specific envelope. Its generic selector remains NO-GO. See
 ## First system vertical slice
 
 The package now exposes an intentionally restricted 3-D Euler characteristic
-JS-WENO-5 `Solver` accepting caller-provided states. It provides direct eager
-PyTorch on the caller's CPU or CUDA device, fixed-step differentiation with a
-finite-gradient gate, physical-state validation, explicit backend diagnostics,
-and exact rejection of unsupported mathematics.
+WENO-JS `Solver` accepting caller-provided states at qualified orders 5, 7, 9,
+11, 13, and 15. It provides direct eager PyTorch on the caller's CPU or CUDA
+device, fixed-step differentiation with a finite-gradient gate, physical-state
+validation, explicit backend diagnostics, and exact rejection of unsupported
+mathematics.
 
 This is not the general API target achieved. Navier--Stokes, general
-boundaries, and JS-11/JS-15 *within `Solver`* remain unsupported; the generated
-scalar interface qualified elsewhere does not silently extend the Euler
-system implementation. A subsequent DVEB portable ABI v1 gate did enable
-hash-qualified arbitrary-state forward execution for this one exact
-formulation on CPU or CUDA. The gate's worst CPU/CUDA/PyTorch difference was
-`8.345e-7` against a `2e-5` bound. It establishes an honest integration
-surface, not arbitrary equations, gradients through native code, or a new
-performance claim. The existing fresh-process selector record is not a
-substitute for future ABI-endpoint calibration.
+boundaries, non-Cartesian geometry, and other systems remain unsupported. A
+subsequent DVEB portable ABI v1 gate enabled hash-qualified arbitrary-state
+forward execution only for the original float32 WENO-5 formulation on CPU or
+CUDA. Higher-order or float64 native requests refuse or fall back to PyTorch;
+they never substitute different mathematics. The ABI gate's worst
+CPU/CUDA/PyTorch difference was `8.345e-7` against a `2e-5` bound. It
+establishes an honest integration surface, not arbitrary equations, gradients
+through native code, or a new performance claim. The existing fresh-process
+selector record is not a substitute for future ABI-endpoint calibration.
 
 Portable device ABI v2 then exposed the same fixed generated CUDA solver to
 caller-owned resident tensors and reusable workspace. In its separately frozen
