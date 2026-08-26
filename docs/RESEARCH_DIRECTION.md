@@ -152,3 +152,23 @@ available; it is never simulated.
 
 The next phase, if separately authorized after this gate, is mathematical and
 literature design—not WENO-15 benchmarking or broad optimization.
+
+## Final DVEB WENO requalification
+
+GradFlow subsequently requalified DVEB's final reproducible Shu Euler artifact
+at committed DVEB revision `2f1f3ab` using disjoint calibration and evaluation
+sizes. Full-state error remained at most `7.153e-7`. At ten held-out N=8--64,
+one/ten-step points, all automatic selections were stable; median
+fresh-process regret was 1.0014 and maximum regret was 1.2255 under the frozen
+acceptance bands. The selector moved the one-step workload to CUDA at N=64 and
+the ten-step workload at N=32.
+
+At N=96/128, automatic placement safely refused because the model was bounded
+by its N=7--72 calibration range. Forced generated CUDA nevertheless remained
+within 1.65% of the independent native ceiling over the four declared
+large-grid points. This yields a deliberately split conclusion: DVEB has a
+validated role as a native backend for this WENO formulation, and its
+WENO-specific automatic placement is qualified only within the tested
+machine-specific envelope. Its generic selector remains NO-GO. See
+`experiments/shu_torch_ablation/DVEB_FINAL_REQUALIFICATION_RESULTS.md` and
+`docs/BACKEND_SELECTION_CONTRACT.md`.

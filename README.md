@@ -54,6 +54,8 @@ an execution choice, not a different numerical implementation.
   direct-PyTorch CPU/GPU crossover experiment and the 30-run automatic-DVEB
   deployment bakeoff
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
+- `docs/BACKEND_SELECTION_CONTRACT.md` — evidence-bound automatic placement
+  and explicit-backend rules
 - `docs/FORMULATION_LINEAGE.md` — mathematical and implementation lineage
 - `docs/ARCHIVE_MANIFEST.md` — preservation artifacts and restoration steps
 
