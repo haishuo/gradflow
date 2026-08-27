@@ -128,8 +128,9 @@ product framework work must not delay the bounded paper.
 ## Immediate trunk order
 
 1. Under the completed FD/FV Phase-1 constitution, freeze the mathematical
-   contract and independent oracles for a scalar FV WENO-JS5 seed.
-2. Qualify that seed for convergence, conservation, discontinuities, device
+   contract and independent oracles for a scalar FV WENO-JS5 seed. **Completed
+   in Phase 2.**
+2. Implement and qualify that seed for convergence, conservation, discontinuities, device
    agreement, compilation, and gradients before collecting performance data.
 3. Freeze and execute the scalar matched-component and best-practical FD/FV
    accuracy-to-time/memory matrix.

@@ -1,0 +1,177 @@
+{
+  "explicit_exclusions": [
+    "canonical FV implementation",
+    "Euler or characteristic reconstruction",
+    "nonperiodic boundaries",
+    "multidimensional face quadrature",
+    "genuinely multidimensional FV",
+    "alternative finite difference",
+    "WENO-Z or positivity limiting",
+    "adaptive or conventional best-practical epsilon",
+    "arbitrary order",
+    "GPU, compilation, optimization, or timing"
+  ],
+  "formulation": {
+    "boundary": "unique periodic cells without duplicated endpoint",
+    "equation_class": "scalar conservation law u_t + f(u)_x = 0",
+    "id": "fv_dimensional_js5_global_lf_periodic_v1",
+    "order": 5,
+    "persistent_state": "physical cell average",
+    "taxonomy": "one-dimensional dimension-by-dimension finite-volume WENO-JS"
+  },
+  "freeze_date": "2026-08-27",
+  "future_time_integrator": {
+    "executed_in_phase_2": false,
+    "final_step": "shorten only to reach exact final physical time",
+    "id": "SSP-RK3",
+    "stage_1": "u1=u+dt*L(u)",
+    "stage_2": "u2=3/4*u+1/4*(u1+dt*L(u1))",
+    "stage_3": "u_next=1/3*u+2/3*(u2+dt*L(u2))"
+  },
+  "grid": {
+    "cell_i": "[a+i*dx,a+(i+1)*dx]",
+    "center_i": "a+(i+1/2)*dx",
+    "domain": "[a,b)",
+    "face_i": "a+i*dx",
+    "face_storage": "index i is the right face of cell i",
+    "spacing": "(b-a)/N",
+    "state_i": "(1/dx)*integral(cell_i,u(x) dx)"
+  },
+  "numerical_flux": {
+    "alpha_contract": "global alpha >= max abs(f'(u)) for one RHS",
+    "formula": "0.5*(f(uL)+f(uR)-alpha*(uR-uL))",
+    "id": "global_lax_friedrichs_rusanov",
+    "linear_advection": "f(u)=c*u and alpha=abs(c)"
+  },
+  "phase": "fd_fv_phase_2",
+  "precision_gate": {
+    "oracle": "exact Fraction arithmetic plus hexadecimal binary64 cases",
+    "performance_precision_in_phase_2": "none",
+    "reference": "binary64 for future implementation qualification"
+  },
+  "projection": {
+    "analytic_preference": true,
+    "center_sampling_permitted_as_cell_average": false,
+    "fallback": "independently converged quadrature with negligible error",
+    "initial_and_exact_state": "cell average of the continuous field"
+  },
+  "protocol_commit": "4638a4ab592338ce24e268ef549c7d960e03605d",
+  "reconstruction": {
+    "candidate_coefficients": [
+      [
+        "1/3",
+        "-7/6",
+        "11/6"
+      ],
+      [
+        "-1/6",
+        "5/6",
+        "1/3"
+      ],
+      [
+        "1/3",
+        "5/6",
+        "-1/6"
+      ]
+    ],
+    "epsilon": "1/100000000000000000000000000000",
+    "full_coefficients": [
+      "1/30",
+      "-13/60",
+      "47/60",
+      "9/20",
+      "-1/20"
+    ],
+    "full_offsets": [
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    "left_candidate_offsets": [
+      [
+        -2,
+        -1,
+        0
+      ],
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        2
+      ]
+    ],
+    "nonlinear_power": 2,
+    "optimal_weights": [
+      "1/10",
+      "3/5",
+      "3/10"
+    ],
+    "right_offset_map": "j -> 1-j",
+    "runtime_smoothness_scale": "12/1",
+    "standard_smoothness_matrices": [
+      [
+        [
+          "4/3",
+          "-19/6",
+          "11/6"
+        ],
+        [
+          "-19/6",
+          "25/3",
+          "-31/6"
+        ],
+        [
+          "11/6",
+          "-31/6",
+          "10/3"
+        ]
+      ],
+      [
+        [
+          "4/3",
+          "-13/6",
+          "5/6"
+        ],
+        [
+          "-13/6",
+          "13/3",
+          "-13/6"
+        ],
+        [
+          "5/6",
+          "-13/6",
+          "4/3"
+        ]
+      ],
+      [
+        [
+          "10/3",
+          "-31/6",
+          "11/6"
+        ],
+        [
+          "-31/6",
+          "25/3",
+          "-19/6"
+        ],
+        [
+          "11/6",
+          "-19/6",
+          "4/3"
+        ]
+      ]
+    ],
+    "weight_policy": "d_k/(epsilon+12*beta_k)^2, normalized"
+  },
+  "schema_version": 1,
+  "semidiscrete_operator": {
+    "conservation": "dx*sum_i(rhs[i])=0 for periodic faces",
+    "formula": "rhs[i]=-(face_flux[i]-face_flux[i-1])/dx"
+  }
+}

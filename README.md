@@ -46,6 +46,12 @@ with matched-component and best-practical lanes kept separate. It contains no
 new FV implementation or timing result. See `docs/FD_FV_PHASE_1_RESULTS.md`
 and `docs/FD_FV_EXPERIMENTAL_CONSTITUTION.md`.
 
+FD/FV Phase 2 has now frozen and independently derived the first scalar
+finite-volume WENO-JS5 mathematical contract. Exact rational coefficient,
+polynomial, smoothness, projection, upwinding, and conservation oracles are
+committed, but no canonical FV solver or timing result exists yet. See
+`docs/FD_FV_PHASE_2_RESULTS.md`.
+
 Phase D has now completed an exhaustive scalar binary32/binary64 search over
 384 coarse and 768 refined order/policy pairs. On the frozen cases, binary32
 smoothness indicators and unnormalized nonlinear-weight formation can be
@@ -159,6 +165,8 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `experiments/literature_review/` — frozen Phase-C search, study, and claim records
 - `experiments/fd_fv_review/` — FD/FV Phase-1 search, study, claim, and
   experimental-constitution evidence
+- `experiments/fd_fv_contract/` — independent exact FV-JS5 contract and oracle
+  evidence for FD/FV Phase 2
 - `experiments/mixed_precision/` — exhaustive scalar precision assignments and
   isolated CUDA performance records
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
@@ -167,6 +175,8 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `docs/FD_FV_PHASE_1_PROTOCOL.md` — pre-search FD/FV review protocol
 - `docs/FD_FV_PHASE_1_RESULTS.md` — controlled-comparison literature result
 - `docs/FD_FV_EXPERIMENTAL_CONSTITUTION.md` — binding rules for later bakeoffs
+- `docs/FD_FV_PHASE_2_PROTOCOL.md` — scalar FV-JS5 contract/oracle freeze
+- `docs/FD_FV_PHASE_2_RESULTS.md` — exact derivation and invariant results
 - `docs/MIXED_PRECISION_PHASE_D_PROTOCOL.md` — frozen Tier-1a scalar precision search
 - `docs/MIXED_PRECISION_PHASE_D_TIER1B_RESULTS.md` — refined numerical seam
 - `docs/MIXED_PRECISION_PHASE_D_PERFORMANCE_RESULTS.md` — verified RTX timing result

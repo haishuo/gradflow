@@ -129,6 +129,16 @@ performance, native lowering, and the broader `Solver` surface remain open.
     review permits the experiment but does not establish novelty. See
     `FD_FV_PHASE_1_RESULTS.md` and `FD_FV_EXPERIMENTAL_CONSTITUTION.md`.
 
+13. FD/FV Phase 2 freezes one scalar dimension-by-dimension FV WENO-JS5 target
+    with physical cell-average semantics, global LF/Rusanov flux, periodic
+    cells, the matched GradFlow epsilon/scaling policy, and future SSP-RK3.
+    Independent exact-rational moment derivation reproduced all candidate,
+    optimal, full-stencil, and smoothness data; analytic projection and exact
+    semidiscrete invariants now provide the Phase-3 oracle. Identical
+    reconstruction tables do not conflate FD and FV: their persistent states,
+    projections, nonlinear flux operations, and multidimensional extensions
+    remain different. See `FD_FV_PHASE_2_RESULTS.md`.
+
 The longer-term product architecture is documented separately in
 `PRODUCT_VISION.md`, `PROBLEM_MODEL.md`, `EQUATION_EXTENSION_CONTRACT.md`,
 `RESULT_AND_PROVENANCE_MODEL.md`, and `UI_WORKFLOW_CONCEPT.md`. Those documents

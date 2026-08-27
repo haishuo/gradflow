@@ -13,3 +13,6 @@ python3 experiments/fd_fv_contract/verify_phase_2.py
 ```
 
 Phase 2 contains no performance results.
+
+The frozen result is documented in `docs/FD_FV_PHASE_2_RESULTS.md`; committed
+machine-readable records live in `results/phase_2_20260827/`.
