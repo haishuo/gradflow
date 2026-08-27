@@ -132,6 +132,10 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
 - `docs/ENGINEERING_CHARTER.md` — governing priority law, promotion gates,
   architecture, and technical-debt policy
+- `docs/ACADEMIC_SCOPE.md` — bounded paper target, required evidence, and
+  explicit commercial deferrals
+- `docs/DVEB_RELATIONSHIP.md` — project independence and DVEB change-admission rule
+- `docs/EULER_BOUNDARY_SHOCK_PROTOCOL.md` — next correctness-first trunk boundary
 - `docs/PRODUCT_VISION.md` — one-engine product target and user levels
 - `docs/PROBLEM_MODEL.md` — backend-neutral scientific request model
 - `docs/EQUATION_EXTENSION_CONTRACT.md` — requirements for equation families

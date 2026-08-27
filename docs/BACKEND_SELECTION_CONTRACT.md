@@ -3,6 +3,8 @@
 This contract is governed by `ENGINEERING_CHARTER.md`. Placement is a
 performance decision below the correctness gate: no backend win can authorize
 different mathematics, invalid output, or an unqualified approximation.
+DVEB participation additionally follows the independent-project rule in
+`DVEB_RELATIONSHIP.md`.
 
 ## User-facing principle
 

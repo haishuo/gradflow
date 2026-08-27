@@ -102,6 +102,12 @@ The longer-term product architecture is documented separately in
 state design targets rather than claims that the current narrow solver already
 implements a general CFD product.
 
+Development is sequenced academic-first under `ACADEMIC_SCOPE.md`. DVEB may
+participate as a comparator or optional backend, but GradFlow's result must
+stand without it. `DVEB_RELATIONSHIP.md` permits GradFlow-motivated DVEB work
+only when the capability remains independently justified for DVEB as a general
+language/compiler.
+
 ## Evidence inherited from DVEB trunk-001
 
 The screened comparator expressed a batched, unique-periodic-node,

@@ -251,6 +251,8 @@ general boundary closures, complex geometry, an automatic resident-backend
 planner, or a guided UI.
 
 Those omissions are explicit scope boundaries, not permissions to represent
-future interfaces as implemented. The next architectural work should specify
-the shared problem contract, then use new Euler boundary/scenario support and
-compressible Navier--Stokes as concrete tests of that contract.
+future interfaces as implemented. GradFlow will complete the bounded academic
+program in `ACADEMIC_SCOPE.md` before resuming the broader commercial build.
+The immediate numerical work is the correctness-first Euler boundary/shock
+trunk. Later commercial work will use compressible Navier--Stokes as the first
+major test of the shared equation abstraction.

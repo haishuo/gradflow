@@ -1,5 +1,9 @@
 # GradFlow product vision
 
+Implementation of this broader product is sequenced after the bounded academic
+program in `ACADEMIC_SCOPE.md`. The separation preserves product architecture
+without requiring product breadth for the first paper.
+
 ## One engine, not a family of benchmark programs
 
 The product target is one GradFlow scientific engine. It must not become an
