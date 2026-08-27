@@ -25,3 +25,7 @@ but the verifier deliberately refuses such partial records.
 The CUDA performance follow-up uses `benchmark.py`, which isolates every
 order/policy pair in a fresh process and cache as required by
 `docs/MIXED_PRECISION_PHASE_D_PERFORMANCE_PROTOCOL.md`.
+
+`euler_qualify.py` carries only the scalar-qualified policies into the frozen
+Tier-2 characteristic-Euler correctness gate. Its shock cases reuse the
+immutable Phase-A independent oracles and Phase-B float64 terminal arrays.
