@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import numpy as np
 
+from experiments.euler_boundary_shock.prepare_phase_a import _write_json
 from experiments.euler_boundary_shock.fv_reference import (
     conserved_to_primitive,
     finite_volume_rhs,
@@ -68,3 +69,20 @@ def test_reference_sod_refines_against_exact_solution() -> None:
         assert statistics.minimum_pressure > 0.0
         assert statistics.maximum_conservation_residual < 64.0
     assert errors[1] < errors[0]
+
+
+def test_phase_a_json_writer_handles_numpy_scalars(tmp_path) -> None:
+    destination = tmp_path / "record.json"
+    _write_json(
+        destination,
+        {
+            "boolean": np.bool_(True),
+            "integer": np.int64(7),
+            "floating": np.float64(0.25),
+            "array": np.array([1.0, 2.0]),
+        },
+    )
+    assert destination.read_text() == (
+        '{\n  "array": [\n    1.0,\n    2.0\n  ],\n'
+        '  "boolean": true,\n  "floating": 0.25,\n  "integer": 7\n}\n'
+    )

@@ -240,8 +240,22 @@ def _derive_thresholds(
     }
 
 
+def _json_default(value: Any) -> bool | int | float | list[Any]:
+    if isinstance(value, np.bool_):
+        return bool(value)
+    if isinstance(value, np.integer):
+        return int(value)
+    if isinstance(value, np.floating):
+        return float(value)
+    if isinstance(value, np.ndarray):
+        return value.tolist()
+    raise TypeError(f"unsupported JSON value: {type(value).__name__}")
+
+
 def _write_json(path: Path, payload: Any) -> None:
-    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    path.write_text(
+        json.dumps(payload, indent=2, sort_keys=True, default=_json_default) + "\n"
+    )
 
 
 def prepare(output: Path) -> None:
