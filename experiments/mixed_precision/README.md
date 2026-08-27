@@ -29,3 +29,12 @@ order/policy pair in a fresh process and cache as required by
 `euler_qualify.py` carries only the scalar-qualified policies into the frozen
 Tier-2 characteristic-Euler correctness gate. Its shock cases reuse the
 immutable Phase-A independent oracles and Phase-B float64 terminal arrays.
+The frozen protocol and completed result are documented in
+`docs/MIXED_PRECISION_PHASE_D_TIER2_PROTOCOL.md` and
+`docs/MIXED_PRECISION_PHASE_D_TIER2_RESULTS.md`. Verify the complete result
+with:
+
+```bash
+python experiments/mixed_precision/verify_euler.py \
+  experiments/mixed_precision/results/phase_d_tier2_20260827
+```
