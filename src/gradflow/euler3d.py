@@ -15,7 +15,7 @@ from collections.abc import Sequence
 import torch
 from torch import Tensor
 
-from .weno_js import QUALIFIED_ORDERS, WENOJS
+from .weno_js import QUALIFIED_ORDERS, WENOJS, WENOJSPrecisionPolicy
 
 EULER_GAMMA = 1.4
 EULER_WENO_EPSILON = 1.0e-6
@@ -25,6 +25,24 @@ _EULER_WENO_SCHEMES = {
     order: WENOJS(order, epsilon=EULER_WENO_EPSILON)
     for order in QUALIFIED_EULER_WENO_ORDERS
 }
+_EULER_WENO_SCHEME_CACHE: dict[
+    tuple[int, WENOJSPrecisionPolicy], WENOJS
+] = {}
+
+
+def _euler_weno_scheme(
+    order: int,
+    precision: WENOJSPrecisionPolicy | None,
+) -> WENOJS:
+    """Return one immutable generated scheme for an explicit precision policy."""
+    if precision is None:
+        return _EULER_WENO_SCHEMES[order]
+    key = (order, precision)
+    scheme = _EULER_WENO_SCHEME_CACHE.get(key)
+    if scheme is None:
+        scheme = WENOJS(order, epsilon=EULER_WENO_EPSILON, precision=precision)
+        _EULER_WENO_SCHEME_CACHE[key] = scheme
+    return scheme
 
 
 def _component_order(ndim: int, axis: int) -> tuple[int, ...]:
@@ -294,8 +312,13 @@ def euler_weno_rhs(
     spacing: Sequence[float],
     *,
     order: int = 5,
+    precision: WENOJSPrecisionPolicy | None = None,
 ) -> Tensor:
-    """Compute generated characteristic WENO-JS Euler RHS."""
+    """Compute generated characteristic WENO-JS Euler RHS.
+
+    ``precision`` is an experimental internal WENO policy. Euler state, flux,
+    eigensystem, projection, divergence, and output retain the state dtype.
+    """
     ndim = state.ndim - 1
     if ndim not in (2, 3):
         raise ValueError("state must be a 2-D or 3-D Euler field")
@@ -314,7 +337,7 @@ def euler_weno_rhs(
         )
 
     state = synchronize_duplicate_endpoints(state)
-    scheme = _EULER_WENO_SCHEMES[order]
+    scheme = _euler_weno_scheme(order, precision)
     result = torch.zeros_like(state)
     for axis in range(ndim):
         order = _component_order(ndim, axis)
@@ -361,16 +384,17 @@ def euler_ssp_rk3_step(
     dt: Tensor,
     *,
     order: int = 5,
+    precision: WENOJSPrecisionPolicy | None = None,
 ) -> Tensor:
     """Advance one full three-stage SSP-RK3 step."""
     state = synchronize_duplicate_endpoints(state)
-    rhs0 = euler_weno_rhs(state, spacing, order=order)
+    rhs0 = euler_weno_rhs(state, spacing, order=order, precision=precision)
     stage1 = synchronize_duplicate_endpoints(state + dt * rhs0)
-    rhs1 = euler_weno_rhs(stage1, spacing, order=order)
+    rhs1 = euler_weno_rhs(stage1, spacing, order=order, precision=precision)
     stage2 = synchronize_duplicate_endpoints(
         0.75 * state + 0.25 * (stage1 + dt * rhs1)
     )
-    rhs2 = euler_weno_rhs(stage2, spacing, order=order)
+    rhs2 = euler_weno_rhs(stage2, spacing, order=order, precision=precision)
     return synchronize_duplicate_endpoints(
         (state + 2.0 * (stage2 + dt * rhs2)) / 3.0
     )

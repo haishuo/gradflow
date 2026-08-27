@@ -16,9 +16,10 @@ from torch import Tensor
 from .euler3d import (
     EULER_GAMMA,
     QUALIFIED_EULER_WENO_ORDERS,
-    _EULER_WENO_SCHEMES,
+    _euler_weno_scheme,
     _generated_bounded_line_rhs,
 )
+from .weno_js import WENOJSPrecisionPolicy
 
 EULER1D_BOUNDARIES = ("periodic", "transmissive")
 
@@ -80,6 +81,7 @@ def euler1d_rhs_with_boundary_fluxes(
     *,
     order: int = 5,
     boundary: str = "periodic",
+    precision: WENOJSPrecisionPolicy | None = None,
 ) -> tuple[Tensor, Tensor]:
     """Return the physical RHS and left/right numerical boundary fluxes.
 
@@ -91,7 +93,7 @@ def euler1d_rhs_with_boundary_fluxes(
     _validate_state(state, normalized_order)
     spacing = _validate_spacing(dx)
     normalized_boundary = _normalize_boundary(boundary)
-    scheme = _EULER_WENO_SCHEMES[normalized_order]
+    scheme = _euler_weno_scheme(normalized_order, precision)
     ghosted = _ghost_state(
         state, scheme.substencil_width, normalized_boundary
     )
@@ -110,10 +112,11 @@ def euler1d_rhs(
     *,
     order: int = 5,
     boundary: str = "periodic",
+    precision: WENOJSPrecisionPolicy | None = None,
 ) -> Tensor:
     """Return the one-dimensional characteristic WENO-JS Euler RHS."""
     rhs, _ = euler1d_rhs_with_boundary_fluxes(
-        state, dx, order=order, boundary=boundary
+        state, dx, order=order, boundary=boundary, precision=precision
     )
     return rhs
 
@@ -143,11 +146,18 @@ def euler1d_ssp_rk3_step(
     *,
     order: int = 5,
     boundary: str = "periodic",
+    precision: WENOJSPrecisionPolicy | None = None,
 ) -> Tensor:
     """Advance one full three-stage SSP-RK3 step."""
-    rhs0 = euler1d_rhs(state, dx, order=order, boundary=boundary)
+    rhs0 = euler1d_rhs(
+        state, dx, order=order, boundary=boundary, precision=precision
+    )
     stage1 = state + dt * rhs0
-    rhs1 = euler1d_rhs(stage1, dx, order=order, boundary=boundary)
+    rhs1 = euler1d_rhs(
+        stage1, dx, order=order, boundary=boundary, precision=precision
+    )
     stage2 = 0.75 * state + 0.25 * (stage1 + dt * rhs1)
-    rhs2 = euler1d_rhs(stage2, dx, order=order, boundary=boundary)
+    rhs2 = euler1d_rhs(
+        stage2, dx, order=order, boundary=boundary, precision=precision
+    )
     return (state + 2.0 * (stage2 + dt * rhs2)) / 3.0
