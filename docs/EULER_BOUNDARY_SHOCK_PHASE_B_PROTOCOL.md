@@ -46,9 +46,15 @@ For every order 5, 7, 9, 11, 13, and 15:
 - uniform states must produce a maximum absolute RHS at most `2e-12` in
   float64 and `2e-5` in float32 for both boundaries;
 - the boundary-flux conservation ratio must be at most the Phase-A value 64;
-- the periodic entropy-wave L2 error must decrease on point counts
-  `24, 36, 54, 81`; and
+- the periodic entropy-wave L2 error must decrease while it remains above the
+  declared float64 roundoff floor `1e-11` on point counts `24, 36, 54, 81`;
+  values at or below that floor are recorded but are not required to decrease;
+  and
 - at least one observed rate before the roundoff floor must reach `order-2`.
+
+If the coarsest error is already at or below `1e-11`, the rate is recorded as
+floor-limited rather than inferred. That order then requires the exact
+coefficient gates and the periodic-overlap test for assembly evidence.
 
 The entropy wave uses point locations `(i+1/2)/N`, density
 `1 + 0.1*sin(2*pi*x)`, velocity `0.7`, pressure `1`, and its exact spatial
@@ -123,3 +129,16 @@ committed, the complete suite passes, and the worktree is clean.
 
 No performance measurement, DVEB work, Navier--Stokes, stabilization,
 commercial API expansion, or publication claim occurs in Phase B.
+
+## Pre-shock roundoff amendment
+
+The original text required monotonic decrease at every grid while also
+qualifying rates only before roundoff, but did not define the floor case. The
+first local smooth probe, before any Sod or Shu--Osher GradFlow execution,
+observed coarsest L2 errors `5.191e-12` for order 13 and `2.194e-13` for order
+15. Subsequent values varied at approximately `3e-14`--`6e-14`.
+
+The fixed `1e-11` rule above resolves that internal contradiction without
+changing the wave, grid sequence, required rate, shock thresholds, or any
+implementation result. The raw values will remain in the final record. This
+amendment is committed before shock qualification begins.
