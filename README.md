@@ -39,6 +39,16 @@ academic candidate is consequently a narrower matched characterization of one
 exact-generated direct-PyTorch FD-WENO path—not a claim to have invented those
 ingredients. See `docs/LITERATURE_REVIEW_PHASE_C_RESULTS.md`.
 
+Phase D has now completed an exhaustive scalar binary32/binary64 search over
+384 coarse and 768 refined order/policy pairs. On the frozen cases, binary32
+smoothness indicators and unnormalized nonlinear-weight formation can be
+combined only when weight normalization and the reconstructed face-flux path
+remain binary64. The combined split delivered `3.267x`, `7.062x`, and `1.834x`
+warm compiled scalar-RHS speedups at WENO-5, WENO-11, and WENO-15 on the local
+RTX 5070 Ti. This is a bounded candidate result, not yet an Euler or universal
+mixed-precision recommendation. See
+`docs/MIXED_PRECISION_PHASE_D_PERFORMANCE_RESULTS.md`.
+
 ## Current seed
 
 `gradflow.weno5_rhs` operates on unique periodic point samples along the last
@@ -140,9 +150,14 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `experiments/weno_js_arbitrary_order/` — scalar orders 5--15 qualification record
 - `experiments/characteristic_arbitrary_order/` — Euler orders 5--15 qualification
 - `experiments/literature_review/` — frozen Phase-C search, study, and claim records
+- `experiments/mixed_precision/` — exhaustive scalar precision assignments and
+  isolated CUDA performance records
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
 - `docs/LITERATURE_REVIEW_PHASE_C_PROTOCOL.md` — frozen systematic-review method
 - `docs/LITERATURE_REVIEW_PHASE_C_RESULTS.md` — prior-art boundary and claim matrix
+- `docs/MIXED_PRECISION_PHASE_D_PROTOCOL.md` — frozen Tier-1a scalar precision search
+- `docs/MIXED_PRECISION_PHASE_D_TIER1B_RESULTS.md` — refined numerical seam
+- `docs/MIXED_PRECISION_PHASE_D_PERFORMANCE_RESULTS.md` — verified RTX timing result
 - `docs/ENGINEERING_CHARTER.md` — governing priority law, promotion gates,
   architecture, and technical-debt policy
 - `docs/ACADEMIC_SCOPE.md` — bounded paper target, required evidence, and

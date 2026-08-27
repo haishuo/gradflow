@@ -97,6 +97,14 @@ performance, native lowering, and the broader `Solver` surface remain open.
     - a formulation-matched, endpoint-explicit comparison with optimized CPU,
       compiler-generated, and native GPU baselines.
 
+    Phase D adds a bounded candidate contribution: exhaustive grouped
+    binary32/binary64 assignment for the direct generated scalar path found
+    that demoting smoothness indicators and unnormalized nonlinear-weight
+    formation, while retaining binary64 normalization and face-flux
+    arithmetic, passed the declared order-5--15 cases and materially improved
+    warm compiled RTX 5070 Ti execution. This remains subject to
+    characteristic-Euler qualification and external novelty review.
+
     Arbitrary-order WENO generation, characteristic reconstruction,
     differentiable WENO, and GPU WENO are prior art. Multiple flux policies,
     boundary treatments, portability, and automatic representation selection

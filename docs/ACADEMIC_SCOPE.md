@@ -46,7 +46,11 @@ The current repository has reproducible evidence for:
 - an explicitly characterized WENO-JS critical-point order loss;
 - a fixed WENO-5 Fortran/PyTorch/DVEB deployment bakeoff; and
 - a device-resident DVEB artifact that establishes a strong native comparison
-  point for one float32 3-D workload.
+  point for one float32 3-D workload; and
+- an exhaustive scalar binary32/binary64 WENO-JS precision search whose
+  passing indicator/weight-formation split produced order-dependent
+  `1.838x--7.058x` warm compiled speedups on the local RTX 5070 Ti while
+  retaining binary64 normalization and face-flux arithmetic.
 
 These are bounded results, not yet a complete paper package.
 
@@ -59,8 +63,10 @@ Before a paper claim is frozen, GradFlow needs:
 2. **Boundary and discontinuity qualification.** Add independently checked
    nonperiodic Euler boundary behavior and standard shock problems; periodic
    smooth tests alone are insufficient.
-3. **Numerical-limit characterization.** Study conditioning, roundoff,
-   epsilon sensitivity, critical points, and failure behavior as order rises.
+3. **Numerical-limit characterization.** Extend the completed scalar
+   mixed-precision seam into characteristic Euler, and continue conditioning,
+   roundoff, epsilon-sensitivity, critical-point, and failure analysis as order
+   rises.
 4. **One genuine differentiation use.** Demonstrate a bounded inverse or
    sensitivity problem with an independently checkable target and gradient
    validation.
