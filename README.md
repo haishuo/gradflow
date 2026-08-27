@@ -32,6 +32,13 @@ path has also passed frozen Sod and Shu--Osher gates at representative orders
 5, 11, and 15, but general equations, multidimensional boundaries, geometry,
 performance, and the target `Solver` surface remain open.
 
+Phase C found that arbitrary-order symbolic FD-WENO generation, differentiable
+WENO CFD, arbitrary-order PyTorch finite-volume WENO, characteristic GPU WENO,
+and high-level heterogeneous CFD generation are all prior art. GradFlow's
+academic candidate is consequently a narrower matched characterization of one
+exact-generated direct-PyTorch FD-WENO path—not a claim to have invented those
+ingredients. See `docs/LITERATURE_REVIEW_PHASE_C_RESULTS.md`.
+
 ## Current seed
 
 `gradflow.weno5_rhs` operates on unique periodic point samples along the last
@@ -132,7 +139,10 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
   deployment bakeoff
 - `experiments/weno_js_arbitrary_order/` — scalar orders 5--15 qualification record
 - `experiments/characteristic_arbitrary_order/` — Euler orders 5--15 qualification
+- `experiments/literature_review/` — frozen Phase-C search, study, and claim records
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
+- `docs/LITERATURE_REVIEW_PHASE_C_PROTOCOL.md` — frozen systematic-review method
+- `docs/LITERATURE_REVIEW_PHASE_C_RESULTS.md` — prior-art boundary and claim matrix
 - `docs/ENGINEERING_CHARTER.md` — governing priority law, promotion gates,
   architecture, and technical-debt policy
 - `docs/ACADEMIC_SCOPE.md` — bounded paper target, required evidence, and

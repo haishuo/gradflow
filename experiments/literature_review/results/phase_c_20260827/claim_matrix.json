@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-08-27",
+  "claims": [
+    {
+      "id": "C0",
+      "status": "established_non_novel",
+      "candidate": "A fixed WENO-5 implementation in PyTorch is not itself novel.",
+      "evidence_ids": ["jiang_shu_1996", "jax_fluids", "hope", "jax_shock", "pytorch_weno_ds"],
+      "rationale": "Fixed WENO-5 is foundational, and multiple PyTorch/JAX scientific applications and differentiable solvers already contain WENO.",
+      "defensible_statement": "GradFlow uses WENO-5 as a qualified seed and comparison point, not as a novelty claim.",
+      "prohibited_statement": "GradFlow is the first PyTorch or differentiable WENO implementation.",
+      "required_work": "None to establish non-novelty; continue tracking newly published tensor WENO systems."
+    },
+    {
+      "id": "C1",
+      "status": "narrowed_candidate_contribution",
+      "candidate": "Exact or symbolic generation of arbitrary odd-order finite-difference WENO coefficients in an ordinary-PyTorch execution system may be a contribution.",
+      "evidence_ids": ["jiang_shu_1996", "pyweno", "pyclaw_2012", "opensbli", "hope", "energy_stable_weno"],
+      "rationale": "Arbitrary-order FD-WENO mathematics, symbolic coefficient generation, generated orders through 17, heterogeneous code generation, and arbitrary-order PyTorch finite-volume WENO all predate GradFlow. The remaining candidate is the integration and qualification of exact-generated Jiang-Shu FD-WENO as one readable ordinary-PyTorch/autograd/compiler path, not the generator mathematics alone.",
+      "defensible_statement": "GradFlow can study whether exact-generated Jiang-Shu FD-WENO orders 5-15 remain maintainable, differentiable, numerically faithful, and compiler-effective when the executable numerical source is ordinary PyTorch.",
+      "prohibited_statement": "GradFlow introduces arbitrary-order WENO generation, symbolic WENO coefficients, or the first arbitrary-order PyTorch WENO system.",
+      "required_work": "Compare exact constructions and limits directly with OpenSBLI/PyWENO; characterize coefficient conditioning, expression growth, and independent numerical agreement."
+    },
+    {
+      "id": "C2",
+      "status": "narrowed_candidate_contribution",
+      "candidate": "Carrying one generated construction through characteristic compressible Euler and WENO-15 may be a contribution.",
+      "evidence_ids": ["jiang_shu_1996", "pyclaw_2012", "opensbli", "jax_fluids", "pifweno_gpu_2018", "hypar_gpu_2023"],
+      "rationale": "Characteristic WENO systems, arbitrary-order generation, 3-D Navier-Stokes, and generated orders beyond 15 already exist. GradFlow's candidate is a tightly qualified direct-PyTorch characteristic FD path whose order-specific expressions come from one exact generator and whose compiler/gradient behavior is measured systematically.",
+      "defensible_statement": "The current GradFlow artifact supplies a reproducible characteristic Euler WENO-JS 5-15 test vehicle for direct-PyTorch numerical and compiler characterization.",
+      "prohibited_statement": "GradFlow is the first characteristic, arbitrary-order, Euler, or WENO-15 implementation.",
+      "required_work": "Strengthen nonperiodic multidimensional validation, compare formulations with OpenSBLI, and document high-order failure/conditioning boundaries."
+    },
+    {
+      "id": "C3",
+      "status": "rejected_candidate_contribution",
+      "candidate": "Differentiable finite-difference WENO suitable for inverse or sensitivity problems may be a contribution.",
+      "evidence_ids": ["jax_fluids", "hope", "jax_shock", "pytorch_weno_ds", "torchinductor"],
+      "rationale": "Differentiable WENO CFD, PyTorch arbitrary-order WENO, long-horizon CFD gradients, and WENO-based inverse parameter inference have already been demonstrated. Finite-difference-specific gradient qualification can still be valuable evidence, but differentiability itself is not a defensible novelty pillar.",
+      "defensible_statement": "GradFlow should include an independently gradient-checked inverse or sensitivity experiment to establish utility and numerical reliability of its own FD path.",
+      "prohibited_statement": "Automatic differentiation through WENO or WENO-based inverse problems is new to GradFlow.",
+      "required_work": "Finite-difference gradient convergence, finite-difference/complex-step checks where valid, nonsmooth-event limitations, memory cost, and comparison with a JAX differentiable baseline."
+    },
+    {
+      "id": "C4",
+      "status": "narrowed_candidate_contribution",
+      "candidate": "Competitive compiler-generated CPU/GPU execution from maintainable tensor source, without bespoke kernels in the canonical method, may be a contribution.",
+      "evidence_ids": ["opensbli", "jax_fluids", "hope", "gpu_weno_2010", "gpu_weno_assessment_2013", "pifweno_gpu_2018", "hypar_gpu_2023", "opencfd_scu", "oceananigans", "torchinductor"],
+      "rationale": "High-level generated heterogeneous FD-WENO, JAX/XLA WENO CFD, PyTorch convolutional WENO, and highly optimized native GPU FD-WENO already exist. A contribution must therefore be a formulation-matched, endpoint-explicit evaluation of ordinary PyTorch/TorchInductor across order and hardware, including cases where it loses—not a generic GPU speedup claim.",
+      "defensible_statement": "GradFlow can contribute a reproducible accuracy-before-speed characterization of direct ordinary-PyTorch FD-WENO 5-15 against generated/native CPU and GPU ceilings, with cold, warm, AOT, transfer, and resident endpoints separated.",
+      "prohibited_statement": "Compiler-generated GPU WENO, portable high-level GPU CFD, or GPU acceleration of WENO is new; PyTorch is universally faster than production CFD solvers.",
+      "required_work": "Run the frozen arbitrary-order matrix with matched mathematics, optimized CPU baselines, JAX/OpenSBLI or equivalent close baselines where feasible, memory/compile accounting, and data-center FP64 hardware if that claim is desired."
+    },
+    {
+      "id": "C5",
+      "status": "insufficient_evidence",
+      "candidate": "A data-driven selector among equivalent CPU, compiled-tensor, AOT, and native GPU representations may be a separate systems contribution.",
+      "evidence_ids": ["opensbli", "oceananigans", "torchinductor"],
+      "rationale": "High-level systems already target multiple backends, but the WENO-focused search was not designed to establish novelty across the much larger autotuning, scheduling, and performance-portability literature. GradFlow also has only a bounded machine-specific selector today.",
+      "defensible_statement": "Automatic placement is a separate future systems question and may be studied only against broader compiler/autotuning prior art and held-out hardware evidence.",
+      "prohibited_statement": "No existing language or system automatically chooses CPU versus GPU, or GradFlow currently has a general automatic selector.",
+      "required_work": "Conduct a separate systematic review of autotuning and performance-portable DSLs, define regret/generalization metrics, and qualify held-out machines and formulations. Keep C5 outside the first GradFlow paper unless that work is completed."
+    }
+  ],
+  "paper_boundary": {
+    "recommended_question": "How accurately, differentiably, and efficiently can one exact-generated Jiang-Shu finite-difference WENO implementation execute as maintainable ordinary PyTorch from orders 5 through 15, relative to mathematically matched CPU, compiler-generated, and native-GPU baselines?",
+    "primary_contribution_type": "reproducible numerical-and-systems characterization, not a new WENO formula",
+    "supporting_contributions": [
+      "exact auditable coefficient lineage and independent high-order qualification",
+      "gradient reliability and limitations for one genuine sensitivity/inverse problem",
+      "endpoint-explicit CPU/GPU/compile/memory performance characterization across order"
+    ],
+    "excluded_from_first_paper": [
+      "general PDE product interface",
+      "novel WENO mathematics",
+      "general automatic backend selection",
+      "universal real-time or superiority claims",
+      "claim of being first or only"
+    ]
+  }
+}

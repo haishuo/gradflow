@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-08-27",
+  "protocol_commit": "b9d816b",
+  "scope": "Prior art overlapping exact-generated arbitrary-order finite-difference WENO in maintainable differentiable ordinary PyTorch, characteristic systems through WENO-15, and competitive CPU/GPU execution without bespoke canonical accelerator kernels.",
+  "searches": [
+    {
+      "provider": "OpenAlex",
+      "family": "S1",
+      "query": "WENO PyTorch",
+      "endpoint": "https://api.openalex.org/works?search=WENO%20PyTorch&per-page=100",
+      "total_matches": 96,
+      "returned": 96,
+      "candidates_screened": 96,
+      "status": "completed",
+      "notes": "All returned title/DOI metadata screened; many false positives used WENO as an unrelated acronym."
+    },
+    {
+      "provider": "OpenAlex",
+      "family": "S2",
+      "query": "WENO automatic differentiation",
+      "endpoint": "https://api.openalex.org/works?search=WENO%20automatic%20differentiation&per-page=100",
+      "total_matches": 620,
+      "returned": 100,
+      "candidates_screened": 100,
+      "status": "partial",
+      "notes": "First 100 relevance-ranked records screened. The query is noisy because metadata search does not preserve Boolean field semantics."
+    },
+    {
+      "provider": "OpenAlex",
+      "family": "S3",
+      "query": "WENO differentiable inverse adjoint PyTorch JAX",
+      "endpoint": "https://api.openalex.org/works?search=WENO%20differentiable%20inverse%20adjoint%20PyTorch%20JAX&per-page=100",
+      "total_matches": 3,
+      "returned": 3,
+      "candidates_screened": 3,
+      "status": "completed",
+      "notes": "All returned metadata screened. Publisher and arXiv searches added JAX-Shock, which this query missed."
+    },
+    {
+      "provider": "OpenAlex",
+      "family": "S4",
+      "query": "finite difference WENO GPU CUDA accelerator",
+      "endpoint": "https://api.openalex.org/works?search=finite%20difference%20WENO%20GPU%20CUDA%20accelerator&per-page=100",
+      "total_matches": 63,
+      "returned": 63,
+      "candidates_screened": 63,
+      "status": "completed",
+      "notes": "All returned metadata screened and supplemented from included-paper citations."
+    },
+    {
+      "provider": "OpenAlex",
+      "family": "S5",
+      "query": "finite difference WENO arbitrary order symbolic generated generation",
+      "endpoint": "https://api.openalex.org/works?search=finite%20difference%20WENO%20arbitrary%20order%20symbolic%20generated%20generation&per-page=100",
+      "total_matches": 67,
+      "returned": 67,
+      "candidates_screened": 67,
+      "status": "completed",
+      "notes": "All returned metadata screened; OpenSBLI and the Jiang-Shu lineage were retained."
+    },
+    {
+      "provider": "OpenAlex",
+      "family": "S6",
+      "query": "WENO code generation DSL domain-specific language",
+      "endpoint": "https://api.openalex.org/works?search=WENO%20code%20generation%20DSL%20domain-specific%20language&per-page=100",
+      "total_matches": 14,
+      "returned": 14,
+      "candidates_screened": 14,
+      "status": "completed",
+      "notes": "All returned metadata screened; OpenSBLI was the direct code-generation system."
+    },
+    {
+      "provider": "OpenAlex",
+      "family": "S7",
+      "query": "WENO TorchInductor torch.compile XLA JIT",
+      "endpoint": "https://api.openalex.org/works?search=WENO%20TorchInductor%20torch.compile%20XLA%20JIT&per-page=100",
+      "total_matches": 0,
+      "returned": 0,
+      "candidates_screened": 0,
+      "status": "completed",
+      "notes": "No metadata hit; official compiler sources and JAX-based systems were screened separately. This is not evidence of absence."
+    },
+    {
+      "provider": "OpenAlex",
+      "family": "S8",
+      "query": "WENO characteristic Euler Navier-Stokes PyTorch JAX",
+      "endpoint": "https://api.openalex.org/works?search=WENO%20characteristic%20Euler%20Navier-Stokes%20PyTorch%20JAX&per-page=100",
+      "total_matches": 7,
+      "returned": 7,
+      "candidates_screened": 7,
+      "status": "completed",
+      "notes": "All returned metadata screened; JAX-Fluids primary paper and source were retained."
+    },
+    {
+      "provider": "OpenAlex",
+      "family": "S9",
+      "query": "WENO-15 GPU PyTorch JAX generated",
+      "endpoint": "https://api.openalex.org/works?search=WENO-15%20GPU%20PyTorch%20JAX%20generated&per-page=100",
+      "total_matches": 9,
+      "returned": 9,
+      "candidates_screened": 9,
+      "status": "completed",
+      "notes": "All returned metadata screened; no result established the full GradFlow intersection, while arbitrary order through and beyond 15 was already established elsewhere."
+    },
+    {
+      "provider": "OpenAlex",
+      "family": "S10",
+      "query": "JAX-Fluids PyWENO OpenSBLI FUN3D OVERFLOW WENO",
+      "endpoint": "https://api.openalex.org/works?search=JAX-Fluids%20PyWENO%20OpenSBLI%20FUN3D%20OVERFLOW%20WENO&per-page=100",
+      "total_matches": 0,
+      "returned": 0,
+      "candidates_screened": 0,
+      "status": "completed",
+      "notes": "The all-name metadata query was too restrictive; each named project was searched and inspected directly."
+    },
+    {
+      "provider": "Crossref",
+      "family": "S1-S3,S7",
+      "query": "query.bibliographic adaptations of the frozen families",
+      "endpoint": "https://api.crossref.org/works",
+      "total_matches": 691430,
+      "returned": 400,
+      "candidates_screened": 400,
+      "status": "partial",
+      "notes": "Four relevance-ranked 100-record pages were screened. Crossref returned extremely broad matches; the remaining six calls were HTTP 429 rate-limited and are recorded as unavailable rather than covered."
+    },
+    {
+      "provider": "Semantic Scholar",
+      "family": "S1",
+      "query": "WENO PyTorch",
+      "endpoint": "https://api.semanticscholar.org/graph/v1/paper/search",
+      "total_matches": null,
+      "returned": 0,
+      "candidates_screened": 0,
+      "status": "blocked",
+      "notes": "Public API returned HTTP 429 on 2026-08-27. Primary arXiv, publisher, and official-project sources were used instead."
+    },
+    {
+      "provider": "Web/publisher discovery",
+      "family": "S1-S10",
+      "query": "Frozen families, submitted in three search batches with exact phrases where supported",
+      "endpoint": "publisher, arXiv, NASA NTRS, and official project pages recorded in studies.json",
+      "total_matches": null,
+      "returned": 98,
+      "candidates_screened": 98,
+      "status": "completed",
+      "notes": "Discovery results were screened, then positive feature claims were checked against primary papers, official documentation, or inspected official source. Search snippets were not used as feature evidence."
+    },
+    {
+      "provider": "GitHub web search",
+      "family": "R1-R5",
+      "query": "pytorch weno; torch weno finite difference; jax weno; arbitrary order weno generator; weno cuda",
+      "endpoint": "https://github.com/search",
+      "total_matches": null,
+      "returned": 26,
+      "candidates_screened": 26,
+      "status": "completed",
+      "notes": "Plausible repositories were checked through official repository pages; acronym collisions and projects lacking relevant solver evidence were excluded with reasons."
+    },
+    {
+      "provider": "NASA NTRS",
+      "family": "S5",
+      "query": "WENO arbitrary order",
+      "endpoint": "https://ntrs.nasa.gov/citations/20200010401",
+      "total_matches": null,
+      "returned": 1,
+      "candidates_screened": 1,
+      "status": "completed",
+      "notes": "Energy Stable WENO Schemes of Arbitrary Order retained as mathematical lineage, not a matching software system."
+    },
+    {
+      "provider": "Backward/forward snowball",
+      "family": "snowball-1",
+      "query": "References and citing/discovery records from Jiang-Shu, PyClaw/PyWENO, OpenSBLI, JAX-Fluids, HOPE, and GPU FD-WENO entries",
+      "endpoint": "primary papers and indexed citing records",
+      "total_matches": null,
+      "returned": 31,
+      "candidates_screened": 31,
+      "status": "completed",
+      "notes": "One complete pass added no study that changed a C0-C5 claim status after OpenSBLI, PyWENO/PyClaw, JAX-Fluids, HOPE, JAX-Shock, and the GPU systems were classified."
+    }
+  ],
+  "coverage_limitations": [
+    "Scopus and Web of Science were not available.",
+    "Crossref and Semantic Scholar public APIs rate-limited part of the protocol.",
+    "Only the first 100 relevance-ranked results of noisy OpenAlex family S2 were screened.",
+    "The review is systematic and reproducible but not a proof that no unindexed or unpublished implementation exists.",
+    "Very recent 2026 software may not yet have archival papers or stable interfaces.",
+    "No external subject-matter reviewer has independently audited the classification yet."
+  ]
+}

@@ -14,17 +14,21 @@ is unavailable.
 
 ## Candidate paper question
 
-The focused question is:
+Phase C found direct prior art for arbitrary-order symbolic finite-difference
+WENO generation (OpenSBLI and PyWENO/PyClaw), differentiable JAX WENO CFD
+(JAX-Fluids and JAX-Shock), and arbitrary-order differentiable PyTorch
+finite-volume WENO (HOPE). The focused question is therefore empirical rather
+than a method-invention claim:
 
-> Can exact-generated arbitrary-order finite-difference WENO-JS be expressed
-> as maintainable, differentiable ordinary PyTorch; extended from scalar
-> reconstruction to characteristic Euler systems through WENO-15; and
-> executed competitively across CPU and GPU regimes without bespoke kernels in
-> the canonical numerical implementation?
+> How accurately, differentiably, and efficiently can one exact-generated
+> Jiang--Shu finite-difference WENO implementation execute as maintainable
+> ordinary PyTorch from orders 5 through 15, relative to mathematically
+> matched CPU, compiler-generated, and native-GPU baselines?
 
-The final wording and novelty claim remain subject to a systematic literature
-review. This question does not presume a positive answer to every performance
-comparison.
+This question does not presume a positive answer to every performance
+comparison. Phase C narrows but does not prove novelty or publishability; an
+external prior-art audit remains part of the release gate. See
+`LITERATURE_REVIEW_PHASE_C_RESULTS.md`.
 
 ## Evidence already established
 
@@ -50,8 +54,8 @@ These are bounded results, not yet a complete paper package.
 
 Before a paper claim is frozen, GradFlow needs:
 
-1. **Systematic prior-art review.** Record databases, queries, dates,
-   inclusion criteria, close systems, and the exact claim intersection.
+1. **Systematic prior-art review.** Completed in Phase C. Keep the record
+   current and obtain an external subject-matter audit before paper freeze.
 2. **Boundary and discontinuity qualification.** Add independently checked
    nonperiodic Euler boundary behavior and standard shock problems; periodic
    smooth tests alone are insufficient.
@@ -110,11 +114,14 @@ product framework work must not delay the bounded paper.
 
 ## Immediate trunk order
 
-1. Complete the systematic literature and claim matrix.
-2. Characterize high-order numerical limits and select any additional WENO
+1. Characterize high-order numerical limits and select any additional WENO
    variants only in response to evidence.
-3. Add and validate one differentiable inverse/sensitivity experiment.
-4. Freeze and execute the arbitrary-order performance campaign.
+2. Add and validate one differentiable inverse/sensitivity experiment as
+   utility and gradient-reliability evidence, not a differentiable-WENO
+   novelty claim.
+3. Freeze and execute the arbitrary-order performance campaign, including a
+   feasible close-system comparison.
+4. Obtain an external numerical-CFD prior-art audit.
 5. Assemble the paper artifact, then decide whether a data-center float64 GPU
    addendum is worth its cost.
 

@@ -37,16 +37,22 @@ performance, native lowering, and the broader `Solver` surface remain open.
 3. PyTorch WENO examples and application-specific solvers also exist.
    GradFlow must not claim that WENO has never been attempted in PyTorch.
 
-4. A preliminary search did not identify a prominent, maintained system for
-   general arbitrary-order finite-difference WENO construction in ordinary
-   PyTorch. This is a literature-review finding, not proof of absence. Search
-   terms, databases, inclusion criteria, and close prior art must be recorded
-   before any novelty or publication claim.
+4. The Phase-C systematic review identified substantial close prior art.
+   OpenSBLI is a maintained system for symbolic arbitrary odd-order
+   finite-difference WENO construction, characteristic compressible CFD, and
+   generated CPU/GPU execution. PyWENO/PyClaw generated arbitrary-order WENO
+   kernels and reported orders 5--17. HOPE is an arbitrary-order,
+   differentiable PyTorch finite-volume WENO system. GradFlow therefore does
+   not claim novelty for arbitrary-order construction, symbolic coefficients,
+   WENO-15, or PyTorch WENO in isolation.
 
-5. JAX-Fluids is relevant prior art, but it is primarily a finite-volume
-   framework. Finite-volume reconstruction and finite-difference flux
-   reconstruction are related but not interchangeable, and GradFlow will not
-   conflate them.
+5. JAX-Fluids is strong relevant prior art. It is primarily a finite-volume
+   framework, but its maintained source also contains a conservative
+   characteristic/component flux-splitting path that materially overlaps
+   finite-difference WENO algebra. Its WENO orders are explicit, hard-coded
+   implementations through order nine in the inspected source. Finite-volume
+   and finite-difference formulations are not interchangeable, but GradFlow
+   will neither conflate them nor dismiss the overlap.
 
 6. The former foundational `conv1d` idea is now one candidate representation.
    It must eventually be compared empirically with direct shifts,
@@ -80,21 +86,28 @@ performance, native lowering, and the broader `Solver` surface remain open.
    - characteristic boundary treatment and other systems; and
    - compiler performance as order and dimension increase.
 
-10. Potential research contributions may include:
+10. Phase C narrows potential research contributions to:
 
-    - arbitrary odd-order finite-difference WENO construction;
-    - symbolic or exact-rational coefficient generation;
-    - componentwise and characteristic reconstruction;
-    - multiple flux-splitting policies;
-    - boundary treatments;
-    - differentiability for inverse problems and scientific machine learning;
-    - CPU, CUDA, and Apple-GPU portability through PyTorch;
-    - automatic selection among equivalent PyTorch representations; and
-    - systematic accuracy and compiler-performance characterization as order
-      increases.
+    - an auditable integration and qualification of exact-generated
+      Jiang--Shu FD-WENO as direct ordinary PyTorch through orders 5--15;
+    - systematic numerical-limit and compiler-performance characterization as
+      order increases;
+    - independently checked gradient reliability and limitations for that
+      finite-difference path; and
+    - a formulation-matched, endpoint-explicit comparison with optimized CPU,
+      compiler-generated, and native GPU baselines.
 
-11. Novelty and publishability remain unclaimed until a systematic literature
-    review is complete.
+    Arbitrary-order WENO generation, characteristic reconstruction,
+    differentiable WENO, and GPU WENO are prior art. Multiple flux policies,
+    boundary treatments, portability, and automatic representation selection
+    may remain useful engineering results but are not presently supported as
+    novelty claims.
+
+11. The Phase-C review is complete and records no `supported_candidate_contribution`.
+    It permits the narrowed experiments but does not prove novelty or
+    publishability. Paper wording remains unfrozen until those experiments and
+    an external numerical-CFD prior-art audit are complete. See
+    `LITERATURE_REVIEW_PHASE_C_RESULTS.md`.
 
 The longer-term product architecture is documented separately in
 `PRODUCT_VISION.md`, `PROBLEM_MODEL.md`, `EQUATION_EXTENSION_CONTRACT.md`,
