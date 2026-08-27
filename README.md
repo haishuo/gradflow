@@ -55,9 +55,17 @@ profiler-event criteria. The prospective Phase-3R study then demonstrated
 approximately fifth-order noncritical behavior in both orientations and found
 no observed CPU copy/data-movement event. The exact scalar CPU seed is now
 qualified under the combined evidence, while the original failure remains
-preserved and CUDA remains untested. No FD/FV timing has begun. See
+preserved and CUDA remains untested. That admission preceded all Phase-4
+timing. See
 `docs/FD_FV_PHASE_2_RESULTS.md`, `docs/FD_FV_PHASE_3_RESULTS.md`, and
 `docs/FD_FV_PHASE_3_RESOLUTION_RESULTS.md`.
+
+FD/FV Phase 4 has now admitted and measured the matched smooth scalar CPU
+matrix in 1-D, 2-D, and 3-D. Most warm FD/FV comparisons were unresolved within
+5%; the largest compiled 3-D point favored FV by `2.69x`, an isolated compiler
+behavior that requires replication before generalization. Compilation still
+dominated one-shot latency, CPU memory was effectively unresolved, and CUDA
+remained unavailable. See `docs/FD_FV_PHASE_4_RESULTS.md`.
 
 Phase D has now completed an exhaustive scalar binary32/binary64 search over
 384 coarse and 768 refined order/policy pairs. On the frozen cases, binary32
@@ -177,6 +185,7 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
   evidence for FD/FV Phase 2
 - `experiments/fd_fv_qualification/` — frozen Phase-3 scalar FV implementation
   qualification and immutable failed first run
+- `experiments/fd_fv_bakeoff/` — admitted Phase-4 scalar CPU accuracy/time/memory matrix
 - `experiments/mixed_precision/` — exhaustive scalar precision assignments and
   isolated CUDA performance records
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
@@ -191,6 +200,9 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `docs/FD_FV_PHASE_3_RESULTS.md` — passed evidence, two frozen failures, and next boundary
 - `docs/FD_FV_PHASE_3_RESOLUTION_PROTOCOL.md` — prospective failure-resolution rules
 - `docs/FD_FV_PHASE_3_RESOLUTION_RESULTS.md` — qualified CPU seed and remaining limits
+- `docs/FD_FV_PHASE_4_PROTOCOL.md` — frozen scalar multidimensional bakeoff rules
+- `docs/FD_FV_PHASE_4A_RESULTS.md` — timing-free 1-D/2-D/3-D admission
+- `docs/FD_FV_PHASE_4_RESULTS.md` — matched CPU performance result and limits
 - `docs/MIXED_PRECISION_PHASE_D_PROTOCOL.md` — frozen Tier-1a scalar precision search
 - `docs/MIXED_PRECISION_PHASE_D_TIER1B_RESULTS.md` — refined numerical seam
 - `docs/MIXED_PRECISION_PHASE_D_PERFORMANCE_RESULTS.md` — verified RTX timing result

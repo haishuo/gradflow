@@ -162,6 +162,16 @@ performance, native lowering, and the broader `Solver` surface remain open.
     mandatory admission gate before GPU timing. See
     `FD_FV_PHASE_3_RESOLUTION_RESULTS.md`.
 
+16. FD/FV Phase 4 admitted both exact formulations for smooth periodic linear
+    advection in 1-D, 2-D, and 3-D, then measured an isolated six-core CPU
+    matrix. Most warm comparisons were unresolved within 5%; two 2-D cells
+    marginally favored FD, while the largest compiled 3-D cell favored FV by
+    `2.69x` for the solve and `5.02x` per step. That isolated, multimodal result
+    is a compiler-behavior observation requiring replication and causal
+    inspection, not an FV-superiority claim. Compilation dominated single-run
+    latency, memory was unresolved, AOT was not implemented, and CUDA remained
+    unavailable. See `FD_FV_PHASE_4_RESULTS.md`.
+
 The longer-term product architecture is documented separately in
 `PRODUCT_VISION.md`, `PROBLEM_MODEL.md`, `EQUATION_EXTENSION_CONTRACT.md`,
 `RESULT_AND_PROVENANCE_MODEL.md`, and `UI_WORKFLOW_CONCEPT.md`. Those documents

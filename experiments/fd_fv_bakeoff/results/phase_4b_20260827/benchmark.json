@@ -1,0 +1,4884 @@
+{
+  "all_cold_cells_eligible": true,
+  "all_warm_cells_eligible": true,
+  "cold_records": [
+    {
+      "cells_per_axis": 81,
+      "conservation_passed": true,
+      "dimension": 1,
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "host_visible_answer": true,
+      "l1_error": 2.798593714794764e-09,
+      "l2_error": 3.189086296973363e-09,
+      "logical_cells": 81,
+      "mass_bound": 9.105427357601003e-15,
+      "mass_change": 4.2490016991826976e-17,
+      "method": "fd",
+      "peak_process_rss_bytes": 831803392,
+      "process_launch_to_exit_seconds": 11.397597942,
+      "status": "completed",
+      "steps": 76,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:23:29.297000 1634 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "cells_per_axis": 81,
+      "conservation_passed": true,
+      "dimension": 1,
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "host_visible_answer": true,
+      "l1_error": 2.797892302615397e-09,
+      "l2_error": 3.1882870552003508e-09,
+      "logical_cells": 81,
+      "mass_bound": 9.105427357601003e-15,
+      "mass_change": 1.3021134239430848e-17,
+      "method": "fv",
+      "peak_process_rss_bytes": 827256832,
+      "process_launch_to_exit_seconds": 9.989097893,
+      "status": "completed",
+      "steps": 76,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:23:40.208000 1701 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "cells_per_axis": 40,
+      "conservation_passed": true,
+      "dimension": 2,
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "host_visible_answer": true,
+      "l1_error": 3.392836937805149e-08,
+      "l2_error": 4.155436980148413e-08,
+      "logical_cells": 1600,
+      "mass_bound": 9.105427357601003e-15,
+      "mass_change": 4.475586568020163e-18,
+      "method": "fd",
+      "peak_process_rss_bytes": 852623360,
+      "process_launch_to_exit_seconds": 16.022847707,
+      "status": "completed",
+      "steps": 24,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:23:52.975000 1768 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "cells_per_axis": 40,
+      "conservation_passed": true,
+      "dimension": 2,
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "host_visible_answer": true,
+      "l1_error": 3.4055547500286274e-08,
+      "l2_error": 4.17301855961715e-08,
+      "logical_cells": 1600,
+      "mass_bound": 9.105427357601003e-15,
+      "mass_change": 1.2143064331837653e-18,
+      "method": "fv",
+      "peak_process_rss_bytes": 854458368,
+      "process_launch_to_exit_seconds": 18.422878582000003,
+      "status": "completed",
+      "steps": 24,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:24:11.210000 1835 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "cells_per_axis": 27,
+      "conservation_passed": true,
+      "dimension": 3,
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "host_visible_answer": true,
+      "l1_error": 1.400756488906732e-07,
+      "l2_error": 1.7191407541462739e-07,
+      "logical_cells": 19683,
+      "mass_bound": 9.105427357601e-15,
+      "mass_change": 1.1083616539086684e-18,
+      "method": "fd",
+      "peak_process_rss_bytes": 878088192,
+      "process_launch_to_exit_seconds": 22.381117575,
+      "status": "completed",
+      "steps": 13,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:24:29.674000 1902 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "cells_per_axis": 27,
+      "conservation_passed": true,
+      "dimension": 3,
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "host_visible_answer": true,
+      "l1_error": 1.3975979253737093e-07,
+      "l2_error": 1.7152642664546495e-07,
+      "logical_cells": 19683,
+      "mass_bound": 9.105427357601e-15,
+      "mass_change": 1.0434957046977285e-18,
+      "method": "fv",
+      "peak_process_rss_bytes": 870899712,
+      "process_launch_to_exit_seconds": 20.367411632,
+      "status": "completed",
+      "steps": 13,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:24:51.535000 1974 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    }
+  ],
+  "comparisons": [
+    {
+      "best_practical": {
+        "classification": "unresolved_within_5_percent",
+        "fd": {
+          "l2_error": 1.6207880138633498e-06,
+          "median_seconds": 0.000459759,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 834281472
+        },
+        "fv": {
+          "l2_error": 1.6340447183898854e-06,
+          "median_seconds": 0.000467598,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 829501440
+        },
+        "fv_over_fd_complete_solve_ratio": 1.017050237189484
+      },
+      "cells_per_axis": 24,
+      "dimension": 1,
+      "eligible": true,
+      "logical_cells": 24,
+      "matched_modes": {
+        "compiled": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.017050237189484,
+          "fv_over_fd_step_ratio": 1.0334470238750137,
+          "step_classification": "unresolved_within_5_percent"
+        },
+        "eager": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 0.972764401959716,
+          "fv_over_fd_step_ratio": 0.9742535180924055,
+          "step_classification": "unresolved_within_5_percent"
+        }
+      }
+    },
+    {
+      "best_practical": {
+        "classification": "unresolved_within_5_percent",
+        "fd": {
+          "l2_error": 2.0255260777859417e-07,
+          "median_seconds": 0.0009197160000000001,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 834408448
+        },
+        "fv": {
+          "l2_error": 2.000282078784052e-07,
+          "median_seconds": 0.000964236,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 829706240
+        },
+        "fv_over_fd_complete_solve_ratio": 1.048406247145858
+      },
+      "cells_per_axis": 36,
+      "dimension": 1,
+      "eligible": true,
+      "logical_cells": 36,
+      "matched_modes": {
+        "compiled": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.048406247145858,
+          "fv_over_fd_step_ratio": 1.0258013558875798,
+          "step_classification": "unresolved_within_5_percent"
+        },
+        "eager": {
+          "complete_solve_classification": "fd_faster",
+          "fv_over_fd_complete_solve_ratio": 1.0500277925129322,
+          "fv_over_fd_step_ratio": 1.051206361883329,
+          "step_classification": "fd_faster"
+        }
+      }
+    },
+    {
+      "best_practical": {
+        "classification": "unresolved_within_5_percent",
+        "fd": {
+          "l2_error": 2.5373312553342856e-08,
+          "median_seconds": 0.001842983,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 834424832
+        },
+        "fv": {
+          "l2_error": 2.499689179731548e-08,
+          "median_seconds": 0.0018792120000000001,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 829579264
+        },
+        "fv_over_fd_complete_solve_ratio": 1.0196578047654266
+      },
+      "cells_per_axis": 54,
+      "dimension": 1,
+      "eligible": true,
+      "logical_cells": 54,
+      "matched_modes": {
+        "compiled": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.0196578047654266,
+          "fv_over_fd_step_ratio": 1.0242526790750142,
+          "step_classification": "unresolved_within_5_percent"
+        },
+        "eager": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.0011934676520404,
+          "fv_over_fd_step_ratio": 1.0032895126779595,
+          "step_classification": "unresolved_within_5_percent"
+        }
+      }
+    },
+    {
+      "best_practical": {
+        "classification": "unresolved_within_5_percent",
+        "fd": {
+          "l2_error": 3.189086296973363e-09,
+          "median_seconds": 0.0036958950000000003,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 834199552
+        },
+        "fv": {
+          "l2_error": 3.1882870552003508e-09,
+          "median_seconds": 0.003754424,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 829730816
+        },
+        "fv_over_fd_complete_solve_ratio": 1.0158362182908334
+      },
+      "cells_per_axis": 81,
+      "dimension": 1,
+      "eligible": true,
+      "logical_cells": 81,
+      "matched_modes": {
+        "compiled": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.0158362182908334,
+          "fv_over_fd_step_ratio": 1.0293965428009522,
+          "step_classification": "unresolved_within_5_percent"
+        },
+        "eager": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.0337586316106844,
+          "fv_over_fd_step_ratio": 1.0383935175699024,
+          "step_classification": "unresolved_within_5_percent"
+        }
+      }
+    },
+    {
+      "best_practical": {
+        "classification": "fd_faster",
+        "fd": {
+          "l2_error": 1.9562943064666533e-05,
+          "median_seconds": 0.00036135800000000005,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 855179264
+        },
+        "fv": {
+          "l2_error": 2.0032330615732363e-05,
+          "median_seconds": 0.000379658,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 857333760
+        },
+        "fv_over_fd_complete_solve_ratio": 1.0506422993264297
+      },
+      "cells_per_axis": 12,
+      "dimension": 2,
+      "eligible": true,
+      "logical_cells": 144,
+      "matched_modes": {
+        "compiled": {
+          "complete_solve_classification": "fd_faster",
+          "fv_over_fd_complete_solve_ratio": 1.0506422993264297,
+          "fv_over_fd_step_ratio": 1.0282462222073363,
+          "step_classification": "unresolved_within_5_percent"
+        },
+        "eager": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.007663060800736,
+          "fv_over_fd_step_ratio": 1.0166683744572693,
+          "step_classification": "unresolved_within_5_percent"
+        }
+      }
+    },
+    {
+      "best_practical": {
+        "classification": "unresolved_within_5_percent",
+        "fd": {
+          "l2_error": 2.4947914810145877e-06,
+          "median_seconds": 0.0007051430000000001,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 856633344
+        },
+        "fv": {
+          "l2_error": 2.606324216872705e-06,
+          "median_seconds": 0.000732813,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 857686016
+        },
+        "fv_over_fd_complete_solve_ratio": 1.039240267576931
+      },
+      "cells_per_axis": 18,
+      "dimension": 2,
+      "eligible": true,
+      "logical_cells": 324,
+      "matched_modes": {
+        "compiled": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.039240267576931,
+          "fv_over_fd_step_ratio": 1.0450413811334565,
+          "step_classification": "unresolved_within_5_percent"
+        },
+        "eager": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.0034637862634728,
+          "fv_over_fd_step_ratio": 1.0018356773344075,
+          "step_classification": "unresolved_within_5_percent"
+        }
+      }
+    },
+    {
+      "best_practical": {
+        "classification": "fd_faster",
+        "fd": {
+          "l2_error": 3.1526416377291655e-07,
+          "median_seconds": 0.0015540950000000001,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 856260608
+        },
+        "fv": {
+          "l2_error": 3.1455327507471274e-07,
+          "median_seconds": 0.001638095,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 857788416
+        },
+        "fv_over_fd_complete_solve_ratio": 1.054050749793288
+      },
+      "cells_per_axis": 27,
+      "dimension": 2,
+      "eligible": true,
+      "logical_cells": 729,
+      "matched_modes": {
+        "compiled": {
+          "complete_solve_classification": "fd_faster",
+          "fv_over_fd_complete_solve_ratio": 1.054050749793288,
+          "fv_over_fd_step_ratio": 1.039298913089023,
+          "step_classification": "unresolved_within_5_percent"
+        },
+        "eager": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.0170846176271569,
+          "fv_over_fd_step_ratio": 1.0162917543485175,
+          "step_classification": "unresolved_within_5_percent"
+        }
+      }
+    },
+    {
+      "best_practical": {
+        "classification": "unresolved_within_5_percent",
+        "fd": {
+          "l2_error": 4.155436980148413e-08,
+          "median_seconds": 0.003890703,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 856117248
+        },
+        "fv": {
+          "l2_error": 4.17301855961715e-08,
+          "median_seconds": 0.003979103,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 856924160
+        },
+        "fv_over_fd_complete_solve_ratio": 1.02272082962899
+      },
+      "cells_per_axis": 40,
+      "dimension": 2,
+      "eligible": true,
+      "logical_cells": 1600,
+      "matched_modes": {
+        "compiled": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.02272082962899,
+          "fv_over_fd_step_ratio": 1.012666948840974,
+          "step_classification": "unresolved_within_5_percent"
+        },
+        "eager": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.0363584024930081,
+          "fv_over_fd_step_ratio": 1.0358527826550457,
+          "step_classification": "unresolved_within_5_percent"
+        }
+      }
+    },
+    {
+      "best_practical": {
+        "classification": "unresolved_within_5_percent",
+        "fd": {
+          "l2_error": 8.088088935618776e-05,
+          "median_seconds": 0.000313608,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 879534080
+        },
+        "fv": {
+          "l2_error": 4.4019480270604055e-05,
+          "median_seconds": 0.000320907,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 871706624
+        },
+        "fv_over_fd_complete_solve_ratio": 1.0232742787173796
+      },
+      "cells_per_axis": 8,
+      "dimension": 3,
+      "eligible": true,
+      "logical_cells": 512,
+      "matched_modes": {
+        "compiled": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.0232742787173796,
+          "fv_over_fd_step_ratio": 1.0169792675584408,
+          "step_classification": "unresolved_within_5_percent"
+        },
+        "eager": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 1.0006123144531534,
+          "fv_over_fd_step_ratio": 0.9937738494651208,
+          "step_classification": "unresolved_within_5_percent"
+        }
+      }
+    },
+    {
+      "best_practical": {
+        "classification": "unresolved_within_5_percent",
+        "fd": {
+          "l2_error": 1.0819673655703306e-05,
+          "median_seconds": 0.0009452420000000001,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 878948352
+        },
+        "fv": {
+          "l2_error": 1.0781561512542611e-05,
+          "median_seconds": 0.0009395820000000001,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 872124416
+        },
+        "fv_over_fd_complete_solve_ratio": 0.9940121154159464
+      },
+      "cells_per_axis": 12,
+      "dimension": 3,
+      "eligible": true,
+      "logical_cells": 1728,
+      "matched_modes": {
+        "compiled": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 0.9940121154159464,
+          "fv_over_fd_step_ratio": 0.9976177434079803,
+          "step_classification": "unresolved_within_5_percent"
+        },
+        "eager": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 0.9919646432611449,
+          "fv_over_fd_step_ratio": 0.9855055526185977,
+          "step_classification": "unresolved_within_5_percent"
+        }
+      }
+    },
+    {
+      "best_practical": {
+        "classification": "unresolved_within_5_percent",
+        "fd": {
+          "l2_error": 1.356246369357252e-06,
+          "median_seconds": 0.007536256000000001,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 880918528
+        },
+        "fv": {
+          "l2_error": 1.4251201407019274e-06,
+          "median_seconds": 0.007322278000000001,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 874319872
+        },
+        "fv_over_fd_complete_solve_ratio": 0.9716068562426754
+      },
+      "cells_per_axis": 18,
+      "dimension": 3,
+      "eligible": true,
+      "logical_cells": 5832,
+      "matched_modes": {
+        "compiled": {
+          "complete_solve_classification": "unresolved_within_5_percent",
+          "fv_over_fd_complete_solve_ratio": 0.9716068562426754,
+          "fv_over_fd_step_ratio": 0.9533026100870029,
+          "step_classification": "unresolved_within_5_percent"
+        },
+        "eager": {
+          "complete_solve_classification": "fv_faster",
+          "fv_over_fd_complete_solve_ratio": 0.8670964492506862,
+          "fv_over_fd_step_ratio": 0.5221122177684845,
+          "step_classification": "fv_faster"
+        }
+      }
+    },
+    {
+      "best_practical": {
+        "classification": "fv_faster",
+        "fd": {
+          "l2_error": 1.7191407541462739e-07,
+          "median_seconds": 0.045713223000000004,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 881565696
+        },
+        "fv": {
+          "l2_error": 1.7152642664546495e-07,
+          "median_seconds": 0.016969663,
+          "mode": "compiled",
+          "peak_process_rss_bytes": 874250240
+        },
+        "fv_over_fd_complete_solve_ratio": 0.3712200078301195
+      },
+      "cells_per_axis": 27,
+      "dimension": 3,
+      "eligible": true,
+      "logical_cells": 19683,
+      "matched_modes": {
+        "compiled": {
+          "complete_solve_classification": "fv_faster",
+          "fv_over_fd_complete_solve_ratio": 0.3712200078301195,
+          "fv_over_fd_step_ratio": 0.19903069679536206,
+          "step_classification": "fv_faster"
+        },
+        "eager": {
+          "complete_solve_classification": "fv_faster",
+          "fv_over_fd_complete_solve_ratio": 0.860266775974004,
+          "fv_over_fd_step_ratio": 1.0081928196746666,
+          "step_classification": "unresolved_within_5_percent"
+        }
+      }
+    }
+  ],
+  "cuda_measurements": {
+    "status": "not_collected_unavailable"
+  },
+  "environment": {
+    "cpu_interop_threads": 1,
+    "cpu_intraop_threads": 6,
+    "cpu_model": "AMD Ryzen 5 7600X 6-Core Processor",
+    "cuda": {
+      "available": false,
+      "status": "untested_unavailable"
+    },
+    "mps": {
+      "status": "untested_unavailable"
+    },
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "visible_logical_cpus": 12
+  },
+  "matrix": {
+    "1": [
+      24,
+      36,
+      54,
+      81
+    ],
+    "2": [
+      12,
+      18,
+      27,
+      40
+    ],
+    "3": [
+      8,
+      12,
+      18,
+      27
+    ]
+  },
+  "measurement_date": "2026-08-27",
+  "performance_measurements_collected": true,
+  "phase": "fd_fv_phase_4b",
+  "phase_4a": {
+    "passed": true,
+    "performance_measurements_collected": false,
+    "record_sha256": "6fd933cb44b1aa9350dd3c52cd7d446e182dce7411f93ba4cd8e6b3a0abe5362",
+    "source_commit": "7ff5708449d2b5e833a33cbf017a7ce98f5e272d",
+    "verification_stdout": "FD/FV Phase 4A verified: both formulations passed 1-D/2-D/3-D convergence, conservation, and CPU compiler admission; CUDA remains unavailable and no timing was collected."
+  },
+  "prepared_aot": {
+    "status": "not_implemented"
+  },
+  "protocol_commit": "6dbd4d1",
+  "schema_version": 1,
+  "source_commit": "5736a8d4f1673a5cb7a42914d0942e822c90ec4b",
+  "source_dirty": false,
+  "source_hashes": {
+    "docs/FD_FV_PHASE_4_PROTOCOL.md": "e945840c12c99be1ceb967b01a76ba680a15e4fe762c2dede5b62516454f2255",
+    "experiments/fd_fv_bakeoff/benchmark_phase_4b.py": "148008793354d6b8816e75e43221c4fcac7a904afcd7da559ca163461c4419ca",
+    "experiments/fd_fv_bakeoff/benchmark_worker.py": "a258d0ce63c58975fc53faa107fa079d633cb44476b38359b6dad78c43b9075a",
+    "experiments/fd_fv_bakeoff/cold_worker.py": "57fa054f7d8f788969e64aac64ca5feecfb1511798686f0e6321d6c7956d2fb5",
+    "experiments/fd_fv_bakeoff/problem.py": "45b82174bad76559ac079b55845fb0bfdcc950bf66d1d67b1b6b761be98852d2"
+  },
+  "warm_records": [
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 1.400390528041399e-06,
+        "compiled_l2_error": 1.6207880138633498e-06,
+        "eager_l1_error": 1.400390528041399e-06,
+        "eager_l2_error": 1.6207880138633498e-06,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 24,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.000474888,
+          "mean_seconds": 0.0004624082,
+          "median_seconds": 0.000459759,
+          "minimum_seconds": 0.00045163800000000003,
+          "q1_seconds": 0.000458688,
+          "q3_seconds": 0.000467068,
+          "samples_seconds": [
+            0.000467068,
+            0.000474888,
+            0.00045163800000000003,
+            0.000459759,
+            0.000458688
+          ]
+        },
+        "first_complete_solve_seconds": 9.060617668,
+        "ssp_rk3_step": {
+          "maximum_seconds": 5.0480000000000005e-05,
+          "mean_seconds": 4.5771833333333335e-05,
+          "median_seconds": 4.5445e-05,
+          "minimum_seconds": 4.4550000000000005e-05,
+          "q1_seconds": 4.5072500000000006e-05,
+          "q3_seconds": 4.599225e-05,
+          "samples_seconds": [
+            4.5470000000000003e-05,
+            4.5260000000000004e-05,
+            4.494e-05,
+            4.9930000000000005e-05,
+            4.6700000000000003e-05,
+            4.626e-05,
+            4.5819e-05,
+            4.639e-05,
+            4.6290000000000006e-05,
+            4.605e-05,
+            4.511e-05,
+            4.4889000000000003e-05,
+            4.545e-05,
+            4.516e-05,
+            4.549e-05,
+            4.538e-05,
+            4.504e-05,
+            4.4909e-05,
+            4.541e-05,
+            4.5060000000000006e-05,
+            4.6120000000000006e-05,
+            4.5440000000000005e-05,
+            4.5139e-05,
+            4.5560000000000004e-05,
+            4.55e-05,
+            5.0480000000000005e-05,
+            4.559e-05,
+            4.4749e-05,
+            4.5020000000000006e-05,
+            4.4550000000000005e-05
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 3.0068540250264654e-17,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 3.0068540250264654e-17,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 1,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.006714762,
+          "mean_seconds": 0.0066818446,
+          "median_seconds": 0.006671783000000001,
+          "minimum_seconds": 0.006666053000000001,
+          "q1_seconds": 0.006667712,
+          "q3_seconds": 0.006688913,
+          "samples_seconds": [
+            0.006714762,
+            0.006688913,
+            0.006671783000000001,
+            0.006667712,
+            0.006666053000000001
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.000673327,
+          "mean_seconds": 0.0006684709666666666,
+          "median_seconds": 0.000668402,
+          "minimum_seconds": 0.000662558,
+          "q1_seconds": 0.0006668720000000001,
+          "q3_seconds": 0.0006707797500000001,
+          "samples_seconds": [
+            0.000666538,
+            0.000669567,
+            0.000673327,
+            0.000663588,
+            0.000668918,
+            0.000667687,
+            0.000664747,
+            0.0006703680000000001,
+            0.0006712970000000001,
+            0.000668597,
+            0.000672107,
+            0.000670998,
+            0.0006678970000000001,
+            0.0006648170000000001,
+            0.0006672270000000001,
+            0.0006718080000000001,
+            0.000667557,
+            0.000672327,
+            0.000671107,
+            0.000662558,
+            0.000666557,
+            0.000669037,
+            0.000664988,
+            0.0006693070000000001,
+            0.0006682070000000001,
+            0.000666867,
+            0.000668038,
+            0.000670917,
+            0.000666887,
+            0.000670287
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "logical_cells": 24,
+      "memory": {
+        "compiler_cache_bytes": 1161823,
+        "peak_process_rss_bytes": 834281472
+      },
+      "method": "fd",
+      "persistent_state_bytes": 192,
+      "status": "completed",
+      "steps": 10,
+      "total_worker_process_seconds": 11.174012390000001,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:17:09.784000 6 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 1.4634227763418717e-06,
+        "compiled_l2_error": 1.6340447183898854e-06,
+        "eager_l1_error": 1.4634227763418717e-06,
+        "eager_l2_error": 1.6340447183898854e-06,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 24,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.00047730900000000003,
+          "mean_seconds": 0.00046709820000000006,
+          "median_seconds": 0.000467598,
+          "minimum_seconds": 0.000459098,
+          "q1_seconds": 0.00046364800000000004,
+          "q3_seconds": 0.00046783800000000004,
+          "samples_seconds": [
+            0.000467598,
+            0.00046783800000000004,
+            0.00046364800000000004,
+            0.00047730900000000003,
+            0.000459098
+          ]
+        },
+        "first_complete_solve_seconds": 8.03940674,
+        "ssp_rk3_step": {
+          "maximum_seconds": 5.1229e-05,
+          "mean_seconds": 4.73718e-05,
+          "median_seconds": 4.6965e-05,
+          "minimum_seconds": 4.604e-05,
+          "q1_seconds": 4.64675e-05,
+          "q3_seconds": 4.77625e-05,
+          "samples_seconds": [
+            4.6439e-05,
+            4.669e-05,
+            5.0480000000000005e-05,
+            4.872e-05,
+            4.778e-05,
+            4.699e-05,
+            4.7499e-05,
+            4.6490000000000004e-05,
+            4.694e-05,
+            4.808e-05,
+            4.8650000000000003e-05,
+            4.6909e-05,
+            4.7210000000000004e-05,
+            4.719e-05,
+            4.778e-05,
+            4.771e-05,
+            5.1229e-05,
+            4.724e-05,
+            4.668e-05,
+            4.694e-05,
+            4.619e-05,
+            4.6429000000000006e-05,
+            4.627e-05,
+            4.9640000000000006e-05,
+            4.7520000000000006e-05,
+            4.6500000000000005e-05,
+            4.6139e-05,
+            4.6460000000000006e-05,
+            4.604e-05,
+            4.6320000000000004e-05
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 3.700743415417188e-17,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 3.700743415417188e-17,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 1,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.006516084,
+          "mean_seconds": 0.0064982554,
+          "median_seconds": 0.006490073000000001,
+          "minimum_seconds": 0.006488373,
+          "q1_seconds": 0.006489504,
+          "q3_seconds": 0.006507243,
+          "samples_seconds": [
+            0.006489504,
+            0.006488373,
+            0.006490073000000001,
+            0.006516084,
+            0.006507243
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.0006565070000000001,
+          "mean_seconds": 0.0006507163333333335,
+          "median_seconds": 0.000651193,
+          "minimum_seconds": 0.000643848,
+          "q1_seconds": 0.0006493880000000001,
+          "q3_seconds": 0.0006526069999999999,
+          "samples_seconds": [
+            0.0006493880000000001,
+            0.000649727,
+            0.0006525470000000001,
+            0.000652648,
+            0.0006472670000000001,
+            0.000652627,
+            0.000651078,
+            0.000649907,
+            0.000652867,
+            0.000643848,
+            0.000653177,
+            0.0006516180000000001,
+            0.0006469570000000001,
+            0.0006543370000000001,
+            0.0006521470000000001,
+            0.0006493880000000001,
+            0.000652667,
+            0.000650347,
+            0.000646128,
+            0.0006524370000000001,
+            0.0006501380000000001,
+            0.000648827,
+            0.000652537,
+            0.0006527270000000001,
+            0.0006475480000000001,
+            0.0006565070000000001,
+            0.000648937,
+            0.0006513080000000001,
+            0.0006522870000000001,
+            0.0006495670000000001
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "logical_cells": 24,
+      "memory": {
+        "compiler_cache_bytes": 1123537,
+        "peak_process_rss_bytes": 829501440
+      },
+      "method": "fv",
+      "persistent_state_bytes": 192,
+      "status": "completed",
+      "steps": 10,
+      "total_worker_process_seconds": 10.132947362000001,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:17:20.644000 73 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 1.7614387807291583e-07,
+        "compiled_l2_error": 2.0255260777859417e-07,
+        "eager_l1_error": 1.7614387807291583e-07,
+        "eager_l2_error": 2.0255260777859417e-07,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 36,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.0009386360000000001,
+          "mean_seconds": 0.0009233202000000001,
+          "median_seconds": 0.0009197160000000001,
+          "minimum_seconds": 0.0009144260000000001,
+          "q1_seconds": 0.0009178560000000001,
+          "q3_seconds": 0.0009259670000000001,
+          "samples_seconds": [
+            0.0009386360000000001,
+            0.0009197160000000001,
+            0.0009178560000000001,
+            0.0009144260000000001,
+            0.0009259670000000001
+          ]
+        },
+        "first_complete_solve_seconds": 9.104653840000001,
+        "ssp_rk3_step": {
+          "maximum_seconds": 5.1030000000000004e-05,
+          "mean_seconds": 4.573713333333333e-05,
+          "median_seconds": 4.5579000000000005e-05,
+          "minimum_seconds": 4.49e-05,
+          "q1_seconds": 4.5165e-05,
+          "q3_seconds": 4.5847500000000004e-05,
+          "samples_seconds": [
+            4.5719e-05,
+            4.593e-05,
+            4.55e-05,
+            4.5310000000000005e-05,
+            4.512e-05,
+            4.5619000000000005e-05,
+            4.5270000000000005e-05,
+            4.538e-05,
+            4.49e-05,
+            4.534e-05,
+            4.515e-05,
+            4.5089e-05,
+            4.516e-05,
+            4.597e-05,
+            4.674e-05,
+            4.572e-05,
+            4.5539000000000006e-05,
+            4.589e-05,
+            5.1030000000000004e-05,
+            4.668e-05,
+            4.6080000000000006e-05,
+            4.5639e-05,
+            4.4920000000000004e-05,
+            4.5690000000000005e-05,
+            4.503e-05,
+            4.5180000000000004e-05,
+            4.5619000000000005e-05,
+            4.6200000000000005e-05,
+            4.562e-05,
+            4.508e-05
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 5.2427198385076835e-17,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 5.2427198385076835e-17,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 1,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.013454075000000001,
+          "mean_seconds": 0.013392293,
+          "median_seconds": 0.013393895000000001,
+          "minimum_seconds": 0.013344885,
+          "q1_seconds": 0.013363975,
+          "q3_seconds": 0.013404635000000002,
+          "samples_seconds": [
+            0.013344885,
+            0.013393895000000001,
+            0.013363975,
+            0.013404635000000002,
+            0.013454075000000001
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.000679838,
+          "mean_seconds": 0.0006737058666666667,
+          "median_seconds": 0.000673637,
+          "minimum_seconds": 0.0006670970000000001,
+          "q1_seconds": 0.0006711622500000001,
+          "q3_seconds": 0.0006767295,
+          "samples_seconds": [
+            0.000678857,
+            0.0006766470000000001,
+            0.000670587,
+            0.0006774680000000001,
+            0.0006786170000000001,
+            0.0006670970000000001,
+            0.0006732870000000001,
+            0.000671557,
+            0.000671418,
+            0.0006734870000000001,
+            0.000674627,
+            0.0006720770000000001,
+            0.0006721380000000001,
+            0.000673987,
+            0.000668567,
+            0.000672577,
+            0.000679838,
+            0.0006707870000000001,
+            0.000675007,
+            0.0006779370000000001,
+            0.000667888,
+            0.0006696170000000001,
+            0.0006710770000000001,
+            0.000676757,
+            0.000673787,
+            0.000678538,
+            0.000675007,
+            0.000678427,
+            0.0006756370000000001,
+            0.000667877
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "logical_cells": 36,
+      "memory": {
+        "compiler_cache_bytes": 1179432,
+        "peak_process_rss_bytes": 834408448
+      },
+      "method": "fd",
+      "persistent_state_bytes": 288,
+      "status": "completed",
+      "steps": 20,
+      "total_worker_process_seconds": 11.266741175,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:17:31.123000 140 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 1.7580161462539392e-07,
+        "compiled_l2_error": 2.000282078784052e-07,
+        "eager_l1_error": 1.7580161462539392e-07,
+        "eager_l2_error": 2.000282078784052e-07,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 36,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.001003626,
+          "mean_seconds": 0.000969448,
+          "median_seconds": 0.000964236,
+          "minimum_seconds": 0.000942606,
+          "q1_seconds": 0.0009538060000000001,
+          "q3_seconds": 0.000982966,
+          "samples_seconds": [
+            0.001003626,
+            0.000982966,
+            0.000964236,
+            0.0009538060000000001,
+            0.000942606
+          ]
+        },
+        "first_complete_solve_seconds": 8.008366482000001,
+        "ssp_rk3_step": {
+          "maximum_seconds": 5.14e-05,
+          "mean_seconds": 4.7094466666666675e-05,
+          "median_seconds": 4.6755e-05,
+          "minimum_seconds": 4.6080000000000006e-05,
+          "q1_seconds": 4.6561500000000005e-05,
+          "q3_seconds": 4.7152500000000006e-05,
+          "samples_seconds": [
+            4.673e-05,
+            5.041e-05,
+            4.843e-05,
+            4.6559000000000006e-05,
+            4.6800000000000006e-05,
+            4.6880000000000005e-05,
+            4.716e-05,
+            4.6960000000000004e-05,
+            4.6439e-05,
+            4.6630000000000006e-05,
+            4.6580000000000005e-05,
+            4.634e-05,
+            4.6080000000000006e-05,
+            4.6569e-05,
+            4.7480000000000006e-05,
+            4.7010000000000006e-05,
+            4.647e-05,
+            4.742e-05,
+            4.686e-05,
+            4.6559000000000006e-05,
+            4.7210000000000004e-05,
+            4.6700000000000003e-05,
+            5.14e-05,
+            4.74e-05,
+            4.6649e-05,
+            4.6420000000000006e-05,
+            4.6160000000000005e-05,
+            4.7130000000000004e-05,
+            4.678e-05,
+            4.6619e-05
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 4.317533984653386e-17,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 4.317533984653386e-17,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 1,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.014105762,
+          "mean_seconds": 0.014063982000000003,
+          "median_seconds": 0.014063962000000001,
+          "minimum_seconds": 0.014015672000000002,
+          "q1_seconds": 0.014063062000000001,
+          "q3_seconds": 0.014071452000000002,
+          "samples_seconds": [
+            0.014015672000000002,
+            0.014063062000000001,
+            0.014071452000000002,
+            0.014063962000000001,
+            0.014105762
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.000713207,
+          "mean_seconds": 0.0007078101,
+          "median_seconds": 0.0007081315,
+          "minimum_seconds": 0.0007020770000000001,
+          "q1_seconds": 0.0007057795000000001,
+          "q3_seconds": 0.0007103902500000001,
+          "samples_seconds": [
+            0.0007055770000000001,
+            0.0007104780000000001,
+            0.000706387,
+            0.0007020770000000001,
+            0.000708677,
+            0.000712327,
+            0.0007065670000000001,
+            0.000703887,
+            0.000708057,
+            0.0007101270000000001,
+            0.0007026970000000001,
+            0.000706807,
+            0.000707708,
+            0.0007082060000000001,
+            0.000702708,
+            0.0007091970000000001,
+            0.000712657,
+            0.000706647,
+            0.000713207,
+            0.000710997,
+            0.0007037870000000001,
+            0.0007128270000000001,
+            0.000711357,
+            0.000707928,
+            0.0007025660000000001,
+            0.000709228,
+            0.0007112570000000001,
+            0.0007032070000000001,
+            0.000708877,
+            0.000708277
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "logical_cells": 36,
+      "memory": {
+        "compiler_cache_bytes": 1140633,
+        "peak_process_rss_bytes": 829706240
+      },
+      "method": "fv",
+      "persistent_state_bytes": 288,
+      "status": "completed",
+      "steps": 20,
+      "total_worker_process_seconds": 10.143196459,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:17:42.011000 207 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 2.2193556744434074e-08,
+        "compiled_l2_error": 2.5373312553342856e-08,
+        "eager_l1_error": 2.2193556744434074e-08,
+        "eager_l2_error": 2.5373312553342856e-08,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 54,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.0018879320000000002,
+          "mean_seconds": 0.0018505284,
+          "median_seconds": 0.001842983,
+          "minimum_seconds": 0.001832113,
+          "q1_seconds": 0.001835852,
+          "q3_seconds": 0.0018537620000000001,
+          "samples_seconds": [
+            0.0018879320000000002,
+            0.0018537620000000001,
+            0.001832113,
+            0.001835852,
+            0.001842983
+          ]
+        },
+        "first_complete_solve_seconds": 9.155116694,
+        "ssp_rk3_step": {
+          "maximum_seconds": 5.122e-05,
+          "mean_seconds": 4.7336133333333336e-05,
+          "median_seconds": 4.6984500000000004e-05,
+          "minimum_seconds": 4.6590000000000006e-05,
+          "q1_seconds": 4.67725e-05,
+          "q3_seconds": 4.746500000000001e-05,
+          "samples_seconds": [
+            4.668e-05,
+            4.6679000000000005e-05,
+            5.02e-05,
+            4.795e-05,
+            4.686e-05,
+            4.742e-05,
+            4.6989e-05,
+            4.6590000000000006e-05,
+            4.6700000000000003e-05,
+            4.693e-05,
+            4.698e-05,
+            4.6809000000000005e-05,
+            4.686e-05,
+            4.71e-05,
+            4.669e-05,
+            4.668e-05,
+            4.6859e-05,
+            4.71e-05,
+            4.677e-05,
+            4.668e-05,
+            4.792e-05,
+            4.7599e-05,
+            4.831e-05,
+            5.122e-05,
+            4.8200000000000006e-05,
+            4.7480000000000006e-05,
+            4.7009000000000003e-05,
+            4.7010000000000006e-05,
+            4.678e-05,
+            4.703e-05
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 2.981154417974957e-17,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 2.981154417974957e-17,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 1,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.026425671,
+          "mean_seconds": 0.0262833596,
+          "median_seconds": 0.026292292000000002,
+          "minimum_seconds": 0.026191132000000002,
+          "q1_seconds": 0.026211752,
+          "q3_seconds": 0.026295951,
+          "samples_seconds": [
+            0.026191132000000002,
+            0.026211752,
+            0.026425671,
+            0.026295951,
+            0.026292292000000002
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.0006862470000000001,
+          "mean_seconds": 0.0006749952,
+          "median_seconds": 0.0006748720000000001,
+          "minimum_seconds": 0.000670427,
+          "q1_seconds": 0.0006731345,
+          "q3_seconds": 0.0006761602500000001,
+          "samples_seconds": [
+            0.000674077,
+            0.000670427,
+            0.0006784380000000001,
+            0.0006862470000000001,
+            0.000671947,
+            0.0006710770000000001,
+            0.000675617,
+            0.000673968,
+            0.0006732470000000001,
+            0.000678057,
+            0.000675177,
+            0.0006741770000000001,
+            0.000676328,
+            0.000674667,
+            0.000673617,
+            0.000677877,
+            0.000677837,
+            0.0006728480000000001,
+            0.0006765170000000001,
+            0.0006748170000000001,
+            0.0006708370000000001,
+            0.000675578,
+            0.000675617,
+            0.000673097,
+            0.0006749270000000001,
+            0.0006756570000000001,
+            0.000671178,
+            0.000675357,
+            0.0006779570000000001,
+            0.000672687
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "logical_cells": 54,
+      "memory": {
+        "compiler_cache_bytes": 1182423,
+        "peak_process_rss_bytes": 834424832
+      },
+      "method": "fd",
+      "persistent_state_bytes": 432,
+      "status": "completed",
+      "steps": 39,
+      "total_worker_process_seconds": 11.409402582,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:17:52.672000 274 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 2.1632225251829357e-08,
+        "compiled_l2_error": 2.499689179731548e-08,
+        "eager_l1_error": 2.1632225251829357e-08,
+        "eager_l2_error": 2.499689179731548e-08,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 54,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.001905802,
+          "mean_seconds": 0.0018867542,
+          "median_seconds": 0.0018792120000000001,
+          "minimum_seconds": 0.0018671120000000002,
+          "q1_seconds": 0.0018784130000000002,
+          "q3_seconds": 0.0019032320000000001,
+          "samples_seconds": [
+            0.001905802,
+            0.0019032320000000001,
+            0.0018671120000000002,
+            0.0018784130000000002,
+            0.0018792120000000001
+          ]
+        },
+        "first_complete_solve_seconds": 8.111442213,
+        "ssp_rk3_step": {
+          "maximum_seconds": 5.318e-05,
+          "mean_seconds": 4.836313333333334e-05,
+          "median_seconds": 4.8124e-05,
+          "minimum_seconds": 4.719e-05,
+          "q1_seconds": 4.775e-05,
+          "q3_seconds": 4.8479750000000006e-05,
+          "samples_seconds": [
+            4.8419000000000005e-05,
+            5.318e-05,
+            4.9050000000000006e-05,
+            4.8780000000000004e-05,
+            4.85e-05,
+            4.8139e-05,
+            4.809e-05,
+            4.7890000000000004e-05,
+            4.7640000000000005e-05,
+            4.85e-05,
+            4.8169000000000006e-05,
+            4.784e-05,
+            4.8320000000000005e-05,
+            4.7590000000000003e-05,
+            4.8620000000000005e-05,
+            4.784e-05,
+            4.8109e-05,
+            4.8030000000000006e-05,
+            4.719e-05,
+            4.7510000000000004e-05,
+            4.7470000000000005e-05,
+            5.1179000000000006e-05,
+            4.8990000000000004e-05,
+            4.8410000000000006e-05,
+            4.831e-05,
+            4.818e-05,
+            4.7639e-05,
+            4.757e-05,
+            4.7720000000000004e-05,
+            4.8020000000000004e-05
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 3.700743415417188e-17,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 3.700743415417188e-17,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 1,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.026395271,
+          "mean_seconds": 0.0263196472,
+          "median_seconds": 0.026323671000000003,
+          "minimum_seconds": 0.026257742,
+          "q1_seconds": 0.026293261000000002,
+          "q3_seconds": 0.026328291,
+          "samples_seconds": [
+            0.026257742,
+            0.026395271,
+            0.026323671000000003,
+            0.026293261000000002,
+            0.026328291
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.000754957,
+          "mean_seconds": 0.0006795422,
+          "median_seconds": 0.000677092,
+          "minimum_seconds": 0.000671868,
+          "q1_seconds": 0.00067514525,
+          "q3_seconds": 0.0006783345000000001,
+          "samples_seconds": [
+            0.000678898,
+            0.0006738670000000001,
+            0.0006773770000000001,
+            0.000679137,
+            0.0006726670000000001,
+            0.0006756780000000001,
+            0.000676417,
+            0.000672377,
+            0.0006770970000000001,
+            0.0006762770000000001,
+            0.000671868,
+            0.0006755270000000001,
+            0.000677087,
+            0.0006726470000000001,
+            0.0006774470000000001,
+            0.000677588,
+            0.0006724470000000001,
+            0.000677597,
+            0.0006783770000000001,
+            0.000673077,
+            0.0006772480000000001,
+            0.000693737,
+            0.0006768270000000001,
+            0.000754957,
+            0.000681217,
+            0.0006814470000000001,
+            0.000675088,
+            0.000678207,
+            0.000678767,
+            0.000675317
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "logical_cells": 54,
+      "memory": {
+        "compiler_cache_bytes": 1159633,
+        "peak_process_rss_bytes": 829579264
+      },
+      "method": "fv",
+      "persistent_state_bytes": 432,
+      "status": "completed",
+      "steps": 39,
+      "total_worker_process_seconds": 10.351527461,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:18:03.738000 341 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 2.798593714794764e-09,
+        "compiled_l2_error": 3.189086296973363e-09,
+        "eager_l1_error": 2.798593714794764e-09,
+        "eager_l2_error": 3.189086296973363e-09,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 81,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.004274452000000001,
+          "mean_seconds": 0.0038103642000000006,
+          "median_seconds": 0.0036958950000000003,
+          "minimum_seconds": 0.0036776350000000003,
+          "q1_seconds": 0.0036830340000000004,
+          "q3_seconds": 0.003720805,
+          "samples_seconds": [
+            0.003720805,
+            0.004274452000000001,
+            0.0036958950000000003,
+            0.0036776350000000003,
+            0.0036830340000000004
+          ]
+        },
+        "first_complete_solve_seconds": 9.108971132,
+        "ssp_rk3_step": {
+          "maximum_seconds": 5.2459e-05,
+          "mean_seconds": 4.8721466666666664e-05,
+          "median_seconds": 4.8305000000000006e-05,
+          "minimum_seconds": 4.7819000000000004e-05,
+          "q1_seconds": 4.811225000000001e-05,
+          "q3_seconds": 4.87125e-05,
+          "samples_seconds": [
+            4.884e-05,
+            4.873e-05,
+            4.872e-05,
+            5.2459e-05,
+            4.936e-05,
+            4.8280000000000005e-05,
+            4.869e-05,
+            4.851e-05,
+            4.8119000000000005e-05,
+            4.8110000000000005e-05,
+            4.833e-05,
+            4.8620000000000005e-05,
+            4.8400000000000004e-05,
+            4.8369000000000004e-05,
+            4.8200000000000006e-05,
+            4.8100000000000004e-05,
+            5.1880000000000005e-05,
+            4.795e-05,
+            4.8109e-05,
+            4.8060000000000004e-05,
+            4.818e-05,
+            4.791e-05,
+            4.8150000000000005e-05,
+            4.8919000000000004e-05,
+            5.219e-05,
+            4.8360000000000005e-05,
+            4.814e-05,
+            4.7930000000000004e-05,
+            4.7819000000000004e-05,
+            4.821e-05
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 4.2490016991826976e-17,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 4.2490016991826976e-17,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 1,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.053962256,
+          "mean_seconds": 0.05262668,
+          "median_seconds": 0.052079214000000006,
+          "minimum_seconds": 0.051617616000000005,
+          "q1_seconds": 0.051791286000000006,
+          "q3_seconds": 0.053683028,
+          "samples_seconds": [
+            0.053962256,
+            0.053683028,
+            0.051617616000000005,
+            0.051791286000000006,
+            0.052079214000000006
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.0007129170000000001,
+          "mean_seconds": 0.0006881864666666667,
+          "median_seconds": 0.000688137,
+          "minimum_seconds": 0.000679427,
+          "q1_seconds": 0.00068452775,
+          "q3_seconds": 0.000690257,
+          "samples_seconds": [
+            0.0006920370000000001,
+            0.000689047,
+            0.000692117,
+            0.000688797,
+            0.000689927,
+            0.000690838,
+            0.0007129170000000001,
+            0.000686327,
+            0.000682697,
+            0.000687827,
+            0.000688047,
+            0.0006825570000000001,
+            0.000690367,
+            0.000684358,
+            0.000684337,
+            0.000685397,
+            0.000685037,
+            0.000686407,
+            0.000692167,
+            0.000689438,
+            0.0006868870000000001,
+            0.000693627,
+            0.0006839470000000001,
+            0.000680107,
+            0.0006836870000000001,
+            0.0006882780000000001,
+            0.000679427,
+            0.0006915570000000001,
+            0.000688227,
+            0.0006892070000000001
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "logical_cells": 81,
+      "memory": {
+        "compiler_cache_bytes": 1167440,
+        "peak_process_rss_bytes": 834199552
+      },
+      "method": "fd",
+      "persistent_state_bytes": 648,
+      "status": "completed",
+      "steps": 76,
+      "total_worker_process_seconds": 11.555610317000001,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:18:14.579000 408 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 2.797892302615397e-09,
+        "compiled_l2_error": 3.1882870552003508e-09,
+        "eager_l1_error": 2.797892302615397e-09,
+        "eager_l2_error": 3.1882870552003508e-09,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 81,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.0037827240000000003,
+          "mean_seconds": 0.0037564044000000006,
+          "median_seconds": 0.003754424,
+          "minimum_seconds": 0.0037315440000000003,
+          "q1_seconds": 0.003754105,
+          "q3_seconds": 0.003759225,
+          "samples_seconds": [
+            0.0037827240000000003,
+            0.003754424,
+            0.003754105,
+            0.0037315440000000003,
+            0.003759225
+          ]
+        },
+        "first_complete_solve_seconds": 7.994956606000001,
+        "ssp_rk3_step": {
+          "maximum_seconds": 5.3070000000000005e-05,
+          "mean_seconds": 4.984076666666667e-05,
+          "median_seconds": 4.9725e-05,
+          "minimum_seconds": 4.8799000000000005e-05,
+          "q1_seconds": 4.9522500000000006e-05,
+          "q3_seconds": 4.995725000000001e-05,
+          "samples_seconds": [
+            5.0639e-05,
+            5.029e-05,
+            4.996e-05,
+            4.9600000000000006e-05,
+            4.9869e-05,
+            4.9850000000000006e-05,
+            4.969e-05,
+            4.9510000000000005e-05,
+            4.931e-05,
+            4.9949000000000006e-05,
+            4.9330000000000004e-05,
+            4.975e-05,
+            4.9380000000000005e-05,
+            4.957e-05,
+            4.9759e-05,
+            4.9710000000000003e-05,
+            5.3070000000000005e-05,
+            5.109e-05,
+            4.966e-05,
+            4.8799000000000005e-05,
+            4.8990000000000004e-05,
+            4.956e-05,
+            4.91e-05,
+            4.9630000000000004e-05,
+            4.9779000000000006e-05,
+            4.974e-05,
+            4.9980000000000006e-05,
+            4.9330000000000004e-05,
+            5.0189000000000003e-05,
+            5.0140000000000004e-05
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 1.3021134239430848e-17,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 1.3021134239430848e-17,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 1,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.054233775000000005,
+          "mean_seconds": 0.0539710502,
+          "median_seconds": 0.053837337000000006,
+          "minimum_seconds": 0.053759207,
+          "q1_seconds": 0.053792457,
+          "q3_seconds": 0.054232475,
+          "samples_seconds": [
+            0.053792457,
+            0.053759207,
+            0.053837337000000006,
+            0.054233775000000005,
+            0.054232475
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.0007243270000000001,
+          "mean_seconds": 0.0007153897,
+          "median_seconds": 0.000714557,
+          "minimum_seconds": 0.000707307,
+          "q1_seconds": 0.0007125170000000001,
+          "q3_seconds": 0.0007182667500000001,
+          "samples_seconds": [
+            0.000713517,
+            0.0007194170000000001,
+            0.000716857,
+            0.0007120570000000001,
+            0.0007164970000000001,
+            0.000717677,
+            0.000712667,
+            0.000711377,
+            0.000714677,
+            0.0007243270000000001,
+            0.000719517,
+            0.000713987,
+            0.000712467,
+            0.000722057,
+            0.0007148170000000001,
+            0.0007136870000000001,
+            0.000710517,
+            0.0007092680000000001,
+            0.000717726,
+            0.0007184470000000001,
+            0.000718988,
+            0.0007099560000000001,
+            0.000713188,
+            0.000723607,
+            0.000715407,
+            0.000714427,
+            0.0007144370000000001,
+            0.000720397,
+            0.000707307,
+            0.000712417
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "logical_cells": 81,
+      "memory": {
+        "compiler_cache_bytes": 1152105,
+        "peak_process_rss_bytes": 829730816
+      },
+      "method": "fv",
+      "persistent_state_bytes": 648,
+      "status": "completed",
+      "steps": 76,
+      "total_worker_process_seconds": 10.44885298,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:18:25.763000 475 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 1.619647592258795e-05,
+        "compiled_l2_error": 1.9562943064666533e-05,
+        "eager_l1_error": 1.619647592258795e-05,
+        "eager_l2_error": 1.9562943064666533e-05,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 12,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.000381359,
+          "mean_seconds": 0.00036557060000000005,
+          "median_seconds": 0.00036135800000000005,
+          "minimum_seconds": 0.00035468900000000005,
+          "q1_seconds": 0.000358919,
+          "q3_seconds": 0.00037152800000000004,
+          "samples_seconds": [
+            0.000381359,
+            0.00037152800000000004,
+            0.000358919,
+            0.00036135800000000005,
+            0.00035468900000000005
+          ]
+        },
+        "first_complete_solve_seconds": 12.602316643,
+        "ssp_rk3_step": {
+          "maximum_seconds": 9.558900000000001e-05,
+          "mean_seconds": 9.007230000000001e-05,
+          "median_seconds": 8.95695e-05,
+          "minimum_seconds": 8.735000000000001e-05,
+          "q1_seconds": 8.830500000000002e-05,
+          "q3_seconds": 9.111e-05,
+          "samples_seconds": [
+            9.2279e-05,
+            9.061e-05,
+            8.835e-05,
+            8.8279e-05,
+            8.76e-05,
+            8.829000000000001e-05,
+            9.2199e-05,
+            8.790000000000001e-05,
+            8.77e-05,
+            8.8959e-05,
+            8.774000000000001e-05,
+            9.3669e-05,
+            9.096000000000001e-05,
+            8.871000000000001e-05,
+            8.875900000000001e-05,
+            8.805e-05,
+            8.735000000000001e-05,
+            9.241900000000001e-05,
+            8.921000000000001e-05,
+            8.930900000000001e-05,
+            9.068e-05,
+            8.983e-05,
+            9.558900000000001e-05,
+            9.248000000000001e-05,
+            9.2849e-05,
+            9.049000000000001e-05,
+            8.92e-05,
+            9.095900000000001e-05,
+            9.116e-05,
+            9.059000000000001e-05
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 7.709882115452476e-19,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 7.709882115452476e-19,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 2,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.006001935000000001,
+          "mean_seconds": 0.0059522572,
+          "median_seconds": 0.005945405,
+          "minimum_seconds": 0.005922336,
+          "q1_seconds": 0.005934715,
+          "q3_seconds": 0.005956895,
+          "samples_seconds": [
+            0.005945405,
+            0.005956895,
+            0.005922336,
+            0.006001935000000001,
+            0.005934715
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.0014878640000000002,
+          "mean_seconds": 0.0014781068333333334,
+          "median_seconds": 0.0014785185,
+          "minimum_seconds": 0.0014683040000000001,
+          "q1_seconds": 0.0014749515000000001,
+          "q3_seconds": 0.0014805282500000001,
+          "samples_seconds": [
+            0.0014772930000000002,
+            0.0014730540000000001,
+            0.001478844,
+            0.001469814,
+            0.001474854,
+            0.001478684,
+            0.001475904,
+            0.0014786830000000002,
+            0.001477334,
+            0.0014765240000000001,
+            0.001474334,
+            0.001479464,
+            0.001473244,
+            0.0014775530000000002,
+            0.001471115,
+            0.001478713,
+            0.0014683040000000001,
+            0.0014799440000000002,
+            0.001478354,
+            0.0014878640000000002,
+            0.0014820640000000002,
+            0.0014806930000000002,
+            0.0014752440000000001,
+            0.0014861240000000001,
+            0.001480034,
+            0.001485154,
+            0.0014873640000000001,
+            0.0014722440000000002,
+            0.001482313,
+            0.001482094
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "logical_cells": 144,
+      "memory": {
+        "compiler_cache_bytes": 1868075,
+        "peak_process_rss_bytes": 855179264
+      },
+      "method": "fd",
+      "persistent_state_bytes": 1152,
+      "status": "completed",
+      "steps": 4,
+      "total_worker_process_seconds": 14.804656962000001,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:18:38.578000 542 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 1.647068073870567e-05,
+        "compiled_l2_error": 2.0032330615732363e-05,
+        "eager_l1_error": 1.647068073870567e-05,
+        "eager_l2_error": 2.0032330615732363e-05,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 12,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.00039070900000000004,
+          "mean_seconds": 0.00038079840000000004,
+          "median_seconds": 0.000379658,
+          "minimum_seconds": 0.000376108,
+          "q1_seconds": 0.00037771800000000003,
+          "q3_seconds": 0.000379799,
+          "samples_seconds": [
+            0.000379658,
+            0.000376108,
+            0.00039070900000000004,
+            0.00037771800000000003,
+            0.000379799
+          ]
+        },
+        "first_complete_solve_seconds": 13.953929979000002,
+        "ssp_rk3_step": {
+          "maximum_seconds": 9.777000000000001e-05,
+          "mean_seconds": 9.25626e-05,
+          "median_seconds": 9.209950000000001e-05,
+          "minimum_seconds": 9e-05,
+          "q1_seconds": 9.091475000000002e-05,
+          "q3_seconds": 9.341000000000002e-05,
+          "samples_seconds": [
+            9.0789e-05,
+            9.088000000000001e-05,
+            9.023000000000001e-05,
+            9.1019e-05,
+            9.228e-05,
+            9.7639e-05,
+            9.777000000000001e-05,
+            9.258000000000001e-05,
+            9.1799e-05,
+            9.177000000000001e-05,
+            9.398900000000001e-05,
+            9.358000000000001e-05,
+            9.206000000000001e-05,
+            9.2509e-05,
+            9.211000000000001e-05,
+            9.076e-05,
+            9.7019e-05,
+            9.250000000000001e-05,
+            9.2089e-05,
+            9.048e-05,
+            9.048e-05,
+            9.126900000000001e-05,
+            9.027e-05,
+            9.157900000000001e-05,
+            9.485e-05,
+            9.214000000000001e-05,
+            9.493900000000001e-05,
+            9.290000000000001e-05,
+            9.459900000000001e-05,
+            9e-05
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 1.1564823173178713e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 1.1564823173178713e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 2,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.006009895,
+          "mean_seconds": 0.005987287,
+          "median_seconds": 0.005990965,
+          "minimum_seconds": 0.005966865,
+          "q1_seconds": 0.005977275000000001,
+          "q3_seconds": 0.005991435000000001,
+          "samples_seconds": [
+            0.005991435000000001,
+            0.005966865,
+            0.005990965,
+            0.006009895,
+            0.005977275000000001
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.0015113140000000001,
+          "mean_seconds": 0.0015016114333333335,
+          "median_seconds": 0.001503163,
+          "minimum_seconds": 0.0014925840000000001,
+          "q1_seconds": 0.0014973665,
+          "q3_seconds": 0.00150474825,
+          "samples_seconds": [
+            0.001499754,
+            0.0014966040000000001,
+            0.0014994140000000001,
+            0.0014925840000000001,
+            0.0015041630000000002,
+            0.0014954340000000001,
+            0.001497154,
+            0.0014967740000000002,
+            0.0015042030000000002,
+            0.001498304,
+            0.001501154,
+            0.001494784,
+            0.0015037630000000002,
+            0.0014964140000000002,
+            0.001504494,
+            0.001503884,
+            0.0015048330000000001,
+            0.001498004,
+            0.001507094,
+            0.001504343,
+            0.001507424,
+            0.001506184,
+            0.0015113140000000001,
+            0.0015025630000000002,
+            0.001499504,
+            0.001506374,
+            0.0015061830000000001,
+            0.001495194,
+            0.001506594,
+            0.001503854
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "logical_cells": 144,
+      "memory": {
+        "compiler_cache_bytes": 1980759,
+        "peak_process_rss_bytes": 857333760
+      },
+      "method": "fv",
+      "persistent_state_bytes": 1152,
+      "status": "completed",
+      "steps": 4,
+      "total_worker_process_seconds": 16.16019347,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:18:54.671000 609 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 2.0379091814400113e-06,
+        "compiled_l2_error": 2.4947914810145877e-06,
+        "eager_l1_error": 2.0379091814400113e-06,
+        "eager_l2_error": 2.4947914810145877e-06,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 18,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.0007138730000000001,
+          "mean_seconds": 0.000703667,
+          "median_seconds": 0.0007051430000000001,
+          "minimum_seconds": 0.000693743,
+          "q1_seconds": 0.0007001830000000001,
+          "q3_seconds": 0.000705393,
+          "samples_seconds": [
+            0.000693743,
+            0.0007138730000000001,
+            0.0007001830000000001,
+            0.0007051430000000001,
+            0.000705393
+          ]
+        },
+        "first_complete_solve_seconds": 13.231823458000001,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.000103639,
+          "mean_seconds": 9.917966666666668e-05,
+          "median_seconds": 9.835400000000001e-05,
+          "minimum_seconds": 9.6989e-05,
+          "q1_seconds": 9.791400000000001e-05,
+          "q3_seconds": 0.0001003715,
+          "samples_seconds": [
+            0.000100449,
+            0.000100289,
+            0.00010333900000000001,
+            0.000103639,
+            0.00010039900000000001,
+            9.8919e-05,
+            9.906900000000001e-05,
+            0.00010060900000000001,
+            0.000103089,
+            9.874900000000001e-05,
+            9.7909e-05,
+            9.807900000000001e-05,
+            0.000102719,
+            9.8579e-05,
+            9.804900000000001e-05,
+            9.812900000000001e-05,
+            9.772900000000001e-05,
+            9.890900000000001e-05,
+            9.7929e-05,
+            9.746900000000001e-05,
+            9.809900000000001e-05,
+            9.6989e-05,
+            0.000101779,
+            9.8119e-05,
+            9.8579e-05,
+            9.8059e-05,
+            9.715900000000001e-05,
+            9.759900000000001e-05,
+            9.7269e-05,
+            9.7689e-05
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 1.1650488530017074e-17,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 1.1650488530017074e-17,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 2,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.010694035000000001,
+          "mean_seconds": 0.010679645400000002,
+          "median_seconds": 0.010681375,
+          "minimum_seconds": 0.010659036,
+          "q1_seconds": 0.010680855000000001,
+          "q3_seconds": 0.010682926,
+          "samples_seconds": [
+            0.010680855000000001,
+            0.010659036,
+            0.010681375,
+            0.010682926,
+            0.010694035000000001
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.001582613,
+          "mean_seconds": 0.0015254403,
+          "median_seconds": 0.0015231435,
+          "minimum_seconds": 0.001511834,
+          "q1_seconds": 0.00152025875,
+          "q3_seconds": 0.00152632575,
+          "samples_seconds": [
+            0.001520104,
+            0.0015285530000000002,
+            0.001522144,
+            0.001525534,
+            0.001582613,
+            0.001532684,
+            0.0015179330000000002,
+            0.001530794,
+            0.001520723,
+            0.001523644,
+            0.001511834,
+            0.0015310130000000001,
+            0.0015257040000000001,
+            0.0015177740000000002,
+            0.001524563,
+            0.0015168240000000002,
+            0.0015179940000000002,
+            0.001518913,
+            0.001524114,
+            0.001521634,
+            0.0015226430000000002,
+            0.001518924,
+            0.001528833,
+            0.001520724,
+            0.0015219440000000001,
+            0.001525253,
+            0.0015355140000000002,
+            0.001525974,
+            0.0015264430000000002,
+            0.0015218640000000002
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "logical_cells": 324,
+      "memory": {
+        "compiler_cache_bytes": 2251291,
+        "peak_process_rss_bytes": 856633344
+      },
+      "method": "fd",
+      "persistent_state_bytes": 2592,
+      "status": "completed",
+      "steps": 7,
+      "total_worker_process_seconds": 15.449867463,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:19:09.421000 676 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 2.1107654583770224e-06,
+        "compiled_l2_error": 2.606324216872705e-06,
+        "eager_l1_error": 2.1107654583770224e-06,
+        "eager_l2_error": 2.606324216872705e-06,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 18,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.000737593,
+          "mean_seconds": 0.0007340388000000001,
+          "median_seconds": 0.000732813,
+          "minimum_seconds": 0.000731043,
+          "q1_seconds": 0.000732202,
+          "q3_seconds": 0.0007365430000000001,
+          "samples_seconds": [
+            0.0007365430000000001,
+            0.000732813,
+            0.000732202,
+            0.000737593,
+            0.000731043
+          ]
+        },
+        "first_complete_solve_seconds": 14.675680411,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.000109659,
+          "mean_seconds": 0.00010321333333333334,
+          "median_seconds": 0.000102784,
+          "minimum_seconds": 0.00010055900000000001,
+          "q1_seconds": 0.00010124150000000001,
+          "q3_seconds": 0.00010451150000000001,
+          "samples_seconds": [
+            0.000105989,
+            0.000109659,
+            0.000105359,
+            0.00010641900000000001,
+            0.00010338900000000001,
+            0.00010464900000000001,
+            0.00010343900000000001,
+            0.000102849,
+            0.00010409900000000001,
+            0.000103289,
+            0.000107479,
+            0.000103559,
+            0.00010613900000000001,
+            0.000100649,
+            0.000100629,
+            0.00010086900000000001,
+            0.00010055900000000001,
+            0.00010163900000000001,
+            0.00010110900000000001,
+            0.00010238900000000001,
+            0.000105239,
+            0.00010340900000000001,
+            0.000102429,
+            0.00010170900000000001,
+            0.000102719,
+            0.000100969,
+            0.00010173900000000001,
+            0.00010092900000000001,
+            0.000100909,
+            0.00010218900000000001
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 7.881212829129197e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 7.881212829129197e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 2,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.010790603000000001,
+          "mean_seconds": 0.0107311772,
+          "median_seconds": 0.010718373000000002,
+          "minimum_seconds": 0.010706383,
+          "q1_seconds": 0.010712713,
+          "q3_seconds": 0.010727814,
+          "samples_seconds": [
+            0.010727814,
+            0.010718373000000002,
+            0.010790603000000001,
+            0.010706383,
+            0.010712713
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.0015892640000000002,
+          "mean_seconds": 0.0015287381,
+          "median_seconds": 0.0015259395000000002,
+          "minimum_seconds": 0.001510615,
+          "q1_seconds": 0.0015216825000000003,
+          "q3_seconds": 0.00153291675,
+          "samples_seconds": [
+            0.001532984,
+            0.001518845,
+            0.001533945,
+            0.001520695,
+            0.001532715,
+            0.001536264,
+            0.0015367450000000002,
+            0.001528175,
+            0.001539234,
+            0.001525335,
+            0.001517915,
+            0.0015220650000000002,
+            0.001525335,
+            0.0015252150000000001,
+            0.001518695,
+            0.001528204,
+            0.001510615,
+            0.001533225,
+            0.0015892640000000002,
+            0.001530125,
+            0.001524235,
+            0.0015263750000000002,
+            0.0015205840000000002,
+            0.0015306550000000001,
+            0.0015215550000000002,
+            0.001533415,
+            0.001521475,
+            0.001523265,
+            0.001525504,
+            0.0015294850000000001
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "logical_cells": 324,
+      "memory": {
+        "compiler_cache_bytes": 2415035,
+        "peak_process_rss_bytes": 857686016
+      },
+      "method": "fv",
+      "persistent_state_bytes": 2592,
+      "status": "completed",
+      "steps": 7,
+      "total_worker_process_seconds": 16.887580896,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:19:26.055000 743 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 2.5709037571582904e-07,
+        "compiled_l2_error": 3.1526416377291655e-07,
+        "eager_l1_error": 2.5709037571582904e-07,
+        "eager_l2_error": 3.1526416377291655e-07,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 27,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.0015718650000000002,
+          "mean_seconds": 0.001554409,
+          "median_seconds": 0.0015540950000000001,
+          "minimum_seconds": 0.001538265,
+          "q1_seconds": 0.001538485,
+          "q3_seconds": 0.001569335,
+          "samples_seconds": [
+            0.0015718650000000002,
+            0.001569335,
+            0.0015540950000000001,
+            0.001538265,
+            0.001538485
+          ]
+        },
+        "first_complete_solve_seconds": 13.662135144,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.00012755900000000002,
+          "mean_seconds": 0.00012032383333333335,
+          "median_seconds": 0.000119329,
+          "minimum_seconds": 0.00011748900000000001,
+          "q1_seconds": 0.000118474,
+          "q3_seconds": 0.00012216900000000002,
+          "samples_seconds": [
+            0.00011791900000000001,
+            0.00012755900000000002,
+            0.00011952900000000001,
+            0.000122308,
+            0.000119239,
+            0.00011843900000000001,
+            0.000118029,
+            0.000118219,
+            0.000118079,
+            0.000117789,
+            0.00012249800000000002,
+            0.00011897900000000001,
+            0.00011871900000000001,
+            0.00011748900000000001,
+            0.00011835900000000001,
+            0.000122229,
+            0.00012175800000000001,
+            0.00012078900000000001,
+            0.00012404900000000002,
+            0.00012198900000000001,
+            0.000118579,
+            0.000118999,
+            0.00011873800000000001,
+            0.000118949,
+            0.000122869,
+            0.000119419,
+            0.000123879,
+            0.00012284900000000002,
+            0.00012119800000000001,
+            0.00012026900000000001
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601001e-15,
+        "compiled_mass_change": 1.218351741701132e-17,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601001e-15,
+        "eager_mass_change": 1.218351741701132e-17,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 2,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.021162203,
+          "mean_seconds": 0.0211227132,
+          "median_seconds": 0.021119583,
+          "minimum_seconds": 0.021081264000000002,
+          "q1_seconds": 0.021118993000000003,
+          "q3_seconds": 0.021131523000000003,
+          "samples_seconds": [
+            0.021131523000000003,
+            0.021118993000000003,
+            0.021162203,
+            0.021081264000000002,
+            0.021119583
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.001646104,
+          "mean_seconds": 0.0016270557333333334,
+          "median_seconds": 0.0016256690000000002,
+          "minimum_seconds": 0.0016190240000000002,
+          "q1_seconds": 0.001621959,
+          "q3_seconds": 0.0016295690000000002,
+          "samples_seconds": [
+            0.0016312140000000002,
+            0.001629524,
+            0.0016277440000000002,
+            0.001628494,
+            0.0016303040000000002,
+            0.001622034,
+            0.0016210850000000002,
+            0.001627994,
+            0.001621934,
+            0.0016190240000000002,
+            0.001621934,
+            0.001621824,
+            0.0016264040000000001,
+            0.001622984,
+            0.001638834,
+            0.0016295840000000001,
+            0.0016264340000000002,
+            0.0016249340000000002,
+            0.0016324640000000001,
+            0.001621885,
+            0.0016229240000000002,
+            0.001623854,
+            0.001646104,
+            0.0016444740000000002,
+            0.001621014,
+            0.0016306640000000002,
+            0.0016238140000000001,
+            0.0016210340000000001,
+            0.001623504,
+            0.001627654
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "logical_cells": 729,
+      "memory": {
+        "compiler_cache_bytes": 2314586,
+        "peak_process_rss_bytes": 856260608
+      },
+      "method": "fd",
+      "persistent_state_bytes": 5832,
+      "status": "completed",
+      "steps": 13,
+      "total_worker_process_seconds": 15.986382699000002,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:19:42.141000 810 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 2.5651066301876303e-07,
+        "compiled_l2_error": 3.1455327507471274e-07,
+        "eager_l1_error": 2.5651066301876303e-07,
+        "eager_l2_error": 3.1455327507471274e-07,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 27,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.0016433440000000001,
+          "mean_seconds": 0.0016298903999999999,
+          "median_seconds": 0.001638095,
+          "minimum_seconds": 0.001609755,
+          "q1_seconds": 0.001619914,
+          "q3_seconds": 0.0016383440000000001,
+          "samples_seconds": [
+            0.0016383440000000001,
+            0.001638095,
+            0.0016433440000000001,
+            0.001609755,
+            0.001619914
+          ]
+        },
+        "first_complete_solve_seconds": 14.749495519000002,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.000129529,
+          "mean_seconds": 0.00012455286666666668,
+          "median_seconds": 0.0001240185,
+          "minimum_seconds": 0.000122859,
+          "q1_seconds": 0.0001235615,
+          "q3_seconds": 0.00012475150000000002,
+          "samples_seconds": [
+            0.000124849,
+            0.000124849,
+            0.000123879,
+            0.000124439,
+            0.000123519,
+            0.000123838,
+            0.000129529,
+            0.000124969,
+            0.00012457900000000001,
+            0.00012341900000000002,
+            0.000123379,
+            0.00012368900000000001,
+            0.000123549,
+            0.000123599,
+            0.000127829,
+            0.000124108,
+            0.000124399,
+            0.000123769,
+            0.00012321900000000001,
+            0.000124409,
+            0.000123459,
+            0.000124248,
+            0.00012812900000000002,
+            0.000123929,
+            0.000127699,
+            0.000124799,
+            0.00012390800000000002,
+            0.000124609,
+            0.000123129,
+            0.000122859
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601001e-15,
+        "compiled_mass_change": 1.8275276125516978e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601001e-15,
+        "eager_mass_change": 1.8275276125516978e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 2,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.021505753000000002,
+          "mean_seconds": 0.021478600800000004,
+          "median_seconds": 0.021480403000000002,
+          "minimum_seconds": 0.021431243000000003,
+          "q1_seconds": 0.021473023,
+          "q3_seconds": 0.021502582000000003,
+          "samples_seconds": [
+            0.021502582000000003,
+            0.021473023,
+            0.021480403000000002,
+            0.021431243000000003,
+            0.021505753000000002
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.001664794,
+          "mean_seconds": 0.0016513167333333336,
+          "median_seconds": 0.001652154,
+          "minimum_seconds": 0.0016355050000000002,
+          "q1_seconds": 0.0016480965,
+          "q3_seconds": 0.0016547015000000001,
+          "samples_seconds": [
+            0.001640554,
+            0.0016533740000000002,
+            0.001648074,
+            0.0016450540000000002,
+            0.0016530140000000002,
+            0.0016564940000000001,
+            0.001650474,
+            0.001646185,
+            0.001648034,
+            0.001664794,
+            0.0016428240000000002,
+            0.001652924,
+            0.001653004,
+            0.0016545440000000002,
+            0.0016506440000000002,
+            0.001651384,
+            0.001650114,
+            0.0016501240000000002,
+            0.0016585240000000002,
+            0.001647084,
+            0.0016535240000000002,
+            0.001655034,
+            0.0016355050000000002,
+            0.001654754,
+            0.001656104,
+            0.001654494,
+            0.0016506840000000001,
+            0.0016481640000000001,
+            0.001656284,
+            0.0016577340000000001
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "logical_cells": 729,
+      "memory": {
+        "compiler_cache_bytes": 2483041,
+        "peak_process_rss_bytes": 857788416
+      },
+      "method": "fv",
+      "persistent_state_bytes": 5832,
+      "status": "completed",
+      "steps": 13,
+      "total_worker_process_seconds": 17.061664027000003,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:19:59.037000 877 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 3.392836937805149e-08,
+        "compiled_l2_error": 4.155436980148413e-08,
+        "eager_l1_error": 3.392836937805149e-08,
+        "eager_l2_error": 4.155436980148413e-08,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 40,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.003921914,
+          "mean_seconds": 0.0038979914000000005,
+          "median_seconds": 0.003890703,
+          "minimum_seconds": 0.0038876630000000004,
+          "q1_seconds": 0.003888284,
+          "q3_seconds": 0.0039013930000000004,
+          "samples_seconds": [
+            0.003921914,
+            0.0038876630000000004,
+            0.003890703,
+            0.003888284,
+            0.0039013930000000004
+          ]
+        },
+        "first_complete_solve_seconds": 12.872767622000001,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.000166918,
+          "mean_seconds": 0.00016222046666666666,
+          "median_seconds": 0.0001618385,
+          "minimum_seconds": 0.000159938,
+          "q1_seconds": 0.00016087900000000003,
+          "q3_seconds": 0.00016319050000000002,
+          "samples_seconds": [
+            0.00016185800000000002,
+            0.00016226900000000001,
+            0.000161268,
+            0.00016083900000000002,
+            0.00016295800000000002,
+            0.00016513900000000002,
+            0.00016216800000000002,
+            0.000166918,
+            0.000161099,
+            0.000161988,
+            0.000161819,
+            0.000165438,
+            0.000162799,
+            0.000161318,
+            0.00016125900000000002,
+            0.000164128,
+            0.00016048900000000001,
+            0.000163578,
+            0.00016069900000000001,
+            0.00016028800000000002,
+            0.000160249,
+            0.000159938,
+            0.000160399,
+            0.00016326800000000002,
+            0.00016099900000000002,
+            0.000160158,
+            0.000161499,
+            0.000165308,
+            0.000161959,
+            0.000164518
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 4.475586568020163e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 4.475586568020163e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 2,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.04314996,
+          "mean_seconds": 0.0431110604,
+          "median_seconds": 0.043100381,
+          "minimum_seconds": 0.043080810000000004,
+          "q1_seconds": 0.04309786,
+          "q3_seconds": 0.043126291000000004,
+          "samples_seconds": [
+            0.043100381,
+            0.04309786,
+            0.043126291000000004,
+            0.04314996,
+            0.043080810000000004
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.0018214530000000002,
+          "mean_seconds": 0.0018012765333333335,
+          "median_seconds": 0.001799163,
+          "minimum_seconds": 0.0017905030000000001,
+          "q1_seconds": 0.0017962380000000001,
+          "q3_seconds": 0.0018061127500000002,
+          "samples_seconds": [
+            0.001794842,
+            0.001807963,
+            0.001799213,
+            0.001796033,
+            0.0018109130000000001,
+            0.001799973,
+            0.001810832,
+            0.0018046330000000001,
+            0.0017968530000000002,
+            0.0017991130000000002,
+            0.001792783,
+            0.0018214530000000002,
+            0.001796973,
+            0.001797633,
+            0.001799383,
+            0.001794653,
+            0.001798843,
+            0.001805422,
+            0.001798263,
+            0.001807563,
+            0.0017986730000000002,
+            0.0018068630000000001,
+            0.0017953230000000001,
+            0.0018063430000000002,
+            0.0018014630000000001,
+            0.0017905030000000001,
+            0.0017932330000000002,
+            0.0018176020000000002,
+            0.0018038330000000001,
+            0.0017911230000000002
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "logical_cells": 1600,
+      "memory": {
+        "compiler_cache_bytes": 2072004,
+        "peak_process_rss_bytes": 856117248
+      },
+      "method": "fd",
+      "persistent_state_bytes": 12800,
+      "status": "completed",
+      "steps": 24,
+      "total_worker_process_seconds": 15.334107577000001,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:20:15.045000 944 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 3.4055547500286274e-08,
+        "compiled_l2_error": 4.17301855961715e-08,
+        "eager_l1_error": 3.4055547500286274e-08,
+        "eager_l2_error": 4.17301855961715e-08,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 40,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.004025272,
+          "mean_seconds": 0.0039751132,
+          "median_seconds": 0.003979103,
+          "minimum_seconds": 0.003929264,
+          "q1_seconds": 0.003950874,
+          "q3_seconds": 0.0039910530000000005,
+          "samples_seconds": [
+            0.003979103,
+            0.003929264,
+            0.004025272,
+            0.0039910530000000005,
+            0.003950874
+          ]
+        },
+        "first_complete_solve_seconds": 14.300427953000002,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.000173718,
+          "mean_seconds": 0.00016461613333333336,
+          "median_seconds": 0.0001638885,
+          "minimum_seconds": 0.000162429,
+          "q1_seconds": 0.00016328875,
+          "q3_seconds": 0.00016458875000000003,
+          "samples_seconds": [
+            0.000167799,
+            0.00016468800000000002,
+            0.00016430900000000002,
+            0.00016447800000000002,
+            0.00016387900000000002,
+            0.000164498,
+            0.000167089,
+            0.00016384800000000002,
+            0.00016483800000000002,
+            0.00016461900000000002,
+            0.00016389800000000002,
+            0.000164019,
+            0.000173718,
+            0.000164319,
+            0.000162848,
+            0.000162429,
+            0.00016280800000000002,
+            0.000163009,
+            0.00017050800000000001,
+            0.00016411800000000002,
+            0.000163379,
+            0.00016309900000000002,
+            0.000163318,
+            0.00016308900000000002,
+            0.00016677800000000002,
+            0.000163708,
+            0.000163529,
+            0.00016348800000000002,
+            0.000163279,
+            0.000163098
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 1.2143064331837653e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 1.2143064331837653e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 2,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.044740590000000004,
+          "mean_seconds": 0.044628626000000005,
+          "median_seconds": 0.044667442,
+          "minimum_seconds": 0.044421144,
+          "q1_seconds": 0.044645982,
+          "q3_seconds": 0.044667972,
+          "samples_seconds": [
+            0.044667972,
+            0.044645982,
+            0.044667442,
+            0.044421144,
+            0.044740590000000004
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.0018777330000000001,
+          "mean_seconds": 0.001863430866666667,
+          "median_seconds": 0.0018636680000000002,
+          "minimum_seconds": 0.0018509630000000002,
+          "q1_seconds": 0.00185692975,
+          "q3_seconds": 0.00186834275,
+          "samples_seconds": [
+            0.0018762420000000002,
+            0.001859633,
+            0.0018538720000000001,
+            0.0018516930000000002,
+            0.001858543,
+            0.0018751820000000002,
+            0.0018684630000000001,
+            0.0018563120000000002,
+            0.0018777330000000001,
+            0.0018681020000000002,
+            0.0018648730000000002,
+            0.0018640820000000002,
+            0.0018710130000000001,
+            0.001872642,
+            0.0018638530000000002,
+            0.001860532,
+            0.001873033,
+            0.0018563920000000001,
+            0.001853423,
+            0.0018675920000000002,
+            0.0018554630000000001,
+            0.0018684230000000001,
+            0.0018671220000000001,
+            0.0018592930000000001,
+            0.001861072,
+            0.0018634830000000002,
+            0.001867392,
+            0.0018559630000000002,
+            0.0018509630000000002,
+            0.0018605420000000002
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "logical_cells": 1600,
+      "memory": {
+        "compiler_cache_bytes": 2230321,
+        "peak_process_rss_bytes": 856924160
+      },
+      "method": "fv",
+      "persistent_state_bytes": 12800,
+      "status": "completed",
+      "steps": 24,
+      "total_worker_process_seconds": 16.8046241,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:20:31.628000 1011 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 6.562755656756999e-05,
+        "compiled_l2_error": 8.088088935618776e-05,
+        "eager_l1_error": 6.562755656756999e-05,
+        "eager_l2_error": 8.088088935618776e-05,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 8,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.00032910700000000003,
+          "mean_seconds": 0.0003165372,
+          "median_seconds": 0.000313608,
+          "minimum_seconds": 0.000310647,
+          "q1_seconds": 0.000313037,
+          "q3_seconds": 0.000316287,
+          "samples_seconds": [
+            0.00032910700000000003,
+            0.000316287,
+            0.000313037,
+            0.000310647,
+            0.000313608
+          ]
+        },
+        "first_complete_solve_seconds": 17.257405809,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.00016191800000000002,
+          "mean_seconds": 0.00015381460000000002,
+          "median_seconds": 0.000152804,
+          "minimum_seconds": 0.000150609,
+          "q1_seconds": 0.00015171625,
+          "q3_seconds": 0.00015627375000000002,
+          "samples_seconds": [
+            0.00015799800000000001,
+            0.00015200900000000001,
+            0.00015164800000000002,
+            0.000150609,
+            0.000157829,
+            0.00016191800000000002,
+            0.00015644900000000002,
+            0.000156388,
+            0.000152759,
+            0.000153458,
+            0.00015210900000000002,
+            0.000153649,
+            0.00015710800000000001,
+            0.000156749,
+            0.00015217800000000002,
+            0.000151549,
+            0.000151659,
+            0.000156228,
+            0.00015628900000000002,
+            0.00015332800000000002,
+            0.000152399,
+            0.00015090900000000001,
+            0.00015321800000000002,
+            0.000151699,
+            0.000152208,
+            0.00015570900000000002,
+            0.000152849,
+            0.00015176800000000001,
+            0.000150879,
+            0.000150889
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 3.577867169202165e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 3.577867169202165e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 3,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.004830325,
+          "mean_seconds": 0.0048186094,
+          "median_seconds": 0.004817786,
+          "minimum_seconds": 0.004804095,
+          "q1_seconds": 0.0048157550000000006,
+          "q3_seconds": 0.004825086,
+          "samples_seconds": [
+            0.004830325,
+            0.004825086,
+            0.004804095,
+            0.004817786,
+            0.0048157550000000006
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.002435727,
+          "mean_seconds": 0.0024198889666666667,
+          "median_seconds": 0.0024194725000000004,
+          "minimum_seconds": 0.002401898,
+          "q1_seconds": 0.00241648475,
+          "q3_seconds": 0.0024247277500000003,
+          "samples_seconds": [
+            0.002418328,
+            0.002402898,
+            0.0024172670000000003,
+            0.002401898,
+            0.0024168980000000002,
+            0.0024076370000000002,
+            0.0024197980000000003,
+            0.0024263080000000003,
+            0.002416347,
+            0.002424278,
+            0.002425738,
+            0.002422417,
+            0.0024147780000000002,
+            0.002424517,
+            0.002423868,
+            0.002425518,
+            0.002435727,
+            0.0024236880000000002,
+            0.002426627,
+            0.002424798,
+            0.002410418,
+            0.002434917,
+            0.002419118,
+            0.0024300470000000003,
+            0.002419108,
+            0.002419838,
+            0.002413428,
+            0.002419147,
+            0.002413138,
+            0.002418177
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "logical_cells": 512,
+      "memory": {
+        "compiler_cache_bytes": 2669027,
+        "peak_process_rss_bytes": 879534080
+      },
+      "method": "fd",
+      "persistent_state_bytes": 4096,
+      "status": "completed",
+      "steps": 2,
+      "total_worker_process_seconds": 19.515608665000002,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:20:49.827000 1078 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 3.618772704601272e-05,
+        "compiled_l2_error": 4.4019480270604055e-05,
+        "eager_l1_error": 3.618772704601272e-05,
+        "eager_l2_error": 4.4019480270604055e-05,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 8,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.000355626,
+          "mean_seconds": 0.00032800900000000004,
+          "median_seconds": 0.000320907,
+          "minimum_seconds": 0.00031498800000000004,
+          "q1_seconds": 0.000318587,
+          "q3_seconds": 0.00032993700000000004,
+          "samples_seconds": [
+            0.000355626,
+            0.00032993700000000004,
+            0.00031498800000000004,
+            0.000318587,
+            0.000320907
+          ]
+        },
+        "first_complete_solve_seconds": 15.770858257,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.000244418,
+          "mean_seconds": 0.00016862746666666668,
+          "median_seconds": 0.0001553985,
+          "minimum_seconds": 0.000149709,
+          "q1_seconds": 0.000151444,
+          "q3_seconds": 0.00016695575000000003,
+          "samples_seconds": [
+            0.000216488,
+            0.000210818,
+            0.000209568,
+            0.00020493800000000002,
+            0.000244418,
+            0.00021398800000000003,
+            0.000165389,
+            0.000167118,
+            0.00016136900000000002,
+            0.000160698,
+            0.000166469,
+            0.00016169800000000002,
+            0.000159619,
+            0.000152609,
+            0.000150848,
+            0.000150179,
+            0.00015380800000000002,
+            0.000153809,
+            0.00015094900000000002,
+            0.00015233800000000002,
+            0.000151389,
+            0.00015043900000000001,
+            0.000151228,
+            0.00015461900000000002,
+            0.000153349,
+            0.000156178,
+            0.000151609,
+            0.000150478,
+            0.000149709,
+            0.000182708
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601003e-15,
+        "compiled_mass_change": 2.0599841277224584e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601003e-15,
+        "eager_mass_change": 2.0599841277224584e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 3,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.004825617,
+          "mean_seconds": 0.004817406200000001,
+          "median_seconds": 0.004820736,
+          "minimum_seconds": 0.004801626000000001,
+          "q1_seconds": 0.004815256,
+          "q3_seconds": 0.004823796,
+          "samples_seconds": [
+            0.004815256,
+            0.004825617,
+            0.004820736,
+            0.004801626000000001,
+            0.004823796
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.002420628,
+          "mean_seconds": 0.0024057678333333334,
+          "median_seconds": 0.0024044085,
+          "minimum_seconds": 0.002395518,
+          "q1_seconds": 0.002401828,
+          "q3_seconds": 0.0024092455,
+          "samples_seconds": [
+            0.002417638,
+            0.002409778,
+            0.002412598,
+            0.002401579,
+            0.0024022180000000002,
+            0.0024082780000000002,
+            0.002402188,
+            0.002416488,
+            0.002404018,
+            0.002400588,
+            0.002409629,
+            0.002403348,
+            0.002406338,
+            0.002399028,
+            0.0024131580000000003,
+            0.0024061480000000003,
+            0.002402458,
+            0.002404799,
+            0.002420628,
+            0.002409568,
+            0.0024076180000000003,
+            0.002403538,
+            0.002406128,
+            0.002403529,
+            0.0024017080000000002,
+            0.0024010480000000002,
+            0.002395518,
+            0.002406338,
+            0.002398639,
+            0.002398498
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "logical_cells": 512,
+      "memory": {
+        "compiler_cache_bytes": 2708379,
+        "peak_process_rss_bytes": 871706624
+      },
+      "method": "fv",
+      "persistent_state_bytes": 4096,
+      "status": "completed",
+      "steps": 2,
+      "total_worker_process_seconds": 18.020843042000003,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:21:08.827000 1145 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 8.844383589765251e-06,
+        "compiled_l2_error": 1.0819673655703306e-05,
+        "eager_l1_error": 8.844383589765251e-06,
+        "eager_l2_error": 1.0819673655703306e-05,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 12,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.000956351,
+          "mean_seconds": 0.0009475256000000002,
+          "median_seconds": 0.0009452420000000001,
+          "minimum_seconds": 0.0009437520000000001,
+          "q1_seconds": 0.000943861,
+          "q3_seconds": 0.0009484220000000001,
+          "samples_seconds": [
+            0.000956351,
+            0.0009484220000000001,
+            0.000943861,
+            0.0009437520000000001,
+            0.0009452420000000001
+          ]
+        },
+        "first_complete_solve_seconds": 17.336821516,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.00023981800000000001,
+          "mean_seconds": 0.00023303396666666667,
+          "median_seconds": 0.00023276250000000003,
+          "minimum_seconds": 0.00023058800000000002,
+          "q1_seconds": 0.00023117300000000004,
+          "q3_seconds": 0.00023429800000000003,
+          "samples_seconds": [
+            0.000232188,
+            0.00023121800000000002,
+            0.00023085800000000002,
+            0.000235008,
+            0.00023294800000000002,
+            0.000230978,
+            0.00023450800000000003,
+            0.00023570800000000003,
+            0.00023366800000000003,
+            0.000233398,
+            0.00023525800000000002,
+            0.00023314800000000002,
+            0.000235808,
+            0.000230728,
+            0.00023164800000000002,
+            0.000231238,
+            0.00023571800000000002,
+            0.000232677,
+            0.000231918,
+            0.00023115800000000003,
+            0.00023598800000000002,
+            0.00023157800000000002,
+            0.000231078,
+            0.000231038,
+            0.00023981800000000001,
+            0.000233488,
+            0.00023284800000000002,
+            0.00023115800000000003,
+            0.00023058800000000002,
+            0.000233658
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601e-15,
+        "compiled_mass_change": 2.0559685641206598e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601e-15,
+        "eager_mass_change": 2.0559685641206598e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 3,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.011345138000000001,
+          "mean_seconds": 0.011298486800000002,
+          "median_seconds": 0.011289729,
+          "minimum_seconds": 0.011273219000000001,
+          "q1_seconds": 0.011281270000000001,
+          "q3_seconds": 0.011303078000000001,
+          "samples_seconds": [
+            0.011273219000000001,
+            0.011345138000000001,
+            0.011289729,
+            0.011281270000000001,
+            0.011303078000000001
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.002858705,
+          "mean_seconds": 0.0028277764333333334,
+          "median_seconds": 0.002827945,
+          "minimum_seconds": 0.002808325,
+          "q1_seconds": 0.0028198797500000004,
+          "q3_seconds": 0.0028341425,
+          "samples_seconds": [
+            0.002823585,
+            0.002834395,
+            0.0028319340000000004,
+            0.002808325,
+            0.002832045,
+            0.002826304,
+            0.002824535,
+            0.002819825,
+            0.0028268150000000003,
+            0.002834824,
+            0.002836035,
+            0.002834305,
+            0.0028151250000000004,
+            0.002831524,
+            0.002810215,
+            0.002823855,
+            0.002831655,
+            0.002835965,
+            0.002829025,
+            0.002834805,
+            0.0028200440000000003,
+            0.002819555,
+            0.002843565,
+            0.002833274,
+            0.002818525,
+            0.002833655,
+            0.002819115,
+            0.002814894,
+            0.002858705,
+            0.002826865
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "logical_cells": 1728,
+      "memory": {
+        "compiler_cache_bytes": 2733787,
+        "peak_process_rss_bytes": 878948352
+      },
+      "method": "fd",
+      "persistent_state_bytes": 13824,
+      "status": "completed",
+      "steps": 4,
+      "total_worker_process_seconds": 19.672358243,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:21:27.440000 1212 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 8.834974400302634e-06,
+        "compiled_l2_error": 1.0781561512542611e-05,
+        "eager_l1_error": 8.834974400302634e-06,
+        "eager_l2_error": 1.0781561512542611e-05,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 12,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.000972141,
+          "mean_seconds": 0.0009442318000000002,
+          "median_seconds": 0.0009395820000000001,
+          "minimum_seconds": 0.000932582,
+          "q1_seconds": 0.0009338720000000001,
+          "q3_seconds": 0.0009429820000000001,
+          "samples_seconds": [
+            0.000972141,
+            0.0009429820000000001,
+            0.000932582,
+            0.0009338720000000001,
+            0.0009395820000000001
+          ]
+        },
+        "first_complete_solve_seconds": 15.793591158000002,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.000377707,
+          "mean_seconds": 0.00023780326666666667,
+          "median_seconds": 0.00023220800000000002,
+          "minimum_seconds": 0.00022906800000000002,
+          "q1_seconds": 0.00023101075,
+          "q3_seconds": 0.000234778,
+          "samples_seconds": [
+            0.00022906800000000002,
+            0.000236807,
+            0.000232338,
+            0.00023119900000000002,
+            0.000229738,
+            0.00023873700000000001,
+            0.00023482800000000002,
+            0.000232028,
+            0.000229368,
+            0.00023094800000000003,
+            0.00023457800000000002,
+            0.000232248,
+            0.00023043800000000002,
+            0.000230188,
+            0.000377707,
+            0.00023986800000000001,
+            0.00023316800000000001,
+            0.000234008,
+            0.00024010800000000003,
+            0.00023509800000000002,
+            0.00023173800000000002,
+            0.000232028,
+            0.00023497800000000003,
+            0.00023216800000000002,
+            0.00023462800000000002,
+            0.000231448,
+            0.000233698,
+            0.000231238,
+            0.00022932800000000002,
+            0.00023037800000000002
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601e-15,
+        "compiled_mass_change": 1.3813538790185682e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601e-15,
+        "eager_mass_change": 1.3813538790185682e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 3,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.011203302,
+          "mean_seconds": 0.0111967356,
+          "median_seconds": 0.011199012000000001,
+          "minimum_seconds": 0.011189871,
+          "q1_seconds": 0.011190591000000001,
+          "q3_seconds": 0.011200902,
+          "samples_seconds": [
+            0.011200902,
+            0.011189871,
+            0.011203302,
+            0.011190591000000001,
+            0.011199012000000001
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.002813215,
+          "mean_seconds": 0.0027870795,
+          "median_seconds": 0.0027869555000000004,
+          "minimum_seconds": 0.002765716,
+          "q1_seconds": 0.0027830685000000003,
+          "q3_seconds": 0.0027918882500000005,
+          "samples_seconds": [
+            0.002803985,
+            0.002813215,
+            0.002784276,
+            0.0027941050000000003,
+            0.0027856160000000003,
+            0.002785646,
+            0.0027770750000000004,
+            0.0027850260000000003,
+            0.002776595,
+            0.0027887460000000004,
+            0.0027755450000000004,
+            0.002775576,
+            0.002792375,
+            0.002786886,
+            0.0027968650000000004,
+            0.0027857660000000003,
+            0.002778815,
+            0.002785056,
+            0.0027870250000000003,
+            0.002788846,
+            0.002789775,
+            0.002787896,
+            0.0027952050000000003,
+            0.002790545,
+            0.002777246,
+            0.002765716,
+            0.002787185,
+            0.002782666,
+            0.002796775,
+            0.0027923360000000003
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "logical_cells": 1728,
+      "memory": {
+        "compiler_cache_bytes": 2775354,
+        "peak_process_rss_bytes": 872124416
+      },
+      "method": "fv",
+      "persistent_state_bytes": 13824,
+      "status": "completed",
+      "steps": 4,
+      "total_worker_process_seconds": 18.126019919,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:21:46.528000 1279 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 1.1019764989259096e-06,
+        "compiled_l2_error": 1.356246369357252e-06,
+        "eager_l1_error": 1.1019764989259096e-06,
+        "eager_l2_error": 1.356246369357252e-06,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 18,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.008013341,
+          "mean_seconds": 0.007562775400000001,
+          "median_seconds": 0.007536256000000001,
+          "minimum_seconds": 0.007230818000000001,
+          "q1_seconds": 0.007354497000000001,
+          "q3_seconds": 0.007678965,
+          "samples_seconds": [
+            0.007230818000000001,
+            0.007536256000000001,
+            0.008013341,
+            0.007678965,
+            0.007354497000000001
+          ]
+        },
+        "first_complete_solve_seconds": 19.636479712,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.001295399,
+          "mean_seconds": 0.0011883378666666666,
+          "median_seconds": 0.0011999600000000001,
+          "minimum_seconds": 0.001028831,
+          "q1_seconds": 0.0011471900000000002,
+          "q3_seconds": 0.0012339340000000001,
+          "samples_seconds": [
+            0.00121403,
+            0.0011857900000000002,
+            0.00116696,
+            0.0012015,
+            0.00110534,
+            0.00116798,
+            0.0012124500000000001,
+            0.0011984200000000002,
+            0.00113878,
+            0.0012088000000000001,
+            0.001242859,
+            0.00114407,
+            0.0012346500000000001,
+            0.00111067,
+            0.001295399,
+            0.00122169,
+            0.00110186,
+            0.00126,
+            0.001028831,
+            0.001232989,
+            0.00123985,
+            0.001234249,
+            0.0011897400000000001,
+            0.00119111,
+            0.001107331,
+            0.0011565500000000001,
+            0.0012599290000000001,
+            0.00121896,
+            0.0011265700000000001,
+            0.001252779
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601e-15,
+        "compiled_mass_change": 1.361127336431733e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601e-15,
+        "eager_mass_change": 1.361127336431733e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 3,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.057042485000000004,
+          "mean_seconds": 0.0555662184,
+          "median_seconds": 0.056414881,
+          "minimum_seconds": 0.053125330000000005,
+          "q1_seconds": 0.054787165000000006,
+          "q3_seconds": 0.056461231,
+          "samples_seconds": [
+            0.057042485000000004,
+            0.054787165000000006,
+            0.056461231,
+            0.053125330000000005,
+            0.056414881
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.008951332000000001,
+          "mean_seconds": 0.0073389157,
+          "median_seconds": 0.007611459500000001,
+          "minimum_seconds": 0.003925156,
+          "q1_seconds": 0.006928914750000001,
+          "q3_seconds": 0.0082369715,
+          "samples_seconds": [
+            0.008190809,
+            0.006381134,
+            0.007582655000000001,
+            0.007751082,
+            0.008343568,
+            0.008237989000000001,
+            0.007002609000000001,
+            0.008847373,
+            0.008245639,
+            0.007095838,
+            0.007455696,
+            0.006997239000000001,
+            0.008191029,
+            0.007033889000000001,
+            0.008816494000000001,
+            0.006830741,
+            0.007718363000000001,
+            0.006802941000000001,
+            0.004044945,
+            0.008391537000000001,
+            0.007640264000000001,
+            0.006906140000000001,
+            0.007704003,
+            0.0050725860000000005,
+            0.003925156,
+            0.008247219,
+            0.005979248,
+            0.008951332000000001,
+            0.008233919000000001,
+            0.007546034
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "logical_cells": 5832,
+      "memory": {
+        "compiler_cache_bytes": 3467355,
+        "peak_process_rss_bytes": 880918528
+      },
+      "method": "fd",
+      "persistent_state_bytes": 46656,
+      "status": "completed",
+      "steps": 7,
+      "total_worker_process_seconds": 22.505574208000002,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:22:05.934000 1346 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 1.1694151630070395e-06,
+        "compiled_l2_error": 1.4251201407019274e-06,
+        "eager_l1_error": 1.1694151630070395e-06,
+        "eager_l2_error": 1.4251201407019274e-06,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 18,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.008014943,
+          "mean_seconds": 0.0074912852,
+          "median_seconds": 0.007322278000000001,
+          "minimum_seconds": 0.007307809,
+          "q1_seconds": 0.007320859000000001,
+          "q3_seconds": 0.007490537,
+          "samples_seconds": [
+            0.007320859000000001,
+            0.007307809,
+            0.007322278000000001,
+            0.007490537,
+            0.008014943
+          ]
+        },
+        "first_complete_solve_seconds": 17.419557141000002,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.0012578090000000001,
+          "mean_seconds": 0.0011372038,
+          "median_seconds": 0.001143925,
+          "minimum_seconds": 0.001010911,
+          "q1_seconds": 0.00111309775,
+          "q3_seconds": 0.00115570575,
+          "samples_seconds": [
+            0.001129781,
+            0.00120121,
+            0.001096711,
+            0.0012578090000000001,
+            0.001128071,
+            0.001064711,
+            0.00113156,
+            0.001128691,
+            0.001062131,
+            0.00111018,
+            0.0011487910000000001,
+            0.0011444600000000001,
+            0.0011568610000000001,
+            0.0012153390000000002,
+            0.001103561,
+            0.0011490600000000001,
+            0.0011332310000000002,
+            0.00115783,
+            0.001052631,
+            0.0011470710000000002,
+            0.00114339,
+            0.00121002,
+            0.0011522400000000001,
+            0.0011451010000000001,
+            0.0011875100000000001,
+            0.00119473,
+            0.001010911,
+            0.001121851,
+            0.001079901,
+            0.0011507700000000002
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601e-15,
+        "compiled_mass_change": 1.04702102802441e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601e-15,
+        "eager_mass_change": 1.04702102802441e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 3,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.058056436,
+          "mean_seconds": 0.046359215200000005,
+          "median_seconds": 0.048917143,
+          "minimum_seconds": 0.027766554000000002,
+          "q1_seconds": 0.044846288000000005,
+          "q3_seconds": 0.052209655,
+          "samples_seconds": [
+            0.052209655,
+            0.058056436,
+            0.044846288000000005,
+            0.048917143,
+            0.027766554000000002
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.003997276,
+          "mean_seconds": 0.003975028166666667,
+          "median_seconds": 0.003974036,
+          "minimum_seconds": 0.003950216,
+          "q1_seconds": 0.003968171,
+          "q3_seconds": 0.0039814985,
+          "samples_seconds": [
+            0.003982196,
+            0.003973946,
+            0.003974126000000001,
+            0.003968166,
+            0.003963947000000001,
+            0.0039754560000000005,
+            0.003982036,
+            0.003963676,
+            0.003970586,
+            0.003983327,
+            0.003979566,
+            0.003968976,
+            0.003979666000000001,
+            0.003997276,
+            0.003968186,
+            0.003985336,
+            0.003965217,
+            0.003950216,
+            0.003979886,
+            0.0039617160000000005,
+            0.003970727,
+            0.003978746,
+            0.003973506,
+            0.003990696,
+            0.003973016,
+            0.0039681560000000005,
+            0.003960877000000001,
+            0.003977966,
+            0.003988876000000001,
+            0.003994776
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "logical_cells": 5832,
+      "memory": {
+        "compiler_cache_bytes": 3505669,
+        "peak_process_rss_bytes": 874319872
+      },
+      "method": "fv",
+      "persistent_state_bytes": 46656,
+      "status": "completed",
+      "steps": 7,
+      "total_worker_process_seconds": 20.11470312,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:22:27.268000 1418 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 1.400756488906732e-07,
+        "compiled_l2_error": 1.7191407541462739e-07,
+        "eager_l1_error": 1.400756488906732e-07,
+        "eager_l2_error": 1.7191407541462739e-07,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 27,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.046655205000000005,
+          "mean_seconds": 0.0443476684,
+          "median_seconds": 0.045713223000000004,
+          "minimum_seconds": 0.041137171,
+          "q1_seconds": 0.041888055,
+          "q3_seconds": 0.046344688,
+          "samples_seconds": [
+            0.045713223000000004,
+            0.046344688,
+            0.046655205000000005,
+            0.041888055,
+            0.041137171
+          ]
+        },
+        "first_complete_solve_seconds": 19.072503404000003,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.003204094,
+          "mean_seconds": 0.0028847482000000004,
+          "median_seconds": 0.0028868160000000004,
+          "minimum_seconds": 0.002675658,
+          "q1_seconds": 0.0028038945,
+          "q3_seconds": 0.0029499085,
+          "samples_seconds": [
+            0.002862746,
+            0.002862017,
+            0.002994075,
+            0.002789507,
+            0.002870086,
+            0.002962816,
+            0.002908326,
+            0.003014095,
+            0.0027703470000000003,
+            0.002845887,
+            0.0028452760000000003,
+            0.0029504460000000002,
+            0.0029068260000000004,
+            0.002898246,
+            0.0027769170000000003,
+            0.002802507,
+            0.0029710960000000003,
+            0.0028835360000000003,
+            0.002675658,
+            0.002915866,
+            0.002744907,
+            0.002948296,
+            0.002808057,
+            0.0027929870000000002,
+            0.0029860050000000003,
+            0.0029229060000000003,
+            0.0027853070000000003,
+            0.002890096,
+            0.003204094,
+            0.0029535150000000003
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601e-15,
+        "compiled_mass_change": 1.1083616539086684e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601e-15,
+        "eager_mass_change": 1.1083616539086684e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 3,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.293942568,
+          "mean_seconds": 0.28997798080000003,
+          "median_seconds": 0.291566886,
+          "minimum_seconds": 0.285119593,
+          "q1_seconds": 0.28706306600000003,
+          "q3_seconds": 0.29219779100000004,
+          "samples_seconds": [
+            0.291566886,
+            0.29219779100000004,
+            0.293942568,
+            0.285119593,
+            0.28706306600000003
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.023487103000000002,
+          "mean_seconds": 0.0208434539,
+          "median_seconds": 0.0209422405,
+          "minimum_seconds": 0.018640294,
+          "q1_seconds": 0.0202824675,
+          "q3_seconds": 0.021601269250000003,
+          "samples_seconds": [
+            0.022992538,
+            0.021824367,
+            0.020670127,
+            0.018827462,
+            0.021123064,
+            0.022279123,
+            0.020964165,
+            0.022038515,
+            0.020403589,
+            0.022672241000000003,
+            0.020515838,
+            0.018640294,
+            0.019637026000000002,
+            0.019786284,
+            0.021275652000000003,
+            0.021456101,
+            0.020433969,
+            0.023487103000000002,
+            0.019105470000000003,
+            0.02028158,
+            0.018777393,
+            0.021615989000000002,
+            0.018781583,
+            0.021390451,
+            0.02155711,
+            0.020572767000000002,
+            0.020920316,
+            0.021187122000000003,
+            0.020285130000000002,
+            0.021801248000000002
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+      "logical_cells": 19683,
+      "memory": {
+        "compiler_cache_bytes": 3537588,
+        "peak_process_rss_bytes": 881565696
+      },
+      "method": "fd",
+      "persistent_state_bytes": 157464,
+      "status": "completed",
+      "steps": 13,
+      "total_worker_process_seconds": 24.369242877,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:22:50.169000 1490 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    },
+    {
+      "accuracy": {
+        "compiled_eager_maximum_absolute_difference": 0.0,
+        "compiled_l1_error": 1.3975979253737093e-07,
+        "compiled_l2_error": 1.7152642664546495e-07,
+        "eager_l1_error": 1.3975979253737093e-07,
+        "eager_l2_error": 1.7152642664546495e-07,
+        "repeated_compiled_maximum_absolute_difference": 0.0,
+        "repeated_eager_maximum_absolute_difference": 0.0
+      },
+      "cells_per_axis": 27,
+      "compiled": {
+        "complete_solve": {
+          "maximum_seconds": 0.018932167,
+          "mean_seconds": 0.016656735,
+          "median_seconds": 0.016969663,
+          "minimum_seconds": 0.013384571000000001,
+          "q1_seconds": 0.016937343,
+          "q3_seconds": 0.017059931,
+          "samples_seconds": [
+            0.018932167,
+            0.013384571000000001,
+            0.016937343,
+            0.017059931,
+            0.016969663
+          ]
+        },
+        "first_complete_solve_seconds": 17.513781756,
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.002722668,
+          "mean_seconds": 0.0010886531666666666,
+          "median_seconds": 0.000574565,
+          "minimum_seconds": 0.000452887,
+          "q1_seconds": 0.000472161,
+          "q3_seconds": 0.0017632777500000002,
+          "samples_seconds": [
+            0.000528685,
+            0.000466307,
+            0.0017686350000000002,
+            0.0026764280000000002,
+            0.0006204450000000001,
+            0.0005260060000000001,
+            0.00046746600000000004,
+            0.001747206,
+            0.002722668,
+            0.000634405,
+            0.000496446,
+            0.00045876600000000005,
+            0.000452887,
+            0.0018082150000000002,
+            0.002657298,
+            0.000632755,
+            0.000476406,
+            0.000453287,
+            0.000457866,
+            0.0017943050000000002,
+            0.002711358,
+            0.000630185,
+            0.000496446,
+            0.00045681700000000004,
+            0.00047123600000000004,
+            0.001708286,
+            0.002686658,
+            0.0006845950000000001,
+            0.000492596,
+            0.000474936
+          ]
+        }
+      },
+      "conservation": {
+        "compiled_mass_bound": 9.105427357601e-15,
+        "compiled_mass_change": 1.0434957046977285e-18,
+        "compiled_passed": true,
+        "eager_mass_bound": 9.105427357601e-15,
+        "eager_mass_change": 1.0434957046977285e-18,
+        "eager_passed": true
+      },
+      "controls": {
+        "process_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solve_repetitions": 5,
+        "solve_warmups": 1,
+        "step_repetitions": 30,
+        "step_warmups": 5,
+        "torch_interop_threads": 1,
+        "torch_intraop_threads": 6,
+        "visible_logical_cpus": 12
+      },
+      "device": "cpu",
+      "dimension": 3,
+      "dtype": "float64",
+      "eager": {
+        "complete_solve": {
+          "maximum_seconds": 0.287377636,
+          "mean_seconds": 0.24913111840000002,
+          "median_seconds": 0.250825305,
+          "minimum_seconds": 0.21279493000000002,
+          "q1_seconds": 0.234911378,
+          "q3_seconds": 0.259746343,
+          "samples_seconds": [
+            0.250825305,
+            0.21279493000000002,
+            0.287377636,
+            0.259746343,
+            0.234911378
+          ]
+        },
+        "ssp_rk3_step": {
+          "maximum_seconds": 0.02554822,
+          "mean_seconds": 0.020809712933333335,
+          "median_seconds": 0.0211138165,
+          "minimum_seconds": 0.009003166,
+          "q1_seconds": 0.019885431250000002,
+          "q3_seconds": 0.02235458625,
+          "samples_seconds": [
+            0.022548594,
+            0.020970328,
+            0.021735481,
+            0.018986854,
+            0.020539191000000002,
+            0.023489607000000003,
+            0.021074747,
+            0.019804527000000002,
+            0.022380166,
+            0.023286259,
+            0.020935968000000003,
+            0.009003166,
+            0.02554822,
+            0.019161372000000003,
+            0.018721876000000002,
+            0.022020249000000002,
+            0.021103997000000003,
+            0.018993414,
+            0.020128144,
+            0.022653844000000003,
+            0.020535651000000002,
+            0.021754731000000003,
+            0.016245697,
+            0.022277847,
+            0.023981163,
+            0.023582056,
+            0.021123636,
+            0.018418769,
+            0.022043069000000002,
+            0.021242765
+          ]
+        }
+      },
+      "eligible": true,
+      "finite": true,
+      "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+      "logical_cells": 19683,
+      "memory": {
+        "compiler_cache_bytes": 3571775,
+        "peak_process_rss_bytes": 874250240
+      },
+      "method": "fv",
+      "persistent_state_bytes": 157464,
+      "status": "completed",
+      "steps": 13,
+      "total_worker_process_seconds": 22.365323028000002,
+      "worker_returncode": 0,
+      "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:23:13.833000 1562 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\n",
+      "worker_stdout": ""
+    }
+  ]
+}

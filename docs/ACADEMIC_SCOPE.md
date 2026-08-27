@@ -136,7 +136,9 @@ product framework work must not delay the bounded paper.
    prospectively resolved for the exact CPU seed in Phase 3R. CUDA remains a
    per-device admission requirement before GPU timing.**
 3. Freeze and execute the scalar matched-component and best-practical FD/FV
-   accuracy-to-time/memory matrix.
+   accuracy-to-time/memory matrix. **The smooth linear CPU slice is complete;
+   CUDA replication and the prospectively qualified nonlinear scalar slice
+   remain.**
 4. Extend qualification and the frozen comparison to ideal-gas Euler, then
    reproduce the result on a second machine and make a value-of-information
    decision for data-center FP64 hardware.
