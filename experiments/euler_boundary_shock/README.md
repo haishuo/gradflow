@@ -40,3 +40,15 @@ Verify the committed record with:
 conda run -n gradflow python \
   experiments/euler_boundary_shock/verify_phase_a.py
 ```
+
+Phase B applies GradFlow's generated characteristic finite-difference WENO-JS
+to periodic and transmissive one-dimensional Euler problems. Its frozen
+protocol is in `docs/EULER_BOUNDARY_SHOCK_PHASE_B_PROTOCOL.md`, and its result
+record is under `results/phase_b_20260827/`.
+
+Verify the Phase-B record and its dependency on the Phase-A oracle with:
+
+```bash
+conda run -n gradflow python \
+  experiments/euler_boundary_shock/verify_phase_b.py
+```

@@ -26,8 +26,10 @@ The central research question is:
 > a realistic WENO-15 case—without bespoke CUDA or Triton engineering?
 
 This remains a research question, not a completed general capability or
-novelty claim. Scalar and one characteristic Euler periodic WENO-15 path are
-now correctness-qualified, but general equations, boundaries, geometry,
+novelty claim. Scalar and characteristic Euler periodic WENO-15 paths are
+correctness-qualified. A bounded one-dimensional periodic/transmissive Euler
+path has also passed frozen Sod and Shu--Osher gates at representative orders
+5, 11, and 15, but general equations, multidimensional boundaries, geometry,
 performance, and the target `Solver` surface remain open.
 
 ## Current seed
@@ -116,6 +118,7 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `src/gradflow/weno_js_coefficients.py` — exact-rational arbitrary-order construction
 - `src/gradflow/weno_js.py` — generated axis-general scalar PyTorch WENO-JS
 - `src/gradflow/euler3d.py` — generated characteristic Euler WENO-JS orders 5--15
+- `src/gradflow/euler1d.py` — physical-state periodic/transmissive Euler path
 - `src/gradflow/solver.py` — narrow validated problem and backend surface
 - `src/gradflow/dveb_abi.py` — hash-checked DVEB CPU-state v1 and CUDA-state v2 adapters
 - `tests/` — bounded oracle, convergence, conservation, device, and compiler gate
@@ -140,6 +143,8 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
   independent high-resolution Shu--Osher oracle record
 - `docs/EULER_BOUNDARY_SHOCK_PHASE_B_PROTOCOL.md` — frozen nonperiodic
   implementation and qualification details
+- `docs/EULER_BOUNDARY_SHOCK_PHASE_B_RESULTS.md` — exact Sod and independent
+  Shu--Osher qualification result
 - `docs/PRODUCT_VISION.md` — one-engine product target and user levels
 - `docs/PROBLEM_MODEL.md` — backend-neutral scientific request model
 - `docs/EQUATION_EXTENSION_CONTRACT.md` — requirements for equation families

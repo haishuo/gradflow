@@ -13,6 +13,10 @@ from experiments.euler_boundary_shock.qualify_phase_b import (
     initial_state,
     physical_minima,
 )
+from experiments.euler_boundary_shock.verify_phase_b import (
+    DEFAULT_RECORD as PHASE_B_RECORD,
+    verify as verify_phase_b,
+)
 
 
 @pytest.mark.parametrize("problem", ("sod", "shu_osher"))
@@ -88,3 +92,9 @@ def test_phase_b_decision_enforces_monotonic_errors_above_floor() -> None:
         "observable_rates": [float(PILOT_ORDERS[0])],
     }
     assert not evaluate_local_decision(*evidence)
+
+
+def test_frozen_phase_b_record_verifies() -> None:
+    result = verify_phase_b(PHASE_B_RECORD)
+    assert result["passed"] is True
+    assert len(result["arrays"]) == 6

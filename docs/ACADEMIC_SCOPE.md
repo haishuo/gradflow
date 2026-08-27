@@ -36,6 +36,9 @@ The current repository has reproducible evidence for:
 - one periodic 3-D face-frozen Roe-characteristic Euler path for orders 5--15;
 - smooth convergence, conservation, device agreement, differentiation, and
   full-graph compilation on the qualified paths;
+- one-dimensional periodic/transmissive Euler boundaries, exact Sod
+  refinement, and independent-reference Shu--Osher qualification for
+  representative WENO-JS orders 5, 11, and 15;
 - an explicitly characterized WENO-JS critical-point order loss;
 - a fixed WENO-5 Fortran/PyTorch/DVEB deployment bakeoff; and
 - a device-resident DVEB artifact that establishes a strong native comparison
@@ -107,14 +110,16 @@ product framework work must not delay the bounded paper.
 
 ## Immediate trunk order
 
-1. Execute Phase B of the 1-D Euler boundary/shock correctness trunk against
-   the now-frozen Phase-A oracles and thresholds.
-2. Complete the systematic literature and claim matrix.
-3. Characterize high-order numerical limits and select any additional WENO
+1. Complete the systematic literature and claim matrix.
+2. Characterize high-order numerical limits and select any additional WENO
    variants only in response to evidence.
-4. Add and validate one differentiable inverse/sensitivity experiment.
-5. Freeze and execute the arbitrary-order performance campaign.
-6. Assemble the paper artifact, then decide whether a data-center float64 GPU
+3. Add and validate one differentiable inverse/sensitivity experiment.
+4. Freeze and execute the arbitrary-order performance campaign.
+5. Assemble the paper artifact, then decide whether a data-center float64 GPU
    addendum is worth its cost.
+
+The former first item, Phase B of the one-dimensional Euler boundary/shock
+trunk, passed its frozen gate at source commit `3b64b1a`; see
+`EULER_BOUNDARY_SHOCK_PHASE_B_RESULTS.md`.
 
 Commercial equation-library and UI implementation remains behind this list.

@@ -1,0 +1,1241 @@
+{
+  "autograd": {
+    "11": {
+      "absolute_error": 1.8837844617536348e-09,
+      "autograd_directional": -0.2583974171335577,
+      "centered_finite_difference": -0.25839741901734214,
+      "finite": true,
+      "relative_error": 7.290260362961311e-09
+    },
+    "15": {
+      "absolute_error": 1.187408726899264e-09,
+      "autograd_directional": -0.2584028682911773,
+      "centered_finite_difference": -0.2584028671037686,
+      "finite": true,
+      "relative_error": 4.595184024883239e-09
+    },
+    "5": {
+      "absolute_error": 2.333148951816355e-09,
+      "autograd_directional": -0.2583933055316942,
+      "centered_finite_difference": -0.25839330319854525,
+      "finite": true,
+      "relative_error": 9.02944822073659e-09
+    }
+  },
+  "claim_boundary": {
+    "dveb_modified": false,
+    "navier_stokes": false,
+    "performance_measured": false,
+    "publication_claim": false,
+    "stabilization_added": false
+  },
+  "coefficient_payload_sha256": "ff02863db1c54b7d30e8ca3687e28ea4319953198c44d32e1df3789867780501",
+  "compiler": {
+    "11": {
+      "periodic": {
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_difference": 1.865174681370263e-14
+      },
+      "transmissive": {
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_difference": 0.0
+      }
+    },
+    "15": {
+      "periodic": {
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_difference": 9.325873406851315e-15
+      },
+      "transmissive": {
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_difference": 9.325873406851315e-15
+      }
+    },
+    "5": {
+      "periodic": {
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_difference": 0.0
+      },
+      "transmissive": {
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_difference": 0.0
+      }
+    }
+  },
+  "created_utc": "2026-08-27T10:04:08.646159+00:00",
+  "decision": "PASS",
+  "device": {
+    "available": false,
+    "reason": "CUDA is unavailable"
+  },
+  "environment": {
+    "cuda_available": false,
+    "numpy": "2.2.6",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.11.13",
+    "torch": "2.9.0.dev20250705+cu128",
+    "torch_threads": 1
+  },
+  "local_gates": {
+    "conservation": {
+      "11": {
+        "periodic": 0.0,
+        "transmissive": 0.0
+      },
+      "13": {
+        "periodic": 0.0,
+        "transmissive": 0.0
+      },
+      "15": {
+        "periodic": 0.0,
+        "transmissive": 0.0
+      },
+      "5": {
+        "periodic": 0.0,
+        "transmissive": 0.0
+      },
+      "7": {
+        "periodic": 0.0,
+        "transmissive": 0.0
+      },
+      "9": {
+        "periodic": 0.0,
+        "transmissive": 0.0
+      }
+    },
+    "periodic_overlap": {
+      "11": 2.7977620220553945e-14,
+      "13": 1.865174681370263e-14,
+      "15": 2.7977620220553945e-14,
+      "5": 0.0,
+      "7": 0.0,
+      "9": 1.865174681370263e-14
+    },
+    "smooth_convergence": {
+      "11": {
+        "floor_limited": false,
+        "l2_errors": [
+          7.863171418827338e-10,
+          1.3814271986424192e-11,
+          2.360236703160623e-13,
+          4.556324197197514e-14
+        ],
+        "observable_rates": [
+          9.967954970646478
+        ],
+        "points": [
+          24,
+          36,
+          54,
+          81
+        ],
+        "rates": [
+          9.967954970646478,
+          10.036684684618015,
+          4.056651905946941
+        ]
+      },
+      "13": {
+        "floor_limited": true,
+        "l2_errors": [
+          5.190960230499924e-12,
+          3.73545430983625e-14,
+          3.775061229270579e-14,
+          5.5664346830129526e-14
+        ],
+        "observable_rates": [],
+        "points": [
+          24,
+          36,
+          54,
+          81
+        ],
+        "rates": [
+          12.169282475537175,
+          -0.026012485444792767,
+          -0.9577597336158623
+        ]
+      },
+      "15": {
+        "floor_limited": true,
+        "l2_errors": [
+          2.1938383996560073e-13,
+          2.7727101686474958e-14,
+          3.9653449096852787e-14,
+          4.676369812791746e-14
+        ],
+        "observable_rates": [],
+        "points": [
+          24,
+          36,
+          54,
+          81
+        ],
+        "rates": [
+          5.101333044643796,
+          -0.8823634650899334,
+          -0.40676567411842485
+        ]
+      },
+      "5": {
+        "floor_limited": false,
+        "l2_errors": [
+          4.592449237776968e-05,
+          5.623350315003524e-06,
+          6.763971062795968e-07,
+          8.488097070292795e-08
+        ],
+        "observable_rates": [
+          5.179412255243336,
+          5.22339043601626,
+          5.118887832690068
+        ],
+        "points": [
+          24,
+          36,
+          54,
+          81
+        ],
+        "rates": [
+          5.179412255243336,
+          5.22339043601626,
+          5.118887832690068
+        ]
+      },
+      "7": {
+        "floor_limited": false,
+        "l2_errors": [
+          2.6630892949869987e-06,
+          2.4991833618965693e-07,
+          2.2442976014799866e-08,
+          2.066470488131204e-09
+        ],
+        "observable_rates": [
+          5.835540125167509,
+          5.944177361305734,
+          5.882468235530057
+        ],
+        "points": [
+          24,
+          36,
+          54,
+          81
+        ],
+        "rates": [
+          5.835540125167509,
+          5.944177361305734,
+          5.882468235530057
+        ]
+      },
+      "9": {
+        "floor_limited": false,
+        "l2_errors": [
+          1.6218892923025054e-08,
+          3.7186867573436663e-10,
+          8.070777616899149e-12,
+          1.9082518744177505e-13
+        ],
+        "observable_rates": [
+          9.311260639436508
+        ],
+        "points": [
+          24,
+          36,
+          54,
+          81
+        ],
+        "rates": [
+          9.311260639436508,
+          9.44665979025222,
+          9.235436738590163
+        ]
+      }
+    },
+    "uniform": {
+      "11": {
+        "torch.float32_periodic": 2.384185791015625e-06,
+        "torch.float32_transmissive": 2.384185791015625e-06,
+        "torch.float64_periodic": 0.0,
+        "torch.float64_transmissive": 0.0
+      },
+      "13": {
+        "torch.float32_periodic": 4.76837158203125e-06,
+        "torch.float32_transmissive": 4.76837158203125e-06,
+        "torch.float64_periodic": 8.881784197001252e-15,
+        "torch.float64_transmissive": 8.881784197001252e-15
+      },
+      "15": {
+        "torch.float32_periodic": 4.76837158203125e-06,
+        "torch.float32_transmissive": 4.76837158203125e-06,
+        "torch.float64_periodic": 1.3322676295501878e-14,
+        "torch.float64_transmissive": 1.3322676295501878e-14
+      },
+      "5": {
+        "torch.float32_periodic": 0.0,
+        "torch.float32_transmissive": 0.0,
+        "torch.float64_periodic": 0.0,
+        "torch.float64_transmissive": 0.0
+      },
+      "7": {
+        "torch.float32_periodic": 0.0,
+        "torch.float32_transmissive": 0.0,
+        "torch.float64_periodic": 0.0,
+        "torch.float64_transmissive": 0.0
+      },
+      "9": {
+        "torch.float32_periodic": 2.384185791015625e-06,
+        "torch.float32_transmissive": 2.384185791015625e-06,
+        "torch.float64_periodic": 4.440892098500626e-15,
+        "torch.float64_transmissive": 4.440892098500626e-15
+      }
+    }
+  },
+  "phase_a": {
+    "manifest_sha256": "c99f4b9687f818af486f8fb5905e5363ca503cb17747626332fe4952e2e056fe",
+    "shu_osher_reference_sha256": "67d551dd2560c7ddead29b9c805082ef896bc2ff8bcd5a5e2cfc9856f8b02f65",
+    "source_commit": "6ba01248d8c55303c87771931263f35319265451",
+    "thresholds": {
+      "conservation": {
+        "roundoff_scaled_rhs_boundary_flux_residual_max": 64.0
+      },
+      "derivation": {
+        "independent_method": "finite-volume WENO-Z/HLLC float64",
+        "multiplier": 3.0,
+        "reference_grid": 12800,
+        "selected_without_gradflow_boundary_implementation": true,
+        "target_grids": [
+          200,
+          400,
+          800
+        ]
+      },
+      "shu_osher": {
+        "density_correlation_min": 0.9482758575795494,
+        "density_total_variation_ratio_max": 1.1953996862683978,
+        "density_total_variation_ratio_min": 0.7953996862683976,
+        "final_time": 1.8,
+        "finest_grid": 800,
+        "finest_to_coarsest_density_error_ratio_max": 0.8,
+        "l1_max_to_n12800": {
+          "density": 0.039490369039826,
+          "pressure": 0.06710303053685818,
+          "velocity": 0.012346812213100595
+        },
+        "minimum_density_strictly_positive": true,
+        "minimum_pressure_strictly_positive": true,
+        "structure_window": [
+          -3.0,
+          3.0
+        ]
+      },
+      "sod": {
+        "each_variable_must_decrease_on_200_400_800": true,
+        "final_time": 0.2,
+        "finest_grid": 800,
+        "finest_to_coarsest_error_ratio_max": 0.75,
+        "l1_max": {
+          "density": 0.001909058930464399,
+          "pressure": 0.0013325232068413769,
+          "velocity": 0.003967892198278969
+        },
+        "minimum_density_strictly_positive": true,
+        "minimum_pressure_strictly_positive": true,
+        "wave_location_error_cells_max": 3.0
+      }
+    },
+    "thresholds_sha256": "7c3d3c057d9b291a197a8d0c14b1cdeee79b272a39522ed351ff84909513486e"
+  },
+  "schema": "gradflow.euler_boundary_shock.phase_b.v1",
+  "shock_study": {
+    "cases": {
+      "shu_osher_order11_n200": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "l1": {
+            "density": 0.03236181585297957,
+            "pressure": 0.04889750315758658,
+            "velocity": 0.011585862122540877
+          },
+          "linf": {
+            "density": 0.6319803982501261,
+            "pressure": 2.241094980837906,
+            "velocity": 1.2007893381314036
+          },
+          "structure": {
+            "density_correlation": 0.9936519696195236,
+            "density_total_variation_ratio": 0.8246578745369147,
+            "window": [
+              -3.0,
+              3.0
+            ]
+          }
+        },
+        "minimum_density": 0.7873572010643185,
+        "minimum_pressure": 0.9746834308884494,
+        "order": 11,
+        "points": 200,
+        "problem": "shu_osher",
+        "simulated_time": 1.8,
+        "steps": 1706
+      },
+      "shu_osher_order11_n400": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "l1": {
+            "density": 0.013893045512338123,
+            "pressure": 0.023150067745512874,
+            "velocity": 0.0054664045778970195
+          },
+          "linf": {
+            "density": 0.5669765255820712,
+            "pressure": 1.9348429642443512,
+            "velocity": 1.0958979099257067
+          },
+          "structure": {
+            "density_correlation": 0.9974884382209906,
+            "density_total_variation_ratio": 0.9306109904668892,
+            "window": [
+              -3.0,
+              3.0
+            ]
+          }
+        },
+        "minimum_density": 0.7898810622234663,
+        "minimum_pressure": 0.9778464803860704,
+        "order": 11,
+        "points": 400,
+        "problem": "shu_osher",
+        "simulated_time": 1.8,
+        "steps": 3442
+      },
+      "shu_osher_order11_n800": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "l1": {
+            "density": 0.006714133947324838,
+            "pressure": 0.012317275534545926,
+            "velocity": 0.0026217279928833228
+          },
+          "linf": {
+            "density": 0.703500870901193,
+            "pressure": 2.4971289452940866,
+            "velocity": 0.8519549318177041
+          },
+          "structure": {
+            "density_correlation": 0.9988201143030461,
+            "density_total_variation_ratio": 0.9697856674886647,
+            "window": [
+              -3.0,
+              3.0
+            ]
+          }
+        },
+        "minimum_density": 0.791064692541688,
+        "minimum_pressure": 0.9793904917767543,
+        "order": 11,
+        "points": 800,
+        "problem": "shu_osher",
+        "simulated_time": 1.8,
+        "steps": 6907
+      },
+      "shu_osher_order13_n200_pilot": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "l1": {
+            "density": 0.029391593001301643,
+            "pressure": 0.046319299301328026,
+            "velocity": 0.011008193063616382
+          },
+          "linf": {
+            "density": 0.594480341168958,
+            "pressure": 2.1163727359738105,
+            "velocity": 1.1548829253686896
+          },
+          "structure": {
+            "density_correlation": 0.9944436020774379,
+            "density_total_variation_ratio": 0.8677059544702765,
+            "window": [
+              -3.0,
+              3.0
+            ]
+          }
+        },
+        "minimum_density": 0.7632439819524227,
+        "minimum_pressure": 0.9132206104311335,
+        "order": 13,
+        "points": 200,
+        "problem": "shu_osher",
+        "simulated_time": 1.8,
+        "steps": 1708
+      },
+      "shu_osher_order15_n200": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "l1": {
+            "density": 0.027675881417906514,
+            "pressure": 0.04529167828675603,
+            "velocity": 0.010952359125871424
+          },
+          "linf": {
+            "density": 0.5535104328214945,
+            "pressure": 1.9799420663734888,
+            "velocity": 1.1025770860480308
+          },
+          "structure": {
+            "density_correlation": 0.9949503881604524,
+            "density_total_variation_ratio": 0.9020858421413499,
+            "window": [
+              -3.0,
+              3.0
+            ]
+          }
+        },
+        "minimum_density": 0.7300163895901632,
+        "minimum_pressure": 0.8487057516220309,
+        "order": 15,
+        "points": 200,
+        "problem": "shu_osher",
+        "simulated_time": 1.8,
+        "steps": 1710
+      },
+      "shu_osher_order15_n400": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "l1": {
+            "density": 0.011382252525947649,
+            "pressure": 0.0199744543997849,
+            "velocity": 0.00499504024046024
+          },
+          "linf": {
+            "density": 0.5245820274614905,
+            "pressure": 1.818780925554555,
+            "velocity": 1.02391293999791
+          },
+          "structure": {
+            "density_correlation": 0.9979314735147387,
+            "density_total_variation_ratio": 0.9551616922477097,
+            "window": [
+              -3.0,
+              3.0
+            ]
+          }
+        },
+        "minimum_density": 0.7396204678292876,
+        "minimum_pressure": 0.8559149103257576,
+        "order": 15,
+        "points": 400,
+        "problem": "shu_osher",
+        "simulated_time": 1.8,
+        "steps": 3444
+      },
+      "shu_osher_order15_n800": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "l1": {
+            "density": 0.005675148822542695,
+            "pressure": 0.01079095422226914,
+            "velocity": 0.002425430439668019
+          },
+          "linf": {
+            "density": 0.7112406440832366,
+            "pressure": 2.5322652223031454,
+            "velocity": 0.7622972784872906
+          },
+          "structure": {
+            "density_correlation": 0.9989517204270107,
+            "density_total_variation_ratio": 0.9928560521206136,
+            "window": [
+              -3.0,
+              3.0
+            ]
+          }
+        },
+        "minimum_density": 0.7426139636802401,
+        "minimum_pressure": 0.8580066016373866,
+        "order": 15,
+        "points": 800,
+        "problem": "shu_osher",
+        "simulated_time": 1.8,
+        "steps": 6908
+      },
+      "shu_osher_order5_n200": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "l1": {
+            "density": 0.07337116896705113,
+            "pressure": 0.07149851281475385,
+            "velocity": 0.016844664179787142
+          },
+          "linf": {
+            "density": 0.827506901336725,
+            "pressure": 2.8778439574119665,
+            "velocity": 1.4214143491500983
+          },
+          "structure": {
+            "density_correlation": 0.9677060364317602,
+            "density_total_variation_ratio": 0.42049158391581976,
+            "window": [
+              -3.0,
+              3.0
+            ]
+          }
+        },
+        "minimum_density": 0.7993400032936704,
+        "minimum_pressure": 0.9999965892040406,
+        "order": 5,
+        "points": 200,
+        "problem": "shu_osher",
+        "simulated_time": 1.8,
+        "steps": 1684
+      },
+      "shu_osher_order5_n400": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "l1": {
+            "density": 0.027646869499125742,
+            "pressure": 0.03655287441513583,
+            "velocity": 0.008288305311467833
+          },
+          "linf": {
+            "density": 0.7558888633676356,
+            "pressure": 2.583772367378033,
+            "velocity": 1.3342812545395906
+          },
+          "structure": {
+            "density_correlation": 0.99420360385076,
+            "density_total_variation_ratio": 0.7865907673137955,
+            "window": [
+              -3.0,
+              3.0
+            ]
+          }
+        },
+        "minimum_density": 0.7999281464241632,
+        "minimum_pressure": 0.9999967102109183,
+        "order": 5,
+        "points": 400,
+        "problem": "shu_osher",
+        "simulated_time": 1.8,
+        "steps": 3423
+      },
+      "shu_osher_order5_n800": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "l1": {
+            "density": 0.011814290025821817,
+            "pressure": 0.018853624383742277,
+            "velocity": 0.004035077118505118
+          },
+          "linf": {
+            "density": 0.7047638031902821,
+            "pressure": 2.472075792004051,
+            "velocity": 1.1444941698231568
+          },
+          "structure": {
+            "density_correlation": 0.9979967746689277,
+            "density_total_variation_ratio": 0.9238301125761874,
+            "window": [
+              -3.0,
+              3.0
+            ]
+          }
+        },
+        "minimum_density": 0.8000006180068326,
+        "minimum_pressure": 0.9999968808423831,
+        "order": 5,
+        "points": 800,
+        "problem": "shu_osher",
+        "simulated_time": 1.8,
+        "steps": 6892
+      },
+      "shu_osher_order7_n200_pilot": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "l1": {
+            "density": 0.05346841989237536,
+            "pressure": 0.05940724420580915,
+            "velocity": 0.013896888274415275
+          },
+          "linf": {
+            "density": 0.7237255128055692,
+            "pressure": 2.5540838655738005,
+            "velocity": 1.3104295501336878
+          },
+          "structure": {
+            "density_correlation": 0.9835350607630055,
+            "density_total_variation_ratio": 0.6017836353328853,
+            "window": [
+              -3.0,
+              3.0
+            ]
+          }
+        },
+        "minimum_density": 0.7985455931942597,
+        "minimum_pressure": 0.9999991597711932,
+        "order": 7,
+        "points": 200,
+        "problem": "shu_osher",
+        "simulated_time": 1.8,
+        "steps": 1694
+      },
+      "shu_osher_order9_n200_pilot": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "l1": {
+            "density": 0.03911494221333232,
+            "pressure": 0.05319958143370171,
+            "velocity": 0.01252176398435973
+          },
+          "linf": {
+            "density": 0.6704735874765034,
+            "pressure": 2.372116152477478,
+            "velocity": 1.2463159888759645
+          },
+          "structure": {
+            "density_correlation": 0.9914250677091386,
+            "density_total_variation_ratio": 0.7527537128778325,
+            "window": [
+              -3.0,
+              3.0
+            ]
+          }
+        },
+        "minimum_density": 0.797842271333188,
+        "minimum_pressure": 0.9999994914571793,
+        "order": 9,
+        "points": 200,
+        "problem": "shu_osher",
+        "simulated_time": 1.8,
+        "steps": 1702
+      },
+      "sod_order11_n200": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "energy_l1": 0.004775179562446446,
+          "l1": {
+            "density": 0.0021629438021348907,
+            "pressure": 0.0018485354432733645,
+            "velocity": 0.004494773523804694
+          },
+          "linf": {
+            "density": 0.0649025684614627,
+            "pressure": 0.06289300043765783,
+            "velocity": 0.3930081402913474
+          },
+          "wave_locations": {
+            "contact": {
+              "detected": 0.685,
+              "error_cells": 0.09810480195799887,
+              "exact": 0.68549052400979
+            },
+            "shock": {
+              "detected": 0.8500000000000001,
+              "error_cells": 0.08622928120711748,
+              "exact": 0.8504311464060357
+            }
+          }
+        },
+        "minimum_density": 0.12438421746552143,
+        "minimum_pressure": 0.09931809047534279,
+        "order": 11,
+        "points": 200,
+        "problem": "sod",
+        "simulated_time": 0.2,
+        "steps": 872
+      },
+      "sod_order11_n400": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "energy_l1": 0.00243232926647105,
+          "l1": {
+            "density": 0.0011152967828265779,
+            "pressure": 0.0009394860291908998,
+            "velocity": 0.0023570614731962133
+          },
+          "linf": {
+            "density": 0.061279217368560845,
+            "pressure": 0.07288080290974433,
+            "velocity": 0.4430119635984159
+          },
+          "wave_locations": {
+            "contact": {
+              "detected": 0.685,
+              "error_cells": 0.19620960391599773,
+              "exact": 0.68549052400979
+            },
+            "shock": {
+              "detected": 0.85,
+              "error_cells": 0.17245856241427937,
+              "exact": 0.8504311464060357
+            }
+          }
+        },
+        "minimum_density": 0.12438421746552143,
+        "minimum_pressure": 0.09931809047534279,
+        "order": 11,
+        "points": 400,
+        "problem": "sod",
+        "simulated_time": 0.2,
+        "steps": 1749
+      },
+      "sod_order11_n800": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "energy_l1": 0.001272130348021675,
+          "l1": {
+            "density": 0.0005888989286985386,
+            "pressure": 0.0004884418945685637,
+            "velocity": 0.0012987505105100563
+          },
+          "linf": {
+            "density": 0.06650863431109269,
+            "pressure": 0.09347512018794149,
+            "velocity": 0.5381680288809144
+          },
+          "wave_locations": {
+            "contact": {
+              "detected": 0.685,
+              "error_cells": 0.39241920783199546,
+              "exact": 0.68549052400979
+            },
+            "shock": {
+              "detected": 0.85,
+              "error_cells": 0.34491712482855874,
+              "exact": 0.8504311464060357
+            }
+          }
+        },
+        "minimum_density": 0.12438421746552143,
+        "minimum_pressure": 0.09931809047534279,
+        "order": 11,
+        "points": 800,
+        "problem": "sod",
+        "simulated_time": 0.2,
+        "steps": 3503
+      },
+      "sod_order13_n200_pilot": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "energy_l1": 0.004692457251283181,
+          "l1": {
+            "density": 0.00219197115374095,
+            "pressure": 0.0018154583911557068,
+            "velocity": 0.004390667604819668
+          },
+          "linf": {
+            "density": 0.06783258267479969,
+            "pressure": 0.061828965549206194,
+            "velocity": 0.38786060640127074
+          },
+          "wave_locations": {
+            "contact": {
+              "detected": 0.685,
+              "error_cells": 0.09810480195799887,
+              "exact": 0.68549052400979
+            },
+            "shock": {
+              "detected": 0.8500000000000001,
+              "error_cells": 0.08622928120711748,
+              "exact": 0.8504311464060357
+            }
+          }
+        },
+        "minimum_density": 0.12323518963921268,
+        "minimum_pressure": 0.09799879301694266,
+        "order": 13,
+        "points": 200,
+        "problem": "sod",
+        "simulated_time": 0.2,
+        "steps": 875
+      },
+      "sod_order15_n200": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "energy_l1": 0.004945274537353714,
+          "l1": {
+            "density": 0.0022129341906077242,
+            "pressure": 0.0018643391877017118,
+            "velocity": 0.004172593037064917
+          },
+          "linf": {
+            "density": 0.06640934381992142,
+            "pressure": 0.03694012604743829,
+            "velocity": 0.23689573581695897
+          },
+          "wave_locations": {
+            "contact": {
+              "detected": 0.685,
+              "error_cells": 0.09810480195799887,
+              "exact": 0.68549052400979
+            },
+            "shock": {
+              "detected": 0.8500000000000001,
+              "error_cells": 0.08622928120711748,
+              "exact": 0.8504311464060357
+            }
+          }
+        },
+        "minimum_density": 0.12267701522802896,
+        "minimum_pressure": 0.09736606223299041,
+        "order": 15,
+        "points": 200,
+        "problem": "sod",
+        "simulated_time": 0.2,
+        "steps": 897
+      },
+      "sod_order15_n400": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "energy_l1": 0.0024330700225854295,
+          "l1": {
+            "density": 0.0011244066762031767,
+            "pressure": 0.000921708425819814,
+            "velocity": 0.002108823632761776
+          },
+          "linf": {
+            "density": 0.06166267803227865,
+            "pressure": 0.04308443345399321,
+            "velocity": 0.28623584348032044
+          },
+          "wave_locations": {
+            "contact": {
+              "detected": 0.685,
+              "error_cells": 0.19620960391599773,
+              "exact": 0.68549052400979
+            },
+            "shock": {
+              "detected": 0.85,
+              "error_cells": 0.17245856241427937,
+              "exact": 0.8504311464060357
+            }
+          }
+        },
+        "minimum_density": 0.12267701522802896,
+        "minimum_pressure": 0.09736606223299041,
+        "order": 15,
+        "points": 400,
+        "problem": "sod",
+        "simulated_time": 0.2,
+        "steps": 1801
+      },
+      "sod_order15_n800": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "energy_l1": 0.0011977081829563573,
+          "l1": {
+            "density": 0.000575967577064902,
+            "pressure": 0.000457814799134261,
+            "velocity": 0.0011032491978744832
+          },
+          "linf": {
+            "density": 0.05491937781394213,
+            "pressure": 0.06310730405818257,
+            "velocity": 0.3954479499866205
+          },
+          "wave_locations": {
+            "contact": {
+              "detected": 0.685,
+              "error_cells": 0.39241920783199546,
+              "exact": 0.68549052400979
+            },
+            "shock": {
+              "detected": 0.85,
+              "error_cells": 0.34491712482855874,
+              "exact": 0.8504311464060357
+            }
+          }
+        },
+        "minimum_density": 0.12267701522802896,
+        "minimum_pressure": 0.09736606223299041,
+        "order": 15,
+        "points": 800,
+        "problem": "sod",
+        "simulated_time": 0.2,
+        "steps": 3609
+      },
+      "sod_order5_n200": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "energy_l1": 0.006500069619315058,
+          "l1": {
+            "density": 0.003128827245629409,
+            "pressure": 0.0024595315009252926,
+            "velocity": 0.006077894691081055
+          },
+          "linf": {
+            "density": 0.07517921201332017,
+            "pressure": 0.07311849413449317,
+            "velocity": 0.4425166416082709
+          },
+          "wave_locations": {
+            "contact": {
+              "detected": 0.685,
+              "error_cells": 0.09810480195799887,
+              "exact": 0.68549052400979
+            },
+            "shock": {
+              "detected": 0.8500000000000001,
+              "error_cells": 0.08622928120711748,
+              "exact": 0.8504311464060357
+            }
+          }
+        },
+        "minimum_density": 0.12499505328667593,
+        "minimum_pressure": 0.09999464813888731,
+        "order": 5,
+        "points": 200,
+        "problem": "sod",
+        "simulated_time": 0.2,
+        "steps": 869
+      },
+      "sod_order5_n400": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "energy_l1": 0.0033050600779267014,
+          "l1": {
+            "density": 0.0016389556099486542,
+            "pressure": 0.0012425122847962748,
+            "velocity": 0.0031379842932546787
+          },
+          "linf": {
+            "density": 0.07308501291132052,
+            "pressure": 0.0817326515336895,
+            "velocity": 0.4834256004115566
+          },
+          "wave_locations": {
+            "contact": {
+              "detected": 0.685,
+              "error_cells": 0.19620960391599773,
+              "exact": 0.68549052400979
+            },
+            "shock": {
+              "detected": 0.85,
+              "error_cells": 0.17245856241427937,
+              "exact": 0.8504311464060357
+            }
+          }
+        },
+        "minimum_density": 0.12499505328667593,
+        "minimum_pressure": 0.09999464813888731,
+        "order": 5,
+        "points": 400,
+        "problem": "sod",
+        "simulated_time": 0.2,
+        "steps": 1746
+      },
+      "sod_order5_n800": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "energy_l1": 0.0017123134102016374,
+          "l1": {
+            "density": 0.0008666800639650807,
+            "pressure": 0.000638834618434993,
+            "velocity": 0.0016865878189174111
+          },
+          "linf": {
+            "density": 0.07127013390398362,
+            "pressure": 0.09920186232858685,
+            "velocity": 0.5614084607695788
+          },
+          "wave_locations": {
+            "contact": {
+              "detected": 0.685,
+              "error_cells": 0.39241920783199546,
+              "exact": 0.68549052400979
+            },
+            "shock": {
+              "detected": 0.8512500000000001,
+              "error_cells": 0.6550828751715088,
+              "exact": 0.8504311464060357
+            }
+          }
+        },
+        "minimum_density": 0.12499505328667593,
+        "minimum_pressure": 0.09999464813888731,
+        "order": 5,
+        "points": 800,
+        "problem": "sod",
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "sod_order7_n200_pilot": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "energy_l1": 0.005554441661810973,
+          "l1": {
+            "density": 0.0026160337184885606,
+            "pressure": 0.002120543139066057,
+            "velocity": 0.005207073293875415
+          },
+          "linf": {
+            "density": 0.07168688334952283,
+            "pressure": 0.06798360093311365,
+            "velocity": 0.41791971155140095
+          },
+          "wave_locations": {
+            "contact": {
+              "detected": 0.685,
+              "error_cells": 0.09810480195799887,
+              "exact": 0.68549052400979
+            },
+            "shock": {
+              "detected": 0.8500000000000001,
+              "error_cells": 0.08622928120711748,
+              "exact": 0.8504311464060357
+            }
+          }
+        },
+        "minimum_density": 0.12499813301818397,
+        "minimum_pressure": 0.09999831738489705,
+        "order": 7,
+        "points": 200,
+        "problem": "sod",
+        "simulated_time": 0.2,
+        "steps": 870
+      },
+      "sod_order9_n200_pilot": {
+        "completed": true,
+        "failure_stage": null,
+        "metrics": {
+          "energy_l1": 0.005077977533421815,
+          "l1": {
+            "density": 0.0023506627541934875,
+            "pressure": 0.0019513144966512757,
+            "velocity": 0.004768453207114499
+          },
+          "linf": {
+            "density": 0.06761499643002372,
+            "pressure": 0.06497110189183225,
+            "velocity": 0.40327528133714075
+          },
+          "wave_locations": {
+            "contact": {
+              "detected": 0.685,
+              "error_cells": 0.09810480195799887,
+              "exact": 0.68549052400979
+            },
+            "shock": {
+              "detected": 0.8500000000000001,
+              "error_cells": 0.08622928120711748,
+              "exact": 0.8504311464060357
+            }
+          }
+        },
+        "minimum_density": 0.12499890610394107,
+        "minimum_pressure": 0.09999902502748055,
+        "order": 9,
+        "points": 200,
+        "problem": "sod",
+        "simulated_time": 0.2,
+        "steps": 871
+      }
+    },
+    "passed": true,
+    "pilot_order_admissibility": {
+      "13": {
+        "shu_osher": true,
+        "sod": true
+      },
+      "7": {
+        "shu_osher": true,
+        "sod": true
+      },
+      "9": {
+        "shu_osher": true,
+        "sod": true
+      }
+    },
+    "representative_order_decisions": {
+      "11": {
+        "completed": true,
+        "passed": true,
+        "shu_osher_density_refinement_ratio": true,
+        "shu_osher_finest_thresholds": true,
+        "shu_osher_structure": true,
+        "sod_each_variable_decreases": {
+          "density": true,
+          "pressure": true,
+          "velocity": true
+        },
+        "sod_energy_decreases": true,
+        "sod_finest_thresholds": true,
+        "sod_refinement_ratio": true,
+        "sod_wave_locations": true
+      },
+      "15": {
+        "completed": true,
+        "passed": true,
+        "shu_osher_density_refinement_ratio": true,
+        "shu_osher_finest_thresholds": true,
+        "shu_osher_structure": true,
+        "sod_each_variable_decreases": {
+          "density": true,
+          "pressure": true,
+          "velocity": true
+        },
+        "sod_energy_decreases": true,
+        "sod_finest_thresholds": true,
+        "sod_refinement_ratio": true,
+        "sod_wave_locations": true
+      },
+      "5": {
+        "completed": true,
+        "passed": true,
+        "shu_osher_density_refinement_ratio": true,
+        "shu_osher_finest_thresholds": true,
+        "shu_osher_structure": true,
+        "sod_each_variable_decreases": {
+          "density": true,
+          "pressure": true,
+          "velocity": true
+        },
+        "sod_energy_decreases": true,
+        "sod_finest_thresholds": true,
+        "sod_refinement_ratio": true,
+        "sod_wave_locations": true
+      }
+    }
+  },
+  "source_commit": "3b64b1a75b0e412fee195b12c341901ff0c1136d",
+  "source_hashes": {
+    "docs/EULER_BOUNDARY_SHOCK_PHASE_B_PROTOCOL.md": "5603468ffb1c0f47cc2412dd34206a3968d5d7c7769e4718b0cd36925e82a785",
+    "experiments/euler_boundary_shock/qualify_phase_b.py": "3b468ed698459728828b3f0c5d0f3f2be1547514a6c8f2458a7b9fcaf089b6cd",
+    "src/gradflow/euler1d.py": "a0e9a8d35827e4a0315431f13c705b0047189c79348dd6587ee5056c91178c6b",
+    "src/gradflow/euler3d.py": "8809f4664c39f1e6effd271d2ce0403b288dc2249366951ce6d9c00b9ff5c2ba",
+    "src/gradflow/weno_js.py": "857f0642f8c4a4d29c1fe3e9f1f8ee304ac35bfeac1640f70a18a6d99fa81ce3"
+  },
+  "source_worktree_clean": true,
+  "static_inspection": {
+    "forbidden_tokens_found": [],
+    "passed": true
+  }
+}
