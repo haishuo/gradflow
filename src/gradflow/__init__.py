@@ -40,7 +40,14 @@ from .weno5 import (
     weno5_rhs,
     weno5_rhs_gottlieb_periodic,
 )
-from .weno_js import QUALIFIED_ORDERS, SMOOTHNESS_SCALE, WENOJS
+from .weno_js import (
+    NATIVE_PRECISION,
+    PRECISION_BLOCKS,
+    QUALIFIED_ORDERS,
+    SMOOTHNESS_SCALE,
+    WENOJS,
+    WENOJSPrecisionPolicy,
+)
 from .weno_js_coefficients import (
     WENOJSCoefficients,
     generate_weno_js_coefficients,
@@ -49,8 +56,11 @@ from .weno_js_coefficients import (
 __all__ = [
     "DEFAULT_EPSILON",
     "QUALIFIED_ORDERS",
+    "PRECISION_BLOCKS",
     "SMOOTHNESS_SCALE",
     "WENOJS",
+    "WENOJSPrecisionPolicy",
+    "NATIVE_PRECISION",
     "WENOJSCoefficients",
     "generate_weno_js_coefficients",
     "DvebAbiError",

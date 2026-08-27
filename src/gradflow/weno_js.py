@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Sequence
+from dataclasses import dataclass, fields
 
 import torch
 
@@ -15,6 +16,64 @@ from .weno_js_coefficients import (
 TensorFunction = Callable[[torch.Tensor], torch.Tensor]
 QUALIFIED_ORDERS = (5, 7, 9, 11, 13, 15)
 SMOOTHNESS_SCALE = 12.0
+PRECISION_BLOCKS = (
+    "flux_split",
+    "candidates",
+    "indicators",
+    "weights",
+    "combination",
+    "divergence",
+)
+
+
+@dataclass(frozen=True)
+class WENOJSPrecisionPolicy:
+    """Explicit compute precision for the mathematical WENO-JS blocks.
+
+    ``None`` means the dtype of the persistent input state. A selected dtype
+    changes computation precision only; it never changes device. The RHS is
+    cast back to the persistent state dtype before it is returned.
+
+    This policy is an experimental research surface. It makes precision
+    assignments auditable and suitable for exhaustive enumeration; it does
+    not assert that any mixed assignment is numerically safe.
+    """
+
+    flux_split: torch.dtype | None = None
+    candidates: torch.dtype | None = None
+    indicators: torch.dtype | None = None
+    weights: torch.dtype | None = None
+    combination: torch.dtype | None = None
+    divergence: torch.dtype | None = None
+
+    def __post_init__(self) -> None:
+        for field in fields(self):
+            dtype = getattr(self, field.name)
+            if dtype not in (None, torch.float32, torch.float64):
+                raise TypeError(
+                    f"{field.name} precision must be float32, float64, or None"
+                )
+
+    def dtype_for(self, block: str, state_dtype: torch.dtype) -> torch.dtype:
+        if block not in PRECISION_BLOCKS:
+            raise ValueError(f"unknown WENO-JS precision block: {block}")
+        selected = getattr(self, block)
+        return state_dtype if selected is None else selected
+
+    def as_names(self, state_dtype: torch.dtype = torch.float64) -> dict[str, str]:
+        """Return a stable, JSON-ready block-to-dtype representation."""
+        return {
+            block: str(self.dtype_for(block, state_dtype)).removeprefix("torch.")
+            for block in PRECISION_BLOCKS
+        }
+
+
+NATIVE_PRECISION = WENOJSPrecisionPolicy()
+
+
+def _cast_dtype(values: torch.Tensor, dtype: torch.dtype) -> torch.Tensor:
+    """Change dtype without ever changing the tensor's device."""
+    return values if values.dtype == dtype else values.to(dtype=dtype)
 
 
 def _linear_combination(
@@ -40,6 +99,7 @@ class WENOJS:
         *,
         epsilon: float = DEFAULT_EPSILON,
         nonlinear_power: int = 2,
+        precision: WENOJSPrecisionPolicy | None = None,
     ) -> None:
         if not isinstance(epsilon, (int, float)) or epsilon <= 0:
             raise ValueError("epsilon must be a positive Python scalar")
@@ -54,6 +114,9 @@ class WENOJS:
         self.substencil_width = exact.substencil_width
         self.epsilon = float(epsilon)
         self.nonlinear_power = nonlinear_power
+        if precision is not None and not isinstance(precision, WENOJSPrecisionPolicy):
+            raise TypeError("precision must be a WENOJSPrecisionPolicy or None")
+        self.precision = NATIVE_PRECISION if precision is None else precision
         self.exact_coefficients: WENOJSCoefficients = exact
         self._candidate_offsets = exact.candidate_offsets
         self._candidate_coefficients = tuple(
@@ -141,6 +204,17 @@ class WENOJS:
         if len(candidate_stencils) != self.substencil_width:
             raise ValueError("wrong number of WENO-JS candidate stencils")
 
+        first_stencil = candidate_stencils[0]
+        if len(first_stencil) != self.substencil_width:
+            raise ValueError("a WENO-JS candidate stencil has the wrong width")
+        reference = first_stencil[0]
+        if not isinstance(reference, torch.Tensor):
+            raise TypeError("WENO-JS stencil samples must be torch.Tensor values")
+        if reference.dtype not in (torch.float32, torch.float64):
+            raise TypeError("WENO-JS requires float32 or float64 input")
+        candidate_dtype = self.precision.dtype_for("candidates", reference.dtype)
+        indicator_dtype = self.precision.dtype_for("indicators", reference.dtype)
+
         candidates = []
         indicators = []
         for stencil, coefficients, factors in zip(
@@ -150,17 +224,28 @@ class WENOJS:
         ):
             if len(stencil) != self.substencil_width:
                 raise ValueError("a WENO-JS candidate stencil has the wrong width")
-            candidates.append(_linear_combination(coefficients, list(stencil)))
+            candidate_stencil = [
+                _cast_dtype(value, candidate_dtype) for value in stencil
+            ]
+            indicator_stencil = [
+                _cast_dtype(value, indicator_dtype) for value in stencil
+            ]
+            candidates.append(_linear_combination(coefficients, candidate_stencil))
             indicator = None
             for factor_weight, factor_coefficients in factors:
-                factor = _linear_combination(factor_coefficients, list(stencil))
+                factor = _linear_combination(
+                    factor_coefficients, indicator_stencil
+                )
                 term = factor_weight * factor.square()
                 indicator = term if indicator is None else indicator + term
             assert indicator is not None
             indicators.append(indicator)
 
         candidate_stack = torch.stack(candidates, dim=0)
-        denominator = torch.stack(indicators, dim=0) + self.epsilon
+        weight_dtype = self.precision.dtype_for("weights", reference.dtype)
+        denominator = _cast_dtype(
+            torch.stack(indicators, dim=0), weight_dtype
+        ) + self.epsilon
         # Scaling by the smallest denominator preserves the normalized JS
         # weights while preventing float32 overflow on exactly constant data.
         scale = torch.amin(denominator, dim=0, keepdim=True)
@@ -173,6 +258,11 @@ class WENOJS:
             dim=0,
         )
         weights = nonlinear / torch.sum(nonlinear, dim=0, keepdim=True)
+        combination_dtype = self.precision.dtype_for(
+            "combination", reference.dtype
+        )
+        weights = _cast_dtype(weights, combination_dtype)
+        candidate_stack = _cast_dtype(candidate_stack, combination_dtype)
         return torch.sum(weights * candidate_stack, dim=0)
 
     def rhs(
@@ -191,21 +281,34 @@ class WENOJS:
             raise ValueError(
                 f"WENO-JS order {self.order} requires at least {self.order} points"
             )
-        physical_flux = flux(u)
+        state_dtype = u.dtype
+        flux_dtype = self.precision.dtype_for("flux_split", state_dtype)
+        flux_state = _cast_dtype(u, flux_dtype)
+        physical_flux = flux(flux_state)
         if physical_flux.shape != u.shape:
             raise ValueError("flux(u) must have the same shape as u")
+        if physical_flux.device != u.device:
+            raise ValueError("flux(u) must remain on the input device")
+        physical_flux = _cast_dtype(physical_flux, flux_dtype)
         if alpha is None:
             if flux_derivative is None:
                 raise ValueError("provide flux_derivative when alpha is not explicit")
             alpha_value: float | torch.Tensor = torch.amax(
-                torch.abs(flux_derivative(u))
+                torch.abs(flux_derivative(flux_state))
             )
         else:
             alpha_value = alpha
-        positive = 0.5 * (physical_flux + alpha_value * u)
-        negative = 0.5 * (physical_flux - alpha_value * u)
+        if isinstance(alpha_value, torch.Tensor):
+            if alpha_value.device != u.device:
+                raise ValueError("alpha must remain on the input device")
+            alpha_value = _cast_dtype(alpha_value, flux_dtype)
+        positive = 0.5 * (physical_flux + alpha_value * flux_state)
+        negative = 0.5 * (physical_flux - alpha_value * flux_state)
         interface_flux = self.reconstruct(
             positive, bias="left", axis=normalized_axis
         ) + self.reconstruct(negative, bias="right", axis=normalized_axis)
+        divergence_dtype = self.precision.dtype_for("divergence", state_dtype)
+        interface_flux = _cast_dtype(interface_flux, divergence_dtype)
         previous_interface = self._shift(interface_flux, -1, normalized_axis)
-        return (previous_interface - interface_flux) / dx
+        result = (previous_interface - interface_flux) / dx
+        return _cast_dtype(result, state_dtype)

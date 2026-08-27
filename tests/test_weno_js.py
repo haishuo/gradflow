@@ -4,7 +4,13 @@ from pathlib import Path
 import pytest
 import torch
 
-from gradflow import QUALIFIED_ORDERS, WENOJS, weno5_rhs
+from gradflow import (
+    PRECISION_BLOCKS,
+    QUALIFIED_ORDERS,
+    WENOJS,
+    WENOJSPrecisionPolicy,
+    weno5_rhs,
+)
 
 
 def _identity(q: torch.Tensor) -> torch.Tensor:
@@ -113,6 +119,36 @@ def test_axis_and_refusal_contract() -> None:
         scheme.reconstruct(torch.ones(8, dtype=torch.float64), bias="center")
 
 
+def test_precision_policy_is_explicit_and_default_preserving() -> None:
+    state = torch.linspace(-0.7, 0.8, 37, dtype=torch.float64)
+    default = WENOJS(7).rhs(state, 1.0 / 37, lambda q: q, alpha=1.0)
+    explicit = WENOJS(
+        7,
+        precision=WENOJSPrecisionPolicy(
+            **{block: torch.float64 for block in PRECISION_BLOCKS}
+        ),
+    ).rhs(state, 1.0 / 37, lambda q: q, alpha=1.0)
+    torch.testing.assert_close(explicit, default, rtol=0.0, atol=0.0)
+
+    mixed = WENOJS(
+        7,
+        precision=WENOJSPrecisionPolicy(
+            indicators=torch.float32,
+            weights=torch.float32,
+        ),
+    ).rhs(state, 1.0 / 37, lambda q: q, alpha=1.0)
+    assert mixed.dtype is state.dtype
+    assert mixed.device == state.device
+    assert torch.isfinite(mixed).all()
+
+
+def test_precision_policy_refuses_unsupported_dtypes() -> None:
+    with pytest.raises(TypeError, match="float32, float64, or None"):
+        WENOJSPrecisionPolicy(weights=torch.float16)
+    with pytest.raises(ValueError, match="unknown WENO-JS precision block"):
+        WENOJSPrecisionPolicy().dtype_for("made_up", torch.float64)
+
+
 @pytest.mark.parametrize("order", [5, 11, 15])
 def test_float64_gradcheck(order: int) -> None:
     generator = torch.Generator().manual_seed(3000 + order)
@@ -191,5 +227,8 @@ def test_numerical_source_has_no_hidden_transfer_or_numpy() -> None:
     source = (
         Path(__file__).resolve().parents[1] / "src/gradflow/weno_js.py"
     ).read_text()
-    for forbidden in (".cpu(", ".cuda(", ".to(", ".item(", ".numpy("):
+    for forbidden in (".cpu(", ".cuda(", ".item(", ".numpy("):
         assert forbidden not in source
+    # Phase D requires explicit dtype conversions. The sole conversion helper
+    # supplies only ``dtype`` and therefore cannot change device.
+    assert source.count(".to(dtype=dtype)") == 1
