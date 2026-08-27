@@ -51,9 +51,13 @@ finite-volume WENO-JS5 mathematical contract. Exact rational coefficient,
 polynomial, smoothness, projection, upwinding, and conservation oracles are
 committed. Phase 3 implemented that contract and passed nine gate areas, but
 the first frozen qualification failed its negative-advection spatial-rate and
-profiler-event criteria. The result remains unqualified and no FD/FV timing
-has begun. See `docs/FD_FV_PHASE_2_RESULTS.md` and
-`docs/FD_FV_PHASE_3_RESULTS.md`.
+profiler-event criteria. The prospective Phase-3R study then demonstrated
+approximately fifth-order noncritical behavior in both orientations and found
+no observed CPU copy/data-movement event. The exact scalar CPU seed is now
+qualified under the combined evidence, while the original failure remains
+preserved and CUDA remains untested. No FD/FV timing has begun. See
+`docs/FD_FV_PHASE_2_RESULTS.md`, `docs/FD_FV_PHASE_3_RESULTS.md`, and
+`docs/FD_FV_PHASE_3_RESOLUTION_RESULTS.md`.
 
 Phase D has now completed an exhaustive scalar binary32/binary64 search over
 384 coarse and 768 refined order/policy pairs. On the frozen cases, binary32
@@ -185,6 +189,8 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `docs/FD_FV_PHASE_2_RESULTS.md` — exact derivation and invariant results
 - `docs/FD_FV_PHASE_3_PROTOCOL.md` — frozen scalar FV qualification rules
 - `docs/FD_FV_PHASE_3_RESULTS.md` — passed evidence, two frozen failures, and next boundary
+- `docs/FD_FV_PHASE_3_RESOLUTION_PROTOCOL.md` — prospective failure-resolution rules
+- `docs/FD_FV_PHASE_3_RESOLUTION_RESULTS.md` — qualified CPU seed and remaining limits
 - `docs/MIXED_PRECISION_PHASE_D_PROTOCOL.md` — frozen Tier-1a scalar precision search
 - `docs/MIXED_PRECISION_PHASE_D_TIER1B_RESULTS.md` — refined numerical seam
 - `docs/MIXED_PRECISION_PHASE_D_PERFORMANCE_RESULTS.md` — verified RTX timing result

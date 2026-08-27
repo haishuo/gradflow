@@ -18,6 +18,9 @@ from gradflow import (
 from experiments.fd_fv_qualification.verify_phase_3 import (
     main as verify_phase_3,
 )
+from experiments.fd_fv_qualification.verify_phase_3r import (
+    main as verify_phase_3r,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -238,3 +241,7 @@ def test_source_has_no_transfer_or_scalar_extraction_calls() -> None:
 
 def test_frozen_phase_3_record_verifies() -> None:
     verify_phase_3()
+
+
+def test_frozen_phase_3r_record_verifies() -> None:
+    verify_phase_3r()

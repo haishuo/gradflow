@@ -150,6 +150,18 @@ performance, native lowering, and the broader `Solver` surface remain open.
     phase must distinguish critical-point accuracy and actual data movement.
     See `FD_FV_PHASE_3_RESULTS.md`.
 
+15. The prospectively frozen Phase-3R study passed without changing the
+    numerical source. Both face biases and both semidiscrete directions showed
+    approximately fifth-order noncritical convergence; the original mixed-
+    Fourier result reproduced exactly; and an aligned symmetric critical face
+    showed case-specific sixth-order superconvergence. The latter does not
+    explain the mixed-Fourier rate or erase known WENO-JS critical-point
+    concerns. The 18 CPU `aten::to` dispatches allocated zero bytes and emitted
+    no copy/memcpy event. This qualifies the exact scalar CPU seed under the
+    combined evidence, while CUDA movement/agreement remains untested and is a
+    mandatory admission gate before GPU timing. See
+    `FD_FV_PHASE_3_RESOLUTION_RESULTS.md`.
+
 The longer-term product architecture is documented separately in
 `PRODUCT_VISION.md`, `PROBLEM_MODEL.md`, `EQUATION_EXTENSION_CONTRACT.md`,
 `RESULT_AND_PROVENANCE_MODEL.md`, and `UI_WORKFLOW_CONCEPT.md`. Those documents

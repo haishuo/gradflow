@@ -1,0 +1,347 @@
+{
+  "canonical_source_identity": {
+    "actual_sha256": "58b6c55b1fe1e84a5f0eaeb30f31acabf25d0cda713b02c9090085c04c3dbed0",
+    "canonical_source_commit": "1d920ea97ed7abec9e4e451b377343cf72316f4c",
+    "expected_sha256": "58b6c55b1fe1e84a5f0eaeb30f31acabf25d0cda713b02c9090085c04c3dbed0",
+    "passed": true
+  },
+  "critical_point_characterization": {
+    "aligned_simple_critical_point": {
+      "critical_face": 0.25,
+      "face_indices": [
+        7,
+        15,
+        31,
+        63
+      ],
+      "field": "sin(2*pi*x)",
+      "left": {
+        "absolute_errors": [
+          3.954462592492547e-06,
+          6.102872851521113e-08,
+          9.50401091159847e-10,
+          1.483169143057239e-11
+        ],
+        "finite": true,
+        "monotone": true,
+        "passed": true,
+        "rates": [
+          6.017849303655933,
+          6.00480823059644,
+          6.001781452893217
+        ]
+      },
+      "passed": true,
+      "right": {
+        "absolute_errors": [
+          3.954462592492547e-06,
+          6.102872851521113e-08,
+          9.50401091159847e-10,
+          1.483169143057239e-11
+        ],
+        "finite": true,
+        "monotone": true,
+        "passed": true,
+        "rates": [
+          6.017849303655933,
+          6.00480823059644,
+          6.001781452893217
+        ]
+      },
+      "sizes": [
+        32,
+        64,
+        128,
+        256
+      ]
+    },
+    "mixed_fourier_reproduction": {
+      "directions": {
+        "-1": {
+          "l2_errors": [
+            0.01565371466641523,
+            0.0023354379044525073,
+            0.00040927862644894204,
+            6.336975680540965e-05
+          ],
+          "maximum_absolute_reproduction_difference": 0.0,
+          "original_l2_errors": [
+            0.01565371466641523,
+            0.0023354379044525073,
+            0.00040927862644894204,
+            6.336975680540965e-05
+          ],
+          "rates": [
+            4.692164126419011,
+            4.295211831318335,
+            4.6006657525606185
+          ],
+          "sizes": [
+            32,
+            48,
+            72,
+            108
+          ]
+        },
+        "1": {
+          "l2_errors": [
+            0.020846702269596565,
+            0.0025934464798882664,
+            0.0004458585217271769,
+            6.550385052510638e-05
+          ],
+          "maximum_absolute_reproduction_difference": 0.0,
+          "original_l2_errors": [
+            0.020846702269596565,
+            0.0025934464798882664,
+            0.0004458585217271769,
+            6.550385052510638e-05
+          ],
+          "rates": [
+            5.140289635734421,
+            4.342522294228369,
+            4.73010555021743
+          ],
+          "sizes": [
+            32,
+            48,
+            72,
+            108
+          ]
+        }
+      },
+      "maximum_absolute_reproduction_difference": 0.0,
+      "passed": true
+    },
+    "passed": true
+  },
+  "environment": {
+    "cpu_count": 12,
+    "cuda_available": false,
+    "cuda_device": null,
+    "cuda_version": "13.0",
+    "mps_available": false,
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "python": "3.12.3",
+    "python_executable": "/mnt/projects/dveb/.venv-torch/bin/python",
+    "pytorch": "2.13.0+cu130"
+  },
+  "failed_gates": [],
+  "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+  "gate_decisions": {
+    "canonical_source_identity": true,
+    "critical_point_characterization": true,
+    "immutable_records": true,
+    "movement_evidence": true,
+    "noncritical_design_order": true
+  },
+  "immutable_record_verification": {
+    "passed": true,
+    "phase_3_manifest": {
+      "actual_sha256": "6d0c9585f31a32a2faa24ecf33c9562f656a7fb4873fcc597c07c00ae3fcd4df",
+      "expected_name": "qualification.json",
+      "expected_sha256": "6d0c9585f31a32a2faa24ecf33c9562f656a7fb4873fcc597c07c00ae3fcd4df",
+      "passed": true
+    },
+    "verifiers": {
+      "phase_2": {
+        "passed": true,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "FD/FV Phase 2 verified: exact FV-JS5 coefficients, 14 polynomial reproduction checks, 3 smoothness matrices, analytic cell-average projection, and positive/negative periodic flux invariants."
+      },
+      "phase_3": {
+        "passed": true,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "FD/FV Phase 3 verified: 9 gates passed, CUDA/MPS unavailable, and the frozen smooth-spatial and profiler-event gates remain failed."
+      }
+    }
+  },
+  "movement_evidence": {
+    "cpu": {
+      "aten_to_events": [
+        {
+          "count": 18,
+          "cpu_memory_usage": 0,
+          "device_memory_usage": 0,
+          "key": "aten::to",
+          "self_cpu_memory_usage": 0,
+          "self_device_memory_usage": 0
+        }
+      ],
+      "device": "cpu",
+      "input_device": "cpu",
+      "input_dtype": "float64",
+      "movement_events": [],
+      "output_device": "cpu",
+      "output_dtype": "float64",
+      "passed": true,
+      "resident": true
+    },
+    "cuda": {
+      "available": false,
+      "status": "untested_unavailable"
+    },
+    "passed": true,
+    "static": {
+      "dtype_only_to_calls": [
+        {
+          "line": 78,
+          "path": "src/gradflow/weno_js.py"
+        }
+      ],
+      "forbidden_calls": [],
+      "forbidden_to_calls": [],
+      "inspected_sources": [
+        "src/gradflow/fv_weno5.py",
+        "src/gradflow/weno_js.py"
+      ],
+      "passed": true
+    }
+  },
+  "noncritical_design_order": {
+    "dtype": "float64",
+    "evaluated_index_ranges_at_n32": {
+      "left_face": [
+        2,
+        29
+      ],
+      "negative_rhs": [
+        2,
+        28
+      ],
+      "positive_rhs": [
+        3,
+        29
+      ],
+      "right_face": [
+        1,
+        28
+      ]
+    },
+    "field": "exp(x)",
+    "passed": true,
+    "sequences": {
+      "left_face": {
+        "l2_errors": [
+          6.0994807962146585e-09,
+          8.086116513361008e-10,
+          1.0693210402898129e-10,
+          1.4119293102737945e-11
+        ],
+        "last_two_rates": [
+          4.989639391026921,
+          4.993406050276781
+        ],
+        "monotone": true,
+        "passed": true,
+        "rates": [
+          4.983511834640707,
+          4.989639391026921,
+          4.993406050276781
+        ],
+        "sizes": [
+          32,
+          48,
+          72,
+          108
+        ]
+      },
+      "negative_rhs": {
+        "l2_errors": [
+          6.037190714286792e-09,
+          8.029893112836681e-10,
+          1.0642881013068685e-10,
+          1.4075008761740802e-11
+        ],
+        "last_two_rates": [
+          4.984066570234766,
+          4.989518148849848
+        ],
+        "monotone": true,
+        "passed": true,
+        "rates": [
+          4.975403865785282,
+          4.984066570234766,
+          4.989518148849848
+        ],
+        "sizes": [
+          32,
+          48,
+          72,
+          108
+        ]
+      },
+      "positive_rhs": {
+        "l2_errors": [
+          6.073739698196291e-09,
+          8.062144210247869e-10,
+          1.0671452116175688e-10,
+          1.4099634435761956e-11
+        ],
+        "last_two_rates": [
+          4.987340353895932,
+          4.991818855505282
+        ],
+        "monotone": true,
+        "passed": true,
+        "rates": [
+          4.980404012682769,
+          4.987340353895932,
+          4.991818855505282
+        ],
+        "sizes": [
+          32,
+          48,
+          72,
+          108
+        ]
+      },
+      "right_face": {
+        "l2_errors": [
+          6.062777928707569e-09,
+          8.053767513426083e-10,
+          1.066472472021807e-10,
+          1.4094529905394916e-11
+        ],
+        "last_two_rates": [
+          4.986331766957736,
+          4.991156625964705
+        ],
+        "monotone": true,
+        "passed": true,
+        "rates": [
+          4.9785127146936725,
+          4.986331766957736,
+          4.991156625964705
+        ],
+        "sizes": [
+          32,
+          48,
+          72,
+          108
+        ]
+      }
+    }
+  },
+  "original_record_hashes": {
+    "experiments/fd_fv_qualification/results/phase_3_20260827/SHA256SUMS": "982859084a982c99978d2257f704e7885cb8a7436497ab585276a7112281264b",
+    "experiments/fd_fv_qualification/results/phase_3_20260827/qualification.json": "6d0c9585f31a32a2faa24ecf33c9562f656a7fb4873fcc597c07c00ae3fcd4df"
+  },
+  "passed": true,
+  "performance_measurements_collected": false,
+  "phase": "fd_fv_phase_3r",
+  "protocol_commit": "93ad80b",
+  "resolution_date": "2026-08-27",
+  "schema_version": 1,
+  "source_commit": "bd07370b9f36954567687e8c0cbc5f1a27ae24d3",
+  "source_dirty": false,
+  "source_hashes": {
+    "docs/FD_FV_PHASE_3_RESOLUTION_PROTOCOL.md": "0db85d36075756a3594d2964a4d2f8b02b221f359bd4c99e9cabcec40646314f",
+    "experiments/fd_fv_qualification/resolve_phase_3.py": "7b197362aaa444fb289b19b193fad3857c9ae27133e6524da5008271bff8d1ba",
+    "src/gradflow/fv_weno5.py": "58b6c55b1fe1e84a5f0eaeb30f31acabf25d0cda713b02c9090085c04c3dbed0",
+    "src/gradflow/weno_js.py": "87df65203851f4f87cb8dd7360c92d586ef43fa2997a11593cbf92a4dc8f6278"
+  }
+}
