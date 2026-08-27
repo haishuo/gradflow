@@ -107,7 +107,8 @@ product framework work must not delay the bounded paper.
 
 ## Immediate trunk order
 
-1. Freeze and execute the 1-D Euler boundary/shock correctness trunk.
+1. Execute Phase B of the 1-D Euler boundary/shock correctness trunk against
+   the now-frozen Phase-A oracles and thresholds.
 2. Complete the systematic literature and claim matrix.
 3. Characterize high-order numerical limits and select any additional WENO
    variants only in response to evidence.

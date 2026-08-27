@@ -1,0 +1,49 @@
+{
+  "conservation": {
+    "roundoff_scaled_rhs_boundary_flux_residual_max": 64.0
+  },
+  "derivation": {
+    "independent_method": "finite-volume WENO-Z/HLLC float64",
+    "multiplier": 3.0,
+    "reference_grid": 12800,
+    "selected_without_gradflow_boundary_implementation": true,
+    "target_grids": [
+      200,
+      400,
+      800
+    ]
+  },
+  "shu_osher": {
+    "density_correlation_min": 0.9482758575795494,
+    "density_total_variation_ratio_max": 1.1953996862683978,
+    "density_total_variation_ratio_min": 0.7953996862683976,
+    "final_time": 1.8,
+    "finest_grid": 800,
+    "finest_to_coarsest_density_error_ratio_max": 0.8,
+    "l1_max_to_n12800": {
+      "density": 0.039490369039826,
+      "pressure": 0.06710303053685818,
+      "velocity": 0.012346812213100595
+    },
+    "minimum_density_strictly_positive": true,
+    "minimum_pressure_strictly_positive": true,
+    "structure_window": [
+      -3.0,
+      3.0
+    ]
+  },
+  "sod": {
+    "each_variable_must_decrease_on_200_400_800": true,
+    "final_time": 0.2,
+    "finest_grid": 800,
+    "finest_to_coarsest_error_ratio_max": 0.75,
+    "l1_max": {
+      "density": 0.001909058930464399,
+      "pressure": 0.0013325232068413769,
+      "velocity": 0.003967892198278969
+    },
+    "minimum_density_strictly_positive": true,
+    "minimum_pressure_strictly_positive": true,
+    "wave_location_error_cells_max": 3.0
+  }
+}

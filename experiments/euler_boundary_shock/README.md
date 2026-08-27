@@ -29,3 +29,14 @@ acceptance thresholds, source/environment identities, and `SHA256SUMS`.
 
 No GradFlow boundary implementation, timing, optimization, or publication
 claim is part of Phase A.
+
+The frozen record is under `results/phase_a_20260827/`; its interpretation and
+artifact hashes are documented in
+`docs/EULER_BOUNDARY_SHOCK_PHASE_A_RESULTS.md`.
+
+Verify the committed record with:
+
+```bash
+conda run -n gradflow python \
+  experiments/euler_boundary_shock/verify_phase_a.py
+```

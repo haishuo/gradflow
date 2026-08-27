@@ -1,6 +1,8 @@
 # One-dimensional Euler boundary and shock protocol
 
-Status: frozen planning boundary before numerical implementation.
+Status: Phase A oracle/threshold freeze completed at source commit `6ba0124`.
+See `EULER_BOUNDARY_SHOCK_PHASE_A_RESULTS.md`. The canonical Phase-B
+implementation has not begun.
 
 ## Question
 

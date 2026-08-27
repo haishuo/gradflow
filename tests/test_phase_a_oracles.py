@@ -3,6 +3,7 @@ from __future__ import annotations
 import numpy as np
 
 from experiments.euler_boundary_shock.prepare_phase_a import _write_json
+from experiments.euler_boundary_shock.verify_phase_a import DEFAULT_RECORD, verify
 from experiments.euler_boundary_shock.fv_reference import (
     conserved_to_primitive,
     finite_volume_rhs,
@@ -85,4 +86,12 @@ def test_phase_a_json_writer_handles_numpy_scalars(tmp_path) -> None:
     assert destination.read_text() == (
         '{\n  "array": [\n    1.0,\n    2.0\n  ],\n'
         '  "boolean": true,\n  "floating": 0.25,\n  "integer": 7\n}\n'
+    )
+
+
+def test_frozen_phase_a_record_verifies() -> None:
+    result = verify(DEFAULT_RECORD)
+    assert result["passed"]
+    assert result["source_commit"] == (
+        "6ba01248d8c55303c87771931263f35319265451"
     )
