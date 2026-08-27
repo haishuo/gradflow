@@ -52,6 +52,19 @@ the state device. Automatic wave-speed estimation is excluded from this seed
 so its future preparation cost and policy cannot be hidden. `flux(left)` and
 `flux(right)` must preserve shape, device, and dtype.
 
+### Preimplementation amendment 1: device-scalar value checks
+
+Frozen before canonical source was written. Python-number `alpha` and `dx` are
+checked as finite and positive. Tensor `alpha` and `dx` are checked for scalar
+shape, state device, and state dtype; finite positivity is a declared caller
+precondition and is exercised by every qualification case, but is not inspected
+inside the numerical call. Reading an on-device scalar to reject its value
+would introduce synchronization/scalar extraction into every RHS, while private
+compiler assertion operators would make the seed less portable and auditable.
+This amendment does not change the numerical formulation, oracle values, or any
+acceptance tolerance. A future prepared-problem layer may validate such values
+once outside the numerical loop.
+
 SSP-RK3 uses the existing algebraically generic `gradflow.ssp_rk3_step`; no
 second time-integrator implementation is added solely to attach an FV name.
 
@@ -68,9 +81,10 @@ A constant `7/3` state must reconstruct and remain stationary within:
 - float32: `rtol=0`, `atol=2e-6` for faces and RHS.
 
 The implementation must reject integer state, fewer than five cells, invalid
-axis/bias, mismatched flux shape/device/dtype, nonpositive or nonscalar alpha,
-and tensor `dx` on a different device. Python `dx` and scalar tensor `dx` are
-legal and must be positive.
+axis/bias, mismatched flux shape/device/dtype, nonpositive Python alpha/dx,
+nonscalar tensor alpha/dx, and tensor alpha/dx on a different device or with a
+different dtype. Positive Python `dx` and same-device/same-dtype scalar tensor
+`dx` are legal. Tensor-value positivity follows amendment 1.
 
 ## Smooth spatial gate
 
