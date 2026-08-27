@@ -39,6 +39,13 @@ academic candidate is consequently a narrower matched characterization of one
 exact-generated direct-PyTorch FD-WENO path—not a claim to have invented those
 ingredients. See `docs/LITERATURE_REVIEW_PHASE_C_RESULTS.md`.
 
+FD/FV Phase 1 found substantial direct comparative literature and rejects any
+universal “FD versus FV” winner. It freezes a future structured-grid study as
+an accuracy-, capability-, memory-, and execution-conditioned phase diagram,
+with matched-component and best-practical lanes kept separate. It contains no
+new FV implementation or timing result. See `docs/FD_FV_PHASE_1_RESULTS.md`
+and `docs/FD_FV_EXPERIMENTAL_CONSTITUTION.md`.
+
 Phase D has now completed an exhaustive scalar binary32/binary64 search over
 384 coarse and 768 refined order/policy pairs. On the frozen cases, binary32
 smoothness indicators and unnormalized nonlinear-weight formation can be
@@ -150,11 +157,16 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `experiments/weno_js_arbitrary_order/` — scalar orders 5--15 qualification record
 - `experiments/characteristic_arbitrary_order/` — Euler orders 5--15 qualification
 - `experiments/literature_review/` — frozen Phase-C search, study, and claim records
+- `experiments/fd_fv_review/` — FD/FV Phase-1 search, study, claim, and
+  experimental-constitution evidence
 - `experiments/mixed_precision/` — exhaustive scalar precision assignments and
   isolated CUDA performance records
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
 - `docs/LITERATURE_REVIEW_PHASE_C_PROTOCOL.md` — frozen systematic-review method
 - `docs/LITERATURE_REVIEW_PHASE_C_RESULTS.md` — prior-art boundary and claim matrix
+- `docs/FD_FV_PHASE_1_PROTOCOL.md` — pre-search FD/FV review protocol
+- `docs/FD_FV_PHASE_1_RESULTS.md` — controlled-comparison literature result
+- `docs/FD_FV_EXPERIMENTAL_CONSTITUTION.md` — binding rules for later bakeoffs
 - `docs/MIXED_PRECISION_PHASE_D_PROTOCOL.md` — frozen Tier-1a scalar precision search
 - `docs/MIXED_PRECISION_PHASE_D_TIER1B_RESULTS.md` — refined numerical seam
 - `docs/MIXED_PRECISION_PHASE_D_PERFORMANCE_RESULTS.md` — verified RTX timing result

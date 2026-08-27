@@ -117,6 +117,18 @@ performance, native lowering, and the broader `Solver` surface remain open.
     an external numerical-CFD prior-art audit are complete. See
     `LITERATURE_REVIEW_PHASE_C_RESULTS.md`.
 
+12. The FD/FV Phase-1 review establishes that comparative FD/FV WENO surveys,
+    cost analyses, capability studies, and direct CPU experiments already
+    exist. It rejects a universal-winner framing. A bounded candidate study
+    remains: a modern structured-Cartesian, accuracy-to-time and
+    accuracy-to-memory comparison with separately reported matched-component
+    and best-practical lanes, explicit cold/warm/resident boundaries, and
+    primal/gradient qualification before timing. “Finite volume” must be
+    classified as dimension-by-dimension or genuinely multidimensional, and
+    alternative FD must not be conflated with classical split-flux FD. This
+    review permits the experiment but does not establish novelty. See
+    `FD_FV_PHASE_1_RESULTS.md` and `FD_FV_EXPERIMENTAL_CONSTITUTION.md`.
+
 The longer-term product architecture is documented separately in
 `PRODUCT_VISION.md`, `PROBLEM_MODEL.md`, `EQUATION_EXTENSION_CONTRACT.md`,
 `RESULT_AND_PROVENANCE_MODEL.md`, and `UI_WORKFLOW_CONCEPT.md`. Those documents

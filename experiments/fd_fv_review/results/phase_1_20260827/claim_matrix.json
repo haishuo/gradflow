@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-08-27",
+  "claims": [
+    {
+      "id": "F0",
+      "status": "established_non_novel",
+      "candidate": "Direct FD/FV WENO comparisons and comparative surveys already exist.",
+      "evidence_ids": ["shu_1997_lecture", "shu_2003_review", "shu_2016_survey", "wang_feng_spiteri_2008", "luo_xuan_xu_2013", "grimm_strele_kupka_muthsam_2014", "balsara_bhoriya_shu_2025"],
+      "rationale": "Comparative surveys, mathematical cost analyses, capability comparisons, and direct CPU experiments predate GradFlow by decades. The recent AFD/FV study is especially close in multidimensional structured-grid spirit.",
+      "defensible_statement": "GradFlow is extending an existing comparative literature with a new controlled experimental setting.",
+      "prohibited_statement": "Finite-difference and finite-volume WENO have never been compared head to head.",
+      "required_work": "Cite the strongest direct comparisons and distinguish the new execution and outcome axes."
+    },
+    {
+      "id": "F1",
+      "status": "narrowed_candidate_contribution",
+      "candidate": "Neither FD nor FV WENO is universally superior; applicability and cost depend materially on dimension, grid, formulation, and execution choices.",
+      "evidence_ids": ["shu_2016_survey", "wang_feng_spiteri_2008", "zhang_zhang_shu_2011", "luo_xuan_xu_2013", "grimm_strele_kupka_muthsam_2014", "balsara_bhoriya_shu_2025", "teissier_maeusle_mueller_2024"],
+      "rationale": "Structured multidimensional FD often has a work advantage, but FV supports capabilities and accuracy regimes that can dominate total cost; even FV itself separates into materially different cost/accuracy classes. The research target is therefore a conditional phase diagram, not a universal winner.",
+      "defensible_statement": "The literature makes universal FD/FV superiority scientifically indefensible and motivates capability- and accuracy-conditioned comparisons.",
+      "prohibited_statement": "FV is categorically better because production differentiable solvers use it, or FD is categorically better because one kernel is faster.",
+      "required_work": "Report capability domains separately and construct matched-component and best-practical lanes."
+    },
+    {
+      "id": "F2",
+      "status": "narrowed_candidate_contribution",
+      "candidate": "A controlled structured-grid accuracy-to-time study across FD/FV formulation, dimension, and order on modern CPU/GPU array compilers may remain a contribution.",
+      "evidence_ids": ["shu_2003_review", "shu_2016_survey", "wang_feng_spiteri_2008", "luo_xuan_xu_2013", "balsara_bhoriya_shu_2025", "teissier_maeusle_mueller_2024", "jax_fluids_2", "hope_2025", "gpu_driven_fd_weno_2018", "hypar_gpu_2023"],
+      "rationale": "Prior direct comparisons are predominantly CPU, same-grid, method-specific, or historical. Accelerator WENO and differentiable WENO are established separately. The frozen search did not establish one reproducible study combining matched mathematics, best-practical variants, achieved error, memory, cold/warm execution, compilation, transfers, dimension, and CPU/GPU hardware.",
+      "defensible_statement": "GradFlow may test a bounded modern structured-Cartesian FD/FV accuracy-to-time and accuracy-to-memory matrix, while treating novelty as pending external audit.",
+      "prohibited_statement": "No modern or GPU FD/FV WENO benchmark exists, or GradFlow will establish a universal performance winner.",
+      "required_work": "Implement and qualify an independent FV path, preregister the matrix, run parity gates before timing, and include credible best-practical comparators."
+    },
+    {
+      "id": "F3",
+      "status": "narrowed_candidate_contribution",
+      "candidate": "A controlled comparison of differentiated FD/FV WENO execution and gradient reliability may remain a contribution.",
+      "evidence_ids": ["jax_fluids_2", "hope_2025"],
+      "rationale": "Differentiable WENO in JAX and PyTorch is established, but the frozen searches did not establish a direct FD/FV comparison of primal and gradient accuracy, nonsmooth limitations, memory, and time under one mathematical task.",
+      "defensible_statement": "A matched FD/FV gradient-reliability comparison is a candidate supporting contribution, not a claim that differentiable WENO is new.",
+      "prohibited_statement": "Finite-volume WENO has not been differentiated, or GradFlow is the first differentiable WENO system.",
+      "required_work": "Use independently checkable sensitivities, define differentiability domains before testing, and report primal and gradient failures separately."
+    },
+    {
+      "id": "F4",
+      "status": "narrowed_candidate_contribution",
+      "candidate": "A comparison extending generated Jiang-Shu FD/FV formulations through high odd order may remain a contribution.",
+      "evidence_ids": ["shu_2016_survey", "zhang_zhang_shu_2011", "balsara_bhoriya_shu_kumar_2024", "balsara_bhoriya_shu_2025", "teissier_maeusle_mueller_2024", "hope_2025"],
+      "rationale": "Arbitrary/high-order FD and FV generation already exist, including AFD through order nine, efficient FV through order ten, HOPE through order thirteen, and older WENO constructions beyond fifteen. What may remain useful is a controlled cross-formulation characterization with the same exact coefficient lineage and explicit conditioning/failure boundaries.",
+      "defensible_statement": "After WENO-JS5 qualification, GradFlow may study how matched generated FD/FV cost, accuracy, stability, expression growth, and compiler behavior change with odd order.",
+      "prohibited_statement": "GradFlow invents arbitrary-order FD or FV WENO, or WENO-15 is unprecedented.",
+      "required_work": "Derive and independently verify FV coefficients/projections, then freeze a later order sweep; do not extrapolate WENO-5 results."
+    },
+    {
+      "id": "F5",
+      "status": "insufficient_evidence",
+      "candidate": "Automatic selection of FD versus FV from empirical evidence may be a later systems contribution.",
+      "evidence_ids": ["jax_fluids_2", "hope_2025", "teissier_maeusle_mueller_2024"],
+      "rationale": "This review was scoped to numerical WENO comparisons, not the much larger algorithm-selection, autotuning, error-estimation, and performance-portability literature. Switching FD/FV also changes the discrete state and mathematics rather than merely selecting a backend.",
+      "defensible_statement": "A future GradFlow selector must optimize under an explicit accuracy and capability contract and record the selected discretization in provenance.",
+      "prohibited_statement": "No system can choose discretizations automatically, or performance data alone is sufficient to choose FD versus FV invisibly.",
+      "required_work": "Complete a separate systems prior-art review, define error/capability constraints and regret metrics, and validate on held-out equations and machines. Keep this outside the first FD/FV study."
+    }
+  ],
+  "phase_1_conclusion": {
+    "central_result": "The universal FD-versus-FV question is rejected. A bounded modern comparison is justified only as a conditional accuracy/capability/performance phase diagram.",
+    "initial_study": "Structured Cartesian scalar conservation laws followed by ideal-gas Euler; classical conservative FD WENO-JS5 versus explicitly classified FV WENO-JS5; matched-component and best-practical lanes; correctness and gradients before timing.",
+    "primary_outcomes": ["accuracy-to-complete-solve time", "accuracy-to-resident-step time", "accuracy-to-memory", "conservation and robustness", "primal and gradient reliability"],
+    "secondary_outcomes": ["same-grid time", "kernel time", "cold and warm compilation/preparation", "transfer cost"],
+    "deferred": ["unstructured grids", "production AMR", "Navier-Stokes", "automatic method selection", "universal aerospace or real-time claims"]
+  }
+}

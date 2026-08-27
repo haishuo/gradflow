@@ -30,6 +30,13 @@ comparison. Phase C narrows but does not prove novelty or publishability; an
 external prior-art audit remains part of the release gate. See
 `LITERATURE_REVIEW_PHASE_C_RESULTS.md`.
 
+FD/FV Phase 1 additionally found that direct comparisons already exist and
+that their conclusions depend on formulation class, grid, dimension, and
+capability. The permitted extension is a conditional phase diagram under the
+frozen `FD_FV_EXPERIMENTAL_CONSTITUTION.md`, not an FD-superiority claim. The
+first comparison remains structured Cartesian WENO-JS5; arbitrary order and
+automatic discretization selection are later gates.
+
 ## Evidence already established
 
 The current repository has reproducible evidence for:
@@ -120,16 +127,19 @@ product framework work must not delay the bounded paper.
 
 ## Immediate trunk order
 
-1. Characterize high-order numerical limits and select any additional WENO
-   variants only in response to evidence.
-2. Add and validate one differentiable inverse/sensitivity experiment as
-   utility and gradient-reliability evidence, not a differentiable-WENO
-   novelty claim.
-3. Freeze and execute the arbitrary-order performance campaign, including a
-   feasible close-system comparison.
-4. Obtain an external numerical-CFD prior-art audit.
-5. Assemble the paper artifact, then decide whether a data-center float64 GPU
-   addendum is worth its cost.
+1. Under the completed FD/FV Phase-1 constitution, freeze the mathematical
+   contract and independent oracles for a scalar FV WENO-JS5 seed.
+2. Qualify that seed for convergence, conservation, discontinuities, device
+   agreement, compilation, and gradients before collecting performance data.
+3. Freeze and execute the scalar matched-component and best-practical FD/FV
+   accuracy-to-time/memory matrix.
+4. Extend qualification and the frozen comparison to ideal-gas Euler, then
+   reproduce the result on a second machine and make a value-of-information
+   decision for data-center FP64 hardware.
+5. Only after WENO-JS5 conclusions stabilize, extend the comparison across
+   generated order and one independently checkable differentiated task.
+6. Obtain an external numerical-CFD prior-art audit and assemble the paper
+   artifact.
 
 The former first item, Phase B of the one-dimensional Euler boundary/shock
 trunk, passed its frozen gate at source commit `3b64b1a`; see
