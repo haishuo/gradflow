@@ -3,6 +3,14 @@
 GradFlow is restarting as a research project for general, differentiable,
 high-performance finite-difference WENO in ordinary PyTorch.
 
+Project decisions follow one strict precedence rule:
+
+> **Correctness > performance > convenience.**
+
+A convenience cannot justify a slower qualified path, and an optimization
+cannot justify wrong or silently altered mathematics. The normative policy is
+recorded in `docs/ENGINEERING_CHARTER.md`.
+
 The current repository contains a validated exact-rational WENO-JS
 constructor and a narrow 3-D Euler characteristic `Solver`, both qualified for
 orders 5 through 15. Their numerical paths are written as readable shifts,
@@ -122,6 +130,13 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `experiments/weno_js_arbitrary_order/` — scalar orders 5--15 qualification record
 - `experiments/characteristic_arbitrary_order/` — Euler orders 5--15 qualification
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
+- `docs/ENGINEERING_CHARTER.md` — governing priority law, promotion gates,
+  architecture, and technical-debt policy
+- `docs/PRODUCT_VISION.md` — one-engine product target and user levels
+- `docs/PROBLEM_MODEL.md` — backend-neutral scientific request model
+- `docs/EQUATION_EXTENSION_CONTRACT.md` — requirements for equation families
+- `docs/RESULT_AND_PROVENANCE_MODEL.md` — result, diagnostics, and audit target
+- `docs/UI_WORKFLOW_CONCEPT.md` — guided, advanced, and show-code workflow
 - `docs/ARBITRARY_ORDER_WENO_JS_RESULTS.md` — generated scalar qualification
 - `docs/CHARACTERISTIC_ARBITRARY_ORDER_RESULTS.md` — characteristic Euler qualification
 - `docs/BACKEND_SELECTION_CONTRACT.md` — evidence-bound automatic placement

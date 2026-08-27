@@ -1,5 +1,10 @@
 # Solver vertical slice
 
+This implemented slice is intentionally narrower than the target product and
+problem models in `PRODUCT_VISION.md` and `PROBLEM_MODEL.md`. Expansion follows
+the correctness, performance, and convenience gates in
+`ENGINEERING_CHARTER.md`.
+
 ## Implemented surface
 
 GradFlow now has a deliberately narrow `Solver` that accepts caller-provided

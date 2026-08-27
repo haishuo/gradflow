@@ -1,5 +1,9 @@
 # Backend selection contract
 
+This contract is governed by `ENGINEERING_CHARTER.md`. Placement is a
+performance decision below the correctness gate: no backend win can authorize
+different mathematics, invalid output, or an unqualified approximation.
+
 ## User-facing principle
 
 GradFlow's scientific API describes the problem, not the implementation

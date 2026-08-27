@@ -1,5 +1,17 @@
 # GradFlow research direction
 
+## Governing engineering law
+
+All work in this research program is subordinate to the strict precedence
+
+> **Correctness > performance > convenience.**
+
+Correctness qualification precedes performance conclusions. Performance
+qualification precedes promotion as a convenient product capability. Neither
+an optimization nor an interface simplification may silently change the
+requested mathematics. The normative gates, promotion rules, and
+technical-debt policy are defined in `ENGINEERING_CHARTER.md`.
+
 ## Research question
 
 GradFlow's new research question is:
@@ -83,6 +95,12 @@ performance, native lowering, and the broader `Solver` surface remain open.
 
 11. Novelty and publishability remain unclaimed until a systematic literature
     review is complete.
+
+The longer-term product architecture is documented separately in
+`PRODUCT_VISION.md`, `PROBLEM_MODEL.md`, `EQUATION_EXTENSION_CONTRACT.md`,
+`RESULT_AND_PROVENANCE_MODEL.md`, and `UI_WORKFLOW_CONCEPT.md`. Those documents
+state design targets rather than claims that the current narrow solver already
+implements a general CFD product.
 
 ## Evidence inherited from DVEB trunk-001
 
