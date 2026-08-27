@@ -6,6 +6,10 @@ from pathlib import Path
 import torch
 
 from gradflow import PRECISION_BLOCKS, WENOJS, WENOJSPrecisionPolicy
+from experiments.mixed_precision.benchmark_worker import (
+    POLICY_MASKS,
+    policy_for_name,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -33,6 +37,21 @@ def test_all_float32_internal_policy_returns_float64_state_dtype() -> None:
     assert rhs.dtype is torch.float64
     assert rhs.device == state.device
     assert torch.isfinite(rhs).all()
+
+
+def test_frozen_benchmark_policies_select_intended_blocks() -> None:
+    assert set(POLICY_MASKS) == {
+        "all_f64",
+        "indicators_f32",
+        "weight_formation_f32",
+        "indicators_and_weight_formation_f32",
+        "all_internal_f32",
+    }
+    combined = policy_for_name("indicators_and_weight_formation_f32").as_names()
+    assert {name for name, dtype in combined.items() if dtype == "float32"} == {
+        "indicators",
+        "weight_formation",
+    }
 
 
 def test_restricted_search_smoke_record(tmp_path: Path) -> None:

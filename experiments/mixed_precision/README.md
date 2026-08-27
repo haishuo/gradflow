@@ -21,3 +21,7 @@ python experiments/mixed_precision/verify.py \
 
 `search.py` also accepts restricted `--orders` and `--masks` for development,
 but the verifier deliberately refuses such partial records.
+
+The CUDA performance follow-up uses `benchmark.py`, which isolates every
+order/policy pair in a fresh process and cache as required by
+`docs/MIXED_PRECISION_PHASE_D_PERFORMANCE_PROTOCOL.md`.
