@@ -56,6 +56,17 @@ def main() -> None:
                 )
                 if not all(math.isfinite(value) and value > 0.0 for value in checked):
                     raise SystemExit("invalid timing value")
+            parity = record["compiled_parity"]
+            parity_values = (
+                parity["maximum_absolute_difference"],
+                parity["rms_absolute_difference"],
+                parity["maximum_normalized_difference"],
+                parity["rms_normalized_difference"],
+            )
+            if not all(math.isfinite(value) and value >= 0.0 for value in parity_values):
+                raise SystemExit("invalid compiled-parity value")
+            if record["policy"] != "all_internal_f32" and not parity["passed"]:
+                raise SystemExit("eligible policy failed compiled parity")
     print(
         f"verified {len(records)} benchmark records; "
         f"completed={sum(r['status'] == 'completed' for r in records)}; "

@@ -70,7 +70,9 @@ def statistics(milliseconds: list[float]) -> dict[str, Any]:
     }
 
 
-def measure_calls(call: Callable[[torch.Tensor], torch.Tensor], state: torch.Tensor):
+def measure_calls(
+    call: Callable[[torch.Tensor], torch.Tensor], state: torch.Tensor
+) -> tuple[dict[str, Any], torch.Tensor]:
     output = None
     for _ in range(WARMUPS):
         output = call(state)
@@ -89,7 +91,7 @@ def measure_calls(call: Callable[[torch.Tensor], torch.Tensor], state: torch.Ten
     result["peak_allocated_bytes"] = torch.cuda.max_memory_allocated()
     result["output_finite"] = bool(torch.all(torch.isfinite(output)).item())
     result["output_max_abs"] = float(torch.max(torch.abs(output)).item())
-    return result
+    return result, output
 
 
 def execute(order: int, policy_name: str) -> dict[str, Any]:
@@ -111,7 +113,7 @@ def execute(order: int, policy_name: str) -> dict[str, Any]:
             alpha=1.5,
         )
 
-    eager = measure_calls(call, state)
+    eager, eager_output = measure_calls(call, state)
     torch._dynamo.reset()
     compiled_call = torch.compile(call, fullgraph=True, dynamic=False)
     torch.cuda.synchronize()
@@ -119,10 +121,27 @@ def execute(order: int, policy_name: str) -> dict[str, Any]:
     first_output = compiled_call(state)
     torch.cuda.synchronize()
     compile_first_call_ms = 1000.0 * (time.perf_counter() - started)
-    compiled = measure_calls(compiled_call, state)
+    compiled, compiled_output = measure_calls(compiled_call, state)
     compiled["first_call_ms"] = compile_first_call_ms
     compiled["first_output_finite"] = bool(
         torch.all(torch.isfinite(first_output)).item()
+    )
+    difference = compiled_output - eager_output
+    signal_scale = float(torch.max(torch.abs(eager_output)).item())
+    maximum_difference = float(torch.max(torch.abs(difference)).item())
+    rms_difference = float(torch.sqrt(torch.mean(difference.square())).item())
+    compiled_parity = {
+        "maximum_absolute_difference": maximum_difference,
+        "rms_absolute_difference": rms_difference,
+        "signal_scale": signal_scale,
+        "maximum_normalized_difference": maximum_difference / signal_scale,
+        "rms_normalized_difference": rms_difference / signal_scale,
+        "eligible_policy": policy_name != "all_internal_f32",
+    }
+    compiled_parity["passed"] = (
+        compiled_parity["eligible_policy"]
+        and compiled_parity["maximum_normalized_difference"] <= 5.0e-5
+        and compiled_parity["rms_normalized_difference"] <= 1.0e-5
     )
     return {
         "status": "completed",
@@ -136,6 +155,7 @@ def execute(order: int, policy_name: str) -> dict[str, Any]:
         "device": torch.cuda.get_device_name(0),
         "eager": eager,
         "compiled": compiled,
+        "compiled_parity": compiled_parity,
     }
 
 
