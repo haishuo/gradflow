@@ -2,7 +2,8 @@
 
 Status: Phase A oracle/threshold freeze completed at source commit `6ba0124`.
 See `EULER_BOUNDARY_SHOCK_PHASE_A_RESULTS.md`. The canonical Phase-B
-implementation has not begun.
+implementation is governed by the preimplementation details in
+`EULER_BOUNDARY_SHOCK_PHASE_B_PROTOCOL.md`.
 
 ## Question
 

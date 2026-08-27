@@ -138,6 +138,8 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `docs/EULER_BOUNDARY_SHOCK_PROTOCOL.md` — next correctness-first trunk boundary
 - `docs/EULER_BOUNDARY_SHOCK_PHASE_A_RESULTS.md` — frozen exact Sod and
   independent high-resolution Shu--Osher oracle record
+- `docs/EULER_BOUNDARY_SHOCK_PHASE_B_PROTOCOL.md` — frozen nonperiodic
+  implementation and qualification details
 - `docs/PRODUCT_VISION.md` — one-engine product target and user levels
 - `docs/PROBLEM_MODEL.md` — backend-neutral scientific request model
 - `docs/EQUATION_EXTENSION_CONTRACT.md` — requirements for equation families
