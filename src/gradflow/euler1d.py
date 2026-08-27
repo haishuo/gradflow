@@ -19,7 +19,7 @@ from .euler3d import (
     _euler_weno_scheme,
     _generated_bounded_line_rhs,
 )
-from .weno_js import WENOJSPrecisionPolicy
+from .weno_js import WENOJS, WENOJSPrecisionPolicy
 
 EULER1D_BOUNDARIES = ("periodic", "transmissive")
 
@@ -94,8 +94,20 @@ def euler1d_rhs_with_boundary_fluxes(
     spacing = _validate_spacing(dx)
     normalized_boundary = _normalize_boundary(boundary)
     scheme = _euler_weno_scheme(normalized_order, precision)
+    return _euler1d_rhs_with_scheme(
+        state, spacing, normalized_boundary, scheme
+    )
+
+
+def _euler1d_rhs_with_scheme(
+    state: Tensor,
+    spacing: float,
+    boundary: str,
+    scheme: WENOJS,
+) -> tuple[Tensor, Tensor]:
+    """Execute bounded Euler with an already-resolved immutable scheme."""
     ghosted = _ghost_state(
-        state, scheme.substencil_width, normalized_boundary
+        state, scheme.substencil_width, boundary
     )
     rhs, face_fluxes = _generated_bounded_line_rhs(
         ghosted, 1.0 / spacing, scheme, state.shape[-1]

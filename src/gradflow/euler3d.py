@@ -336,18 +336,30 @@ def euler_weno_rhs(
             "cells per axis"
         )
 
-    state = synchronize_duplicate_endpoints(state)
     scheme = _euler_weno_scheme(order, precision)
+    return _euler_weno_rhs_with_scheme(state, spacing, scheme)
+
+
+def _euler_weno_rhs_with_scheme(
+    state: Tensor,
+    spacing: Sequence[float],
+    scheme: WENOJS,
+) -> Tensor:
+    """Execute periodic Euler with an already-resolved immutable scheme."""
+    ndim = state.ndim - 1
+    state = synchronize_duplicate_endpoints(state)
     result = torch.zeros_like(state)
     for axis in range(ndim):
-        order = _component_order(ndim, axis)
+        component_order = _component_order(ndim, axis)
         tensor_axis = state.ndim - 1 - axis
-        line = torch.movedim(state[list(order)], tensor_axis, -1)
+        line = torch.movedim(state[list(component_order)], tensor_axis, -1)
         line = torch.movedim(line, 0, -2)
         line_result = _generated_line_rhs(line, 1.0 / spacing[axis], scheme)
         canonical_result = torch.movedim(line_result, -2, 0)
         canonical_result = torch.movedim(canonical_result, -1, tensor_axis)
-        inverse_order = tuple(sorted(range(ndim + 2), key=order.__getitem__))
+        inverse_order = tuple(
+            sorted(range(ndim + 2), key=component_order.__getitem__)
+        )
         result = result + canonical_result[list(inverse_order)]
     return result
 

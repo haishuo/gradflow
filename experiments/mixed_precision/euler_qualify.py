@@ -741,6 +741,7 @@ def compiler_and_device_gates() -> dict[str, Any]:
                 ).cpu()
                 device_metric = component_metrics(cuda, cpu, scales)
             compiled_records: dict[str, Any] = {}
+            scheme = euler3d_source._euler_weno_scheme(order, precision)
             for device in ("cpu", "cuda"):
                 if device == "cuda" and not torch.cuda.is_available():
                     compiled_records[device] = {
@@ -751,13 +752,13 @@ def compiler_and_device_gates() -> dict[str, Any]:
                 values = state if device == "cpu" else state.cuda()
 
                 def call(input_state: torch.Tensor) -> torch.Tensor:
-                    return euler1d_rhs(
+                    rhs, _ = euler1d_source._euler1d_rhs_with_scheme(
                         input_state,
                         1.0 / input_state.shape[-1],
-                        order=order,
-                        boundary="transmissive",
-                        precision=precision,
+                        "transmissive",
+                        scheme,
                     )
+                    return rhs
 
                 eager = call(values)
                 explanation = torch._dynamo.explain(call)(values)
