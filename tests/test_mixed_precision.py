@@ -10,16 +10,16 @@ from gradflow import PRECISION_BLOCKS, WENOJS, WENOJSPrecisionPolicy
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_all_64_precision_assignments_are_distinct() -> None:
+def test_all_128_precision_assignments_are_distinct() -> None:
     assignments = set()
-    for mask in range(64):
+    for mask in range(128):
         values = tuple(
             torch.float32 if mask & (1 << index) else torch.float64
             for index, _ in enumerate(PRECISION_BLOCKS)
         )
         policy = WENOJSPrecisionPolicy(**dict(zip(PRECISION_BLOCKS, values)))
         assignments.add(tuple(policy.as_names().items()))
-    assert len(assignments) == 64
+    assert len(assignments) == 128
 
 
 def test_all_float32_internal_policy_returns_float64_state_dtype() -> None:
@@ -47,7 +47,7 @@ def test_restricted_search_smoke_record(tmp_path: Path) -> None:
             "5",
             "--masks",
             "0",
-            "63",
+            "127",
         ),
         cwd=ROOT,
         check=True,
@@ -58,5 +58,5 @@ def test_restricted_search_smoke_record(tmp_path: Path) -> None:
     payload = json.loads((output / "search.json").read_text())
     assert not payload["complete_frozen_matrix"]
     assert len(payload["records"]) == 2
-    assert {record["mask"] for record in payload["records"]} == {0, 63}
+    assert {record["mask"] for record in payload["records"]} == {0, 127}
     assert (output / "SHA256SUMS").is_file()

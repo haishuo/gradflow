@@ -388,10 +388,10 @@ def main() -> None:
     )
     dirty = bool(git_text("status", "--porcelain"))
     payload = {
-        "schema_version": 1,
-        "phase": "D-tier-1-scalar-mixed-precision",
+        "schema_version": 2,
+        "phase": "D-tier-1b-weight-normalization-refinement",
         "created_utc": datetime.now(timezone.utc).isoformat(),
-        "protocol": "docs/MIXED_PRECISION_PHASE_D_PROTOCOL.md",
+        "protocol": "docs/MIXED_PRECISION_PHASE_D_TIER1B_PROTOCOL.md",
         "source_commit": git_text("rev-parse", "HEAD"),
         "source_dirty": dirty,
         "command": " ".join(sys.argv),

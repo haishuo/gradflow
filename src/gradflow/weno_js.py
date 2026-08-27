@@ -20,7 +20,8 @@ PRECISION_BLOCKS = (
     "flux_split",
     "candidates",
     "indicators",
-    "weights",
+    "weight_formation",
+    "weight_normalization",
     "combination",
     "divergence",
 )
@@ -42,7 +43,8 @@ class WENOJSPrecisionPolicy:
     flux_split: torch.dtype | None = None
     candidates: torch.dtype | None = None
     indicators: torch.dtype | None = None
-    weights: torch.dtype | None = None
+    weight_formation: torch.dtype | None = None
+    weight_normalization: torch.dtype | None = None
     combination: torch.dtype | None = None
     divergence: torch.dtype | None = None
 
@@ -242,7 +244,9 @@ class WENOJS:
             indicators.append(indicator)
 
         candidate_stack = torch.stack(candidates, dim=0)
-        weight_dtype = self.precision.dtype_for("weights", reference.dtype)
+        weight_dtype = self.precision.dtype_for(
+            "weight_formation", reference.dtype
+        )
         denominator = _cast_dtype(
             torch.stack(indicators, dim=0), weight_dtype
         ) + self.epsilon
@@ -257,6 +261,10 @@ class WENOJS:
             ],
             dim=0,
         )
+        normalization_dtype = self.precision.dtype_for(
+            "weight_normalization", reference.dtype
+        )
+        nonlinear = _cast_dtype(nonlinear, normalization_dtype)
         weights = nonlinear / torch.sum(nonlinear, dim=0, keepdim=True)
         combination_dtype = self.precision.dtype_for(
             "combination", reference.dtype

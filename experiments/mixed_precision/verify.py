@@ -11,7 +11,6 @@ from pathlib import Path
 from typing import Any
 
 EXPECTED_ORDERS = (5, 7, 9, 11, 13, 15)
-EXPECTED_MASKS = tuple(range(64))
 
 
 def sha256(path: Path) -> str:
@@ -43,13 +42,14 @@ def main() -> None:
         raise SystemExit("result checksum mismatch")
 
     payload = json.loads(result.read_text())
-    if payload["schema_version"] != 1 or not payload["complete_frozen_matrix"]:
-        raise SystemExit("result is not a complete schema-v1 frozen search")
+    if payload["schema_version"] not in {1, 2} or not payload["complete_frozen_matrix"]:
+        raise SystemExit("result is not a complete recognized frozen search")
+    expected_masks = tuple(range(2 ** len(payload["precision_blocks"])))
     records = payload["records"]
-    if len(records) != len(EXPECTED_ORDERS) * len(EXPECTED_MASKS):
+    if len(records) != len(EXPECTED_ORDERS) * len(expected_masks):
         raise SystemExit("wrong number of order/policy records")
     observed = {(record["order"], record["mask"]) for record in records}
-    expected = set(itertools_product(EXPECTED_ORDERS, EXPECTED_MASKS))
+    expected = set(itertools_product(EXPECTED_ORDERS, expected_masks))
     if observed != expected:
         raise SystemExit("order/policy matrix is incomplete or duplicated")
 

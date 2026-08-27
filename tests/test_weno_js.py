@@ -134,7 +134,8 @@ def test_precision_policy_is_explicit_and_default_preserving() -> None:
         7,
         precision=WENOJSPrecisionPolicy(
             indicators=torch.float32,
-            weights=torch.float32,
+            weight_formation=torch.float32,
+            weight_normalization=torch.float64,
         ),
     ).rhs(state, 1.0 / 37, lambda q: q, alpha=1.0)
     assert mixed.dtype is state.dtype
@@ -144,7 +145,7 @@ def test_precision_policy_is_explicit_and_default_preserving() -> None:
 
 def test_precision_policy_refuses_unsupported_dtypes() -> None:
     with pytest.raises(TypeError, match="float32, float64, or None"):
-        WENOJSPrecisionPolicy(weights=torch.float16)
+        WENOJSPrecisionPolicy(weight_formation=torch.float16)
     with pytest.raises(ValueError, match="unknown WENO-JS precision block"):
         WENOJSPrecisionPolicy().dtype_for("made_up", torch.float64)
 

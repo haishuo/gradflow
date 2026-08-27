@@ -1,7 +1,10 @@
 # Mixed-precision exhaustive search
 
-This directory executes the frozen scalar Tier-1 protocol in
-`docs/MIXED_PRECISION_PHASE_D_PROTOCOL.md`.
+This directory first executed the frozen scalar Tier-1a protocol in
+`docs/MIXED_PRECISION_PHASE_D_PROTOCOL.md`. The current runner executes the
+evidence-driven Tier-1b refinement in
+`docs/MIXED_PRECISION_PHASE_D_TIER1B_PROTOCOL.md`, which separates nonlinear
+weight formation from weight normalization.
 
 The protocol is intentionally committed before the implementation and result
 record. No result from this directory qualifies characteristic Euler or a
