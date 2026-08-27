@@ -224,6 +224,71 @@ def _generated_line_rhs(
     )
 
 
+def _generated_bounded_line_rhs(
+    ghosted_line: Tensor,
+    inverse_spacing: float,
+    scheme: WENOJS,
+    physical_points: int,
+) -> tuple[Tensor, Tensor]:
+    """Apply the shared characteristic algebra to explicitly ghosted lines.
+
+    The returned pair is ``(physical_rhs, physical_face_fluxes)``. Component
+    order is the penultimate dimension. Face fluxes include both domain faces,
+    so their final dimension has ``physical_points + 1`` entries.
+    """
+    width = scheme.substencil_width
+    expected_points = physical_points + 2 * width
+    if ghosted_line.shape[-1] != expected_points:
+        raise ValueError(
+            f"expected {expected_points} ghosted points for "
+            f"{physical_points} physical points"
+        )
+
+    flux, alpha, all_left, all_right = _flux_and_roe_faces(ghosted_line)
+    face_start = width - 1
+    face_stop = face_start + physical_points + 1
+    left = all_left[..., face_start:face_stop, :, :]
+    right = all_right[..., face_start:face_stop, :, :]
+    offsets = scheme.exact_coefficients.candidate_offsets
+    positive_offsets = tuple(
+        sorted({offset for candidate in offsets for offset in candidate})
+    )
+    negative_offsets = tuple(
+        sorted({1 - offset for candidate in offsets for offset in candidate})
+    )
+
+    def project(offset: int, sign: float) -> Tensor:
+        sample_start = face_start + offset
+        sample_stop = face_stop + offset
+        state_sample = ghosted_line[..., :, sample_start:sample_stop]
+        flux_sample = flux[..., :, sample_start:sample_stop]
+        state_by_field = state_sample.movedim(-2, -1).unsqueeze(-2)
+        flux_by_field = flux_sample.movedim(-2, -1).unsqueeze(-2)
+        projected_state = (left * state_by_field).sum(dim=-1)
+        projected_flux = (left * flux_by_field).sum(dim=-1)
+        return 0.5 * (
+            projected_flux + sign * alpha.unsqueeze(-2) * projected_state
+        )
+
+    positive = {offset: project(offset, 1.0) for offset in positive_offsets}
+    negative = {offset: project(offset, -1.0) for offset in negative_offsets}
+    positive_stencils = tuple(
+        tuple(positive[offset] for offset in candidate) for candidate in offsets
+    )
+    negative_stencils = tuple(
+        tuple(negative[1 - offset] for offset in candidate)
+        for candidate in offsets
+    )
+    characteristic_flux = scheme.reconstruct_stencils(
+        positive_stencils
+    ) + scheme.reconstruct_stencils(negative_stencils)
+    numerical_flux = (right * characteristic_flux.unsqueeze(-2)).sum(dim=-1)
+    physical_rhs = (
+        numerical_flux[..., :-1, :] - numerical_flux[..., 1:, :]
+    ) * inverse_spacing
+    return physical_rhs.movedim(-1, -2), numerical_flux.movedim(-1, -2)
+
+
 def euler_weno_rhs(
     state: Tensor,
     spacing: Sequence[float],

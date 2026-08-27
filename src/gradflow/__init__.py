@@ -20,6 +20,13 @@ from .euler3d import (
     periodic_vortex,
     synchronize_duplicate_endpoints,
 )
+from .euler1d import (
+    EULER1D_BOUNDARIES,
+    euler1d_cfl_timestep,
+    euler1d_rhs,
+    euler1d_rhs_with_boundary_fluxes,
+    euler1d_ssp_rk3_step,
+)
 from .solver import (
     BackendDecision,
     BackendUnavailableError,
@@ -65,6 +72,11 @@ __all__ = [
     "Solver",
     "UnsupportedProblemError",
     "euler_cfl_timestep",
+    "EULER1D_BOUNDARIES",
+    "euler1d_cfl_timestep",
+    "euler1d_rhs",
+    "euler1d_rhs_with_boundary_fluxes",
+    "euler1d_ssp_rk3_step",
     "euler_ssp_rk3_step",
     "euler_weno_rhs",
     "euler_weno5_rhs",
