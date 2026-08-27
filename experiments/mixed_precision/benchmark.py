@@ -147,6 +147,14 @@ def main() -> None:
         "environment": {
             "python": sys.version,
             "platform": platform.platform(),
+            "cuda": next(
+                (
+                    record["environment"]
+                    for record in records
+                    if record["status"] == "completed"
+                ),
+                None,
+            ),
         },
         "records": records,
     }

@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import subprocess
 import sys
 import time
 import traceback
@@ -143,6 +144,17 @@ def execute(order: int, policy_name: str) -> dict[str, Any]:
         and compiled_parity["maximum_normalized_difference"] <= 5.0e-5
         and compiled_parity["rms_normalized_difference"] <= 1.0e-5
     )
+    driver = subprocess.run(
+        (
+            "nvidia-smi",
+            "--query-gpu=driver_version",
+            "--format=csv,noheader",
+        ),
+        check=False,
+        text=True,
+        capture_output=True,
+    ).stdout.strip()
+    properties = torch.cuda.get_device_properties(0)
     return {
         "status": "completed",
         "order": order,
@@ -153,6 +165,14 @@ def execute(order: int, policy_name: str) -> dict[str, Any]:
         "warmups": WARMUPS,
         "repetitions": REPETITIONS,
         "device": torch.cuda.get_device_name(0),
+        "environment": {
+            "torch": torch.__version__,
+            "cuda_runtime": torch.version.cuda,
+            "cuda_driver": driver or None,
+            "device": torch.cuda.get_device_name(0),
+            "device_total_memory_bytes": properties.total_memory,
+            "device_capability": list(torch.cuda.get_device_capability(0)),
+        },
         "eager": eager,
         "compiled": compiled,
         "compiled_parity": compiled_parity,
