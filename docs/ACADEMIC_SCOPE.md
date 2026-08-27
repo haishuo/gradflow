@@ -132,6 +132,8 @@ product framework work must not delay the bounded paper.
    in Phase 2.**
 2. Implement and qualify that seed for convergence, conservation, discontinuities, device
    agreement, compilation, and gradients before collecting performance data.
+   **Implemented in Phase 3, but the frozen qualification failed two gates;
+   resolve those gates prospectively before timing.**
 3. Freeze and execute the scalar matched-component and best-practical FD/FV
    accuracy-to-time/memory matrix.
 4. Extend qualification and the frozen comparison to ideal-gas Euler, then

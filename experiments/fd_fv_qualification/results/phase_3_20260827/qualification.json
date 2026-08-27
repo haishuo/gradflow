@@ -1,0 +1,307 @@
+{
+  "compiler": {
+    "compilation_latency_timed": false,
+    "cpu": {
+      "rhs": {
+        "break_reasons": [],
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "ssp_rk3_step": {
+        "break_reasons": [],
+        "graph_break_count": 0,
+        "graph_count": 1,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      }
+    },
+    "cuda": {
+      "available": false,
+      "status": "untested_unavailable"
+    },
+    "passed": true
+  },
+  "cuda": {
+    "available": false,
+    "status": "untested_unavailable"
+  },
+  "differentiation": {
+    "fixed_three_step": {
+      "absolute_error": 1.8434032078573637e-11,
+      "automatic": -0.015807739543345467,
+      "centered": -0.0158077395617795,
+      "gradient_finite": true,
+      "passed": true,
+      "relative_error": 1.1661396625703575e-09
+    },
+    "passed": true,
+    "rhs_gradcheck": true
+  },
+  "discontinuity": {
+    "monotone_l1": true,
+    "passed": true,
+    "runs": [
+      {
+        "cells": 64,
+        "finite": true,
+        "l1_error": 0.02390803725855877,
+        "mass_bound": 3.842171091271167e-15,
+        "mass_change": 3.469446951953614e-18,
+        "maximum": 1.0000000024813593,
+        "minimum": -2.450764304417209e-17,
+        "passed": true,
+        "steps": 65
+      },
+      {
+        "cells": 128,
+        "finite": true,
+        "l1_error": 0.01456292765657723,
+        "mass_bound": 3.842171091271167e-15,
+        "mass_change": 2.45029690981724e-17,
+        "maximum": 1.0,
+        "minimum": -4.739875293064134e-17,
+        "passed": true,
+        "steps": 129
+      },
+      {
+        "cells": 256,
+        "finite": true,
+        "l1_error": 0.008662796442025077,
+        "mass_bound": 3.842171091271167e-15,
+        "mass_change": 3.2959746043559335e-17,
+        "maximum": 1.0,
+        "minimum": -1.3883977686602505e-16,
+        "passed": true,
+        "steps": 256
+      }
+    ]
+  },
+  "eager_cpu": {
+    "dtypes": {
+      "float32": {
+        "device_preserved": true,
+        "dtype_preserved": true,
+        "finite": true,
+        "passed": true
+      },
+      "float64": {
+        "device_preserved": true,
+        "dtype_preserved": true,
+        "finite": true,
+        "passed": true
+      }
+    },
+    "passed": true
+  },
+  "environment": {
+    "cpu_count": 12,
+    "cuda_available": false,
+    "cuda_device": null,
+    "cuda_version": "13.0",
+    "mps_available": false,
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "python": "3.12.3",
+    "python_executable": "/mnt/projects/dveb/.venv-torch/bin/python",
+    "pytorch": "2.13.0+cu130"
+  },
+  "failed_gates": [
+    "smooth_spatial",
+    "transfer_evidence"
+  ],
+  "formulation_id": "fv_dimensional_js5_global_lf_periodic_v1",
+  "gate_decisions": {
+    "compiler": true,
+    "cuda_if_available": true,
+    "differentiation": true,
+    "discontinuity": true,
+    "eager_cpu": true,
+    "mps_recorded": true,
+    "oracle_parity": true,
+    "refusal_contract": true,
+    "smooth_complete_solve": true,
+    "smooth_spatial": false,
+    "transfer_evidence": false
+  },
+  "mps": {
+    "available": false,
+    "status": "untested_unavailable"
+  },
+  "oracle_parity": {
+    "constants": {
+      "float32": {
+        "maximum_absolute_difference": 2.384185791015625e-07,
+        "passed": true,
+        "tolerance": 2e-06
+      },
+      "float64": {
+        "maximum_absolute_difference": 0.0,
+        "passed": true,
+        "tolerance": 5e-15
+      }
+    },
+    "directions": {
+      "negative": {
+        "maximum_absolute_differences": {
+          "flux": 3.552713678800501e-15,
+          "left": 4.440892098500626e-16,
+          "rhs": 2.842170943040401e-14,
+          "right": 8.881784197001252e-16
+        },
+        "passed": true
+      },
+      "positive": {
+        "maximum_absolute_differences": {
+          "flux": 8.881784197001252e-16,
+          "left": 4.440892098500626e-16,
+          "rhs": 1.4210854715202004e-14,
+          "right": 8.881784197001252e-16
+        },
+        "passed": true
+      }
+    },
+    "passed": true
+  },
+  "passed": false,
+  "performance_measurements_collected": false,
+  "phase": "fd_fv_phase_3",
+  "phase_2_hashes": {
+    "contract.json": "4b6c9dd889c9fa7818f24087f31c7a06f9cfe6f38e24214e474346ce5c8eebdc",
+    "oracle_cases.json": "24f4c3bd77bc1608a80b785c7a473b8563a3f306805e036bbbf33f8413f8f569"
+  },
+  "protocol_amendment_commit": "d8be254",
+  "protocol_commit": "3fe79a93e44ace4ec64b3b19368a5fb603fc7903",
+  "qualification_date": "2026-08-27",
+  "refusal_contract": {
+    "checks": {
+      "flux_dtype": true,
+      "flux_shape": true,
+      "integer_state": true,
+      "invalid_axis": true,
+      "invalid_bias": true,
+      "nonpositive_python_alpha": true,
+      "nonpositive_python_dx": true,
+      "nonscalar_tensor_alpha": true,
+      "too_few_cells": true,
+      "wrong_dtype_tensor_dx": true
+    },
+    "passed": true
+  },
+  "schema_version": 1,
+  "smooth_complete_solve": {
+    "l1_rates": [
+      4.826196432441125,
+      4.3179600803550535,
+      4.919466797737803
+    ],
+    "l2_rates": [
+      4.062481562296972,
+      4.58626545389707,
+      4.5939877774698346
+    ],
+    "passed": true,
+    "runs": [
+      {
+        "cells": 24,
+        "conservation_passed": true,
+        "l1_error": 0.0003920898318420466,
+        "l2_error": 0.0004947210565524053,
+        "mass_bound": 5.529250841472119e-15,
+        "mass_change": 1.850371707708594e-17,
+        "steps": 10
+      },
+      {
+        "cells": 36,
+        "conservation_passed": true,
+        "l1_error": 5.540316478297292e-05,
+        "l2_error": 9.527805923504049e-05,
+        "mass_bound": 5.567820481736723e-15,
+        "mass_change": 7.709882115452476e-19,
+        "steps": 20
+      },
+      {
+        "cells": 54,
+        "conservation_passed": true,
+        "l1_error": 9.620099112508952e-06,
+        "l2_error": 1.483855613755589e-05,
+        "mass_bound": 5.5702252045166e-15,
+        "mass_change": 5.988008443001423e-17,
+        "steps": 39
+      },
+      {
+        "cells": 81,
+        "conservation_passed": true,
+        "l1_error": 1.3088939013063471e-06,
+        "l2_error": 2.303724559487126e-06,
+        "mass_bound": 5.570429763270275e-15,
+        "mass_change": 2.5185614910478086e-17,
+        "steps": 76
+      }
+    ]
+  },
+  "smooth_spatial": {
+    "directions": {
+      "-1": {
+        "l2_errors": [
+          0.01565371466641523,
+          0.0023354379044525073,
+          0.00040927862644894204,
+          6.336975680540965e-05
+        ],
+        "maximum_rate": 4.692164126419011,
+        "monotone": true,
+        "passed": false,
+        "rates": [
+          4.692164126419011,
+          4.295211831318335,
+          4.6006657525606185
+        ],
+        "sizes": [
+          32,
+          48,
+          72,
+          108
+        ]
+      },
+      "1": {
+        "l2_errors": [
+          0.020846702269596565,
+          0.0025934464798882664,
+          0.0004458585217271769,
+          6.550385052510638e-05
+        ],
+        "maximum_rate": 5.140289635734421,
+        "monotone": true,
+        "passed": true,
+        "rates": [
+          5.140289635734421,
+          4.342522294228369,
+          4.73010555021743
+        ],
+        "sizes": [
+          32,
+          48,
+          72,
+          108
+        ]
+      }
+    },
+    "passed": false
+  },
+  "source_commit": "1d920ea97ed7abec9e4e451b377343cf72316f4c",
+  "source_dirty": false,
+  "source_hashes": {
+    "docs/FD_FV_PHASE_3_PROTOCOL.md": "f4e92623a9432b3d251b5f5d38f08dfc7f63247925c917faca94632c4ae82912",
+    "experiments/fd_fv_qualification/qualify_phase_3.py": "75ef5df081c2578238a84fbb5167d372770cbcb58188a6e90e32be20cbc137a0",
+    "src/gradflow/fv_weno5.py": "58b6c55b1fe1e84a5f0eaeb30f31acabf25d0cda713b02c9090085c04c3dbed0"
+  },
+  "transfer_evidence": {
+    "passed": false,
+    "profiler_forbidden_events": [
+      "aten::to"
+    ],
+    "static_forbidden_calls": []
+  }
+}

@@ -15,6 +15,9 @@ from gradflow import (
     fv_weno5_face_states,
     fv_weno5_rhs,
 )
+from experiments.fd_fv_qualification.verify_phase_3 import (
+    main as verify_phase_3,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -231,3 +234,7 @@ def test_source_has_no_transfer_or_scalar_extraction_calls() -> None:
     source = (ROOT / "src/gradflow/fv_weno5.py").read_text()
     for forbidden in (".cpu(", ".cuda(", ".to(", ".item(", ".numpy("):
         assert forbidden not in source
+
+
+def test_frozen_phase_3_record_verifies() -> None:
+    verify_phase_3()

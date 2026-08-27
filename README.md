@@ -49,8 +49,11 @@ and `docs/FD_FV_EXPERIMENTAL_CONSTITUTION.md`.
 FD/FV Phase 2 has now frozen and independently derived the first scalar
 finite-volume WENO-JS5 mathematical contract. Exact rational coefficient,
 polynomial, smoothness, projection, upwinding, and conservation oracles are
-committed, but no canonical FV solver or timing result exists yet. See
-`docs/FD_FV_PHASE_2_RESULTS.md`.
+committed. Phase 3 implemented that contract and passed nine gate areas, but
+the first frozen qualification failed its negative-advection spatial-rate and
+profiler-event criteria. The result remains unqualified and no FD/FV timing
+has begun. See `docs/FD_FV_PHASE_2_RESULTS.md` and
+`docs/FD_FV_PHASE_3_RESULTS.md`.
 
 Phase D has now completed an exhaustive scalar binary32/binary64 search over
 384 coarse and 768 refined order/policy pairs. On the frozen cases, binary32
@@ -145,6 +148,7 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 ## Repository map
 
 - `src/gradflow/weno5.py` — canonical direct PyTorch WENO-5 seed
+- `src/gradflow/fv_weno5.py` — unqualified Phase-3 scalar periodic FV-WENO-JS5 candidate
 - `src/gradflow/weno_js_coefficients.py` — exact-rational arbitrary-order construction
 - `src/gradflow/weno_js.py` — generated axis-general scalar PyTorch WENO-JS
 - `src/gradflow/euler3d.py` — generated characteristic Euler WENO-JS orders 5--15
@@ -167,6 +171,8 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
   experimental-constitution evidence
 - `experiments/fd_fv_contract/` — independent exact FV-JS5 contract and oracle
   evidence for FD/FV Phase 2
+- `experiments/fd_fv_qualification/` — frozen Phase-3 scalar FV implementation
+  qualification and immutable failed first run
 - `experiments/mixed_precision/` — exhaustive scalar precision assignments and
   isolated CUDA performance records
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
@@ -177,6 +183,8 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `docs/FD_FV_EXPERIMENTAL_CONSTITUTION.md` — binding rules for later bakeoffs
 - `docs/FD_FV_PHASE_2_PROTOCOL.md` — scalar FV-JS5 contract/oracle freeze
 - `docs/FD_FV_PHASE_2_RESULTS.md` — exact derivation and invariant results
+- `docs/FD_FV_PHASE_3_PROTOCOL.md` — frozen scalar FV qualification rules
+- `docs/FD_FV_PHASE_3_RESULTS.md` — passed evidence, two frozen failures, and next boundary
 - `docs/MIXED_PRECISION_PHASE_D_PROTOCOL.md` — frozen Tier-1a scalar precision search
 - `docs/MIXED_PRECISION_PHASE_D_TIER1B_RESULTS.md` — refined numerical seam
 - `docs/MIXED_PRECISION_PHASE_D_PERFORMANCE_RESULTS.md` — verified RTX timing result

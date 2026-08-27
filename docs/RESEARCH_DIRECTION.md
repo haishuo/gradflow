@@ -139,6 +139,17 @@ performance, native lowering, and the broader `Solver` surface remain open.
     projections, nonlinear flux operations, and multidimensional extensions
     remain different. See `FD_FV_PHASE_2_RESULTS.md`.
 
+14. FD/FV Phase 3 implemented that target in ordinary PyTorch and passed exact
+    oracle, complete-solve, discontinuity, conservation, differentiation,
+    eager, and compiler evidence. Its immutable first qualification remains a
+    failure: negative-advection spatial convergence reached `4.692164` against
+    the frozen `4.7` threshold, and the profiler emitted the forbidden
+    `aten::to` label despite no source transfer call or copy event. Neither
+    criterion is changed after observation. The scalar FV candidate is not yet
+    admitted to performance comparison; a prospectively frozen resolution
+    phase must distinguish critical-point accuracy and actual data movement.
+    See `FD_FV_PHASE_3_RESULTS.md`.
+
 The longer-term product architecture is documented separately in
 `PRODUCT_VISION.md`, `PROBLEM_MODEL.md`, `EQUATION_EXTENSION_CONTRACT.md`,
 `RESULT_AND_PROVENANCE_MODEL.md`, and `UI_WORKFLOW_CONCEPT.md`. Those documents
