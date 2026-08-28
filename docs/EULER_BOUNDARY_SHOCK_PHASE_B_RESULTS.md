@@ -1,5 +1,10 @@
 # Euler boundary/shock Phase-B results
 
+Post-study note: the explicitly deferred CPU/CUDA RHS agreement gate has now
+passed across all six generated orders, both dtypes, and both boundary modes.
+Representative CUDA compiler and device-resident CFL gates also passed; see
+`DEFERRED_CUDA_GATES_RESULTS.md`. This document preserves the original record.
+
 ## Decision
 
 Phase B passed its frozen correctness gate. GradFlow now has a bounded,
@@ -153,8 +158,9 @@ The coefficient payload identity for all six generated orders is
 The record used Python 3.11.13, NumPy 2.2.6, PyTorch
 2.9.0.dev20250705+cu128, one CPU thread, and Linux 6.8.0-134 x86-64. CUDA was
 unavailable inside this execution environment. Therefore the Phase-B
-CPU/CUDA agreement gate is explicitly untested here; it is not simulated and
-no GPU claim follows from this record. MPS is likewise untested.
+CPU/CUDA agreement gate is explicitly untested in this immutable record. The
+prospective Forge supplement now supplies that missing evidence. MPS remains
+untested.
 
 ## Claim boundary
 

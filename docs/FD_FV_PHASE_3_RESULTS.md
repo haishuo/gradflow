@@ -1,5 +1,10 @@
 # FD/FV Phase-3 scalar qualification result
 
+Post-study note: the formerly missing CUDA agreement and compiler gates passed
+prospectively on Forge's RTX 5070 Ti; see
+`DEFERRED_CUDA_GATES_RESULTS.md`. This document and its failed frozen decision
+remain unchanged in evidentiary meaning.
+
 Status: **completed and did not pass the frozen qualification**.
 
 Run date: 2026-08-27 UTC.

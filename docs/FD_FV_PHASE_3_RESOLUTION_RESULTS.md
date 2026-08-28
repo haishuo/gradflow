@@ -1,5 +1,10 @@
 # FD/FV Phase-3R resolution result
 
+Post-study note: the formerly missing CUDA movement probe subsequently passed
+on Forge's RTX 5070 Ti. Its 18 `aten::to` dispatches allocated zero CPU/device
+memory and emitted no copy or transfer event; see
+`DEFERRED_CUDA_GATES_RESULTS.md`. This document preserves the original record.
+
 Status: **passed on the available CPU environment**.
 
 Run date: 2026-08-27 UTC.
@@ -91,8 +96,9 @@ They reported zero CPU and device memory allocation. There was no
 preserved the input's CPU device and float64 dtype.
 
 This supports the narrow conclusion that the original `aten::to` labels were
-not data movement in the tested native CPU path. It does not infer the same
-result for CUDA; that experiment remains untested until CUDA is visible.
+not data movement in the tested native CPU path. The original record did not
+infer the same result for CUDA; that experiment is now supplied prospectively
+by `DEFERRED_CUDA_GATES_RESULTS.md`.
 
 ## Research boundary
 

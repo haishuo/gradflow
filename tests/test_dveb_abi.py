@@ -100,8 +100,10 @@ def test_solver_auto_is_bounded_and_falls_back_safely() -> None:
     assert solver.last_run is not None
     assert solver.last_run.backend.selected in {"dveb-cpu", "dveb-cuda"}
 
-    outside = _arbitrary_state(4)
-    solver = _solver(4, artifact)
+    # The placement model starts at N=7.  N=5 is outside that range while
+    # still satisfying the independent WENO-5 minimum-grid contract.
+    outside = _arbitrary_state(5)
+    solver = _solver(5, artifact)
     result = solver.run(outside, steps=1)
     assert result.shape == outside.shape
     assert solver.last_run is not None

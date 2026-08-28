@@ -55,10 +55,12 @@ profiler-event criteria. The prospective Phase-3R study then demonstrated
 approximately fifth-order noncritical behavior in both orientations and found
 no observed CPU copy/data-movement event. The exact scalar CPU seed is now
 qualified under the combined evidence, while the original failure remains
-preserved and CUDA remains untested. That admission preceded all Phase-4
-timing. See
+preserved. The formerly deferred scalar-FV CUDA agreement, compilation, and
+movement gates, plus the one-dimensional Euler boundary device gates, have now
+passed on Forge's RTX 5070 Ti. That admission preceded all Phase-4 timing. See
 `docs/FD_FV_PHASE_2_RESULTS.md`, `docs/FD_FV_PHASE_3_RESULTS.md`, and
-`docs/FD_FV_PHASE_3_RESOLUTION_RESULTS.md`.
+`docs/FD_FV_PHASE_3_RESOLUTION_RESULTS.md`. The linked prospective device
+supplement is `docs/DEFERRED_CUDA_GATES_RESULTS.md`.
 
 FD/FV Phase 4 admitted and measured the matched smooth scalar CPU matrix in
 1-D, 2-D, and 3-D. Its surprising `N=27^3` compiled FV observation was then

@@ -158,9 +158,11 @@ performance, native lowering, and the broader `Solver` surface remain open.
     explain the mixed-Fourier rate or erase known WENO-JS critical-point
     concerns. The 18 CPU `aten::to` dispatches allocated zero bytes and emitted
     no copy/memcpy event. This qualifies the exact scalar CPU seed under the
-    combined evidence, while CUDA movement/agreement remains untested and is a
-    mandatory admission gate before GPU timing. See
-    `FD_FV_PHASE_3_RESOLUTION_RESULTS.md`.
+    combined evidence. The formerly deferred CUDA agreement, compiler, and
+    movement gates subsequently passed on Forge's RTX 5070 Ti, including zero
+    observed copy/memcpy events in the native scalar-FV path. See
+    `FD_FV_PHASE_3_RESOLUTION_RESULTS.md` and
+    `DEFERRED_CUDA_GATES_RESULTS.md`.
 
 16. FD/FV Phase 4 admitted both exact formulations for smooth periodic linear
     advection in 1-D, 2-D, and 3-D, then measured an isolated six-core CPU

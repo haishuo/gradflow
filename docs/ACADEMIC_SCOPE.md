@@ -133,8 +133,9 @@ product framework work must not delay the bounded paper.
 2. Implement and qualify that seed for convergence, conservation, discontinuities, device
    agreement, compilation, and gradients before collecting performance data.
    **Implemented in Phase 3; its two frozen failures were preserved and
-   prospectively resolved for the exact CPU seed in Phase 3R. CUDA remains a
-   per-device admission requirement before GPU timing.**
+   prospectively resolved for the exact CPU seed in Phase 3R. The prospective
+   Forge CUDA agreement/compiler/movement supplement has now passed; future
+   hardware still requires per-device admission before GPU timing.**
 3. Freeze and execute the scalar matched-component and best-practical FD/FV
    accuracy-to-time/memory matrix. **The smooth linear CPU slice and the
    preregistered causal replication of its anomalous `N=27^3` point are

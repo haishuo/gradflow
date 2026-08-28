@@ -1,0 +1,495 @@
+{
+  "created_utc": "2026-08-28T10:54:32.169130+00:00",
+  "environment": {
+    "cuda_driver": "580.173.02",
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 5070 Ti",
+    "device_capability": [
+      12,
+      0
+    ],
+    "device_total_memory_bytes": 16609247232,
+    "device_uuid": "a350efdc-59b1-8296-7dab-ade66607a1b2",
+    "mps_available": false,
+    "multiprocessor_count": 70,
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "torch": "2.13.0+cu130"
+  },
+  "euler1d": {
+    "cpu_cuda_agreement": {
+      "cases": {
+        "order11_float32_periodic": {
+          "boundary": "periodic",
+          "dtype": "float32",
+          "finite": true,
+          "maximum_absolute_difference": 3.74913215637207e-05,
+          "order": 11,
+          "passed": true,
+          "resident": true,
+          "tolerance": 0.0003
+        },
+        "order11_float32_transmissive": {
+          "boundary": "transmissive",
+          "dtype": "float32",
+          "finite": true,
+          "maximum_absolute_difference": 4.190206527709961e-05,
+          "order": 11,
+          "passed": true,
+          "resident": true,
+          "tolerance": 0.0003
+        },
+        "order11_float64_periodic": {
+          "boundary": "periodic",
+          "dtype": "float64",
+          "finite": true,
+          "maximum_absolute_difference": 7.80486786311485e-14,
+          "order": 11,
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order11_float64_transmissive": {
+          "boundary": "transmissive",
+          "dtype": "float64",
+          "finite": true,
+          "maximum_absolute_difference": 5.750955267558311e-14,
+          "order": 11,
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order13_float32_periodic": {
+          "boundary": "periodic",
+          "dtype": "float32",
+          "finite": true,
+          "maximum_absolute_difference": 2.6464462280273438e-05,
+          "order": 13,
+          "passed": true,
+          "resident": true,
+          "tolerance": 0.0003
+        },
+        "order13_float32_transmissive": {
+          "boundary": "transmissive",
+          "dtype": "float32",
+          "finite": true,
+          "maximum_absolute_difference": 3.9696693420410156e-05,
+          "order": 13,
+          "passed": true,
+          "resident": true,
+          "tolerance": 0.0003
+        },
+        "order13_float64_periodic": {
+          "boundary": "periodic",
+          "dtype": "float64",
+          "finite": true,
+          "maximum_absolute_difference": 6.161737786669619e-14,
+          "order": 13,
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order13_float64_transmissive": {
+          "boundary": "transmissive",
+          "dtype": "float64",
+          "finite": true,
+          "maximum_absolute_difference": 5.340172748447003e-14,
+          "order": 13,
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order15_float32_periodic": {
+          "boundary": "periodic",
+          "dtype": "float32",
+          "finite": true,
+          "maximum_absolute_difference": 5.2928924560546875e-05,
+          "order": 15,
+          "passed": true,
+          "resident": true,
+          "tolerance": 0.0003
+        },
+        "order15_float32_transmissive": {
+          "boundary": "transmissive",
+          "dtype": "float32",
+          "finite": true,
+          "maximum_absolute_difference": 5.2928924560546875e-05,
+          "order": 15,
+          "passed": true,
+          "resident": true,
+          "tolerance": 0.0003
+        },
+        "order15_float64_periodic": {
+          "boundary": "periodic",
+          "dtype": "float64",
+          "finite": true,
+          "maximum_absolute_difference": 6.572520305780927e-14,
+          "order": 15,
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order15_float64_transmissive": {
+          "boundary": "transmissive",
+          "dtype": "float64",
+          "finite": true,
+          "maximum_absolute_difference": 7.80486786311485e-14,
+          "order": 15,
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order5_float32_periodic": {
+          "boundary": "periodic",
+          "dtype": "float32",
+          "finite": true,
+          "maximum_absolute_difference": 2.4259090423583984e-05,
+          "order": 5,
+          "passed": true,
+          "resident": true,
+          "tolerance": 0.0003
+        },
+        "order5_float32_transmissive": {
+          "boundary": "transmissive",
+          "dtype": "float32",
+          "finite": true,
+          "maximum_absolute_difference": 1.9848346710205078e-05,
+          "order": 5,
+          "passed": true,
+          "resident": true,
+          "tolerance": 0.0003
+        },
+        "order5_float64_periodic": {
+          "boundary": "periodic",
+          "dtype": "float64",
+          "finite": true,
+          "maximum_absolute_difference": 5.750955267558311e-14,
+          "order": 5,
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order5_float64_transmissive": {
+          "boundary": "transmissive",
+          "dtype": "float64",
+          "finite": true,
+          "maximum_absolute_difference": 7.80486786311485e-14,
+          "order": 5,
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order7_float32_periodic": {
+          "boundary": "periodic",
+          "dtype": "float32",
+          "finite": true,
+          "maximum_absolute_difference": 2.205371856689453e-05,
+          "order": 7,
+          "passed": true,
+          "resident": true,
+          "tolerance": 0.0003
+        },
+        "order7_float32_transmissive": {
+          "boundary": "transmissive",
+          "dtype": "float32",
+          "finite": true,
+          "maximum_absolute_difference": 2.4259090423583984e-05,
+          "order": 7,
+          "passed": true,
+          "resident": true,
+          "tolerance": 0.0003
+        },
+        "order7_float64_periodic": {
+          "boundary": "periodic",
+          "dtype": "float64",
+          "finite": true,
+          "maximum_absolute_difference": 4.929390229335695e-14,
+          "order": 7,
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order7_float64_transmissive": {
+          "boundary": "transmissive",
+          "dtype": "float64",
+          "finite": true,
+          "maximum_absolute_difference": 4.929390229335695e-14,
+          "order": 7,
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order9_float32_periodic": {
+          "boundary": "periodic",
+          "dtype": "float32",
+          "finite": true,
+          "maximum_absolute_difference": 3.0875205993652344e-05,
+          "order": 9,
+          "passed": true,
+          "resident": true,
+          "tolerance": 0.0003
+        },
+        "order9_float32_transmissive": {
+          "boundary": "transmissive",
+          "dtype": "float32",
+          "finite": true,
+          "maximum_absolute_difference": 3.0875205993652344e-05,
+          "order": 9,
+          "passed": true,
+          "resident": true,
+          "tolerance": 0.0003
+        },
+        "order9_float64_periodic": {
+          "boundary": "periodic",
+          "dtype": "float64",
+          "finite": true,
+          "maximum_absolute_difference": 5.750955267558311e-14,
+          "order": 9,
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order9_float64_transmissive": {
+          "boundary": "transmissive",
+          "dtype": "float64",
+          "finite": true,
+          "maximum_absolute_difference": 6.983302824892235e-14,
+          "order": 9,
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        }
+      },
+      "passed": true
+    },
+    "cuda_cfl": {
+      "device": "cuda:0",
+      "dtype": "float64",
+      "finite": true,
+      "passed": true,
+      "positive": true,
+      "resident": true,
+      "shape": []
+    },
+    "cuda_compilation": {
+      "cases": {
+        "order11_float64_periodic": {
+          "break_reasons": [],
+          "compiled_eager_maximum_absolute_difference": 5.340172748447003e-14,
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "order11_float64_periodic",
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order11_float64_transmissive": {
+          "break_reasons": [],
+          "compiled_eager_maximum_absolute_difference": 5.340172748447003e-14,
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "order11_float64_transmissive",
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order15_float64_periodic": {
+          "break_reasons": [],
+          "compiled_eager_maximum_absolute_difference": 6.161737786669619e-14,
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "order15_float64_periodic",
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order15_float64_transmissive": {
+          "break_reasons": [],
+          "compiled_eager_maximum_absolute_difference": 6.161737786669619e-14,
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "order15_float64_transmissive",
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order5_float64_periodic": {
+          "break_reasons": [],
+          "compiled_eager_maximum_absolute_difference": 4.529709940470639e-14,
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "order5_float64_periodic",
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        },
+        "order5_float64_transmissive": {
+          "break_reasons": [],
+          "compiled_eager_maximum_absolute_difference": 5.750955267558311e-14,
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "order5_float64_transmissive",
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-11
+        }
+      },
+      "passed": true
+    }
+  },
+  "failed_gates": [],
+  "gate_decisions": {
+    "euler_cpu_cuda_agreement": true,
+    "euler_cuda_cfl": true,
+    "euler_cuda_compilation": true,
+    "predecessors": true,
+    "scalar_fv_cpu_cuda_agreement": true,
+    "scalar_fv_cuda_compilation": true,
+    "scalar_fv_cuda_movement": true
+  },
+  "mps": {
+    "available": false,
+    "status": "untested_unavailable"
+  },
+  "passed": true,
+  "performance_measurements_collected": false,
+  "phase": "deferred_cuda_correctness_gates",
+  "predecessors": {
+    "passed": true,
+    "records": {
+      "euler_boundary_shock_phase_b": {
+        "passed": true,
+        "record": "experiments/euler_boundary_shock/results/phase_b_20260827/qualification.json",
+        "record_sha256": "95d3da968fc063d204e13effc8d6190e027e4550a4fe2063462ccbbf170c6b5d",
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "{\n  \"arrays\": {\n    \"shu_osher_order11_n800.npz\": {\n      \"minimum_density\": 0.8000006202115134,\n      \"minimum_pressure\": 0.9947823707857374\n    },\n    \"shu_osher_order15_n800.npz\": {\n      \"minimum_density\": 0.8000006202115134,\n      \"minimum_pressure\": 0.8961372875483725\n    },\n    \"shu_osher_order5_n800.npz\": {\n      \"minimum_density\": 0.8000008920255914,\n      \"minimum_pressure\": 0.999998106459775\n    },\n    \"sod_order11_n800.npz\": {\n      \"minimum_density\": 0.12499982603174842,\n      \"minimum_pressure\": 0.09999983132713143\n    },\n    \"sod_order15_n800.npz\": {\n      \"minimum_density\": 0.12475245176990933,\n      \"minimum_pressure\": 0.09972455386251511\n    },\n    \"sod_order5_n800.npz\": {\n      \"minimum_density\": 0.12499771326182792,\n      \"minimum_pressure\": 0.09999741534020654\n    }\n  },\n  \"checked_hashes\": {\n    \"qualification.json\": \"95d3da968fc063d204e13effc8d6190e027e4550a4fe2063462ccbbf170c6b5d\",\n    \"shu_osher_order11_n800.npz\": \"37c8e12f7520eb0c329cc1f901109daeeaec163b1deaddb59645a0d2a9c2653a\",\n    \"shu_osher_order15_n800.npz\": \"7c44620901be819ebf4a7d262172e7a974c13ec1062cb5c14a8cd7a11ef1421c\",\n    \"shu_osher_order5_n800.npz\": \"c8767f5bca98c6a05f41d3b786ab9a41691d2e165abaabf2b5a594150b54bde6\",\n    \"sod_order11_n800.npz\": \"e888363b4161bdf53e79de1fbf4c10567532c90a0c0894a6eced56c27b916b02\",\n    \"sod_order15_n800.npz\": \"b2bf75b7f9b0c9029819aacb15ba48d2cb9ae27f66e6b3539fe30df93522edea\",\n    \"sod_order5_n800.npz\": \"fcea45bb5bd7731981d311fe8f5ed7282379d5ab621ebfb9d47c3fe87ecca939\"\n  },\n  \"passed\": true,\n  \"record\": \"/mnt/projects/gradflow/experiments/euler_boundary_shock/results/phase_b_20260827\",\n  \"source_commit\": \"3b64b1a75b0e412fee195b12c341901ff0c1136d\"\n}"
+      },
+      "fd_fv_phase_3": {
+        "passed": true,
+        "record": "experiments/fd_fv_qualification/results/phase_3_20260827/qualification.json",
+        "record_sha256": "6d0c9585f31a32a2faa24ecf33c9562f656a7fb4873fcc597c07c00ae3fcd4df",
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "FD/FV Phase 3 verified: 9 gates passed, CUDA/MPS unavailable, and the frozen smooth-spatial and profiler-event gates remain failed."
+      },
+      "fd_fv_phase_3r": {
+        "passed": true,
+        "record": "experiments/fd_fv_qualification/results/phase_3r_20260827/resolution.json",
+        "record_sha256": "b0d42fb34f2999d43a4b9591e65ca7edab59ea15b51fa05deb083e5781d0b01f",
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "FD/FV Phase 3R verified: noncritical fifth-order behavior, preserved critical-point evidence, and zero observed CPU data movement; CUDA remains unavailable."
+      }
+    }
+  },
+  "protocol": "docs/DEFERRED_CUDA_GATES_PROTOCOL.md",
+  "scalar_fv": {
+    "cpu_cuda_agreement": {
+      "cases": {
+        "float32": {
+          "finite": true,
+          "left_face_maximum_absolute_difference": 0.0,
+          "passed": true,
+          "resident": true,
+          "rhs_maximum_absolute_difference": 1.1920928955078125e-07,
+          "right_face_maximum_absolute_difference": 0.0,
+          "tolerance": 0.0002
+        },
+        "float64": {
+          "finite": true,
+          "left_face_maximum_absolute_difference": 0.0,
+          "passed": true,
+          "resident": true,
+          "rhs_maximum_absolute_difference": 2.220446049250313e-16,
+          "right_face_maximum_absolute_difference": 0.0,
+          "tolerance": 2e-11
+        }
+      },
+      "passed": true
+    },
+    "cuda_compilation": {
+      "cases": {
+        "float32_rhs": {
+          "break_reasons": [],
+          "compiled_eager_maximum_absolute_difference": 4.410743713378906e-06,
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "float32_rhs",
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-05
+        },
+        "float32_ssp_rk3_step": {
+          "break_reasons": [],
+          "compiled_eager_maximum_absolute_difference": 5.960464477539063e-08,
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "float32_ssp_rk3_step",
+          "passed": true,
+          "resident": true,
+          "tolerance": 5e-05
+        },
+        "float64_rhs": {
+          "break_reasons": [],
+          "compiled_eager_maximum_absolute_difference": 8.43769498715119e-15,
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "float64_rhs",
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        },
+        "float64_ssp_rk3_step": {
+          "break_reasons": [],
+          "compiled_eager_maximum_absolute_difference": 5.551115123125783e-17,
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "float64_ssp_rk3_step",
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        }
+      },
+      "passed": true
+    },
+    "cuda_movement": {
+      "aten_to_events": [
+        {
+          "count": 18,
+          "cpu_memory_usage": 0,
+          "device_memory_usage": 0,
+          "key": "aten::to",
+          "self_cpu_memory_usage": 0,
+          "self_device_memory_usage": 0
+        }
+      ],
+      "dtype": "float64",
+      "input_device": "cuda:0",
+      "movement_events": [],
+      "output_device": "cuda:0",
+      "passed": true,
+      "resident": true
+    }
+  },
+  "schema_version": 1,
+  "source_commit": "a73c777e0cd956d6bac6a9f1e6a307b7cf0e51bf",
+  "source_dirty": false,
+  "source_hashes": {
+    "docs/DEFERRED_CUDA_GATES_PROTOCOL.md": "6dced441d79a6825be5f846a6c68781b3eb5a14aa1cb2d9a943a642ca8b08062",
+    "experiments/deferred_cuda_gates/qualify.py": "e55ae2660069538d55c47a325d1fe9d5a075a38b472ca9718afe2793edc98c66",
+    "src/gradflow/euler1d.py": "b0dedd8e5282720252934bf48ea5455346487c3c6e7f079e60a1f1b530439fb6",
+    "src/gradflow/fv_weno5.py": "58b6c55b1fe1e84a5f0eaeb30f31acabf25d0cda713b02c9090085c04c3dbed0",
+    "src/gradflow/weno_js.py": "87df65203851f4f87cb8dd7360c92d586ef43fa2997a11593cbf92a4dc8f6278"
+  }
+}
