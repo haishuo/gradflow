@@ -352,3 +352,24 @@ randomized blocks, running 2.53--7.36 times faster than packaged AOTInductor.
 This is strong evidence that DVEB deserves a fixed-program native CUDA role.
 It remains a result for one float32 formulation, GPU, and endpoint—not evidence
 for general automatic placement, arbitrary-order WENO, or novelty.
+
+## Nonlinear FD/FV seed freeze
+
+The first linear FD/FV bakeoff is no longer being extrapolated to nonlinear
+flow. FD/FV nonlinear Phase 5A freezes a separate smooth pre-shock inviscid
+Burgers problem with exact characteristic point values and exact physical
+cell averages derived from a conservation primitive. The matched FD path
+reconstructs split physical flux while the FV path reconstructs states before
+the Rusanov flux, making their nonlinear distinction explicit.
+
+The independent standard-library oracle passes at roundoff-scale residuals and
+quadrature disagreement. No production implementation or timing was added.
+Phase 5B must qualify conservation, convergence including known WENO-JS
+critical-point behavior, exact-solution error, differentiation, compilation,
+CPU/CUDA agreement, and residency before nonlinear timing is permitted. See
+`FD_FV_PHASE_5A_PROTOCOL.md` and `FD_FV_PHASE_5A_RESULTS.md`.
+
+Future device records also distinguish host inventory from execution-context
+visibility. Forge's RTX can be hidden from a sandbox without being absent from
+the host; the required vocabulary and admission sequence are in
+`EXECUTION_INFRASTRUCTURE_ADMISSION.md`.

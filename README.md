@@ -86,6 +86,15 @@ RTX 5070 Ti. This is a bounded candidate result, not yet an Euler or universal
 mixed-precision recommendation. See
 `docs/MIXED_PRECISION_PHASE_D_PERFORMANCE_RESULTS.md`.
 
+FD/FV nonlinear Phase 5A has frozen the next scalar boundary: smooth
+pre-shock periodic inviscid Burgers with exact characteristic point values and
+exact conservation-primitive cell averages. The standard-library oracle and
+immutable records pass without adding a production Burgers solver or collecting
+timing. The same phase also corrects future infrastructure records so
+process-hidden CUDA is not conflated with absent host hardware. See
+`docs/FD_FV_PHASE_5A_RESULTS.md` and
+`docs/EXECUTION_INFRASTRUCTURE_ADMISSION.md`.
+
 ## Current seed
 
 `gradflow.weno5_rhs` operates on unique periodic point samples along the last
@@ -195,6 +204,7 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `experiments/fd_fv_qualification/` — frozen Phase-3 scalar FV implementation
   qualification and immutable failed first run
 - `experiments/fd_fv_bakeoff/` — admitted Phase-4 scalar CPU accuracy/time/memory matrix
+- `experiments/fd_fv_nonlinear/` — exact pre-shock Burgers oracle and Phase-5A freeze
 - `experiments/mixed_precision/` — exhaustive scalar precision assignments and
   isolated CUDA performance records
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
@@ -212,6 +222,9 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `docs/FD_FV_PHASE_4_PROTOCOL.md` — frozen scalar multidimensional bakeoff rules
 - `docs/FD_FV_PHASE_4A_RESULTS.md` — timing-free 1-D/2-D/3-D admission
 - `docs/FD_FV_PHASE_4_RESULTS.md` — matched CPU performance result and limits
+- `docs/FD_FV_PHASE_5A_PROTOCOL.md` — frozen nonlinear Burgers contract and next gate
+- `docs/FD_FV_PHASE_5A_RESULTS.md` — independent point/cell-average oracle result
+- `docs/EXECUTION_INFRASTRUCTURE_ADMISSION.md` — host/device visibility taxonomy
 - `docs/MIXED_PRECISION_PHASE_D_PROTOCOL.md` — frozen Tier-1a scalar precision search
 - `docs/MIXED_PRECISION_PHASE_D_TIER1B_RESULTS.md` — refined numerical seam
 - `docs/MIXED_PRECISION_PHASE_D_PERFORMANCE_RESULTS.md` — verified RTX timing result

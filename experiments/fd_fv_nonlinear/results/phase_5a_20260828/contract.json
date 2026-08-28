@@ -1,0 +1,83 @@
+{
+  "continuous_problem": {
+    "boundary": "periodic_unique",
+    "domain": "[0,1)",
+    "equation": "u_t + (u^2/2)_x = 0",
+    "final_time_hex": "0x1.999999999999ap-4",
+    "initial_amplitude_hex": "0x1.999999999999ap-3",
+    "initial_base_hex": "0x1.0000000000000p-1",
+    "initial_phase_hex": "0x1.1eb851eb851ecp-4",
+    "minimum_characteristic_jacobian_hex": "0x1.bfa901b7a363ap-1",
+    "shock_time_hex": "0x1.976fc893c3aa4p-1"
+  },
+  "explicit_exclusions": [
+    "timing",
+    "optimization",
+    "shock_solution",
+    "multidimensional_burgers",
+    "euler_extension",
+    "arbitrary_order_fv",
+    "publication_claim"
+  ],
+  "formulations": {
+    "fd": {
+      "id": "fd_classical_js5_burgers_global_lf_periodic_v1",
+      "operation": "split_physical_flux_reconstruction",
+      "persistent_state": "point_values_at_x_i=i/N"
+    },
+    "fv": {
+      "id": "fv_dimensional_js5_burgers_global_lf_periodic_v1",
+      "operation": "state_reconstruction_then_rusanov_flux",
+      "persistent_state": "physical_cell_averages_[i/N,(i+1)/N]"
+    }
+  },
+  "freeze_date_utc": "2026-08-28",
+  "governing_order": [
+    "correctness",
+    "performance",
+    "convenience"
+  ],
+  "infrastructure_contract": "docs/EXECUTION_INFRASTRUCTURE_ADMISSION.md",
+  "oracle": {
+    "cell_average": "exact_characteristic_conservation_primitive",
+    "forbidden_dependencies": [
+      "torch",
+      "numpy",
+      "gradflow"
+    ],
+    "point": "characteristic_bisection",
+    "quadrature_cross_check": "composite_simpson_2048_and_4096_panels",
+    "tolerance_hex": "0x1.19799812dea11p-39"
+  },
+  "performance_measurements_collected": false,
+  "phase": "fd_fv_nonlinear_5a",
+  "predecessor_sha256": {
+    "deferred_cuda_gates": "d0f0b1efcb76a5af5d3283dd0fdd51e9d503737c405d7332a302cf05446ea31b",
+    "linear_cuda_replication": "37c616695fd89b088dd301a21575116fd10ac0caf12180b2c0751f277cd99dcf"
+  },
+  "production_burgers_implementation_added": false,
+  "schema": "gradflow.fd_fv.nonlinear.phase_5a.contract.v1",
+  "shared_numerics": {
+    "epsilon": "1e-29",
+    "flux": "u^2/2",
+    "global_lf_alpha_hex": "0x1.6666666666666p-1",
+    "nominal_dt": "0.2*dx^(5/3)/0.7",
+    "nonlinear_power": 2,
+    "qualification_cells": [
+      24,
+      36,
+      54,
+      81
+    ],
+    "smoothness_scale": 12,
+    "time_integrator": "SSP-RK3",
+    "weno": "JS5"
+  },
+  "source_sha256": {
+    "docs/EXECUTION_INFRASTRUCTURE_ADMISSION.md": "a37ea0894b035229153721c7a5121e74403f485a75bdbbaae24a781796f8a451",
+    "docs/FD_FV_EXPERIMENTAL_CONSTITUTION.md": "954a1a60aeaac9f3009e27c1126c096707f3759a385941b90fa14274c43f0fec",
+    "docs/FD_FV_PHASE_5A_PROTOCOL.md": "4abf3094da731855e162dd0e89a852583469d19ff551e2c4408092be06842974",
+    "experiments/fd_fv_nonlinear/burgers_oracle.py": "95a8566e972a1cb98aaa92c5b8ffde9d8b42d922d148659a72ca0564e2316e72",
+    "experiments/fd_fv_nonlinear/freeze_phase_5a.py": "f06d154f60d4707ea4b25185c9e3acd67ad7e5dc0ba5a590b3fd4e93ce11f5f4"
+  }
+}
