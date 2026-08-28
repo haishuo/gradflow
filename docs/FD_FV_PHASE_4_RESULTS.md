@@ -2,6 +2,12 @@
 
 Status: **CPU matrix complete; CUDA unavailable**.
 
+Post-study note: the preregistered Phase-4R investigation is complete. It did
+not strongly replicate the isolated `N=27^3` result and associated the fast FV
+mode with unstable CPU multithread execution rather than a unique generated-
+kernel transition. This document preserves the original Phase-4B observation;
+its updated interpretation is in `FD_FV_PHASE_4_REPLICATION_RESULTS.md`.
+
 Measurement date: 2026-08-27 UTC.
 
 Measurement source commit:
@@ -112,7 +118,7 @@ possible FD versus best possible FV.”
 CUDA and MPS were unavailable. Nothing in this record establishes GPU
 performance, the RTX crossover, or the effect of consumer-GPU FP64 limits.
 
-## Next justified boundary
+## Superseded next boundary
 
 Before extending to nonlinear scalar flow or Euler:
 
@@ -124,5 +130,7 @@ Before extending to nonlinear scalar flow or Euler:
 5. make an explicit value-of-information decision before renting FP64 data-
    center hardware.
 
-Only then should Phase 4 add a separately qualified smooth nonlinear scalar
-problem. No universal FD/FV or publication claim is supported yet.
+Items 1--3 were completed by Phase 4R. CUDA remained unavailable, so item 4
+remains conditional. The Phase-4R result does not support a persistent FV
+crossover; see `FD_FV_PHASE_4_REPLICATION_RESULTS.md`. No universal FD/FV or
+publication claim is supported yet.

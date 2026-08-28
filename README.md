@@ -60,12 +60,15 @@ timing. See
 `docs/FD_FV_PHASE_2_RESULTS.md`, `docs/FD_FV_PHASE_3_RESULTS.md`, and
 `docs/FD_FV_PHASE_3_RESOLUTION_RESULTS.md`.
 
-FD/FV Phase 4 has now admitted and measured the matched smooth scalar CPU
-matrix in 1-D, 2-D, and 3-D. Most warm FD/FV comparisons were unresolved within
-5%; the largest compiled 3-D point favored FV by `2.69x`, an isolated compiler
-behavior that requires replication before generalization. Compilation still
-dominated one-shot latency, CPU memory was effectively unresolved, and CUDA
-remained unavailable. See `docs/FD_FV_PHASE_4_RESULTS.md`.
+FD/FV Phase 4 admitted and measured the matched smooth scalar CPU matrix in
+1-D, 2-D, and 3-D. Its surprising `N=27^3` compiled FV observation was then
+replicated and causally characterized in 38 fresh CPU workers. Similar fast FV
+modes recurred, but the frozen strong-replication criterion failed; the effect
+was unique to `N=27`, highly multimodal, absent under stable one-thread timing,
+and unsupported by a unique generated-kernel transition. It is therefore a
+localized CPU multithread-runtime observation, not an FV crossover. CUDA
+remained unavailable. See `docs/FD_FV_PHASE_4_RESULTS.md` and
+`docs/FD_FV_PHASE_4_REPLICATION_RESULTS.md`.
 
 Phase D has now completed an exhaustive scalar binary32/binary64 search over
 384 coarse and 768 refined order/policy pairs. On the frozen cases, binary32

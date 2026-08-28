@@ -172,6 +172,17 @@ performance, native lowering, and the broader `Solver` surface remain open.
     latency, memory was unresolved, AOT was not implemented, and CUDA remained
     unavailable. See `FD_FV_PHASE_4_RESULTS.md`.
 
+17. The preregistered Phase-4R study did not strongly replicate the isolated
+    `N=27^3` result. Fast FV timing modes recurred, but only at that sampled
+    size, with extreme multithread variance; stable one-thread measurements
+    modestly favored FD, and every sampled size from `N=30` through `N=48`
+    favored FD. Kernel counts, vector-kernel counts, pre-fusion IR, and
+    generated-code bands showed no structural transition unique to `N=27`.
+    The observation is therefore bounded as CPU multithread-runtime/scheduling
+    instability, not an FV performance regime or mathematical advantage.
+    CUDA replication remains untested unavailable. See
+    `FD_FV_PHASE_4_REPLICATION_RESULTS.md`.
+
 The longer-term product architecture is documented separately in
 `PRODUCT_VISION.md`, `PROBLEM_MODEL.md`, `EQUATION_EXTENSION_CONTRACT.md`,
 `RESULT_AND_PROVENANCE_MODEL.md`, and `UI_WORKFLOW_CONCEPT.md`. Those documents

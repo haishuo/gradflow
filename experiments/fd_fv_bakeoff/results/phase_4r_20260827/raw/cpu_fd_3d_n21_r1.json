@@ -1,0 +1,317 @@
+{
+  "cache_evidence": {
+    "cpp_file_count": 7,
+    "cpp_total_bytes": 398186,
+    "cpp_total_lines": 5755,
+    "files": [
+      {
+        "bytes": 459,
+        "lines": 13,
+        "relative_path": "25/c25hoog53rfmyfkqyt2zebzwl4a5i6bj6wuifphoe22o4czouny6.cpp",
+        "sha256": "188903104625fe4f6737e7ecf9df7562264ed9ea85288caaedb3ae04213d93d0",
+        "text_counts": {
+          "cpp_fused": 0,
+          "loadu": 0,
+          "openmp_pragma": 0,
+          "parallel_for": 0,
+          "store": 1,
+          "vectorized_type": 1
+        }
+      },
+      {
+        "bytes": 459,
+        "lines": 13,
+        "relative_path": "26/c266e3dzmdejqeyggvrzamvhbsarbavfrpn7v5daw3nzlk4ysmko.cpp",
+        "sha256": "188903104625fe4f6737e7ecf9df7562264ed9ea85288caaedb3ae04213d93d0",
+        "text_counts": {
+          "cpp_fused": 0,
+          "loadu": 0,
+          "openmp_pragma": 0,
+          "parallel_for": 0,
+          "store": 1,
+          "vectorized_type": 1
+        }
+      },
+      {
+        "bytes": 396206,
+        "lines": 5691,
+        "relative_path": "5q/c5qba3yk7b2amcquaqxbownpuvs4iv3i5fiek5bguhhynyduxw2a.main.cpp",
+        "sha256": "4cec4543ef13195a02764fde8b1690bca6fa4e1eca686576ca9594e999d7dc38",
+        "text_counts": {
+          "cpp_fused": 0,
+          "loadu": 442,
+          "openmp_pragma": 40,
+          "parallel_for": 0,
+          "store": 276,
+          "vectorized_type": 0
+        }
+      },
+      {
+        "bytes": 459,
+        "lines": 13,
+        "relative_path": "cp/ccp47cqtbhixna2ttsqfupyg4erchfpqq56nhgqpybq5utf3lcua.cpp",
+        "sha256": "188903104625fe4f6737e7ecf9df7562264ed9ea85288caaedb3ae04213d93d0",
+        "text_counts": {
+          "cpp_fused": 0,
+          "loadu": 0,
+          "openmp_pragma": 0,
+          "parallel_for": 0,
+          "store": 1,
+          "vectorized_type": 1
+        }
+      },
+      {
+        "bytes": 151,
+        "lines": 7,
+        "relative_path": "dd/cdde52zg324mrjnl5przagcdar6vt2eiv477zfaxctqrlwvehnnf.cpp",
+        "sha256": "aa60a2dae71ae488af83137dc1a7b541b49fcebd4b75f2e3cad70409e73e96d6",
+        "text_counts": {
+          "cpp_fused": 0,
+          "loadu": 0,
+          "openmp_pragma": 0,
+          "parallel_for": 0,
+          "store": 0,
+          "vectorized_type": 0
+        }
+      },
+      {
+        "bytes": 301,
+        "lines": 11,
+        "relative_path": "jp/cjplu727gcxweyp3eronjij5hfet4qeo77zysl2o4gyusutyuame.cpp",
+        "sha256": "f6a500eef22fc58f3af3ebd26859c6eb8cc9988ad8a718f3f2d43d20d2f53094",
+        "text_counts": {
+          "cpp_fused": 0,
+          "loadu": 0,
+          "openmp_pragma": 0,
+          "parallel_for": 0,
+          "store": 0,
+          "vectorized_type": 0
+        }
+      },
+      {
+        "bytes": 151,
+        "lines": 7,
+        "relative_path": "qf/cqfu33fxzwahcor2sxyqset7kkbkhnahpjriaft7njoob32ux4qb.cpp",
+        "sha256": "aa60a2dae71ae488af83137dc1a7b541b49fcebd4b75f2e3cad70409e73e96d6",
+        "text_counts": {
+          "cpp_fused": 0,
+          "loadu": 0,
+          "openmp_pragma": 0,
+          "parallel_for": 0,
+          "store": 0,
+          "vectorized_type": 0
+        }
+      }
+    ],
+    "status": "recorded",
+    "total_cache_bytes": 3544072
+  },
+  "cells_per_axis": 21,
+  "compiled_profile": [
+    {
+      "count": 1,
+      "cpu_time_total_us": 1800.3400000000001,
+      "key": "## Call CompiledFxGraph fcr7akbtswidzu45zhohxzjn74tr2z7cbls2pkca5bwwisfxrmd3 ##",
+      "self_cpu_time_total_us": 1800.3400000000001
+    },
+    {
+      "count": 1,
+      "cpu_time_total_us": 2.4399999999999977,
+      "key": "AOTDispatcher Runtime Wrapper Prologue",
+      "self_cpu_time_total_us": 2.4399999999999977
+    },
+    {
+      "count": 1,
+      "cpu_time_total_us": 2.609999999999985,
+      "key": "Pregraph bytecode",
+      "self_cpu_time_total_us": 2.609999999999985
+    },
+    {
+      "count": 1,
+      "cpu_time_total_us": 1831.05,
+      "key": "Torch-Compiled Region: 0/0",
+      "self_cpu_time_total_us": 25.659999999999854
+    },
+    {
+      "count": 1,
+      "cpu_time_total_us": 15.11999999999999,
+      "key": "TorchDynamo Cache Lookup",
+      "self_cpu_time_total_us": 15.11999999999999
+    }
+  ],
+  "compiler_metrics": {
+    "cpp_outer_loop_fused_inner_counts": [],
+    "cpp_to_dtype_count": 0,
+    "generated_cpp_vec_kernel_count": 36,
+    "generated_kernel_count": 39,
+    "ir_nodes_pre_fusion": 228,
+    "num_auto_chunking": 0,
+    "num_bytes_accessed": 0,
+    "num_loop_reordering": 0,
+    "parallel_reduction_count": 0
+  },
+  "controls": {
+    "compiled_repetitions": 50,
+    "compiled_warmups": 10,
+    "eager_repetitions": 30,
+    "eager_warmups": 10,
+    "interop_threads": 1,
+    "primary_intraop_threads": 6,
+    "process_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "thread_counts": null,
+    "thread_repetitions": null,
+    "thread_warmups": null,
+    "visible_logical_cpus": 12
+  },
+  "correctness": {
+    "compiled_eager_maximum_absolute_difference": 0.0,
+    "compiled_repeat_maximum_absolute_difference": 0.0,
+    "device_preserved": true,
+    "dtype_preserved": true,
+    "eager_repeat_maximum_absolute_difference": 0.0,
+    "finite": true,
+    "shape_preserved": true
+  },
+  "device": "cpu",
+  "dimension": 3,
+  "dtype": "float64",
+  "eligible": true,
+  "formulation_id": "fd_classical_js5_global_lf_periodic_v1",
+  "graph": {
+    "break_reasons": [],
+    "fx_node_count": 1703,
+    "graph_break_count": 0,
+    "graph_count": 1,
+    "operation_count": 1539
+  },
+  "logical_cells": 9261,
+  "method": "fd",
+  "peak_process_rss_bytes": 887209984,
+  "replicate": 1,
+  "status": "completed",
+  "thread_sweep": null,
+  "timing": {
+    "compiled": {
+      "coefficient_of_variation": 0.029882592437048574,
+      "maximum_seconds": 0.00184512,
+      "mean_seconds": 0.0017117266,
+      "median_absolute_deviation_seconds": 3.685950000000004e-05,
+      "median_seconds": 0.0017083505000000001,
+      "minimum_seconds": 0.0016128610000000002,
+      "q1_seconds": 0.0016777310000000002,
+      "q3_seconds": 0.0017527932500000002,
+      "samples_seconds": [
+        0.001706451,
+        0.0016805510000000002,
+        0.0017677600000000002,
+        0.0016320310000000001,
+        0.0016769710000000002,
+        0.00173532,
+        0.001629271,
+        0.001700841,
+        0.0016602610000000001,
+        0.001688381,
+        0.00169066,
+        0.0017706010000000001,
+        0.00171433,
+        0.00177045,
+        0.0017702310000000001,
+        0.0017607900000000001,
+        0.00175968,
+        0.00184512,
+        0.0017560400000000002,
+        0.0016781510000000001,
+        0.0017593110000000002,
+        0.0016128610000000002,
+        0.0017018200000000002,
+        0.001666011,
+        0.0016623310000000002,
+        0.0016887010000000001,
+        0.0016524500000000002,
+        0.0017378510000000001,
+        0.001697851,
+        0.00165547,
+        0.0018344510000000002,
+        0.001691271,
+        0.0017131510000000002,
+        0.00173879,
+        0.00177639,
+        0.0016438610000000002,
+        0.0017386110000000001,
+        0.0017769300000000001,
+        0.0016417010000000002,
+        0.0017310300000000002,
+        0.0017528810000000002,
+        0.001630251,
+        0.0017102500000000002,
+        0.0016941310000000002,
+        0.0017525300000000002,
+        0.0017182310000000002,
+        0.0016775910000000002,
+        0.0017284800000000001,
+        0.001695141,
+        0.0017121100000000002
+      ]
+    },
+    "eager": {
+      "coefficient_of_variation": 0.002025179036103432,
+      "maximum_seconds": 0.004990373,
+      "mean_seconds": 0.004965681666666667,
+      "median_absolute_deviation_seconds": 5.235000000000135e-06,
+      "median_seconds": 0.0049633875,
+      "minimum_seconds": 0.004945813,
+      "q1_seconds": 0.004959442750000001,
+      "q3_seconds": 0.004970348,
+      "samples_seconds": [
+        0.004957813,
+        0.004951002,
+        0.004968533000000001,
+        0.004945813,
+        0.004954503000000001,
+        0.004962012,
+        0.004953583,
+        0.004962353,
+        0.004960433,
+        0.004974172000000001,
+        0.004990373,
+        0.004972982,
+        0.004967413,
+        0.004988203,
+        0.004958552000000001,
+        0.004958063,
+        0.004980563,
+        0.0049657220000000005,
+        0.004965603000000001,
+        0.004959393,
+        0.004962312,
+        0.0049694330000000005,
+        0.004961793,
+        0.0049626720000000004,
+        0.004967573,
+        0.004970653,
+        0.0049595920000000005,
+        0.004964103,
+        0.004980133,
+        0.004975102
+      ]
+    },
+    "first_compiled_call_seconds": 19.960172883000002
+  },
+  "total_worker_process_seconds": 23.511372659000003,
+  "worker_returncode": 0,
+  "worker_stderr": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/cuda/__init__.py:1112: UserWarning: Can't initialize NVML\n  raw_cnt = _raw_device_count_nvml()\nW0827 23:40:45.804000 518 torch/utils/cpp_extension.py:178] [0/0] No CUDA runtime is found, using CUDA_HOME='/usr'\nUSDT:2026-08-27 23:40:58 518:518 SyncActivityProfilerHandler.cpp:52] profiler_start\nUSDT:2026-08-27 23:40:58 518:518 SyncActivityProfilerHandler.cpp:59] profiler_stop\nERROR:2026-08-27 23:40:58 518:518 DeviceProperties.cpp:50] gpuGetDeviceCount failed with code 100\n",
+  "worker_stdout": ""
+}
