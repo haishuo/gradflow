@@ -1,0 +1,149 @@
+{
+  "accuracy": {
+    "compiled": {
+      "conservation_passed": false,
+      "device": "cuda:0",
+      "dtype": "float64",
+      "finite": true,
+      "l1_error": 9.972184566449295e-10,
+      "l2_error": 2.093121620486919e-09,
+      "mass_bound": 9.105427357601003e-15,
+      "mass_change": 4.670749383969316e-14,
+      "shape": [
+        162
+      ]
+    },
+    "compiled_eager_maximum_absolute_difference": 1.9984014443252818e-14,
+    "compiled_repeat_maximum_absolute_difference": 0.0,
+    "eager": {
+      "conservation_passed": false,
+      "device": "cuda:0",
+      "dtype": "float64",
+      "finite": true,
+      "l1_error": 9.972182925101059e-10,
+      "l2_error": 2.0931212843537227e-09,
+      "mass_bound": 9.105427357601003e-15,
+      "mass_change": 3.9490701518202284e-14,
+      "shape": [
+        162
+      ]
+    }
+  },
+  "cells": 162,
+  "command": [
+    "/mnt/projects/gradflow/experiments/fd_fv_nonlinear/phase5c_worker.py",
+    "--kind",
+    "complete",
+    "--method",
+    "fv",
+    "--device",
+    "cuda",
+    "--cells",
+    "162",
+    "--replicate",
+    "0"
+  ],
+  "compiled": {
+    "cuda_memory": {
+      "peak_allocated_bytes": 50372608,
+      "peak_reserved_bytes": 52428800
+    },
+    "first_complete_solve_seconds": 4.709126953125,
+    "prepared_transfer_complete_solve": {
+      "maximum_seconds": 0.16168633400000001,
+      "mean_seconds": 0.16064685766666667,
+      "median_seconds": 0.160647051,
+      "minimum_seconds": 0.159607188,
+      "q1_seconds": 0.16012711950000003,
+      "q3_seconds": 0.16116669250000001,
+      "samples_seconds": [
+        0.159607188,
+        0.16168633400000001,
+        0.160647051
+      ]
+    },
+    "resident_complete_solve": {
+      "maximum_seconds": 0.16102415466308595,
+      "mean_seconds": 0.1604126942952474,
+      "median_seconds": 0.16028355407714845,
+      "minimum_seconds": 0.15993037414550781,
+      "q1_seconds": 0.16010696411132813,
+      "q3_seconds": 0.1606538543701172,
+      "samples_seconds": [
+        0.16102415466308595,
+        0.15993037414550781,
+        0.16028355407714845
+      ]
+    }
+  },
+  "controls": {
+    "complete_repetitions": 3,
+    "complete_warmups": 1,
+    "process_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "replicate": 0,
+    "torch_interop_threads": 1,
+    "torch_intraop_threads": 6,
+    "visible_logical_cpus": 12
+  },
+  "device": "cuda",
+  "eager": {
+    "cuda_memory": {
+      "peak_allocated_bytes": 64512,
+      "peak_reserved_bytes": 2097152
+    },
+    "prepared_transfer_complete_solve": {
+      "maximum_seconds": 3.563961527,
+      "mean_seconds": 3.548532601666667,
+      "median_seconds": 3.5538415000000003,
+      "minimum_seconds": 3.527794778,
+      "q1_seconds": 3.540818139,
+      "q3_seconds": 3.5589015135000004,
+      "samples_seconds": [
+        3.563961527,
+        3.527794778,
+        3.5538415000000003
+      ]
+    },
+    "resident_complete_solve": {
+      "maximum_seconds": 3.5499990234375,
+      "mean_seconds": 3.542659912109375,
+      "median_seconds": 3.539547119140625,
+      "minimum_seconds": 3.53843359375,
+      "q1_seconds": 3.5389903564453125,
+      "q3_seconds": 3.544773071289063,
+      "samples_seconds": [
+        3.539547119140625,
+        3.53843359375,
+        3.5499990234375
+      ]
+    }
+  },
+  "eligible": false,
+  "formulation_id": "fv_dimensional_js5_burgers_global_lf_periodic_v1",
+  "kind": "complete",
+  "memory": {
+    "compiler_cache_bytes": 8227887,
+    "peak_process_rss_bytes": 1205858304
+  },
+  "method": "fv",
+  "persistent_state_bytes": 1296,
+  "replicate": 0,
+  "status": "completed",
+  "steps": 1685,
+  "worker_returncode": 0,
+  "worker_stderr": "",
+  "worker_stdout": ""
+}
