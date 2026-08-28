@@ -129,6 +129,17 @@ source identity, regenerates every stored array exactly, recomputes every gate,
 and confirms that the oracle path imports neither PyTorch nor GradFlow
 production code.
 
+Extending the experimental constitution exposed that the older Phase-5A
+verifier regenerated its contract using mutable current documentation. Its
+immutable record remained intact. The verifier now checks the contract's
+source hashes against the original Git blobs at commit `0c974ab` and still
+regenerates the numerical oracle cases byte-for-byte. No Phase-5A artifact or
+decision changed.
+
+The final configured Forge suite passed `323` tests, including CUDA-visible and
+DVEB-linked gates. Fourteen warnings came from PyTorch's deprecated internal
+JIT scripting API; no GradFlow test failed.
+
 Phase 6A establishes a fair, representation-aware Euler comparison contract.
 It establishes no FV Euler implementation, FD/FV winner, performance result,
 multidimensional result, mixed-precision policy, DVEB result, data-center-GPU
