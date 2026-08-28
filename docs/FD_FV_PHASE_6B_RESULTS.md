@@ -118,6 +118,10 @@ Run:
 PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6b.py
 ```
 
+The final configured repository suite passed on Forge with CUDA and the
+declared read-only DVEB fixtures: `340 passed`, with 14 upstream PyTorch
+deprecation warnings.
+
 ## Scientific interpretation
 
 Phase 6B removes correctness, differentiability, compilation, device
