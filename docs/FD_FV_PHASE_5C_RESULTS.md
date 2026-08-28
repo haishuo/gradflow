@@ -120,3 +120,14 @@ projection, boundary closures, dynamic wave speeds, data-center GPUs, mixed
 precision, generated C++, DVEB, AOT deployment, or end-to-end application
 work. No optimization was performed after seeing the timings, and Phase 5D was
 not started.
+
+## Verification
+
+The independent Phase 5CR verifier passes without CUDA or new timing and
+recomputes predecessor identities, source and record hashes, mechanistic gates,
+roundoff bounds, all 84 complete/cold reclassifications, aggregates, achieved-
+error selections, cold-pilot selections, and preserved crossover decisions.
+
+The final configured project suite passed `318` tests on Forge, including the
+CUDA-visible and DVEB-linked gates. Fourteen warnings came from PyTorch's
+deprecated internal JIT scripting API; no GradFlow test failed.
