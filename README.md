@@ -103,6 +103,16 @@ retained approximately fifth order away from critical points while recording
 the expected global JS critical-point degradation. No timing was collected.
 See `docs/FD_FV_PHASE_5B_RESULTS.md`.
 
+Phase 5C has completed the first nonlinear accuracy-to-time comparison. On the
+frozen smooth pre-shock Burgers case, FV reached every error target with fewer
+cells and was `1.97--3.38x` faster on CPU and `2.12--3.54x` faster on resident
+CUDA. CPU still won every bounded complete-solve and cold device comparison;
+CUDA became strongly beneficial only for large resident step states, reaching
+`7.09x` FD and `12.04x` FV speedups at `N=524,288`. The initial accumulated
+roundoff gate failure and its prospective timing-free resolution are both
+preserved. See `docs/FD_FV_PHASE_5C_INITIAL_RESULTS.md` and
+`docs/FD_FV_PHASE_5C_RESULTS.md`.
+
 ## Current seed
 
 `gradflow.weno5_rhs` operates on unique periodic point samples along the last

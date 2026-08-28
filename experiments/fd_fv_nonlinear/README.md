@@ -47,3 +47,13 @@ sample:
 python experiments/fd_fv_nonlinear/resolve_phase5c.py \
   --output-dir experiments/fd_fv_nonlinear/results/phase_5cr_20260828
 ```
+
+Verify the committed resolution without collecting timing or requiring CUDA:
+
+```bash
+python experiments/fd_fv_nonlinear/verify_phase5cr.py
+```
+
+The final bounded interpretation is in
+`docs/FD_FV_PHASE_5C_RESULTS.md`. The immutable initial failure remains in
+`docs/FD_FV_PHASE_5C_INITIAL_RESULTS.md`.

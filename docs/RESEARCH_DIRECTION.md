@@ -385,3 +385,19 @@ whole-grid rates recorded the expected WENO-JS critical-point degradation.
 No runtime was measured. This accuracy difference makes achieved-error versus
 time and memory mandatory in a later Phase 5C; equal-grid timing alone would be
 scientifically misleading. See `FD_FV_PHASE_5B_RESULTS.md`.
+
+Phase 5C has now completed that bounded nonlinear performance comparison. Its
+immutable first record exposed an overly strict full-solve conservation bound;
+the prospectively frozen, timing-free Phase 5CR audit established conservative
+semidiscrete and one-step behavior and roundoff-scale drift accumulated across
+hundreds of SSP-RK3 steps. No timing sample was changed.
+
+At every frozen achieved-error target, FV required fewer cells and was
+`1.97--3.38x` faster on CPU and `2.12--3.54x` faster on resident CUDA. CPU won
+every bounded complete-solve and cold device comparison. Large resident steps
+did expose CUDA throughput: at `N=524,288`, CUDA was `7.09x` faster for FD and
+`12.04x` faster for FV. The first replicated FD crossing at `N=2,048` was
+nonmonotone and is not a durable threshold; the FV crossing at `N=32,768` was
+strong. This is one smooth pre-shock scalar WENO-JS5 result on a Ryzen 7600X
+and consumer RTX 5070 Ti, not a universal method or device verdict. See
+`FD_FV_PHASE_5C_RESULTS.md`.
