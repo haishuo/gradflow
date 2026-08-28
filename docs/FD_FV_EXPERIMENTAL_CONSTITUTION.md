@@ -245,3 +245,14 @@ A constitutional amendment must:
 3. state whether previous results remain comparable;
 4. allocate a new protocol/result-series identity when comparability breaks;
 5. never weaken an already-observed gate merely to admit a preferred result.
+
+## Amendment 1 — accelerator visibility vocabulary (2026-08-28)
+
+Future experiments follow `docs/EXECUTION_INFRASTRUCTURE_ADMISSION.md` and
+separate physical host inventory from execution-context device visibility.
+The bare status `untested_unavailable` is retired for new records in favor of
+the explicit statuses defined there. This corrects ambiguous infrastructure
+language after Forge's RTX 5070 Ti was found to be hidden by the default
+process sandbox. It does not alter any historical record, numerical result, or
+comparison; linked supplements remain the evidence for the previously deferred
+CUDA strata.
