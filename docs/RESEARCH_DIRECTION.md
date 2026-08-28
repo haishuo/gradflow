@@ -411,3 +411,17 @@ analytic entropy-wave point/cell-average projections, split-quadrature exact
 Sod cell averages, and conservatively restricted Shu--Osher references all
 pass independent gates. This admits only a correctness-first Phase 6B. See
 `FD_FV_PHASE_6A_PROTOCOL.md` and `FD_FV_PHASE_6A_RESULTS.md`.
+
+Euler FD/FV Phase 6B then implemented only the registered matched
+dimension-by-dimension characteristic FV WENO-JS5 formulation. Both it and
+the existing classical characteristic FD formulation passed exact projection,
+uniform-state, approximately fifth-order smooth spatial and complete-solve,
+conservation, fixed-step differentiation, full-graph compilation, float64
+CPU/CUDA agreement, and no-transfer gates. The FV path also passed the frozen
+Sod and Shu--Osher refinement, positivity, and structure gates. The preserved
+record contains all arrays needed for independent recomputation.
+
+No timing was collected. Phase 6B establishes eligibility for a separately
+frozen Phase 6C comparison; it does not establish an FD/FV performance winner
+or generalize beyond one-dimensional ideal-gas Euler WENO-JS5. See
+`FD_FV_PHASE_6B_PROTOCOL.md` and `FD_FV_PHASE_6B_RESULTS.md`.
