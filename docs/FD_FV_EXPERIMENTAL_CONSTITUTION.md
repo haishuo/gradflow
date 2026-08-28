@@ -256,3 +256,17 @@ language after Forge's RTX 5070 Ti was found to be hidden by the default
 process sandbox. It does not alter any historical record, numerical result, or
 comparison; linked supplements remain the evidence for the previously deferred
 CUDA strata.
+
+## Amendment 2 — nonlinear scalar and Euler phase labels (2026-08-28)
+
+The original staged program described Euler qualification as Phase 5 and its
+bakeoff as Phase 6. The executed Phase-5A--5C sequence instead inserted a
+necessary nonlinear scalar Burgers qualification and performance boundary
+after the earlier linear study. Those immutable labels are retained.
+
+The Euler program therefore begins at Phase 6: Phase 6A freezes contracts and
+oracles, Phase 6B qualifies the matched Euler formulations, and Phase 6C may
+time them only after qualification. Multidimensional extension, replication,
+external baselines, and hardware escalation follow as separately frozen Phase
+6 subphases. This is a scheduling clarification only. It changes no prior
+mathematics, threshold, measurement, or conclusion.
