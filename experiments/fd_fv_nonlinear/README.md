@@ -35,3 +35,15 @@ Phase 5C's isolated performance harness is governed by the prospectively frozen
 `docs/FD_FV_PHASE_5C_PROTOCOL.md`. It requires a clean committed source and a
 device-visible Forge process; do not run it from the default device-isolated
 sandbox.
+
+The immutable first campaign exceeded its original conservation bound after
+hundreds of time steps. Phase 5CR therefore freezes a timing-free mechanistic
+resolution in `docs/FD_FV_PHASE_5CR_PROTOCOL.md`. Its resolver verifies the
+original record, diagnoses semidiscrete, one-step, and accumulated drift, and
+may reclassify copies of the old timing records without changing any measured
+sample:
+
+```bash
+python experiments/fd_fv_nonlinear/resolve_phase5c.py \
+  --output-dir experiments/fd_fv_nonlinear/results/phase_5cr_20260828
+```
