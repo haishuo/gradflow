@@ -401,3 +401,13 @@ nonmonotone and is not a durable threshold; the FV crossing at `N=32,768` was
 strong. This is one smooth pre-shock scalar WENO-JS5 result on a Ryzen 7600X
 and consumer RTX 5070 Ti, not a universal method or device verdict. See
 `FD_FV_PHASE_5C_RESULTS.md`.
+
+Euler FD/FV Phase 6A has now frozen the next system boundary without adding a
+production FV solver or collecting timing. It registers a classical
+characteristic split-flux FD WENO-JS5 formulation and a matched
+dimension-by-dimension characteristic-state FV WENO-JS5 formulation using the
+same Roe basis and global characteristic matrix-LF dissipation data. Exact
+analytic entropy-wave point/cell-average projections, split-quadrature exact
+Sod cell averages, and conservatively restricted Shu--Osher references all
+pass independent gates. This admits only a correctness-first Phase 6B. See
+`FD_FV_PHASE_6A_PROTOCOL.md` and `FD_FV_PHASE_6A_RESULTS.md`.

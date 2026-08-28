@@ -113,6 +113,13 @@ roundoff gate failure and its prospective timing-free resolution are both
 preserved. See `docs/FD_FV_PHASE_5C_INITIAL_RESULTS.md` and
 `docs/FD_FV_PHASE_5C_RESULTS.md`.
 
+FD/FV Euler Phase 6A has frozen the matched one-dimensional system contract
+before production FV implementation. It preserves point-valued FD and
+cell-average FV semantics, reuses the exact Sod and independent Shu--Osher
+authorities, and commits exact smooth/Sod projections plus conservative
+Shu--Osher restrictions. All oracle gates pass; no Euler FD/FV timing has begun.
+See `docs/FD_FV_PHASE_6A_RESULTS.md`.
+
 ## Current seed
 
 `gradflow.weno5_rhs` operates on unique periodic point samples along the last
