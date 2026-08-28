@@ -1,0 +1,241 @@
+{
+  "diagnostics": {
+    "shu_osher": {
+      "shu_n200": {
+        "fd_fv_initial_maximum_absolute_difference": 0.0005203880635775704,
+        "fine_restricted_integral_maximum_absolute_difference": 0.0,
+        "restriction_factor": 64
+      },
+      "shu_n400": {
+        "fd_fv_initial_maximum_absolute_difference": 0.0001301828843264241,
+        "fine_restricted_integral_maximum_absolute_difference": 1.7763568394002505e-15,
+        "restriction_factor": 32
+      },
+      "shu_n800": {
+        "fd_fv_initial_maximum_absolute_difference": 3.255039299487894e-05,
+        "fine_restricted_integral_maximum_absolute_difference": 0.0,
+        "restriction_factor": 16
+      }
+    },
+    "smooth": {
+      "smooth_n24_t0p0": {
+        "analytic_quadrature_maximum_absolute_difference": 4.440892098500626e-16,
+        "fd_periodic_rhs_sum_maximum_absolute": 3.5388358909926865e-16,
+        "fv_periodic_rhs_sum_maximum_absolute": 3.677613769070831e-16,
+        "point_cell_average_maximum_absolute_difference": 0.0002828931908442911
+      },
+      "smooth_n24_t0p1": {
+        "analytic_quadrature_maximum_absolute_difference": 4.440892098500626e-16,
+        "fd_periodic_rhs_sum_maximum_absolute": 2.3245294578089215e-16,
+        "fv_periodic_rhs_sum_maximum_absolute": 6.557254739192331e-16,
+        "point_cell_average_maximum_absolute_difference": 0.0002850175083244366
+      },
+      "smooth_n36_t0p0": {
+        "analytic_quadrature_maximum_absolute_difference": 4.440892098500626e-16,
+        "fd_periodic_rhs_sum_maximum_absolute": 1.0547118733938987e-15,
+        "fv_periodic_rhs_sum_maximum_absolute": 4.996003610813204e-16,
+        "point_cell_average_maximum_absolute_difference": 0.00012639280464488145
+      },
+      "smooth_n36_t0p1": {
+        "analytic_quadrature_maximum_absolute_difference": 8.881784197001252e-16,
+        "fd_periodic_rhs_sum_maximum_absolute": 6.106226635438361e-16,
+        "fv_periodic_rhs_sum_maximum_absolute": 9.43689570931383e-16,
+        "point_cell_average_maximum_absolute_difference": 0.00012687483165541025
+      },
+      "smooth_n54_t0p0": {
+        "analytic_quadrature_maximum_absolute_difference": 8.881784197001252e-16,
+        "fd_periodic_rhs_sum_maximum_absolute": 2.831068712794149e-15,
+        "fv_periodic_rhs_sum_maximum_absolute": 1.2212453270876722e-15,
+        "point_cell_average_maximum_absolute_difference": 5.640108758464546e-05
+      },
+      "smooth_n54_t0p1": {
+        "analytic_quadrature_maximum_absolute_difference": 4.440892098500626e-16,
+        "fd_periodic_rhs_sum_maximum_absolute": 3.3306690738754696e-16,
+        "fv_periodic_rhs_sum_maximum_absolute": 1.1102230246251565e-15,
+        "point_cell_average_maximum_absolute_difference": 5.638260973817033e-05
+      },
+      "smooth_n81_t0p0": {
+        "analytic_quadrature_maximum_absolute_difference": 8.881784197001252e-16,
+        "fd_periodic_rhs_sum_maximum_absolute": 3.0531133177191805e-15,
+        "fv_periodic_rhs_sum_maximum_absolute": 1.9984014443252818e-15,
+        "point_cell_average_maximum_absolute_difference": 2.5064793110596284e-05
+      },
+      "smooth_n81_t0p1": {
+        "analytic_quadrature_maximum_absolute_difference": 8.881784197001252e-16,
+        "fd_periodic_rhs_sum_maximum_absolute": 1.6653345369377348e-16,
+        "fv_periodic_rhs_sum_maximum_absolute": 2.1649348980190553e-15,
+        "point_cell_average_maximum_absolute_difference": 2.5069024210400137e-05
+      }
+    },
+    "sod": {
+      "sod_n200": {
+        "conserved_integral": [
+          0.5625,
+          0.18000000000000008,
+          1.3750000000000007
+        ],
+        "expected_conserved_integral": [
+          0.5625,
+          0.18000000000000002,
+          1.375
+        ],
+        "integral_maximum_absolute_difference": 6.661338147750939e-16,
+        "minimum_exact_average_density": 0.125,
+        "minimum_exact_average_pressure": 0.10000000000000002,
+        "quadrature_32_64_maximum_absolute_difference": 1.1102230246251565e-15
+      },
+      "sod_n400": {
+        "conserved_integral": [
+          0.5625,
+          0.1800000000000001,
+          1.3750000000000002
+        ],
+        "expected_conserved_integral": [
+          0.5625,
+          0.18000000000000002,
+          1.375
+        ],
+        "integral_maximum_absolute_difference": 2.220446049250313e-16,
+        "minimum_exact_average_density": 0.125,
+        "minimum_exact_average_pressure": 0.10000000000000002,
+        "quadrature_32_64_maximum_absolute_difference": 8.881784197001252e-16
+      },
+      "sod_n800": {
+        "conserved_integral": [
+          0.5625,
+          0.18000000000000008,
+          1.3750000000000007
+        ],
+        "expected_conserved_integral": [
+          0.5625,
+          0.18000000000000002,
+          1.375
+        ],
+        "integral_maximum_absolute_difference": 6.661338147750939e-16,
+        "minimum_exact_average_density": 0.125,
+        "minimum_exact_average_pressure": 0.10000000000000002,
+        "quadrature_32_64_maximum_absolute_difference": 1.3322676295501878e-15
+      }
+    }
+  },
+  "dveb_modified": false,
+  "environment": {
+    "numpy": "2.5.2",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3"
+  },
+  "evaluation": {
+    "fd": "point oracle at physical point coordinates",
+    "fd_fv_arrays_directly_compared": false,
+    "fv": "exact or conservatively restricted cell-average oracle",
+    "primitive_fv": "primitive conversion of conservative cell average"
+  },
+  "failed_gates": [],
+  "formulations": {
+    "fd": {
+      "class": "classical_conservative_fd_flux_reconstruction",
+      "id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "persistent_state": "point_values_at_cell_centers",
+      "reconstruction": "positive_negative_characteristic_split_flux"
+    },
+    "fv": {
+      "class": "dimension_by_dimension_fv",
+      "id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "numerical_flux": "characteristic_matrix_global_lf",
+      "persistent_state": "physical_conservative_cell_averages",
+      "reconstruction": "left_right_characteristic_state"
+    }
+  },
+  "gate_decisions": {
+    "shu_conservative_restriction": true,
+    "smooth_analytic_projection": true,
+    "smooth_periodic_conservation": true,
+    "sod_exact_average_admissibility": true,
+    "sod_integral_balance": true,
+    "sod_quadrature_convergence": true
+  },
+  "inherited_hashes": {
+    "experiments/euler_boundary_shock/fv_reference.py": "0d1a7aba657e953d169f72988a967df2497aaffb6f003c678a9c763d1a7ae220",
+    "experiments/euler_boundary_shock/results/phase_a_20260827/manifest.json": "c99f4b9687f818af486f8fb5905e5363ca503cb17747626332fe4952e2e056fe",
+    "experiments/euler_boundary_shock/results/phase_a_20260827/shu_osher_fv_wenoz_hllc_t1p8_n12800.npz": "67d551dd2560c7ddead29b9c805082ef896bc2ff8bcd5a5e2cfc9856f8b02f65",
+    "experiments/euler_boundary_shock/results/phase_a_20260827/sod_exact_t0p2_n8192.npz": "d7aa679fb05021edad4b494ac1ff3f33bfda07a9fd09b9c71c44f554d16b6858",
+    "experiments/euler_boundary_shock/results/phase_a_20260827/thresholds.json": "7c3d3c057d9b291a197a8d0c14b1cdeee79b272a39522ed351ff84909513486e",
+    "experiments/euler_boundary_shock/results/phase_b_20260827/qualification.json": "95d3da968fc063d204e13effc8d6190e027e4550a4fe2063462ccbbf170c6b5d",
+    "experiments/euler_boundary_shock/sod_exact.py": "0eb78a61f391eb0640564decfde1f9242ea1831516f948a06bd9b2720fa0e758"
+  },
+  "mathematics": {
+    "cfl": 0.1,
+    "epsilon": 1e-06,
+    "equations": "one_dimensional_ideal_gas_euler",
+    "gamma": 1.4,
+    "lf_policy": "line_global_characteristic_family_1p1_enlargement",
+    "nonlinear_power": 2,
+    "order": 5,
+    "qualification_dtype": "float64",
+    "roe_projection": "face_frozen",
+    "smoothness_scaling": 12.0,
+    "time_integrator": "SSP-RK3",
+    "weno_family": "Jiang-Shu"
+  },
+  "passed": true,
+  "performance_measurements_collected": false,
+  "phase": "fd_fv_euler_phase_6a",
+  "problems": {
+    "shu_osher": {
+      "boundary": "transmissive",
+      "domain": [
+        -5.0,
+        5.0
+      ],
+      "final_time": 1.8,
+      "reference_cells": 12800,
+      "sizes": [
+        200,
+        400,
+        800
+      ]
+    },
+    "smooth_entropy_wave": {
+      "boundary": "periodic",
+      "domain": [
+        0.0,
+        1.0
+      ],
+      "sizes": [
+        24,
+        36,
+        54,
+        81
+      ],
+      "times": [
+        0.0,
+        0.1
+      ]
+    },
+    "sod": {
+      "boundary": "transmissive",
+      "domain": [
+        0.0,
+        1.0
+      ],
+      "final_time": 0.2,
+      "sizes": [
+        200,
+        400,
+        800
+      ]
+    }
+  },
+  "production_fv_euler_implemented": false,
+  "protocol_commit": "9d1b567",
+  "publication_claim": false,
+  "record_date": "2026-08-28",
+  "schema_version": 1,
+  "source_commit": "93b8749fef8611e3a5450329d2509f9c6ef26fb2",
+  "source_dirty": false,
+  "source_hashes": {
+    "docs/FD_FV_PHASE_6A_PROTOCOL.md": "fd468258a58f0a87f01c65ab664241cd3153a1e9908d9a0d12d515a0165c5f64",
+    "experiments/fd_fv_euler/freeze_phase6a.py": "1c9dda2fb35850e4e01f198ba32c122741b333b7814cda8a89adc92944600549",
+    "experiments/fd_fv_euler/phase6a_oracle.py": "e5f06e198770f1f1e0c159f832a8daea6cd267cd8271377718d0a593954296b3"
+  }
+}

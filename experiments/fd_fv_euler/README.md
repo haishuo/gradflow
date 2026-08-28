@@ -15,3 +15,9 @@ PYTHONPATH=. python experiments/fd_fv_euler/freeze_phase6a.py \
 
 Phase 6A performs no GradFlow production solve and collects no performance
 timing.
+
+Verify the immutable committed record without running a production solver:
+
+```bash
+PYTHONPATH=. python experiments/fd_fv_euler/verify_phase6a.py
+```
