@@ -180,8 +180,14 @@ performance, native lowering, and the broader `Solver` surface remain open.
     generated-code bands showed no structural transition unique to `N=27`.
     The observation is therefore bounded as CPU multithread-runtime/scheduling
     instability, not an FV performance regime or mathematical advantage.
-    CUDA replication remains untested unavailable. See
-    `FD_FV_PHASE_4_REPLICATION_RESULTS.md`.
+    CUDA was initially hidden by the process sandbox rather than absent from
+    Forge. A fresh RTX 5070 Ti admission and 24-worker resident supplement
+    subsequently passed. Its stable compiled result was unresolved at
+    `N=18^3` and favored FD by approximately `1.095x--1.122x` at
+    `N=27^3--64^3`; FV used about `1.267x` the peak allocated device memory.
+    This is a bounded device/compiler result, not universal FD superiority.
+    See `FD_FV_PHASE_4_REPLICATION_RESULTS.md` and
+    `FD_FV_PHASE_4_CUDA_RESULTS.md`.
 
 The longer-term product architecture is documented separately in
 `PRODUCT_VISION.md`, `PROBLEM_MODEL.md`, `EQUATION_EXTENSION_CONTRACT.md`,

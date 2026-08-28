@@ -1,7 +1,11 @@
 # FD/FV Phase-4R replication and causal-characterization result
 
-Status: **CPU replication complete; strong `N=27` replication failed; CUDA
-untested unavailable**.
+Status: **CPU replication complete; strong `N=27` replication failed**.
+
+Post-study correction: CUDA was hidden by the default Codex device sandbox,
+not absent from Forge. The subsequently executed RTX 5070 Ti supplement is
+recorded in `FD_FV_PHASE_4_CUDA_RESULTS.md`. This document preserves the CPU
+process's original visibility record.
 
 Measurement date: 2026-08-27 UTC.
 
@@ -132,13 +136,15 @@ dimension-by-dimension formulations frozen in Phase 4. It does not establish
 a general FD/FV result, nonlinear behavior, Euler behavior, or arbitrary-grid
 performance.
 
-## CUDA boundary
+## CUDA boundary at CPU-record creation
 
 CUDA was not visible to the Phase-4A admission check in this environment.
 Phase 4R therefore records `untested_unavailable` and collected no substitute
-GPU measurement. The frozen CUDA stratum remains ready for a fresh eligible
-machine; no RTX, A100, H100, or consumer-FP64 conclusion follows from this CPU
-record.
+GPU measurement in the CPU artifact. Subsequent inspection established that
+the default sandbox hid Forge's device nodes even though its NVIDIA driver and
+RTX 5070 Ti were healthy. The frozen stratum was then executed through the
+permitted host path as a linked immutable supplement; see
+`FD_FV_PHASE_4_CUDA_RESULTS.md`. No A100 or H100 conclusion follows.
 
 ## Revised Phase-4 interpretation
 

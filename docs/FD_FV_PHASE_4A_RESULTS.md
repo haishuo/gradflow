@@ -1,6 +1,11 @@
 # FD/FV Phase-4A multidimensional admission result
 
-Status: **passed on CPU; CUDA unavailable**.
+Status: **passed on CPU; CUDA unavailable to this recorded process**.
+
+Post-study correction: Forge's RTX 5070 Ti was hidden by the default Codex
+device sandbox, not absent from the host. A later fresh CUDA admission passed;
+see `FD_FV_PHASE_4_CUDA_RESULTS.md`. This document and its immutable record
+continue to describe the original process observation.
 
 Run date: 2026-08-27 UTC.
 

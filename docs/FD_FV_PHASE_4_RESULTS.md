@@ -1,6 +1,6 @@
 # FD/FV Phase-4 scalar CPU bakeoff result
 
-Status: **CPU matrix complete; CUDA unavailable**.
+Status: **CPU matrix complete; CUDA unavailable to this recorded process**.
 
 Post-study note: the preregistered Phase-4R investigation is complete. It did
 not strongly replicate the isolated `N=27^3` result and associated the fast FV
@@ -130,7 +130,9 @@ Before extending to nonlinear scalar flow or Euler:
 5. make an explicit value-of-information decision before renting FP64 data-
    center hardware.
 
-Items 1--3 were completed by Phase 4R. CUDA remained unavailable, so item 4
-remains conditional. The Phase-4R result does not support a persistent FV
-crossover; see `FD_FV_PHASE_4_REPLICATION_RESULTS.md`. No universal FD/FV or
-publication claim is supported yet.
+Items 1--3 were completed by Phase 4R. CUDA was later identified as hidden by
+the default sandbox and item 4 was completed on Forge's RTX 5070 Ti as a linked
+supplement. The Phase-4R result does not support a persistent FV crossover;
+see `FD_FV_PHASE_4_REPLICATION_RESULTS.md` and
+`FD_FV_PHASE_4_CUDA_RESULTS.md`. No universal FD/FV or publication claim is
+supported yet.

@@ -140,8 +140,10 @@ product framework work must not delay the bounded paper.
    preregistered causal replication of its anomalous `N=27^3` point are
    complete. The anomaly did not pass strong replication and is associated
    with unstable multithread execution rather than a unique compiler-structure
-   transition. CUDA replication and the prospectively qualified nonlinear
-   scalar slice remain.**
+   transition. The frozen resident CUDA replication subsequently passed on
+   Forge's RTX 5070 Ti and modestly favored compiled FD at the three larger
+   sizes. Transfer-inclusive/AOT endpoints and the prospectively qualified
+   nonlinear scalar slice remain.**
 4. Extend qualification and the frozen comparison to ideal-gas Euler, then
    reproduce the result on a second machine and make a value-of-information
    decision for data-center FP64 hardware.

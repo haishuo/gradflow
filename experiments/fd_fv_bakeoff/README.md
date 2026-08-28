@@ -14,5 +14,8 @@ Phase 4A passed and is preserved under `results/phase_4a_20260827`. The admitted
 CPU Phase-4B matrix is under `results/phase_4b_20260827`; run
 `verify_phase_4a.py` and `verify_phase_4b.py` to verify both result series.
 Phase 4R is under `results/phase_4r_20260827`; `verify_phase_4r.py` recomputes
-all statistics and the failed strong-replication decision. CUDA remained
-unavailable and has no measurements in any of these records.
+all statistics and the failed strong-replication decision. CUDA was hidden by
+the default sandbox during that run, not absent from Forge. The linked RTX
+5070 Ti supplement is under `results/phase_4r_cuda_20260828`;
+`verify_phase_4r_cuda.py` verifies its fresh admission, 24 workers, and 2,400
+event samples.

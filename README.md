@@ -67,8 +67,12 @@ modes recurred, but the frozen strong-replication criterion failed; the effect
 was unique to `N=27`, highly multimodal, absent under stable one-thread timing,
 and unsupported by a unique generated-kernel transition. It is therefore a
 localized CPU multithread-runtime observation, not an FV crossover. CUDA
-remained unavailable. See `docs/FD_FV_PHASE_4_RESULTS.md` and
-`docs/FD_FV_PHASE_4_REPLICATION_RESULTS.md`.
+was initially hidden by the execution sandbox, then admitted and replicated
+on Forge's RTX 5070 Ti. Compiled resident FD was unresolved at `N=18^3` and
+approximately `9--12%` faster at `N=27^3--64^3`, with tightly replicated GPU
+timings. See `docs/FD_FV_PHASE_4_RESULTS.md`,
+`docs/FD_FV_PHASE_4_REPLICATION_RESULTS.md`, and
+`docs/FD_FV_PHASE_4_CUDA_RESULTS.md`.
 
 Phase D has now completed an exhaustive scalar binary32/binary64 search over
 384 coarse and 768 refined order/policy pairs. On the frozen cases, binary32

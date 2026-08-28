@@ -1,0 +1,93 @@
+{
+  "available": true,
+  "cases": [
+    {
+      "cells_per_axis": 81,
+      "compiled_eager_maximum_absolute_difference": 1.1102230246251565e-16,
+      "cpu_eager_gpu_eager_maximum_absolute_difference": 1.1102230246251565e-16,
+      "dimension": 1,
+      "finite": true,
+      "graph_break_count": 0,
+      "graph_count": 1,
+      "method": "fd",
+      "passed": true,
+      "resident": true
+    },
+    {
+      "cells_per_axis": 40,
+      "compiled_eager_maximum_absolute_difference": 2.220446049250313e-16,
+      "cpu_eager_gpu_eager_maximum_absolute_difference": 1.1102230246251565e-16,
+      "dimension": 2,
+      "finite": true,
+      "graph_break_count": 0,
+      "graph_count": 1,
+      "method": "fd",
+      "passed": true,
+      "resident": true
+    },
+    {
+      "cells_per_axis": 27,
+      "compiled_eager_maximum_absolute_difference": 2.220446049250313e-16,
+      "cpu_eager_gpu_eager_maximum_absolute_difference": 1.1102230246251565e-16,
+      "dimension": 3,
+      "finite": true,
+      "graph_break_count": 0,
+      "graph_count": 1,
+      "method": "fd",
+      "passed": true,
+      "resident": true
+    },
+    {
+      "cells_per_axis": 81,
+      "compiled_eager_maximum_absolute_difference": 1.1102230246251565e-16,
+      "cpu_eager_gpu_eager_maximum_absolute_difference": 1.1102230246251565e-16,
+      "dimension": 1,
+      "finite": true,
+      "graph_break_count": 0,
+      "graph_count": 1,
+      "method": "fv",
+      "passed": true,
+      "resident": true
+    },
+    {
+      "cells_per_axis": 40,
+      "compiled_eager_maximum_absolute_difference": 1.1102230246251565e-16,
+      "cpu_eager_gpu_eager_maximum_absolute_difference": 1.1102230246251565e-16,
+      "dimension": 2,
+      "finite": true,
+      "graph_break_count": 0,
+      "graph_count": 1,
+      "method": "fv",
+      "passed": true,
+      "resident": true
+    },
+    {
+      "cells_per_axis": 27,
+      "compiled_eager_maximum_absolute_difference": 2.220446049250313e-16,
+      "cpu_eager_gpu_eager_maximum_absolute_difference": 1.1102230246251565e-16,
+      "dimension": 3,
+      "finite": true,
+      "graph_break_count": 0,
+      "graph_count": 1,
+      "method": "fv",
+      "passed": true,
+      "resident": true
+    }
+  ],
+  "environment": {
+    "cuda_driver": "580.173.02",
+    "cuda_runtime": "13.0",
+    "device": "NVIDIA GeForce RTX 5070 Ti",
+    "device_capability": [
+      12,
+      0
+    ],
+    "device_total_memory_bytes": 16609247232,
+    "device_uuid": "a350efdc-59b1-8296-7dab-ade66607a1b2",
+    "multiprocessor_count": 70,
+    "torch": "2.13.0+cu130"
+  },
+  "passed": true,
+  "performance_measurements_collected": false,
+  "status": "passed"
+}
