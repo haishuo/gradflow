@@ -35,6 +35,13 @@ from .euler1d import (
     euler1d_rhs_with_boundary_fluxes,
     euler1d_ssp_rk3_step,
 )
+from .euler1d_fv import (
+    EULER1D_FV_FORMULATION_ID,
+    euler1d_fv_cfl_timestep,
+    euler1d_fv_rhs,
+    euler1d_fv_rhs_with_boundary_fluxes,
+    euler1d_fv_ssp_rk3_step,
+)
 from .fv_weno5 import (
     FV_WENO5_FORMULATION_ID,
     fv_global_lax_friedrichs_flux,
@@ -102,11 +109,16 @@ __all__ = [
     "UnsupportedProblemError",
     "euler_cfl_timestep",
     "EULER1D_BOUNDARIES",
+    "EULER1D_FV_FORMULATION_ID",
     "FV_WENO5_FORMULATION_ID",
     "euler1d_cfl_timestep",
     "euler1d_rhs",
     "euler1d_rhs_with_boundary_fluxes",
     "euler1d_ssp_rk3_step",
+    "euler1d_fv_cfl_timestep",
+    "euler1d_fv_rhs",
+    "euler1d_fv_rhs_with_boundary_fluxes",
+    "euler1d_fv_ssp_rk3_step",
     "fv_global_lax_friedrichs_flux",
     "fv_weno5_face_states",
     "fv_weno5_rhs",
