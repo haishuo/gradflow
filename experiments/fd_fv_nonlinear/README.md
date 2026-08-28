@@ -13,3 +13,14 @@ python experiments/fd_fv_nonlinear/verify_phase_5a.py
 
 The generator refuses to overwrite the committed record. Use an explicit new
 output directory when testing deterministic regeneration.
+
+Phase 5B adds the correctness-only production qualification runner. It requires
+a clean committed source revision and, on Forge, an explicitly device-visible
+CUDA process:
+
+```bash
+python experiments/fd_fv_nonlinear/qualify_phase_5b.py \
+  --output-dir experiments/fd_fv_nonlinear/results/phase_5b_20260828
+```
+
+The runner performs no timing and refuses an existing output directory.

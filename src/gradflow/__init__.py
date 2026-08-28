@@ -1,5 +1,13 @@
 """GradFlow: research code for differentiable finite-difference WENO."""
 
+from .burgers import (
+    BURGERS_FD_WENO5_FORMULATION_ID,
+    BURGERS_FV_WENO5_FORMULATION_ID,
+    burgers_fd_weno5_rhs,
+    burgers_flux,
+    burgers_fv_weno5_rhs,
+)
+
 from .dveb_abi import (
     DvebAbiError,
     DvebArtifact,
@@ -60,6 +68,8 @@ from .weno_js_coefficients import (
 )
 
 __all__ = [
+    "BURGERS_FD_WENO5_FORMULATION_ID",
+    "BURGERS_FV_WENO5_FORMULATION_ID",
     "DEFAULT_EPSILON",
     "QUALIFIED_ORDERS",
     "PRECISION_BLOCKS",
@@ -80,6 +90,9 @@ __all__ = [
     "weno5_rhs_gottlieb_periodic",
     "BackendDecision",
     "BackendUnavailableError",
+    "burgers_fd_weno5_rhs",
+    "burgers_flux",
+    "burgers_fv_weno5_rhs",
     "EULER_GAMMA",
     "EULER_LF_ENLARGEMENT",
     "EULER_WENO_EPSILON",
