@@ -21,3 +21,24 @@ Verify the immutable committed record without running a production solver:
 ```bash
 PYTHONPATH=. python experiments/fd_fv_euler/verify_phase6a.py
 ```
+
+Phase 6B implements only the prospectively registered matched FV Euler JS5
+formulation and applies the frozen correctness matrix to it and the existing
+FD formulation. The qualification requires a clean committed tree and visible,
+freshly admitted Forge CUDA:
+
+```bash
+PYTHONPATH=src:. python experiments/fd_fv_euler/qualify_phase6b.py \
+  --output experiments/fd_fv_euler/results/phase_6b_20260828
+```
+
+The preserved record contains untimed scalar metrics and all raw numerical
+arrays needed for independent recomputation. Verify it without rerunning a
+production solve:
+
+```bash
+PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6b.py
+```
+
+Phase 6B passed. See `docs/FD_FV_PHASE_6B_RESULTS.md`. It collected no
+performance measurements and does not authorize an FD/FV speed conclusion.

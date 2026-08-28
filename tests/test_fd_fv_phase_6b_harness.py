@@ -11,6 +11,7 @@ from experiments.fd_fv_euler.phase6b_problem import (
     shu_structure,
     sod_wave_metrics,
 )
+from experiments.fd_fv_euler.verify_phase6b import main as verify_phase6b
 
 
 def test_phase6b_sod_initial_is_conservative_cell_average() -> None:
@@ -53,3 +54,7 @@ def test_phase6b_shock_metrics_recover_self_comparison() -> None:
     structure = shu_structure(shu, shu, 800)
     assert abs(structure["density_correlation"] - 1.0) < 1.0e-15
     assert abs(structure["density_total_variation_ratio"] - 1.0) < 1.0e-15
+
+
+def test_phase6b_committed_record_verifies() -> None:
+    verify_phase6b()
