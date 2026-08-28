@@ -373,3 +373,15 @@ Future device records also distinguish host inventory from execution-context
 visibility. Forge's RTX can be hidden from a sandbox without being absent from
 the host; the required vocabulary and admission sequence are in
 `EXECUTION_INFRASTRUCTURE_ADMISSION.md`.
+
+Phase 5B then implemented only the frozen smooth Burgers seed. Both classical
+FD flux reconstruction and dimensional FV state reconstruction passed exact
+projection, conservation, smooth differentiation, CPU/CUDA, full-graph
+compiler, and no-transfer gates. FV retained approximately fifth-order
+whole-grid spatial and complete-solve behavior on the frozen case. Classical
+FD retained approximately fifth order away from critical points while its
+whole-grid rates recorded the expected WENO-JS critical-point degradation.
+
+No runtime was measured. This accuracy difference makes achieved-error versus
+time and memory mandatory in a later Phase 5C; equal-grid timing alone would be
+scientifically misleading. See `FD_FV_PHASE_5B_RESULTS.md`.

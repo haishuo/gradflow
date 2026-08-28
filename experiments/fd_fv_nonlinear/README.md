@@ -24,3 +24,9 @@ python experiments/fd_fv_nonlinear/qualify_phase_5b.py \
 ```
 
 The runner performs no timing and refuses an existing output directory.
+
+Verify the committed qualification without rerunning numerical work:
+
+```bash
+python experiments/fd_fv_nonlinear/verify_phase_5b.py
+```

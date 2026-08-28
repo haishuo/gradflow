@@ -95,6 +95,14 @@ process-hidden CUDA is not conflated with absent host hardware. See
 `docs/FD_FV_PHASE_5A_RESULTS.md` and
 `docs/EXECUTION_INFRASTRUCTURE_ADMISSION.md`.
 
+Phase 5B has now qualified the corresponding production FD and FV Burgers JS5
+operators. Both pass exact-oracle, convergence, conservation, differentiation,
+CPU/CUDA, full-graph compiler, and no-transfer gates. On the frozen smooth
+case, FV retained approximately fifth-order whole-grid behavior; classical FD
+retained approximately fifth order away from critical points while recording
+the expected global JS critical-point degradation. No timing was collected.
+See `docs/FD_FV_PHASE_5B_RESULTS.md`.
+
 ## Current seed
 
 `gradflow.weno5_rhs` operates on unique periodic point samples along the last
@@ -178,6 +186,7 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 ## Repository map
 
 - `src/gradflow/weno5.py` — canonical direct PyTorch WENO-5 seed
+- `src/gradflow/burgers.py` — matched smooth scalar Burgers FD/FV JS5 operators
 - `src/gradflow/fv_weno5.py` — unqualified Phase-3 scalar periodic FV-WENO-JS5 candidate
 - `src/gradflow/weno_js_coefficients.py` — exact-rational arbitrary-order construction
 - `src/gradflow/weno_js.py` — generated axis-general scalar PyTorch WENO-JS
@@ -224,6 +233,8 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `docs/FD_FV_PHASE_4_RESULTS.md` — matched CPU performance result and limits
 - `docs/FD_FV_PHASE_5A_PROTOCOL.md` — frozen nonlinear Burgers contract and next gate
 - `docs/FD_FV_PHASE_5A_RESULTS.md` — independent point/cell-average oracle result
+- `docs/FD_FV_PHASE_5B_PROTOCOL.md` — frozen nonlinear correctness gate
+- `docs/FD_FV_PHASE_5B_RESULTS.md` — qualified nonlinear FD/FV seed result
 - `docs/EXECUTION_INFRASTRUCTURE_ADMISSION.md` — host/device visibility taxonomy
 - `docs/MIXED_PRECISION_PHASE_D_PROTOCOL.md` — frozen Tier-1a scalar precision search
 - `docs/MIXED_PRECISION_PHASE_D_TIER1B_RESULTS.md` — refined numerical seam

@@ -1,0 +1,662 @@
+{
+  "compiler_and_device": {
+    "cpu": {
+      "cases": {
+        "fd_rhs": {
+          "break_reasons": [],
+          "compilation_duration_measured": false,
+          "compilation_executed": true,
+          "compiled_eager_maximum_absolute_difference": 0.0,
+          "device": "cpu",
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "fd_rhs",
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        },
+        "fd_step": {
+          "break_reasons": [],
+          "compilation_duration_measured": false,
+          "compilation_executed": true,
+          "compiled_eager_maximum_absolute_difference": 0.0,
+          "device": "cpu",
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "fd_step",
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        },
+        "fv_rhs": {
+          "break_reasons": [],
+          "compilation_duration_measured": false,
+          "compilation_executed": true,
+          "compiled_eager_maximum_absolute_difference": 0.0,
+          "device": "cpu",
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "fv_rhs",
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        },
+        "fv_step": {
+          "break_reasons": [],
+          "compilation_duration_measured": false,
+          "compilation_executed": true,
+          "compiled_eager_maximum_absolute_difference": 0.0,
+          "device": "cpu",
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "fv_step",
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        }
+      },
+      "passed": true
+    },
+    "cuda": {
+      "agreement": {
+        "fd_rhs": {
+          "finite": true,
+          "maximum_absolute_difference": 1.1102230246251565e-16,
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        },
+        "fd_step": {
+          "finite": true,
+          "maximum_absolute_difference": 1.1102230246251565e-16,
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        },
+        "fv_rhs": {
+          "finite": true,
+          "maximum_absolute_difference": 1.1102230246251565e-16,
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        },
+        "fv_step": {
+          "finite": true,
+          "maximum_absolute_difference": 1.1102230246251565e-16,
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        }
+      },
+      "compiler_cases": {
+        "fd_rhs": {
+          "break_reasons": [],
+          "compilation_duration_measured": false,
+          "compilation_executed": true,
+          "compiled_eager_maximum_absolute_difference": 7.188694084447889e-15,
+          "device": "cuda:0",
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "fd_rhs",
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        },
+        "fd_step": {
+          "break_reasons": [],
+          "compilation_duration_measured": false,
+          "compilation_executed": true,
+          "compiled_eager_maximum_absolute_difference": 2.220446049250313e-16,
+          "device": "cuda:0",
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "fd_step",
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        },
+        "fv_rhs": {
+          "break_reasons": [],
+          "compilation_duration_measured": false,
+          "compilation_executed": true,
+          "compiled_eager_maximum_absolute_difference": 8.215650382226158e-15,
+          "device": "cuda:0",
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "fv_rhs",
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        },
+        "fv_step": {
+          "break_reasons": [],
+          "compilation_duration_measured": false,
+          "compilation_executed": true,
+          "compiled_eager_maximum_absolute_difference": 1.1102230246251565e-16,
+          "device": "cuda:0",
+          "finite": true,
+          "graph_break_count": 0,
+          "graph_count": 1,
+          "name": "fv_step",
+          "passed": true,
+          "resident": true,
+          "tolerance": 2e-11
+        }
+      },
+      "host_inventory": "present",
+      "passed": true,
+      "process_visible": true,
+      "status": "admitted"
+    },
+    "passed": true
+  },
+  "complete_solve_convergence": {
+    "methods": {
+      "fd": {
+        "decreasing": true,
+        "final_l1_rate_minimum": 3.0,
+        "l1_rates": [
+          4.403269384499151,
+          4.2195611727520665,
+          4.046197076344784
+        ],
+        "l2_rates": [
+          3.835155023643345,
+          3.665636539072558,
+          3.6124662233620617
+        ],
+        "largest_error_maximum": 2e-05,
+        "passed": true,
+        "records": [
+          {
+            "cells": 24,
+            "conservation_bound": 9.105427357601003e-15,
+            "conservation_passed": true,
+            "dt_hex": "0x1.767dce434a9b1p-10",
+            "finite": true,
+            "l1_error": 2.4258466474929668e-05,
+            "l2_error": 3.295650736543938e-05,
+            "mass_change": 9.020562075079397e-17,
+            "steps": 70
+          },
+          {
+            "cells": 36,
+            "conservation_bound": 9.105427357601003e-15,
+            "conservation_passed": true,
+            "dt_hex": "0x1.7beb3922e017cp-11",
+            "finite": true,
+            "l1_error": 4.068985039952973e-06,
+            "l2_error": 6.959914482675884e-06,
+            "mass_change": 4.9343245538895844e-17,
+            "steps": 138
+          },
+          {
+            "cells": 54,
+            "conservation_bound": 9.105427357601003e-15,
+            "conservation_passed": true,
+            "dt_hex": "0x1.82edac7e3485dp-12",
+            "finite": true,
+            "l1_error": 7.352893125828002e-07,
+            "l2_error": 1.5744082252898337e-06,
+            "mass_change": 7.298688402628343e-17,
+            "steps": 271
+          },
+          {
+            "cells": 81,
+            "conservation_bound": 9.105427357601003e-15,
+            "conservation_passed": true,
+            "dt_hex": "0x1.8af1a215ca951p-13",
+            "finite": true,
+            "l1_error": 1.425470768967733e-07,
+            "l2_error": 3.639096937956116e-07,
+            "mass_change": 6.1679056923619804e-18,
+            "steps": 531
+          }
+        ]
+      },
+      "fv": {
+        "decreasing": true,
+        "final_l1_rate_minimum": 3.0,
+        "l1_rates": [
+          4.9858188261617515,
+          4.897220176342908,
+          4.981664614341538
+        ],
+        "l2_rates": [
+          4.896851543380519,
+          4.847589554860984,
+          4.702153164136387
+        ],
+        "largest_error_maximum": 2e-05,
+        "passed": true,
+        "records": [
+          {
+            "cells": 24,
+            "conservation_bound": 9.105427357601003e-15,
+            "conservation_passed": true,
+            "dt_hex": "0x1.767dce434a9b1p-10",
+            "finite": true,
+            "l1_error": 1.1140161310684479e-05,
+            "l2_error": 1.5001542473560175e-05,
+            "mass_change": 1.850371707708594e-17,
+            "steps": 70
+          },
+          {
+            "cells": 36,
+            "conservation_bound": 9.105427357601003e-15,
+            "conservation_passed": true,
+            "dt_hex": "0x1.7beb3922e017cp-11",
+            "finite": true,
+            "l1_error": 1.4754767314729812e-06,
+            "l2_error": 2.0598858877265553e-06,
+            "mass_change": 7.555684473143425e-17,
+            "steps": 138
+          },
+          {
+            "cells": 54,
+            "conservation_bound": 9.105427357601003e-15,
+            "conservation_passed": true,
+            "dt_hex": "0x1.82edac7e3485dp-12",
+            "finite": true,
+            "l1_error": 2.025697995116587e-07,
+            "l2_error": 2.8855261481129523e-07,
+            "mass_change": 6.065107264155948e-17,
+            "steps": 271
+          },
+          {
+            "cells": 81,
+            "conservation_bound": 9.105427357601003e-15,
+            "conservation_passed": true,
+            "dt_hex": "0x1.8af1a215ca951p-13",
+            "finite": true,
+            "l1_error": 2.6874915296611258e-08,
+            "l2_error": 4.2876264680758214e-08,
+            "mass_change": 2.05596856412066e-18,
+            "steps": 531
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  "constant_and_conservation": {
+    "cases": {
+      "fd": {
+        "conservation_bound": 9.105427357601003e-15,
+        "constant_rhs_maximum_absolute": 0.0,
+        "constant_step_maximum_absolute": 5.551115123125783e-17,
+        "constant_tolerance": 5e-13,
+        "nonconstant_rhs_mass_residual": 1.50030138462859e-18,
+        "passed": true
+      },
+      "fv": {
+        "conservation_bound": 9.105427357601003e-15,
+        "constant_rhs_maximum_absolute": 0.0,
+        "constant_step_maximum_absolute": 5.551115123125783e-17,
+        "constant_tolerance": 5e-13,
+        "nonconstant_rhs_mass_residual": 6.00120553851436e-18,
+        "passed": true
+      }
+    },
+    "passed": true
+  },
+  "differentiation": {
+    "cases": {
+      "fd": {
+        "finite": true,
+        "maximum_absolute_difference": 1.3320969327601517e-10,
+        "maximum_absolute_tolerance": 3e-06,
+        "passed": true,
+        "relative_l2_difference": 3.812125370086789e-10,
+        "relative_l2_tolerance": 3e-05
+      },
+      "fv": {
+        "finite": true,
+        "maximum_absolute_difference": 1.0166874286898775e-10,
+        "maximum_absolute_tolerance": 3e-06,
+        "passed": true,
+        "relative_l2_difference": 3.5295524240106474e-10,
+        "relative_l2_tolerance": 3e-05
+      }
+    },
+    "passed": true
+  },
+  "environment": {
+    "cuda": {
+      "capability": [
+        12,
+        0
+      ],
+      "device": "NVIDIA GeForce RTX 5070 Ti",
+      "driver_query_returncode": 0,
+      "driver_uuid_query": "580.173.02, GPU-a350efdc-59b1-8296-7dab-ade66607a1b2",
+      "multiprocessor_count": 70,
+      "total_memory_bytes": 16609247232
+    },
+    "cuda_process_visible": true,
+    "cuda_runtime": "13.0",
+    "mps_host_inventory": "absent",
+    "mps_status": "host_confirmed_absent",
+    "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "torch": "2.13.0+cu130"
+  },
+  "explicit_exclusions": [
+    "performance_timing",
+    "nonlinear_shock",
+    "multidimensional_burgers",
+    "best_practical_lane",
+    "dynamic_alpha",
+    "mixed_precision",
+    "arbitrary_order_fv",
+    "automatic_selection",
+    "dveb_changes",
+    "publication_claim"
+  ],
+  "failed_gates": [],
+  "gate_decisions": {
+    "complete_solve_convergence": true,
+    "constant_and_conservation": true,
+    "cpu_cuda_compiler": true,
+    "differentiation": true,
+    "no_hidden_transfer": true,
+    "phase_5a_predecessor": true,
+    "projection_oracle": true,
+    "spatial_convergence": true
+  },
+  "passed": true,
+  "performance_measurements_collected": false,
+  "phase": "fd_fv_nonlinear_phase_5b",
+  "predecessor": {
+    "command": [
+      "/mnt/projects/dveb/.venv-torch/bin/python",
+      "/mnt/projects/gradflow/experiments/fd_fv_nonlinear/verify_phase_5a.py"
+    ],
+    "contract_sha256": "3250bf7aa4647324d683fdacf86117e3668cb54de3f84652c6a9c29c49ad46ab",
+    "manifest_sha256": "b3905246e0fcb41790851def762e6733c973ae54aeffcdfe5ffdfc1186c67e09",
+    "oracle_cases_sha256": "0aaf646eb65e9112dce1d69ea802a4ce4e0487c18d705368c29ac714767f1df0",
+    "passed": true,
+    "returncode": 0,
+    "stderr": "",
+    "stdout": "FD/FV nonlinear Phase 5A verified: exact pre-shock point and cell-average oracles passed, no performance was collected, and device visibility vocabulary is unambiguous."
+  },
+  "projection_oracle": {
+    "cases": {
+      "fd_n17_initial": {
+        "cells": 17,
+        "hex_values_equal": true,
+        "passed": true,
+        "projection": "fd",
+        "time_hex": "0x0.0p+0"
+      },
+      "fd_n17_terminal": {
+        "cells": 17,
+        "hex_values_equal": true,
+        "passed": true,
+        "projection": "fd",
+        "time_hex": "0x1.999999999999ap-4"
+      },
+      "fd_n8_initial": {
+        "cells": 8,
+        "hex_values_equal": true,
+        "passed": true,
+        "projection": "fd",
+        "time_hex": "0x0.0p+0"
+      },
+      "fd_n8_terminal": {
+        "cells": 8,
+        "hex_values_equal": true,
+        "passed": true,
+        "projection": "fd",
+        "time_hex": "0x1.999999999999ap-4"
+      },
+      "fv_n17_initial": {
+        "cells": 17,
+        "hex_values_equal": true,
+        "passed": true,
+        "projection": "fv",
+        "time_hex": "0x0.0p+0"
+      },
+      "fv_n17_terminal": {
+        "cells": 17,
+        "hex_values_equal": true,
+        "passed": true,
+        "projection": "fv",
+        "time_hex": "0x1.999999999999ap-4"
+      },
+      "fv_n8_initial": {
+        "cells": 8,
+        "hex_values_equal": true,
+        "passed": true,
+        "projection": "fv",
+        "time_hex": "0x0.0p+0"
+      },
+      "fv_n8_terminal": {
+        "cells": 8,
+        "hex_values_equal": true,
+        "passed": true,
+        "projection": "fv",
+        "time_hex": "0x1.999999999999ap-4"
+      }
+    },
+    "oracle_forbidden_imports": [],
+    "oracle_independent": true,
+    "passed": true
+  },
+  "protocol": "docs/FD_FV_PHASE_5B_PROTOCOL.md",
+  "protocol_commit": "0d7b427",
+  "schema_version": 1,
+  "source_commit": "7eb2ba2f8d8a181557bffcda3e49214d3bb6e0b5",
+  "source_dirty": false,
+  "source_hashes": {
+    "docs/EXECUTION_INFRASTRUCTURE_ADMISSION.md": "a37ea0894b035229153721c7a5121e74403f485a75bdbbaae24a781796f8a451",
+    "docs/FD_FV_PHASE_5A_PROTOCOL.md": "4abf3094da731855e162dd0e89a852583469d19ff551e2c4408092be06842974",
+    "docs/FD_FV_PHASE_5B_PROTOCOL.md": "692ceba77fa45a7a4415f99b6e5a9f76d03e3c7745137918d9145704b85d3949",
+    "experiments/fd_fv_nonlinear/burgers_oracle.py": "95a8566e972a1cb98aaa92c5b8ffde9d8b42d922d148659a72ca0564e2316e72",
+    "experiments/fd_fv_nonlinear/qualify_phase_5b.py": "4b6c9bcb34c6b09eb59ff660a6fd27685268656749fc5449465231ef98b00ead",
+    "src/gradflow/burgers.py": "ef20af1fd69c3e881ad102d32d52eafc751b15126876ca5949c37c465fdcd166",
+    "src/gradflow/fv_weno5.py": "58b6c55b1fe1e84a5f0eaeb30f31acabf25d0cda713b02c9090085c04c3dbed0",
+    "src/gradflow/weno_js.py": "87df65203851f4f87cb8dd7360c92d586ef43fa2997a11593cbf92a4dc8f6278"
+  },
+  "spatial_convergence": {
+    "critical_points": [
+      0.32,
+      0.8200000000000001
+    ],
+    "methods": {
+      "fd": {
+        "decreasing": true,
+        "final_l1_rate_minimum": 3.0,
+        "final_noncritical_l1_rate_minimum": 4.3,
+        "l1_rates": [
+          3.971640792189067,
+          4.093489014513349,
+          4.380491680421686
+        ],
+        "l2_rates": [
+          3.52365770512321,
+          3.90087625460577,
+          3.66284221004341
+        ],
+        "noncritical_l1_rates": [
+          5.5429198523150225,
+          5.218863029488068,
+          4.889398617124702
+        ],
+        "passed": true,
+        "records": [
+          {
+            "cells": 24,
+            "finite": true,
+            "l1_error": 0.00023674279948652775,
+            "l2_error": 0.0004291055585473979,
+            "noncritical_count": 14,
+            "noncritical_l1_error": 0.00015217786960221104
+          },
+          {
+            "cells": 36,
+            "finite": true,
+            "l1_error": 4.730483709509977e-05,
+            "l2_error": 0.00010282028860685407,
+            "noncritical_count": 20,
+            "noncritical_l1_error": 1.6080211783819907e-05
+          },
+          {
+            "cells": 54,
+            "finite": true,
+            "l1_error": 8.996589747881726e-06,
+            "l2_error": 2.1143097253878915e-05,
+            "noncritical_count": 32,
+            "noncritical_l1_error": 1.9377404385199914e-06
+          },
+          {
+            "cells": 81,
+            "finite": true,
+            "l1_error": 1.5230410940565113e-06,
+            "l2_error": 4.788220161479442e-06,
+            "noncritical_count": 48,
+            "noncritical_l1_error": 2.668795176900829e-07
+          }
+        ]
+      },
+      "fv": {
+        "decreasing": true,
+        "final_l1_rate_minimum": 3.0,
+        "final_noncritical_l1_rate_minimum": 4.3,
+        "l1_rates": [
+          5.0950722030305755,
+          5.03007637154426,
+          5.070919898427895
+        ],
+        "l2_rates": [
+          5.119547515219389,
+          5.065266893231698,
+          5.0739354970008534
+        ],
+        "noncritical_l1_rates": [
+          5.360907625455509,
+          5.341714350600976,
+          5.13485082976922
+        ],
+        "passed": true,
+        "records": [
+          {
+            "cells": 24,
+            "finite": true,
+            "l1_error": 9.315932124025206e-05,
+            "l2_error": 0.000108529087167115,
+            "noncritical_count": 14,
+            "noncritical_l1_error": 8.041560377955845e-05
+          },
+          {
+            "cells": 36,
+            "finite": true,
+            "l1_error": 1.1803984658720346e-05,
+            "l2_error": 1.3615656377173762e-05,
+            "noncritical_count": 22,
+            "noncritical_l1_error": 9.148109485208005e-06
+          },
+          {
+            "cells": 54,
+            "finite": true,
+            "l1_error": 1.53559311052601e-06,
+            "l2_error": 1.7461813995121395e-06,
+            "noncritical_count": 32,
+            "noncritical_l1_error": 1.0488228684782386e-06
+          },
+          {
+            "cells": 81,
+            "finite": true,
+            "l1_error": 1.964859429872137e-07,
+            "l2_error": 2.2315862032584925e-07,
+            "noncritical_count": 48,
+            "noncritical_l1_error": 1.3076749380442712e-07
+          }
+        ]
+      }
+    },
+    "noncritical_exclusion_radius": 0.1,
+    "passed": true
+  },
+  "transfer_evidence": {
+    "passed": true,
+    "profiles": {
+      "cpu_fd": {
+        "aten_to_events": [
+          {
+            "count": 19,
+            "cpu_memory_usage": 0,
+            "device_memory_usage": 0,
+            "self_cpu_memory_usage": 0,
+            "self_device_memory_usage": 0
+          }
+        ],
+        "aten_to_zero_memory": true,
+        "device": "cpu",
+        "method": "fd",
+        "movement_events": [],
+        "passed": true,
+        "resident": true
+      },
+      "cpu_fv": {
+        "aten_to_events": [
+          {
+            "count": 20,
+            "cpu_memory_usage": 0,
+            "device_memory_usage": 0,
+            "self_cpu_memory_usage": 0,
+            "self_device_memory_usage": 0
+          }
+        ],
+        "aten_to_zero_memory": true,
+        "device": "cpu",
+        "method": "fv",
+        "movement_events": [],
+        "passed": true,
+        "resident": true
+      },
+      "cuda_fd": {
+        "aten_to_events": [
+          {
+            "count": 19,
+            "cpu_memory_usage": 0,
+            "device_memory_usage": 0,
+            "self_cpu_memory_usage": 0,
+            "self_device_memory_usage": 0
+          }
+        ],
+        "aten_to_zero_memory": true,
+        "device": "cuda",
+        "method": "fd",
+        "movement_events": [],
+        "passed": true,
+        "resident": true
+      },
+      "cuda_fv": {
+        "aten_to_events": [
+          {
+            "count": 20,
+            "cpu_memory_usage": 0,
+            "device_memory_usage": 0,
+            "self_cpu_memory_usage": 0,
+            "self_device_memory_usage": 0
+          }
+        ],
+        "aten_to_zero_memory": true,
+        "device": "cuda",
+        "method": "fv",
+        "movement_events": [],
+        "passed": true,
+        "resident": true
+      }
+    },
+    "static_forbidden_hits": []
+  }
+}
