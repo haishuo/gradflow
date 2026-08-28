@@ -30,3 +30,8 @@ Verify the committed qualification without rerunning numerical work:
 ```bash
 python experiments/fd_fv_nonlinear/verify_phase_5b.py
 ```
+
+Phase 5C's isolated performance harness is governed by the prospectively frozen
+`docs/FD_FV_PHASE_5C_PROTOCOL.md`. It requires a clean committed source and a
+device-visible Forge process; do not run it from the default device-isolated
+sandbox.
