@@ -154,8 +154,9 @@ def observable_rates(errors: list[float]) -> list[float]:
     ]
 
 
-def uniform_states() -> dict[str, Any]:
+def uniform_states() -> tuple[dict[str, Any], dict[str, np.ndarray]]:
     cases: dict[str, Any] = {}
+    arrays: dict[str, np.ndarray] = {}
     primitive = torch.tensor(
         [[1.2], [0.31], [0.93]], dtype=torch.float64
     ).expand(3, 19)
@@ -165,24 +166,31 @@ def uniform_states() -> dict[str, Any]:
             rhs = method_rhs(method, state, 1.0 / 19.0, boundary)
             maximum = float(torch.max(torch.abs(rhs)))
             key = f"{method}_{boundary}"
+            arrays[f"uniform_{key}_rhs"] = rhs.numpy()
             cases[key] = {
                 "maximum_absolute_rhs": maximum,
                 "tolerance": 2.0e-12,
                 "passed": maximum <= 2.0e-12,
             }
-    return {"cases": cases, "passed": all(x["passed"] for x in cases.values())}
+    return (
+        {"cases": cases, "passed": all(x["passed"] for x in cases.values())},
+        arrays,
+    )
 
 
-def smooth_spatial_convergence() -> dict[str, Any]:
+def smooth_spatial_convergence() -> tuple[dict[str, Any], dict[str, np.ndarray]]:
     methods: dict[str, Any] = {}
+    arrays: dict[str, np.ndarray] = {}
     for method in METHODS:
         records = []
         errors = {name: [] for name in ("l1", "l2", "linf")}
         for cells in SIZES:
-            actual = method_rhs(
-                method, smooth_state(method, cells, 0.0), 1.0 / cells, "periodic"
-            )
-            norms = error_norms(actual - smooth_rhs(method, cells, 0.0))
+            state = smooth_state(method, cells, 0.0)
+            expected = smooth_rhs(method, cells, 0.0)
+            actual = method_rhs(method, state, 1.0 / cells, "periodic")
+            norms = error_norms(actual - expected)
+            arrays[f"spatial_{method}_n{cells}_actual"] = actual.numpy()
+            arrays[f"spatial_{method}_n{cells}_expected"] = expected.numpy()
             for name, value in norms.items():
                 errors[name].append(value)
             records.append({"cells": cells, **norms})
@@ -203,7 +211,10 @@ def smooth_spatial_convergence() -> dict[str, Any]:
             "decreasing": decreasing,
             "passed": passed,
         }
-    return {"methods": methods, "passed": all(x["passed"] for x in methods.values())}
+    return (
+        {"methods": methods, "passed": all(x["passed"] for x in methods.values())},
+        arrays,
+    )
 
 
 def conservation_bound(initial: torch.Tensor, dx: float) -> torch.Tensor:
@@ -216,8 +227,11 @@ def conservation_bound(initial: torch.Tensor, dx: float) -> torch.Tensor:
     )
 
 
-def smooth_complete_solve_convergence() -> dict[str, Any]:
+def smooth_complete_solve_convergence() -> tuple[
+    dict[str, Any], dict[str, np.ndarray]
+]:
     methods: dict[str, Any] = {}
+    arrays: dict[str, np.ndarray] = {}
     with torch.no_grad():
         for method in METHODS:
             records = []
@@ -229,6 +243,9 @@ def smooth_complete_solve_convergence() -> dict[str, Any]:
                     method, initial, dx, FINAL_SMOOTH_TIME, "periodic"
                 )
                 expected = smooth_state(method, cells, FINAL_SMOOTH_TIME)
+                arrays[f"solve_{method}_n{cells}_initial"] = initial.numpy()
+                arrays[f"solve_{method}_n{cells}_actual"] = actual.numpy()
+                arrays[f"solve_{method}_n{cells}_expected"] = expected.numpy()
                 norms = error_norms(actual - expected)
                 for name, value in norms.items():
                     errors[name].append(value)
@@ -270,10 +287,13 @@ def smooth_complete_solve_convergence() -> dict[str, Any]:
                 "decreasing_l1_l2": decreasing,
                 "passed": passed,
             }
-    return {"methods": methods, "passed": all(x["passed"] for x in methods.values())}
+    return (
+        {"methods": methods, "passed": all(x["passed"] for x in methods.values())},
+        arrays,
+    )
 
 
-def conservation() -> dict[str, Any]:
+def conservation() -> tuple[dict[str, Any], dict[str, np.ndarray]]:
     cells = 43
     dx = 1.0 / cells
     x = (torch.arange(cells, dtype=torch.float64) + 0.5) * dx
@@ -286,6 +306,7 @@ def conservation() -> dict[str, Any]:
     )
     state = primitive_to_conserved(primitive)
     cases: dict[str, Any] = {}
+    arrays: dict[str, np.ndarray] = {}
     for method in METHODS:
         for boundary in BOUNDARIES:
             rhs, fluxes = method_rhs_fluxes(method, state, dx, boundary)
@@ -301,6 +322,8 @@ def conservation() -> dict[str, Any]:
             ratio = residual / scale
             maximum = float(torch.max(ratio))
             key = f"{method}_{boundary}"
+            arrays[f"conservation_{key}_rhs"] = rhs.numpy()
+            arrays[f"conservation_{key}_fluxes"] = fluxes.numpy()
             cases[key] = {
                 "residual": residual.tolist(),
                 "roundoff_scale": scale.tolist(),
@@ -309,7 +332,11 @@ def conservation() -> dict[str, Any]:
                 "maximum_allowed": 64.0,
                 "passed": maximum <= 64.0,
             }
-    return {"cases": cases, "passed": all(x["passed"] for x in cases.values())}
+    arrays["conservation_state"] = state.numpy()
+    return (
+        {"cases": cases, "passed": all(x["passed"] for x in cases.values())},
+        arrays,
+    )
 
 
 def differentiation() -> dict[str, Any]:
@@ -523,7 +550,9 @@ def component_error(actual: torch.Tensor, expected: torch.Tensor) -> dict[str, A
     }
 
 
-def shock_study(temporary: Path, thresholds: dict[str, Any]) -> dict[str, Any]:
+def shock_study(thresholds: dict[str, Any]) -> tuple[
+    dict[str, Any], dict[str, np.ndarray]
+]:
     problems: dict[str, Any] = {}
     arrays: dict[str, np.ndarray] = {}
     with torch.no_grad():
@@ -556,9 +585,10 @@ def shock_study(temporary: Path, thresholds: dict[str, Any]) -> dict[str, Any]:
                         record["structure"] = shu_structure(
                             actual_primitive, expected_primitive, cells
                         )
-                    if cells == max(SHOCK_SIZES):
-                        arrays[f"{problem}_conserved"] = actual.numpy()
-                        arrays[f"{problem}_primitive"] = actual_primitive.numpy()
+                    arrays[f"shock_{problem}_n{cells}_conserved"] = actual.numpy()
+                    arrays[f"shock_{problem}_n{cells}_primitive"] = (
+                        actual_primitive.numpy()
+                    )
                 records.append(record)
             limits = thresholds[problem]
             completed = all(record["completed"] for record in records)
@@ -641,11 +671,13 @@ def shock_study(temporary: Path, thresholds: dict[str, Any]) -> dict[str, Any]:
                 "gate_decisions": gates,
                 "passed": all(gates.values()),
             }
-    np.savez_compressed(temporary / "shock_finest.npz", **arrays)
-    return {
-        "problems": problems,
-        "passed": all(problem["passed"] for problem in problems.values()),
-    }
+    return (
+        {
+            "problems": problems,
+            "passed": all(problem["passed"] for problem in problems.values()),
+        },
+        arrays,
+    )
 
 
 def environment() -> dict[str, Any]:
@@ -696,10 +728,10 @@ def qualify(output: Path) -> None:
         ),
     }
     projections = projection_identity()
-    uniform = uniform_states()
-    spatial = smooth_spatial_convergence()
-    solves = smooth_complete_solve_convergence()
-    conservation_result = conservation()
+    uniform, uniform_arrays = uniform_states()
+    spatial, spatial_arrays = smooth_spatial_convergence()
+    solves, solve_arrays = smooth_complete_solve_convergence()
+    conservation_result, conservation_arrays = conservation()
     gradients = differentiation()
     compiler = compiler_and_device()
     transfers = transfer_evidence()
@@ -709,7 +741,15 @@ def qualify(output: Path) -> None:
         prefix="phase6b_", dir=output.parent
     ) as temporary_name:
         temporary = Path(temporary_name)
-        shocks = shock_study(temporary, thresholds)
+        shocks, shock_arrays = shock_study(thresholds)
+        np.savez_compressed(
+            temporary / "raw_arrays.npz",
+            **uniform_arrays,
+            **spatial_arrays,
+            **solve_arrays,
+            **conservation_arrays,
+            **shock_arrays,
+        )
         gates = {
             "predecessors": all(x["passed"] for x in predecessors.values()),
             "projection_identity": projections["passed"],
