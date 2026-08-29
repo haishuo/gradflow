@@ -69,8 +69,14 @@ def git(*arguments: str) -> str:
 
 
 def verify(path: Path) -> dict[str, Any]:
+    verifier_environment = os.environ.copy()
+    verifier_environment["PYTHONPATH"] = f"{ROOT / 'src'}:{ROOT}"
     completed = subprocess.run(
-        (sys.executable, str(path)), cwd=ROOT, capture_output=True, text=True
+        (sys.executable, str(path)),
+        cwd=ROOT,
+        env=verifier_environment,
+        capture_output=True,
+        text=True,
     )
     return {
         "path": str(path.relative_to(ROOT)),
