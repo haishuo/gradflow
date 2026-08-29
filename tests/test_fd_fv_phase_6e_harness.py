@@ -64,3 +64,16 @@ def test_phase6e_host_advance_matches_frozen_stage_algebra() -> None:
     assert bool(torch.all(density > 0.0))
     assert bool(torch.all(pressure > 0.0))
     assert bool(torch.all(finite))
+
+
+def test_committed_phase6e_initial_aot_record_verifies() -> None:
+    root = Path(__file__).resolve().parents[1]
+    completed = subprocess.run(
+        (
+            sys.executable,
+            str(root / "experiments/fd_fv_euler/verify_phase6e_aot.py"),
+        ),
+        cwd=root,
+        check=False,
+    )
+    assert completed.returncode == 0

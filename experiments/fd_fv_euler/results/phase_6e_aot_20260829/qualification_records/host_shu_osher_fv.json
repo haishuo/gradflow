@@ -1,0 +1,273 @@
+{
+  "array_bytes": 19328,
+  "array_file": "host_shu_osher_fv.npy",
+  "array_file_sha256": "e7ad43a36e5495c1699264b162894e5fec3e8fdc31835c7f23af154f1ae4d05a",
+  "authority_parity": {
+    "absolute_bound": 8.317128922257504e-09,
+    "actual": "host_shu_osher_fv.npy",
+    "actual_at_maximum": 40.87318689246545,
+    "epsilon": 2.220446049250313e-16,
+    "equal_elements": 267,
+    "exact_equal": false,
+    "maximum_absolute_difference": 5.2082782531215344e-11,
+    "maximum_location": [
+      2,
+      280
+    ],
+    "mean_absolute_difference": 3.434307714505954e-12,
+    "normalized_l1_difference": 2.563079524219796e-13,
+    "normalized_l2_difference": 3.17356560928646e-13,
+    "passed": true,
+    "reference": "shu_osher_fv_cpu_eager_r0.npy",
+    "reference_at_maximum": 40.87318689251753,
+    "reference_scale": 42.44748458246218,
+    "relative_bound": 1.9593926481320523e-10,
+    "rms_difference": 6.4051274461153485e-12,
+    "shape_dtype_match": true,
+    "step_count_match": true,
+    "steps": 6894,
+    "total_elements": 2400
+  },
+  "cells": 800,
+  "control_boundary": {
+    "declared_device_to_host_operations_per_step": 4,
+    "declared_device_to_host_scalar_values_per_step": 10,
+    "loop_seconds_qualification": 2.6962805301882327
+  },
+  "cuda_peak_allocated_bytes": 951808,
+  "cuda_peak_reserved_bytes": 2097152,
+  "diagnostics": {
+    "cfl_scalar_host_controlled": true,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.800027356969191,
+    "minimum_pressure": 0.9999872538847527,
+    "simulated_time": 1.8,
+    "steps": 6894
+  },
+  "dtype": "float64",
+  "eligible": false,
+  "kind": "phase6e_aot_qualification",
+  "lane": "host",
+  "method": "fv",
+  "movement_probe": {
+    "event_keys": [
+      "Activity Buffer Request",
+      "aten::empty_strided",
+      "cuLaunchKernel",
+      "cudaDeviceSynchronize",
+      "cudaEventQuery",
+      "cudaEventRecord",
+      "cudaGetErrorString",
+      "triton_for_fused_0",
+      "triton_per_fused_abs_add_amax_div_mul_pow_reciprocal_roll_rsub_select_slice_sqrt_sub_sum_unsqueeze_1",
+      "triton_per_fused_min_select_stack_14",
+      "triton_per_fused_min_select_stack_15",
+      "triton_per_fused_min_select_stack_24",
+      "triton_per_fused_min_select_stack_25",
+      "triton_poi_fused_add_amin_div_mul_pow_select_stack_6",
+      "triton_poi_fused_add_cat_div_expand_mul_slice_sub_16",
+      "triton_poi_fused_add_cat_div_expand_mul_slice_sub_18",
+      "triton_poi_fused_add_cat_div_expand_mul_slice_sub_19",
+      "triton_poi_fused_add_div_mul_ones_like_pow_reciprocal_roll_rsub_select_slice_sqrt_stack_sub_sum_unsqueeze_2",
+      "triton_poi_fused_add_div_mul_permute_select_stack_sub_sum_9",
+      "triton_poi_fused_add_div_mul_slice_sub_17",
+      "triton_poi_fused_add_div_mul_slice_sub_26",
+      "triton_poi_fused_add_mul_permute_stack_sub_sum_11",
+      "triton_poi_fused_add_mul_pow_stack_5",
+      "triton_poi_fused_cat_expand_slice_20",
+      "triton_poi_fused_cat_expand_slice_21",
+      "triton_poi_fused_clamp_min_mul_slice_stack_unsqueeze_10",
+      "triton_poi_fused_div_mul_pow_select_stack_sub_22",
+      "triton_poi_fused_div_mul_slice_stack_sum_unsqueeze_7",
+      "triton_poi_fused_mul_neg_ones_like_pow_reciprocal_stack_sub_3",
+      "triton_poi_fused_mul_permute_slice_stack_sub_sum_unsqueeze_8",
+      "triton_poi_fused_mul_permute_slice_stack_sum_unsqueeze_4",
+      "triton_red_fused_abs_add_amax_div_minimum_mul_pow_reciprocal_select_slice_sqrt_stack_sub_12",
+      "triton_red_fused_abs_all_eq_mul_ne_stack_13",
+      "triton_red_fused_abs_all_eq_mul_ne_stack_23"
+    ],
+    "forbidden_movement_events": []
+  },
+  "one_step_maximum_absolute_differences": [
+    1.7763568394002505e-15,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "one_step_passed": true,
+  "one_step_tolerance": 5e-11,
+  "oracle": {
+    "conserved_l1_errors": [
+      0.011332252769926752,
+      0.024661681902106124,
+      0.05833485980774599
+    ],
+    "feature_metrics": {
+      "density_correlation": 0.9986190141703877,
+      "density_total_variation_ratio": 0.9463692054840459,
+      "window": [
+        -3.0,
+        3.0
+      ]
+    },
+    "gate_decisions": {
+      "completed": true,
+      "density_correlation": true,
+      "density_total_variation_ratio": true,
+      "finest_l1_thresholds": true,
+      "positive_stages": true
+    },
+    "passed": true,
+    "primitive_errors": {
+      "l1": {
+        "density": 0.011332252769926752,
+        "pressure": 0.01639360581744717,
+        "velocity": 0.0037997063929281483
+      },
+      "l2": {
+        "density": 0.035933412895884455,
+        "pressure": 0.0913465832720895,
+        "velocity": 0.04311876409545853
+      },
+      "linf": {
+        "density": 0.6831163344057208,
+        "pressure": 2.1602120546564305,
+        "velocity": 1.180064337793661
+      }
+    }
+  },
+  "package_inventory": {
+    "cpp_sources": [
+      "host_shu_osher_fv/data/aotinductor/model/cdrkbfw23aeiguksiyzt5brhaecvyweyms3ib47gtbhl3fudjhpo.kernel.cpp",
+      "host_shu_osher_fv/data/aotinductor/model/cnkkmbqb7i7mmv2l4wgxhjojk2sixxxac35kcha3eqd66ggaajiv.wrapper.cpp"
+    ],
+    "cuda_sources": [],
+    "members": [
+      "host_shu_osher_fv/.data/serialization_id",
+      "host_shu_osher_fv/.data/version",
+      "host_shu_osher_fv/archive_format",
+      "host_shu_osher_fv/archive_version",
+      "host_shu_osher_fv/byteorder",
+      "host_shu_osher_fv/data/aotinductor/model/c5gsu23e2w5cofrm5742pmd7ybdpocu7bpi5cdllp5qc4wcvrnb3.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/catcdfx4bfzeloado33dxwriozkbvax7mcvv4bnc3uipw6cvwd5c.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cctibn6rk7e66c6f2cfmvxlmhgmhrxsbk3xs4zx4tvftl5lnz6dz.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cdrkbfw23aeiguksiyzt5brhaecvyweyms3ib47gtbhl3fudjhpo.kernel.cpp",
+      "host_shu_osher_fv/data/aotinductor/model/cdrkbfw23aeiguksiyzt5brhaecvyweyms3ib47gtbhl3fudjhpo.kernel_metadata.json",
+      "host_shu_osher_fv/data/aotinductor/model/cf24eygjfg2qjgz6y7lq5g2agbg6xl4x2jhv6fjlrctp6zxgebur.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cgkpqof7iddmm4fnbunzodrs3gyawmelizpb3m435z3de3l3rbk3.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/chhadsv4m7tvusfiwj7uj5dor4upojeau2qqksqltwgh277gl5jb.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/chm3wrhgtv2vokwi3zyh2j7ownowuoegbttxos7hzgc7q572w5k5.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/chts3654qyw5cqthfm5jznfw5v4ysyitcu4dqszywf6l5nszrl55.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cj5tmrqbbqotjmrf3vkfsqwavtqphvgp6z34n7jgk7ohvds5yv32.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cjrmo5fd7ivvlvoevwv7by3m7urhokzj36jb5npwkl5t7bm3y4cb.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/clxxtq4f2b6u5qdeepug3hqhik5afsjgefixidpre2bsmd33azsj.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cmarl6k2sgayh7ovhfxox3jfpb5x5innzibomubrkuy3fi56ak5h.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cn7ecaehkj6p67ubghhxic3mrgobdusvaupklnk77rk6ms22keyh.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cnfq2h3lcsdslegrndtqxgl3z26mmfot7upbjv67bta5motjq3k2.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cnkkmbqb7i7mmv2l4wgxhjojk2sixxxac35kcha3eqd66ggaajiv.wrapper.cpp",
+      "host_shu_osher_fv/data/aotinductor/model/cnkkmbqb7i7mmv2l4wgxhjojk2sixxxac35kcha3eqd66ggaajiv.wrapper.so",
+      "host_shu_osher_fv/data/aotinductor/model/cnkkmbqb7i7mmv2l4wgxhjojk2sixxxac35kcha3eqd66ggaajiv.wrapper_metadata.json",
+      "host_shu_osher_fv/data/aotinductor/model/cnpc2ehe5ibh6a5gch537ythsfuvxlwx7237vj3qds3sv3w55een.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cnuis4xudwfjdraiabwwizb5msa57qtaiapzvkfellsqjsuzuxsb.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cobiphaynijc4z2piegv532nyojrhd5xdrkwtgxxytspsfjrtbj3.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cpbnumqul6imeqena3rx6tcghcrlbabw6clcj7i7sda5bvnfz6vh.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/crcfnuse2z7fr64ti5intruk5gj35zdpjklconuf3sgaed5lsx7t.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/ct7ycxs3s6lluse4b6yjz46dzqap6dcu4ovpqg3tjb5arhmif4dr.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/ctjii5mijexbkigshtws2ogvhuhg6tloekqji2hhaqtkmi2jysnq.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cucxw47b2shr3pwfwvz7n5iu6iy6bs5vrmz7phjw2peqt5xvqe6t.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cvzokhbely6eugxfsrq4cpgsgpfaa22wxtnkrvzabofeczme7h4n.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cxfymvzcosnmuhcj2q33cjeb7ovadrlwpsyk2f5mu7sht6tggq6u.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cy2gczrxxv36ndwfrl575amtaiiot26zafl4ohoe7xboqacrfdkz.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cy3n5dwieyjummavfewtlbdx4kknugpnpdceginqeryu4cm3nsmf.cubin",
+      "host_shu_osher_fv/data/aotinductor/model/cylknpaxvhbauuevuvuwvsuicdy77qea327eqyazd4magd7obixd.cubin"
+    ],
+    "shared_objects": [
+      "host_shu_osher_fv/data/aotinductor/model/cnkkmbqb7i7mmv2l4wgxhjojk2sixxxac35kcha3eqd66ggaajiv.wrapper.so"
+    ]
+  },
+  "package_load_seconds_qualification": 4.506793648004532,
+  "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_shu_osher_fv.pt2",
+  "package_sha256": "77c7cad189a0ad049b41764d3efa3c343e5e29640bf7586f87ee7be1b33acfb0",
+  "peak_process_rss_bytes": 1248575488,
+  "problem": "shu_osher",
+  "qualification_cache_files": [
+    "25/c25hoog53rfmyfkqyt2zebzwl4a5i6bj6wuifphoe22o4czouny6.cpp",
+    "25/c25hoog53rfmyfkqyt2zebzwl4a5i6bj6wuifphoe22o4czouny6.so",
+    "26/c266e3dzmdejqeyggvrzamvhbsarbavfrpn7v5daw3nzlk4ysmko.cpp",
+    "26/c266e3dzmdejqeyggvrzamvhbsarbavfrpn7v5daw3nzlk4ysmko.so",
+    "cp/ccp47cqtbhixna2ttsqfupyg4erchfpqq56nhgqpybq5utf3lcua.cpp",
+    "cp/ccp47cqtbhixna2ttsqfupyg4erchfpqq56nhgqpybq5utf3lcua.so",
+    "dd/cdde52zg324mrjnl5przagcdar6vt2eiv477zfaxctqrlwvehnnf.cpp",
+    "dd/cdde52zg324mrjnl5przagcdar6vt2eiv477zfaxctqrlwvehnnf.so",
+    "jp/cjplu727gcxweyp3eronjij5hfet4qeo77zysl2o4gyusutyuame.cpp",
+    "jp/cjplu727gcxweyp3eronjij5hfet4qeo77zysl2o4gyusutyuame.so",
+    "locks/c25hoog53rfmyfkqyt2zebzwl4a5i6bj6wuifphoe22o4czouny6.lock",
+    "locks/c266e3dzmdejqeyggvrzamvhbsarbavfrpn7v5daw3nzlk4ysmko.lock",
+    "locks/ccp47cqtbhixna2ttsqfupyg4erchfpqq56nhgqpybq5utf3lcua.lock",
+    "locks/cdde52zg324mrjnl5przagcdar6vt2eiv477zfaxctqrlwvehnnf.lock",
+    "locks/cjplu727gcxweyp3eronjij5hfet4qeo77zysl2o4gyusutyuame.lock",
+    "locks/cqfu33fxzwahcor2sxyqset7kkbkhnahpjriaft7njoob32ux4qb.lock",
+    "qf/cqfu33fxzwahcor2sxyqset7kkbkhnahpjriaft7njoob32ux4qb.cpp",
+    "qf/cqfu33fxzwahcor2sxyqset7kkbkhnahpjriaft7njoob32ux4qb.so"
+  ],
+  "runtime_cache_after_call": [
+    "25/c25hoog53rfmyfkqyt2zebzwl4a5i6bj6wuifphoe22o4czouny6.cpp",
+    "25/c25hoog53rfmyfkqyt2zebzwl4a5i6bj6wuifphoe22o4czouny6.so",
+    "26/c266e3dzmdejqeyggvrzamvhbsarbavfrpn7v5daw3nzlk4ysmko.cpp",
+    "26/c266e3dzmdejqeyggvrzamvhbsarbavfrpn7v5daw3nzlk4ysmko.so",
+    "cp/ccp47cqtbhixna2ttsqfupyg4erchfpqq56nhgqpybq5utf3lcua.cpp",
+    "cp/ccp47cqtbhixna2ttsqfupyg4erchfpqq56nhgqpybq5utf3lcua.so",
+    "dd/cdde52zg324mrjnl5przagcdar6vt2eiv477zfaxctqrlwvehnnf.cpp",
+    "dd/cdde52zg324mrjnl5przagcdar6vt2eiv477zfaxctqrlwvehnnf.so",
+    "jp/cjplu727gcxweyp3eronjij5hfet4qeo77zysl2o4gyusutyuame.cpp",
+    "jp/cjplu727gcxweyp3eronjij5hfet4qeo77zysl2o4gyusutyuame.so",
+    "locks/c25hoog53rfmyfkqyt2zebzwl4a5i6bj6wuifphoe22o4czouny6.lock",
+    "locks/c266e3dzmdejqeyggvrzamvhbsarbavfrpn7v5daw3nzlk4ysmko.lock",
+    "locks/ccp47cqtbhixna2ttsqfupyg4erchfpqq56nhgqpybq5utf3lcua.lock",
+    "locks/cdde52zg324mrjnl5przagcdar6vt2eiv477zfaxctqrlwvehnnf.lock",
+    "locks/cjplu727gcxweyp3eronjij5hfet4qeo77zysl2o4gyusutyuame.lock",
+    "locks/cqfu33fxzwahcor2sxyqset7kkbkhnahpjriaft7njoob32ux4qb.lock",
+    "qf/cqfu33fxzwahcor2sxyqset7kkbkhnahpjriaft7njoob32ux4qb.cpp",
+    "qf/cqfu33fxzwahcor2sxyqset7kkbkhnahpjriaft7njoob32ux4qb.so"
+  ],
+  "runtime_cache_after_load": [
+    "25/c25hoog53rfmyfkqyt2zebzwl4a5i6bj6wuifphoe22o4czouny6.cpp",
+    "25/c25hoog53rfmyfkqyt2zebzwl4a5i6bj6wuifphoe22o4czouny6.so",
+    "26/c266e3dzmdejqeyggvrzamvhbsarbavfrpn7v5daw3nzlk4ysmko.cpp",
+    "26/c266e3dzmdejqeyggvrzamvhbsarbavfrpn7v5daw3nzlk4ysmko.so",
+    "cp/ccp47cqtbhixna2ttsqfupyg4erchfpqq56nhgqpybq5utf3lcua.cpp",
+    "cp/ccp47cqtbhixna2ttsqfupyg4erchfpqq56nhgqpybq5utf3lcua.so",
+    "dd/cdde52zg324mrjnl5przagcdar6vt2eiv477zfaxctqrlwvehnnf.cpp",
+    "dd/cdde52zg324mrjnl5przagcdar6vt2eiv477zfaxctqrlwvehnnf.so",
+    "jp/cjplu727gcxweyp3eronjij5hfet4qeo77zysl2o4gyusutyuame.cpp",
+    "jp/cjplu727gcxweyp3eronjij5hfet4qeo77zysl2o4gyusutyuame.so",
+    "locks/c25hoog53rfmyfkqyt2zebzwl4a5i6bj6wuifphoe22o4czouny6.lock",
+    "locks/c266e3dzmdejqeyggvrzamvhbsarbavfrpn7v5daw3nzlk4ysmko.lock",
+    "locks/ccp47cqtbhixna2ttsqfupyg4erchfpqq56nhgqpybq5utf3lcua.lock",
+    "locks/cdde52zg324mrjnl5przagcdar6vt2eiv477zfaxctqrlwvehnnf.lock",
+    "locks/cjplu727gcxweyp3eronjij5hfet4qeo77zysl2o4gyusutyuame.lock",
+    "locks/cqfu33fxzwahcor2sxyqset7kkbkhnahpjriaft7njoob32ux4qb.lock",
+    "qf/cqfu33fxzwahcor2sxyqset7kkbkhnahpjriaft7njoob32ux4qb.cpp",
+    "qf/cqfu33fxzwahcor2sxyqset7kkbkhnahpjriaft7njoob32ux4qb.so"
+  ],
+  "runtime_cache_before": [],
+  "runtime_compiler_sources_created": [
+    "25/c25hoog53rfmyfkqyt2zebzwl4a5i6bj6wuifphoe22o4czouny6.cpp",
+    "26/c266e3dzmdejqeyggvrzamvhbsarbavfrpn7v5daw3nzlk4ysmko.cpp",
+    "cp/ccp47cqtbhixna2ttsqfupyg4erchfpqq56nhgqpybq5utf3lcua.cpp",
+    "dd/cdde52zg324mrjnl5przagcdar6vt2eiv477zfaxctqrlwvehnnf.cpp",
+    "jp/cjplu727gcxweyp3eronjij5hfet4qeo77zysl2o4gyusutyuame.cpp",
+    "qf/cqfu33fxzwahcor2sxyqset7kkbkhnahpjriaft7njoob32ux4qb.cpp"
+  ],
+  "shape": [
+    3,
+    800
+  ],
+  "status": "completed",
+  "terminal_sha256": "442da784459c331eed1b9fad8b9fc518f450a419e77aff37feec1cd716b8d36f",
+  "worker_returncode": 0,
+  "worker_stderr": "USDT:2026-08-29 12:06:42 4152655:4152655 SyncActivityProfilerHandler.cpp:52] profiler_start\nUSDT:2026-08-29 12:06:42 4152655:4152655 SyncActivityProfilerHandler.cpp:59] profiler_stop\n",
+  "worker_stdout": ""
+}

@@ -1,0 +1,16 @@
+{
+  "build_cache_files": [],
+  "cells": 800,
+  "custom_operator_used": false,
+  "dtype": "float64",
+  "error": "cond_fn might be aliasing the input or the output!\n\nWhile executing %while_loop : [num_users=6] = call_function[target=torch.ops.higher_order.while_loop](args = (%while_loop_cond_graph_0, %while_loop_body_graph_0, (%initial, %new_zeros, %zeros, %new_full_1, %new_full_1, %zeros_1), (%new_full,)), kwargs = {})\nOriginal traceback:\nFile \"/mnt/projects/gradflow/experiments/fd_fv_euler/phase6e_aot_model.py\", line 136, in forward\n    return torch.while_loop(\n  File \"<eval_with_key>.5\", line 13, in forward\n    while_loop = torch.ops.higher_order.while_loop(cond_fn_0, body_fn_0, (l_args_2_0_, l_args_2_1_, l_args_2_2_, l_args_2_3_, l_args_2_3_, l_args_2_5_), (l_args_0_closure_0_cell_contents_closure_0_cell_contents,));  cond_fn_0 = body_fn_0 = l_args_2_0_ = l_args_2_1_ = l_args_2_2_ = l_args_2_3_ = l_args_2_5_ = l_args_0_closure_0_cell_contents_closure_0_cell_contents = None\nUse tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)",
+  "error_type": "RuntimeError",
+  "lane": "device",
+  "method": "fd",
+  "problem": "shu_osher",
+  "status": "failed",
+  "total_build_seconds": 3.7400973811745644,
+  "worker_returncode": 1,
+  "worker_stderr": "",
+  "worker_stdout": "{\"cells\": 800, \"custom_operator_used\": false, \"dtype\": \"float64\", \"error\": \"cond_fn might be aliasing the input or the output!\\n\\nWhile executing %while_loop : [num_users=6] = call_function[target=torch.ops.higher_order.while_loop](args = (%while_loop_cond_graph_0, %while_loop_body_graph_0, (%initial, %new_zeros, %zeros, %new_full_1, %new_full_1, %zeros_1), (%new_full,)), kwargs = {})\\nOriginal traceback:\\nFile \\\"/mnt/projects/gradflow/experiments/fd_fv_euler/phase6e_aot_model.py\\\", line 136, in forward\\n    return torch.while_loop(\\n  File \\\"<eval_with_key>.5\\\", line 13, in forward\\n    while_loop = torch.ops.higher_order.while_loop(cond_fn_0, body_fn_0, (l_args_2_0_, l_args_2_1_, l_args_2_2_, l_args_2_3_, l_args_2_3_, l_args_2_5_), (l_args_0_closure_0_cell_contents_closure_0_cell_contents,));  cond_fn_0 = body_fn_0 = l_args_2_0_ = l_args_2_1_ = l_args_2_2_ = l_args_2_3_ = l_args_2_5_ = l_args_0_closure_0_cell_contents_closure_0_cell_contents = None\\nUse tlparse to see full graph. (https://github.com/pytorch/tlparse?tab=readme-ov-file#tlparse-parse-structured-pt2-logs)\", \"error_type\": \"RuntimeError\", \"lane\": \"device\", \"method\": \"fd\", \"problem\": \"shu_osher\", \"status\": \"failed\", \"total_build_seconds\": 3.7400973811745644}\n"
+}
