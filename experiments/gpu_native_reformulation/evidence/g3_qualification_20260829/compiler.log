@@ -1,0 +1,44 @@
+Script started on 2026-08-29 16:10:58+00:00 [COMMAND="experiments/gpu_native_reformulation/native_u0/build_recovery.sh r6q" <not executed on terminal>]
+/mnt/projects/gradflow/experiments/gpu_native_reformulation/native_u0/u0.cu(296): warning #550-D: variable "density" was set but never used
+    float density[6];
+          ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/mnt/projects/gradflow/experiments/gpu_native_reformulation/native_u0/u0.cu(171): warning #177-D: function "<unnamed>::js_weights" was declared but never referenced
+  __attribute__((device)) __inline__ __attribute__((always_inline)) void js_weights(
+                                                                         ^
+
+/mnt/projects/gradflow/experiments/gpu_native_reformulation/native_u0/u0.cu(194): warning #177-D: function "<unnamed>::reconstruct_left" was declared but never referenced
+  __attribute__((device)) __inline__ __attribute__((always_inline)) float reconstruct_left(
+                                                                          ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main13update_kernelENS_11DeviceStateES0_PKfS2_fPfi' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__19306d33_5_u0_cu_main13update_kernelENS_11DeviceStateES0_PKfS2_fPfi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 40 registers, used 0 barriers
+ptxas info    : Compile time = 29.782 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main11face_kernelENS_11DeviceStateEPKfPf' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__19306d33_5_u0_cu_main11face_kernelENS_11DeviceStateEPKfPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 128 registers, used 0 barriers
+ptxas info    : Compile time = 189.689 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main12alpha_kernelENS_11DeviceStateEiPf' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__19306d33_5_u0_cu_main12alpha_kernelENS_11DeviceStateEiPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 36 registers, used 1 barriers
+ptxas info    : Compile time = 10.571 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main17finish_cfl_kernelEPf' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__19306d33_5_u0_cu_main17finish_cfl_kernelEPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 14 registers, used 0 barriers
+ptxas info    : Compile time = 2.568 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main10cfl_kernelENS_11DeviceStateEfPf' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__19306d33_5_u0_cu_main10cfl_kernelENS_11DeviceStateEfPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 35 registers, used 1 barriers
+ptxas info    : Compile time = 9.590 ms
+/mnt/projects/gradflow/experiments/gpu_native_reformulation/native_u0/build/gradflow_r6q
+
+Script done on 2026-08-29 16:11:00+00:00 [COMMAND_EXIT_CODE="0"]

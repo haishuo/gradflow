@@ -97,22 +97,23 @@ checksums verified after restart. The GPU was 40 C and idle before recovery,
 do not establish the cause of the host interruption, but the short recovery
 runs did not reproduce overheating.
 
-## Claim boundary and required qualification
+## Claim boundary and completed qualification
 
-R6 has passed this periodic-vortex diagnostic and the existing `2e-5` FP32
-numerical bound at the measured points. It has **not** yet passed the complete
-GradFlow admission gate. Before any backend or publication claim, freeze and
-run:
+R6 passed this periodic-vortex diagnostic and the existing `2e-5` FP32
+numerical bound at the measured points. Its interface-only R6Q extension was
+then tested on the matched vortex and non-vortex matrix, smooth and critical
+entropy waves, periodic Sod and Shu--Osher-type discontinuities,
+componentwise conservation, and a finite-difference directional response.
 
-- exact matched-input comparison against the preserved Shu/qualified FP32
-  path at the existing `N=6` one- and ten-step points and `N=32` point;
-- non-vortex admissible perturbations and conservation checks;
-- smooth convergence and critical-point tests;
-- Sod and Shu--Osher shock tests;
-- randomized same-session R6 versus cell-recompute timing blocks;
-- start-to-finish latency and peak-workspace measurements;
-- profiler evidence for memory traffic, occupancy, and achieved issue rate;
-- independent replication and, later, arbitrary-order behavior.
+Those state-level results were strong, but R6Q did **not** pass every frozen
+criterion: a stringent RHS relative-RMS bound and the literal zero conservation
+budget for initially zero components failed. R6Q also has no autograd ABI. See
+`G3_QUALIFICATION_RESULTS.md` for the full result and non-admission decision.
+
+Consequently, randomized timing blocks, start-to-finish latency, profiler
+characterization, independent replication, and arbitrary-order generalization
+were not started. They remain beyond G3 and cannot be used to imply backend or
+publication qualification.
 
 No PyTorch, DVEB, public GradFlow, or arbitrary-order implementation was
 changed by this experiment.

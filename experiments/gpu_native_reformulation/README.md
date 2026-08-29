@@ -27,10 +27,13 @@ until the corresponding mathematical contract and oracle result are recorded.
    **Initial damage comparison complete.**
 4. **G3 — correctness recovery and schedule controls.** Execute the
    preregistered R1--R6 ladder and exact-math face-reuse controls against
-   independent GradFlow/Fortran evidence.
+   independent GradFlow/Fortran evidence. **Complete. R6Q strongly
+   corroborated the face-once forward calculation but did not pass every
+   frozen qualification criterion and is not backend-admitted. See
+   `G3_RECOVERY_RESULTS.md` and `G3_QUALIFICATION_RESULTS.md`.**
 5. **G4 — qualified comparison.** Time only candidates that pass the complete
    gate, then determine whether the formulation result generalizes beyond
-   WENO-5.
+   WENO-5. **Not begun; R6Q is presently ineligible.**
 
 CUDA is visible on Forge through the explicitly authorized native execution
 route. G1 was measured on the local NVIDIA GeForce RTX 5070 Ti.
