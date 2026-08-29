@@ -33,7 +33,11 @@ until the corresponding mathematical contract and oracle result are recorded.
    `G3_RECOVERY_RESULTS.md` and `G3_QUALIFICATION_RESULTS.md`.**
 5. **G4 — qualified comparison.** Time only candidates that pass the complete
    gate, then determine whether the formulation result generalizes beyond
-   WENO-5. **Not begun; R6Q is presently ineligible.**
+   WENO-5. Because R6Q did not pass every G3 criterion, G4 was explicitly
+   narrowed to a **non-admission schedule-control performance study**.
+   **Complete: the face-once schedule produced a sustained approximately 2x
+   resident speedup at moderate and large grids, with approximately 2x peak
+   workspace. See `G4_PERFORMANCE_RESULTS.md`.**
 
 CUDA is visible on Forge through the explicitly authorized native execution
 route. G1 was measured on the local NVIDIA GeForce RTX 5070 Ti.

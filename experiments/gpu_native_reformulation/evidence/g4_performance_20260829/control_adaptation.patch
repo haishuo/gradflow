@@ -1,0 +1,150 @@
+diff -ruN control_upstream/build.sh control_source/build.sh
+--- control_upstream/build.sh	2026-08-29 16:48:00.894347176 +0000
++++ control_source/build.sh	2026-08-29 16:38:03.055903983 +0000
+@@ -13,7 +13,7 @@
+ "$cuda/bin/nvcc" -O3 -std=c++17 -arch=sm_120 --fmad=true \
+   -I "$here" -c "$here/cuda.cu" -o "$build/cuda.o"
+ g++ -fopenmp "$build/main.o" "$build/cpu.o" "$build/cuda.o" \
+-  -L "$cuda/lib64" -lcudart -Wl,-rpath,"$cuda/lib64" -o "$build/shu_ceiling"
+-
+-printf '%s\n' "$build/shu_ceiling"
++  -L "$cuda/lib64" -lcudart -Wl,-rpath,"$cuda/lib64" \
++  -o "$build/g4_cell_recompute"
+ 
++printf '%s\n' "$build/g4_cell_recompute"
+diff -ruN control_upstream/cuda.cu control_source/cuda.cu
+--- control_upstream/cuda.cu	2026-08-29 16:48:00.894347176 +0000
++++ control_source/cuda.cu	2026-08-29 16:38:03.055903983 +0000
+@@ -3,7 +3,6 @@
+ 
+ #include <cuda_runtime.h>
+ 
+-#include <chrono>
+ #include <cstdint>
+ #include <stdexcept>
+ #include <string>
+@@ -178,7 +177,10 @@
+   const int blocks = static_cast<int>((cells + 127) / 128);
+   const int capped_blocks = blocks > 65535 ? 65535 : blocks;
+   const float inverse_spacing = static_cast<float>(intervals) / 10.0f;
+-  const auto started = std::chrono::steady_clock::now();
++  cudaEvent_t started{}, stopped{};
++  CUDA_CHECK(cudaEventCreate(&started));
++  CUDA_CHECK(cudaEventCreate(&stopped));
++  CUDA_CHECK(cudaEventRecord(started));
+   for (int step = 0; step < steps; ++step) {
+     CUDA_CHECK(cudaMemsetAsync(dt, 0, sizeof(float)));
+     const std::int64_t interior = static_cast<std::int64_t>(intervals) * intervals * intervals;
+@@ -203,16 +205,19 @@
+         StateView{r, intervals, side, cells}, q1, dt, 3);
+     float* old = q; q = q1; q1 = old;
+   }
+-  CUDA_CHECK(cudaDeviceSynchronize());
+-  const auto stopped = std::chrono::steady_clock::now();
++  CUDA_CHECK(cudaEventRecord(stopped));
++  CUDA_CHECK(cudaEventSynchronize(stopped));
++  float elapsed_ms = 0.0f;
++  CUDA_CHECK(cudaEventElapsedTime(&elapsed_ms, started, stopped));
+ 
+   RunResult result;
+   result.state.resize(initial.size());
+   CUDA_CHECK(cudaMemcpy(result.state.data(), q, state_bytes, cudaMemcpyDeviceToHost));
+-  result.execution_seconds = std::chrono::duration<double>(stopped - started).count();
++  result.execution_seconds = static_cast<double>(elapsed_ms) * 1.0e-3;
+   result.peak_bytes = state_bytes * 4 + alpha_bytes * 3 + sizeof(float);
+   cudaFree(q); cudaFree(q1); cudaFree(q2); cudaFree(r); cudaFree(dt);
+   for (int axis = 0; axis < 3; ++axis) cudaFree(alpha[axis]);
++  CUDA_CHECK(cudaEventDestroy(started));
++  CUDA_CHECK(cudaEventDestroy(stopped));
+   return result;
+ }
+-
+diff -ruN control_upstream/main.cpp control_source/main.cpp
+--- control_upstream/main.cpp	2026-08-29 16:48:00.893347187 +0000
++++ control_source/main.cpp	2026-08-29 16:38:03.055903983 +0000
+@@ -47,26 +47,71 @@
+   return state;
+ }
+ 
++std::vector<float> read_unique_and_duplicate(
++    const std::string& path, int intervals) {
++  const std::int64_t unique_cells =
++      static_cast<std::int64_t>(intervals) * intervals * intervals;
++  const std::size_t unique_elements =
++      static_cast<std::size_t>(5 * unique_cells);
++  std::FILE* file = std::fopen(path.c_str(), "rb");
++  if (!file) throw std::runtime_error("could not open input state");
++  std::vector<float> unique(unique_elements);
++  const std::size_t count =
++      std::fread(unique.data(), sizeof(float), unique_elements, file);
++  const int trailing = std::fgetc(file);
++  std::fclose(file);
++  if (count != unique_elements || trailing != EOF) {
++    throw std::runtime_error("input state has unexpected byte length");
++  }
++
++  const int side = intervals + 1;
++  const std::int64_t duplicated_cells =
++      static_cast<std::int64_t>(side) * side * side;
++  std::vector<float> duplicated(
++      static_cast<std::size_t>(5 * duplicated_cells));
++  for (int component = 0; component < 5; ++component) {
++    for (int z = 0; z < side; ++z) {
++      for (int y = 0; y < side; ++y) {
++        for (int x = 0; x < side; ++x) {
++          const std::int64_t source =
++              (static_cast<std::int64_t>(z % intervals) * intervals
++               + y % intervals) * intervals + x % intervals;
++          const std::int64_t target =
++              (static_cast<std::int64_t>(z) * side + y) * side + x;
++          duplicated[static_cast<std::int64_t>(component) * duplicated_cells
++                     + target] =
++              unique[static_cast<std::int64_t>(component) * unique_cells
++                     + source];
++        }
++      }
++    }
++  }
++  return duplicated;
++}
++
+ }  // namespace
+ 
+ int main(int argc, char** argv) {
+   std::string target;
+   int size = 0, steps = 1;
+-  std::string output;
++  std::string input_state, output;
+   for (int i = 1; i < argc; ++i) {
+     if (std::strcmp(argv[i], "--target") == 0 && i + 1 < argc) target = argv[++i];
+     else if (std::strcmp(argv[i], "--size") == 0 && i + 1 < argc) size = std::atoi(argv[++i]);
+     else if (std::strcmp(argv[i], "--steps") == 0 && i + 1 < argc) steps = std::atoi(argv[++i]);
++    else if (std::strcmp(argv[i], "--input-state") == 0 && i + 1 < argc) input_state = argv[++i];
+     else if (std::strcmp(argv[i], "--output") == 0 && i + 1 < argc) output = argv[++i];
+     else { std::fprintf(stderr, "unknown or incomplete argument: %s\n", argv[i]); return 2; }
+   }
+   if ((target != "cpu" && target != "cuda") || size < 4 || steps < 1) {
+-    std::fprintf(stderr, "usage: shu_ceiling --target {cpu|cuda} --size N --steps S [--output file]\n");
++    std::fprintf(stderr, "usage: g4_cell_recompute --target {cpu|cuda} --size N --steps S [--input-state unique.f32] [--output file]\n");
+     return 2;
+   }
+   try {
+     const auto process_started = std::chrono::steady_clock::now();
+-    std::vector<float> initial = initialize(size);
++    std::vector<float> initial = input_state.empty()
++        ? initialize(size)
++        : read_unique_and_duplicate(input_state, size);
+     RunResult result = target == "cpu" ? run_cpu(initial, size, steps)
+                                         : run_cuda(initial, size, steps);
+     double checksum = 0.0;
+@@ -80,7 +125,9 @@
+     }
+     const double process_seconds = std::chrono::duration<double>(
+         std::chrono::steady_clock::now() - process_started).count();
+-    std::printf("{\"lane\":\"native-%s\",\"size\":%d,\"steps\":%d,"
++    std::printf("{\"contract\":\"g4_cell_recompute_interface_cuda_event_v1\","
++                "\"storage\":\"duplicated_periodic\","
++                "\"lane\":\"cell-recompute-%s\",\"size\":%d,\"steps\":%d,"
+                 "\"execution_seconds\":%.9f,\"process_seconds_after_main\":%.9f,"
+                 "\"peak_bytes\":%llu,\"checksum\":%.17g,\"finite\":%s}\n",
+                 target.c_str(), size, steps, result.execution_seconds, process_seconds,

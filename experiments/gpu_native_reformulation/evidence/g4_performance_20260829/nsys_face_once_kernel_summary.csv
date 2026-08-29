@@ -1,0 +1,13 @@
+
+NOTICE: Existing SQLite export found: experiments/gpu_native_reformulation/evidence/g4_performance_20260829/nsys2025_face_once_n128_s1.sqlite
+        It is assumed file was previously exported from: experiments/gpu_native_reformulation/evidence/g4_performance_20260829/nsys2025_face_once_n128_s1.nsys-rep
+        Consider using --force-export=true if needed.
+
+Processing [experiments/gpu_native_reformulation/evidence/g4_performance_20260829/nsys2025_face_once_n128_s1.sqlite] with [/home/haishuo/cuda-13.0/nsight-systems-2025.3.2/host-linux-x64/reports/cuda_gpu_kern_sum.py]... 
+Time (%),Total Time (ns),Instances,Avg (ns),Med (ns),Min (ns),Max (ns),StdDev (ns),Name
+53.7,2512208,3,837402.7,837349.0,833286,841573,4143.8,"<unnamed>::face_kernel(<unnamed>::DeviceState, const float *, float *)"
+27.5,1285256,9,142806.2,175905.0,53665,190113,58764.8,"<unnamed>::alpha_kernel(<unnamed>::DeviceState, int, float *)"
+18.1,846982,3,282327.3,299042.0,248514,299426,29283.8,"<unnamed>::update_kernel(<unnamed>::DeviceState, <unnamed>::DeviceState, const float *, const float *, float, float *, int)"
+0.7,34720,1,34720.0,34720.0,34720,34720,0.0,"<unnamed>::cfl_kernel(<unnamed>::DeviceState, float, float *)"
+0.0,864,1,864.0,864.0,864,864,0.0,<unnamed>::finish_cfl_kernel(float *)
+

@@ -1,0 +1,9 @@
+Generating SQLite file experiments/gpu_native_reformulation/evidence/g4_performance_20260829/nsys2025_cell_recompute_n128_s1.sqlite from experiments/gpu_native_reformulation/evidence/g4_performance_20260829/nsys2025_cell_recompute_n128_s1.nsys-rep
+Processing [experiments/gpu_native_reformulation/evidence/g4_performance_20260829/nsys2025_cell_recompute_n128_s1.sqlite] with [/home/haishuo/cuda-13.0/nsight-systems-2025.3.2/host-linux-x64/reports/cuda_gpu_kern_sum.py]... 
+Time (%),Total Time (ns),Instances,Avg (ns),Med (ns),Min (ns),Max (ns),StdDev (ns),Name
+78.7,7348621,3,2449540.3,2455567.0,2436239,2456815,11536.2,"<unnamed>::rhs_kernel(shu3d::StateView, float *, const float *, const float *, const float *, float)"
+15.0,1400681,9,155631.2,181633.0,69601,203361,55521.6,"<unnamed>::alpha_kernel(shu3d::StateView, int, float *)"
+5.9,547203,3,182401.0,199681.0,147041,200481,30625.3,"<unnamed>::update_kernel(shu3d::StateView, shu3d::StateView, shu3d::StateView, float *, const float *, int)"
+0.4,40832,1,40832.0,40832.0,40832,40832,0.0,"<unnamed>::timestep_kernel(shu3d::StateView, float, float *)"
+0.0,864,1,864.0,864.0,864,864,0.0,<unnamed>::finish_timestep_kernel(float *)
+
