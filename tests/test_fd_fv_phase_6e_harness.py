@@ -77,3 +77,16 @@ def test_committed_phase6e_initial_aot_record_verifies() -> None:
         check=False,
     )
     assert completed.returncode == 0
+
+
+def test_committed_phase6e_device_r1_record_verifies() -> None:
+    root = Path(__file__).resolve().parents[1]
+    completed = subprocess.run(
+        (
+            sys.executable,
+            str(root / "experiments/fd_fv_euler/verify_phase6e_device_r1.py"),
+        ),
+        cwd=root,
+        check=False,
+    )
+    assert completed.returncode == 0
