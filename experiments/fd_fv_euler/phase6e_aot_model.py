@@ -78,7 +78,8 @@ class DeviceLoopSolve(torch.nn.Module):
         zero = initial.new_zeros(())
         final_time = initial.new_full((), self.final_time)
         step_zero = torch.zeros((), dtype=torch.int64, device=initial.device)
-        infinity = initial.new_full((), float("inf"))
+        minimum_density_initial = initial.new_full((), float("inf"))
+        minimum_pressure_initial = initial.new_full((), float("inf"))
         failed_zero = torch.zeros((), dtype=torch.bool, device=initial.device)
 
         def condition(
@@ -136,5 +137,12 @@ class DeviceLoopSolve(torch.nn.Module):
         return torch.while_loop(
             condition,
             body,
-            (initial, zero, step_zero, infinity, infinity, failed_zero),
+            (
+                initial,
+                zero,
+                step_zero,
+                minimum_density_initial,
+                minimum_pressure_initial,
+                failed_zero,
+            ),
         )
