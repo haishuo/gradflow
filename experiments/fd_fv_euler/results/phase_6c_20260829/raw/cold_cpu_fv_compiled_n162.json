@@ -1,0 +1,62 @@
+{
+  "cells": 162,
+  "checks": {
+    "conservation": {
+      "accumulated_roundoff_bound": [
+        4.492630090003833e-12,
+        3.1454410630026833e-12,
+        1.2328779597060522e-11
+      ],
+      "componentwise_drift": [
+        1.7818394222379056e-16,
+        5.071389124830962e-17,
+        2.4671622769447924e-16
+      ],
+      "passed": true,
+      "single_step_roundoff_bound": [
+        1.6210854715202005e-14,
+        1.1947598300641403e-14,
+        4.10087961932295e-14
+      ]
+    },
+    "finite": true,
+    "host_visible_answer": true,
+    "l1_error": 2.055910581238333e-10,
+    "l2_error": 2.586720849827144e-10,
+    "linf_error": 5.969985616971485e-10,
+    "terminal_sha256": "8162f3270ed16b984c999ccb700c105deb99aae7ab283f039faad8adab045436"
+  },
+  "command": [
+    "/mnt/projects/gradflow/experiments/fd_fv_euler/phase6c_cold_worker.py",
+    "--method",
+    "fv",
+    "--device",
+    "cpu",
+    "--mode",
+    "compiled",
+    "--cells",
+    "162"
+  ],
+  "device": "cpu",
+  "diagnostics": {
+    "boundary": "periodic",
+    "cfl_scalar_host_controlled": true,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.9000149618811107,
+    "minimum_pressure": 0.9999999999999968,
+    "simulated_time": 0.1,
+    "steps": 316
+  },
+  "eligible": true,
+  "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+  "kind": "cold",
+  "method": "fv",
+  "mode": "compiled",
+  "peak_process_rss_bytes": 1350959104,
+  "process_launch_to_exit_seconds": 19.141195396,
+  "status": "completed",
+  "worker_returncode": 0,
+  "worker_stderr": "",
+  "worker_stdout": ""
+}

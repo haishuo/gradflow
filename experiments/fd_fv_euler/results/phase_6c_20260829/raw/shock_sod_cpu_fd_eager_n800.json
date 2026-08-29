@@ -1,0 +1,83 @@
+{
+  "cells": 800,
+  "command": [
+    "/mnt/projects/gradflow/experiments/fd_fv_euler/phase6c_shock_worker.py",
+    "--problem",
+    "sod",
+    "--method",
+    "fd",
+    "--device",
+    "cpu",
+    "--mode",
+    "eager",
+    "--cells",
+    "800"
+  ],
+  "conserved_l1_errors": [
+    0.0008666800639652545,
+    0.0007848797768357676,
+    0.0017123134102017949
+  ],
+  "cuda_peak_allocated_bytes": null,
+  "cuda_peak_reserved_bytes": null,
+  "device": "cpu",
+  "diagnostics": {
+    "boundary": "transmissive",
+    "cfl_scalar_host_controlled": true,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.124995053286676,
+    "minimum_pressure": 0.09999464813888713,
+    "simulated_time": 0.2,
+    "steps": 3499
+  },
+  "eligible": true,
+  "feature_metrics": {
+    "contact": {
+      "detected": 0.685,
+      "error_cells": 0.39241920783199546,
+      "exact": 0.68549052400979
+    },
+    "shock": {
+      "detected": 0.85125,
+      "error_cells": 0.6550828751714199,
+      "exact": 0.8504311464060357
+    }
+  },
+  "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+  "gate_decisions": {
+    "completed": true,
+    "finest_l1_thresholds": true,
+    "positive_stages": true,
+    "wave_locations": true
+  },
+  "host_visible_answer": true,
+  "kind": "shock",
+  "method": "fd",
+  "mode": "eager",
+  "peak_process_rss_bytes": 1350959104,
+  "primitive_errors": {
+    "l1": {
+      "density": 0.0008666800639652545,
+      "pressure": 0.0006388346184351217,
+      "velocity": 0.0016865878189177722
+    },
+    "l2": {
+      "density": 0.004879612833901963,
+      "pressure": 0.003919281898772035,
+      "velocity": 0.020858063719981505
+    },
+    "linf": {
+      "density": 0.0712701339039904,
+      "pressure": 0.09920186232859676,
+      "velocity": 0.5614084607696217
+    }
+  },
+  "problem": "sod",
+  "process_launch_to_exit_seconds": 17.146811292000002,
+  "status": "completed",
+  "terminal_sha256": "6671aaad0a590a3f7ed76963ae9ee4be28bca2bc4ac388bf62f49486839d556c",
+  "worker_returncode": 0,
+  "worker_stderr": "",
+  "worker_stdout": ""
+}

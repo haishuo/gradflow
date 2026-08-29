@@ -1,0 +1,81 @@
+{
+  "cells": 200,
+  "command": [
+    "/mnt/projects/gradflow/experiments/fd_fv_euler/phase6c_shock_worker.py",
+    "--problem",
+    "sod",
+    "--method",
+    "fd",
+    "--device",
+    "cpu",
+    "--mode",
+    "compiled",
+    "--cells",
+    "200"
+  ],
+  "conserved_l1_errors": [
+    0.003128827245629434,
+    0.002801609037945405,
+    0.006500069619315326
+  ],
+  "cuda_peak_allocated_bytes": null,
+  "cuda_peak_reserved_bytes": null,
+  "device": "cpu",
+  "diagnostics": {
+    "boundary": "transmissive",
+    "cfl_scalar_host_controlled": true,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.12499505328667594,
+    "minimum_pressure": 0.09999464813888738,
+    "simulated_time": 0.2,
+    "steps": 869
+  },
+  "eligible": true,
+  "feature_metrics": {
+    "contact": {
+      "detected": 0.685,
+      "error_cells": 0.09810480195799887,
+      "exact": 0.68549052400979
+    },
+    "shock": {
+      "detected": 0.85,
+      "error_cells": 0.08622928120713969,
+      "exact": 0.8504311464060357
+    }
+  },
+  "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+  "gate_decisions": {
+    "completed": true,
+    "positive_stages": true
+  },
+  "host_visible_answer": true,
+  "kind": "shock",
+  "method": "fd",
+  "mode": "compiled",
+  "peak_process_rss_bytes": 1350959104,
+  "primitive_errors": {
+    "l1": {
+      "density": 0.003128827245629434,
+      "pressure": 0.0024595315009253407,
+      "velocity": 0.006077894691081099
+    },
+    "l2": {
+      "density": 0.009122493113271544,
+      "pressure": 0.0074484517717868124,
+      "velocity": 0.03377531280380094
+    },
+    "linf": {
+      "density": 0.07517921201332195,
+      "pressure": 0.07311849413449126,
+      "velocity": 0.44251664160826265
+    }
+  },
+  "problem": "sod",
+  "process_launch_to_exit_seconds": 18.479024509000002,
+  "status": "completed",
+  "terminal_sha256": "f0a9affed670949b8369a01ba0429aeaa466a0b79099d862a6eb2efae0611022",
+  "worker_returncode": 0,
+  "worker_stderr": "",
+  "worker_stdout": ""
+}

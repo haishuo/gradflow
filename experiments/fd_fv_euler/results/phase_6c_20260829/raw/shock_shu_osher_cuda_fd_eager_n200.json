@@ -1,0 +1,77 @@
+{
+  "cells": 200,
+  "command": [
+    "/mnt/projects/gradflow/experiments/fd_fv_euler/phase6c_shock_worker.py",
+    "--problem",
+    "shu_osher",
+    "--method",
+    "fd",
+    "--device",
+    "cuda",
+    "--mode",
+    "eager",
+    "--cells",
+    "200"
+  ],
+  "conserved_l1_errors": [
+    0.07337116896707073,
+    0.17623796381184192,
+    0.3543137442045488
+  ],
+  "cuda_peak_allocated_bytes": 273920,
+  "cuda_peak_reserved_bytes": 2097152,
+  "device": "cuda",
+  "diagnostics": {
+    "boundary": "transmissive",
+    "cfl_scalar_host_controlled": true,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.7993400032936648,
+    "minimum_pressure": 0.9999965892040232,
+    "simulated_time": 1.8,
+    "steps": 1684
+  },
+  "eligible": true,
+  "feature_metrics": {
+    "density_correlation": 0.9677060364317658,
+    "density_total_variation_ratio": 0.4204915839157317,
+    "window": [
+      -3.0,
+      3.0
+    ]
+  },
+  "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+  "gate_decisions": {
+    "completed": true,
+    "positive_stages": true
+  },
+  "host_visible_answer": true,
+  "kind": "shock",
+  "method": "fd",
+  "mode": "eager",
+  "peak_process_rss_bytes": 1350959104,
+  "primitive_errors": {
+    "l1": {
+      "density": 0.07337116896707073,
+      "pressure": 0.0714985128147484,
+      "velocity": 0.016844664179799285
+    },
+    "l2": {
+      "density": 0.1722596502238933,
+      "pressure": 0.2589847808314134,
+      "velocity": 0.10529532668136926
+    },
+    "linf": {
+      "density": 0.8275069013356724,
+      "pressure": 2.8778439574082135,
+      "velocity": 1.4214143491489215
+    }
+  },
+  "problem": "shu_osher",
+  "process_launch_to_exit_seconds": 9.3115102,
+  "status": "completed",
+  "terminal_sha256": "a1562617561d57380a46faaab7f48b14fb9543bcf0b85fbffa8c842e9a240d5a",
+  "worker_returncode": 0,
+  "worker_stderr": "",
+  "worker_stdout": ""
+}

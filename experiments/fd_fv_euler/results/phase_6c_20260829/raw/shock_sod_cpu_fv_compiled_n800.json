@@ -1,0 +1,83 @@
+{
+  "cells": 800,
+  "command": [
+    "/mnt/projects/gradflow/experiments/fd_fv_euler/phase6c_shock_worker.py",
+    "--problem",
+    "sod",
+    "--method",
+    "fv",
+    "--device",
+    "cpu",
+    "--mode",
+    "compiled",
+    "--cells",
+    "800"
+  ],
+  "conserved_l1_errors": [
+    0.0006911638466041752,
+    0.000583421203356049,
+    0.0013236921402662721
+  ],
+  "cuda_peak_allocated_bytes": null,
+  "cuda_peak_reserved_bytes": null,
+  "device": "cpu",
+  "diagnostics": {
+    "boundary": "transmissive",
+    "cfl_scalar_host_controlled": true,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.12498920656526596,
+    "minimum_pressure": 0.09998818413719443,
+    "simulated_time": 0.2,
+    "steps": 3499
+  },
+  "eligible": true,
+  "feature_metrics": {
+    "contact": {
+      "detected": 0.685,
+      "error_cells": 0.39241920783199546,
+      "exact": 0.68549052400979
+    },
+    "shock": {
+      "detected": 0.85125,
+      "error_cells": 0.6550828751714199,
+      "exact": 0.8504311464060357
+    }
+  },
+  "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+  "gate_decisions": {
+    "completed": true,
+    "finest_l1_thresholds": true,
+    "positive_stages": true,
+    "wave_locations": true
+  },
+  "host_visible_answer": true,
+  "kind": "shock",
+  "method": "fv",
+  "mode": "compiled",
+  "peak_process_rss_bytes": 1350959104,
+  "primitive_errors": {
+    "l1": {
+      "density": 0.0006911638466041752,
+      "pressure": 0.0005033777616465973,
+      "velocity": 0.0010185036485188053
+    },
+    "l2": {
+      "density": 0.003633442650947396,
+      "pressure": 0.0018677451996453774,
+      "velocity": 0.006964740719633464
+    },
+    "linf": {
+      "density": 0.06932890149997634,
+      "pressure": 0.02478385109378506,
+      "velocity": 0.15805028839589214
+    }
+  },
+  "problem": "sod",
+  "process_launch_to_exit_seconds": 20.740983922,
+  "status": "completed",
+  "terminal_sha256": "927075e8a31c5c9201df84151e3171040b06413d2d5089455d92455b6783207c",
+  "worker_returncode": 0,
+  "worker_stderr": "",
+  "worker_stdout": ""
+}

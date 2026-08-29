@@ -11,6 +11,7 @@ from experiments.fd_fv_euler.phase6c_problem import (
     stage_function,
     statistics_record,
 )
+from experiments.fd_fv_euler.verify_phase6c import main as verify_phase6c
 
 
 def test_phase6c_stage_helper_matches_qualified_rk_algebra() -> None:
@@ -57,3 +58,7 @@ def test_phase6c_statistics_preserve_samples() -> None:
     assert result["median_seconds"] == 2.5
     assert result["q1_seconds"] == 1.75
     assert result["q3_seconds"] == 3.25
+
+
+def test_phase6c_committed_record_verifies() -> None:
+    verify_phase6c()

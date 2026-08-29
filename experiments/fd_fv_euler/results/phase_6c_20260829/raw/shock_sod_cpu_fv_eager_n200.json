@@ -1,0 +1,81 @@
+{
+  "cells": 200,
+  "command": [
+    "/mnt/projects/gradflow/experiments/fd_fv_euler/phase6c_shock_worker.py",
+    "--problem",
+    "sod",
+    "--method",
+    "fv",
+    "--device",
+    "cpu",
+    "--mode",
+    "eager",
+    "--cells",
+    "200"
+  ],
+  "conserved_l1_errors": [
+    0.0028436694538599037,
+    0.002534635757440193,
+    0.005853600879786208
+  ],
+  "cuda_peak_allocated_bytes": null,
+  "cuda_peak_reserved_bytes": null,
+  "device": "cpu",
+  "diagnostics": {
+    "boundary": "transmissive",
+    "cfl_scalar_host_controlled": true,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.12498920656526595,
+    "minimum_pressure": 0.09998818413719439,
+    "simulated_time": 0.2,
+    "steps": 869
+  },
+  "eligible": true,
+  "feature_metrics": {
+    "contact": {
+      "detected": 0.685,
+      "error_cells": 0.09810480195799887,
+      "exact": 0.68549052400979
+    },
+    "shock": {
+      "detected": 0.85,
+      "error_cells": 0.08622928120713969,
+      "exact": 0.8504311464060357
+    }
+  },
+  "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+  "gate_decisions": {
+    "completed": true,
+    "positive_stages": true
+  },
+  "host_visible_answer": true,
+  "kind": "shock",
+  "method": "fv",
+  "mode": "eager",
+  "peak_process_rss_bytes": 1350959104,
+  "primitive_errors": {
+    "l1": {
+      "density": 0.0028436694538599037,
+      "pressure": 0.002201828198218009,
+      "velocity": 0.005083003140020519
+    },
+    "l2": {
+      "density": 0.00841326782559388,
+      "pressure": 0.006290176996141071,
+      "velocity": 0.023926754427939494
+    },
+    "linf": {
+      "density": 0.07643568758558328,
+      "pressure": 0.05305375493228977,
+      "velocity": 0.28790859740530245
+    }
+  },
+  "problem": "sod",
+  "process_launch_to_exit_seconds": 3.0906353080000004,
+  "status": "completed",
+  "terminal_sha256": "b1640995446b3e78fb1f7bc029fb53d648484b4125be5964c3409d1dc96b9b06",
+  "worker_returncode": 0,
+  "worker_stderr": "",
+  "worker_stdout": ""
+}
