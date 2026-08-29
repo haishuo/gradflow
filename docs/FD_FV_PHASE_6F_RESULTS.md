@@ -154,6 +154,13 @@ archive manifest from tar members, independently parses every process trace,
 recomputes eligibility, verifies terminal-array identities and numerical gate
 decisions, and checks the static/dynamic loop evidence.
 
+The complete configured Forge regression surface also passed. The ordinary
+suite reported `343 passed, 12 skipped, 14 warnings`; the 12 skips are the
+explicit external DVEB fixtures. Running those fixtures against the preserved
+official portable ABI-v1 manifest, placement model, direct executable, and
+device ABI-v2 manifest reported `12 passed`. Thus all 355 configured tests
+passed, with the 14 expected upstream PyTorch deprecation warnings.
+
 ## Scientific interpretation and next boundary
 
 Phase 6F narrows the deployment problem into two separable costs:
