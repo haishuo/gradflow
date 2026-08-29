@@ -42,3 +42,20 @@ PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6b.py
 
 Phase 6B passed. See `docs/FD_FV_PHASE_6B_RESULTS.md`. It collected no
 performance measurements and does not authorize an FD/FV speed conclusion.
+
+Phase 6C prospectively freezes and executes the matched Euler performance
+matrix. Reproduce the canonical campaign only on the admitted Forge hardware:
+
+```bash
+PYTHONPATH=src:. python experiments/fd_fv_euler/run_phase6c.py \
+  --output-dir experiments/fd_fv_euler/results/phase_6c_20260829
+```
+
+Verify its raw records and derived decisions without rerunning timing:
+
+```bash
+PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6c.py
+```
+
+See `docs/FD_FV_PHASE_6C_RESULTS.md` for the bounded interpretation. The
+result does not authorize a universal FD/FV or CPU/GPU claim.

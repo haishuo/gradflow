@@ -425,3 +425,23 @@ No timing was collected. Phase 6B establishes eligibility for a separately
 frozen Phase 6C comparison; it does not establish an FD/FV performance winner
 or generalize beyond one-dimensional ideal-gas Euler WENO-JS5. See
 `FD_FV_PHASE_6B_PROTOCOL.md` and `FD_FV_PHASE_6B_RESULTS.md`.
+
+Euler FD/FV Phase 6C has now completed the prospectively frozen matched
+performance study. At smooth achieved-error targets, FD and FV required the
+same grids; FV used 9.8--12.4% more CPU time and 13.4--22.5% more CUDA time.
+This contrasts with the earlier smooth Burgers result, where FV's accuracy
+advantage reduced its required grid. The combined evidence rejects a universal
+FD/FV ranking.
+
+Compiled resident CUDA crossover was independently confirmed at `N=32,768`
+for FD and `N=8,192` for FV. At `N=524,288`, CUDA speedups were `8.71x` and
+`13.64x`, respectively. FV's earlier crossover coincided with a replicated
+compiled-CPU performance regime not seen on CUDA, so it is not interpreted as
+an intrinsic FV GPU advantage.
+
+The fresh-process shock pilot changed regimes between sizes: CPU eager was
+fastest at `N=200`, while compiled CUDA was fastest at `N=800`, including an
+approximately twofold advantage over CPU eager for Shu--Osher. Those shock
+points are unreplicated pilots and require their own prospective confirmation.
+Runtime compilation and adaptive-CFL host control remain explicit costs. See
+`FD_FV_PHASE_6C_PROTOCOL.md` and `FD_FV_PHASE_6C_RESULTS.md`.
