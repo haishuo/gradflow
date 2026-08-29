@@ -59,3 +59,26 @@ PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6c.py
 
 See `docs/FD_FV_PHASE_6C_RESULTS.md` for the bounded interpretation. The
 result does not authorize a universal FD/FV or CPU/GPU claim.
+
+Phase 6D prospectively replicates the `N=800` shock pilot and characterizes
+the compiled CPU FV regime:
+
+```bash
+PYTHONPATH=src:. python experiments/fd_fv_euler/run_phase6d.py \
+  --output-dir experiments/fd_fv_euler/results/phase_6d_20260829
+```
+
+The timed workers completed before an optional TorchInductor byte counter
+caused aggregation to fail. The frozen raw records were aggregated without
+rerunning timing under the narrow correction documented in
+`docs/FD_FV_PHASE_6D_PROTOCOL_AMENDMENT.md`.
+
+Verify the committed record without rerunning timing:
+
+```bash
+PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6d.py
+```
+
+See `docs/FD_FV_PHASE_6D_RESULTS.md`. The CPU characterization passes, while
+the shock speed decision remains unresolved because CUDA terminal hashes did
+not reproduce exactly across all fresh processes.

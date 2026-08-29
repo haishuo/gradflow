@@ -445,3 +445,23 @@ approximately twofold advantage over CPU eager for Shu--Osher. Those shock
 points are unreplicated pilots and require their own prospective confirmation.
 Runtime compilation and adaptive-CFL host control remain explicit costs. See
 `FD_FV_PHASE_6C_PROTOCOL.md` and `FD_FV_PHASE_6C_RESULTS.md`.
+
+Euler FD/FV Phase 6D completed that prospective shock replication and the
+registered CPU causal campaign. All 68 CPU records passed. Compiled FV was
+about `2.7--3.0x` FD with one thread from `N=4,096` onward and `3.2--5.0x`
+with six threads, while eager FD/FV remained close. Generated structures were
+stable across sizes (72 kernels/264 pre-fusion IR nodes for FD; 94/306 for
+FV), and neither the frozen thread-interaction, traffic-expansion, nor
+code-generation-transition rule passed. The cause is therefore registered as
+an unresolved mixture, not a proven compiler mechanism.
+
+The shock timing medians continued to favor CUDA by 18--27% over the selected
+CPU endpoints, but 7 of 12 CUDA workers did not exactly reproduce their
+Phase-6C terminal tensor hashes. They still passed every inherited physical
+and oracle gate, with only trailing-digit changes visible in retained summary
+metrics. Because Phase 6D required exact hashes, the CUDA shock win is
+unresolved. A future prospective correctness gate must retain enough output to
+quantify this variation before AOT or device-autonomous timing can be treated
+as scientific evidence. No threshold is weakened after observation. See
+`FD_FV_PHASE_6D_PROTOCOL.md`, `FD_FV_PHASE_6D_PROTOCOL_AMENDMENT.md`, and
+`FD_FV_PHASE_6D_RESULTS.md`.
