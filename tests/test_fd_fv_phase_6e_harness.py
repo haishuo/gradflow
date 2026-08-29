@@ -4,8 +4,11 @@ import numpy as np
 from pathlib import Path
 import subprocess
 import sys
+import torch
 
 from experiments.fd_fv_euler.run_phase6e_repro import comparison
+from experiments.fd_fv_euler.phase6c_problem import shock_initial
+from experiments.fd_fv_euler.phase6e_aot_model import HostControlledAdvance
 
 
 def test_phase6e_roundoff_envelope_accepts_exact_arrays() -> None:
@@ -47,3 +50,17 @@ def test_committed_phase6e_lane_a_record_verifies() -> None:
         check=False,
     )
     assert completed.returncode == 0
+
+
+def test_phase6e_host_advance_matches_frozen_stage_algebra() -> None:
+    state = shock_initial("fd", "sod", 800)
+    remaining = state.new_tensor(0.2)
+    module = HostControlledAdvance("fd", "sod")
+    next_state, dt, density, pressure, finite = module(state, remaining)
+    assert next_state.shape == state.shape
+    assert next_state.dtype == state.dtype == torch.float64
+    assert dt.ndim == 0 and 0.0 < float(dt) <= 0.2
+    assert density.shape == pressure.shape == finite.shape == (3,)
+    assert bool(torch.all(density > 0.0))
+    assert bool(torch.all(pressure > 0.0))
+    assert bool(torch.all(finite))
