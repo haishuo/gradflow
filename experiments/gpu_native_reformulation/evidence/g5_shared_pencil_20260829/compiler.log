@@ -1,0 +1,53 @@
+experiments/gpu_native_reformulation/evidence/g5_shared_pencil_20260829/p1.cu(299): warning #550-D: variable "density" was set but never used
+    float density[6];
+          ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+experiments/gpu_native_reformulation/evidence/g5_shared_pencil_20260829/p1.cu(174): warning #177-D: function "<unnamed>::js_weights" was declared but never referenced
+  __attribute__((device)) __inline__ __attribute__((always_inline)) void js_weights(
+                                                                         ^
+
+experiments/gpu_native_reformulation/evidence/g5_shared_pencil_20260829/p1.cu(197): warning #177-D: function "<unnamed>::reconstruct_left" was declared but never referenced
+  __attribute__((device)) __inline__ __attribute__((always_inline)) float reconstruct_left(
+                                                                          ^
+
+experiments/gpu_native_reformulation/evidence/g5_shared_pencil_20260829/p1.cu(558): warning #177-D: function "<unnamed>::face_kernel" was declared but never referenced
+  __attribute__((global)) void face_kernel(DeviceState state, const float* alphas,
+                               ^
+
+experiments/gpu_native_reformulation/evidence/g5_shared_pencil_20260829/p1.cu(663): warning #177-D: function "<unnamed>::update_kernel" was declared but never referenced
+  __attribute__((global)) void update_kernel(DeviceState base_state, DeviceState state,
+                               ^
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__86ca5d33_5_p1_cu_main13update_kernelENS_11DeviceStateES0_PKfS2_fPfi' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__86ca5d33_5_p1_cu_main13update_kernelENS_11DeviceStateES0_PKfS2_fPfi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 40 registers, used 0 barriers
+ptxas info    : Compile time = 29.134 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__86ca5d33_5_p1_cu_main13pencil_kernelENS_11DeviceStateES0_PKfS2_fPfS3_ii' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__86ca5d33_5_p1_cu_main13pencil_kernelENS_11DeviceStateES0_PKfS2_fPfS3_ii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 128 registers, used 1 barriers
+ptxas info    : Compile time = 79.205 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__86ca5d33_5_p1_cu_main11face_kernelENS_11DeviceStateEPKfPf' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__86ca5d33_5_p1_cu_main11face_kernelENS_11DeviceStateEPKfPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 128 registers, used 0 barriers
+ptxas info    : Compile time = 191.042 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__86ca5d33_5_p1_cu_main12alpha_kernelENS_11DeviceStateEiPf' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__86ca5d33_5_p1_cu_main12alpha_kernelENS_11DeviceStateEiPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 36 registers, used 1 barriers
+ptxas info    : Compile time = 10.642 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__86ca5d33_5_p1_cu_main17finish_cfl_kernelEPf' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__86ca5d33_5_p1_cu_main17finish_cfl_kernelEPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 14 registers, used 0 barriers
+ptxas info    : Compile time = 2.575 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__86ca5d33_5_p1_cu_main10cfl_kernelENS_11DeviceStateEfPf' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__86ca5d33_5_p1_cu_main10cfl_kernelENS_11DeviceStateEfPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 35 registers, used 1 barriers
+ptxas info    : Compile time = 9.216 ms

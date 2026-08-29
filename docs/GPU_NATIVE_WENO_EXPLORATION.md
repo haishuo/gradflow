@@ -250,6 +250,25 @@ Only the fifth comparison answers whether face reuse is an exact-contract
 optimization.  The earlier U0 observations answer how much speed exists at the
 unsafe frontier.
 
+## G5 outcome: literal shared pencils do not recover the Pareto frontier
+
+G5 implemented the first frozen shared-pencil/fused-update schedule after the
+R6Q recovery. The P1 candidate retained R6Q arithmetic exactly on all five
+forward specimens and reduced declared `N=128` peak allocation from
+336,134,148 to 210,305,028 bytes.
+
+It was nevertheless 2.619x and 2.701x R6Q resident time at the primary one-
+and ten-step points, and cell-recompute was faster than P1 throughout the
+matrix. Profiling found no spills. The x pencils were much faster than y and z
+pencils, supporting direction-strided access in the existing state layout as
+the main cause. Full evidence and the narrow claim boundary are in
+`experiments/gpu_native_reformulation/G5_SHARED_PENCIL_RESULTS.md`.
+
+This rejects the P1 schedule, not shared-memory tiling as a category. Any
+future memory-recovery candidate must explicitly preserve coalescing in every
+direction and must be preregistered as a separate experiment. R6Q global
+face-once remains the current non-admitted throughput schedule control.
+
 ## Claim boundary
 
 This exploration may establish that inherited execution structure left

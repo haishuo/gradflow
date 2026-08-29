@@ -38,6 +38,13 @@ until the corresponding mathematical contract and oracle result are recorded.
    **Complete: the face-once schedule produced a sustained approximately 2x
    resident speedup at moderate and large grids, with approximately 2x peak
    workspace. See `G4_PERFORMANCE_RESULTS.md`.**
+6. **G5 — shared-pencil memory recovery.** Replace the global face arrays with
+   one-block-per-line shared-memory faces and a fused final directional update.
+   **Complete: P1 was bitwise identical to R6Q and reduced declared peak memory
+   by 37.43% at `128^3`, but took 2.62--2.70x R6Q time at the primary points
+   and lost to cell-recompute throughout resident timing. The frozen candidate
+   therefore failed its speed-memory Pareto gate. See
+   `G5_SHARED_PENCIL_RESULTS.md`.**
 
 CUDA is visible on Forge through the explicitly authorized native execution
 route. G1 was measured on the local NVIDIA GeForce RTX 5070 Ti.

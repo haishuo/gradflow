@@ -1,0 +1,438 @@
+{
+  "artifacts": {
+    "p1": {
+      "path": "/mnt/projects/gradflow/experiments/gpu_native_reformulation/native_u0/build/gradflow_p1",
+      "sha256": "61e804d5d8c1f7554ed61639585f9540e17155e221f9970150bdd41381e94427"
+    },
+    "r6q": {
+      "path": "/mnt/projects/gradflow/experiments/gpu_native_reformulation/native_u0/build/gradflow_r6q",
+      "sha256": "74019071fa3fae6a842464d8ffcfc5fad6fa2fa2d805bf22b8616814c8a5e438"
+    }
+  },
+  "candidate_backend_admitted": false,
+  "cases": [
+    {
+      "bound": 2e-05,
+      "case": "vortex_n32_s1",
+      "comparison": {
+        "bitwise_identical": true,
+        "maximum_absolute_difference": 0.0,
+        "rms_difference": 0.0
+      },
+      "input_sha256": "52ae5063e81d0c86427c1ba54f96963f6bb10188fb44c4ec1992bb00bb0ec894",
+      "mode": "step",
+      "n": 32,
+      "outputs": {
+        "p1": {
+          "path": "vortex_n32_s1_p1.f32",
+          "sha256": "5158dfd35b36797df8715d79ea1aa9884e0762084d0bd3dc377df69ec1814f14"
+        },
+        "r6q": {
+          "path": "vortex_n32_s1_r6q.f32",
+          "sha256": "5158dfd35b36797df8715d79ea1aa9884e0762084d0bd3dc377df69ec1814f14"
+        }
+      },
+      "p1": {
+        "cells": 32768,
+        "cells_per_second": 40919079.617973536,
+        "checksum_float64": 112970.73580782255,
+        "compute_capability": "12.0",
+        "contract": "p1_shared_pencil_unique_strict_f32_shu_fused_update_v1",
+        "directional_faces_per_second": 122757238.85392062,
+        "final_dt": 0.006926806643605232,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "maximum_absolute": 2.525024175643921,
+        "median_device_ms": 0.8008000254631042,
+        "mode": "step",
+        "peak_allocated_bytes": 3313668,
+        "repetitions": 1,
+        "samples_device_ms": [
+          0.8008000254631042
+        ],
+        "size": 32,
+        "steps": 1,
+        "warmups": 0
+      },
+      "p1_health": {
+        "finite": true,
+        "minimum_density": 0.49373674392700195,
+        "minimum_pressure": 0.3722982406616211,
+        "positive": true
+      },
+      "passed": true,
+      "r6q": {
+        "cells": 32768,
+        "cells_per_second": 73137634.37782349,
+        "checksum_float64": 112970.73580782255,
+        "compute_capability": "12.0",
+        "contract": "r6q_arbitrary_state_rhs_unique_strict_f32_shu_face_once_v1",
+        "directional_faces_per_second": 219412903.13347048,
+        "final_dt": 0.006926806643605232,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "maximum_absolute": 2.525024175643921,
+        "median_device_ms": 0.4480319917201996,
+        "mode": "step",
+        "peak_allocated_bytes": 5279748,
+        "repetitions": 1,
+        "samples_device_ms": [
+          0.4480319917201996
+        ],
+        "size": 32,
+        "steps": 1,
+        "warmups": 0
+      },
+      "r6q_health": {
+        "finite": true,
+        "minimum_density": 0.49373674392700195,
+        "minimum_pressure": 0.3722982406616211,
+        "positive": true
+      },
+      "source": {
+        "path": "experiments/gpu_native_reformulation/evidence/g3_qualification_20260829/arrays/step_vortex_n32_s1.npz",
+        "sha256": "77dcec1a8bf476d36cc8c4d5c16c1f68d727cdd291a1edcf88c6f84830059987"
+      },
+      "steps": 1
+    },
+    {
+      "bound": 2e-05,
+      "case": "vortex_n32_s10",
+      "comparison": {
+        "bitwise_identical": true,
+        "maximum_absolute_difference": 0.0,
+        "rms_difference": 0.0
+      },
+      "input_sha256": "52ae5063e81d0c86427c1ba54f96963f6bb10188fb44c4ec1992bb00bb0ec894",
+      "mode": "step",
+      "n": 32,
+      "outputs": {
+        "p1": {
+          "path": "vortex_n32_s10_p1.f32",
+          "sha256": "c83f9418b88b4bf68cc63ae85667cd78d56447e64d5ff3d8705918f4d2f72a2a"
+        },
+        "r6q": {
+          "path": "vortex_n32_s10_r6q.f32",
+          "sha256": "c83f9418b88b4bf68cc63ae85667cd78d56447e64d5ff3d8705918f4d2f72a2a"
+        }
+      },
+      "p1": {
+        "cells": 32768,
+        "cells_per_second": 75116265.20659588,
+        "checksum_float64": 112970.73660655576,
+        "compute_capability": "12.0",
+        "contract": "p1_shared_pencil_unique_strict_f32_shu_fused_update_v1",
+        "directional_faces_per_second": 225348795.61978766,
+        "final_dt": 0.006928007584065199,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "maximum_absolute": 2.5259110927581787,
+        "median_device_ms": 4.362304210662842,
+        "mode": "step",
+        "peak_allocated_bytes": 3313668,
+        "repetitions": 1,
+        "samples_device_ms": [
+          4.362304210662842
+        ],
+        "size": 32,
+        "steps": 10,
+        "warmups": 0
+      },
+      "p1_health": {
+        "finite": true,
+        "minimum_density": 0.49325039982795715,
+        "minimum_pressure": 0.37177202701568607,
+        "positive": true
+      },
+      "passed": true,
+      "r6q": {
+        "cells": 32768,
+        "cells_per_second": 210172000.83922637,
+        "checksum_float64": 112970.73660655576,
+        "compute_capability": "12.0",
+        "contract": "r6q_arbitrary_state_rhs_unique_strict_f32_shu_face_once_v1",
+        "directional_faces_per_second": 630516002.5176791,
+        "final_dt": 0.006928007584065199,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "maximum_absolute": 2.5259110927581787,
+        "median_device_ms": 1.5591039657592773,
+        "mode": "step",
+        "peak_allocated_bytes": 5279748,
+        "repetitions": 1,
+        "samples_device_ms": [
+          1.5591039657592773
+        ],
+        "size": 32,
+        "steps": 10,
+        "warmups": 0
+      },
+      "r6q_health": {
+        "finite": true,
+        "minimum_density": 0.49325039982795715,
+        "minimum_pressure": 0.37177202701568607,
+        "positive": true
+      },
+      "source": {
+        "path": "experiments/gpu_native_reformulation/evidence/g3_qualification_20260829/arrays/step_vortex_n32_s1.npz",
+        "sha256": "77dcec1a8bf476d36cc8c4d5c16c1f68d727cdd291a1edcf88c6f84830059987"
+      },
+      "steps": 10
+    },
+    {
+      "bound": 2e-05,
+      "case": "perturbed_vortex_n32_s1",
+      "comparison": {
+        "bitwise_identical": true,
+        "maximum_absolute_difference": 0.0,
+        "rms_difference": 0.0
+      },
+      "input_sha256": "3a8f0f210c5d0ab62e0f9d74dfb86abd25008ca22acf117ec0c30b0d0d61fd96",
+      "mode": "step",
+      "n": 32,
+      "outputs": {
+        "p1": {
+          "path": "perturbed_vortex_n32_s1_p1.f32",
+          "sha256": "9a5873f0c2f20e038c28b28558dd4cfa806899e7ad9c048b4d6e26b70b608b0e"
+        },
+        "r6q": {
+          "path": "perturbed_vortex_n32_s1_r6q.f32",
+          "sha256": "9a5873f0c2f20e038c28b28558dd4cfa806899e7ad9c048b4d6e26b70b608b0e"
+        }
+      },
+      "p1": {
+        "cells": 32768,
+        "cells_per_second": 41948301.45993043,
+        "checksum_float64": 112970.7361830012,
+        "compute_capability": "12.0",
+        "contract": "p1_shared_pencil_unique_strict_f32_shu_fused_update_v1",
+        "directional_faces_per_second": 125844904.37979129,
+        "final_dt": 0.00691328477114439,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "maximum_absolute": 2.5257725715637207,
+        "median_device_ms": 0.7811520099639893,
+        "mode": "step",
+        "peak_allocated_bytes": 3313668,
+        "repetitions": 1,
+        "samples_device_ms": [
+          0.7811520099639893
+        ],
+        "size": 32,
+        "steps": 1,
+        "warmups": 0
+      },
+      "p1_health": {
+        "finite": true,
+        "minimum_density": 0.49373674392700195,
+        "minimum_pressure": 0.3722982406616145,
+        "positive": true
+      },
+      "passed": true,
+      "r6q": {
+        "cells": 32768,
+        "cells_per_second": 69897609.68443231,
+        "checksum_float64": 112970.7361830012,
+        "compute_capability": "12.0",
+        "contract": "r6q_arbitrary_state_rhs_unique_strict_f32_shu_face_once_v1",
+        "directional_faces_per_second": 209692829.05329692,
+        "final_dt": 0.00691328477114439,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "maximum_absolute": 2.5257725715637207,
+        "median_device_ms": 0.46880000829696655,
+        "mode": "step",
+        "peak_allocated_bytes": 5279748,
+        "repetitions": 1,
+        "samples_device_ms": [
+          0.46880000829696655
+        ],
+        "size": 32,
+        "steps": 1,
+        "warmups": 0
+      },
+      "r6q_health": {
+        "finite": true,
+        "minimum_density": 0.49373674392700195,
+        "minimum_pressure": 0.3722982406616145,
+        "positive": true
+      },
+      "source": {
+        "path": "experiments/gpu_native_reformulation/evidence/g3_qualification_20260829/arrays/step_perturbed_vortex_n32_s1.npz",
+        "sha256": "159071ee4516b592c82922ed64bdf40ca662b57e1e8d098a8d42b50174197ef1"
+      },
+      "steps": 1
+    },
+    {
+      "bound": 2e-05,
+      "case": "dual_shu_osher_n32_s10",
+      "comparison": {
+        "bitwise_identical": true,
+        "maximum_absolute_difference": 0.0,
+        "rms_difference": 0.0
+      },
+      "input_sha256": "9ab74f206158e70c0ec6466e1e216bf8b5fae9746a6296b574bd2c113feacc40",
+      "mode": "step",
+      "n": 32,
+      "outputs": {
+        "p1": {
+          "path": "dual_shu_osher_n32_s10_p1.f32",
+          "sha256": "837665422ebc46ecd139e9f161feee52ce4a79bc30dfb2d593d1e1528d45693b"
+        },
+        "r6q": {
+          "path": "dual_shu_osher_n32_s10_r6q.f32",
+          "sha256": "837665422ebc46ecd139e9f161feee52ce4a79bc30dfb2d593d1e1528d45693b"
+        }
+      },
+      "p1": {
+        "cells": 32768,
+        "cells_per_second": 68939517.88919874,
+        "checksum_float64": 470693.9006886048,
+        "compute_capability": "12.0",
+        "contract": "p1_shared_pencil_unique_strict_f32_shu_fused_update_v1",
+        "directional_faces_per_second": 206818553.66759622,
+        "final_dt": 0.0037029036320745945,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "maximum_absolute": 39.16672134399414,
+        "median_device_ms": 4.753151893615723,
+        "mode": "step",
+        "peak_allocated_bytes": 3313668,
+        "repetitions": 1,
+        "samples_device_ms": [
+          4.753151893615723
+        ],
+        "size": 32,
+        "steps": 10,
+        "warmups": 0
+      },
+      "p1_health": {
+        "finite": true,
+        "minimum_density": 0.81659334897995,
+        "minimum_pressure": 0.9999989509581502,
+        "positive": true
+      },
+      "passed": true,
+      "r6q": {
+        "cells": 32768,
+        "cells_per_second": 201558930.98746514,
+        "checksum_float64": 470693.9006886048,
+        "compute_capability": "12.0",
+        "contract": "r6q_arbitrary_state_rhs_unique_strict_f32_shu_face_once_v1",
+        "directional_faces_per_second": 604676792.9623954,
+        "final_dt": 0.0037029036320745945,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "maximum_absolute": 39.16672134399414,
+        "median_device_ms": 1.6257280111312866,
+        "mode": "step",
+        "peak_allocated_bytes": 5279748,
+        "repetitions": 1,
+        "samples_device_ms": [
+          1.6257280111312866
+        ],
+        "size": 32,
+        "steps": 10,
+        "warmups": 0
+      },
+      "r6q_health": {
+        "finite": true,
+        "minimum_density": 0.81659334897995,
+        "minimum_pressure": 0.9999989509581502,
+        "positive": true
+      },
+      "source": {
+        "path": "experiments/gpu_native_reformulation/evidence/g3_qualification_20260829/arrays/step_dual_shu_osher_n32_s10.npz",
+        "sha256": "d24b2cc88adf056e12ba5fd1d5c16981ff886222b825756cf3ebfab13a3dc14c"
+      },
+      "steps": 10
+    },
+    {
+      "bound": 5e-05,
+      "case": "smooth_entropy_rhs_n40",
+      "comparison": {
+        "bitwise_identical": true,
+        "maximum_absolute_difference": 0.0,
+        "rms_difference": 0.0
+      },
+      "finite": true,
+      "input_sha256": "9e9b31981ce1f11bb96daa3b2add97e5f8e20354dfd80b10b5b08ae3d382ffb1",
+      "mode": "rhs",
+      "n": 40,
+      "outputs": {
+        "p1": {
+          "path": "smooth_entropy_rhs_n40_p1.f32",
+          "sha256": "2dcc987d62119edd3c0a860fe7521fc808496dcb402d6a0b408d3d09fb664cdd"
+        },
+        "r6q": {
+          "path": "smooth_entropy_rhs_n40_r6q.f32",
+          "sha256": "2dcc987d62119edd3c0a860fe7521fc808496dcb402d6a0b408d3d09fb664cdd"
+        }
+      },
+      "p1": {
+        "cells": 64000,
+        "cells_per_second": 100679584.06896015,
+        "checksum_float64": 0,
+        "compute_capability": "12.0",
+        "contract": "p1_shared_pencil_unique_strict_f32_shu_fused_update_v1",
+        "directional_faces_per_second": 302038752.20688045,
+        "final_dt": 0,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "maximum_absolute": 0.07827949523925781,
+        "median_device_ms": 0.6356800198554993,
+        "mode": "rhs",
+        "peak_allocated_bytes": 6457604,
+        "repetitions": 1,
+        "samples_device_ms": [
+          0.6356800198554993
+        ],
+        "size": 40,
+        "steps": 1,
+        "warmups": 0
+      },
+      "passed": true,
+      "r6q": {
+        "cells": 64000,
+        "cells_per_second": 166375515.53560153,
+        "checksum_float64": 0,
+        "compute_capability": "12.0",
+        "contract": "r6q_arbitrary_state_rhs_unique_strict_f32_shu_face_once_v1",
+        "directional_faces_per_second": 499126546.60680455,
+        "final_dt": 0,
+        "finite": true,
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "maximum_absolute": 0.07827949523925781,
+        "median_device_ms": 0.38467198610305786,
+        "mode": "rhs",
+        "peak_allocated_bytes": 10297604,
+        "repetitions": 1,
+        "samples_device_ms": [
+          0.38467198610305786
+        ],
+        "size": 40,
+        "steps": 1,
+        "warmups": 0
+      },
+      "source": {
+        "path": "experiments/gpu_native_reformulation/evidence/g3_qualification_20260829/arrays/rhs_smooth_entropy_n40.npz",
+        "sha256": "c789e93b4b46ba2023ff80c635a5dc38941339620ae3ca3356090eba4aee1988"
+      },
+      "steps": 1
+    }
+  ],
+  "contracts": {
+    "p1": "p1_shared_pencil_unique_strict_f32_shu_fused_update_v1",
+    "r6q": "r6q_arbitrary_state_rhs_unique_strict_f32_shu_face_once_v1"
+  },
+  "created_utc": "2026-08-29T19:10:51.655826+00:00",
+  "memory": {
+    "maximum_ratio": 0.7,
+    "p1_over_r6q": 0.6276185908872923,
+    "p1_peak_allocated_bytes": 3313668,
+    "passed": true,
+    "r6q_peak_allocated_bytes": 5279748
+  },
+  "passed": true,
+  "schema": "gradflow-g5-shared-pencil-forward-gate-v1"
+}
