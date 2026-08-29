@@ -1,0 +1,83 @@
+{
+  "cells": 800,
+  "command": [
+    "/mnt/projects/gradflow/experiments/fd_fv_euler/phase6c_shock_worker.py",
+    "--problem",
+    "shu_osher",
+    "--method",
+    "fd",
+    "--device",
+    "cpu",
+    "--mode",
+    "compiled",
+    "--cells",
+    "800"
+  ],
+  "conserved_l1_errors": [
+    0.011814290020305495,
+    0.027732467680974832,
+    0.07064913100178485
+  ],
+  "cuda_peak_allocated_bytes": null,
+  "cuda_peak_reserved_bytes": null,
+  "device": "cpu",
+  "diagnostics": {
+    "boundary": "transmissive",
+    "cfl_scalar_host_controlled": true,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.8000006180068324,
+    "minimum_pressure": 0.9999968808423829,
+    "simulated_time": 1.8,
+    "steps": 6892
+  },
+  "eligible": true,
+  "feature_metrics": {
+    "density_correlation": 0.9979967746675992,
+    "density_total_variation_ratio": 0.9238301124299406,
+    "window": [
+      -3.0,
+      3.0
+    ]
+  },
+  "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+  "gate_decisions": {
+    "completed": true,
+    "density_correlation": true,
+    "density_total_variation_ratio": true,
+    "finest_l1_thresholds": true,
+    "positive_stages": true
+  },
+  "host_visible_answer": true,
+  "kind": "shock",
+  "method": "fd",
+  "mode": "compiled",
+  "peak_process_rss_bytes": 1284132864,
+  "phase6c_terminal_sha256": "62f565e35212391a7449f7c1bcb19b6236481259e60ce08f10198f82de0772bb",
+  "primitive_errors": {
+    "l1": {
+      "density": 0.011814290020305495,
+      "pressure": 0.01885362438273486,
+      "velocity": 0.004035077118643267
+    },
+    "l2": {
+      "density": 0.042990761180103435,
+      "pressure": 0.12564418249980638,
+      "velocity": 0.044080373288465556
+    },
+    "linf": {
+      "density": 0.7047638031902586,
+      "pressure": 2.4720757920040075,
+      "velocity": 1.1444941698231872
+    }
+  },
+  "problem": "shu_osher",
+  "process_launch_to_exit_seconds": 21.285023558000002,
+  "replicate": 0,
+  "status": "completed",
+  "terminal_hash_matches_phase6c": true,
+  "terminal_sha256": "62f565e35212391a7449f7c1bcb19b6236481259e60ce08f10198f82de0772bb",
+  "worker_returncode": 0,
+  "worker_stderr": "",
+  "worker_stdout": ""
+}

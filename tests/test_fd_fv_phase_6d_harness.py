@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+from pathlib import Path
+import subprocess
+import sys
+
 from experiments.fd_fv_euler.run_phase6d import (
     INTERACTION_SIZES,
     PRIMARY_SIZES,
@@ -69,3 +73,16 @@ def test_phase6d_unavailable_compiler_metric_ratio_is_explicit() -> None:
     assert positive_metric_ratio(0, 0) is None
     assert positive_metric_ratio(10, 0) is None
     assert positive_metric_ratio(15, 10) == 1.5
+
+
+def test_committed_phase6d_record_verifies() -> None:
+    root = Path(__file__).resolve().parents[1]
+    completed = subprocess.run(
+        (
+            sys.executable,
+            str(root / "experiments/fd_fv_euler/verify_phase6d.py"),
+        ),
+        cwd=root,
+        check=False,
+    )
+    assert completed.returncode == 0
