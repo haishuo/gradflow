@@ -1,0 +1,115 @@
+{
+  "array_bytes": 19328,
+  "array_file": "cuda_jit_sod_fd_r0.npy",
+  "array_file_sha256": "08d1bc646b5206e0b4a5c1e771af1b120214222337f860b7a0d447d50250ce5b",
+  "authority_parity": {
+    "absolute_bound": 2.486258803712192e-10,
+    "actual": "cuda_jit_sod_fd_r0.npy",
+    "actual_at_maximum": 0.5289348132127745,
+    "epsilon": 2.220446049250313e-16,
+    "equal_elements": 694,
+    "exact_equal": false,
+    "maximum_absolute_difference": 4.1155967522854553e-13,
+    "maximum_location": [
+      2,
+      680
+    ],
+    "mean_absolute_difference": 4.3802096070269806e-14,
+    "normalized_l1_difference": 6.205727497256353e-14,
+    "normalized_l2_difference": 6.746751107076898e-14,
+    "passed": true,
+    "reference": "sod_fd_cpu_eager_r0.npy",
+    "reference_at_maximum": 0.528934813213186,
+    "reference_scale": 2.5000701588723664,
+    "relative_bound": 9.944756129698362e-11,
+    "rms_difference": 6.775685341918729e-14,
+    "shape_dtype_match": true,
+    "step_count_match": true,
+    "steps": 3499,
+    "total_elements": 2400
+  },
+  "cells": 800,
+  "complete_solve_seconds": 11.645309371000002,
+  "cuda_peak_allocated_bytes": 50931712,
+  "cuda_peak_reserved_bytes": 52428800,
+  "diagnostics": {
+    "boundary": "transmissive",
+    "cfl_scalar_host_controlled": true,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.12499505328667519,
+    "minimum_pressure": 0.09999464813888612,
+    "simulated_time": 0.2,
+    "steps": 3499
+  },
+  "dtype": "float64",
+  "eligible": true,
+  "endpoint": "cuda_jit",
+  "final_materialization_serialization_seconds": 0.00022743900000000002,
+  "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+  "input_construction_transfer_seconds": 0.07511878200000001,
+  "kind": "phase6g_solve",
+  "loader_boundary": "torch_compile",
+  "method": "fd",
+  "oracle": {
+    "conserved_l1_errors": [
+      0.0008666800639713155,
+      0.0007848797768456059,
+      0.0017123134102112866
+    ],
+    "feature_metrics": {
+      "contact": {
+        "detected": 0.685,
+        "error_cells": 0.39241920783199546,
+        "exact": 0.68549052400979
+      },
+      "shock": {
+        "detected": 0.85125,
+        "error_cells": 0.6550828751714199,
+        "exact": 0.8504311464060357
+      }
+    },
+    "gate_decisions": {
+      "completed": true,
+      "finest_l1_thresholds": true,
+      "positive_stages": true,
+      "wave_locations": true
+    },
+    "passed": true,
+    "primitive_errors": {
+      "l1": {
+        "density": 0.0008666800639713155,
+        "pressure": 0.0006388346184361894,
+        "velocity": 0.0016865878189151649
+      },
+      "l2": {
+        "density": 0.004879612833899866,
+        "pressure": 0.003919281898769254,
+        "velocity": 0.02085806371995996
+      },
+      "linf": {
+        "density": 0.07127013390389728,
+        "pressure": 0.09920186232846276,
+        "velocity": 0.5614084607690597
+      }
+    }
+  },
+  "package_load_seconds": null,
+  "package_path": null,
+  "package_sha256": null,
+  "peak_process_rss_bytes": 1240993792,
+  "prepared_cache_restoration_timed": false,
+  "problem": "sod",
+  "process_launch_to_exit_seconds": 13.746897974000001,
+  "replicate": 0,
+  "shape": [
+    3,
+    800
+  ],
+  "status": "completed",
+  "terminal_sha256": "59f6eac81c274291cef19d72cb6c116c20b3679f2a0f03e1b116989e85dd0e9c",
+  "terminal_state_cuda_before_materialization": true,
+  "worker_returncode": 0,
+  "worker_stderr": "",
+  "worker_stdout": ""
+}

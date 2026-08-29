@@ -1,0 +1,111 @@
+{
+  "array_bytes": 19328,
+  "array_file": "aot_tensor_internal_shu_osher_fd_r2.npy",
+  "array_file_sha256": "5634ab5dfe730be9e6c01fc41cea342093f78460d859f1245e5ec4bd195d5a5c",
+  "authority_parity": {
+    "absolute_bound": 8.31191729869927e-09,
+    "actual": "aot_tensor_internal_shu_osher_fd_r2.npy",
+    "actual_at_maximum": 40.685237314262515,
+    "epsilon": 2.220446049250313e-16,
+    "equal_elements": 271,
+    "exact_equal": false,
+    "maximum_absolute_difference": 3.469118325938325e-09,
+    "maximum_location": [
+      2,
+      278
+    ],
+    "mean_absolute_difference": 8.995207043768626e-11,
+    "normalized_l1_difference": 6.713268758005886e-12,
+    "normalized_l2_difference": 1.4566667476575954e-11,
+    "passed": true,
+    "reference": "shu_osher_fd_cpu_eager_r0.npy",
+    "reference_at_maximum": 40.685237317731634,
+    "reference_scale": 42.433196606070005,
+    "relative_bound": 1.9588242139434442e-10,
+    "rms_difference": 2.939997421775788e-10,
+    "shape_dtype_match": true,
+    "step_count_match": true,
+    "steps": 6892,
+    "total_elements": 2400
+  },
+  "cells": 800,
+  "complete_solve_seconds": 2.198346803,
+  "cuda_peak_allocated_bytes": 630784,
+  "cuda_peak_reserved_bytes": 2097152,
+  "diagnostics": {
+    "cfl_scalar_host_controlled": false,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.8000006180068274,
+    "minimum_pressure": 0.9999968808423642,
+    "simulated_time": 1.8,
+    "steps": 6892
+  },
+  "dtype": "float64",
+  "eligible": true,
+  "endpoint": "aot_tensor_internal",
+  "final_materialization_serialization_seconds": 0.000290518,
+  "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+  "input_construction_transfer_seconds": 0.06818795000000001,
+  "kind": "phase6g_solve",
+  "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+  "method": "fd",
+  "oracle": {
+    "conserved_l1_errors": [
+      0.011814290022167885,
+      0.027732467672964098,
+      0.07064913100441639
+    ],
+    "feature_metrics": {
+      "density_correlation": 0.9979967746682056,
+      "density_total_variation_ratio": 0.9238301124783593,
+      "window": [
+        -3.0,
+        3.0
+      ]
+    },
+    "gate_decisions": {
+      "completed": true,
+      "density_correlation": true,
+      "density_total_variation_ratio": true,
+      "finest_l1_thresholds": true,
+      "positive_stages": true
+    },
+    "passed": true,
+    "primitive_errors": {
+      "l1": {
+        "density": 0.011814290022167885,
+        "pressure": 0.018853624382483593,
+        "velocity": 0.0040350771186440084
+      },
+      "l2": {
+        "density": 0.04299076117378093,
+        "pressure": 0.1256441824996535,
+        "velocity": 0.04408037328835324
+      },
+      "linf": {
+        "density": 0.7047638031931909,
+        "pressure": 2.4720757920139924,
+        "velocity": 1.1444941698202735
+      }
+    }
+  },
+  "package_load_seconds": 0.002860253,
+  "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_shu_osher_fd.pt2",
+  "package_sha256": "4e8b3e9af84158222225c829de20077aad4557e4a509224a7cc16108c54725a6",
+  "peak_process_rss_bytes": 648142848,
+  "prepared_cache_restoration_timed": false,
+  "problem": "shu_osher",
+  "process_launch_to_exit_seconds": 3.329709165,
+  "replicate": 2,
+  "shape": [
+    3,
+    800
+  ],
+  "status": "completed",
+  "terminal_sha256": "90db6180f68704d6f1e66b2039f8065f261c528bfcfcb95b07d802a028512cfd",
+  "terminal_state_cuda_before_materialization": true,
+  "worker_returncode": 0,
+  "worker_stderr": "",
+  "worker_stdout": ""
+}

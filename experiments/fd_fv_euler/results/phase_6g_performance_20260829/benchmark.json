@@ -1,0 +1,4626 @@
+{
+  "all_workers_eligible": true,
+  "dveb_modified": false,
+  "matrix": {
+    "cells": 800,
+    "dtype": "float64",
+    "endpoints": [
+      "cuda_jit",
+      "aot_host_internal",
+      "aot_tensor_internal"
+    ],
+    "methods": [
+      "fd",
+      "fv"
+    ],
+    "problems": [
+      "sod",
+      "shu_osher"
+    ],
+    "replicates": 3,
+    "workers": 36
+  },
+  "measurement_date": "2026-08-29",
+  "performance_measurements_collected": true,
+  "phase": "fd_fv_euler_phase_6g_performance",
+  "phase6d_sha256": "8b3010b7ad42a7830134624dab660f4ed3c48b0d05385f6ebd1565c8f21ad58b",
+  "prepared_cache_manifest_sha256": "e9b2f5e725fbc2d807135fc387ca0fc4ffc094295b66a3bd048c227d314f96ce",
+  "prerequisites": [
+    {
+      "passed": true,
+      "path": "experiments/fd_fv_euler/verify_phase6g_qualification.py",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Phase 6G qualification records verified (8/8 numerical; performance admitted=True)."
+    },
+    {
+      "passed": true,
+      "path": "experiments/fd_fv_euler/verify_phase6d.py",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "FD/FV Euler Phase 6A verified: inherited authorities, exact point and cell-average projections, Sod quadrature/balance, Shu--Osher restriction, hashes, and no-timing claim all pass.\n{\n  \"arrays\": {\n    \"shu_osher_order11_n800.npz\": {\n      \"minimum_density\": 0.8000006202115134,\n      \"minimum_pressure\": 0.9947823707857374\n    },\n    \"shu_osher_order15_n800.npz\": {\n      \"minimum_density\": 0.8000006202115134,\n      \"minimum_pressure\": 0.8961372875483725\n    },\n    \"shu_osher_order5_n800.npz\": {\n      \"minimum_density\": 0.8000008920255914,\n      \"minimum_pressure\": 0.999998106459775\n    },\n    \"sod_order11_n800.npz\": {\n      \"minimum_density\": 0.12499982603174842,\n      \"minimum_pressure\": 0.09999983132713143\n    },\n    \"sod_order15_n800.npz\": {\n      \"minimum_density\": 0.12475245176990933,\n      \"minimum_pressure\": 0.09972455386251511\n    },\n    \"sod_order5_n800.npz\": {\n      \"minimum_density\": 0.12499771326182792,\n      \"minimum_pressure\": 0.09999741534020654\n    }\n  },\n  \"checked_hashes\": {\n    \"qualification.json\": \"95d3da968fc063d204e13effc8d6190e027e4550a4fe2063462ccbbf170c6b5d\",\n    \"shu_osher_order11_n800.npz\": \"37c8e12f7520eb0c329cc1f901109daeeaec163b1deaddb59645a0d2a9c2653a\",\n    \"shu_osher_order15_n800.npz\": \"7c44620901be819ebf4a7d262172e7a974c13ec1062cb5c14a8cd7a11ef1421c\",\n    \"shu_osher_order5_n800.npz\": \"c8767f5bca98c6a05f41d3b786ab9a41691d2e165abaabf2b5a594150b54bde6\",\n    \"sod_order11_n800.npz\": \"e888363b4161bdf53e79de1fbf4c10567532c90a0c0894a6eced56c27b916b02\",\n    \"sod_order15_n800.npz\": \"b2bf75b7f9b0c9029819aacb15ba48d2cb9ae27f66e6b3539fe30df93522edea\",\n    \"sod_order5_n800.npz\": \"fcea45bb5bd7731981d311fe8f5ed7282379d5ab621ebfb9d47c3fe87ecca939\"\n  },\n  \"passed\": true,\n  \"record\": \"/mnt/projects/gradflow/experiments/euler_boundary_shock/results/phase_b_20260827\",\n  \"source_commit\": \"3b64b1a75b0e412fee195b12c341901ff0c1136d\"\n}\nDeferred CUDA gates verified: scalar FV agreement/compilation/movement and 24 Euler agreement plus six compiler cases passed on Forge; no performance timing was collected.\nFD/FV Euler Phase 6B verification passed\nFD/FV Euler Phase 6C verification passed\nFD/FV Euler Phase 6D verification passed"
+    }
+  ],
+  "production_sources_modified": false,
+  "protocol_commit": "0efdccb",
+  "publication_claim": false,
+  "qualification_sha256": "6555c99564625cc441ce369e6ed3f7348ead940100dd38e0d93718f617979e15",
+  "records": [
+    {
+      "array_bytes": 19328,
+      "array_file": "cuda_jit_sod_fd_r0.npy",
+      "array_file_sha256": "08d1bc646b5206e0b4a5c1e771af1b120214222337f860b7a0d447d50250ce5b",
+      "authority_parity": {
+        "absolute_bound": 2.486258803712192e-10,
+        "actual": "cuda_jit_sod_fd_r0.npy",
+        "actual_at_maximum": 0.5289348132127745,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 694,
+        "exact_equal": false,
+        "maximum_absolute_difference": 4.1155967522854553e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 4.3802096070269806e-14,
+        "normalized_l1_difference": 6.205727497256353e-14,
+        "normalized_l2_difference": 6.746751107076898e-14,
+        "passed": true,
+        "reference": "sod_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.528934813213186,
+        "reference_scale": 2.5000701588723664,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 6.775685341918729e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 11.645309371000002,
+      "cuda_peak_allocated_bytes": 50931712,
+      "cuda_peak_reserved_bytes": 52428800,
+      "diagnostics": {
+        "boundary": "transmissive",
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12499505328667519,
+        "minimum_pressure": 0.09999464813888612,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "cuda_jit",
+      "final_materialization_serialization_seconds": 0.00022743900000000002,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.07511878200000001,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch_compile",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0008666800639713155,
+          0.0007848797768456059,
+          0.0017123134102112866
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0008666800639713155,
+            "pressure": 0.0006388346184361894,
+            "velocity": 0.0016865878189151649
+          },
+          "l2": {
+            "density": 0.004879612833899866,
+            "pressure": 0.003919281898769254,
+            "velocity": 0.02085806371995996
+          },
+          "linf": {
+            "density": 0.07127013390389728,
+            "pressure": 0.09920186232846276,
+            "velocity": 0.5614084607690597
+          }
+        }
+      },
+      "package_load_seconds": null,
+      "package_path": null,
+      "package_sha256": null,
+      "peak_process_rss_bytes": 1240993792,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 13.746897974000001,
+      "replicate": 0,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "59f6eac81c274291cef19d72cb6c116c20b3679f2a0f03e1b116989e85dd0e9c",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "cuda_jit_sod_fd_r1.npy",
+      "array_file_sha256": "0f84f919339aedd69e8c7ad3815ee0eca7081758e30b726f2c47e443e33c29a3",
+      "authority_parity": {
+        "absolute_bound": 2.486258803712192e-10,
+        "actual": "cuda_jit_sod_fd_r1.npy",
+        "actual_at_maximum": 0.5289348132123692,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 699,
+        "exact_equal": false,
+        "maximum_absolute_difference": 8.167910792167277e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 5.1561570695432976e-14,
+        "normalized_l1_difference": 7.305062674467688e-14,
+        "normalized_l2_difference": 7.83846119312089e-14,
+        "passed": true,
+        "reference": "sod_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.528934813213186,
+        "reference_scale": 2.5000701588723664,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 7.872077354938751e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 11.531175805,
+      "cuda_peak_allocated_bytes": 50931712,
+      "cuda_peak_reserved_bytes": 52428800,
+      "diagnostics": {
+        "boundary": "transmissive",
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12499505328667504,
+        "minimum_pressure": 0.09999464813888595,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "cuda_jit",
+      "final_materialization_serialization_seconds": 0.00022046900000000002,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.07067922,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch_compile",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0008666800639724947,
+          0.0007848797768472461,
+          0.001712313410211954
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0008666800639724947,
+            "pressure": 0.0006388346184358644,
+            "velocity": 0.0016865878189117767
+          },
+          "l2": {
+            "density": 0.004879612833898643,
+            "pressure": 0.0039192818987653,
+            "velocity": 0.020858063719938515
+          },
+          "linf": {
+            "density": 0.07127013390380738,
+            "pressure": 0.09920186232833117,
+            "velocity": 0.5614084607684964
+          }
+        }
+      },
+      "package_load_seconds": null,
+      "package_path": null,
+      "package_sha256": null,
+      "peak_process_rss_bytes": 1240788992,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 13.576047812,
+      "replicate": 1,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "a6ffff70050dc751696b50710526c75fe2d3ea7d9e82fc234e4b4dd8c738aeb1",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "cuda_jit_sod_fd_r2.npy",
+      "array_file_sha256": "0f84f919339aedd69e8c7ad3815ee0eca7081758e30b726f2c47e443e33c29a3",
+      "authority_parity": {
+        "absolute_bound": 2.486258803712192e-10,
+        "actual": "cuda_jit_sod_fd_r2.npy",
+        "actual_at_maximum": 0.5289348132123692,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 699,
+        "exact_equal": false,
+        "maximum_absolute_difference": 8.167910792167277e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 5.1561570695432976e-14,
+        "normalized_l1_difference": 7.305062674467688e-14,
+        "normalized_l2_difference": 7.83846119312089e-14,
+        "passed": true,
+        "reference": "sod_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.528934813213186,
+        "reference_scale": 2.5000701588723664,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 7.872077354938751e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 11.585717368000001,
+      "cuda_peak_allocated_bytes": 50931712,
+      "cuda_peak_reserved_bytes": 52428800,
+      "diagnostics": {
+        "boundary": "transmissive",
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12499505328667504,
+        "minimum_pressure": 0.09999464813888595,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "cuda_jit",
+      "final_materialization_serialization_seconds": 0.000226449,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.070178554,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch_compile",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0008666800639724947,
+          0.0007848797768472461,
+          0.001712313410211954
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0008666800639724947,
+            "pressure": 0.0006388346184358644,
+            "velocity": 0.0016865878189117767
+          },
+          "l2": {
+            "density": 0.004879612833898643,
+            "pressure": 0.0039192818987653,
+            "velocity": 0.020858063719938515
+          },
+          "linf": {
+            "density": 0.07127013390380738,
+            "pressure": 0.09920186232833117,
+            "velocity": 0.5614084607684964
+          }
+        }
+      },
+      "package_load_seconds": null,
+      "package_path": null,
+      "package_sha256": null,
+      "peak_process_rss_bytes": 1240461312,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 13.646729674000001,
+      "replicate": 2,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "a6ffff70050dc751696b50710526c75fe2d3ea7d9e82fc234e4b4dd8c738aeb1",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "cuda_jit_sod_fv_r0.npy",
+      "array_file_sha256": "904ff7eb0ae0fee5bf6c576c38ad0e17ae88563fcac3239a97f48b1419d4fb41",
+      "authority_parity": {
+        "absolute_bound": 2.486270654887143e-10,
+        "actual": "cuda_jit_sod_fv_r0.npy",
+        "actual_at_maximum": 0.5302642159577493,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 466,
+        "exact_equal": false,
+        "maximum_absolute_difference": 8.254508188088039e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 5.197373288512577e-14,
+        "normalized_l1_difference": 7.363456153160548e-14,
+        "normalized_l2_difference": 7.890398906050707e-14,
+        "passed": true,
+        "reference": "sod_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.5302642159585748,
+        "reference_scale": 2.5000820758814872,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 7.924373856518094e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 11.653839677,
+      "cuda_peak_allocated_bytes": 50969600,
+      "cuda_peak_reserved_bytes": 52428800,
+      "diagnostics": {
+        "boundary": "transmissive",
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12498920656526447,
+        "minimum_pressure": 0.09998818413719322,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "cuda_jit",
+      "final_materialization_serialization_seconds": 0.00022286900000000002,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.069757477,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch_compile",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0006911638466025524,
+          0.0005834212033658757,
+          0.0013236921402639001
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0006911638466025524,
+            "pressure": 0.000503377761645559,
+            "velocity": 0.0010185036485142105
+          },
+          "l2": {
+            "density": 0.003633442650946778,
+            "pressure": 0.001867745199644133,
+            "velocity": 0.006964740719600766
+          },
+          "linf": {
+            "density": 0.06932890150004956,
+            "pressure": 0.024783851093914344,
+            "velocity": 0.15805028839510568
+          }
+        }
+      },
+      "package_load_seconds": null,
+      "package_path": null,
+      "package_sha256": null,
+      "peak_process_rss_bytes": 1240686592,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 13.68622665,
+      "replicate": 0,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "9f26cad522c4c7425efafe83495249790345814c1e5ed660fb498e4d86fc70c2",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "cuda_jit_sod_fv_r1.npy",
+      "array_file_sha256": "04a9b5f3244c568ea65f59136ac54459521ffa66c13ad43a6f3f83884014cee4",
+      "authority_parity": {
+        "absolute_bound": 2.486270654887143e-10,
+        "actual": "cuda_jit_sod_fv_r1.npy",
+        "actual_at_maximum": 0.5302642159581714,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 466,
+        "exact_equal": false,
+        "maximum_absolute_difference": 4.0334402484631937e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 4.383893289382425e-14,
+        "normalized_l1_difference": 6.210946226981622e-14,
+        "normalized_l2_difference": 6.744934990533245e-14,
+        "passed": true,
+        "reference": "sod_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.5302642159585748,
+        "reference_scale": 2.5000820758814872,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 6.773977734117905e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 11.618393208,
+      "cuda_peak_allocated_bytes": 50969600,
+      "cuda_peak_reserved_bytes": 52428800,
+      "diagnostics": {
+        "boundary": "transmissive",
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12498920656526483,
+        "minimum_pressure": 0.09998818413719326,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "cuda_jit",
+      "final_materialization_serialization_seconds": 0.00022065800000000001,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.070619822,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch_compile",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0006911638466032807,
+          0.0005834212033644713,
+          0.0013236921402650142
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0006911638466032807,
+            "pressure": 0.0005033777616461127,
+            "velocity": 0.0010185036485165567
+          },
+          "l2": {
+            "density": 0.0036334426509471783,
+            "pressure": 0.0018677451996459698,
+            "velocity": 0.00696474071961644
+          },
+          "linf": {
+            "density": 0.06932890150003274,
+            "pressure": 0.02478385109385184,
+            "velocity": 0.15805028839548443
+          }
+        }
+      },
+      "package_load_seconds": null,
+      "package_path": null,
+      "package_sha256": null,
+      "peak_process_rss_bytes": 1240371200,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 13.648193765,
+      "replicate": 1,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "b75a54b0b7f51b4c3a29b84d507e05871bb8a56138f5df10514cde911d532e8a",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "cuda_jit_sod_fv_r2.npy",
+      "array_file_sha256": "04a9b5f3244c568ea65f59136ac54459521ffa66c13ad43a6f3f83884014cee4",
+      "authority_parity": {
+        "absolute_bound": 2.486270654887143e-10,
+        "actual": "cuda_jit_sod_fv_r2.npy",
+        "actual_at_maximum": 0.5302642159581714,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 466,
+        "exact_equal": false,
+        "maximum_absolute_difference": 4.0334402484631937e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 4.383893289382425e-14,
+        "normalized_l1_difference": 6.210946226981622e-14,
+        "normalized_l2_difference": 6.744934990533245e-14,
+        "passed": true,
+        "reference": "sod_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.5302642159585748,
+        "reference_scale": 2.5000820758814872,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 6.773977734117905e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 11.775403494,
+      "cuda_peak_allocated_bytes": 50969600,
+      "cuda_peak_reserved_bytes": 52428800,
+      "diagnostics": {
+        "boundary": "transmissive",
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12498920656526483,
+        "minimum_pressure": 0.09998818413719326,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "cuda_jit",
+      "final_materialization_serialization_seconds": 0.00021276900000000002,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.070447533,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch_compile",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0006911638466032807,
+          0.0005834212033644713,
+          0.0013236921402650142
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0006911638466032807,
+            "pressure": 0.0005033777616461127,
+            "velocity": 0.0010185036485165567
+          },
+          "l2": {
+            "density": 0.0036334426509471783,
+            "pressure": 0.0018677451996459698,
+            "velocity": 0.00696474071961644
+          },
+          "linf": {
+            "density": 0.06932890150003274,
+            "pressure": 0.02478385109385184,
+            "velocity": 0.15805028839548443
+          }
+        }
+      },
+      "package_load_seconds": null,
+      "package_path": null,
+      "package_sha256": null,
+      "peak_process_rss_bytes": 1239953408,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 13.801495592,
+      "replicate": 2,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "b75a54b0b7f51b4c3a29b84d507e05871bb8a56138f5df10514cde911d532e8a",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "cuda_jit_shu_osher_fd_r0.npy",
+      "array_file_sha256": "6beac92b04e8414aec7601ed6773841bb58002ec513a094f1b6c18d2447075b0",
+      "authority_parity": {
+        "absolute_bound": 8.31191729869927e-09,
+        "actual": "cuda_jit_shu_osher_fd_r0.npy",
+        "actual_at_maximum": 40.68523731398867,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 272,
+        "exact_equal": false,
+        "maximum_absolute_difference": 3.742961496300268e-09,
+        "maximum_location": [
+          2,
+          278
+        ],
+        "mean_absolute_difference": 9.834308884159768e-11,
+        "normalized_l1_difference": 7.339504056701473e-12,
+        "normalized_l2_difference": 1.5925902514905533e-11,
+        "passed": true,
+        "reference": "shu_osher_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.685237317731634,
+        "reference_scale": 42.433196606070005,
+        "relative_bound": 1.9588242139434442e-10,
+        "rms_difference": 3.2143324757407603e-10,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6892,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 13.741683064,
+      "cuda_peak_allocated_bytes": 50931712,
+      "cuda_peak_reserved_bytes": 52428800,
+      "diagnostics": {
+        "boundary": "transmissive",
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.8000006180068274,
+        "minimum_pressure": 0.9999968808423642,
+        "simulated_time": 1.8,
+        "steps": 6892
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "cuda_jit",
+      "final_materialization_serialization_seconds": 0.000222439,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.071535557,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch_compile",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011814290022475311,
+          0.02773246767260515,
+          0.07064913100571729
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9979967746682461,
+          "density_total_variation_ratio": 0.9238301124867913,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011814290022475311,
+            "pressure": 0.018853624382685077,
+            "velocity": 0.004035077118624215
+          },
+          "l2": {
+            "density": 0.04299076117335609,
+            "pressure": 0.12564418250026635,
+            "velocity": 0.04408037328831827
+          },
+          "linf": {
+            "density": 0.704763803193249,
+            "pressure": 2.472075792014164,
+            "velocity": 1.14449416982019
+          }
+        }
+      },
+      "package_load_seconds": null,
+      "package_path": null,
+      "package_sha256": null,
+      "peak_process_rss_bytes": 1241346048,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 15.795182103,
+      "replicate": 0,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "18322cb25a1a10a9b2121584346b205739365180e0c0aa96e7fe364000c99e01",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "cuda_jit_shu_osher_fd_r1.npy",
+      "array_file_sha256": "6beac92b04e8414aec7601ed6773841bb58002ec513a094f1b6c18d2447075b0",
+      "authority_parity": {
+        "absolute_bound": 8.31191729869927e-09,
+        "actual": "cuda_jit_shu_osher_fd_r1.npy",
+        "actual_at_maximum": 40.68523731398867,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 272,
+        "exact_equal": false,
+        "maximum_absolute_difference": 3.742961496300268e-09,
+        "maximum_location": [
+          2,
+          278
+        ],
+        "mean_absolute_difference": 9.834308884159768e-11,
+        "normalized_l1_difference": 7.339504056701473e-12,
+        "normalized_l2_difference": 1.5925902514905533e-11,
+        "passed": true,
+        "reference": "shu_osher_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.685237317731634,
+        "reference_scale": 42.433196606070005,
+        "relative_bound": 1.9588242139434442e-10,
+        "rms_difference": 3.2143324757407603e-10,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6892,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 13.754406128000001,
+      "cuda_peak_allocated_bytes": 50931712,
+      "cuda_peak_reserved_bytes": 52428800,
+      "diagnostics": {
+        "boundary": "transmissive",
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.8000006180068274,
+        "minimum_pressure": 0.9999968808423642,
+        "simulated_time": 1.8,
+        "steps": 6892
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "cuda_jit",
+      "final_materialization_serialization_seconds": 0.00021192900000000002,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.071628806,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch_compile",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011814290022475311,
+          0.02773246767260515,
+          0.07064913100571729
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9979967746682461,
+          "density_total_variation_ratio": 0.9238301124867913,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011814290022475311,
+            "pressure": 0.018853624382685077,
+            "velocity": 0.004035077118624215
+          },
+          "l2": {
+            "density": 0.04299076117335609,
+            "pressure": 0.12564418250026635,
+            "velocity": 0.04408037328831827
+          },
+          "linf": {
+            "density": 0.704763803193249,
+            "pressure": 2.472075792014164,
+            "velocity": 1.14449416982019
+          }
+        }
+      },
+      "package_load_seconds": null,
+      "package_path": null,
+      "package_sha256": null,
+      "peak_process_rss_bytes": 1241411584,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 15.842678351000002,
+      "replicate": 1,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "18322cb25a1a10a9b2121584346b205739365180e0c0aa96e7fe364000c99e01",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "cuda_jit_shu_osher_fd_r2.npy",
+      "array_file_sha256": "6beac92b04e8414aec7601ed6773841bb58002ec513a094f1b6c18d2447075b0",
+      "authority_parity": {
+        "absolute_bound": 8.31191729869927e-09,
+        "actual": "cuda_jit_shu_osher_fd_r2.npy",
+        "actual_at_maximum": 40.68523731398867,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 272,
+        "exact_equal": false,
+        "maximum_absolute_difference": 3.742961496300268e-09,
+        "maximum_location": [
+          2,
+          278
+        ],
+        "mean_absolute_difference": 9.834308884159768e-11,
+        "normalized_l1_difference": 7.339504056701473e-12,
+        "normalized_l2_difference": 1.5925902514905533e-11,
+        "passed": true,
+        "reference": "shu_osher_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.685237317731634,
+        "reference_scale": 42.433196606070005,
+        "relative_bound": 1.9588242139434442e-10,
+        "rms_difference": 3.2143324757407603e-10,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6892,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 13.46984108,
+      "cuda_peak_allocated_bytes": 50931712,
+      "cuda_peak_reserved_bytes": 52428800,
+      "diagnostics": {
+        "boundary": "transmissive",
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.8000006180068274,
+        "minimum_pressure": 0.9999968808423642,
+        "simulated_time": 1.8,
+        "steps": 6892
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "cuda_jit",
+      "final_materialization_serialization_seconds": 0.00021146900000000002,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.07042469400000001,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch_compile",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011814290022475311,
+          0.02773246767260515,
+          0.07064913100571729
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9979967746682461,
+          "density_total_variation_ratio": 0.9238301124867913,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011814290022475311,
+            "pressure": 0.018853624382685077,
+            "velocity": 0.004035077118624215
+          },
+          "l2": {
+            "density": 0.04299076117335609,
+            "pressure": 0.12564418250026635,
+            "velocity": 0.04408037328831827
+          },
+          "linf": {
+            "density": 0.704763803193249,
+            "pressure": 2.472075792014164,
+            "velocity": 1.14449416982019
+          }
+        }
+      },
+      "package_load_seconds": null,
+      "package_path": null,
+      "package_sha256": null,
+      "peak_process_rss_bytes": 1241759744,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 15.511749858000002,
+      "replicate": 2,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "18322cb25a1a10a9b2121584346b205739365180e0c0aa96e7fe364000c99e01",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "cuda_jit_shu_osher_fv_r0.npy",
+      "array_file_sha256": "ebc67aca27d104f4b0be0c151625c50c885cbf96628313c8761d5ab9bebf61d7",
+      "authority_parity": {
+        "absolute_bound": 8.317128922257504e-09,
+        "actual": "cuda_jit_shu_osher_fv_r0.npy",
+        "actual_at_maximum": 40.15850430606749,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 269,
+        "exact_equal": false,
+        "maximum_absolute_difference": 2.540261334615934e-10,
+        "maximum_location": [
+          2,
+          277
+        ],
+        "mean_absolute_difference": 6.075577634684845e-12,
+        "normalized_l1_difference": 4.5343020858306003e-13,
+        "normalized_l2_difference": 7.883051256654279e-13,
+        "passed": true,
+        "reference": "shu_osher_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.158504305813466,
+        "reference_scale": 42.44748458246218,
+        "relative_bound": 1.9593926481320523e-10,
+        "rms_difference": 1.5910163576067662e-11,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6894,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 13.949110215000001,
+      "cuda_peak_allocated_bytes": 50969600,
+      "cuda_peak_reserved_bytes": 52428800,
+      "diagnostics": {
+        "boundary": "transmissive",
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.800027356969189,
+        "minimum_pressure": 0.9999872538847536,
+        "simulated_time": 1.8,
+        "steps": 6894
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "cuda_jit",
+      "final_materialization_serialization_seconds": 0.00022072900000000002,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.070309125,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch_compile",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011332252769773671,
+          0.024661681901674903,
+          0.058334859807662405
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.998619014170406,
+          "density_total_variation_ratio": 0.9463692054850372,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011332252769773671,
+            "pressure": 0.016393605817477095,
+            "velocity": 0.0037997063929322977
+          },
+          "l2": {
+            "density": 0.035933412895650746,
+            "pressure": 0.09134658327210758,
+            "velocity": 0.04311876409548176
+          },
+          "linf": {
+            "density": 0.6831163344061907,
+            "pressure": 2.1602120546580745,
+            "velocity": 1.180064337794287
+          }
+        }
+      },
+      "package_load_seconds": null,
+      "package_path": null,
+      "package_sha256": null,
+      "peak_process_rss_bytes": 1241198592,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 16.026261115,
+      "replicate": 0,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "785b0ca5d58e9a3dc2560d50846ae592e4194a7be43bf092e701859cbaeb191b",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "cuda_jit_shu_osher_fv_r1.npy",
+      "array_file_sha256": "ebc67aca27d104f4b0be0c151625c50c885cbf96628313c8761d5ab9bebf61d7",
+      "authority_parity": {
+        "absolute_bound": 8.317128922257504e-09,
+        "actual": "cuda_jit_shu_osher_fv_r1.npy",
+        "actual_at_maximum": 40.15850430606749,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 269,
+        "exact_equal": false,
+        "maximum_absolute_difference": 2.540261334615934e-10,
+        "maximum_location": [
+          2,
+          277
+        ],
+        "mean_absolute_difference": 6.075577634684845e-12,
+        "normalized_l1_difference": 4.5343020858306003e-13,
+        "normalized_l2_difference": 7.883051256654279e-13,
+        "passed": true,
+        "reference": "shu_osher_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.158504305813466,
+        "reference_scale": 42.44748458246218,
+        "relative_bound": 1.9593926481320523e-10,
+        "rms_difference": 1.5910163576067662e-11,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6894,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 13.683038468000001,
+      "cuda_peak_allocated_bytes": 50969600,
+      "cuda_peak_reserved_bytes": 52428800,
+      "diagnostics": {
+        "boundary": "transmissive",
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.800027356969189,
+        "minimum_pressure": 0.9999872538847536,
+        "simulated_time": 1.8,
+        "steps": 6894
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "cuda_jit",
+      "final_materialization_serialization_seconds": 0.000202558,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.06991614800000001,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch_compile",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011332252769773671,
+          0.024661681901674903,
+          0.058334859807662405
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.998619014170406,
+          "density_total_variation_ratio": 0.9463692054850372,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011332252769773671,
+            "pressure": 0.016393605817477095,
+            "velocity": 0.0037997063929322977
+          },
+          "l2": {
+            "density": 0.035933412895650746,
+            "pressure": 0.09134658327210758,
+            "velocity": 0.04311876409548176
+          },
+          "linf": {
+            "density": 0.6831163344061907,
+            "pressure": 2.1602120546580745,
+            "velocity": 1.180064337794287
+          }
+        }
+      },
+      "package_load_seconds": null,
+      "package_path": null,
+      "package_sha256": null,
+      "peak_process_rss_bytes": 1240989696,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 15.717318550000002,
+      "replicate": 1,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "785b0ca5d58e9a3dc2560d50846ae592e4194a7be43bf092e701859cbaeb191b",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "cuda_jit_shu_osher_fv_r2.npy",
+      "array_file_sha256": "ebc67aca27d104f4b0be0c151625c50c885cbf96628313c8761d5ab9bebf61d7",
+      "authority_parity": {
+        "absolute_bound": 8.317128922257504e-09,
+        "actual": "cuda_jit_shu_osher_fv_r2.npy",
+        "actual_at_maximum": 40.15850430606749,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 269,
+        "exact_equal": false,
+        "maximum_absolute_difference": 2.540261334615934e-10,
+        "maximum_location": [
+          2,
+          277
+        ],
+        "mean_absolute_difference": 6.075577634684845e-12,
+        "normalized_l1_difference": 4.5343020858306003e-13,
+        "normalized_l2_difference": 7.883051256654279e-13,
+        "passed": true,
+        "reference": "shu_osher_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.158504305813466,
+        "reference_scale": 42.44748458246218,
+        "relative_bound": 1.9593926481320523e-10,
+        "rms_difference": 1.5910163576067662e-11,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6894,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 13.643167411,
+      "cuda_peak_allocated_bytes": 50969600,
+      "cuda_peak_reserved_bytes": 52428800,
+      "diagnostics": {
+        "boundary": "transmissive",
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.800027356969189,
+        "minimum_pressure": 0.9999872538847536,
+        "simulated_time": 1.8,
+        "steps": 6894
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "cuda_jit",
+      "final_materialization_serialization_seconds": 0.00020522900000000002,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.070286876,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch_compile",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011332252769773671,
+          0.024661681901674903,
+          0.058334859807662405
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.998619014170406,
+          "density_total_variation_ratio": 0.9463692054850372,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011332252769773671,
+            "pressure": 0.016393605817477095,
+            "velocity": 0.0037997063929322977
+          },
+          "l2": {
+            "density": 0.035933412895650746,
+            "pressure": 0.09134658327210758,
+            "velocity": 0.04311876409548176
+          },
+          "linf": {
+            "density": 0.6831163344061907,
+            "pressure": 2.1602120546580745,
+            "velocity": 1.180064337794287
+          }
+        }
+      },
+      "package_load_seconds": null,
+      "package_path": null,
+      "package_sha256": null,
+      "peak_process_rss_bytes": 1241296896,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 15.686278058000001,
+      "replicate": 2,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "785b0ca5d58e9a3dc2560d50846ae592e4194a7be43bf092e701859cbaeb191b",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_host_internal_sod_fd_r0.npy",
+      "array_file_sha256": "0bc67063d87dca43ed2f1bca0add58ed60cfa42bcd1dc94bcbb940be3995530c",
+      "authority_parity": {
+        "absolute_bound": 2.486258803712192e-10,
+        "actual": "aot_host_internal_sod_fd_r0.npy",
+        "actual_at_maximum": 0.528934813212752,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 706,
+        "exact_equal": false,
+        "maximum_absolute_difference": 4.339861803259737e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 4.379538783523926e-14,
+        "normalized_l1_difference": 6.204777098021569e-14,
+        "normalized_l2_difference": 6.747671374028839e-14,
+        "passed": true,
+        "reference": "sod_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.528934813213186,
+        "reference_scale": 2.5000701588723664,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 6.776609555543621e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 1.2721375190000002,
+      "cuda_peak_allocated_bytes": 606720,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12499505328667519,
+        "minimum_pressure": 0.09999464813888603,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_host_internal",
+      "final_materialization_serialization_seconds": 0.00020334900000000002,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.07031954600000001,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0008666800639719782,
+          0.0007848797768453652,
+          0.0017123134102116134
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0008666800639719782,
+            "pressure": 0.0006388346184362883,
+            "velocity": 0.0016865878189146486
+          },
+          "l2": {
+            "density": 0.004879612833900306,
+            "pressure": 0.003919281898769149,
+            "velocity": 0.02085806371995873
+          },
+          "linf": {
+            "density": 0.07127013390389228,
+            "pressure": 0.09920186232845546,
+            "velocity": 0.5614084607690292
+          }
+        }
+      },
+      "package_load_seconds": 0.0025491840000000003,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_sod_fd.pt2",
+      "package_sha256": "aad6740704af2afc836fa0784f9674e7590f8368b8626832e64bd2996b47a208",
+      "peak_process_rss_bytes": 646156288,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 2.422277212,
+      "replicate": 0,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "7555249b51b2edc1b218c5b48ca0e69ee82d13e61b19d5770e655a3733821e4c",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_host_internal_sod_fd_r1.npy",
+      "array_file_sha256": "0bc67063d87dca43ed2f1bca0add58ed60cfa42bcd1dc94bcbb940be3995530c",
+      "authority_parity": {
+        "absolute_bound": 2.486258803712192e-10,
+        "actual": "aot_host_internal_sod_fd_r1.npy",
+        "actual_at_maximum": 0.528934813212752,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 706,
+        "exact_equal": false,
+        "maximum_absolute_difference": 4.339861803259737e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 4.379538783523926e-14,
+        "normalized_l1_difference": 6.204777098021569e-14,
+        "normalized_l2_difference": 6.747671374028839e-14,
+        "passed": true,
+        "reference": "sod_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.528934813213186,
+        "reference_scale": 2.5000701588723664,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 6.776609555543621e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 1.270693689,
+      "cuda_peak_allocated_bytes": 606720,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12499505328667519,
+        "minimum_pressure": 0.09999464813888603,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_host_internal",
+      "final_materialization_serialization_seconds": 0.000210289,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.068656466,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0008666800639719782,
+          0.0007848797768453652,
+          0.0017123134102116134
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0008666800639719782,
+            "pressure": 0.0006388346184362883,
+            "velocity": 0.0016865878189146486
+          },
+          "l2": {
+            "density": 0.004879612833900306,
+            "pressure": 0.003919281898769149,
+            "velocity": 0.02085806371995873
+          },
+          "linf": {
+            "density": 0.07127013390389228,
+            "pressure": 0.09920186232845546,
+            "velocity": 0.5614084607690292
+          }
+        }
+      },
+      "package_load_seconds": 0.002542564,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_sod_fd.pt2",
+      "package_sha256": "aad6740704af2afc836fa0784f9674e7590f8368b8626832e64bd2996b47a208",
+      "peak_process_rss_bytes": 646447104,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 2.404271564,
+      "replicate": 1,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "7555249b51b2edc1b218c5b48ca0e69ee82d13e61b19d5770e655a3733821e4c",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_host_internal_sod_fd_r2.npy",
+      "array_file_sha256": "0bc67063d87dca43ed2f1bca0add58ed60cfa42bcd1dc94bcbb940be3995530c",
+      "authority_parity": {
+        "absolute_bound": 2.486258803712192e-10,
+        "actual": "aot_host_internal_sod_fd_r2.npy",
+        "actual_at_maximum": 0.528934813212752,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 706,
+        "exact_equal": false,
+        "maximum_absolute_difference": 4.339861803259737e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 4.379538783523926e-14,
+        "normalized_l1_difference": 6.204777098021569e-14,
+        "normalized_l2_difference": 6.747671374028839e-14,
+        "passed": true,
+        "reference": "sod_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.528934813213186,
+        "reference_scale": 2.5000701588723664,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 6.776609555543621e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 1.2706710300000001,
+      "cuda_peak_allocated_bytes": 606720,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12499505328667519,
+        "minimum_pressure": 0.09999464813888603,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_host_internal",
+      "final_materialization_serialization_seconds": 0.00019586900000000002,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.068279659,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0008666800639719782,
+          0.0007848797768453652,
+          0.0017123134102116134
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0008666800639719782,
+            "pressure": 0.0006388346184362883,
+            "velocity": 0.0016865878189146486
+          },
+          "l2": {
+            "density": 0.004879612833900306,
+            "pressure": 0.003919281898769149,
+            "velocity": 0.02085806371995873
+          },
+          "linf": {
+            "density": 0.07127013390389228,
+            "pressure": 0.09920186232845546,
+            "velocity": 0.5614084607690292
+          }
+        }
+      },
+      "package_load_seconds": 0.0024896740000000003,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_sod_fd.pt2",
+      "package_sha256": "aad6740704af2afc836fa0784f9674e7590f8368b8626832e64bd2996b47a208",
+      "peak_process_rss_bytes": 646471680,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 2.4127385230000002,
+      "replicate": 2,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "7555249b51b2edc1b218c5b48ca0e69ee82d13e61b19d5770e655a3733821e4c",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_host_internal_sod_fv_r0.npy",
+      "array_file_sha256": "01d50348f45763cbe7494aef11c8882db9884ae2318bbb1f683e792e6fdaf1a3",
+      "authority_parity": {
+        "absolute_bound": 2.486270654887143e-10,
+        "actual": "aot_host_internal_sod_fv_r0.npy",
+        "actual_at_maximum": 0.5302642159577668,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 466,
+        "exact_equal": false,
+        "maximum_absolute_difference": 8.079092950197264e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 5.206839910330379e-14,
+        "normalized_l1_difference": 7.376868130866287e-14,
+        "normalized_l2_difference": 7.905662515807097e-14,
+        "passed": true,
+        "reference": "sod_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.5302642159585748,
+        "reference_scale": 2.5000820758814872,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 7.939703189236226e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 1.343419332,
+      "cuda_peak_allocated_bytes": 647168,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12498920656526458,
+        "minimum_pressure": 0.09998818413719322,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_host_internal",
+      "final_materialization_serialization_seconds": 0.00021623900000000001,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.069267772,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0006911638466026081,
+          0.0005834212033659024,
+          0.0013236921402638253
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0006911638466026081,
+            "pressure": 0.0005033777616455174,
+            "velocity": 0.0010185036485142183
+          },
+          "l2": {
+            "density": 0.0036334426509470265,
+            "pressure": 0.001867745199644275,
+            "velocity": 0.0069647407196013695
+          },
+          "linf": {
+            "density": 0.0693289015000515,
+            "pressure": 0.024783851093911013,
+            "velocity": 0.15805028839512122
+          }
+        }
+      },
+      "package_load_seconds": 0.0026555240000000003,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_sod_fv.pt2",
+      "package_sha256": "3b02ddb4ddc7dcd6814d26406145fad5062362f71a65514f9514b13571176769",
+      "peak_process_rss_bytes": 646455296,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 2.504039011,
+      "replicate": 0,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "b7e95fbf0fd19d45b052dbf818ac928ea560f561cb9ab11e49e7986ae0124bc5",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_host_internal_sod_fv_r1.npy",
+      "array_file_sha256": "01d50348f45763cbe7494aef11c8882db9884ae2318bbb1f683e792e6fdaf1a3",
+      "authority_parity": {
+        "absolute_bound": 2.486270654887143e-10,
+        "actual": "aot_host_internal_sod_fv_r1.npy",
+        "actual_at_maximum": 0.5302642159577668,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 466,
+        "exact_equal": false,
+        "maximum_absolute_difference": 8.079092950197264e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 5.206839910330379e-14,
+        "normalized_l1_difference": 7.376868130866287e-14,
+        "normalized_l2_difference": 7.905662515807097e-14,
+        "passed": true,
+        "reference": "sod_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.5302642159585748,
+        "reference_scale": 2.5000820758814872,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 7.939703189236226e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 1.341415864,
+      "cuda_peak_allocated_bytes": 647168,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12498920656526458,
+        "minimum_pressure": 0.09998818413719322,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_host_internal",
+      "final_materialization_serialization_seconds": 0.00020611900000000002,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.067492254,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0006911638466026081,
+          0.0005834212033659024,
+          0.0013236921402638253
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0006911638466026081,
+            "pressure": 0.0005033777616455174,
+            "velocity": 0.0010185036485142183
+          },
+          "l2": {
+            "density": 0.0036334426509470265,
+            "pressure": 0.001867745199644275,
+            "velocity": 0.0069647407196013695
+          },
+          "linf": {
+            "density": 0.0693289015000515,
+            "pressure": 0.024783851093911013,
+            "velocity": 0.15805028839512122
+          }
+        }
+      },
+      "package_load_seconds": 0.002596174,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_sod_fv.pt2",
+      "package_sha256": "3b02ddb4ddc7dcd6814d26406145fad5062362f71a65514f9514b13571176769",
+      "peak_process_rss_bytes": 646483968,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 2.494559461,
+      "replicate": 1,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "b7e95fbf0fd19d45b052dbf818ac928ea560f561cb9ab11e49e7986ae0124bc5",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_host_internal_sod_fv_r2.npy",
+      "array_file_sha256": "01d50348f45763cbe7494aef11c8882db9884ae2318bbb1f683e792e6fdaf1a3",
+      "authority_parity": {
+        "absolute_bound": 2.486270654887143e-10,
+        "actual": "aot_host_internal_sod_fv_r2.npy",
+        "actual_at_maximum": 0.5302642159577668,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 466,
+        "exact_equal": false,
+        "maximum_absolute_difference": 8.079092950197264e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 5.206839910330379e-14,
+        "normalized_l1_difference": 7.376868130866287e-14,
+        "normalized_l2_difference": 7.905662515807097e-14,
+        "passed": true,
+        "reference": "sod_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.5302642159585748,
+        "reference_scale": 2.5000820758814872,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 7.939703189236226e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 1.3422721510000002,
+      "cuda_peak_allocated_bytes": 647168,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12498920656526458,
+        "minimum_pressure": 0.09998818413719322,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_host_internal",
+      "final_materialization_serialization_seconds": 0.00022010900000000002,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.06741535400000001,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0006911638466026081,
+          0.0005834212033659024,
+          0.0013236921402638253
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0006911638466026081,
+            "pressure": 0.0005033777616455174,
+            "velocity": 0.0010185036485142183
+          },
+          "l2": {
+            "density": 0.0036334426509470265,
+            "pressure": 0.001867745199644275,
+            "velocity": 0.0069647407196013695
+          },
+          "linf": {
+            "density": 0.0693289015000515,
+            "pressure": 0.024783851093911013,
+            "velocity": 0.15805028839512122
+          }
+        }
+      },
+      "package_load_seconds": 0.0026448440000000004,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_sod_fv.pt2",
+      "package_sha256": "3b02ddb4ddc7dcd6814d26406145fad5062362f71a65514f9514b13571176769",
+      "peak_process_rss_bytes": 646615040,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 2.4693656180000003,
+      "replicate": 2,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "b7e95fbf0fd19d45b052dbf818ac928ea560f561cb9ab11e49e7986ae0124bc5",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_host_internal_shu_osher_fd_r0.npy",
+      "array_file_sha256": "5634ab5dfe730be9e6c01fc41cea342093f78460d859f1245e5ec4bd195d5a5c",
+      "authority_parity": {
+        "absolute_bound": 8.31191729869927e-09,
+        "actual": "aot_host_internal_shu_osher_fd_r0.npy",
+        "actual_at_maximum": 40.685237314262515,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 271,
+        "exact_equal": false,
+        "maximum_absolute_difference": 3.469118325938325e-09,
+        "maximum_location": [
+          2,
+          278
+        ],
+        "mean_absolute_difference": 8.995207043768626e-11,
+        "normalized_l1_difference": 6.713268758005886e-12,
+        "normalized_l2_difference": 1.4566667476575954e-11,
+        "passed": true,
+        "reference": "shu_osher_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.685237317731634,
+        "reference_scale": 42.433196606070005,
+        "relative_bound": 1.9588242139434442e-10,
+        "rms_difference": 2.939997421775788e-10,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6892,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 2.397677852,
+      "cuda_peak_allocated_bytes": 606720,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.8000006180068274,
+        "minimum_pressure": 0.9999968808423642,
+        "simulated_time": 1.8,
+        "steps": 6892
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_host_internal",
+      "final_materialization_serialization_seconds": 0.000224569,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.067963981,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011814290022167885,
+          0.027732467672964098,
+          0.07064913100441639
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9979967746682056,
+          "density_total_variation_ratio": 0.9238301124783593,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011814290022167885,
+            "pressure": 0.018853624382483593,
+            "velocity": 0.0040350771186440084
+          },
+          "l2": {
+            "density": 0.04299076117378093,
+            "pressure": 0.1256441824996535,
+            "velocity": 0.04408037328835324
+          },
+          "linf": {
+            "density": 0.7047638031931909,
+            "pressure": 2.4720757920139924,
+            "velocity": 1.1444941698202735
+          }
+        }
+      },
+      "package_load_seconds": 0.0025805140000000003,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_shu_osher_fd.pt2",
+      "package_sha256": "0b242ba105439036349c2ade53e20cdc897f53f03c0d8d4b840f72b36da8bed0",
+      "peak_process_rss_bytes": 647303168,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 3.5304574040000003,
+      "replicate": 0,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "90db6180f68704d6f1e66b2039f8065f261c528bfcfcb95b07d802a028512cfd",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_host_internal_shu_osher_fd_r1.npy",
+      "array_file_sha256": "5634ab5dfe730be9e6c01fc41cea342093f78460d859f1245e5ec4bd195d5a5c",
+      "authority_parity": {
+        "absolute_bound": 8.31191729869927e-09,
+        "actual": "aot_host_internal_shu_osher_fd_r1.npy",
+        "actual_at_maximum": 40.685237314262515,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 271,
+        "exact_equal": false,
+        "maximum_absolute_difference": 3.469118325938325e-09,
+        "maximum_location": [
+          2,
+          278
+        ],
+        "mean_absolute_difference": 8.995207043768626e-11,
+        "normalized_l1_difference": 6.713268758005886e-12,
+        "normalized_l2_difference": 1.4566667476575954e-11,
+        "passed": true,
+        "reference": "shu_osher_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.685237317731634,
+        "reference_scale": 42.433196606070005,
+        "relative_bound": 1.9588242139434442e-10,
+        "rms_difference": 2.939997421775788e-10,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6892,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 2.402111197,
+      "cuda_peak_allocated_bytes": 606720,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.8000006180068274,
+        "minimum_pressure": 0.9999968808423642,
+        "simulated_time": 1.8,
+        "steps": 6892
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_host_internal",
+      "final_materialization_serialization_seconds": 0.00020318900000000002,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.067925181,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011814290022167885,
+          0.027732467672964098,
+          0.07064913100441639
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9979967746682056,
+          "density_total_variation_ratio": 0.9238301124783593,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011814290022167885,
+            "pressure": 0.018853624382483593,
+            "velocity": 0.0040350771186440084
+          },
+          "l2": {
+            "density": 0.04299076117378093,
+            "pressure": 0.1256441824996535,
+            "velocity": 0.04408037328835324
+          },
+          "linf": {
+            "density": 0.7047638031931909,
+            "pressure": 2.4720757920139924,
+            "velocity": 1.1444941698202735
+          }
+        }
+      },
+      "package_load_seconds": 0.0025494740000000004,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_shu_osher_fd.pt2",
+      "package_sha256": "0b242ba105439036349c2ade53e20cdc897f53f03c0d8d4b840f72b36da8bed0",
+      "peak_process_rss_bytes": 647352320,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 3.533184932,
+      "replicate": 1,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "90db6180f68704d6f1e66b2039f8065f261c528bfcfcb95b07d802a028512cfd",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_host_internal_shu_osher_fd_r2.npy",
+      "array_file_sha256": "5634ab5dfe730be9e6c01fc41cea342093f78460d859f1245e5ec4bd195d5a5c",
+      "authority_parity": {
+        "absolute_bound": 8.31191729869927e-09,
+        "actual": "aot_host_internal_shu_osher_fd_r2.npy",
+        "actual_at_maximum": 40.685237314262515,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 271,
+        "exact_equal": false,
+        "maximum_absolute_difference": 3.469118325938325e-09,
+        "maximum_location": [
+          2,
+          278
+        ],
+        "mean_absolute_difference": 8.995207043768626e-11,
+        "normalized_l1_difference": 6.713268758005886e-12,
+        "normalized_l2_difference": 1.4566667476575954e-11,
+        "passed": true,
+        "reference": "shu_osher_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.685237317731634,
+        "reference_scale": 42.433196606070005,
+        "relative_bound": 1.9588242139434442e-10,
+        "rms_difference": 2.939997421775788e-10,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6892,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 2.403073912,
+      "cuda_peak_allocated_bytes": 606720,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.8000006180068274,
+        "minimum_pressure": 0.9999968808423642,
+        "simulated_time": 1.8,
+        "steps": 6892
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_host_internal",
+      "final_materialization_serialization_seconds": 0.00022438900000000002,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.06722979500000001,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011814290022167885,
+          0.027732467672964098,
+          0.07064913100441639
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9979967746682056,
+          "density_total_variation_ratio": 0.9238301124783593,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011814290022167885,
+            "pressure": 0.018853624382483593,
+            "velocity": 0.0040350771186440084
+          },
+          "l2": {
+            "density": 0.04299076117378093,
+            "pressure": 0.1256441824996535,
+            "velocity": 0.04408037328835324
+          },
+          "linf": {
+            "density": 0.7047638031931909,
+            "pressure": 2.4720757920139924,
+            "velocity": 1.1444941698202735
+          }
+        }
+      },
+      "package_load_seconds": 0.002518775,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_shu_osher_fd.pt2",
+      "package_sha256": "0b242ba105439036349c2ade53e20cdc897f53f03c0d8d4b840f72b36da8bed0",
+      "peak_process_rss_bytes": 647438336,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 3.533067045,
+      "replicate": 2,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "90db6180f68704d6f1e66b2039f8065f261c528bfcfcb95b07d802a028512cfd",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_host_internal_shu_osher_fv_r0.npy",
+      "array_file_sha256": "e7ad43a36e5495c1699264b162894e5fec3e8fdc31835c7f23af154f1ae4d05a",
+      "authority_parity": {
+        "absolute_bound": 8.317128922257504e-09,
+        "actual": "aot_host_internal_shu_osher_fv_r0.npy",
+        "actual_at_maximum": 40.87318689246545,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 267,
+        "exact_equal": false,
+        "maximum_absolute_difference": 5.2082782531215344e-11,
+        "maximum_location": [
+          2,
+          280
+        ],
+        "mean_absolute_difference": 3.434307714505954e-12,
+        "normalized_l1_difference": 2.563079524219796e-13,
+        "normalized_l2_difference": 3.17356560928646e-13,
+        "passed": true,
+        "reference": "shu_osher_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.87318689251753,
+        "reference_scale": 42.44748458246218,
+        "relative_bound": 1.9593926481320523e-10,
+        "rms_difference": 6.4051274461153485e-12,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6894,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 2.519399528,
+      "cuda_peak_allocated_bytes": 647168,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.800027356969191,
+        "minimum_pressure": 0.9999872538847527,
+        "simulated_time": 1.8,
+        "steps": 6894
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_host_internal",
+      "final_materialization_serialization_seconds": 0.000219749,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.068836216,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011332252769926752,
+          0.024661681902106124,
+          0.05833485980774599
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9986190141703877,
+          "density_total_variation_ratio": 0.9463692054840459,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011332252769926752,
+            "pressure": 0.01639360581744717,
+            "velocity": 0.0037997063929281483
+          },
+          "l2": {
+            "density": 0.035933412895884455,
+            "pressure": 0.0913465832720895,
+            "velocity": 0.04311876409545853
+          },
+          "linf": {
+            "density": 0.6831163344057208,
+            "pressure": 2.1602120546564305,
+            "velocity": 1.180064337793661
+          }
+        }
+      },
+      "package_load_seconds": 0.0025394040000000003,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_shu_osher_fv.pt2",
+      "package_sha256": "77c7cad189a0ad049b41764d3efa3c343e5e29640bf7586f87ee7be1b33acfb0",
+      "peak_process_rss_bytes": 647749632,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 3.6431386590000003,
+      "replicate": 0,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "442da784459c331eed1b9fad8b9fc518f450a419e77aff37feec1cd716b8d36f",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_host_internal_shu_osher_fv_r1.npy",
+      "array_file_sha256": "e7ad43a36e5495c1699264b162894e5fec3e8fdc31835c7f23af154f1ae4d05a",
+      "authority_parity": {
+        "absolute_bound": 8.317128922257504e-09,
+        "actual": "aot_host_internal_shu_osher_fv_r1.npy",
+        "actual_at_maximum": 40.87318689246545,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 267,
+        "exact_equal": false,
+        "maximum_absolute_difference": 5.2082782531215344e-11,
+        "maximum_location": [
+          2,
+          280
+        ],
+        "mean_absolute_difference": 3.434307714505954e-12,
+        "normalized_l1_difference": 2.563079524219796e-13,
+        "normalized_l2_difference": 3.17356560928646e-13,
+        "passed": true,
+        "reference": "shu_osher_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.87318689251753,
+        "reference_scale": 42.44748458246218,
+        "relative_bound": 1.9593926481320523e-10,
+        "rms_difference": 6.4051274461153485e-12,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6894,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 2.525091385,
+      "cuda_peak_allocated_bytes": 647168,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.800027356969191,
+        "minimum_pressure": 0.9999872538847527,
+        "simulated_time": 1.8,
+        "steps": 6894
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_host_internal",
+      "final_materialization_serialization_seconds": 0.00020506900000000002,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.068183069,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011332252769926752,
+          0.024661681902106124,
+          0.05833485980774599
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9986190141703877,
+          "density_total_variation_ratio": 0.9463692054840459,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011332252769926752,
+            "pressure": 0.01639360581744717,
+            "velocity": 0.0037997063929281483
+          },
+          "l2": {
+            "density": 0.035933412895884455,
+            "pressure": 0.0913465832720895,
+            "velocity": 0.04311876409545853
+          },
+          "linf": {
+            "density": 0.6831163344057208,
+            "pressure": 2.1602120546564305,
+            "velocity": 1.180064337793661
+          }
+        }
+      },
+      "package_load_seconds": 0.0026196740000000002,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_shu_osher_fv.pt2",
+      "package_sha256": "77c7cad189a0ad049b41764d3efa3c343e5e29640bf7586f87ee7be1b33acfb0",
+      "peak_process_rss_bytes": 647999488,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 3.6793470090000002,
+      "replicate": 1,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "442da784459c331eed1b9fad8b9fc518f450a419e77aff37feec1cd716b8d36f",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_host_internal_shu_osher_fv_r2.npy",
+      "array_file_sha256": "e7ad43a36e5495c1699264b162894e5fec3e8fdc31835c7f23af154f1ae4d05a",
+      "authority_parity": {
+        "absolute_bound": 8.317128922257504e-09,
+        "actual": "aot_host_internal_shu_osher_fv_r2.npy",
+        "actual_at_maximum": 40.87318689246545,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 267,
+        "exact_equal": false,
+        "maximum_absolute_difference": 5.2082782531215344e-11,
+        "maximum_location": [
+          2,
+          280
+        ],
+        "mean_absolute_difference": 3.434307714505954e-12,
+        "normalized_l1_difference": 2.563079524219796e-13,
+        "normalized_l2_difference": 3.17356560928646e-13,
+        "passed": true,
+        "reference": "shu_osher_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.87318689251753,
+        "reference_scale": 42.44748458246218,
+        "relative_bound": 1.9593926481320523e-10,
+        "rms_difference": 6.4051274461153485e-12,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6894,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 2.518439288,
+      "cuda_peak_allocated_bytes": 647168,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": true,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.800027356969191,
+        "minimum_pressure": 0.9999872538847527,
+        "simulated_time": 1.8,
+        "steps": 6894
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_host_internal",
+      "final_materialization_serialization_seconds": 0.000195799,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.068618417,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011332252769926752,
+          0.024661681902106124,
+          0.05833485980774599
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9986190141703877,
+          "density_total_variation_ratio": 0.9463692054840459,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011332252769926752,
+            "pressure": 0.01639360581744717,
+            "velocity": 0.0037997063929281483
+          },
+          "l2": {
+            "density": 0.035933412895884455,
+            "pressure": 0.0913465832720895,
+            "velocity": 0.04311876409545853
+          },
+          "linf": {
+            "density": 0.6831163344057208,
+            "pressure": 2.1602120546564305,
+            "velocity": 1.180064337793661
+          }
+        }
+      },
+      "package_load_seconds": 0.0026055740000000003,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_20260829/host_shu_osher_fv.pt2",
+      "package_sha256": "77c7cad189a0ad049b41764d3efa3c343e5e29640bf7586f87ee7be1b33acfb0",
+      "peak_process_rss_bytes": 647561216,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 3.6475275290000004,
+      "replicate": 2,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "442da784459c331eed1b9fad8b9fc518f450a419e77aff37feec1cd716b8d36f",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_tensor_internal_sod_fd_r0.npy",
+      "array_file_sha256": "29b4cb97c27c698e5f18bc9074c8be616177ec263e4c4891a926a745a7f9cb8e",
+      "authority_parity": {
+        "absolute_bound": 2.486258803712192e-10,
+        "actual": "aot_tensor_internal_sod_fd_r0.npy",
+        "actual_at_maximum": 0.528934813212371,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 694,
+        "exact_equal": false,
+        "maximum_absolute_difference": 8.150147223773274e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 5.164260921271752e-14,
+        "normalized_l1_difference": 7.316543927653445e-14,
+        "normalized_l2_difference": 7.850257084515287e-14,
+        "passed": true,
+        "reference": "sod_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.528934813213186,
+        "reference_scale": 2.5000701588723664,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 7.88392383439937e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 1.155622198,
+      "cuda_peak_allocated_bytes": 630784,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": false,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.1249950532866752,
+        "minimum_pressure": 0.09999464813888595,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_tensor_internal",
+      "final_materialization_serialization_seconds": 0.000286058,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.06816892000000001,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0008666800639724218,
+          0.0007848797768472876,
+          0.0017123134102118188
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0008666800639724218,
+            "pressure": 0.0006388346184358599,
+            "velocity": 0.0016865878189118424
+          },
+          "l2": {
+            "density": 0.004879612833898354,
+            "pressure": 0.003919281898765203,
+            "velocity": 0.020858063719938598
+          },
+          "linf": {
+            "density": 0.07127013390380779,
+            "pressure": 0.09920186232833175,
+            "velocity": 0.5614084607684988
+          }
+        }
+      },
+      "package_load_seconds": 0.002773553,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_sod_fd.pt2",
+      "package_sha256": "46b17aacd275b13407833d3071d0a05b6fea4b2937a132972a161cdd8c498d3e",
+      "peak_process_rss_bytes": 647184384,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 2.311590654,
+      "replicate": 0,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "56a0064f2592087a34aec1a37abf0a19f4cdf8a86959c077063cd87e19e123ed",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_tensor_internal_sod_fd_r1.npy",
+      "array_file_sha256": "29b4cb97c27c698e5f18bc9074c8be616177ec263e4c4891a926a745a7f9cb8e",
+      "authority_parity": {
+        "absolute_bound": 2.486258803712192e-10,
+        "actual": "aot_tensor_internal_sod_fd_r1.npy",
+        "actual_at_maximum": 0.528934813212371,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 694,
+        "exact_equal": false,
+        "maximum_absolute_difference": 8.150147223773274e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 5.164260921271752e-14,
+        "normalized_l1_difference": 7.316543927653445e-14,
+        "normalized_l2_difference": 7.850257084515287e-14,
+        "passed": true,
+        "reference": "sod_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.528934813213186,
+        "reference_scale": 2.5000701588723664,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 7.88392383439937e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 1.1568481510000002,
+      "cuda_peak_allocated_bytes": 630784,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": false,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.1249950532866752,
+        "minimum_pressure": 0.09999464813888595,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_tensor_internal",
+      "final_materialization_serialization_seconds": 0.000248169,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.067191296,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0008666800639724218,
+          0.0007848797768472876,
+          0.0017123134102118188
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0008666800639724218,
+            "pressure": 0.0006388346184358599,
+            "velocity": 0.0016865878189118424
+          },
+          "l2": {
+            "density": 0.004879612833898354,
+            "pressure": 0.003919281898765203,
+            "velocity": 0.020858063719938598
+          },
+          "linf": {
+            "density": 0.07127013390380779,
+            "pressure": 0.09920186232833175,
+            "velocity": 0.5614084607684988
+          }
+        }
+      },
+      "package_load_seconds": 0.0027720130000000003,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_sod_fd.pt2",
+      "package_sha256": "46b17aacd275b13407833d3071d0a05b6fea4b2937a132972a161cdd8c498d3e",
+      "peak_process_rss_bytes": 647135232,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 2.2925515830000003,
+      "replicate": 1,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "56a0064f2592087a34aec1a37abf0a19f4cdf8a86959c077063cd87e19e123ed",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_tensor_internal_sod_fd_r2.npy",
+      "array_file_sha256": "29b4cb97c27c698e5f18bc9074c8be616177ec263e4c4891a926a745a7f9cb8e",
+      "authority_parity": {
+        "absolute_bound": 2.486258803712192e-10,
+        "actual": "aot_tensor_internal_sod_fd_r2.npy",
+        "actual_at_maximum": 0.528934813212371,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 694,
+        "exact_equal": false,
+        "maximum_absolute_difference": 8.150147223773274e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 5.164260921271752e-14,
+        "normalized_l1_difference": 7.316543927653445e-14,
+        "normalized_l2_difference": 7.850257084515287e-14,
+        "passed": true,
+        "reference": "sod_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.528934813213186,
+        "reference_scale": 2.5000701588723664,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 7.88392383439937e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 1.156395915,
+      "cuda_peak_allocated_bytes": 630784,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": false,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.1249950532866752,
+        "minimum_pressure": 0.09999464813888595,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_tensor_internal",
+      "final_materialization_serialization_seconds": 0.000245599,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.069153144,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0008666800639724218,
+          0.0007848797768472876,
+          0.0017123134102118188
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0008666800639724218,
+            "pressure": 0.0006388346184358599,
+            "velocity": 0.0016865878189118424
+          },
+          "l2": {
+            "density": 0.004879612833898354,
+            "pressure": 0.003919281898765203,
+            "velocity": 0.020858063719938598
+          },
+          "linf": {
+            "density": 0.07127013390380779,
+            "pressure": 0.09920186232833175,
+            "velocity": 0.5614084607684988
+          }
+        }
+      },
+      "package_load_seconds": 0.002745913,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_sod_fd.pt2",
+      "package_sha256": "46b17aacd275b13407833d3071d0a05b6fea4b2937a132972a161cdd8c498d3e",
+      "peak_process_rss_bytes": 646995968,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 2.2816555810000003,
+      "replicate": 2,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "56a0064f2592087a34aec1a37abf0a19f4cdf8a86959c077063cd87e19e123ed",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_tensor_internal_sod_fv_r0.npy",
+      "array_file_sha256": "01d50348f45763cbe7494aef11c8882db9884ae2318bbb1f683e792e6fdaf1a3",
+      "authority_parity": {
+        "absolute_bound": 2.486270654887143e-10,
+        "actual": "aot_tensor_internal_sod_fv_r0.npy",
+        "actual_at_maximum": 0.5302642159577668,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 466,
+        "exact_equal": false,
+        "maximum_absolute_difference": 8.079092950197264e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 5.206839910330379e-14,
+        "normalized_l1_difference": 7.376868130866287e-14,
+        "normalized_l2_difference": 7.905662515807097e-14,
+        "passed": true,
+        "reference": "sod_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.5302642159585748,
+        "reference_scale": 2.5000820758814872,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 7.939703189236226e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 1.196131201,
+      "cuda_peak_allocated_bytes": 726016,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": false,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12498920656526458,
+        "minimum_pressure": 0.09998818413719322,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_tensor_internal",
+      "final_materialization_serialization_seconds": 0.000255818,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.067730713,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0006911638466026081,
+          0.0005834212033659024,
+          0.0013236921402638253
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0006911638466026081,
+            "pressure": 0.0005033777616455174,
+            "velocity": 0.0010185036485142183
+          },
+          "l2": {
+            "density": 0.0036334426509470265,
+            "pressure": 0.001867745199644275,
+            "velocity": 0.0069647407196013695
+          },
+          "linf": {
+            "density": 0.0693289015000515,
+            "pressure": 0.024783851093911013,
+            "velocity": 0.15805028839512122
+          }
+        }
+      },
+      "package_load_seconds": 0.0028665220000000003,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_sod_fv.pt2",
+      "package_sha256": "075be02194df4e197ad58b21ae95e7db329f5fa8a214f4f52ce10c54a056d7b6",
+      "peak_process_rss_bytes": 647245824,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 2.323591405,
+      "replicate": 0,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "b7e95fbf0fd19d45b052dbf818ac928ea560f561cb9ab11e49e7986ae0124bc5",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_tensor_internal_sod_fv_r1.npy",
+      "array_file_sha256": "01d50348f45763cbe7494aef11c8882db9884ae2318bbb1f683e792e6fdaf1a3",
+      "authority_parity": {
+        "absolute_bound": 2.486270654887143e-10,
+        "actual": "aot_tensor_internal_sod_fv_r1.npy",
+        "actual_at_maximum": 0.5302642159577668,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 466,
+        "exact_equal": false,
+        "maximum_absolute_difference": 8.079092950197264e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 5.206839910330379e-14,
+        "normalized_l1_difference": 7.376868130866287e-14,
+        "normalized_l2_difference": 7.905662515807097e-14,
+        "passed": true,
+        "reference": "sod_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.5302642159585748,
+        "reference_scale": 2.5000820758814872,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 7.939703189236226e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 1.196945857,
+      "cuda_peak_allocated_bytes": 726016,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": false,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12498920656526458,
+        "minimum_pressure": 0.09998818413719322,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_tensor_internal",
+      "final_materialization_serialization_seconds": 0.000251459,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.06851781700000001,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0006911638466026081,
+          0.0005834212033659024,
+          0.0013236921402638253
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0006911638466026081,
+            "pressure": 0.0005033777616455174,
+            "velocity": 0.0010185036485142183
+          },
+          "l2": {
+            "density": 0.0036334426509470265,
+            "pressure": 0.001867745199644275,
+            "velocity": 0.0069647407196013695
+          },
+          "linf": {
+            "density": 0.0693289015000515,
+            "pressure": 0.024783851093911013,
+            "velocity": 0.15805028839512122
+          }
+        }
+      },
+      "package_load_seconds": 0.002851043,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_sod_fv.pt2",
+      "package_sha256": "075be02194df4e197ad58b21ae95e7db329f5fa8a214f4f52ce10c54a056d7b6",
+      "peak_process_rss_bytes": 647180288,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 2.320866022,
+      "replicate": 1,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "b7e95fbf0fd19d45b052dbf818ac928ea560f561cb9ab11e49e7986ae0124bc5",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_tensor_internal_sod_fv_r2.npy",
+      "array_file_sha256": "01d50348f45763cbe7494aef11c8882db9884ae2318bbb1f683e792e6fdaf1a3",
+      "authority_parity": {
+        "absolute_bound": 2.486270654887143e-10,
+        "actual": "aot_tensor_internal_sod_fv_r2.npy",
+        "actual_at_maximum": 0.5302642159577668,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 466,
+        "exact_equal": false,
+        "maximum_absolute_difference": 8.079092950197264e-13,
+        "maximum_location": [
+          2,
+          680
+        ],
+        "mean_absolute_difference": 5.206839910330379e-14,
+        "normalized_l1_difference": 7.376868130866287e-14,
+        "normalized_l2_difference": 7.905662515807097e-14,
+        "passed": true,
+        "reference": "sod_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 0.5302642159585748,
+        "reference_scale": 2.5000820758814872,
+        "relative_bound": 9.944756129698362e-11,
+        "rms_difference": 7.939703189236226e-14,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 3499,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 1.19655134,
+      "cuda_peak_allocated_bytes": 726016,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": false,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.12498920656526458,
+        "minimum_pressure": 0.09998818413719322,
+        "simulated_time": 0.2,
+        "steps": 3499
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_tensor_internal",
+      "final_materialization_serialization_seconds": 0.00025899800000000003,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.067486404,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.0006911638466026081,
+          0.0005834212033659024,
+          0.0013236921402638253
+        ],
+        "feature_metrics": {
+          "contact": {
+            "detected": 0.685,
+            "error_cells": 0.39241920783199546,
+            "exact": 0.68549052400979
+          },
+          "shock": {
+            "detected": 0.85125,
+            "error_cells": 0.6550828751714199,
+            "exact": 0.8504311464060357
+          }
+        },
+        "gate_decisions": {
+          "completed": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true,
+          "wave_locations": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.0006911638466026081,
+            "pressure": 0.0005033777616455174,
+            "velocity": 0.0010185036485142183
+          },
+          "l2": {
+            "density": 0.0036334426509470265,
+            "pressure": 0.001867745199644275,
+            "velocity": 0.0069647407196013695
+          },
+          "linf": {
+            "density": 0.0693289015000515,
+            "pressure": 0.024783851093911013,
+            "velocity": 0.15805028839512122
+          }
+        }
+      },
+      "package_load_seconds": 0.002904952,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_sod_fv.pt2",
+      "package_sha256": "075be02194df4e197ad58b21ae95e7db329f5fa8a214f4f52ce10c54a056d7b6",
+      "peak_process_rss_bytes": 647352320,
+      "prepared_cache_restoration_timed": false,
+      "problem": "sod",
+      "process_launch_to_exit_seconds": 2.333757754,
+      "replicate": 2,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "b7e95fbf0fd19d45b052dbf818ac928ea560f561cb9ab11e49e7986ae0124bc5",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_tensor_internal_shu_osher_fd_r0.npy",
+      "array_file_sha256": "5634ab5dfe730be9e6c01fc41cea342093f78460d859f1245e5ec4bd195d5a5c",
+      "authority_parity": {
+        "absolute_bound": 8.31191729869927e-09,
+        "actual": "aot_tensor_internal_shu_osher_fd_r0.npy",
+        "actual_at_maximum": 40.685237314262515,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 271,
+        "exact_equal": false,
+        "maximum_absolute_difference": 3.469118325938325e-09,
+        "maximum_location": [
+          2,
+          278
+        ],
+        "mean_absolute_difference": 8.995207043768626e-11,
+        "normalized_l1_difference": 6.713268758005886e-12,
+        "normalized_l2_difference": 1.4566667476575954e-11,
+        "passed": true,
+        "reference": "shu_osher_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.685237317731634,
+        "reference_scale": 42.433196606070005,
+        "relative_bound": 1.9588242139434442e-10,
+        "rms_difference": 2.939997421775788e-10,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6892,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 2.1939712670000002,
+      "cuda_peak_allocated_bytes": 630784,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": false,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.8000006180068274,
+        "minimum_pressure": 0.9999968808423642,
+        "simulated_time": 1.8,
+        "steps": 6892
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_tensor_internal",
+      "final_materialization_serialization_seconds": 0.000265608,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.068222239,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011814290022167885,
+          0.027732467672964098,
+          0.07064913100441639
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9979967746682056,
+          "density_total_variation_ratio": 0.9238301124783593,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011814290022167885,
+            "pressure": 0.018853624382483593,
+            "velocity": 0.0040350771186440084
+          },
+          "l2": {
+            "density": 0.04299076117378093,
+            "pressure": 0.1256441824996535,
+            "velocity": 0.04408037328835324
+          },
+          "linf": {
+            "density": 0.7047638031931909,
+            "pressure": 2.4720757920139924,
+            "velocity": 1.1444941698202735
+          }
+        }
+      },
+      "package_load_seconds": 0.002771253,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_shu_osher_fd.pt2",
+      "package_sha256": "4e8b3e9af84158222225c829de20077aad4557e4a509224a7cc16108c54725a6",
+      "peak_process_rss_bytes": 647954432,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 3.318790668,
+      "replicate": 0,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "90db6180f68704d6f1e66b2039f8065f261c528bfcfcb95b07d802a028512cfd",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_tensor_internal_shu_osher_fd_r1.npy",
+      "array_file_sha256": "5634ab5dfe730be9e6c01fc41cea342093f78460d859f1245e5ec4bd195d5a5c",
+      "authority_parity": {
+        "absolute_bound": 8.31191729869927e-09,
+        "actual": "aot_tensor_internal_shu_osher_fd_r1.npy",
+        "actual_at_maximum": 40.685237314262515,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 271,
+        "exact_equal": false,
+        "maximum_absolute_difference": 3.469118325938325e-09,
+        "maximum_location": [
+          2,
+          278
+        ],
+        "mean_absolute_difference": 8.995207043768626e-11,
+        "normalized_l1_difference": 6.713268758005886e-12,
+        "normalized_l2_difference": 1.4566667476575954e-11,
+        "passed": true,
+        "reference": "shu_osher_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.685237317731634,
+        "reference_scale": 42.433196606070005,
+        "relative_bound": 1.9588242139434442e-10,
+        "rms_difference": 2.939997421775788e-10,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6892,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 2.194273656,
+      "cuda_peak_allocated_bytes": 630784,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": false,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.8000006180068274,
+        "minimum_pressure": 0.9999968808423642,
+        "simulated_time": 1.8,
+        "steps": 6892
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_tensor_internal",
+      "final_materialization_serialization_seconds": 0.000254789,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.06911223400000001,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011814290022167885,
+          0.027732467672964098,
+          0.07064913100441639
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9979967746682056,
+          "density_total_variation_ratio": 0.9238301124783593,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011814290022167885,
+            "pressure": 0.018853624382483593,
+            "velocity": 0.0040350771186440084
+          },
+          "l2": {
+            "density": 0.04299076117378093,
+            "pressure": 0.1256441824996535,
+            "velocity": 0.04408037328835324
+          },
+          "linf": {
+            "density": 0.7047638031931909,
+            "pressure": 2.4720757920139924,
+            "velocity": 1.1444941698202735
+          }
+        }
+      },
+      "package_load_seconds": 0.0027792330000000003,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_shu_osher_fd.pt2",
+      "package_sha256": "4e8b3e9af84158222225c829de20077aad4557e4a509224a7cc16108c54725a6",
+      "peak_process_rss_bytes": 647892992,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 3.3310223150000002,
+      "replicate": 1,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "90db6180f68704d6f1e66b2039f8065f261c528bfcfcb95b07d802a028512cfd",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_tensor_internal_shu_osher_fd_r2.npy",
+      "array_file_sha256": "5634ab5dfe730be9e6c01fc41cea342093f78460d859f1245e5ec4bd195d5a5c",
+      "authority_parity": {
+        "absolute_bound": 8.31191729869927e-09,
+        "actual": "aot_tensor_internal_shu_osher_fd_r2.npy",
+        "actual_at_maximum": 40.685237314262515,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 271,
+        "exact_equal": false,
+        "maximum_absolute_difference": 3.469118325938325e-09,
+        "maximum_location": [
+          2,
+          278
+        ],
+        "mean_absolute_difference": 8.995207043768626e-11,
+        "normalized_l1_difference": 6.713268758005886e-12,
+        "normalized_l2_difference": 1.4566667476575954e-11,
+        "passed": true,
+        "reference": "shu_osher_fd_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.685237317731634,
+        "reference_scale": 42.433196606070005,
+        "relative_bound": 1.9588242139434442e-10,
+        "rms_difference": 2.939997421775788e-10,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6892,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 2.198346803,
+      "cuda_peak_allocated_bytes": 630784,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": false,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.8000006180068274,
+        "minimum_pressure": 0.9999968808423642,
+        "simulated_time": 1.8,
+        "steps": 6892
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_tensor_internal",
+      "final_materialization_serialization_seconds": 0.000290518,
+      "formulation_id": "fd_classical_characteristic_js5_global_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.06818795000000001,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fd",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011814290022167885,
+          0.027732467672964098,
+          0.07064913100441639
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9979967746682056,
+          "density_total_variation_ratio": 0.9238301124783593,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011814290022167885,
+            "pressure": 0.018853624382483593,
+            "velocity": 0.0040350771186440084
+          },
+          "l2": {
+            "density": 0.04299076117378093,
+            "pressure": 0.1256441824996535,
+            "velocity": 0.04408037328835324
+          },
+          "linf": {
+            "density": 0.7047638031931909,
+            "pressure": 2.4720757920139924,
+            "velocity": 1.1444941698202735
+          }
+        }
+      },
+      "package_load_seconds": 0.002860253,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_shu_osher_fd.pt2",
+      "package_sha256": "4e8b3e9af84158222225c829de20077aad4557e4a509224a7cc16108c54725a6",
+      "peak_process_rss_bytes": 648142848,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 3.329709165,
+      "replicate": 2,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "90db6180f68704d6f1e66b2039f8065f261c528bfcfcb95b07d802a028512cfd",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_tensor_internal_shu_osher_fv_r0.npy",
+      "array_file_sha256": "e7ad43a36e5495c1699264b162894e5fec3e8fdc31835c7f23af154f1ae4d05a",
+      "authority_parity": {
+        "absolute_bound": 8.317128922257504e-09,
+        "actual": "aot_tensor_internal_shu_osher_fv_r0.npy",
+        "actual_at_maximum": 40.87318689246545,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 267,
+        "exact_equal": false,
+        "maximum_absolute_difference": 5.2082782531215344e-11,
+        "maximum_location": [
+          2,
+          280
+        ],
+        "mean_absolute_difference": 3.434307714505954e-12,
+        "normalized_l1_difference": 2.563079524219796e-13,
+        "normalized_l2_difference": 3.17356560928646e-13,
+        "passed": true,
+        "reference": "shu_osher_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.87318689251753,
+        "reference_scale": 42.44748458246218,
+        "relative_bound": 1.9593926481320523e-10,
+        "rms_difference": 6.4051274461153485e-12,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6894,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 2.32917583,
+      "cuda_peak_allocated_bytes": 726016,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": false,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.800027356969191,
+        "minimum_pressure": 0.9999872538847527,
+        "simulated_time": 1.8,
+        "steps": 6894
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_tensor_internal",
+      "final_materialization_serialization_seconds": 0.000259719,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.067845282,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011332252769926752,
+          0.024661681902106124,
+          0.05833485980774599
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9986190141703877,
+          "density_total_variation_ratio": 0.9463692054840459,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011332252769926752,
+            "pressure": 0.01639360581744717,
+            "velocity": 0.0037997063929281483
+          },
+          "l2": {
+            "density": 0.035933412895884455,
+            "pressure": 0.0913465832720895,
+            "velocity": 0.04311876409545853
+          },
+          "linf": {
+            "density": 0.6831163344057208,
+            "pressure": 2.1602120546564305,
+            "velocity": 1.180064337793661
+          }
+        }
+      },
+      "package_load_seconds": 0.0029242620000000004,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_shu_osher_fv.pt2",
+      "package_sha256": "bc1e12d1313a6cbf61b6287c939003f9f228f6ab31ca8ee1500c854e92dbcea0",
+      "peak_process_rss_bytes": 648212480,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 3.467031243,
+      "replicate": 0,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "442da784459c331eed1b9fad8b9fc518f450a419e77aff37feec1cd716b8d36f",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_tensor_internal_shu_osher_fv_r1.npy",
+      "array_file_sha256": "e7ad43a36e5495c1699264b162894e5fec3e8fdc31835c7f23af154f1ae4d05a",
+      "authority_parity": {
+        "absolute_bound": 8.317128922257504e-09,
+        "actual": "aot_tensor_internal_shu_osher_fv_r1.npy",
+        "actual_at_maximum": 40.87318689246545,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 267,
+        "exact_equal": false,
+        "maximum_absolute_difference": 5.2082782531215344e-11,
+        "maximum_location": [
+          2,
+          280
+        ],
+        "mean_absolute_difference": 3.434307714505954e-12,
+        "normalized_l1_difference": 2.563079524219796e-13,
+        "normalized_l2_difference": 3.17356560928646e-13,
+        "passed": true,
+        "reference": "shu_osher_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.87318689251753,
+        "reference_scale": 42.44748458246218,
+        "relative_bound": 1.9593926481320523e-10,
+        "rms_difference": 6.4051274461153485e-12,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6894,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 2.33090476,
+      "cuda_peak_allocated_bytes": 726016,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": false,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.800027356969191,
+        "minimum_pressure": 0.9999872538847527,
+        "simulated_time": 1.8,
+        "steps": 6894
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_tensor_internal",
+      "final_materialization_serialization_seconds": 0.000250709,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.06992765000000001,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011332252769926752,
+          0.024661681902106124,
+          0.05833485980774599
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9986190141703877,
+          "density_total_variation_ratio": 0.9463692054840459,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011332252769926752,
+            "pressure": 0.01639360581744717,
+            "velocity": 0.0037997063929281483
+          },
+          "l2": {
+            "density": 0.035933412895884455,
+            "pressure": 0.0913465832720895,
+            "velocity": 0.04311876409545853
+          },
+          "linf": {
+            "density": 0.6831163344057208,
+            "pressure": 2.1602120546564305,
+            "velocity": 1.180064337793661
+          }
+        }
+      },
+      "package_load_seconds": 0.002886852,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_shu_osher_fv.pt2",
+      "package_sha256": "bc1e12d1313a6cbf61b6287c939003f9f228f6ab31ca8ee1500c854e92dbcea0",
+      "peak_process_rss_bytes": 648503296,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 3.461861787,
+      "replicate": 1,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "442da784459c331eed1b9fad8b9fc518f450a419e77aff37feec1cd716b8d36f",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    },
+    {
+      "array_bytes": 19328,
+      "array_file": "aot_tensor_internal_shu_osher_fv_r2.npy",
+      "array_file_sha256": "e7ad43a36e5495c1699264b162894e5fec3e8fdc31835c7f23af154f1ae4d05a",
+      "authority_parity": {
+        "absolute_bound": 8.317128922257504e-09,
+        "actual": "aot_tensor_internal_shu_osher_fv_r2.npy",
+        "actual_at_maximum": 40.87318689246545,
+        "epsilon": 2.220446049250313e-16,
+        "equal_elements": 267,
+        "exact_equal": false,
+        "maximum_absolute_difference": 5.2082782531215344e-11,
+        "maximum_location": [
+          2,
+          280
+        ],
+        "mean_absolute_difference": 3.434307714505954e-12,
+        "normalized_l1_difference": 2.563079524219796e-13,
+        "normalized_l2_difference": 3.17356560928646e-13,
+        "passed": true,
+        "reference": "shu_osher_fv_cpu_eager_r0.npy",
+        "reference_at_maximum": 40.87318689251753,
+        "reference_scale": 42.44748458246218,
+        "relative_bound": 1.9593926481320523e-10,
+        "rms_difference": 6.4051274461153485e-12,
+        "shape_dtype_match": true,
+        "step_count_match": true,
+        "steps": 6894,
+        "total_elements": 2400
+      },
+      "cells": 800,
+      "complete_solve_seconds": 2.330614433,
+      "cuda_peak_allocated_bytes": 726016,
+      "cuda_peak_reserved_bytes": 2097152,
+      "diagnostics": {
+        "cfl_scalar_host_controlled": false,
+        "completed": true,
+        "failure_stage": null,
+        "minimum_density": 0.800027356969191,
+        "minimum_pressure": 0.9999872538847527,
+        "simulated_time": 1.8,
+        "steps": 6894
+      },
+      "dtype": "float64",
+      "eligible": true,
+      "endpoint": "aot_tensor_internal",
+      "final_materialization_serialization_seconds": 0.000287108,
+      "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+      "input_construction_transfer_seconds": 0.068777247,
+      "kind": "phase6g_solve",
+      "loader_boundary": "torch._C._aoti.AOTIModelPackageLoader.boxed_run",
+      "method": "fv",
+      "oracle": {
+        "conserved_l1_errors": [
+          0.011332252769926752,
+          0.024661681902106124,
+          0.05833485980774599
+        ],
+        "feature_metrics": {
+          "density_correlation": 0.9986190141703877,
+          "density_total_variation_ratio": 0.9463692054840459,
+          "window": [
+            -3.0,
+            3.0
+          ]
+        },
+        "gate_decisions": {
+          "completed": true,
+          "density_correlation": true,
+          "density_total_variation_ratio": true,
+          "finest_l1_thresholds": true,
+          "positive_stages": true
+        },
+        "passed": true,
+        "primitive_errors": {
+          "l1": {
+            "density": 0.011332252769926752,
+            "pressure": 0.01639360581744717,
+            "velocity": 0.0037997063929281483
+          },
+          "l2": {
+            "density": 0.035933412895884455,
+            "pressure": 0.0913465832720895,
+            "velocity": 0.04311876409545853
+          },
+          "linf": {
+            "density": 0.6831163344057208,
+            "pressure": 2.1602120546564305,
+            "velocity": 1.180064337793661
+          }
+        }
+      },
+      "package_load_seconds": 0.0028664420000000003,
+      "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_shu_osher_fv.pt2",
+      "package_sha256": "bc1e12d1313a6cbf61b6287c939003f9f228f6ab31ca8ee1500c854e92dbcea0",
+      "peak_process_rss_bytes": 648151040,
+      "prepared_cache_restoration_timed": false,
+      "problem": "shu_osher",
+      "process_launch_to_exit_seconds": 3.4602992190000004,
+      "replicate": 2,
+      "shape": [
+        3,
+        800
+      ],
+      "status": "completed",
+      "terminal_sha256": "442da784459c331eed1b9fad8b9fc518f450a419e77aff37feec1cd716b8d36f",
+      "terminal_state_cuda_before_materialization": true,
+      "worker_returncode": 0,
+      "worker_stderr": "",
+      "worker_stdout": ""
+    }
+  ],
+  "schema_version": 1,
+  "source_commit": "30fcc4d7f6bbf05f400fbaf01b8e41a5c8d36b4c",
+  "source_dirty": false,
+  "source_hashes": {
+    "docs/FD_FV_PHASE_6G_PROTOCOL.md": "6eedb539ed9b49b6fc000dc6baee51736d479865e24275adfc15c4d64958881b",
+    "experiments/fd_fv_euler/phase6g_worker.py": "c149e5c60e583bddcdfe14a0c331c91d6732151faf8ed587a63af0e011dd49d8",
+    "experiments/fd_fv_euler/run_phase6g_performance.py": "aecb06f8358419b6861f273eb76c71568e23d212614b35a10097169275a9003c"
+  },
+  "summaries": [
+    {
+      "break_even_against_fresh_jit": {
+        "aot_host_internal": {
+          "aot_package_build_seconds": 13.404681985266507,
+          "jit_minus_aot_median_seconds": 11.233991151000001,
+          "package_only_invocations": 2,
+          "package_plus_full_cache_prep_invocations": 2,
+          "shared_cache_preparation_seconds": 7.710357076
+        },
+        "aot_tensor_internal": {
+          "aot_package_build_seconds": 16.635797440074384,
+          "jit_minus_aot_median_seconds": 11.354178091000001,
+          "package_only_invocations": 2,
+          "package_plus_full_cache_prep_invocations": 3,
+          "shared_cache_preparation_seconds": 7.710357076
+        }
+      },
+      "comparisons": {
+        "aot_host_internal_over_aot_tensor_internal": {
+          "decision": "unresolved",
+          "median_ratio": 1.0524249665269145,
+          "paired_ratios": [
+            1.047883286691987,
+            1.0487317196386938,
+            1.0574508015546102
+          ]
+        },
+        "aot_host_internal_over_cpu": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.14047762510272943,
+          "paired_ratios": [
+            0.14301542905359615,
+            0.13998465071664334,
+            0.1403622363169159
+          ]
+        },
+        "aot_host_internal_over_cuda_jit": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.17679975940292814,
+          "paired_ratios": [
+            0.17620536768231926,
+            0.17709657459182201,
+            0.17679975940292814
+          ]
+        },
+        "aot_tensor_internal_over_aot_host_internal": {
+          "decision": "unresolved",
+          "median_ratio": 0.9501865043168626,
+          "paired_ratios": [
+            0.9543047519698997,
+            0.9535327112490859,
+            0.9456704733022576
+          ]
+        },
+        "aot_tensor_internal_over_cpu": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.1334799435310972,
+          "paired_ratios": [
+            0.13648030355086088,
+            0.1334799435310972,
+            0.1327364224515812
+          ]
+        },
+        "aot_tensor_internal_over_cuda_jit": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.16799274535113065,
+          "paired_ratios": [
+            0.16815361970184067,
+            0.168867376923466,
+            0.16719431215429234
+          ]
+        },
+        "cuda_jit_over_aot_host_internal": {
+          "decision": "confirmed_denominator_win",
+          "median_ratio": 5.656116294372277,
+          "paired_ratios": [
+            5.675196012206055,
+            5.646636600989222,
+            5.656116294372277
+          ]
+        },
+        "cuda_jit_over_aot_tensor_internal": {
+          "decision": "confirmed_denominator_win",
+          "median_ratio": 5.952638001777079,
+          "paired_ratios": [
+            5.946943049891739,
+            5.921806912730216,
+            5.981064709170056
+          ]
+        },
+        "cuda_jit_over_cpu": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.7945577843382678,
+          "paired_ratios": [
+            0.8116405926489069,
+            0.7904424523132904,
+            0.7939051319466401
+          ]
+        }
+      },
+      "cpu_endpoint": "cpu_eager",
+      "durations_seconds": {
+        "aot_host_internal": [
+          2.422277212,
+          2.404271564,
+          2.4127385230000002
+        ],
+        "aot_tensor_internal": [
+          2.311590654,
+          2.2925515830000003,
+          2.2816555810000003
+        ],
+        "cpu": [
+          16.937174038000002,
+          17.17525137,
+          17.189370776
+        ],
+        "cuda_jit": [
+          13.746897974000001,
+          13.576047812,
+          13.646729674000001
+        ]
+      },
+      "method": "fd",
+      "problem": "sod"
+    },
+    {
+      "break_even_against_fresh_jit": {
+        "aot_host_internal": {
+          "aot_package_build_seconds": 13.412145309150219,
+          "jit_minus_aot_median_seconds": 11.191667189,
+          "package_only_invocations": 2,
+          "package_plus_full_cache_prep_invocations": 2,
+          "shared_cache_preparation_seconds": 7.710357076
+        },
+        "aot_tensor_internal": {
+          "aot_package_build_seconds": 16.58087988710031,
+          "jit_minus_aot_median_seconds": 11.362635245,
+          "package_only_invocations": 2,
+          "package_plus_full_cache_prep_invocations": 3,
+          "shared_cache_preparation_seconds": 7.710357076
+        }
+      },
+      "comparisons": {
+        "aot_host_internal_over_aot_tensor_internal": {
+          "decision": "confirmed_denominator_win",
+          "median_ratio": 1.073579225517922,
+          "paired_ratios": [
+            1.077658922998125,
+            1.074839924990724,
+            1.0581070866363793
+          ]
+        },
+        "aot_host_internal_over_cpu": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.1451017523259519,
+          "paired_ratios": [
+            0.14615030139573917,
+            0.1451017523259519,
+            0.14237507785121178
+          ]
+        },
+        "aot_host_internal_over_cuda_jit": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.1822678759305802,
+          "paired_ratios": [
+            0.18296051022945758,
+            0.18277579465475885,
+            0.1789201468449087
+          ]
+        },
+        "aot_tensor_internal_over_aot_host_internal": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.9314636276773841,
+          "paired_ratios": [
+            0.9279373822822603,
+            0.9303710968948516,
+            0.945083926409475
+          ]
+        },
+        "aot_tensor_internal_over_cpu": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.13515700460387647,
+          "paired_ratios": [
+            0.1356183280969256,
+            0.13499847647286098,
+            0.13455639759847793
+          ]
+        },
+        "aot_tensor_internal_over_cuda_jit": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.1697758969233496,
+          "paired_ratios": [
+            0.1697758969233496,
+            0.17004931655877617,
+            0.16909455489394618
+          ]
+        },
+        "cuda_jit_over_aot_host_internal": {
+          "decision": "confirmed_denominator_win",
+          "median_ratio": 5.486430315240339,
+          "paired_ratios": [
+            5.465660315145945,
+            5.47118398193195,
+            5.589085509005414
+          ]
+        },
+        "cuda_jit_over_aot_tensor_internal": {
+          "decision": "confirmed_denominator_win",
+          "median_ratio": 5.890117608693771,
+          "paired_ratios": [
+            5.890117608693771,
+            5.880646980750188,
+            5.9138509848953245
+          ]
+        },
+        "cuda_jit_over_cpu": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.7960906527555979,
+          "paired_ratios": [
+            0.7988079023853105,
+            0.7938783830760052,
+            0.7957464844617255
+          ]
+        }
+      },
+      "cpu_endpoint": "cpu_eager",
+      "durations_seconds": {
+        "aot_host_internal": [
+          2.504039011,
+          2.494559461,
+          2.4693656180000003
+        ],
+        "aot_tensor_internal": [
+          2.323591405,
+          2.320866022,
+          2.333757754
+        ],
+        "cpu": [
+          17.133314041000002,
+          17.191794179000002,
+          17.344086165
+        ],
+        "cuda_jit": [
+          13.68622665,
+          13.648193765,
+          13.801495592
+        ]
+      },
+      "method": "fv",
+      "problem": "sod"
+    },
+    {
+      "break_even_against_fresh_jit": {
+        "aot_host_internal": {
+          "aot_package_build_seconds": 13.336910877376795,
+          "jit_minus_aot_median_seconds": 12.262115058,
+          "package_only_invocations": 2,
+          "package_plus_full_cache_prep_invocations": 2,
+          "shared_cache_preparation_seconds": 7.710357076
+        },
+        "aot_tensor_internal": {
+          "aot_package_build_seconds": 16.536942946724594,
+          "jit_minus_aot_median_seconds": 12.465472938,
+          "package_only_invocations": 2,
+          "package_plus_full_cache_prep_invocations": 2,
+          "shared_cache_preparation_seconds": 7.710357076
+        }
+      },
+      "comparisons": {
+        "aot_host_internal_over_aot_tensor_internal": {
+          "decision": "confirmed_denominator_win",
+          "median_ratio": 1.0610737664831458,
+          "paired_ratios": [
+            1.0637782726222853,
+            1.0606908624087077,
+            1.0610737664831458
+          ]
+        },
+        "aot_host_internal_over_cpu": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.16594892062727915,
+          "paired_ratios": [
+            0.16586579734712456,
+            0.16595445780507873,
+            0.165169652178441
+          ]
+        },
+        "aot_host_internal_over_cuda_jit": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.22368004508975936,
+          "paired_ratios": [
+            0.22351482755804733,
+            0.22301689485332402,
+            0.22776714924769512
+          ]
+        },
+        "aot_tensor_internal_over_aot_host_internal": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.9424415451476381,
+          "paired_ratios": [
+            0.9400455205152222,
+            0.9427817618124044,
+            0.9424415451476381
+          ]
+        },
+        "aot_tensor_internal_over_cpu": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.15639715717155572,
+          "paired_ratios": [
+            0.15592139980285005,
+            0.15645883611009445,
+            0.1556627422105479
+          ]
+        },
+        "aot_tensor_internal_over_cuda_jit": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.2108053673130862,
+          "paired_ratios": [
+            0.2101141124146747,
+            0.21025626104374856,
+            0.2146572240708705
+          ]
+        },
+        "cuda_jit_over_aot_host_internal": {
+          "decision": "confirmed_denominator_win",
+          "median_ratio": 4.470671487922472,
+          "paired_ratios": [
+            4.473976115702202,
+            4.483965220023756,
+            4.390448768854315
+          ]
+        },
+        "cuda_jit_over_aot_tensor_internal": {
+          "decision": "confirmed_denominator_win",
+          "median_ratio": 4.743712234398706,
+          "paired_ratios": [
+            4.759318584115049,
+            4.756100936237649,
+            4.658590011719538
+          ]
+        },
+        "cuda_jit_over_cpu": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.7419031078998862,
+          "paired_ratios": [
+            0.7420796157429368,
+            0.7441340169058731,
+            0.7251688960589318
+          ]
+        }
+      },
+      "cpu_endpoint": "cpu_compiled",
+      "durations_seconds": {
+        "aot_host_internal": [
+          3.5304574040000003,
+          3.533184932,
+          3.533067045
+        ],
+        "aot_tensor_internal": [
+          3.318790668,
+          3.3310223150000002,
+          3.329709165
+        ],
+        "cpu": [
+          21.285023558000002,
+          21.290087526,
+          21.390533905
+        ],
+        "cuda_jit": [
+          15.795182103,
+          15.842678351000002,
+          15.511749858000002
+        ]
+      },
+      "method": "fd",
+      "problem": "shu_osher"
+    },
+    {
+      "break_even_against_fresh_jit": {
+        "aot_host_internal": {
+          "aot_package_build_seconds": 13.41060690023005,
+          "jit_minus_aot_median_seconds": 12.069791021,
+          "package_only_invocations": 2,
+          "package_plus_full_cache_prep_invocations": 2,
+          "shared_cache_preparation_seconds": 7.710357076
+        },
+        "aot_tensor_internal": {
+          "aot_package_build_seconds": 16.603793025016785,
+          "jit_minus_aot_median_seconds": 12.255456763000002,
+          "package_only_invocations": 2,
+          "package_plus_full_cache_prep_invocations": 2,
+          "shared_cache_preparation_seconds": 7.710357076
+        }
+      },
+      "comparisons": {
+        "aot_host_internal_over_aot_tensor_internal": {
+          "decision": "confirmed_denominator_win",
+          "median_ratio": 1.0536317604293775,
+          "paired_ratios": [
+            1.0507948742474025,
+            1.0628231961243229,
+            1.054107549130999
+          ]
+        },
+        "aot_host_internal_over_cpu": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.16150186410059728,
+          "paired_ratios": [
+            0.16130753775743475,
+            0.16298477767101183,
+            0.16048182522684215
+          ]
+        },
+        "aot_host_internal_over_cuda_jit": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.23207059889996312,
+          "paired_ratios": [
+            0.22732305637964142,
+            0.2340950841770653,
+            0.23252982737608438
+          ]
+        },
+        "aot_tensor_internal_over_aot_host_internal": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.9490981930845352,
+          "paired_ratios": [
+            0.9516605233882754,
+            0.9408902662706148,
+            0.9486698020751251
+          ]
+        },
+        "aot_tensor_internal_over_cpu": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.15328112739766106,
+          "paired_ratios": [
+            0.15351001580871435,
+            0.15335079086093525,
+            0.15224426137460317
+          ]
+        },
+        "aot_tensor_internal_over_cuda_jit": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.22025778608400093,
+          "paired_ratios": [
+            0.216334378812472,
+            0.22025778608400093,
+            0.22059402531343297
+          ]
+        },
+        "cuda_jit_over_aot_host_internal": {
+          "decision": "confirmed_denominator_win",
+          "median_ratio": 4.309033564527759,
+          "paired_ratios": [
+            4.3990258442150605,
+            4.27176847183864,
+            4.300523555555048
+          ]
+        },
+        "cuda_jit_over_aot_tensor_internal": {
+          "decision": "confirmed_denominator_win",
+          "median_ratio": 4.540134620342658,
+          "paired_ratios": [
+            4.622473808783038,
+            4.540134620342658,
+            4.533214345126262
+          ]
+        },
+        "cuda_jit_over_cpu": {
+          "decision": "confirmed_numerator_win",
+          "median_ratio": 0.6959169531432745,
+          "paired_ratios": [
+            0.7095960274616522,
+            0.6962332346446587,
+            0.6901558696265031
+          ]
+        }
+      },
+      "cpu_endpoint": "cpu_compiled",
+      "durations_seconds": {
+        "aot_host_internal": [
+          3.6431386590000003,
+          3.6793470090000002,
+          3.6475275290000004
+        ],
+        "aot_tensor_internal": [
+          3.467031243,
+          3.461861787,
+          3.4602992190000004
+        ],
+        "cpu": [
+          22.585049091000002,
+          22.574789263000003,
+          22.72860197
+        ],
+        "cuda_jit": [
+          16.026261115,
+          15.717318550000002,
+          15.686278058000001
+        ]
+      },
+      "method": "fv",
+      "problem": "shu_osher"
+    }
+  ]
+}
