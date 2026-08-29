@@ -5,6 +5,7 @@ from experiments.fd_fv_euler.run_phase6d import (
     PRIMARY_SIZES,
     aggregate_shocks,
     expected_replicates,
+    positive_metric_ratio,
 )
 
 
@@ -62,3 +63,9 @@ def test_phase6d_shock_confirmation_requires_every_pair() -> None:
     records[-1]["process_launch_to_exit_seconds"] = 10.0
     result = aggregate_shocks(records)
     assert not result["shu_osher"]["fv"]["confirmed"]
+
+
+def test_phase6d_unavailable_compiler_metric_ratio_is_explicit() -> None:
+    assert positive_metric_ratio(0, 0) is None
+    assert positive_metric_ratio(10, 0) is None
+    assert positive_metric_ratio(15, 10) == 1.5

@@ -41,10 +41,26 @@ INTERACTION_SIZES = (4096, 8192, 32768)
 PRIMARY_THREADS = (1, 6)
 INTERMEDIATE_THREADS = (2, 4)
 METHODS = ("fd", "fv")
+TIMING_SOURCE_COMMIT = "7952c9f"
 
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def git_blob_sha256(commit: str, path: Path) -> str:
+    relative = path.relative_to(ROOT)
+    blob = subprocess.check_output(
+        ("git", "show", f"{commit}:{relative}"), cwd=ROOT
+    )
+    return hashlib.sha256(blob).hexdigest()
+
+
+def positive_metric_ratio(numerator: int | float, denominator: int | float) -> float | None:
+    """Return a compiler-metric ratio, or None when the metric is unavailable."""
+    if denominator <= 0 or numerator < 0:
+        return None
+    return numerator / denominator
 
 
 def git(*arguments: str) -> str:
@@ -305,10 +321,14 @@ def causal_summaries(
                     "fv": fv["compiled_aggregate_median_seconds"]
                     / fv["eager_aggregate_median_seconds"],
                 },
-                "fv_over_fd_ir_nodes": fv["compiler_metrics"]["ir_nodes_pre_fusion"]
-                / fd["compiler_metrics"]["ir_nodes_pre_fusion"],
-                "fv_over_fd_estimated_bytes": fv["compiler_metrics"]["num_bytes_accessed"]
-                / fd["compiler_metrics"]["num_bytes_accessed"],
+                "fv_over_fd_ir_nodes": positive_metric_ratio(
+                    fv["compiler_metrics"]["ir_nodes_pre_fusion"],
+                    fd["compiler_metrics"]["ir_nodes_pre_fusion"],
+                ),
+                "fv_over_fd_estimated_bytes": positive_metric_ratio(
+                    fv["compiler_metrics"]["num_bytes_accessed"],
+                    fd["compiler_metrics"]["num_bytes_accessed"],
+                ),
                 "fd_signature": list(signature(fd)),
                 "fv_signature": list(signature(fv)),
             }
@@ -366,9 +386,11 @@ def causal_summaries(
     traffic_flags = []
     for cells in eligible_sizes:
         item = points[str(cells)]["threads_6"]
+        byte_ratio = item["fv_over_fd_estimated_bytes"]
+        ir_ratio = item["fv_over_fd_ir_nodes"]
         traffic_flags.append(
-            item["fv_over_fd_estimated_bytes"] >= 1.5
-            or item["fv_over_fd_ir_nodes"] >= 1.5
+            (byte_ratio is not None and byte_ratio >= 1.5)
+            or (ir_ratio is not None and ir_ratio >= 1.5)
         )
     traffic_consecutive = any(
         left and right for left, right in zip(traffic_flags, traffic_flags[1:])
@@ -416,6 +438,14 @@ def causal_summaries(
             if supported_count == 1
             else "unresolved_mixture"
         ),
+        "estimated_bytes_metric_available": all(
+            points[str(cells)][f"threads_{threads}"][
+                "fv_over_fd_estimated_bytes"
+            ]
+            is not None
+            for cells in PRIMARY_SIZES
+            for threads in PRIMARY_THREADS
+        ),
     }
 
 
@@ -434,19 +464,117 @@ def environment() -> dict[str, Any]:
     }
 
 
+def write_aggregate(
+    output: Path,
+    admitted: dict[str, Any],
+    shock_records: list[dict[str, Any]],
+    cpu_records: list[dict[str, Any]],
+    *,
+    timing_source_commit: str,
+    aggregation_commit: str,
+) -> None:
+    cpu_aggregates = aggregate_cpu(cpu_records)
+    phase6c = json.loads(PHASE6C_RECORD.read_text())
+    timing_paths = (PROTOCOL, CPU_WORKER, SHOCK_WORKER, Path(__file__))
+    payload = {
+        "schema_version": 1,
+        "phase": "fd_fv_euler_phase_6d",
+        "measurement_date": "2026-08-29",
+        "protocol_commit": PROTOCOL_COMMIT,
+        "source_commit": timing_source_commit,
+        "source_dirty": False,
+        "aggregation_commit": aggregation_commit,
+        "aggregation_reused_frozen_raw_records": timing_source_commit
+        != aggregation_commit,
+        "aggregation_correction": (
+            "Treat zero TorchInductor estimated-byte counters as unavailable; "
+            "no timed worker was rerun."
+            if timing_source_commit != aggregation_commit
+            else None
+        ),
+        "admission": admitted,
+        "timing_source_hashes": {
+            str(path.relative_to(ROOT)): git_blob_sha256(timing_source_commit, path)
+            for path in timing_paths
+        },
+        "aggregation_source_hashes": {
+            str(path.relative_to(ROOT)): sha256(path)
+            for path in timing_paths
+        },
+        "environment": environment(),
+        "matrix": {
+            "shock_cells": 800,
+            "shock_replicates": 3,
+            "primary_sizes": list(PRIMARY_SIZES),
+            "interaction_sizes": list(INTERACTION_SIZES),
+            "primary_threads": list(PRIMARY_THREADS),
+            "intermediate_threads": list(INTERMEDIATE_THREADS),
+        },
+        "shock_records": shock_records,
+        "shock_replication": aggregate_shocks(shock_records),
+        "cpu_records": cpu_records,
+        "cpu_aggregates": cpu_aggregates,
+        "causal_summaries": causal_summaries(
+            cpu_aggregates, phase6c, cpu_records
+        ),
+        "all_shock_cells_eligible": all(x["eligible"] for x in shock_records),
+        "all_cpu_cells_eligible": all(x["eligible"] for x in cpu_records),
+        "performance_measurements_collected": True,
+        "production_sources_modified": False,
+        "phase_6e_begun": False,
+        "dveb_modified": False,
+        "publication_claim": False,
+    }
+    aggregate_path = output / "benchmark.json"
+    aggregate_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    files = [aggregate_path, *sorted((output / "raw").glob("*.json"))]
+    (output / "SHA256SUMS").write_text(
+        "".join(
+            f"{sha256(path)}  {path.relative_to(output)}\n" for path in files
+        )
+    )
+    print(f"wrote Phase 6D aggregate to {aggregate_path}", flush=True)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--aggregate-existing", action="store_true")
     arguments = parser.parse_args()
     output = arguments.output_dir.resolve()
-    if output.exists():
+    if output.exists() and not arguments.aggregate_existing:
         raise FileExistsError(f"refusing existing output directory: {output}")
     if git("status", "--porcelain"):
         raise RuntimeError("Phase 6D requires a clean committed source tree")
     admitted = admission()
     if not admitted["passed"]:
         raise RuntimeError("Phase 6D admission failed before timing")
-    source_commit = git("rev-parse", "HEAD")
+    aggregation_commit = git("rev-parse", "HEAD")
+    if arguments.aggregate_existing:
+        raw = output / "raw"
+        if not raw.is_dir() or (output / "benchmark.json").exists():
+            raise RuntimeError(
+                "existing aggregation requires raw/ and no benchmark.json"
+            )
+        shock_paths = sorted(raw.glob("shock_*.json"))
+        cpu_paths = sorted(raw.glob("cpu_*.json"))
+        if len(shock_paths) != 24 or len(cpu_paths) != 68:
+            raise RuntimeError(
+                f"incomplete raw campaign: {len(shock_paths)} shock, "
+                f"{len(cpu_paths)} CPU records"
+            )
+        shock_records = [json.loads(path.read_text()) for path in shock_paths]
+        cpu_records = [json.loads(path.read_text()) for path in cpu_paths]
+        write_aggregate(
+            output,
+            admitted,
+            shock_records,
+            cpu_records,
+            timing_source_commit=git("rev-parse", TIMING_SOURCE_COMMIT),
+            aggregation_commit=aggregation_commit,
+        )
+        return
+    source_commit = aggregation_commit
     output.mkdir(parents=True)
     raw = output / "raw"
     raw.mkdir()
@@ -567,53 +695,14 @@ def main() -> None:
                         flush=True,
                     )
 
-    cpu_aggregates = aggregate_cpu(cpu_records)
-    phase6c = json.loads(PHASE6C_RECORD.read_text())
-    payload = {
-        "schema_version": 1,
-        "phase": "fd_fv_euler_phase_6d",
-        "measurement_date": "2026-08-29",
-        "protocol_commit": PROTOCOL_COMMIT,
-        "source_commit": source_commit,
-        "source_dirty": False,
-        "admission": admitted,
-        "source_hashes": {
-            str(path.relative_to(ROOT)): sha256(path)
-            for path in (PROTOCOL, CPU_WORKER, SHOCK_WORKER, Path(__file__))
-        },
-        "environment": environment(),
-        "matrix": {
-            "shock_cells": 800,
-            "shock_replicates": 3,
-            "primary_sizes": list(PRIMARY_SIZES),
-            "interaction_sizes": list(INTERACTION_SIZES),
-            "primary_threads": list(PRIMARY_THREADS),
-            "intermediate_threads": list(INTERMEDIATE_THREADS),
-        },
-        "shock_records": shock_records,
-        "shock_replication": aggregate_shocks(shock_records),
-        "cpu_records": cpu_records,
-        "cpu_aggregates": cpu_aggregates,
-        "causal_summaries": causal_summaries(
-            cpu_aggregates, phase6c, cpu_records
-        ),
-        "all_shock_cells_eligible": all(x["eligible"] for x in shock_records),
-        "all_cpu_cells_eligible": all(x["eligible"] for x in cpu_records),
-        "performance_measurements_collected": True,
-        "production_sources_modified": False,
-        "phase_6e_begun": False,
-        "dveb_modified": False,
-        "publication_claim": False,
-    }
-    aggregate_path = output / "benchmark.json"
-    aggregate_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
-    files = [aggregate_path, *sorted(raw.glob("*.json"))]
-    (output / "SHA256SUMS").write_text(
-        "".join(
-            f"{sha256(path)}  {path.relative_to(output)}\n" for path in files
-        )
+    write_aggregate(
+        output,
+        admitted,
+        shock_records,
+        cpu_records,
+        timing_source_commit=source_commit,
+        aggregation_commit=aggregation_commit,
     )
-    print(f"wrote Phase 6D aggregate to {aggregate_path}", flush=True)
 
 
 if __name__ == "__main__":
