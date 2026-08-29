@@ -159,6 +159,10 @@ shock decisions, and causal classifications without rerunning timing:
 PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6d.py
 ```
 
+The final configured Forge suite, including CUDA and the declared read-only
+DVEB fixtures, passed: `349 passed`, with 14 upstream PyTorch deprecation
+warnings.
+
 ## Scientific interpretation and next boundary
 
 Phase 6D strengthens two claims and blocks one:
