@@ -82,3 +82,19 @@ PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6d.py
 See `docs/FD_FV_PHASE_6D_RESULTS.md`. The CPU characterization passes, while
 the shock speed decision remains unresolved because CUDA terminal hashes did
 not reproduce exactly across all fresh processes.
+
+Phase 6E retains full terminal arrays to resolve that reproducibility question,
+then conditionally qualifies host-controlled and full-loop AOTInductor
+packages. Verify its three immutable records without rerunning numerical work:
+
+```bash
+PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6e_repro.py
+PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6e_aot.py
+PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6e_device_r1.py
+```
+
+All retained-array comparisons passed. Both AOT forms were numerically
+correct, but pristine package loading compiled generic runtime helpers and the
+full tensor loop contained backend-generated D2H scalar synchronization. No
+AOT lane was therefore admitted to performance timing. See
+`docs/FD_FV_PHASE_6E_RESULTS.md`.

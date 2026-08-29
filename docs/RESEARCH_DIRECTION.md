@@ -465,3 +465,22 @@ quantify this variation before AOT or device-autonomous timing can be treated
 as scientific evidence. No threshold is weakened after observation. See
 `FD_FV_PHASE_6D_PROTOCOL.md`, `FD_FV_PHASE_6D_PROTOCOL_AMENDMENT.md`, and
 `FD_FV_PHASE_6D_RESULTS.md`.
+
+Euler FD/FV Phase 6E then replaced hash-only reasoning with retained terminal
+arrays. All 24 qualification workers and all 60 CPU/CUDA or CUDA/CUDA
+comparisons passed a prospectively derived step-accumulated float64 roundoff
+envelope. Sod CUDA variants differed by at most `4.22e-13`; all five new
+Shu--Osher CUDA replicates were bitwise identical within each method. Phase
+6D's exact-hash decision remains unchanged, while Phase 6E establishes bounded
+numerical reproducibility.
+
+AOTInductor successfully built numerically correct fixed-shape packages for
+both a host-controlled adaptive advance and the complete adaptive tensor loop.
+The latter completed all 3,499--6,894 steps with correct outputs. Neither met
+the registered deployment boundary: pristine package loading compiled six
+generic TorchInductor C++ helper probes, and full-loop profiling found
+`aten::_local_scalar_dense` plus D2H copies inside the package call. Therefore
+no Phase-6E AOT performance lane was admitted. Ordinary PyTorch expressibility,
+AOT packaging, zero runtime compilation, and genuine device autonomy are four
+separate claims. See `FD_FV_PHASE_6E_PROTOCOL.md`,
+`FD_FV_PHASE_6E_PROTOCOL_AMENDMENT.md`, and `FD_FV_PHASE_6E_RESULTS.md`.
