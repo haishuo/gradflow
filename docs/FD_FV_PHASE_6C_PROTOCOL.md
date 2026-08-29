@@ -63,10 +63,12 @@ affinity. The GPU is Forge's NVIDIA GeForce RTX 5070 Ti. Workers record model,
 UUID, driver, runtime, capability, multiprocessor count, and memory.
 
 Each matrix cell runs in an isolated process with a fresh temporary
-TorchInductor cache. CPU durations use `perf_counter_ns`. CUDA resident
-durations use CUDA events with explicit synchronization. Transfer-inclusive
-and launch-to-exit durations use synchronized wall time. Raw samples, failures,
-and memory observations are retained.
+TorchInductor cache. CPU durations use `perf_counter_ns`. Pure CUDA resident
+step durations use CUDA events with explicit synchronization. CUDA complete
+solves use synchronized wall time because CUDA events would omit host-side
+adaptive-CFL control latency. Transfer-inclusive and launch-to-exit durations
+also use synchronized wall time. Raw samples, failures, and memory observations
+are retained.
 
 These are consumer-RTX float64 observations. The GPU's deliberately restricted
 FP64 throughput prevents treating the result as an algorithmic GPU ceiling.
