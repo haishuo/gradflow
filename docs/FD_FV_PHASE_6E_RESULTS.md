@@ -160,6 +160,10 @@ PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6e_aot.py
 PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6e_device_r1.py
 ```
 
+The final configured Forge suite, including CUDA and the declared read-only
+DVEB fixtures, passed: `355 passed`, with 14 upstream PyTorch deprecation
+warnings.
+
 ## Scientific interpretation and next boundary
 
 Phase 6E separates three issues that had previously been conflated:
