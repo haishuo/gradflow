@@ -1,0 +1,88 @@
+{
+  "array_bytes": 19328,
+  "array_file": "sod_fv_cuda_compiled_r3.npy",
+  "array_file_sha256": "04a9b5f3244c568ea65f59136ac54459521ffa66c13ad43a6f3f83884014cee4",
+  "cells": 800,
+  "command": [
+    "/mnt/projects/gradflow/experiments/fd_fv_euler/phase6e_repro_worker.py",
+    "sod",
+    "fv",
+    "cuda",
+    "compiled",
+    "3"
+  ],
+  "conserved_l1_errors": [
+    0.0006911638466032807,
+    0.0005834212033644713,
+    0.0013236921402650142
+  ],
+  "cuda_peak_allocated_bytes": 50969600,
+  "cuda_peak_reserved_bytes": 52428800,
+  "device": "cuda",
+  "diagnostics": {
+    "boundary": "transmissive",
+    "cfl_scalar_host_controlled": true,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.12498920656526483,
+    "minimum_pressure": 0.09998818413719326,
+    "simulated_time": 0.2,
+    "steps": 3499
+  },
+  "dtype": "float64",
+  "eligible": true,
+  "feature_metrics": {
+    "contact": {
+      "detected": 0.685,
+      "error_cells": 0.39241920783199546,
+      "exact": 0.68549052400979
+    },
+    "shock": {
+      "detected": 0.85125,
+      "error_cells": 0.6550828751714199,
+      "exact": 0.8504311464060357
+    }
+  },
+  "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+  "gate_decisions": {
+    "completed": true,
+    "finest_l1_thresholds": true,
+    "positive_stages": true,
+    "wave_locations": true
+  },
+  "host_visible_answer": true,
+  "kind": "phase6e_reproducibility",
+  "method": "fv",
+  "mode": "compiled",
+  "peak_process_rss_bytes": 1283477504,
+  "primitive_errors": {
+    "l1": {
+      "density": 0.0006911638466032807,
+      "pressure": 0.0005033777616461127,
+      "velocity": 0.0010185036485165567
+    },
+    "l2": {
+      "density": 0.0036334426509471783,
+      "pressure": 0.0018677451996459698,
+      "velocity": 0.00696474071961644
+    },
+    "linf": {
+      "density": 0.06932890150003274,
+      "pressure": 0.02478385109385184,
+      "velocity": 0.15805028839548443
+    }
+  },
+  "problem": "sod",
+  "process_launch_to_exit_seconds_diagnostic": 14.230614463,
+  "replicate": 3,
+  "shape": [
+    3,
+    800
+  ],
+  "status": "completed",
+  "terminal_sha256": "b75a54b0b7f51b4c3a29b84d507e05871bb8a56138f5df10514cde911d532e8a",
+  "torch_deterministic_algorithms": false,
+  "worker_returncode": 0,
+  "worker_stderr": "",
+  "worker_stdout": ""
+}

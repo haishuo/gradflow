@@ -1,0 +1,85 @@
+{
+  "array_bytes": 19328,
+  "array_file": "shu_osher_fv_cuda_compiled_r2.npy",
+  "array_file_sha256": "ebc67aca27d104f4b0be0c151625c50c885cbf96628313c8761d5ab9bebf61d7",
+  "cells": 800,
+  "command": [
+    "/mnt/projects/gradflow/experiments/fd_fv_euler/phase6e_repro_worker.py",
+    "shu_osher",
+    "fv",
+    "cuda",
+    "compiled",
+    "2"
+  ],
+  "conserved_l1_errors": [
+    0.011332252769773671,
+    0.024661681901674903,
+    0.058334859807662405
+  ],
+  "cuda_peak_allocated_bytes": 50969600,
+  "cuda_peak_reserved_bytes": 52428800,
+  "device": "cuda",
+  "diagnostics": {
+    "boundary": "transmissive",
+    "cfl_scalar_host_controlled": true,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.800027356969189,
+    "minimum_pressure": 0.9999872538847536,
+    "simulated_time": 1.8,
+    "steps": 6894
+  },
+  "dtype": "float64",
+  "eligible": true,
+  "feature_metrics": {
+    "density_correlation": 0.998619014170406,
+    "density_total_variation_ratio": 0.9463692054850372,
+    "window": [
+      -3.0,
+      3.0
+    ]
+  },
+  "formulation_id": "fv_dimensional_characteristic_js5_global_matrix_lf_euler1d_v1",
+  "gate_decisions": {
+    "completed": true,
+    "density_correlation": true,
+    "density_total_variation_ratio": true,
+    "finest_l1_thresholds": true,
+    "positive_stages": true
+  },
+  "host_visible_answer": true,
+  "kind": "phase6e_reproducibility",
+  "method": "fv",
+  "mode": "compiled",
+  "peak_process_rss_bytes": 1283477504,
+  "primitive_errors": {
+    "l1": {
+      "density": 0.011332252769773671,
+      "pressure": 0.016393605817477095,
+      "velocity": 0.0037997063929322977
+    },
+    "l2": {
+      "density": 0.035933412895650746,
+      "pressure": 0.09134658327210758,
+      "velocity": 0.04311876409548176
+    },
+    "linf": {
+      "density": 0.6831163344061907,
+      "pressure": 2.1602120546580745,
+      "velocity": 1.180064337794287
+    }
+  },
+  "problem": "shu_osher",
+  "process_launch_to_exit_seconds_diagnostic": 16.482671224,
+  "replicate": 2,
+  "shape": [
+    3,
+    800
+  ],
+  "status": "completed",
+  "terminal_sha256": "785b0ca5d58e9a3dc2560d50846ae592e4194a7be43bf092e701859cbaeb191b",
+  "torch_deterministic_algorithms": false,
+  "worker_returncode": 0,
+  "worker_stderr": "",
+  "worker_stdout": ""
+}
