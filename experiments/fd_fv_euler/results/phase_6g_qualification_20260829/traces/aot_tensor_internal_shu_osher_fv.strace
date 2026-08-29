@@ -1,0 +1,80 @@
+29068 execve("/mnt/projects/dveb/.venv-torch/bin/python", ["/mnt/projects/dveb/.venv-torch/b"..., "/mnt/projects/gradflow/experimen"..., "--endpoint", "aot_tensor_internal", "--problem", "shu_osher", "--method", "fv", "--package", "/mnt/artifacts/gradflow/fd_fv_ph"..., "--authority-array", "/mnt/projects/gradflow/experimen"..., "--authority-record", "/mnt/projects/gradflow/experimen"..., "--array-output", "/mnt/projects/gradflow/experimen"..., "--output", "/mnt/projects/gradflow/experimen"...], 0x7ffd44bcac60 /* 44 vars */) = 0
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f960bbff990, parent_tid=0x7f960bbff990, exit_signal=0, stack=0x7f960b3ff000, stack_size=0x7fff80, tls=0x7f960bbff6c0} => {parent_tid=[29069]}, 88) = 29069
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f960b3fe990, parent_tid=0x7f960b3fe990, exit_signal=0, stack=0x7f960abfe000, stack_size=0x7fff80, tls=0x7f960b3fe6c0} => {parent_tid=[29070]}, 88) = 29070
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f960abfd990, parent_tid=0x7f960abfd990, exit_signal=0, stack=0x7f960a3fd000, stack_size=0x7fff80, tls=0x7f960abfd6c0} => {parent_tid=[29071]}, 88) = 29071
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f960a3fc990, parent_tid=0x7f960a3fc990, exit_signal=0, stack=0x7f9609bfc000, stack_size=0x7fff80, tls=0x7f960a3fc6c0} => {parent_tid=[29072]}, 88) = 29072
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f9609bfb990, parent_tid=0x7f9609bfb990, exit_signal=0, stack=0x7f96093fb000, stack_size=0x7fff80, tls=0x7f9609bfb6c0} => {parent_tid=[29073]}, 88) = 29073
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f96093fa990, parent_tid=0x7f96093fa990, exit_signal=0, stack=0x7f9608bfa000, stack_size=0x7fff80, tls=0x7f96093fa6c0} => {parent_tid=[29074]}, 88) = 29074
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f9608bf9990, parent_tid=0x7f9608bf9990, exit_signal=0, stack=0x7f96083f9000, stack_size=0x7fff80, tls=0x7f9608bf96c0} => {parent_tid=[29075]}, 88) = 29075
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f96083f8990, parent_tid=0x7f96083f8990, exit_signal=0, stack=0x7f9607bf8000, stack_size=0x7fff80, tls=0x7f96083f86c0} => {parent_tid=[29076]}, 88) = 29076
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f9607bf7990, parent_tid=0x7f9607bf7990, exit_signal=0, stack=0x7f96073f7000, stack_size=0x7fff80, tls=0x7f9607bf76c0} => {parent_tid=[29077]}, 88) = 29077
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f96073f6990, parent_tid=0x7f96073f6990, exit_signal=0, stack=0x7f9606bf6000, stack_size=0x7fff80, tls=0x7f96073f66c0} => {parent_tid=[29078]}, 88) = 29078
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f9606bf5990, parent_tid=0x7f9606bf5990, exit_signal=0, stack=0x7f96063f5000, stack_size=0x7fff80, tls=0x7f9606bf56c0} => {parent_tid=[29079]}, 88) = 29079
+29068 vfork( <unfinished ...>
+29080 execve("/sbin/ldconfig", ["/sbin/ldconfig", "-p"], 0x7f9596506490 /* 2 vars */ <unfinished ...>
+29068 <... vfork resumed>)              = 29080
+29080 <... execve resumed>)             = 0
+29080 execve("/sbin/ldconfig.real", ["/sbin/ldconfig.real", "-p"], 0x60d922b585d0 /* 3 vars */) = 0
+29080 exit_group(0)                     = ?
+29080 +++ exited with 0 +++
+29068 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=29080, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+29068 wait4(29080, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 29080
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f954c429990, parent_tid=0x7f954c429990, exit_signal=0, stack=0x7f954bc29000, stack_size=0x7fff80, tls=0x7f954c4296c0} => {parent_tid=[29081]}, 88) = 29081
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f954bc28990, parent_tid=0x7f954bc28990, exit_signal=0, stack=0x7f954b428000, stack_size=0x7fff80, tls=0x7f954bc286c0} => {parent_tid=[29082]}, 88) = 29082
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f954b427990, parent_tid=0x7f954b427990, exit_signal=0, stack=0x7f954ac27000, stack_size=0x7fff80, tls=0x7f954b4276c0} => {parent_tid=[29083]}, 88) = 29083
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f954ac26990, parent_tid=0x7f954ac26990, exit_signal=0, stack=0x7f954a426000, stack_size=0x7fff80, tls=0x7f954ac266c0} => {parent_tid=[29084]}, 88) = 29084
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f954a425990, parent_tid=0x7f954a425990, exit_signal=0, stack=0x7f9549c25000, stack_size=0x7fff80, tls=0x7f954a4256c0} => {parent_tid=[29085]}, 88) = 29085
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f9549c24990, parent_tid=0x7f9549c24990, exit_signal=0, stack=0x7f9549424000, stack_size=0x7fff80, tls=0x7f9549c246c0} => {parent_tid=[29086]}, 88) = 29086
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f9549190990, parent_tid=0x7f9549190990, exit_signal=0, stack=0x7f9548990000, stack_size=0x7fff80, tls=0x7f95491906c0} => {parent_tid=[29087]}, 88) = 29087
+29068 clone3({flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, child_tid=0x7f954898f990, parent_tid=0x7f954898f990, exit_signal=0, stack=0x7f954818f000, stack_size=0x7fff80, tls=0x7f954898f6c0} => {parent_tid=[29088]}, 88) = 29088
+29085 exit(0)                           = ?
+29085 +++ exited with 0 +++
+29084 exit(0 <unfinished ...>
+29083 exit(0 <unfinished ...>
+29082 exit(0 <unfinished ...>
+29084 <... exit resumed>)               = ?
+29083 <... exit resumed>)               = ?
+29082 <... exit resumed>)               = ?
+29084 +++ exited with 0 +++
+29083 +++ exited with 0 +++
+29082 +++ exited with 0 +++
+29081 exit(0)                           = ?
+29081 +++ exited with 0 +++
+29075 exit(0 <unfinished ...>
+29073 exit(0 <unfinished ...>
+29075 <... exit resumed>)               = ?
+29073 <... exit resumed>)               = ?
+29075 +++ exited with 0 +++
+29073 +++ exited with 0 +++
+29078 exit(0 <unfinished ...>
+29077 exit(0 <unfinished ...>
+29076 exit(0 <unfinished ...>
+29074 exit(0 <unfinished ...>
+29078 <... exit resumed>)               = ?
+29077 <... exit resumed>)               = ?
+29076 <... exit resumed>)               = ?
+29074 <... exit resumed>)               = ?
+29072 exit(0 <unfinished ...>
+29071 exit(0 <unfinished ...>
+29070 exit(0 <unfinished ...>
+29069 exit(0 <unfinished ...>
+29079 exit(0 <unfinished ...>
+29078 +++ exited with 0 +++
+29077 +++ exited with 0 +++
+29076 +++ exited with 0 +++
+29074 +++ exited with 0 +++
+29072 <... exit resumed>)               = ?
+29071 <... exit resumed>)               = ?
+29070 <... exit resumed>)               = ?
+29069 <... exit resumed>)               = ?
+29079 <... exit resumed>)               = ?
+29072 +++ exited with 0 +++
+29071 +++ exited with 0 +++
+29070 +++ exited with 0 +++
+29069 +++ exited with 0 +++
+29079 +++ exited with 0 +++
+29068 exit_group(0)                     = ?
+29087 +++ exited with 0 +++
+29086 +++ exited with 0 +++
+29088 +++ exited with 0 +++
+29068 +++ exited with 0 +++
