@@ -172,6 +172,10 @@ Verify without rerunning timing:
 PYTHONPATH=src:. python experiments/fd_fv_euler/verify_phase6c.py
 ```
 
+The final configured Forge suite, including CUDA and the declared read-only
+DVEB fixtures, passed: `345 passed`, with 14 upstream PyTorch deprecation
+warnings.
+
 ## Scientific interpretation and next boundary
 
 Phase 6C provides three paper-relevant evidence components, but not yet a
