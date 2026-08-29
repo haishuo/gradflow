@@ -1,0 +1,159 @@
+{
+  "study": "g3_recovery_candidate",
+  "contract": "r5_unique_strict_f32_roe_characteristic_line_lf_ssprk3_face_once_v1",
+  "grid": [
+    32,
+    32,
+    32
+  ],
+  "steps": 1,
+  "dtype_candidate": "float32",
+  "dtype_oracle": "float64",
+  "initial_sha256": "6d5961a3c5e211838bff447c4cc2660e0685b5f30caeb0117f6068ba6b0e2bcd",
+  "actual_sha256": "40d1b84c6102d9e8d6011b082bb447e9790a2ab55cdaa501067dc2a5e79dd3a0",
+  "candidate_final_timestep": 0.006926806177943945,
+  "forward_euler_same_first_dt": {
+    "oracle_timesteps": [
+      0.006926806177943945
+    ],
+    "error": {
+      "maximum_absolute_error": 2.1330776986072664e-05,
+      "mean_absolute_error": 4.275469780003913e-07,
+      "rms_error": 1.3993611920656755e-06,
+      "rms_error_over_oracle_state_rms": 1.172743029148628e-06,
+      "rms_error_over_oracle_update_rms": 0.044579164245862335,
+      "u0_update_rms_over_oracle_update_rms": 0.9840365024055068,
+      "u0_oracle_update_cosine": 0.999119713229555,
+      "component_maximum_absolute_error": [
+        5.16015185492158e-06,
+        7.4512893352696175e-06,
+        7.4512893352696175e-06,
+        0.0,
+        2.1330776986072664e-05
+      ],
+      "component_rms_error": [
+        7.214893172144549e-07,
+        8.480503462504183e-07,
+        8.480212504240254e-07,
+        0.0,
+        2.7986036631678625e-06
+      ]
+    },
+    "u0_health": {
+      "finite": true,
+      "minimum_density": 0.49373674392700195,
+      "minimum_pressure": 0.3722983121871947,
+      "maximum_absolute_state": 2.525024175643921
+    },
+    "oracle_health": {
+      "finite": true,
+      "minimum_density": 0.4937351758121806,
+      "minimum_pressure": 0.37229657787049397,
+      "maximum_absolute_state": 2.5250229874705554
+    },
+    "u0_conservation": {
+      "component_drift": [
+        -5.7220458984375e-05,
+        -3.2229762236459653e-06,
+        7.989538497801818e-07,
+        0.0,
+        0.00019073486328125
+      ],
+      "component_drift_per_cell": [
+        -1.7462298274040222e-09,
+        -9.835742870013322e-11,
+        2.4382136528936212e-11,
+        0.0,
+        5.820766091346741e-09
+      ]
+    },
+    "oracle_conservation": {
+      "component_drift": [
+        -2.842170943040401e-14,
+        2.1978946440626146e-15,
+        -4.874572967494828e-15,
+        0.0,
+        1.8118839761882555e-13
+      ],
+      "component_drift_per_cell": [
+        -8.673617379884035e-19,
+        6.707442151069991e-20,
+        -1.487601613615365e-19,
+        0.0,
+        5.5294310796760726e-18
+      ]
+    }
+  },
+  "qualified_ssp_rk3": {
+    "oracle_timesteps": [
+      0.006926806031100574
+    ],
+    "error": {
+      "maximum_absolute_error": 1.773136968008515e-05,
+      "mean_absolute_error": 2.8805043997530597e-07,
+      "rms_error": 8.354219449672304e-07,
+      "rms_error_over_oracle_state_rms": 7.001303651137477e-07,
+      "rms_error_over_oracle_update_rms": 0.02691344854734092,
+      "u0_update_rms_over_oracle_update_rms": 0.9951134184385947,
+      "u0_oracle_update_cosine": 0.9996480526639593,
+      "component_maximum_absolute_error": [
+        4.437866986450878e-06,
+        5.081138833282206e-06,
+        5.081138836571242e-06,
+        0.0,
+        1.773136968008515e-05
+      ],
+      "component_rms_error": [
+        4.6689970571879414e-07,
+        4.878010757961578e-07,
+        4.877389062113852e-07,
+        0.0,
+        1.6720689774299644e-06
+      ]
+    },
+    "u0_health": {
+      "finite": true,
+      "minimum_density": 0.49373674392700195,
+      "minimum_pressure": 0.3722983121871947,
+      "maximum_absolute_state": 2.525024175643921
+    },
+    "oracle_health": {
+      "finite": true,
+      "minimum_density": 0.4937366115269215,
+      "minimum_pressure": 0.3722981527908732,
+      "maximum_absolute_state": 2.525024503470176
+    },
+    "u0_conservation": {
+      "component_drift": [
+        -5.7220458984375e-05,
+        -3.2229762236459653e-06,
+        7.989538497801818e-07,
+        0.0,
+        0.00019073486328125
+      ],
+      "component_drift_per_cell": [
+        -1.7462298274040222e-09,
+        -9.835742870013322e-11,
+        2.4382136528936212e-11,
+        0.0,
+        5.820766091346741e-09
+      ]
+    },
+    "oracle_conservation": {
+      "component_drift": [
+        -3.907985046680551e-14,
+        -6.956241138666996e-16,
+        -1.8225004838612335e-14,
+        0.0,
+        -8.526512829121202e-14
+      ],
+      "component_drift_per_cell": [
+        -1.1926223897340549e-18,
+        -2.1228763240560902e-20,
+        -5.56183008990855e-19,
+        0.0,
+        -2.6020852139652106e-18
+      ]
+    }
+  }
+}

@@ -21,9 +21,10 @@ until the corresponding mathematical contract and oracle result are recorded.
    profiling pending. See `G0_STATIC_AUDIT.md`.**
 2. **G1 — reckless U0 frontier.** Implement the complete, explicitly declared
    GPU-comfortable formulation without consulting the numerical oracle during
-   design or tuning.
+   design or tuning. **Complete and frozen.**
 3. **G2 — frontier and damage record.** Freeze U0 timing and output, then
    compare it with the independent oracle and qualified native control.
+   **Initial damage comparison complete.**
 4. **G3 — correctness recovery and schedule controls.** Execute the
    preregistered R1--R6 ladder and exact-math face-reuse controls against
    independent GradFlow/Fortran evidence.
@@ -31,9 +32,8 @@ until the corresponding mathematical contract and oracle result are recorded.
    gate, then determine whether the formulation result generalizes beyond
    WENO-5.
 
-CUDA is not visible to the current task process.  G0 and protocol work may be
-performed locally; G1 onward require the Forge-visible CUDA execution route
-used by the prior E4 campaign.
+CUDA is visible on Forge through the explicitly authorized native execution
+route. G1 was measured on the local NVIDIA GeForce RTX 5070 Ti.
 
 ## Starting evidence
 

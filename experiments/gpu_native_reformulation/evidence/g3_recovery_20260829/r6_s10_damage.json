@@ -1,0 +1,177 @@
+{
+  "study": "g3_recovery_candidate",
+  "contract": "r6_unique_strict_f32_shu_characteristic_line_lf_ssprk3_face_once_v1",
+  "grid": [
+    32,
+    32,
+    32
+  ],
+  "steps": 10,
+  "dtype_candidate": "float32",
+  "dtype_oracle": "float64",
+  "initial_sha256": "6d5961a3c5e211838bff447c4cc2660e0685b5f30caeb0117f6068ba6b0e2bcd",
+  "actual_sha256": "a1d0c458701b71fac0c35f81cc9ec323fed702e3a519257d1a091ed3ad5d661a",
+  "candidate_final_timestep": 0.006928007584065199,
+  "forward_euler_oracle": {
+    "oracle_timesteps": [
+      0.006926806031100574,
+      0.006926917622026295,
+      0.006927038331114781,
+      0.006927166497575563,
+      0.00692730052487384,
+      0.006927438900137639,
+      0.006927580206016829,
+      0.006927723125499868,
+      0.006927866440891319,
+      0.006928009028477876
+    ],
+    "error": {
+      "maximum_absolute_error": 6.6567801851658e-05,
+      "mean_absolute_error": 1.483778167452817e-06,
+      "rms_error": 6.2190529280826906e-06,
+      "rms_error_over_oracle_state_rms": 5.2119405183923125e-06,
+      "rms_error_over_oracle_update_rms": 0.021586643883808338,
+      "u0_update_rms_over_oracle_update_rms": 0.990669378161055,
+      "u0_oracle_update_cosine": 0.9998087542127573,
+      "component_maximum_absolute_error": [
+        1.9560157400344558e-05,
+        6.18884987530488e-05,
+        6.18884737055847e-05,
+        0.0,
+        6.6567801851658e-05
+      ],
+      "component_rms_error": [
+        3.270903970674263e-06,
+        4.253156740558136e-06,
+        4.252721135309721e-06,
+        0.0,
+        1.210410279664014e-05
+      ]
+    },
+    "u0_health": {
+      "finite": true,
+      "minimum_density": 0.4932502210140228,
+      "minimum_pressure": 0.37177193164825434,
+      "maximum_absolute_state": 2.525911331176758
+    },
+    "oracle_health": {
+      "finite": true,
+      "minimum_density": 0.4932306608566225,
+      "minimum_pressure": 0.37175013953815916,
+      "maximum_absolute_state": 2.525918377623985
+    },
+    "u0_conservation": {
+      "component_drift": [
+        0.0006475448608398438,
+        2.8828645418921273e-06,
+        4.576696610025799e-06,
+        0.0,
+        8.392333984375e-05
+      ],
+      "component_drift_per_cell": [
+        1.9761500880122185e-08,
+        8.797804388098533e-11,
+        1.3966969635088498e-10,
+        0.0,
+        2.561137080192566e-09
+      ]
+    },
+    "oracle_conservation": {
+      "component_drift": [
+        5.329070518200751e-13,
+        -1.8179902028236938e-14,
+        -5.10702591327572e-15,
+        0.0,
+        3.446132268436486e-13
+      ],
+      "component_drift_per_cell": [
+        1.6263032587282567e-17,
+        -5.548065804515667e-19,
+        -1.5585406229479126e-19,
+        0.0,
+        1.0516761073109393e-17
+      ]
+    }
+  },
+  "qualified_ssp_rk3": {
+    "oracle_timesteps": [
+      0.006926806031100574,
+      0.006926922023045893,
+      0.006927045790914451,
+      0.006927175755240548,
+      0.0069273104054872955,
+      0.006927448315338117,
+      0.006927588150918274,
+      0.006927728672984673,
+      0.006927868734473791,
+      0.006928007274862315
+    ],
+    "error": {
+      "maximum_absolute_error": 1.6694097859648593e-06,
+      "mean_absolute_error": 8.63501393854132e-08,
+      "rms_error": 2.0342036550452015e-07,
+      "rms_error_over_oracle_state_rms": 1.7047850338010137e-07,
+      "rms_error_over_oracle_update_rms": 0.0007127423472323172,
+      "u0_update_rms_over_oracle_update_rms": 1.0000138101663845,
+      "u0_oracle_update_cosine": 0.9999997460980431,
+      "component_maximum_absolute_error": [
+        8.259236556895644e-07,
+        1.6720733986286263e-07,
+        1.6720599393948987e-07,
+        0.0,
+        1.6694097859648593e-06
+      ],
+      "component_rms_error": [
+        1.797595491427464e-07,
+        3.168127606820667e-08,
+        3.199647018864292e-08,
+        0.0,
+        4.154013151689782e-07
+      ]
+    },
+    "u0_health": {
+      "finite": true,
+      "minimum_density": 0.4932502210140228,
+      "minimum_pressure": 0.37177193164825434,
+      "maximum_absolute_state": 2.525911331176758
+    },
+    "oracle_health": {
+      "finite": true,
+      "minimum_density": 0.4932502777817099,
+      "minimum_pressure": 0.3717719858271035,
+      "maximum_absolute_state": 2.525911577743507
+    },
+    "u0_conservation": {
+      "component_drift": [
+        0.0006475448608398438,
+        2.8828645418921273e-06,
+        4.576696610025799e-06,
+        0.0,
+        8.392333984375e-05
+      ],
+      "component_drift_per_cell": [
+        1.9761500880122185e-08,
+        8.797804388098533e-11,
+        1.3966969635088498e-10,
+        0.0,
+        2.561137080192566e-09
+      ]
+    },
+    "oracle_conservation": {
+      "component_drift": [
+        2.113864638886298e-13,
+        2.706168622523819e-14,
+        -2.864375403532904e-14,
+        0.0,
+        2.948752353404416e-13
+      ],
+      "component_drift_per_cell": [
+        6.451002926288751e-18,
+        8.258571235729428e-19,
+        -8.74138001566438e-19,
+        0.0,
+        8.998878031629687e-18
+      ]
+    }
+  }
+}
