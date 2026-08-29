@@ -1,0 +1,27 @@
+{
+  "host_side_documentation_found": true,
+  "host_while_found": true,
+  "installed_inductor_source": "/mnt/projects/dveb/.venv-torch/lib/python3.12/site-packages/torch/_inductor/codegen/wrapper.py",
+  "installed_inductor_source_sha256": "f257762a74660e19f0b75e3a4bbc41cfd15afdb91226dec8fd49f75691c357b6",
+  "installed_source_matches": [
+    {
+      "line": 4259,
+      "text": "\"\"\"while_loop is codegened as a host side while_loop\"\"\""
+    }
+  ],
+  "item_bool_found": true,
+  "package": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_sod_fd.pt2",
+  "package_sha256": "46b17aacd275b13407833d3071d0a05b6fea4b2937a132972a161cdd8c498d3e",
+  "wrapper_matches": [
+    {
+      "line": 3957,
+      "text": "while (1) {"
+    },
+    {
+      "line": 3994,
+      "text": "AOTI_TORCH_ERROR_CODE_CHECK(aoti_torch_item_bool(buf6_cond_result, &buf6_cond_result_scalar));"
+    }
+  ],
+  "wrapper_member": "device_sod_fd/data/aotinductor/model/ciqu6rd2fntmjc4lnw5tov5k25wyusknhuldrzo37ghloq525r5b.wrapper.cpp",
+  "wrapper_sha256": "3660816b8cfcd07a3633c5bdd3a918dd687fffc884210cf83a6d243063d27995"
+}

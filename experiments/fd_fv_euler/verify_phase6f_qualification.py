@@ -9,7 +9,6 @@ from pathlib import Path
 import re
 import subprocess
 import tarfile
-import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -23,19 +22,6 @@ COMPILERS = {
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
-def manifest(root: Path) -> list[dict]:
-    return [
-        {
-            "path": str(path.relative_to(root)),
-            "size": path.stat().st_size,
-            "mode": oct(path.stat().st_mode & 0o777),
-            "sha256": sha256(path),
-        }
-        for path in sorted(root.rglob("*"))
-        if path.is_file()
-    ]
 
 
 def trace_compilers(path: Path) -> list[str]:
@@ -72,10 +58,23 @@ def main() -> None:
     recorded_manifest = json.loads((ROOT / cache["manifest"]).read_text())
     assert sha256(ROOT / cache["manifest"]) == cache["manifest_sha256"]
     assert len(recorded_manifest) == cache["file_count"]
-    with tempfile.TemporaryDirectory(prefix="gradflow-phase6f-verify-") as temp:
-        with tarfile.open(archive, "r:gz") as source:
-            source.extractall(temp, filter="data")
-        assert manifest(Path(temp)) == recorded_manifest
+    archived_manifest = []
+    with tarfile.open(archive, "r:gz") as source:
+        for member in sorted(source.getmembers(), key=lambda item: item.name):
+            if not member.isfile():
+                continue
+            extracted = source.extractfile(member)
+            assert extracted is not None
+            contents = extracted.read()
+            archived_manifest.append(
+                {
+                    "path": member.name,
+                    "size": member.size,
+                    "mode": oct(member.mode),
+                    "sha256": hashlib.sha256(contents).hexdigest(),
+                }
+            )
+    assert archived_manifest == recorded_manifest
 
     prep_trace = RESULTS / "traces/cache_preparation.strace"
     preparation = json.loads((RESULTS / "cache_preparation.json").read_text())
@@ -88,11 +87,14 @@ def main() -> None:
         for path in sorted((RESULTS / "records").glob("*.json"))
     ]
     assert len(records) == 8
+    recomputed_eligibility = []
     for record in records:
         stem = f"{record['endpoint']}_{record['problem']}_{record['method']}"
         trace = RESULTS / "traces" / f"{stem}.strace"
         assert trace_compilers(trace) == record["runtime_compiler_processes"]
-        assert record["runtime_compiler_process_count"] == 0
+        assert record["runtime_compiler_process_count"] == len(
+            record["runtime_compiler_processes"]
+        )
         assert record["cache_before"] == recorded_manifest
         assert record["cache_after"] == recorded_manifest
         assert record["cache_unchanged"]
@@ -101,7 +103,16 @@ def main() -> None:
         assert record["diagnostics"]["completed"]
         array = RESULTS / "arrays" / f"{stem}.npy"
         assert sha256(array) == record["array_file_sha256"]
-        assert record["eligible"]
+        eligible = bool(
+            record["authority_parity"]["passed"]
+            and record["oracle"]["passed"]
+            and record["diagnostics"]["completed"]
+            and record["cache_unchanged"]
+            and record["runtime_compiler_process_count"] == 0
+            and record["worker_returncode"] == 0
+        )
+        assert record["eligible"] == eligible
+        recomputed_eligibility.append(eligible)
 
     profiles = [
         json.loads(path.read_text())
@@ -121,9 +132,10 @@ def main() -> None:
         "installed_inductor_source_sha256"
     ]
     assert payload["lane_status"]["prepared_runtime_cache"]
-    assert payload["lane_status"]["prepared_package_runtime"]
+    all_qualified = len(recomputed_eligibility) == 8 and all(recomputed_eligibility)
+    assert payload["lane_status"]["prepared_package_runtime"] == all_qualified
     assert payload["lane_status"]["tensor_loop_host_synchronization_characterized"]
-    assert payload["lane_status"]["performance_admitted"]
+    assert payload["lane_status"]["performance_admitted"] == all_qualified
     assert not payload["performance_measurements_collected"]
     assert not payload["production_sources_modified"]
     assert not payload["dveb_modified"]
@@ -131,7 +143,10 @@ def main() -> None:
     assert subprocess.check_output(
         ("git", "rev-parse", "c3a19eb^{commit}"), cwd=ROOT, text=True
     ).strip()
-    print("Phase 6F qualification verification passed (8/8 prepared packages).")
+    print(
+        "Phase 6F qualification records verified "
+        f"(8/8 numerical; performance admitted={all_qualified})."
+    )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,57 @@
+{
+  "diagnostics": {
+    "cfl_scalar_host_controlled": false,
+    "completed": true,
+    "failure_stage": null,
+    "minimum_density": 0.800027356969191,
+    "minimum_pressure": 0.9999872538847527,
+    "simulated_time": 1.8,
+    "steps": 6894
+  },
+  "eligible": true,
+  "endpoint": "aot_tensor",
+  "final_device": "cuda",
+  "host_synchronization_observed": true,
+  "kind": "phase6f_tensor_loop_profile",
+  "method": "fv",
+  "package_load_seconds": 1.4976535670000002,
+  "package_path": "/mnt/artifacts/gradflow/fd_fv_phase6e_device_r1_20260829/device_shu_osher_fv.pt2",
+  "package_sha256": "bc1e12d1313a6cbf61b6287c939003f9f228f6ab31ca8ee1500c854e92dbcea0",
+  "problem": "shu_osher",
+  "selected_events": [
+    {
+      "count": 6903,
+      "cpu_time_total_us": 0,
+      "device_time_total_us": 2086.0260000046874,
+      "key": "Memcpy DtoH (Device -> Pinned)"
+    },
+    {
+      "count": 6903,
+      "cpu_time_total_us": 53563.69800001406,
+      "device_time_total_us": 2086.3460000046944,
+      "key": "aten::_local_scalar_dense"
+    },
+    {
+      "count": 3,
+      "cpu_time_total_us": 4.649000000208616,
+      "device_time_total_us": 0,
+      "key": "cudaDeviceSynchronize"
+    },
+    {
+      "count": 1,
+      "cpu_time_total_us": 8.13000000000011,
+      "device_time_total_us": 0,
+      "key": "cudaEventSynchronize"
+    },
+    {
+      "count": 6903,
+      "cpu_time_total_us": 21310.960000002786,
+      "device_time_total_us": 0,
+      "key": "cudaStreamSynchronize"
+    }
+  ],
+  "status": "completed",
+  "worker_returncode": 0,
+  "worker_stderr": "USDT:2026-08-29 12:44:50 4182796:4182796 SyncActivityProfilerHandler.cpp:52] profiler_start\nUSDT:2026-08-29 12:44:53 4182796:4182796 SyncActivityProfilerHandler.cpp:59] profiler_stop\n",
+  "worker_stdout": ""
+}
