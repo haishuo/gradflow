@@ -23,6 +23,13 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def git_blob_sha256(commit: str, relative: str) -> str:
+    blob = subprocess.check_output(
+        ("git", "show", f"{commit}:{relative}"), cwd=ROOT
+    )
+    return hashlib.sha256(blob).hexdigest()
+
+
 def tensor_sha256(array: np.ndarray) -> str:
     return hashlib.sha256(np.ascontiguousarray(array).tobytes()).hexdigest()
 
@@ -74,7 +81,7 @@ def main() -> None:
     assert payload["protocol_commit"] == EXPECTED_PROTOCOL_COMMIT
     assert payload["source_dirty"] is False
     for name, digest in payload["source_hashes"].items():
-        assert sha256(ROOT / name) == digest
+        assert git_blob_sha256(EXPECTED_SOURCE_COMMIT, name) == digest
     lane_a = subprocess.run(
         (sys.executable, str(ROOT / "experiments/fd_fv_euler/verify_phase6e_repro.py")),
         cwd=ROOT,
