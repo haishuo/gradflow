@@ -544,7 +544,12 @@ def main() -> None:
     output = arguments.output_dir.resolve()
     if output.exists() and not arguments.aggregate_existing:
         raise FileExistsError(f"refusing existing output directory: {output}")
-    if git("status", "--porcelain"):
+    dirty = git("status", "--porcelain", "--untracked-files=all").splitlines()
+    if arguments.aggregate_existing:
+        relative_output = output.relative_to(ROOT)
+        allowed_prefix = f"?? {relative_output}/"
+        dirty = [line for line in dirty if not line.startswith(allowed_prefix)]
+    if dirty:
         raise RuntimeError("Phase 6D requires a clean committed source tree")
     admitted = admission()
     if not admitted["passed"]:
