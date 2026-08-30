@@ -1,0 +1,37 @@
+# Academic U4-C protocol amendment: byte-identical performance input
+
+Status: **frozen before any U4-C C2 result is admitted**.
+
+Date: 2026-08-30 (UTC)
+
+## Trigger
+
+The first attempted C2 campaign passed at `N=8192` but excluded the OpenSBLI
+lanes at larger sizes. Inspection showed that the two implementations had
+independently evaluated the same analytic initial-condition expression. Their
+input values therefore differed at floating-point roundoff level. A spatial
+derivative scales that input discrepancy by `1/dx`, making the comparison
+increasingly measure transcendental-library and coordinate-evaluation
+differences rather than the WENO operators named by U4-C.
+
+The attempted campaign is invalid and is not retained as performance evidence.
+No result from it may be quoted. The discovery is retained in this amendment.
+
+## Correction
+
+For every frozen size, the parent harness now creates one float64 CPU byte
+array for the already-frozen analytic state. That exact array is:
+
+1. the input to the canonical GradFlow CPU residual;
+2. loaded by each GradFlow CPU and CUDA worker; and
+3. loaded through the public `ops_dat_set_data` interface by each OpenSBLI OPS
+   sequential and CUDA process, with periodic halo bytes filled from the same
+   array before any admitted evaluation.
+
+Each state is retained and hashed. All qualifications and all timing cells are
+restarted from empty evidence. Sizes, mathematics, lanes, warmups, sample
+counts, worker counts, randomization seed, thresholds, and interpretation
+rules remain unchanged.
+
+This amendment removes an unintended input mismatch; it does not tune either
+operator or alter the frozen performance state.
