@@ -506,3 +506,14 @@ occupancy intervention both failed. R6Q was not backend-admitted, no canonical
 PyTorch source changed, and further hand-written CUDA work is deferred. See
 `experiments/gpu_native_reformulation/G_SERIES_SYNTHESIS.md` and
 `ACADEMIC_COMPLETION_ROADMAP.md` for the remaining academic critical path.
+
+A subsequent frozen ordinary-PyTorch scalar screen independently corroborated
+the face-ownership effect without changing the package. Logical face-once
+construction won all valid eager and compiled 3-D comparisons at WENO-JS
+orders 5 and 15; compiled speedups at `96^3` ranged from `1.16x` to `2.76x`,
+and the float32 WENO-5 scale slice resolved wins from `16^3` through `128^3`.
+Unlike the global-array native schedule, the compiled PyTorch representation
+also used approximately half the temporary allocation at moderate/large
+sizes. Extreme-resolution 1-D compiled points failed the frozen correctness
+gate and support no timing claim. See
+`experiments/face_ownership_screen/FACE_OWNERSHIP_SCREEN_RESULTS.md`.

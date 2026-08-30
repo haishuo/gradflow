@@ -1,0 +1,8 @@
+# Primary frozen campaign (executed with the GradFlow source on PYTHONPATH)
+env PYTHONPATH=src /home/haishuo/miniconda3/envs/gradflow/bin/python experiments/face_ownership_screen/run_screen.py --output experiments/face_ownership_screen/evidence/face_ownership_20260830/screen.json
+
+# Prospectively frozen, timing-free 1-D compilation diagnostic
+env PYTHONPATH=src /home/haishuo/miniconda3/envs/gradflow/bin/python experiments/face_ownership_screen/diagnose_1d_compile.py --output experiments/face_ownership_screen/evidence/face_ownership_20260830/compile_1d_diagnostic.json
+
+# Offline verification
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/face_ownership_screen/verify_screen.py experiments/face_ownership_screen/evidence/face_ownership_20260830

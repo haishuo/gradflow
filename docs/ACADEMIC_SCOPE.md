@@ -64,7 +64,10 @@ The current repository has reproducible evidence for:
   prepared AOT process entry; and
 - a closed G0--G6 reckless-to-correct native-GPU study that isolates an
   approximately twofold WENO-5 face-ownership schedule effect and records
-  negative shared-pencil and occupancy interventions.
+  negative shared-pencil and occupancy interventions; and
+- an ordinary-PyTorch scalar replication in which logical face-once ownership
+  won every valid 3-D WENO-JS5/15 eager and compiled endpoint, while
+  extreme-resolution 1-D compiled cases were excluded for correctness.
 
 These are bounded results, not yet a complete paper package.
 
