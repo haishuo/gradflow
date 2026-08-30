@@ -1,0 +1,14 @@
+# Academic A4 commands executed from /mnt/projects/gradflow
+
+# Build the immutable release-payload index from a clean tree.
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a4/build_artifact_index.py --output experiments/academic_a4/evidence/a4_20260830/artifact_index.json
+
+# Verify payload hashes and release-policy gates.
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a4/verify_a4.py experiments/academic_a4/evidence/a4_20260830
+
+# After committing and tagging the payload, reproduce it from a no-hardlink
+# isolated local clone. The exact tag is the tested artifact identity.
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a4/run_cleanroom.py --ref academic-v0.1.0-rc1 --output experiments/academic_a4/evidence/a4_20260830
+
+# The second-machine and external-review commands are deliberately absent:
+# neither independent gate had been performed when this local packet froze.

@@ -1,0 +1,43 @@
+{
+  "schema": "gradflow-academic-a4-environment-v1",
+  "recorded_utc_date": "2026-08-30",
+  "host": "forge",
+  "operating_system": "Linux 6.8.0-138-generic x86_64, Ubuntu glibc 2.39",
+  "cpu": {
+    "model": "AMD Ryzen 5 7600X 6-Core Processor",
+    "physical_cores": 6,
+    "logical_cpus": 12,
+    "isa_features_used_by_host": ["AVX2", "AVX-512"]
+  },
+  "gpu": {
+    "model": "NVIDIA GeForce RTX 5070 Ti",
+    "compute_capability": "12.0",
+    "cuda_runtime_reported_by_torch": "12.8",
+    "availability_note": "CUDA was visible to the unsandboxed A2/A3 campaigns; process-sandbox visibility is not a hardware-availability test."
+  },
+  "python": "3.11.13 | packaged by conda-forge",
+  "packages": {
+    "torch": "2.9.0.dev20250705+cu128",
+    "pytorch-triton": "3.3.1+gitc8757738",
+    "numpy": "2.2.6",
+    "h5py": "3.14.0",
+    "pytest": "8.4.1",
+    "sympy": "1.14.0"
+  },
+  "toolchain": {
+    "gcc": "13.3.0",
+    "g++": "13.3.0",
+    "glibc": "2.39"
+  },
+  "primary_environment_sources": [
+    "experiments/academic_a2/evidence/a2_20260830/campaign.json",
+    "experiments/academic_a3/evidence/a3_20260830/campaign.json"
+  ],
+  "limitations": [
+    "The exact PyTorch development wheel may no longer be available from a public package index.",
+    "Driver identity was not consistently captured by A2/A3 and is therefore not invented here.",
+    "MPS was unavailable and remains untested.",
+    "This consumer GPU has deliberately limited FP64 throughput relative to data-center accelerators."
+  ]
+}
+
