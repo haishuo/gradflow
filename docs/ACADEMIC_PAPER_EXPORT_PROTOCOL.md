@@ -47,6 +47,11 @@ The export program is
 - `export_manifest.json`, recording the release tag and commit, generator
   hash, source-evidence hashes, dataset size, and dataset hash.
 
+The recorded tag and commit identify the frozen source-evidence state. The
+export itself is identified independently by the SHA-256 digest of
+`export_manifest.json`, so downstream consumers do not imply that the exporter
+was already present in the earlier release-candidate tag.
+
 Raw campaign evidence remains in GradFlow and is never modified by export.
 Changing a value requires a new prospectively named export; published exports
 are not silently overwritten.
