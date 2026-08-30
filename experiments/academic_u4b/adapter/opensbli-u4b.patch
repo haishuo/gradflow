@@ -1,0 +1,109 @@
+diff --git a/opensbli/schemes/spatial/shock_capturing.py b/opensbli/schemes/spatial/shock_capturing.py
+index 356cc21..fafc07e 100644
+--- a/opensbli/schemes/spatial/shock_capturing.py
++++ b/opensbli/schemes/spatial/shock_capturing.py
+@@ -263,7 +263,8 @@ class EigenSystem(object):
+             Euler_eq = EulerEquations(block.ndim, species)
+             Euler_eq.generate_eig_system(block)
+         else:
+-            self.physics.generate_eig_system(block)
++            Euler_eq = self.physics
++            Euler_eq.generate_eig_system(block)
+         self.euler = Euler_eq
+         self.eigen_value = {}
+         self.left_eigen_vector = {}
+@@ -467,13 +468,22 @@ class Characteristic(EigenSystem):
+         for d in derivatives:
+             required_symbols = required_symbols.union(d.atoms(DataSetBase))
+         # Dictionary for reduction operatons
+-        self.set_global_eigenvalues(block)
++        if self.flux_type == 'GLF':
++            self.set_global_eigenvalues(block)
+         return inv_metric, averaged_equations, required_symbols
+ 
+     def create_LEV_inverses(self, direction, avg_LEV_values):
+         """ Optimizations to avoid repeated divides."""
+-        inverses = [gv('inv_AVG_a'), gv('inv_AVG_rho')]
+-        to_be_replaced = [1/gv('AVG_%d_a' % direction), 1/gv('AVG_%d_rho' % direction)]
++        inverse_candidates = [
++            (gv('inv_AVG_a'), 1/gv('AVG_%d_a' % direction)),
++            (gv('inv_AVG_rho'), 1/gv('AVG_%d_rho' % direction)),
++        ]
++        inverses = []
++        to_be_replaced = []
++        for inverse, expression in inverse_candidates:
++            if any(term.has(expression) for term in avg_LEV_values):
++                inverses.append(inverse)
++                to_be_replaced.append(expression)
+         if len(self.inv_metric.atoms(gv)) > 0:  # Don't substitute if there are no metrics
+             inverses += [gv('inv_AVG_met_fact')]
+             to_be_replaced += [1/self.inv_metric]
+@@ -500,9 +510,12 @@ class Characteristic(EigenSystem):
+         return characteristic_flux_stencil, CF_matrix
+ 
+     def replace_gamma_factor(self, eqns):
+-        ConstantsToDeclare.add_constant(ConstantObject('gama'))
++        gama = ConstantObject('gama')
++        if not any(eqn.has(gama) for eqn in eqns):
++            return eqns
++        ConstantsToDeclare.add_constant(gama)
+         gamma_minus_one = ConstantObject('gamma_m1')
+-        gamma_minus_one.value = (ConstantObject('gama') - 1)
++        gamma_minus_one.value = (gama - 1)
+         ConstantsToDeclare.add_constant(gamma_minus_one)
+         for i, eqn in enumerate(eqns):
+             eqns[i] = eqn.subs({gamma_minus_one.value: gamma_minus_one})
+diff --git a/opensbli/schemes/spatial/weno.py b/opensbli/schemes/spatial/weno.py
+index 2f4414e..2c41445 100644
+--- a/opensbli/schemes/spatial/weno.py
++++ b/opensbli/schemes/spatial/weno.py
+@@ -346,9 +346,9 @@ class WenoZ(object):
+ 
+ 
+ class WenoJS(object):
+-    def __init__(self, k):
++    def __init__(self, k, epsilon=1e-6):
+         self.k = k
+-        self.eps = 1e-6
++        self.eps = epsilon
+         return
+ 
+     def generate_alphas(self, RV, WenoConfig):
+@@ -383,7 +383,7 @@ class Weno(Scheme, ShockCapturing):
+ 
+     :arg int order: Numerical order of the WENO scheme (3,5,...). """
+ 
+-    def __init__(self, order, formulation):
++    def __init__(self, order, formulation, epsilon=None):
+         Scheme.__init__(self, "WenoDerivative", order)
+         self.schemetype = "Spatial"
+         if not isinstance(order, int):
+@@ -394,7 +394,7 @@ class Weno(Scheme, ShockCapturing):
+             WT = WenoZ(self.k)
+             print("A WENO-Z scheme of order %s is being used for shock capturing." % str(self.order))
+         elif formulation.upper() == 'JS':  # Default to WENO-JS if no WENO scheme type provided
+-            WT = WenoJS(self.k)
++            WT = WenoJS(self.k, epsilon=1e-6 if epsilon is None else epsilon)
+             print("A WENO-JS scheme of order %s is being used for shock capturing." % str(self.order))
+         else:
+             raise NotImplementedError("Only WENO-Z and WENO-JS schemes are implemented.")
+@@ -479,7 +479,7 @@ class LFWeno(LFCharacteristic, Weno):
+     :arg object physics: Physics object, defaults to NSPhysics.
+     :arg object averaging: The averaging procedure to be applied for characteristics, defaults to Simple averaging. """
+ 
+-    def __init__(self, order, physics=None, averaging=None, shock_filter=None, formulation="JS", conservative=True, flux_type='LLF', flux_split=True, species=None):
++    def __init__(self, order, physics=None, averaging=None, shock_filter=None, formulation="JS", conservative=True, flux_type='LLF', flux_split=True, species=None, epsilon=None):
+         if flux_type == 'LLF':
+             print("Local Lax-Friedrich flux splitting.")
+         elif flux_type == 'GLF':
+@@ -496,8 +496,8 @@ class LFWeno(LFCharacteristic, Weno):
+         self.conservative = conservative
+         if shock_filter is not None:
+             self.shock_filter = shock_filter
+-            self.sensor_evaluation = Weno.__init__(self, order, formulation)
++            self.sensor_evaluation = Weno.__init__(self, order, formulation, epsilon=epsilon)
+         else:
+-            Weno.__init__(self, order, formulation)
++            Weno.__init__(self, order, formulation, epsilon=epsilon)
+             self.sensor_evaluation = None
+         return

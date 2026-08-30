@@ -1,7 +1,7 @@
 # Academic external-baseline gate
 
-Status: **blocking manuscript gate; U4-A compatibility audit complete; no
-external timing begun**.
+Status: **blocking manuscript gate; U4-A and U4-B correctness qualification
+complete; no external timing begun**.
 
 ## Question
 
@@ -51,7 +51,7 @@ contract-specific.
 The performance portion of this gate remains untested. This document does not
 authorize a benchmark campaign by itself.
 
-## U4-A disposition
+## U4-A and U4-B disposition
 
 The source-pinned compatibility audit is complete. OpenSBLI is the selected
 `matched_operator_candidate`, but its stock applications are not admitted:
@@ -61,6 +61,13 @@ reconstruction/code-generation building block. JAX-Fluids and HOPE are
 application-context systems whose finite-volume contracts do not enter the
 direct FD operator table.
 
-See `ACADEMIC_U4A_PROTOCOL.md` and `ACADEMIC_U4A_RESULTS.md`. U4-B may begin
-only as an OpenSBLI adapter and correctness-qualification phase. Timing is
-downstream of qualification.
+The bounded U4-B adapter retained OpenSBLI's WENO, characteristic LLF,
+divergence, periodic exchange, generated kernels, and OPS execution. Its
+float64 scalar order-5 residual passed the frozen pointwise, constant-state,
+conservation, and convergence gates and is classified
+`matched_operator_adapted_qualified`.
+
+See `ACADEMIC_U4A_PROTOCOL.md`, `ACADEMIC_U4A_RESULTS.md`,
+`ACADEMIC_U4B_PROTOCOL.md`, and `ACADEMIC_U4B_RESULTS.md`. OpenSBLI remains
+excluded from performance tables until a separate timing constitution and
+CUDA correctness gate are completed.

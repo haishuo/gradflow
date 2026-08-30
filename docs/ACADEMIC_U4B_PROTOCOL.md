@@ -2,6 +2,8 @@
 
 Status: **frozen before adapter implementation or execution**.
 
+Outcome: the frozen protocol passed; see `ACADEMIC_U4B_RESULTS.md`.
+
 Date: 2026-08-30 (UTC)
 
 ## Purpose

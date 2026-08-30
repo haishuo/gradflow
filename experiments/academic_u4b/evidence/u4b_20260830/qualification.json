@@ -1,0 +1,249 @@
+{
+  "cases": [
+    {
+      "canonical_conservation": {
+        "bound": 1.8878144618163017e-12,
+        "passed": true,
+        "sum": 8.881784197001252e-16,
+        "sum_abs": 265.68626583689155
+      },
+      "canonical_finite": true,
+      "case": "state_a",
+      "external_conservation": {
+        "bound": 1.8878144618163e-12,
+        "passed": true,
+        "sum": 0.0,
+        "sum_abs": 265.6862658368913
+      },
+      "external_finite": true,
+      "generated_source_sha256": {
+        "mpi_openmp_kernels.cpp": "90d5f7f071ddcdfa2c1c7b67212ffcd1acad64f57e063799d81b174cfb63c9a2",
+        "opensbli.cpp": "db38ab76488359320e8f6650259a02dd75460e38b3be0bf8bdd9b8cc1e900486",
+        "opensbli_ops.cpp": "3764009bdb45dd851bba57723d48f57b44c707bb2e43582250f2e3065eb21269",
+        "opensbliblock00_kernels.h": "293602b4f2af337d2fc0dbfcb779a3c950f9f4e68bd8383c539c56a0c6ab9fe4"
+      },
+      "rhs_max_abs_difference": 2.7000623958883807e-13,
+      "size": 64,
+      "state_max_abs_error": 2.220446049250313e-16
+    },
+    {
+      "canonical_conservation": {
+        "bound": 5.49921703977164e-12,
+        "passed": true,
+        "sum": -3.552713678800501e-15,
+        "sum_abs": 773.9459940982825
+      },
+      "canonical_finite": true,
+      "case": "state_b",
+      "external_conservation": {
+        "bound": 5.499217039771641e-12,
+        "passed": true,
+        "sum": 0.0,
+        "sum_abs": 773.9459940982827
+      },
+      "external_finite": true,
+      "generated_source_sha256": {
+        "mpi_openmp_kernels.cpp": "b1a5626edcf83e5214e4319661caaac6eb9f3ecd272ed28104a9fa83b213e0d3",
+        "opensbli.cpp": "db38ab76488359320e8f6650259a02dd75460e38b3be0bf8bdd9b8cc1e900486",
+        "opensbli_ops.cpp": "3764009bdb45dd851bba57723d48f57b44c707bb2e43582250f2e3065eb21269",
+        "opensbliblock00_kernels.h": "09c4c07f2392a53f756127099308f1fb86d5e7931fecd39ebc772edb7d9d9aef"
+      },
+      "rhs_max_abs_difference": 2.842170943040401e-14,
+      "size": 64,
+      "state_max_abs_error": 0.0
+    },
+    {
+      "canonical_conservation": {
+        "bound": 0.0,
+        "passed": true,
+        "sum": 0.0,
+        "sum_abs": 0.0
+      },
+      "canonical_finite": true,
+      "case": "constant",
+      "external_conservation": {
+        "bound": 0.0,
+        "passed": true,
+        "sum": 0.0,
+        "sum_abs": 0.0
+      },
+      "external_finite": true,
+      "generated_source_sha256": {
+        "mpi_openmp_kernels.cpp": "4214ba3ce8fa114d7615c12ce8e759c92fb7b335f825be22cc72fec29af635b1",
+        "opensbli.cpp": "741e7b5482c04039f183492c7ccd8dc27aa808f4788fd6abc6750a0fb58f4acc",
+        "opensbli_ops.cpp": "6c1db42f199b8e5d126555faaf1cdce00a658ed1c3ed5e219d15348d1a43c934",
+        "opensbliblock00_kernels.h": "0bf161b92aa35806cf5774d3427b94a2652e9ef085a07dd3576009c82cf3e401"
+      },
+      "rhs_max_abs_difference": 0.0,
+      "size": 64,
+      "state_max_abs_error": 0.0
+    },
+    {
+      "canonical_conservation": {
+        "bound": 1.1345306784650224e-12,
+        "passed": true,
+        "sum": 1.7763568394002505e-15,
+        "sum_abs": 159.67099814923347
+      },
+      "canonical_finite": true,
+      "canonical_l2_error": 5.8121080633929656e-05,
+      "case": "sine",
+      "external_conservation": {
+        "bound": 1.1345306784650226e-12,
+        "passed": true,
+        "sum": 0.0,
+        "sum_abs": 159.6709981492335
+      },
+      "external_finite": true,
+      "external_l2_error": 5.812108063410716e-05,
+      "generated_source_sha256": {
+        "mpi_openmp_kernels.cpp": "67e33ffdddd1b0572f0b9a637ac60a7ed87d7d13c76489ab7dc3eefcc65624a0",
+        "opensbli.cpp": "1a8ab02b9f855dc9e66a5abf92606712c976a3d59728aa4001efa3d30aa0575d",
+        "opensbli_ops.cpp": "6cc4a9571b71d4ce0f318495587a43e377bd64e0f95c46fb4c059bf72d491884",
+        "opensbliblock00_kernels.h": "e30f39ab0f6e65369dd7b8737e97fd2969f044c2ce30a0c94647c30b08b0cf0c"
+      },
+      "rhs_max_abs_difference": 3.375077994860476e-14,
+      "size": 40,
+      "state_max_abs_error": 8.881784197001252e-16
+    },
+    {
+      "canonical_conservation": {
+        "bound": 2.2725678658595075e-12,
+        "passed": true,
+        "sum": -3.552713678800501e-15,
+        "sum_abs": 319.83549355809504
+      },
+      "canonical_finite": true,
+      "canonical_l2_error": 1.6997017046139662e-06,
+      "canonical_rate_from_previous": 5.095708044336353,
+      "case": "sine",
+      "external_conservation": {
+        "bound": 2.272567865859507e-12,
+        "passed": true,
+        "sum": -8.881784197001252e-16,
+        "sum_abs": 319.835493558095
+      },
+      "external_finite": true,
+      "external_l2_error": 1.6997017025971051e-06,
+      "external_rate_from_previous": 5.095708046052657,
+      "generated_source_sha256": {
+        "mpi_openmp_kernels.cpp": "2f9239b9eabedb60a3be7fb5a8bc38154166bf538dd14fd1e75d865a33efea9a",
+        "opensbli.cpp": "6c0f2cca75ec828fcc23f9f13d0f1ac94b56f868ee1ee0f145208ce66ee9e38e",
+        "opensbli_ops.cpp": "0efabd95e65b871c995809657e384a156ff4043ca20bd7e5993123aefa964446",
+        "opensbliblock00_kernels.h": "e30f39ab0f6e65369dd7b8737e97fd2969f044c2ce30a0c94647c30b08b0cf0c"
+      },
+      "rhs_max_abs_difference": 7.460698725481052e-14,
+      "size": 80,
+      "state_max_abs_error": 8.881784197001252e-16
+    },
+    {
+      "canonical_conservation": {
+        "bound": 4.54688909673514e-12,
+        "passed": true,
+        "sum": 5.329070518200751e-15,
+        "sum_abs": 639.9177513047296
+      },
+      "canonical_finite": true,
+      "canonical_l2_error": 5.094929866968073e-08,
+      "canonical_rate_from_previous": 5.060075479837595,
+      "case": "sine",
+      "external_conservation": {
+        "bound": 4.54688909673514e-12,
+        "passed": true,
+        "sum": 5.329070518200751e-15,
+        "sum_abs": 639.9177513047296
+      },
+      "external_finite": true,
+      "external_l2_error": 5.094929837658295e-08,
+      "external_rate_from_previous": 5.060075486425139,
+      "generated_source_sha256": {
+        "mpi_openmp_kernels.cpp": "fe11a9dcd27761d32a0bd2543ed52320826b246112a89b365fb59862d50ef686",
+        "opensbli.cpp": "aefadeb6b799eff528dacd83a07015c9caf45a86c07cbdab29327aee1d6aba60",
+        "opensbli_ops.cpp": "b5e84b611addb98962c08ed8487ef7f3ba76cd540cf86a043ef9c270773a6592",
+        "opensbliblock00_kernels.h": "e30f39ab0f6e65369dd7b8737e97fd2969f044c2ce30a0c94647c30b08b0cf0c"
+      },
+      "rhs_max_abs_difference": 1.509903313490213e-13,
+      "size": 160,
+      "state_max_abs_error": 8.881784197001252e-16
+    },
+    {
+      "canonical_conservation": {
+        "bound": 9.094654816890882e-12,
+        "passed": true,
+        "sum": -5.684341886080802e-14,
+        "sum_abs": 1279.9588763879083
+      },
+      "canonical_finite": true,
+      "canonical_l2_error": 1.554251221880549e-09,
+      "canonical_rate_from_previous": 5.0347706692874326,
+      "case": "sine",
+      "external_conservation": {
+        "bound": 9.094654816890882e-12,
+        "passed": true,
+        "sum": 0.0,
+        "sum_abs": 1279.9588763879083
+      },
+      "external_finite": true,
+      "external_l2_error": 1.5542499208619103e-09,
+      "external_rate_from_previous": 5.03477186862669,
+      "generated_source_sha256": {
+        "mpi_openmp_kernels.cpp": "5814b14cdba1de123c60b899ac7f56beef651a75af140b667de782e409ac46b9",
+        "opensbli.cpp": "577178f91ded4ea67b86a07e15d65a5e9810028061d327c324bd3a923ec56f2f",
+        "opensbli_ops.cpp": "b3d34f1b27941e9e6dd720cc9bc42672c90d36d9d06b66f6bd9978245fc1bd9e",
+        "opensbliblock00_kernels.h": "e30f39ab0f6e65369dd7b8737e97fd2969f044c2ce30a0c94647c30b08b0cf0c"
+      },
+      "rhs_max_abs_difference": 3.552713678800501e-13,
+      "size": 320,
+      "state_max_abs_error": 8.881784197001252e-16
+    }
+  ],
+  "decision": "matched_operator_adapted_qualified",
+  "environment": {
+    "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "h5py": "3.14.0",
+    "host": "forge",
+    "numpy": "2.2.6",
+    "ops_backend": "seq",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "python": "3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]",
+    "sympy": "1.1",
+    "torch": "2.9.0.dev20250705+cu128"
+  },
+  "gates": {
+    "q1_pointwise": true,
+    "q2_constant": true,
+    "q3_conservation": true,
+    "q4_convergence": true
+  },
+  "performance_interpretation_prohibited": true,
+  "protocol": {
+    "convergence_rate_floor": 4.8,
+    "dtype": "float64",
+    "epsilon": {
+      "gradflow_12_scaled": 1e-29,
+      "opensbli_standard": 8.333333333333333e-31
+    },
+    "flux": "f(u)=u",
+    "lf_path": "OpenSBLI native LLF; constant scalar eigenvalue gives alpha=1 at every face",
+    "pointwise_atol": 2e-12,
+    "residual_exposure": "generated native residual exported immediately after its first evaluation; process exits before any RK update"
+  },
+  "schema": "gradflow.academic_u4b.qualification.v1",
+  "source_hashes": {
+    "adapter": "28b66b27cbe20d8f9a3300e00b610baf136a0a4f31b782d0d3c9d0259d396bff",
+    "adapter_patch": "9f0022094fc99f14a79dcba7f9eadb444f9f34c54f70b94ba4d104194c85ca0a",
+    "opensbli_shock_capturing_preimage": "aff71a5f3004f40c2577d87ecb0e84bcfa2dbc76aeec0349ca92b70586c1ca39",
+    "opensbli_weno_preimage": "06db7b506ff623bc7c24ee797187c8ca4f22803352ad2deb11e4a2d157fca510",
+    "residual_exposer": "686722f6c024f18587050b96dd6beab41dae57221a7438d0523799768c05dc5a"
+  },
+  "upstream": {
+    "opensbli": {
+      "commit": "e37dc377fa9b27d6bfa6e9da2968b96bcd736f1d",
+      "tree": "0ff053443f6b243b2bd42475f98122306151427d"
+    },
+    "ops": {
+      "commit": "c0af0f124469e5fd856b594a23ff1206c3e9c7a8",
+      "tree": "82c3fd0c0b4724c6e8474e16f730e7560845235f"
+    }
+  }
+}

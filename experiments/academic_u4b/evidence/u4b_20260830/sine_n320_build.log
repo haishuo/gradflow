@@ -1,0 +1,11 @@
+generating translations for opensbli.cpp
+OPS_EXTENTIONS: _ops
+OPS_GENERATED: opensbli_ops.cpp
+/tmp/gradflow-u4b-ops/ops/../ops_translator_legacy/c/ops.py opensbli.cpp
+rm -f .generated
+touch .generated
+
+
+Building opensbli_seq
+
+g++ -O3 -fPIC -Wall -g -std=c++11 -fopenmp -Dgnu -I/tmp/gradflow-u4b-ops/ops/c/include opensbli_ops.cpp  -I. ./mpi_openmp/mpi_openmp_kernels.cpp -L/tmp/gradflow-u4b-ops/ops/c/lib/gnu  -lops_seq  -lops_hdf5_seq -L/home/haishuo/miniconda3/envs/gradflow/lib -lhdf5_hl -lhdf5 -lz  -o opensbli_seq

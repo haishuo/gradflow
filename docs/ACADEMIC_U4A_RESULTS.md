@@ -2,6 +2,10 @@
 
 Status: **complete; no external benchmark run**.
 
+Subsequent outcome: U4-B qualified the bounded adapted operator; see
+`ACADEMIC_U4B_RESULTS.md`. This document retains the earlier U4-A decision
+state and does not retroactively treat stock OpenSBLI as matched.
+
 Date: 2026-08-30 (UTC)
 
 ## Decision
