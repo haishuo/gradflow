@@ -71,7 +71,11 @@ The current repository has reproducible evidence for:
 - the completed A2 arbitrary-order performance matrix, including scalar and
   characteristic CPU/CUDA eager/compiled endpoints, fixed-shape prepared AOT,
   prepared- and isolated-cache process entry, memory, compilation, and
-  correctness-exclusion records.
+  correctness-exclusion records; and
+- an independently validated order-11 inverse-advection use in which autograd
+  recovered an analytic speed consistently with centered finite differences
+  and a derivative-free minimizer, including CPU/CUDA compiler and execution
+  costs.
 
 These are bounded results, not yet a complete paper package.
 
@@ -90,9 +94,9 @@ Before a paper claim is frozen, GradFlow needs:
    their negative results. A1 has now consolidated coefficient conditioning,
    roundoff floors, epsilon sensitivity, and order-dependent failure records
    without beginning another precision-policy search.
-4. **One genuine differentiation use.** Demonstrate a bounded inverse or
-   sensitivity problem with an independently checkable target and gradient
-   validation.
+4. **One genuine differentiation use.** Completed in A3 with analytic
+   advection observations, centered finite-difference gradient validation, and
+   an independent derivative-free parameter recovery.
 5. **Arbitrary-order performance matrix.** Completed in A2 across order,
    dimension, size, precision, residency, prepared/isolated cache, warm, AOT,
    memory, compilation, and failure endpoints.
@@ -144,11 +148,10 @@ product framework work must not delay the bounded paper.
 ## Immediate trunk order
 
 The long FD/FV and GPU-native branches have reached their declared stop
-conditions, and A1--A2 are complete. The remaining first-paper sequence is
+conditions, and A1--A3 are complete. The remaining first-paper sequence is
 now:
 
-1. complete one independently gradient-checked sensitivity or inverse task;
-2. reproduce the primary result on a second suitable machine, obtain an
+1. reproduce the primary result on a second suitable machine, obtain an
    external numerical-CFD/prior-art audit, and freeze the citable artifact.
 
 No additional hand-written CUDA schedule, FD/FV phase, DVEB feature, or

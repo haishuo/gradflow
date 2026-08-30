@@ -8,3 +8,6 @@ SSP-RK3 solve. Centered finite differences, the exact continuum solution, and
 a derivative-free golden-section minimizer provide independent checks.
 
 No canonical numerical source is modified by this experiment.
+
+The primary Forge evidence is preserved under `evidence/a3_20260830/`. The
+interpreted result is `docs/ACADEMIC_A3_RESULTS.md`.

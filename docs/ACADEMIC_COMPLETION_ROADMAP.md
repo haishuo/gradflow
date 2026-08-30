@@ -93,7 +93,7 @@ qualified, and both prepared-cache and isolated-cache deployment slices
 completed. Correctness failures remain explicit exclusions. See
 `ACADEMIC_A2_RESULTS.md`.
 
-### A3. Demonstrate one independently validated differentiation use
+### A3. Demonstrate one independently validated differentiation use — complete
 
 Complete one bounded sensitivity or inverse problem in which the target is
 independently checkable. Validate gradients against centered finite
@@ -103,6 +103,12 @@ costs.
 
 This gate demonstrates why differentiability is scientifically useful. It is
 not a claim that differentiable WENO is unprecedented.
+
+Completed on 2026-08-30. GradFlow recovered an analytic linear-advection speed
+through an order-11 WENO-JS solve; centered differences and a derivative-free
+minimizer independently agreed, CPU/CUDA eager/compiled gradients passed, and
+the large whole-solve compilation cost was retained. See
+`ACADEMIC_A3_RESULTS.md`.
 
 ### A4. Replicate, audit, and freeze the artifact
 
@@ -142,12 +148,10 @@ named release gate above. Interesting but nonessential questions are recorded
 as future work. A negative result is complete when its frozen question has
 been answered; it is not an invitation to optimize until it becomes positive.
 
-Under this discipline, A1 and A2 are closed and the shortest remaining route
-is:
+Under this discipline, A1--A3 are closed and the remaining route is:
 
 ```text
-A3 validated differentiation use
-    -> A4 replication, external audit, and release artifact
+A4 replication, external audit, and release artifact
 ```
 
 Design work for A3 may overlap A2, but performance remains downstream of the
