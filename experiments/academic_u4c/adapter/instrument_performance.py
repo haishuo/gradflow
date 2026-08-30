@@ -74,25 +74,34 @@ if (u4c_state_read != (size_t)block0np0) {
 int u4c_state_range[] = {0, block0np0};
 ops_dat_set_data_slab_memspace(
   phi_B0, 0, (char*)u4c_state_interior, u4c_state_range, OPS_HOST);
-free(u4c_state_interior);
 const int u4c_warmups = getenv("U4C_WARMUPS") ? atoi(getenv("U4C_WARMUPS")) : 5;
 const int u4c_samples = getenv("U4C_SAMPLES") ? atoi(getenv("U4C_SAMPLES")) : 20;
 const bool u4c_qualification = u4c_mode_value != NULL && strcmp(u4c_mode_value, "qualify") == 0;
-const int u4c_total = u4c_qualification ? 1 : u4c_warmups + u4c_samples;
+const bool u4c_launch = u4c_mode_value != NULL && strcmp(u4c_mode_value, "launch") == 0;
+const bool u4c_transfer = u4c_mode_value != NULL && strcmp(u4c_mode_value, "transfer") == 0;
+const int u4c_total = (u4c_qualification || u4c_launch) ? 1 : u4c_warmups + u4c_samples;
 int u4c_reconstruction_range[] = {-1, block0np0 + 1};
 int u4c_residual_range[] = {0, block0np0};
+double *u4c_transfer_buffer = u4c_transfer
+  ? (double*)malloc(sizeof(double)*block0np0) : NULL;
 #ifdef U4C_CUDA
 cudaEvent_t u4c_start_event, u4c_end_event;
 cudaEventCreate(&u4c_start_event);
 cudaEventCreate(&u4c_end_event);
 #endif
 for (int u4c_repetition = 0; u4c_repetition < u4c_total; ++u4c_repetition) {
+  std::chrono::steady_clock::time_point u4c_started;
+  if (u4c_transfer) {
+    u4c_started = std::chrono::steady_clock::now();
+    ops_dat_set_data_slab_memspace(
+      phi_B0, 0, (char*)u4c_state_interior, u4c_state_range, OPS_HOST);
+  }
   ops_halo_transfer(periodicBC_direction0_side0_3_block0);
   ops_halo_transfer(periodicBC_direction0_side1_4_block0);
 #ifdef U4C_CUDA
-  cudaEventRecord(u4c_start_event);
+  if (!u4c_transfer) cudaEventRecord(u4c_start_event);
 #else
-  const std::chrono::steady_clock::time_point u4c_started = std::chrono::steady_clock::now();
+  if (!u4c_transfer) u4c_started = std::chrono::steady_clock::now();
 #endif
   ops_par_loop(opensbliblock00Kernel000, "LFWeno_reconstruction_0_direction",
     opensbliblock00, 1, u4c_reconstruction_range,
@@ -102,23 +111,33 @@ for (int u4c_repetition = 0; u4c_repetition < u4c_total; ++u4c_repetition) {
     1, u4c_residual_range,
     ops_arg_dat(wk0_B0, 1, stencil_0_10_1, "double", OPS_READ),
     ops_arg_dat(Residual0_B0, 1, stencil_0_00_1, "double", OPS_WRITE));
+  double u4c_elapsed_ms = 0.0;
+  if (u4c_transfer) {
+    ops_dat_fetch_data(Residual0_B0, 0, (char*)u4c_transfer_buffer);
+    u4c_elapsed_ms = std::chrono::duration<double, std::milli>(
+      std::chrono::steady_clock::now() - u4c_started).count();
+  } else {
 #ifdef U4C_CUDA
-  cudaEventRecord(u4c_end_event);
-  cudaEventSynchronize(u4c_end_event);
-  float u4c_elapsed_ms = 0.0f;
-  cudaEventElapsedTime(&u4c_elapsed_ms, u4c_start_event, u4c_end_event);
+    cudaEventRecord(u4c_end_event);
+    cudaEventSynchronize(u4c_end_event);
+    float u4c_event_ms = 0.0f;
+    cudaEventElapsedTime(&u4c_event_ms, u4c_start_event, u4c_end_event);
+    u4c_elapsed_ms = (double)u4c_event_ms;
 #else
-  const double u4c_elapsed_ms = std::chrono::duration<double, std::milli>(
-    std::chrono::steady_clock::now() - u4c_started).count();
+    u4c_elapsed_ms = std::chrono::duration<double, std::milli>(
+      std::chrono::steady_clock::now() - u4c_started).count();
 #endif
-  if (!u4c_qualification && u4c_repetition >= u4c_warmups) {
-    ops_printf("U4C_SAMPLE %.17g\n", (double)u4c_elapsed_ms);
+  }
+  if (!u4c_qualification && !u4c_launch && u4c_repetition >= u4c_warmups) {
+    ops_printf("U4C_SAMPLE %.17g\n", u4c_elapsed_ms);
   }
 }
 #ifdef U4C_CUDA
 cudaEventDestroy(u4c_start_event);
 cudaEventDestroy(u4c_end_event);
 #endif
+free(u4c_transfer_buffer);
+free(u4c_state_interior);
 int u4c_disp[OPS_MAX_DIM] = {0};
 int u4c_size[OPS_MAX_DIM] = {0};
 ops_dat_get_extents(Residual0_B0, 0, u4c_disp, u4c_size);

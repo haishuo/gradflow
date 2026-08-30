@@ -42,7 +42,9 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--size", type=int, required=True)
     parser.add_argument("--device", choices=("cpu", "cuda"), required=True)
-    parser.add_argument("--mode", choices=("qualify", "resident"), required=True)
+    parser.add_argument(
+        "--mode", choices=("qualify", "resident", "transfer"), required=True
+    )
     parser.add_argument("--input", type=Path)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
@@ -50,7 +52,10 @@ def main() -> None:
         raise SystemExit("CUDA unavailable")
     torch.set_num_threads(1)
     torch.set_num_interop_threads(1)
-    values = state(args.size, args.device, args.input)
+    if args.mode == "transfer" and args.device != "cuda":
+        raise SystemExit("the U4-C transfer endpoint is CUDA-only")
+    values_cpu = state(args.size, "cpu", args.input)
+    values = values_cpu.to(args.device)
     spacing = 1.0 / args.size
 
     torch._dynamo.reset()
@@ -92,6 +97,20 @@ def main() -> None:
                 started = time.perf_counter_ns()
                 output = compiled(values)
                 samples.append((time.perf_counter_ns() - started) / 1.0e6)
+    elif args.mode == "transfer":
+        for _ in range(WARMUPS):
+            current = values_cpu.to("cuda")
+            output = compiled(current)
+            output = output.cpu()
+            torch.cuda.synchronize()
+        for _ in range(SAMPLES):
+            torch.cuda.synchronize()
+            started = time.perf_counter_ns()
+            current = values_cpu.to("cuda")
+            output = compiled(current)
+            output = output.cpu()
+            torch.cuda.synchronize()
+            samples.append((time.perf_counter_ns() - started) / 1.0e6)
 
     host = output.detach().cpu().numpy()
     if args.output is not None:
