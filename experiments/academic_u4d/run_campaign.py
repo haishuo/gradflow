@@ -24,6 +24,7 @@ import torch
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 U4C = ROOT / "experiments" / "academic_u4c"
+sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(U4C))
 
 from run_performance import (  # noqa: E402
