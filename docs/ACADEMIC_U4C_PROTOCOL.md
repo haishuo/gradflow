@@ -1,6 +1,7 @@
 # Academic U4-C external CUDA and performance protocol
 
-Status: **frozen before OpenSBLI CUDA execution or comparative timing**.
+Status: **closed; frozen before OpenSBLI CUDA execution or comparative
+timing**.
 
 Date: 2026-08-30 (UTC)
 

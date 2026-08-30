@@ -1,7 +1,7 @@
 # Academic external-baseline gate
 
-Status: **blocking manuscript gate; U4-A and U4-B correctness qualification
-complete; no external timing begun**.
+Status: **U4-A through U4-C complete; external baseline gate satisfied with
+prospectively retained exclusions**.
 
 ## Question
 
@@ -48,8 +48,8 @@ software revisions, build costs, warm and launch-to-answer endpoints, and all
 known formulation mismatches. The resulting claim remains hardware- and
 contract-specific.
 
-The performance portion of this gate remains untested. This document does not
-authorize a benchmark campaign by itself.
+The performance portion is now complete under the separately frozen U4-C
+constitution. This document did not itself authorize that campaign.
 
 ## U4-A and U4-B disposition
 
@@ -68,6 +68,21 @@ conservation, and convergence gates and is classified
 `matched_operator_adapted_qualified`.
 
 See `ACADEMIC_U4A_PROTOCOL.md`, `ACADEMIC_U4A_RESULTS.md`,
-`ACADEMIC_U4B_PROTOCOL.md`, and `ACADEMIC_U4B_RESULTS.md`. OpenSBLI remains
-excluded from performance tables until a separate timing constitution and
-CUDA correctness gate are completed.
+`ACADEMIC_U4B_PROTOCOL.md`, `ACADEMIC_U4B_RESULTS.md`, and the U4-C protocol,
+amendment, and C1--C3 result documents.
+
+## U4-C disposition
+
+OpenSBLI's native OPS CUDA residual passed the prospective CPU/CUDA and
+canonical float64 gate. At the sole performance-admitted size (`N=8192`), the
+generated external system resolved faster than GradFlow on one-thread CPU,
+resident CUDA, pageable transfer-inclusive CUDA, and prepared fresh-process
+launch endpoints. GradFlow AOTInductor built and qualified successfully, so
+the launch result does not charge JIT compilation to the prepared lane.
+
+The three larger frozen grids remained finite and conservative but exceeded
+the fixed cross-implementation pointwise bounds. They are retained as
+correctness exclusions and have no admitted timing. The gate is satisfied
+because the matched external comparison is now present and honestly bounded;
+it does not support extrapolation to larger grids, systems, dimensions, or
+orders.

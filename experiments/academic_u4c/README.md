@@ -15,3 +15,7 @@ pointwise bounds; OpenSBLI won both admitted one-thread CPU and CUDA resident
 comparisons. Three larger sizes are retained as correctness exclusions, not
 silently discarded measurements. See `docs/ACADEMIC_U4C_C2_RESULTS.md` and
 `evidence/u4c_c2_20260830/`.
+
+C3 is complete at the sole admitted size. It records separate transfer,
+artifact-build, and fresh-process launch endpoints in
+`docs/ACADEMIC_U4C_C3_RESULTS.md` and `evidence/u4c_c3_20260830/`.

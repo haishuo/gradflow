@@ -1,0 +1,393 @@
+{
+  "schema": "gradflow.academic_u4c.endpoints.v1",
+  "created_utc": "2026-08-30T22:16:20.125556+00:00",
+  "complete": true,
+  "size": 8192,
+  "reason_single_size": "N=8192 was both the smallest and largest C2 correctness-admitted size",
+  "bounds": {
+    "maximum_normalized": 5e-11,
+    "rms_normalized": 5e-12
+  },
+  "environment": {
+    "host": "forge",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "python": "3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]",
+    "torch": "2.9.0.dev20250705+cu128",
+    "torch_cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti"
+  },
+  "preparation": {
+    "opensbli_symbolic_generation_seconds": 0.6513646450039232,
+    "u4c_instrumentation_seconds": 0.018200887003331445,
+    "ops_translation_and_cuda_build_seconds": 1.684085202999995,
+    "aot_builder_process_seconds": 9.243225390004227
+  },
+  "transfer": {
+    "order": [
+      "gradflow",
+      "opensbli"
+    ],
+    "warmups": 5,
+    "samples": 20,
+    "records": {
+      "gradflow": {
+        "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+        "status": "complete",
+        "size": 8192,
+        "device": "cuda",
+        "mode": "transfer",
+        "dtype": "float64",
+        "first_call_seconds": 1.4508532929903595,
+        "graph": {
+          "unique_graphs": 1,
+          "graph_break_count": 0
+        },
+        "samples_milliseconds": [
+          0.081649,
+          0.09204,
+          0.076639,
+          0.07433,
+          0.070389,
+          0.06978,
+          0.068109,
+          0.06677,
+          0.066689,
+          0.06688,
+          0.066179,
+          0.06929,
+          0.06516,
+          0.071289,
+          0.0742,
+          0.067179,
+          0.06942,
+          0.065209,
+          0.0641,
+          0.06553
+        ],
+        "finite": true,
+        "checksum_float64": -1.8189894035458565e-12,
+        "maximum_absolute": 289.6330320595048,
+        "peak_rss_kib": 862512,
+        "peak_cuda_allocated_bytes": 50528256,
+        "process_wall_seconds": 4.460991549000028,
+        "correctness": {
+          "maximum_normalized": 2.5121297672596267e-14,
+          "rms_normalized": 4.26528140859316e-15,
+          "finite": true,
+          "conservation": {
+            "sum": -1.8189894035458565e-12,
+            "sum_abs": 1230821.80464001,
+            "bound": 8.745514923020963e-09,
+            "passed": true
+          },
+          "passed": true
+        },
+        "rhs_sha256": "da53e486527427a4a9e11d664dade74454849725a42de73123a247a2c1b3f54b",
+        "telemetry_before": {
+          "timestamp": "2026/08/30 22:15:59.607",
+          "temperature_c": 43.0,
+          "pstate": "P8",
+          "sm_clock_mhz": 180.0,
+          "memory_clock_mhz": 405.0,
+          "power_w": 12.54,
+          "power_limit_w": 300.0,
+          "utilization_percent": 0.0,
+          "memory_used_mib": 2.0
+        },
+        "telemetry_after": {
+          "timestamp": "2026/08/30 22:16:04.100",
+          "temperature_c": 45.0,
+          "pstate": "P0",
+          "sm_clock_mhz": 2475.0,
+          "memory_clock_mhz": 14001.0,
+          "power_w": 52.62,
+          "power_limit_w": 300.0,
+          "utilization_percent": 0.0,
+          "memory_used_mib": 2.0
+        },
+        "stdout": "raw/transfer_gradflow.stdout",
+        "stderr": "raw/transfer_gradflow.stderr"
+      },
+      "opensbli": {
+        "samples_milliseconds": [
+          0.04438,
+          0.043869,
+          0.04426,
+          0.04346,
+          0.043939,
+          0.04401,
+          0.04748,
+          0.04477,
+          0.044039,
+          0.04397,
+          0.04495,
+          0.044289,
+          0.04353,
+          0.03979,
+          0.04426,
+          0.043939,
+          0.04389,
+          0.04749,
+          0.04381,
+          0.043509
+        ],
+        "process_wall_seconds": 0.21359720900363754,
+        "correctness": {
+          "maximum_normalized": 8.415634720319749e-13,
+          "rms_normalized": 2.1026683551910345e-14,
+          "finite": true,
+          "conservation": {
+            "sum": 5.4569682106375694e-12,
+            "sum_abs": 1230821.804640011,
+            "bound": 8.74551492302097e-09,
+            "passed": true
+          },
+          "passed": true
+        },
+        "rhs_sha256": "a68e0a41468a5005ac5010a36f3bce11b73cd4d94d0e4c9418794705c7b386c8",
+        "telemetry_before": {
+          "timestamp": "2026/08/30 22:16:04.118",
+          "temperature_c": 45.0,
+          "pstate": "P0",
+          "sm_clock_mhz": 2475.0,
+          "memory_clock_mhz": 14001.0,
+          "power_w": 52.62,
+          "power_limit_w": 300.0,
+          "utilization_percent": 0.0,
+          "memory_used_mib": 2.0
+        },
+        "telemetry_after": {
+          "timestamp": "2026/08/30 22:16:04.351",
+          "temperature_c": 45.0,
+          "pstate": "P0",
+          "sm_clock_mhz": 2497.0,
+          "memory_clock_mhz": 14001.0,
+          "power_w": 48.04,
+          "power_limit_w": 300.0,
+          "utilization_percent": 2.0,
+          "memory_used_mib": 2.0
+        },
+        "stdout": "raw/transfer_opensbli.stdout",
+        "stderr": "raw/transfer_opensbli.stderr"
+      }
+    },
+    "analysis": {
+      "gradflow": {
+        "count": 20,
+        "values": [
+          0.081649,
+          0.09204,
+          0.076639,
+          0.07433,
+          0.070389,
+          0.06978,
+          0.068109,
+          0.06677,
+          0.066689,
+          0.06688,
+          0.066179,
+          0.06929,
+          0.06516,
+          0.071289,
+          0.0742,
+          0.067179,
+          0.06942,
+          0.065209,
+          0.0641,
+          0.06553
+        ],
+        "minimum": 0.0641,
+        "q1": 0.0665615,
+        "median": 0.0686995,
+        "q3": 0.07201675,
+        "maximum": 0.09204,
+        "mean": 0.07054155,
+        "median_absolute_deviation": 0.0025550000000000017,
+        "sample_standard_deviation": 0.006716814725001724
+      },
+      "opensbli": {
+        "count": 20,
+        "values": [
+          0.04438,
+          0.043869,
+          0.04426,
+          0.04346,
+          0.043939,
+          0.04401,
+          0.04748,
+          0.04477,
+          0.044039,
+          0.04397,
+          0.04495,
+          0.044289,
+          0.04353,
+          0.03979,
+          0.04426,
+          0.043939,
+          0.04389,
+          0.04749,
+          0.04381,
+          0.043509
+        ],
+        "minimum": 0.03979,
+        "q1": 0.04385425,
+        "median": 0.04399,
+        "q3": 0.044311750000000004,
+        "maximum": 0.04749,
+        "mean": 0.0441817,
+        "median_absolute_deviation": 0.00028450000000000003,
+        "sample_standard_deviation": 0.0015224932494881027
+      },
+      "median_ratio_opensbli_over_gradflow": 0.6403248931942737
+    }
+  },
+  "aot_build": {
+    "schema": "gradflow.academic_u4c.aot_build.v1",
+    "status": "complete",
+    "size": 8192,
+    "dtype": "float64",
+    "device": "cuda",
+    "export_seconds": 0.19747378000465687,
+    "compile_package_seconds": 6.820765264012152,
+    "total_build_seconds": 7.155696383997565,
+    "package_sha256": "fc6337f4bd7abc30779fdaa8229bc437395610d97a73c46dc605ffd12c173baf",
+    "package_bytes": 466785,
+    "torch": "2.9.0.dev20250705+cu128",
+    "torch_cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti"
+  },
+  "aot_package_retained_outside_repository": "/tmp/gradflow-u4c-c3-aot/u4c_weno5_f64_n8192.pt2",
+  "aot_admission": {
+    "status": "qualified",
+    "process_seconds": 1.4681899729912402,
+    "comparison": {
+      "maximum_normalized": 2.5121297672596267e-14,
+      "rms_normalized": 4.26528140859316e-15,
+      "finite": true,
+      "conservation": {
+        "sum": -1.8189894035458565e-12,
+        "sum_abs": 1230821.80464001,
+        "bound": 8.745514923020963e-09,
+        "passed": true
+      },
+      "passed": true
+    },
+    "rhs_sha256": "da53e486527427a4a9e11d664dade74454849725a42de73123a247a2c1b3f54b",
+    "worker": {
+      "schema": "gradflow.academic_u4c.aot_launch.v1",
+      "status": "complete",
+      "size": 8192,
+      "finite": true,
+      "checksum_float64": -1.8189894035458565e-12,
+      "maximum_absolute": 289.6330320595048
+    }
+  },
+  "prepared_launch": {
+    "repetitions": 3,
+    "records": {
+      "opensbli": [
+        {
+          "repetition": 0,
+          "parent_launch_to_answer_seconds": 0.2135305289993994,
+          "finite_checksum": true,
+          "checksum_float64": -1.6143530956469476e-11
+        },
+        {
+          "repetition": 1,
+          "parent_launch_to_answer_seconds": 0.2143698550062254,
+          "finite_checksum": true,
+          "checksum_float64": -1.6143530956469476e-11
+        },
+        {
+          "repetition": 2,
+          "parent_launch_to_answer_seconds": 0.21421555599954445,
+          "finite_checksum": true,
+          "checksum_float64": -1.6143530956469476e-11
+        }
+      ],
+      "gradflow_aot": [
+        {
+          "repetition": 0,
+          "parent_launch_to_answer_seconds": 1.4671800979995169,
+          "worker": {
+            "schema": "gradflow.academic_u4c.aot_launch.v1",
+            "status": "complete",
+            "size": 8192,
+            "finite": true,
+            "checksum_float64": -1.8189894035458565e-12,
+            "maximum_absolute": 289.6330320595048
+          }
+        },
+        {
+          "repetition": 1,
+          "parent_launch_to_answer_seconds": 1.481118632000289,
+          "worker": {
+            "schema": "gradflow.academic_u4c.aot_launch.v1",
+            "status": "complete",
+            "size": 8192,
+            "finite": true,
+            "checksum_float64": -1.8189894035458565e-12,
+            "maximum_absolute": 289.6330320595048
+          }
+        },
+        {
+          "repetition": 2,
+          "parent_launch_to_answer_seconds": 1.4615692410006886,
+          "worker": {
+            "schema": "gradflow.academic_u4c.aot_launch.v1",
+            "status": "complete",
+            "size": 8192,
+            "finite": true,
+            "checksum_float64": -1.8189894035458565e-12,
+            "maximum_absolute": 289.6330320595048
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "opensbli": {
+        "count": 3,
+        "values": [
+          0.2135305289993994,
+          0.2143698550062254,
+          0.21421555599954445
+        ],
+        "minimum": 0.2135305289993994,
+        "q1": 0.21387304249947192,
+        "median": 0.21421555599954445,
+        "q3": 0.21429270550288493,
+        "maximum": 0.2143698550062254,
+        "mean": 0.21403864666838976,
+        "median_absolute_deviation": 0.00015429900668095797,
+        "sample_standard_deviation": 0.0004467546530488826
+      },
+      "gradflow_aot": {
+        "count": 3,
+        "values": [
+          1.4671800979995169,
+          1.481118632000289,
+          1.4615692410006886
+        ],
+        "minimum": 1.4615692410006886,
+        "q1": 1.4643746695001028,
+        "median": 1.4671800979995169,
+        "q3": 1.474149364999903,
+        "maximum": 1.481118632000289,
+        "mean": 1.4699559903334982,
+        "median_absolute_deviation": 0.00561085699882824,
+        "sample_standard_deviation": 0.01006597515401291
+      },
+      "median_ratio_opensbli_over_gradflow_aot": 0.14600494942074588
+    }
+  },
+  "artifacts": {
+    "opensbli_executable_sha256": "0b5a2070f122ced9db54a021a6ba81698abf0407d8f94474ed56051a563f0faf",
+    "generated_source_sha256": {
+      "opensbli.cpp": "8945aec0043b3e0141d1897f9143bff8d5eb8d90ba491ef83ddfeb6b8865b724",
+      "opensbli_ops.cpp": "95b9622ff9eacb6496ddd7c8beb8f26b030524d7df29485257f24b6b7bab07f6",
+      "opensbliblock00_kernels.h": "5a68d1489a02174390c006ce93fdf7f239f6befd90609e44a93866f35e8d0ca8"
+    },
+    "frozen_state_sha256": "7def0f1a410959390af68416a01f92d0ec917a23aaf022f5b90d52c366bb5530",
+    "canonical_rhs_sha256": "d92a1dd5f20cba9533dd25682fd19ca2d39f584b883b9fee3c994f1dd46b3621"
+  }
+}
