@@ -76,8 +76,10 @@ def pair_summary(timing: dict[str, Any] | None) -> dict[str, Any] | None:
     }
 
 
-def correctness(record: dict[str, Any], lane: str) -> dict[str, Any]:
-    result = record["correctness"][lane]
+def correctness(record: dict[str, Any], lane: str) -> dict[str, Any] | None:
+    result = record["correctness"].get(lane)
+    if result is None:
+        return None
     return {
         "admitted": result["admitted"],
         "comparison": result.get("comparison"),
@@ -89,25 +91,40 @@ def correctness(record: dict[str, Any], lane: str) -> dict[str, Any]:
 
 def CPU_summary(record: dict[str, Any]) -> dict[str, Any]:
     return {
-        threads: {
-            "correctness": {
-                lane: correctness(thread_record, lane) for lane in ("eager", "compiled")
-            },
-            "resident": {
-                lane: lane_summary(thread_record.get("resident_timing"), lane)
-                for lane in ("eager", "compiled")
-            },
-            "paired": pair_summary(thread_record.get("resident_timing")),
-        }
-        for threads, thread_record in record["cpu"].items()
+        "reference_health": record["reference_health"],
+        "untimed_correctness": {
+            lane: correctness(record, lane) for lane in ("eager", "compiled")
+        },
+        "threads": {
+            threads: {
+                "correctness": {
+                    lane: correctness(thread_record, lane)
+                    for lane in ("eager", "compiled")
+                },
+                "resident": {
+                    lane: lane_summary(thread_record.get("resident_timing"), lane)
+                    for lane in ("eager", "compiled")
+                },
+                "paired": pair_summary(thread_record.get("resident_timing")),
+            }
+            for threads, thread_record in record["cpu"].items()
+        },
     }
 
 
 def CUDA_summary(record: dict[str, Any]) -> dict[str, Any]:
     cuda = record["cuda"]
     return {
+        "reference_health": record["reference_health"],
         "correctness": {
-            lane: correctness(record, lane) for lane in ("eager", "compiled")
+            lane: {
+                "raw": correctness(record, lane),
+                "analysis_admitted": bool(
+                    record["reference_health"]["conservation_passed"]
+                    and record["correctness"][lane]["admitted"]
+                ),
+            }
+            for lane in ("eager", "compiled")
         },
         "first_call_seconds": record["first_call_seconds"],
         "resident": {
@@ -130,7 +147,8 @@ def best_cpu(record: dict[str, Any]) -> dict[str, Any] | None:
     candidates = []
     for threads, thread_record in record["cpu"].items():
         for lane in ("eager", "compiled"):
-            if not thread_record["correctness"][lane]["admitted"]:
+            result = thread_record["correctness"].get(lane)
+            if result is None or not result["admitted"]:
                 continue
             timing = lane_summary(thread_record.get("resident_timing"), lane)
             if timing is not None:
@@ -142,6 +160,8 @@ def best_cpu(record: dict[str, Any]) -> dict[str, Any] | None:
 
 
 def best_cuda(record: dict[str, Any], endpoint: str) -> dict[str, Any] | None:
+    if not record["reference_health"]["conservation_passed"]:
+        return None
     timing_key = (
         "resident_timing" if endpoint == "resident" else "transfer_inclusive_timing"
     )
@@ -193,6 +213,19 @@ def exclusion_rows(campaign: dict[str, Any]) -> list[dict[str, Any]]:
             continue
         record = wrapper["record"]
         if record["device"] == "cpu":
+            if not record["reference_health"]["conservation_passed"]:
+                for lane in ("eager", "compiled"):
+                    result = record["correctness"][lane]
+                    exclusions.append(
+                        {
+                            "worker": identifier,
+                            "endpoint": f"cpu_{lane}_all_threads",
+                            "comparison": result.get("comparison"),
+                            "health": result.get("health"),
+                            "error": result.get("error"),
+                        }
+                    )
+                continue
             for threads, thread_record in record["cpu"].items():
                 for lane in ("eager", "compiled"):
                     result = thread_record["correctness"][lane]
@@ -207,6 +240,19 @@ def exclusion_rows(campaign: dict[str, Any]) -> list[dict[str, Any]]:
                             }
                         )
         else:
+            if not record["reference_health"]["conservation_passed"]:
+                for lane in ("eager", "compiled"):
+                    result = record["correctness"][lane]
+                    exclusions.append(
+                        {
+                            "worker": identifier,
+                            "endpoint": f"cuda_{lane}_reference_precondition",
+                            "comparison": result.get("comparison"),
+                            "health": result.get("health"),
+                            "error": result.get("error"),
+                        }
+                    )
+                continue
             for lane in ("eager", "compiled"):
                 result = record["correctness"][lane]
                 if not result["admitted"]:
@@ -297,7 +343,8 @@ def main() -> None:
             {
                 "order": order,
                 "export_seconds": build["export_seconds"],
-                "compile_seconds": build["compile_seconds"],
+                "compile_package_seconds": build["compile_package_seconds"],
+                "total_build_seconds": build["total_build_seconds"],
                 "package_bytes": build["package_bytes"],
                 "package_sha256": build["package_sha256"],
                 "load_seconds": qualification["aot_load_seconds"],
@@ -310,10 +357,10 @@ def main() -> None:
             }
         )
 
-    inputs = {
-        str(path.relative_to(ROOT)): sha256(path)
-        for path in (arguments.core, arguments.aot, arguments.deployment)
-    }
+    input_paths = tuple(
+        path.resolve() for path in (arguments.core, arguments.aot, arguments.deployment)
+    )
+    inputs = {str(path.relative_to(ROOT)): sha256(path) for path in input_paths}
     source_paths = (
         ROOT / "docs/ACADEMIC_A2_PROTOCOL.md",
         ROOT / "experiments/academic_a2/benchmark_worker.py",
