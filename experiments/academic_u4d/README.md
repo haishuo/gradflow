@@ -13,3 +13,10 @@ CPU/CUDA lanes passed at the sole U4-C-admitted size, `N=8192`. See
 `docs/ACADEMIC_U4D_D1_RESULTS.md` and run
 `python experiments/academic_u4d/verify_qualification.py` to verify its frozen
 evidence offline. D1 contains no comparative performance claim.
+
+D2/D3 are also complete at `N=8192`. OpenSBLI is the resolved resident winner
+on both CPU and CUDA; DVEB beats GradFlow on resident CUDA and is descriptively
+fastest in the one-worker transfer and three-process prepared-launch endpoints.
+See `docs/ACADEMIC_U4D_RESULTS.md` and run
+`python experiments/academic_u4d/verify_campaign.py` for the complete results
+and offline evidence verification.
