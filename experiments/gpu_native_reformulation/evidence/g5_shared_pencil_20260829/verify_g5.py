@@ -118,7 +118,28 @@ def main() -> None:
     assert trace.count("alpha_kernel") == 9
     assert trace.count(',"<unnamed>::cfl_kernel(') == 1
     assert trace.count(",<unnamed>::finish_cfl_kernel(") == 1
-    assert "ERR_NVGPUCTRPERM" in (evidence / "ncu_p1_n128_s1.log").read_text()
+    assert "ERR_NVGPUCTRPERM" in (
+        evidence / "ncu_unprivileged_p1_n128_s1.log"
+    ).read_text()
+    privileged_log = (evidence / "ncu_privileged_p1_n128_s1.log").read_text()
+    assert "ERR_NVGPUCTRPERM" not in privileged_log
+    assert privileged_log.count('Profiling "pencil_kernel"') == 9
+    assert (evidence / "ncu_privileged_p1_n128_s1.ncu-rep").stat().st_size > 0
+    counters = json.loads(
+        (evidence / "ncu_privileged_p1_summary.json").read_text()
+    )
+    assert counters["schema"] == "gradflow-g5-ncu-basic-summary-v1"
+    assert len(counters["pencil_launches"]) == 9
+    invariants = counters["launch_invariants"]
+    assert invariants["registers_per_thread"] == 128.0
+    assert invariants["theoretical_occupancy_percent"] == 33.33
+    assert invariants["register_block_limit"] == 2.0
+    axes = counters["axis_summary"]
+    assert axes["x"]["median_l2_throughput_percent"] < 10.0
+    assert axes["y"]["median_l2_throughput_percent"] > 60.0
+    assert axes["z"]["median_l2_throughput_percent"] > 90.0
+    assert axes["x"]["median_compute_sm_throughput_percent"] > 45.0
+    assert axes["y"]["median_compute_sm_throughput_percent"] < 15.0
     compiler = (evidence / "compiler.log").read_text()
     assert "Used 128 registers" in compiler
     assert "0 bytes spill stores, 0 bytes spill loads" in compiler

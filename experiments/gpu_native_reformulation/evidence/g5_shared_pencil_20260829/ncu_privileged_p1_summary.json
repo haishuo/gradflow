@@ -1,0 +1,546 @@
+{
+  "axis_summary": {
+    "x": {
+      "median_achieved_occupancy_percent": 32.29,
+      "median_compute_sm_throughput_percent": 48.25,
+      "median_dram_throughput_percent": 13.53,
+      "median_l1_tex_throughput_percent": 8.58,
+      "median_l2_throughput_percent": 6.3,
+      "median_memory_throughput_percent": 13.53,
+      "total_duration_ms": 1.6603600000000003
+    },
+    "y": {
+      "median_achieved_occupancy_percent": 27.33,
+      "median_compute_sm_throughput_percent": 12.27,
+      "median_dram_throughput_percent": 5.7,
+      "median_l1_tex_throughput_percent": 24.98,
+      "median_l2_throughput_percent": 64.53,
+      "median_memory_throughput_percent": 64.53,
+      "total_duration_ms": 6.57
+    },
+    "z": {
+      "median_achieved_occupancy_percent": 27.71,
+      "median_compute_sm_throughput_percent": 18.74,
+      "median_dram_throughput_percent": 10.25,
+      "median_l1_tex_throughput_percent": 56.17,
+      "median_l2_throughput_percent": 91.81,
+      "median_memory_throughput_percent": 91.81,
+      "total_duration_ms": 5.05
+    }
+  },
+  "launch_invariants": {
+    "register_block_limit": 2.0,
+    "registers_per_thread": 128.0,
+    "shared_memory_block_limit": 4.0,
+    "theoretical_occupancy_percent": 33.33,
+    "warp_block_limit": 6.0
+  },
+  "pencil_launches": [
+    {
+      "axis": "x",
+      "duration_ms": 0.5537000000000001,
+      "id": 3,
+      "metrics": {
+        "Achieved Occupancy": {
+          "unit": "%",
+          "value": 32.25
+        },
+        "Block Limit Registers": {
+          "unit": "block",
+          "value": 2.0
+        },
+        "Block Limit Shared Mem": {
+          "unit": "block",
+          "value": 4.0
+        },
+        "Block Limit Warps": {
+          "unit": "block",
+          "value": 6.0
+        },
+        "Compute (SM) Throughput": {
+          "unit": "%",
+          "value": 48.4
+        },
+        "DRAM Throughput": {
+          "unit": "%",
+          "value": 13.47
+        },
+        "Duration": {
+          "unit": "us",
+          "value": 553.7
+        },
+        "L1/TEX Cache Throughput": {
+          "unit": "%",
+          "value": 8.6
+        },
+        "L2 Cache Throughput": {
+          "unit": "%",
+          "value": 6.27
+        },
+        "Memory Throughput": {
+          "unit": "%",
+          "value": 13.47
+        },
+        "Registers Per Thread": {
+          "unit": "register/thread",
+          "value": 128.0
+        },
+        "Theoretical Occupancy": {
+          "unit": "%",
+          "value": 33.33
+        }
+      },
+      "stage": 1
+    },
+    {
+      "axis": "y",
+      "duration_ms": 2.18,
+      "id": 5,
+      "metrics": {
+        "Achieved Occupancy": {
+          "unit": "%",
+          "value": 27.33
+        },
+        "Block Limit Registers": {
+          "unit": "block",
+          "value": 2.0
+        },
+        "Block Limit Shared Mem": {
+          "unit": "block",
+          "value": 4.0
+        },
+        "Block Limit Warps": {
+          "unit": "block",
+          "value": 6.0
+        },
+        "Compute (SM) Throughput": {
+          "unit": "%",
+          "value": 12.35
+        },
+        "DRAM Throughput": {
+          "unit": "%",
+          "value": 5.73
+        },
+        "Duration": {
+          "unit": "ms",
+          "value": 2.18
+        },
+        "L1/TEX Cache Throughput": {
+          "unit": "%",
+          "value": 24.98
+        },
+        "L2 Cache Throughput": {
+          "unit": "%",
+          "value": 64.41
+        },
+        "Memory Throughput": {
+          "unit": "%",
+          "value": 64.41
+        },
+        "Registers Per Thread": {
+          "unit": "register/thread",
+          "value": 128.0
+        },
+        "Theoretical Occupancy": {
+          "unit": "%",
+          "value": 33.33
+        }
+      },
+      "stage": 1
+    },
+    {
+      "axis": "z",
+      "duration_ms": 1.55,
+      "id": 7,
+      "metrics": {
+        "Achieved Occupancy": {
+          "unit": "%",
+          "value": 28.36
+        },
+        "Block Limit Registers": {
+          "unit": "block",
+          "value": 2.0
+        },
+        "Block Limit Shared Mem": {
+          "unit": "block",
+          "value": 4.0
+        },
+        "Block Limit Warps": {
+          "unit": "block",
+          "value": 6.0
+        },
+        "Compute (SM) Throughput": {
+          "unit": "%",
+          "value": 20.25
+        },
+        "DRAM Throughput": {
+          "unit": "%",
+          "value": 8.3
+        },
+        "Duration": {
+          "unit": "ms",
+          "value": 1.55
+        },
+        "L1/TEX Cache Throughput": {
+          "unit": "%",
+          "value": 56.37
+        },
+        "L2 Cache Throughput": {
+          "unit": "%",
+          "value": 91.44
+        },
+        "Memory Throughput": {
+          "unit": "%",
+          "value": 91.44
+        },
+        "Registers Per Thread": {
+          "unit": "register/thread",
+          "value": 128.0
+        },
+        "Theoretical Occupancy": {
+          "unit": "%",
+          "value": 33.33
+        }
+      },
+      "stage": 1
+    },
+    {
+      "axis": "x",
+      "duration_ms": 0.55344,
+      "id": 9,
+      "metrics": {
+        "Achieved Occupancy": {
+          "unit": "%",
+          "value": 32.29
+        },
+        "Block Limit Registers": {
+          "unit": "block",
+          "value": 2.0
+        },
+        "Block Limit Shared Mem": {
+          "unit": "block",
+          "value": 4.0
+        },
+        "Block Limit Warps": {
+          "unit": "block",
+          "value": 6.0
+        },
+        "Compute (SM) Throughput": {
+          "unit": "%",
+          "value": 48.25
+        },
+        "DRAM Throughput": {
+          "unit": "%",
+          "value": 13.55
+        },
+        "Duration": {
+          "unit": "us",
+          "value": 553.44
+        },
+        "L1/TEX Cache Throughput": {
+          "unit": "%",
+          "value": 8.58
+        },
+        "L2 Cache Throughput": {
+          "unit": "%",
+          "value": 6.31
+        },
+        "Memory Throughput": {
+          "unit": "%",
+          "value": 13.55
+        },
+        "Registers Per Thread": {
+          "unit": "register/thread",
+          "value": 128.0
+        },
+        "Theoretical Occupancy": {
+          "unit": "%",
+          "value": 33.33
+        }
+      },
+      "stage": 2
+    },
+    {
+      "axis": "y",
+      "duration_ms": 2.19,
+      "id": 11,
+      "metrics": {
+        "Achieved Occupancy": {
+          "unit": "%",
+          "value": 27.29
+        },
+        "Block Limit Registers": {
+          "unit": "block",
+          "value": 2.0
+        },
+        "Block Limit Shared Mem": {
+          "unit": "block",
+          "value": 4.0
+        },
+        "Block Limit Warps": {
+          "unit": "block",
+          "value": 6.0
+        },
+        "Compute (SM) Throughput": {
+          "unit": "%",
+          "value": 12.27
+        },
+        "DRAM Throughput": {
+          "unit": "%",
+          "value": 5.7
+        },
+        "Duration": {
+          "unit": "ms",
+          "value": 2.19
+        },
+        "L1/TEX Cache Throughput": {
+          "unit": "%",
+          "value": 24.98
+        },
+        "L2 Cache Throughput": {
+          "unit": "%",
+          "value": 65.11
+        },
+        "Memory Throughput": {
+          "unit": "%",
+          "value": 65.11
+        },
+        "Registers Per Thread": {
+          "unit": "register/thread",
+          "value": 128.0
+        },
+        "Theoretical Occupancy": {
+          "unit": "%",
+          "value": 33.33
+        }
+      },
+      "stage": 2
+    },
+    {
+      "axis": "z",
+      "duration_ms": 1.75,
+      "id": 13,
+      "metrics": {
+        "Achieved Occupancy": {
+          "unit": "%",
+          "value": 27.71
+        },
+        "Block Limit Registers": {
+          "unit": "block",
+          "value": 2.0
+        },
+        "Block Limit Shared Mem": {
+          "unit": "block",
+          "value": 4.0
+        },
+        "Block Limit Warps": {
+          "unit": "block",
+          "value": 6.0
+        },
+        "Compute (SM) Throughput": {
+          "unit": "%",
+          "value": 18.11
+        },
+        "DRAM Throughput": {
+          "unit": "%",
+          "value": 10.25
+        },
+        "Duration": {
+          "unit": "ms",
+          "value": 1.75
+        },
+        "L1/TEX Cache Throughput": {
+          "unit": "%",
+          "value": 55.79
+        },
+        "L2 Cache Throughput": {
+          "unit": "%",
+          "value": 92.15
+        },
+        "Memory Throughput": {
+          "unit": "%",
+          "value": 92.15
+        },
+        "Registers Per Thread": {
+          "unit": "register/thread",
+          "value": 128.0
+        },
+        "Theoretical Occupancy": {
+          "unit": "%",
+          "value": 33.33
+        }
+      },
+      "stage": 2
+    },
+    {
+      "axis": "x",
+      "duration_ms": 0.55322,
+      "id": 15,
+      "metrics": {
+        "Achieved Occupancy": {
+          "unit": "%",
+          "value": 32.29
+        },
+        "Block Limit Registers": {
+          "unit": "block",
+          "value": 2.0
+        },
+        "Block Limit Shared Mem": {
+          "unit": "block",
+          "value": 4.0
+        },
+        "Block Limit Warps": {
+          "unit": "block",
+          "value": 6.0
+        },
+        "Compute (SM) Throughput": {
+          "unit": "%",
+          "value": 48.15
+        },
+        "DRAM Throughput": {
+          "unit": "%",
+          "value": 13.53
+        },
+        "Duration": {
+          "unit": "us",
+          "value": 553.22
+        },
+        "L1/TEX Cache Throughput": {
+          "unit": "%",
+          "value": 8.58
+        },
+        "L2 Cache Throughput": {
+          "unit": "%",
+          "value": 6.3
+        },
+        "Memory Throughput": {
+          "unit": "%",
+          "value": 13.53
+        },
+        "Registers Per Thread": {
+          "unit": "register/thread",
+          "value": 128.0
+        },
+        "Theoretical Occupancy": {
+          "unit": "%",
+          "value": 33.33
+        }
+      },
+      "stage": 3
+    },
+    {
+      "axis": "y",
+      "duration_ms": 2.2,
+      "id": 17,
+      "metrics": {
+        "Achieved Occupancy": {
+          "unit": "%",
+          "value": 27.51
+        },
+        "Block Limit Registers": {
+          "unit": "block",
+          "value": 2.0
+        },
+        "Block Limit Shared Mem": {
+          "unit": "block",
+          "value": 4.0
+        },
+        "Block Limit Warps": {
+          "unit": "block",
+          "value": 6.0
+        },
+        "Compute (SM) Throughput": {
+          "unit": "%",
+          "value": 12.24
+        },
+        "DRAM Throughput": {
+          "unit": "%",
+          "value": 5.65
+        },
+        "Duration": {
+          "unit": "ms",
+          "value": 2.2
+        },
+        "L1/TEX Cache Throughput": {
+          "unit": "%",
+          "value": 25.12
+        },
+        "L2 Cache Throughput": {
+          "unit": "%",
+          "value": 64.53
+        },
+        "Memory Throughput": {
+          "unit": "%",
+          "value": 64.53
+        },
+        "Registers Per Thread": {
+          "unit": "register/thread",
+          "value": 128.0
+        },
+        "Theoretical Occupancy": {
+          "unit": "%",
+          "value": 33.33
+        }
+      },
+      "stage": 3
+    },
+    {
+      "axis": "z",
+      "duration_ms": 1.75,
+      "id": 19,
+      "metrics": {
+        "Achieved Occupancy": {
+          "unit": "%",
+          "value": 27.62
+        },
+        "Block Limit Registers": {
+          "unit": "block",
+          "value": 2.0
+        },
+        "Block Limit Shared Mem": {
+          "unit": "block",
+          "value": 4.0
+        },
+        "Block Limit Warps": {
+          "unit": "block",
+          "value": 6.0
+        },
+        "Compute (SM) Throughput": {
+          "unit": "%",
+          "value": 18.74
+        },
+        "DRAM Throughput": {
+          "unit": "%",
+          "value": 10.3
+        },
+        "Duration": {
+          "unit": "ms",
+          "value": 1.75
+        },
+        "L1/TEX Cache Throughput": {
+          "unit": "%",
+          "value": 56.17
+        },
+        "L2 Cache Throughput": {
+          "unit": "%",
+          "value": 91.81
+        },
+        "Memory Throughput": {
+          "unit": "%",
+          "value": 91.81
+        },
+        "Registers Per Thread": {
+          "unit": "register/thread",
+          "value": 128.0
+        },
+        "Theoretical Occupancy": {
+          "unit": "%",
+          "value": 33.33
+        }
+      },
+      "stage": 3
+    }
+  ],
+  "schema": "gradflow-g5-ncu-basic-summary-v1",
+  "source": "ncu_privileged_p1_details.csv"
+}

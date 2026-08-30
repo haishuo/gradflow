@@ -103,15 +103,34 @@ x-pencil kernels total 1.340 ms, y pencils 5.757 ms, and z pencils 4.336 ms.
 P1 maps neighboring threads along the chosen pencil, so y and z state accesses
 are strided in the component-major `(z,y,x)` layout. R6Q instead maps linear
 threads over cells, keeping corresponding stencil loads coalesced while each
-thread computes all three axes. The directional asymmetry, the absence of
-spills, and the persistent loss at `N=256` support strided access and the
-one-line-per-block ownership pattern as the principal causes. This is a causal
-inference from the trace, not a hardware-counter proof.
+thread computes all three axes.
 
 For comparison, frozen G4 `N=128` traces total 4.680 ms for R6Q kernels and
-9.338 ms for cell-recompute kernels. P1 totals 12.756 ms. Nsight Compute
-2025.3.1 could not collect counters because Forge returned
-`ERR_NVGPUCTRPERM`; permissions were not changed.
+9.338 ms for cell-recompute kernels. P1 totals 12.756 ms.
+
+The initial unprivileged Nsight Compute 2025.3.1 attempt returned
+`ERR_NVGPUCTRPERM`. A subsequent explicitly authorized one-time `sudo` run
+collected the frozen Basic set without changing Forge's persistent driver
+permissions. Its pencil-kernel medians and three-stage duration totals are:
+
+| Axis | Total replay duration (ms) | L2 throughput | DRAM throughput | SM compute | Achieved occupancy |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| x | 1.660 | 6.30% | 13.53% | 48.25% | 32.29% |
+| y | 6.570 | 64.53% | 5.70% | 12.27% | 27.33% |
+| z | 5.050 | 91.81% | 10.25% | 18.74% | 27.71% |
+
+The 128-register kernel is limited to two resident blocks per SM and 33.33%
+theoretical occupancy; shared memory would permit four blocks and warps six.
+The counters therefore establish two interacting costs: register pressure
+limits latency hiding, while the y/z mappings move the bottleneck away from
+arithmetic and onto L2/cache-side memory service. Low DRAM utilization shows
+that raw off-card bandwidth is not the limiting resource. This strongly
+corroborates the known direction-strided access pattern as the cause, although
+the Basic counter set does not directly measure every memory transaction.
+
+The 3.522-second application time printed under Nsight Compute is deliberately
+excluded from performance results: each of 20 kernels was replayed for nine
+counter passes. The state checksum remained unchanged.
 
 ## Interpretation and next boundary
 

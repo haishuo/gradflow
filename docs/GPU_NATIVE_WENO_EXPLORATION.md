@@ -259,9 +259,11 @@ forward specimens and reduced declared `N=128` peak allocation from
 
 It was nevertheless 2.619x and 2.701x R6Q resident time at the primary one-
 and ten-step points, and cell-recompute was faster than P1 throughout the
-matrix. Profiling found no spills. The x pencils were much faster than y and z
-pencils, supporting direction-strided access in the existing state layout as
-the main cause. Full evidence and the narrow claim boundary are in
+matrix. Profiling found no spills. Privileged hardware counters subsequently
+showed 33.33% register-limited theoretical occupancy and a shift from 6.30%
+L2 throughput for x pencils to 64.53% for y and 91.81% for z, corroborating
+direction-strided access in the existing state layout as the main cause. Full
+evidence and the narrow claim boundary are in
 `experiments/gpu_native_reformulation/G5_SHARED_PENCIL_RESULTS.md`.
 
 This rejects the P1 schedule, not shared-memory tiling as a category. Any
