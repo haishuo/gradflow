@@ -1,6 +1,7 @@
 # Academic external-baseline gate
 
-Status: **blocking manuscript gate; protocol only; no campaign begun**.
+Status: **blocking manuscript gate; U4-A compatibility audit complete; no
+external timing begun**.
 
 ## Question
 
@@ -47,5 +48,19 @@ software revisions, build costs, warm and launch-to-answer endpoints, and all
 known formulation mismatches. The resulting claim remains hardware- and
 contract-specific.
 
-This gate is untested. It does not authorize a new benchmark campaign by
-itself.
+The performance portion of this gate remains untested. This document does not
+authorize a benchmark campaign by itself.
+
+## U4-A disposition
+
+The source-pinned compatibility audit is complete. OpenSBLI is the selected
+`matched_operator_candidate`, but its stock applications are not admitted:
+epsilon scaling and the scalar semidiscrete endpoint require a small,
+preserved adapter and correctness qualification. PyWENO is classified as a
+reconstruction/code-generation building block. JAX-Fluids and HOPE are
+application-context systems whose finite-volume contracts do not enter the
+direct FD operator table.
+
+See `ACADEMIC_U4A_PROTOCOL.md` and `ACADEMIC_U4A_RESULTS.md`. U4-B may begin
+only as an OpenSBLI adapter and correctness-qualification phase. Timing is
+downstream of qualification.

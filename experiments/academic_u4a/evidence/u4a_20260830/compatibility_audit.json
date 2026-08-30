@@ -1,0 +1,178 @@
+{
+  "schema": "gradflow-academic-u4a-compatibility-audit-v1",
+  "date_utc": "2026-08-30",
+  "complete": true,
+  "comparative_timing_performed": false,
+  "protocol": {
+    "path": "docs/ACADEMIC_U4A_PROTOCOL.md",
+    "commit": "c5cc2ad",
+    "sha256": "568f450a5b0a31e3f8214418a8017184ee9baa69bd363d7ec597f0246ed7d6ca"
+  },
+  "gradflow_subject": {
+    "spatial_formulation": "finite_difference",
+    "family": "WENO-JS",
+    "initial_order": 5,
+    "later_orders_after_order_5_qualification": [7, 9, 11, 13, 15],
+    "pde": "scalar_positive_linear_advection",
+    "grid": "unique_periodic_nodes_on_[0,1)",
+    "flux_split": "global_lax_friedrichs",
+    "alpha": "explicit_1",
+    "smoothness_scale": 12.0,
+    "epsilon": 1e-29,
+    "external_unscaled_epsilon": "1e-29/12",
+    "nonlinear_power": 2,
+    "endpoint": "one_semidiscrete_rhs",
+    "first_dtype": "float64"
+  },
+  "local_sources": [
+    {
+      "path": "src/gradflow/weno_js.py",
+      "sha256": "87df65203851f4f87cb8dd7360c92d586ef43fa2997a11593cbf92a4dc8f6278"
+    },
+    {
+      "path": "src/gradflow/weno_js_coefficients.py",
+      "sha256": "46960ede8546891e58c30cef2e949ae1db56ed20041b9ae9fec7de5cb2a67ef7"
+    },
+    {
+      "path": "src/gradflow/euler3d.py",
+      "sha256": "ad89ba1cad06df4b021d62ecc017072a3389016cb43eaf113aefe7c5793f4da6"
+    },
+    {
+      "path": "experiments/literature_review/results/phase_c_20260827/studies.json",
+      "sha256": "006c17d25be46ff01eaa4fa5b3ff84c632674f55a645defb14efe09837684d76"
+    }
+  ],
+  "external_sources": {
+    "opensbli": {
+      "official_url": "https://github.com/opensbli/opensbli",
+      "commit": "e37dc377fa9b27d6bfa6e9da2968b96bcd736f1d",
+      "tree": "0ff053443f6b243b2bd42475f98122306151427d",
+      "commit_date": "2026-08-05T12:52:53+09:00",
+      "license_observation": "The inspected repository contains the GNU GPL version 3 license text; no GradFlow compatibility conclusion is made.",
+      "files": [
+        {"path": "README.md", "sha256": "46e80f138f19c517a0450dc8ea8591453e15e17663713e266d3114a7aab6cbfc"},
+        {"path": "LICENSE", "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"},
+        {"path": "opensbli/schemes/spatial/weno.py", "sha256": "06db7b506ff623bc7c24ee797187c8ca4f22803352ad2deb11e4a2d157fca510"},
+        {"path": "opensbli/schemes/spatial/shock_capturing.py", "sha256": "aff71a5f3004f40c2577d87ecb0e84bcfa2dbc76aeec0349ca92b70586c1ca39"},
+        {"path": "opensbli/schemes/spatial/averaging.py", "sha256": "94668020fdea516782de3d45c61b26029886398895453fa49a59cb359c1803fc"},
+        {"path": "opensbli/core/datatypes.py", "sha256": "06555babc83cdc110d020bda7a3bd2ef7024a748f29c369734524935cf7143e9"},
+        {"path": "opensbli/core/opensblifunctions.py", "sha256": "aed70167789d19507b9c2e47449404be7922a03f1c621ae701345d889fd23c33"},
+        {"path": "apps/performance_benchmark/README.MD", "sha256": "20936a77c5e73cdd1d54eddd6741f1b0e674536b70f1eb617b46e23fc5a5455b"}
+      ]
+    },
+    "pyweno": {
+      "official_url": "https://github.com/memmett/PyWENO",
+      "commit": "cfc12766556d8989b03c1051e2dd32510dc33f6e",
+      "tree": "a0dd640bd4f5df855b6b04453017dff920767799",
+      "commit_date": "2021-03-08T08:00:56-07:00",
+      "license_observation": "The inspected repository contains a three-clause permissive redistribution notice; no GradFlow compatibility conclusion is made.",
+      "files": [
+        {"path": "README", "sha256": "5abec943d5d7965ce732d2223aeb30e0e4303317d0d421ff6d41da5eb51492d5"},
+        {"path": "LICENSE", "sha256": "816b187f22387205c6c230fa689f57ba34cd53ec52888d3c49dd7d0411c334ee"},
+        {"path": "docs/codegen.rst", "sha256": "6ad94604a186069c0daab4b19251a2a2cf02dbf66d138dcd419c7f8e37b3bd2d"},
+        {"path": "pyweno/symbolic.py", "sha256": "6e709c5e7c2064608576804fd2915232d117bbf0c11e91d3bb446ec4b83e35cf"},
+        {"path": "pyweno/kernels.py", "sha256": "ba8c021d26926fb846ec808758854fae1a806dc3579aab0c52a255526700d857"},
+        {"path": "pyweno/weno.py", "sha256": "fbc92f89dafa7477d71a37f9dda794eb6bb116e7f3ba84e274783d32499b6586"}
+      ]
+    }
+  },
+  "symbolic_cross_check": {
+    "script": {
+      "path": "experiments/academic_u4a/crosscheck_opensbli.py",
+      "sha256": "5ec9ec43d9919ca88e6a0b0404667b8c46076398f01402e4bb483ae8a6bdbe05"
+    },
+    "record": {
+      "path": "symbolic_crosscheck.json",
+      "sha256": "466a4c47246f5c724121e89bda66c0a783c1c95e8b73f8b815373b01d37c7ba1"
+    },
+    "environment_scope": "temporary_source_audit_only_not_runtime_qualification",
+    "python": "3.12.3",
+    "sympy": "1.13.3",
+    "opensbli_compatibility_alias_required": "sympy.printing.ccode_to_sympy.printing.c",
+    "candidate_order_mapping": "reverse_OpenSBLI_right_candidate_index",
+    "candidate_offsets_coefficients_and_optimal_weights": [
+      {"order": 5, "exact_match": true},
+      {"order": 7, "exact_match": true},
+      {"order": 9, "exact_match": true},
+      {"order": 11, "exact_match": true},
+      {"order": 13, "exact_match": true},
+      {"order": 15, "exact_match": true}
+    ],
+    "smoothness_matrices": [
+      {"order": 5, "exact_match": true},
+      {"order": 7, "exact_match": true},
+      {"order": 9, "exact_match": true},
+      {"order": 11, "exact_match": null, "reason": "bounded symbolic check not completed"},
+      {"order": 13, "exact_match": null, "reason": "not executed"},
+      {"order": 15, "exact_match": null, "reason": "not executed"}
+    ],
+    "source_definition_observation": "Both inspected generators construct Jiang-Shu indicators from the same cell-average interpolation and derivative-integral definition; this source observation is not substituted for the unexecuted higher-order exact checks."
+  },
+  "classifications": [
+    {
+      "id": "opensbli",
+      "class": "matched_operator_candidate",
+      "stock_lane_admitted": false,
+      "selected_for_u4b_qualification": true,
+      "mathematical_findings": [
+        "arbitrary odd-order finite-difference WENO-JS is native",
+        "candidate offsets, coefficients, and optimal weights exactly match GradFlow for orders 5 through 15 after candidate reordering",
+        "executed smoothness matrices exactly match for orders 5, 7, and 9",
+        "normalized weights can match the GradFlow 12-scaled convention by using unscaled epsilon 1e-29/12"
+      ],
+      "stock_mismatches": [
+        "WenoJS epsilon is hard-coded to 1e-6",
+        "stock examples do not expose the frozen scalar positive-advection semidiscrete RHS endpoint",
+        "the shipped performance benchmark is TENO6 or central4 plus WENO5 filtering, not the frozen direct WENO-JS operator",
+        "Euler defaults and examples differ in averaging, LLF/GLF policy, epsilon scaling, grid convention, and full-solver endpoint"
+      ],
+      "required_adapter": [
+        "expose the native WenoJS epsilon and set it to 1e-29/12",
+        "construct scalar positive advection through OpenSBLI's native Weno and OPS machinery",
+        "use unique periodic nodes and include required halo exchanges in the RHS endpoint",
+        "supply alpha=1 without a data-dependent reduction",
+        "isolate one semidiscrete RHS and preserve the complete adapter patch and hash"
+      ],
+      "downgrade_rule": "If the scalar lane requires replacing OpenSBLI flux splitting, reconstruction, divergence, or OPS execution, reclassify it as building_block_only.",
+      "next_gate": "pointwise_and_convergence_qualification_before_any_timing"
+    },
+    {
+      "id": "pyweno",
+      "class": "building_block_only",
+      "stock_lane_admitted": false,
+      "selected_for_u4b_qualification": false,
+      "reason": "PyWENO generates or runs one-dimensional reconstruction pieces over cell-average inputs, but it does not provide the frozen flux split, periodic divergence, semidiscrete PDE endpoint, or resident GPU solver. Building those pieces around it would be a new bespoke baseline rather than a stock external-system comparison.",
+      "permitted_use": "independent coefficient or emitted-kernel cross-check"
+    },
+    {
+      "id": "jax_fluids",
+      "class": "application_context_only",
+      "stock_lane_admitted": false,
+      "selected_for_u4b_qualification": false,
+      "source_pin": "22fb0652e6b6e1c6b5dcb90cbb5eaa9828ee78d6",
+      "reason": "Its primary solver contract is finite-volume Godunov CFD. Its separate flux-splitting path is relevant algebraically but was not shown to reproduce the complete frozen GradFlow operator and endpoint.",
+      "future_use": "matched-error time-to-solution application study"
+    },
+    {
+      "id": "hope",
+      "class": "application_context_only",
+      "stock_lane_admitted": false,
+      "selected_for_u4b_qualification": false,
+      "source_pin": "doi:10.5281/zenodo.16635583",
+      "reason": "HOPE is an arbitrary-order differentiable two-dimensional finite-volume shallow-water core, not the frozen scalar finite-difference Jiang-Shu operator.",
+      "future_use": "separate finite-volume or application study"
+    }
+  ],
+  "internal_controls": [
+    {"id": "native_cuda", "independent_external_system": false, "role": "matched_low_level_schedule_control"},
+    {"id": "dveb", "independent_external_system": false, "role": "matched_compiler_abstraction_control"},
+    {"id": "generated_cpp", "independent_external_system": false, "role": "matched_cpu_control_when_qualified"}
+  ],
+  "decision": {
+    "u4a_closed": true,
+    "first_external_path": "OpenSBLI adapted scalar FD-WENO-JS5 through native OPS execution",
+    "u4b_authorized_by_this_record": false,
+    "jax_fluids_timing_now": false,
+    "paper_claim": "No independent external performance result exists yet."
+  }
+}

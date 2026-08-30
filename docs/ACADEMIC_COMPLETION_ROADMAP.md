@@ -44,6 +44,25 @@ already publishable.
 
 ## Remaining mandatory gates
 
+### U4. Independent external baseline — U4-A complete, execution pending
+
+The manuscript audit exposed a separate external-comparison gap after the
+original A1--A4 plan was frozen. U4-A has now source-pinned the candidates and
+frozen the admission rules without running timings. OpenSBLI is the first
+qualification candidate; PyWENO is a building-block comparison, while
+JAX-Fluids and HOPE remain application-level context because their primary
+contracts are finite volume.
+
+U4-B must attempt the minimal OpenSBLI scalar adapter and pass pointwise,
+conservation, constant-state, and convergence gates before timing. If it
+qualifies, a separately frozen timing phase may add it to the operator table.
+If native OpenSBLI machinery cannot express the frozen endpoint without
+replacement, the negative compatibility result must remain visible rather
+than becoming a bespoke pseudo-external baseline.
+
+See `ACADEMIC_U4A_PROTOCOL.md`, `ACADEMIC_U4A_RESULTS.md`, and
+`ACADEMIC_EXTERNAL_BASELINE_GATE.md`.
+
 ### A1. Freeze the final claim and numerical-limit matrix — complete
 
 Consolidate the paper's exact formulation contracts and test only the
@@ -163,6 +182,7 @@ Under this discipline, A1--A3 are closed and the remaining route is:
 
 ```text
 A4 second-machine replication + independent CFD/prior-art audit
+U4-B external adapter/correctness qualification (+ timing only if admitted)
 ```
 
 Design work for A3 may overlap A2, but performance remains downstream of the

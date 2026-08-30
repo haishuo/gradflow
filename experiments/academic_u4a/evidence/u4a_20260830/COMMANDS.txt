@@ -1,0 +1,43 @@
+U4-A source-audit command record (2026-08-30 UTC)
+
+No command below produced a comparative performance result.
+
+1. Clone official OpenSBLI source into temporary storage:
+   git clone --filter=blob:none https://github.com/opensbli/opensbli.git /tmp/gradflow-u4a-opensbli
+
+2. Record OpenSBLI revision and tree:
+   git -C /tmp/gradflow-u4a-opensbli rev-parse HEAD
+   git -C /tmp/gradflow-u4a-opensbli rev-parse 'HEAD^{tree}'
+
+3. Clone official PyWENO source into temporary storage:
+   git clone --filter=blob:none https://github.com/memmett/PyWENO.git /tmp/gradflow-u4a-pyweno
+
+4. Record PyWENO revision and tree:
+   git -C /tmp/gradflow-u4a-pyweno rev-parse HEAD
+   git -C /tmp/gradflow-u4a-pyweno rev-parse 'HEAD^{tree}'
+
+5. Hash every inspected external source file listed in compatibility_audit.json:
+   sha256sum <temporary-source-path>
+
+6. Install only the symbolic-audit dependencies into temporary storage:
+   python3 -m pip install --target /tmp/gradflow-u4a-site sympy==1.13.3 numpy==2.1.3
+
+7. Reproduce the bounded exact symbolic cross-check:
+   PYTHONPATH=/tmp/gradflow-u4a-site python3 \
+     experiments/academic_u4a/crosscheck_opensbli.py \
+     --opensbli-root /tmp/gradflow-u4a-opensbli
+
+   The script imports OpenSBLI with a temporary compatibility alias from the
+   removed sympy.printing.ccode module to sympy.printing.c. It instantiates
+   ConfigureWeno(k, side=1), reverses its candidate order, and compares exact
+   Fraction-valued offsets, reconstruction coefficients, and optimal weights
+   against GradFlow for orders 5, 7, 9, 11, 13, and 15.
+
+8. Instantiate JS_smoothness(k), convert expanded cross terms to symmetric
+   quadratic matrices, reverse candidate order, and compare exactly against
+   GradFlow. Orders 5, 7, and 9 completed. The bounded order-11 operation was
+   interrupted after it did not complete promptly; orders 13 and 15 were not
+   run. No generation duration is interpreted as a benchmark result.
+
+Temporary external source and dependencies are not part of the GradFlow
+repository or release payload.
