@@ -53,8 +53,11 @@ export itself is identified independently by the SHA-256 digest of
 was already present in the earlier release-candidate tag.
 
 Raw campaign evidence remains in GradFlow and is never modified by export.
-Changing a value requires a new prospectively named export; published exports
-are not silently overwritten.
+Changing or extending the exported reporting surface requires a new
+prospectively named export; published exports are not silently overwritten.
+The initial `academic-v0.1.0-rc1` export remains immutable. The
+`academic-v0.1.0-rc1-paper-v2` export adds complete manuscript reporting fields
+without adding or rerunning an experiment.
 
 ## Downstream paper contract
 
@@ -68,6 +71,11 @@ The paper repository must:
 5. identify GradFlow by repository URL, release tag, and commit; and
 6. treat second-machine replication and independent CFD review as pending
    until those gates actually close.
+
+An external or mathematically matched low-level comparison is also a blocking
+manuscript gate under `docs/ACADEMIC_EXTERNAL_BASELINE_GATE.md`. An unsupported
+native-control aside is not a substitute for exporting and presenting the
+comparison.
 
 The paper repository must not import GradFlow internals, reach through a
 relative path into a neighboring checkout, or treat the mutable branch tip as
