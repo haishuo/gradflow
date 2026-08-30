@@ -6,6 +6,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -13,11 +14,14 @@ from typing import Any
 
 import numpy as np
 
-from experiments.fd_fv_euler.phase6a_oracle import build_projections
-from experiments.euler_boundary_shock.sod_exact import sod_solution
-
-
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from experiments.fd_fv_euler.phase6a_oracle import build_projections  # noqa: E402
+from experiments.euler_boundary_shock.sod_exact import sod_solution  # noqa: E402
+
+
 RESULTS = ROOT / "experiments/fd_fv_euler/results/phase_6b_20260828"
 RECORD = RESULTS / "qualification.json"
 RAW = RESULTS / "raw_arrays.npz"
@@ -139,8 +143,17 @@ def verify_predecessors(payload: dict[str, Any]) -> bool:
         "fd_phase_b": ROOT / "experiments/euler_boundary_shock/verify_phase_b.py",
         "deferred_cuda": ROOT / "experiments/deferred_cuda_gates/verify.py",
     }
+    environment = dict(os.environ)
+    environment["PYTHONPATH"] = os.pathsep.join(
+        (str(ROOT), str(ROOT / "src"), environment.get("PYTHONPATH", ""))
+    )
     for name, script in cases.items():
-        result = subprocess.run((sys.executable, str(script)), cwd=ROOT, check=False)
+        result = subprocess.run(
+            (sys.executable, str(script)),
+            cwd=ROOT,
+            env=environment,
+            check=False,
+        )
         assert result.returncode == 0
         assert payload["predecessors"][name]["passed"] is True
     return True
