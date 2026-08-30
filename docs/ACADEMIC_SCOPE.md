@@ -67,7 +67,11 @@ The current repository has reproducible evidence for:
   negative shared-pencil and occupancy interventions; and
 - an ordinary-PyTorch scalar replication in which logical face-once ownership
   won every valid 3-D WENO-JS5/15 eager and compiled endpoint, while
-  extreme-resolution 1-D compiled cases were excluded for correctness.
+  extreme-resolution 1-D compiled cases were excluded for correctness; and
+- the completed A2 arbitrary-order performance matrix, including scalar and
+  characteristic CPU/CUDA eager/compiled endpoints, fixed-shape prepared AOT,
+  prepared- and isolated-cache process entry, memory, compilation, and
+  correctness-exclusion records.
 
 These are bounded results, not yet a complete paper package.
 
@@ -89,9 +93,9 @@ Before a paper claim is frozen, GradFlow needs:
 4. **One genuine differentiation use.** Demonstrate a bounded inverse or
    sensitivity problem with an independently checkable target and gradient
    validation.
-5. **Arbitrary-order performance matrix.** Compare mathematically identical
-   implementations across order, dimension, size, precision, residency, and
-   cold/warm/AOT endpoints. Report memory and failures as well as speed.
+5. **Arbitrary-order performance matrix.** Completed in A2 across order,
+   dimension, size, precision, residency, prepared/isolated cache, warm, AOT,
+   memory, compilation, and failure endpoints.
 6. **Independent reference package.** Preservation is substantially complete;
    consolidate the oracle inputs, hashes, generators, exact solutions, and
    result records required by the final paper claims into one release index.
@@ -140,13 +144,11 @@ product framework work must not delay the bounded paper.
 ## Immediate trunk order
 
 The long FD/FV and GPU-native branches have reached their declared stop
-conditions, and A1 is complete. The remaining first-paper sequence is now:
+conditions, and A1--A2 are complete. The remaining first-paper sequence is
+now:
 
-1. execute the formulation-matched arbitrary-order performance matrix with
-   explicit cold, warm, AOT, transfer, residency, time, memory, and failure
-   endpoints;
-2. complete one independently gradient-checked sensitivity or inverse task;
-3. reproduce the primary result on a second suitable machine, obtain an
+1. complete one independently gradient-checked sensitivity or inverse task;
+2. reproduce the primary result on a second suitable machine, obtain an
    external numerical-CFD/prior-art audit, and freeze the citable artifact.
 
 No additional hand-written CUDA schedule, FD/FV phase, DVEB feature, or

@@ -67,7 +67,7 @@ conservative; no canonical source or policy changed. See
 `ACADEMIC_A1_NUMERICAL_LIMITS.md`, and
 `ACADEMIC_A1_PRIOR_ART_COMPARISON.md`.
 
-### A2. Run the core arbitrary-order performance matrix
+### A2. Run the core arbitrary-order performance matrix — complete
 
 This is the principal unfinished empirical experiment. Compare the same
 qualified FD-WENO-JS mathematics across orders 5--15 using ordinary PyTorch
@@ -86,6 +86,12 @@ The matrix must report:
 The native G-series schedule is a fixed WENO-5 comparison point. Extending it
 to arbitrary order is not required. DVEB is optional and cannot block the
 paper.
+
+Completed on 2026-08-30. All 90 protocol-eligible workers completed, every
+compiled worker captured one graph with zero breaks, three AOT packages
+qualified, and both prepared-cache and isolated-cache deployment slices
+completed. Correctness failures remain explicit exclusions. See
+`ACADEMIC_A2_RESULTS.md`.
 
 ### A3. Demonstrate one independently validated differentiation use
 
@@ -136,11 +142,11 @@ named release gate above. Interesting but nonessential questions are recorded
 as future work. A negative result is complete when its frozen question has
 been answered; it is not an invitation to optimize until it becomes positive.
 
-Under this discipline, A1 is closed and the shortest remaining route is:
+Under this discipline, A1 and A2 are closed and the shortest remaining route
+is:
 
 ```text
-A2 arbitrary-order performance matrix
-    -> A3 validated differentiation use
+A3 validated differentiation use
     -> A4 replication, external audit, and release artifact
 ```
 
