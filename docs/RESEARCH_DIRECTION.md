@@ -484,3 +484,25 @@ no Phase-6E AOT performance lane was admitted. Ordinary PyTorch expressibility,
 AOT packaging, zero runtime compilation, and genuine device autonomy are four
 separate claims. See `FD_FV_PHASE_6E_PROTOCOL.md`,
 `FD_FV_PHASE_6E_PROTOCOL_AMENDMENT.md`, and `FD_FV_PHASE_6E_RESULTS.md`.
+
+Euler FD/FV Phases 6F and 6G subsequently separated prepared runtime helpers
+from package invocation. The public AOT loader retained compiler-discovery
+subprocesses and failed the frozen 6F boundary. Direct use of the version-
+locked internal AOTI loader then passed the prospectively frozen compiler-free
+6G gate. Prepared process-entry AOT was `4.54--5.95x` faster than fresh CUDA
+JIT and `6.39--7.49x` faster than the selected CPU endpoints for the four
+`N=800` shock/method pairs on Forge. This is a bounded deployment result, not
+a stable public API or universal FD/FV claim. The FD/FV branch has reached its
+first-paper stop condition; further expansion is optional. See
+`FD_FV_PHASE_6F_RESULTS.md` and `FD_FV_PHASE_6G_RESULTS.md`.
+
+The noncanonical G0--G6 reckless-to-correct native-GPU exploration is also
+closed. It demonstrated that the deliberately GPU-comfortable U0 increment
+was numerically unacceptable, recovered close Shu WENO-5 agreement through a
+causal ladder, and isolated an approximately twofold exact-math face-ownership
+schedule effect at moderate/large grids. Global face reuse cost approximately
+twofold workspace; a literal shared-pencil recovery and a block/register
+occupancy intervention both failed. R6Q was not backend-admitted, no canonical
+PyTorch source changed, and further hand-written CUDA work is deferred. See
+`experiments/gpu_native_reformulation/G_SERIES_SYNTHESIS.md` and
+`ACADEMIC_COMPLETION_ROADMAP.md` for the remaining academic critical path.

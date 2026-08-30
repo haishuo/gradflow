@@ -1,0 +1,141 @@
+# GradFlow Academic completion roadmap
+
+Status: **active bounded completion plan**.
+
+Date: 2026-08-30 (UTC)
+
+## Objective
+
+The first GradFlow academic artifact is an empirical systems-and-numerics
+study of exact-generated finite-difference WENO-JS in maintainable ordinary
+PyTorch. It is not the commercial product, a new WENO formula, or a claim that
+PyTorch universally defeats native code.
+
+The governing order remains:
+
+> correctness > performance > convenience
+
+The completed GPU-native G0--G6 investigation is now a closed supporting
+study. It supplies a native WENO-5 schedule control and identifies which
+hardware-first changes preserved or destroyed the requested mathematics. It
+does not authorize another CUDA optimization branch before the academic core
+is complete.
+
+## Work already sufficient for the first paper
+
+- exact-rational WENO-JS coefficient generation through order 15;
+- scalar periodic and 3-D Roe-characteristic Euler qualification for orders
+  5, 7, 9, 11, 13, and 15;
+- smooth convergence, conservation, critical-point characterization,
+  compilation, device agreement, and basic differentiation gates;
+- independently checked one-dimensional Euler Sod and Shu--Osher behavior
+  with periodic and transmissive boundaries;
+- systematic close-prior-art review and a narrowed empirical claim;
+- a completed scalar mixed-precision search and a completed, predominantly
+  negative characteristic-Euler transfer test;
+- endpoint-explicit FD/FV WENO-JS5 evidence through prepared AOT execution;
+- fixed WENO-5 CPU, ordinary-PyTorch, AOT, DVEB, and native-GPU controls; and
+- the closed reckless-to-correct GPU-native formulation study.
+
+These results are inputs to a paper package, not proof that the package is
+already publishable.
+
+## Remaining mandatory gates
+
+### A1. Freeze the final claim and numerical-limit matrix
+
+Consolidate the paper's exact formulation contracts and test only the
+remaining order-dependent numerical questions needed to interpret orders
+5--15: coefficient conditioning, roundoff floor, epsilon sensitivity,
+critical-point behavior, and declared failure boundaries. Do not begin a new
+mixed-precision search. The completed Tier-2 negative result is itself the
+current characteristic mixed-precision conclusion.
+
+Deliverables:
+
+- one claim table separating established, observed, inferred, and untested;
+- one order-by-order numerical-limit table generated from immutable records;
+- prospectively frozen thresholds for any genuinely missing cases; and
+- an updated literature comparison with OpenSBLI, PyWENO/PyClaw, HOPE,
+  JAX-Fluids, and JAX-Shock.
+
+### A2. Run the core arbitrary-order performance matrix
+
+This is the principal unfinished empirical experiment. Compare the same
+qualified FD-WENO-JS mathematics across orders 5--15 using ordinary PyTorch
+eager/compiled and feasible matched CPU, prepared-AOT, and native controls.
+Every endpoint must state whether compilation, transfers, process startup,
+and preparation are inside or outside the clock.
+
+The matrix must report:
+
+- order, dimension, grid size, dtype, and state residency;
+- cold, warm, prepared-AOT, and start-to-finish endpoints where applicable;
+- execution time, peak memory, compile/preparation time, and failures;
+- pointwise or norm parity before every performance result; and
+- hardware/software identity and raw repeated observations.
+
+The native G-series schedule is a fixed WENO-5 comparison point. Extending it
+to arbitrary order is not required. DVEB is optional and cannot block the
+paper.
+
+### A3. Demonstrate one independently validated differentiation use
+
+Complete one bounded sensitivity or inverse problem in which the target is
+independently checkable. Validate gradients against centered finite
+differences or another independent derivative construction, characterize the
+step-size window and failure modes, and report both numerical and execution
+costs.
+
+This gate demonstrates why differentiability is scientifically useful. It is
+not a claim that differentiable WENO is unprecedented.
+
+### A4. Replicate, audit, and freeze the artifact
+
+After A1--A3 stabilize:
+
+- reproduce the primary numerical and performance conclusions on a second
+  suitable machine;
+- make a value-of-information decision before renting A100/H100-class FP64
+  hardware rather than treating it as automatically mandatory;
+- obtain an external numerical-CFD/prior-art audit;
+- resolve or explicitly flag reference redistribution questions;
+- freeze environments, scripts, tables, figures, raw records, and hashes;
+- create a citable release candidate and run a clean-room reproduction; and
+- freeze paper wording only after those checks pass.
+
+## Explicitly deferred from the first academic artifact
+
+The following work may be valuable later but is not required to finish the
+bounded paper:
+
+- G7, warp-distributed CUDA, further occupancy tuning, or another hand-written
+  CUDA schedule;
+- repairing higher-order characteristic mixed precision after the frozen
+  Tier-2 failure;
+- another FD/FV phase beyond the completed constitution unless the final
+  paper explicitly adopts the FD/FV phase diagram as a central claim;
+- additional DVEB development;
+- a general PDE/equation catalog, Navier--Stokes, geometry, meshing, or
+  turbulence modeling;
+- automatic backend placement, UI work, or commercial deployment polish; and
+- real-time aerospace or universal-performance claims.
+
+## Stop discipline
+
+New side experiments enter the academic critical path only if they close a
+named release gate above. Interesting but nonessential questions are recorded
+as future work. A negative result is complete when its frozen question has
+been answered; it is not an invitation to optimize until it becomes positive.
+
+Under this discipline, the shortest defensible route to GradFlow Academic is:
+
+```text
+A1 numerical/claim freeze
+    -> A2 arbitrary-order performance matrix
+    -> A3 validated differentiation use
+    -> A4 replication, external audit, and release artifact
+```
+
+A1 and design work for A3 may overlap, but performance remains downstream of
+the relevant correctness gates.

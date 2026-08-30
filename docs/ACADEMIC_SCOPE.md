@@ -57,7 +57,14 @@ The current repository has reproducible evidence for:
 - an exhaustive scalar binary32/binary64 WENO-JS precision search whose
   passing indicator/weight-formation split produced order-dependent
   `1.838x--7.058x` warm compiled speedups on the local RTX 5070 Ti while
-  retaining binary64 normalization and face-flux arithmetic.
+  retaining binary64 normalization and face-flux arithmetic;
+- a completed characteristic-Euler transfer test showing that the scalar
+  mixed-precision seam does not satisfy the tight order-7--15 contract;
+- a completed FD/FV Euler WENO-JS5 study through qualified compiler-free
+  prepared AOT process entry; and
+- a closed G0--G6 reckless-to-correct native-GPU study that isolates an
+  approximately twofold WENO-5 face-ownership schedule effect and records
+  negative shared-pencil and occupancy interventions.
 
 These are bounded results, not yet a complete paper package.
 
@@ -67,22 +74,24 @@ Before a paper claim is frozen, GradFlow needs:
 
 1. **Systematic prior-art review.** Completed in Phase C. Keep the record
    current and obtain an external subject-matter audit before paper freeze.
-2. **Boundary and discontinuity qualification.** Add independently checked
-   nonperiodic Euler boundary behavior and standard shock problems; periodic
-   smooth tests alone are insufficient.
-3. **Numerical-limit characterization.** Extend the completed scalar
-   mixed-precision seam into characteristic Euler, and continue conditioning,
-   roundoff, epsilon-sensitivity, critical-point, and failure analysis as order
-   rises.
+2. **Boundary and discontinuity qualification.** Completed for the bounded
+   one-dimensional ideal-gas Euler scope, including transmissive boundaries,
+   Sod refinement, and independent-reference Shu--Osher checks at
+   representative orders. Broader geometries are not a first-paper gate.
+3. **Numerical-limit characterization.** The characteristic-Euler
+   mixed-precision transfer and critical-point studies are complete, including
+   their negative results. Consolidate the remaining conditioning, roundoff,
+   epsilon-sensitivity, and order-dependent failure record without beginning
+   another precision-policy search.
 4. **One genuine differentiation use.** Demonstrate a bounded inverse or
    sensitivity problem with an independently checkable target and gradient
    validation.
 5. **Arbitrary-order performance matrix.** Compare mathematically identical
    implementations across order, dimension, size, precision, residency, and
    cold/warm/AOT endpoints. Report memory and failures as well as speed.
-6. **Independent reference package.** Preserve oracle inputs, hashes,
-   generators, exact solutions, and result records required to rerun the
-   numerical claims.
+6. **Independent reference package.** Preservation is substantially complete;
+   consolidate the oracle inputs, hashes, generators, exact solutions, and
+   result records required by the final paper claims into one release index.
 7. **Paper artifact and release review.** Resolve redistribution/license
    questions, freeze environments, run clean reproductions, and archive a
    citable release.
@@ -127,34 +136,22 @@ product framework work must not delay the bounded paper.
 
 ## Immediate trunk order
 
-1. Under the completed FD/FV Phase-1 constitution, freeze the mathematical
-   contract and independent oracles for a scalar FV WENO-JS5 seed. **Completed
-   in Phase 2.**
-2. Implement and qualify that seed for convergence, conservation, discontinuities, device
-   agreement, compilation, and gradients before collecting performance data.
-   **Implemented in Phase 3; its two frozen failures were preserved and
-   prospectively resolved for the exact CPU seed in Phase 3R. The prospective
-   Forge CUDA agreement/compiler/movement supplement has now passed; future
-   hardware still requires per-device admission before GPU timing.**
-3. Freeze and execute the scalar matched-component and best-practical FD/FV
-   accuracy-to-time/memory matrix. **The smooth linear CPU slice and the
-   preregistered causal replication of its anomalous `N=27^3` point are
-   complete. The anomaly did not pass strong replication and is associated
-   with unstable multithread execution rather than a unique compiler-structure
-   transition. The frozen resident CUDA replication subsequently passed on
-   Forge's RTX 5070 Ti and modestly favored compiled FD at the three larger
-   sizes. Transfer-inclusive/AOT endpoints and the prospectively qualified
-   nonlinear scalar slice remain.**
-4. Extend qualification and the frozen comparison to ideal-gas Euler, then
-   reproduce the result on a second machine and make a value-of-information
-   decision for data-center FP64 hardware.
-5. Only after WENO-JS5 conclusions stabilize, extend the comparison across
-   generated order and one independently checkable differentiated task.
-6. Obtain an external numerical-CFD prior-art audit and assemble the paper
-   artifact.
+The long FD/FV and GPU-native branches have reached their declared stop
+conditions. The remaining first-paper sequence is now deliberately shorter:
 
-The former first item, Phase B of the one-dimensional Euler boundary/shock
-trunk, passed its frozen gate at source commit `3b64b1a`; see
-`EULER_BOUNDARY_SHOCK_PHASE_B_RESULTS.md`.
+1. freeze the final claim table and consolidate the order-5--15 numerical-
+   limit record;
+2. execute the formulation-matched arbitrary-order performance matrix with
+   explicit cold, warm, AOT, transfer, residency, time, memory, and failure
+   endpoints;
+3. complete one independently gradient-checked sensitivity or inverse task;
+4. reproduce the primary result on a second suitable machine, obtain an
+   external numerical-CFD/prior-art audit, and freeze the citable artifact.
+
+No additional hand-written CUDA schedule, FD/FV phase, DVEB feature, or
+higher-order mixed-precision rescue is required for this sequence. Data-center
+FP64 rental follows a value-of-information decision after the local matrix;
+it is not assumed mandatory in advance. The detailed gate definitions and
+explicit deferrals are in `ACADEMIC_COMPLETION_ROADMAP.md`.
 
 Commercial equation-library and UI implementation remains behind this list.

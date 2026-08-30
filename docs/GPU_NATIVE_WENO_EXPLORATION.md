@@ -2,9 +2,11 @@
 
 ## Status
 
-This document defines an intentionally noncanonical research exploration.  It
-does not change GradFlow's qualified numerical source, public API, or academic
-claims.
+The intentionally noncanonical G0--G6 exploration is **complete and closed**.
+Its final interpretation is frozen in
+`experiments/gpu_native_reformulation/G_SERIES_SYNTHESIS.md`. It does not
+change GradFlow's qualified numerical source or public API. No G7 or further
+CUDA microarchitecture work is on the GradFlow Academic critical path.
 
 GradFlow's engineering law remains:
 

@@ -3,6 +3,11 @@
 This directory is reserved for the noncanonical experiment defined in
 `docs/GPU_NATIVE_WENO_EXPLORATION.md`.
 
+**Program status: G0--G6 complete and closed.** The integrated conclusion,
+claim boundary, artifact map, and deferral decision are in
+`G_SERIES_SYNTHESIS.md`. No candidate here is a public GradFlow backend, and
+no G7 is authorized by this program.
+
 The experiment deliberately separates two questions:
 
 1. What execution and numerical graph is most comfortable on the GPU?
@@ -17,8 +22,9 @@ until the corresponding mathematical contract and oracle result are recorded.
 
 1. **G0 — static audit.** Count duplicated face work, whole-grid
    intermediates, launch boundaries, reductions, and retained state in the
-   qualified CUDA and ordinary-PyTorch paths. **Source audit complete; GPU
-   profiling pending. See `G0_STATIC_AUDIT.md`.**
+   qualified CUDA and ordinary-PyTorch paths. **Complete. Later G4--G6
+   profiles resolved the schedule, memory-access, register, and occupancy
+   hypotheses needed for program closure. See `G0_STATIC_AUDIT.md`.**
 2. **G1 — reckless U0 frontier.** Implement the complete, explicitly declared
    GPU-comfortable formulation without consulting the numerical oracle during
    design or tuning. **Complete and frozen.**

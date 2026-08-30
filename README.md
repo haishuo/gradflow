@@ -120,6 +120,18 @@ authorities, and commits exact smooth/Sod projections plus conservative
 Shu--Osher restrictions. All oracle gates pass; no Euler FD/FV timing has begun.
 See `docs/FD_FV_PHASE_6A_RESULTS.md`.
 
+The subsequent Phase 6B--6G sequence completed the matched Euler
+qualification, performance, reproducibility, and prepared-AOT deployment
+study. Separately, the noncanonical G0--G6 reckless-to-correct CUDA program is
+now closed: it found a real approximately twofold face-ownership schedule
+effect for fixed FP32 WENO-5, but did not admit a native backend, and its
+shared-pencil and occupancy follow-ups were negative. No further bespoke-CUDA
+work is on the first-paper critical path. The remaining bounded academic plan
+is the arbitrary-order performance matrix, one independently validated
+differentiation use, focused numerical-limit consolidation, and final
+replication/audit/release work. See `docs/ACADEMIC_COMPLETION_ROADMAP.md` and
+`experiments/gpu_native_reformulation/G_SERIES_SYNTHESIS.md`.
+
 ## Current seed
 
 `gradflow.weno5_rhs` operates on unique periodic point samples along the last
@@ -233,6 +245,8 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
 - `experiments/fd_fv_nonlinear/` — exact pre-shock Burgers oracle and Phase-5A freeze
 - `experiments/mixed_precision/` — exhaustive scalar precision assignments and
   isolated CUDA performance records
+- `experiments/gpu_native_reformulation/` — closed G0--G6 reckless-to-correct
+  native-GPU schedule study and immutable evidence
 - `docs/RESEARCH_DIRECTION.md` — research charter and claim boundaries
 - `docs/LITERATURE_REVIEW_PHASE_C_PROTOCOL.md` — frozen systematic-review method
 - `docs/LITERATURE_REVIEW_PHASE_C_RESULTS.md` — prior-art boundary and claim matrix
@@ -260,6 +274,8 @@ all ten tested points for this one fixed Shu Euler 3-D WENO-5 artifact. See
   architecture, and technical-debt policy
 - `docs/ACADEMIC_SCOPE.md` — bounded paper target, required evidence, and
   explicit commercial deferrals
+- `docs/ACADEMIC_COMPLETION_ROADMAP.md` — remaining first-paper gates and
+  explicit detour deferrals
 - `docs/DVEB_RELATIONSHIP.md` — project independence and DVEB change-admission rule
 - `docs/EULER_BOUNDARY_SHOCK_PROTOCOL.md` — next correctness-first trunk boundary
 - `docs/EULER_BOUNDARY_SHOCK_PHASE_A_RESULTS.md` — frozen exact Sod and
