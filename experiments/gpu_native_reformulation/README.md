@@ -45,6 +45,13 @@ until the corresponding mathematical contract and oracle result are recorded.
    and lost to cell-recompute throughout resident timing. The frozen candidate
    therefore failed its speed-memory Pareto gate. See
    `G5_SHARED_PENCIL_RESULTS.md`.**
+7. **G6 — exact-math occupancy ablation.** Cross face block sizes 64/128/256
+   with uncapped/112/96 register policies while holding R6Q mathematics and
+   storage fixed. **Complete: all variants were bitwise identical, but no
+   candidate met the two-point improvement rule. A 96-register cap raised
+   theoretical occupancy only for 64/128-thread blocks, introduced spills,
+   and lost at moderate/large scale; 112 registers retained 33.33% occupancy
+   and performance parity. See `G6_OCCUPANCY_RESULTS.md`.**
 
 CUDA is visible on Forge through the explicitly authorized native execution
 route. G1 was measured on the local NVIDIA GeForce RTX 5070 Ti.

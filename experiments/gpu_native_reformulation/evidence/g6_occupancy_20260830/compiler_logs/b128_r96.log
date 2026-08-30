@@ -1,0 +1,55 @@
+/mnt/projects/gradflow/experiments/gpu_native_reformulation/g6_occupancy/../native_u0/u0.cu(310): warning #550-D: variable "density" was set but never used
+    float density[6];
+          ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/mnt/projects/gradflow/experiments/gpu_native_reformulation/g6_occupancy/../native_u0/u0.cu(185): warning #177-D: function "<unnamed>::js_weights" was declared but never referenced
+  __attribute__((device)) __inline__ __attribute__((always_inline)) void js_weights(
+                                                                         ^
+
+/mnt/projects/gradflow/experiments/gpu_native_reformulation/g6_occupancy/../native_u0/u0.cu(208): warning #177-D: function "<unnamed>::reconstruct_left" was declared but never referenced
+  __attribute__((device)) __inline__ __attribute__((always_inline)) float reconstruct_left(
+                                                                          ^
+
+/mnt/projects/gradflow/experiments/gpu_native_reformulation/g6_occupancy/../native_u0/u0.cu(602): warning #177-D: function "<unnamed>::pencil_kernel" was declared but never referenced
+  __attribute__((global)) void pencil_kernel(DeviceState base_state, DeviceState state,
+                               ^
+
+ptxas info    : Overriding maximum register limit 256 for '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main13update_kernelENS_11DeviceStateES0_PKfS2_fPfi' with  96 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main13pencil_kernelENS_11DeviceStateES0_PKfS2_fPfS3_ii' with  96 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main11face_kernelENS_11DeviceStateEPKfPf' with  96 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main12alpha_kernelENS_11DeviceStateEiPf' with  96 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main17finish_cfl_kernelEPf' with  96 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main10cfl_kernelENS_11DeviceStateEfPf' with  96 of maxrregcount option
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main13update_kernelENS_11DeviceStateES0_PKfS2_fPfi' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__19306d33_5_u0_cu_main13update_kernelENS_11DeviceStateES0_PKfS2_fPfi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 40 registers, used 0 barriers
+ptxas info    : Compile time = 29.120 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main13pencil_kernelENS_11DeviceStateES0_PKfS2_fPfS3_ii' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__19306d33_5_u0_cu_main13pencil_kernelENS_11DeviceStateES0_PKfS2_fPfS3_ii
+    24 bytes stack frame, 24 bytes spill stores, 24 bytes spill loads
+ptxas info    : Used 96 registers, used 1 barriers, 24 bytes cumulative stack size
+ptxas info    : Compile time = 80.261 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main11face_kernelENS_11DeviceStateEPKfPf' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__19306d33_5_u0_cu_main11face_kernelENS_11DeviceStateEPKfPf
+    40 bytes stack frame, 80 bytes spill stores, 88 bytes spill loads
+ptxas info    : Used 96 registers, used 0 barriers, 40 bytes cumulative stack size
+ptxas info    : Compile time = 193.688 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main12alpha_kernelENS_11DeviceStateEiPf' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__19306d33_5_u0_cu_main12alpha_kernelENS_11DeviceStateEiPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 36 registers, used 1 barriers
+ptxas info    : Compile time = 10.514 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main17finish_cfl_kernelEPf' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__19306d33_5_u0_cu_main17finish_cfl_kernelEPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 14 registers, used 0 barriers
+ptxas info    : Compile time = 2.591 ms
+ptxas info    : Compiling entry function '_ZN33_GLOBAL__N__19306d33_5_u0_cu_main10cfl_kernelENS_11DeviceStateEfPf' for 'sm_120'
+ptxas info    : Function properties for _ZN33_GLOBAL__N__19306d33_5_u0_cu_main10cfl_kernelENS_11DeviceStateEfPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 35 registers, used 1 barriers
+ptxas info    : Compile time = 9.124 ms

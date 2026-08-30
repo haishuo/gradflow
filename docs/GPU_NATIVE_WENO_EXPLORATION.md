@@ -271,6 +271,33 @@ future memory-recovery candidate must explicitly preserve coalescing in every
 direction and must be preregistered as a separate experiment. R6Q global
 face-once remains the current non-admitted throughput schedule control.
 
+## G6 outcome: occupancy is not the optimization target
+
+G6 held R6Q mathematics, layout, face ownership, and workspace fixed while
+crossing 64/128/256-thread face blocks with uncapped, 112-register, and
+96-register compilation. All nine candidates were bitwise identical to R6Q
+on 45 forward comparisons. None passed the preregistered improvement rule at
+both primary points.
+
+The 112-register cap did not cross a residency threshold: 256-thread launches
+still admitted two blocks per SM and retained 33.33% theoretical occupancy.
+The 96-register cap raised theoretical occupancy to 41.67% for 64/128-thread
+blocks only by spilling face-kernel live values, and was slower at moderate
+and large grids. Privileged counters showed 32.39% versus 32.44% achieved
+occupancy and approximately 73% SM throughput for frozen R6Q versus the
+profiled 112-register candidate. Nsight Systems showed identical face-kernel
+time within about 0.05%.
+
+The experiment also exposed a measurement boundary: all rebuilt lanes moved
+lazy function setup outside their event by querying CUDA function metadata.
+The rebuilt uncapped 256-thread negative control and sustained timing separate
+that common first-event effect from occupancy. The full correction and
+evidence are in `experiments/gpu_native_reformulation/G6_OCCUPANCY_RESULTS.md`.
+
+This closes simple block-size/register-cap tuning. A future attempt would need
+a separately frozen change to live-value structure, such as warp-distributed
+characteristic work; it cannot be described as merely "raising occupancy."
+
 ## Claim boundary
 
 This exploration may establish that inherited execution structure left
