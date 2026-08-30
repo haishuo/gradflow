@@ -126,10 +126,14 @@ study. Separately, the noncanonical G0--G6 reckless-to-correct CUDA program is
 now closed: it found a real approximately twofold face-ownership schedule
 effect for fixed FP32 WENO-5, but did not admit a native backend, and its
 shared-pencil and occupancy follow-ups were negative. No further bespoke-CUDA
-work is on the first-paper critical path. The remaining bounded academic plan
-is the arbitrary-order performance matrix, one independently validated
-differentiation use, focused numerical-limit consolidation, and final
-replication/audit/release work. See `docs/ACADEMIC_COMPLETION_ROADMAP.md` and
+work is on the first-paper critical path. Academic A1--A3 are complete, and
+the A4 internal release candidate `academic-v0.1.0-rc1` passed a no-hardlink
+clean-checkout reproduction: 293 tests passed, 72 device/fixture gates skipped
+explicitly, and all A1--A4 offline verifiers passed. The remaining paper gates
+are second-machine replication and an independent numerical-CFD/prior-art
+audit. Public release also requires a deliberate project-license decision and
+permission or exclusion for the historical MATLAB and Fortran source bytes.
+See `docs/ACADEMIC_A4_RESULTS.md`, `docs/ACADEMIC_COMPLETION_ROADMAP.md`, and
 `experiments/gpu_native_reformulation/G_SERIES_SYNTHESIS.md`.
 
 ## Current seed
@@ -312,5 +316,6 @@ recorded as untested in the gate documentation; it is not simulated.
 ## Reference redistribution
 
 The local research references have strong recorded provenance, but no public
-redistribution permission was found in the supplied material. See
-`references/README.md` before preparing any public release.
+redistribution permission was found in the supplied material. GradFlow also
+does not yet have a selected top-level software license. See
+`docs/ACADEMIC_A4_RIGHTS_STATUS.md` before preparing any public release.

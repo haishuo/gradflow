@@ -110,7 +110,8 @@ minimizer independently agreed, CPU/CUDA eager/compiled gradients passed, and
 the large whole-solve compilation cost was retained. See
 `ACADEMIC_A3_RESULTS.md`.
 
-### A4. Replicate, audit, and freeze the artifact
+### A4. Replicate, audit, and freeze the artifact — local candidate complete,
+external gates pending
 
 After A1--A3 stabilize:
 
@@ -123,6 +124,16 @@ After A1--A3 stabilize:
 - freeze environments, scripts, tables, figures, raw records, and hashes;
 - create a citable release candidate and run a clean-room reproduction; and
 - freeze paper wording only after those checks pass.
+
+The local release-candidate portion completed on 2026-08-30. Tag
+`academic-v0.1.0-rc1` identifies the 1,855-file payload; a clean no-hardlink
+clone passed 293 tests with 72 declared skips and all A1--A4 offline verifiers.
+Environment, rights, second-machine, and external-review packets are frozen.
+See `ACADEMIC_A4_RESULTS.md`.
+
+A4 remains open: the second-machine replication and independent
+numerical-CFD/prior-art audit have not occurred. Reference and project-license
+questions are explicitly flagged but not legally resolved.
 
 ## Explicitly deferred from the first academic artifact
 
@@ -151,7 +162,7 @@ been answered; it is not an invitation to optimize until it becomes positive.
 Under this discipline, A1--A3 are closed and the remaining route is:
 
 ```text
-A4 replication, external audit, and release artifact
+A4 second-machine replication + independent CFD/prior-art audit
 ```
 
 Design work for A3 may overlap A2, but performance remains downstream of the

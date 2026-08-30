@@ -15,6 +15,23 @@ def test_academic_a4_artifact_and_release_policy_verify() -> None:
             sys.executable,
             str(ROOT / "experiments" / "academic_a4" / "verify_a4.py"),
             str(EVIDENCE),
+            "--ref",
+            "academic-v0.1.0-rc1",
+        ),
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr
+
+
+def test_academic_a4_cleanroom_record_verifies() -> None:
+    completed = subprocess.run(
+        (
+            sys.executable,
+            str(ROOT / "experiments" / "academic_a4" / "verify_cleanroom.py"),
+            str(EVIDENCE),
         ),
         cwd=ROOT,
         check=False,

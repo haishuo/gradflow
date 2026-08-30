@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -20,9 +21,22 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def git_content(reference: str, relative: str) -> bytes:
+    return subprocess.run(
+        ("git", "show", f"{reference}:{relative}"),
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+    ).stdout
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("evidence", type=Path)
+    parser.add_argument(
+        "--ref",
+        help="verify indexed payload bytes from this Git ref instead of the checkout",
+    )
     arguments = parser.parse_args()
     evidence = arguments.evidence.resolve()
 
@@ -37,10 +51,15 @@ def main() -> None:
     assert paths == sorted(paths)
     assert len(paths) == len(set(paths))
     for item in index["files"]:
-        path = ROOT / item["path"]
-        assert path.is_file(), f"missing indexed file: {item['path']}"
-        assert path.stat().st_size == item["bytes"], item["path"]
-        assert sha256(path) == item["sha256"], item["path"]
+        if arguments.ref:
+            content = git_content(arguments.ref, item["path"])
+            assert len(content) == item["bytes"], item["path"]
+            assert hashlib.sha256(content).hexdigest() == item["sha256"], item["path"]
+        else:
+            path = ROOT / item["path"]
+            assert path.is_file(), f"missing indexed file: {item['path']}"
+            assert path.stat().st_size == item["bytes"], item["path"]
+            assert sha256(path) == item["sha256"], item["path"]
 
     rights = index["redistribution"]
     assert rights["status"] == "unresolved_public_release_blockers"
@@ -65,15 +84,20 @@ def main() -> None:
             expected, relative = line.split("  ", maxsplit=1)
             assert sha256(evidence / relative) == expected, relative
 
-    environment = json.loads((ROOT / "environments/academic-a4-forge.json").read_text())
+    def text_at(relative: str) -> str:
+        if arguments.ref:
+            return git_content(arguments.ref, relative).decode()
+        return (ROOT / relative).read_text()
+
+    environment = json.loads(text_at("environments/academic-a4-forge.json"))
     assert environment["schema"] == "gradflow-academic-a4-environment-v1"
     assert environment["gpu"]["model"] == "NVIDIA GeForce RTX 5070 Ti"
     assert environment["packages"]["torch"] == "2.9.0.dev20250705+cu128"
 
-    protocol = (ROOT / "docs/ACADEMIC_A4_PROTOCOL.md").read_text()
-    rights_document = (ROOT / "docs/ACADEMIC_A4_RIGHTS_STATUS.md").read_text()
-    external = (ROOT / "docs/ACADEMIC_A4_EXTERNAL_REVIEW_PACKET.md").read_text()
-    replication = (ROOT / "docs/ACADEMIC_A4_SECOND_MACHINE_PACKET.md").read_text()
+    protocol = text_at("docs/ACADEMIC_A4_PROTOCOL.md")
+    rights_document = text_at("docs/ACADEMIC_A4_RIGHTS_STATUS.md")
+    external = text_at("docs/ACADEMIC_A4_EXTERNAL_REVIEW_PACKET.md")
+    replication = text_at("docs/ACADEMIC_A4_SECOND_MACHINE_PACKET.md")
     assert "Only state 3 closes A4" in protocol
     assert "No top-level `LICENSE`" in rights_document
     assert "review not yet performed" in external

@@ -1,0 +1,95 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.13, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tmp/gradflow-a4-cleanroom-bo1s529w/gradflow
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.10.0, hydra-core-1.3.2, cov-6.2.1
+collected 365 items
+
+tests/test_academic_a1.py .                                              [  0%]
+tests/test_academic_a2.py .                                              [  0%]
+tests/test_academic_a3.py .                                              [  0%]
+tests/test_academic_a4.py .                                              [  1%]
+tests/test_burgers.py ..........                                         [  3%]
+tests/test_convergence.py ......                                         [  5%]
+tests/test_deferred_cuda_gate_records.py .                               [  5%]
+tests/test_device_agreement.py ..ss.                                     [  7%]
+tests/test_dveb_abi.py sssssss                                           [  9%]
+tests/test_dveb_device_abi.py sssss                                      [ 10%]
+tests/test_euler1d.py .................................................. [ 24%]
+.......ssssssssssssssssssssssss...                                       [ 33%]
+tests/test_euler1d_fv.py ........ss..                                    [ 36%]
+tests/test_euler_arbitrary_order.py .................................... [ 46%]
+ssssssssssss...sss                                                       [ 51%]
+tests/test_euler_mixed_precision.py ...                                  [ 52%]
+tests/test_face_ownership_screen.py .                                    [ 52%]
+tests/test_fd_fv_phase_2_oracles.py .....                                [ 53%]
+tests/test_fd_fv_phase_4_records.py ....                                 [ 55%]
+tests/test_fd_fv_phase_5a_oracle.py ......                               [ 56%]
+tests/test_fd_fv_phase_5b_qualification.py .                             [ 56%]
+tests/test_fd_fv_phase_5c_harness.py ....                                [ 58%]
+tests/test_fd_fv_phase_5c_initial.py .                                   [ 58%]
+tests/test_fd_fv_phase_5cr.py .                                          [ 58%]
+tests/test_fd_fv_phase_5cr_harness.py ...                                [ 59%]
+tests/test_fd_fv_phase_6a_oracle.py ....                                 [ 60%]
+tests/test_fd_fv_phase_6a_record.py .                                    [ 60%]
+tests/test_fd_fv_phase_6b_harness.py .....                               [ 62%]
+tests/test_fd_fv_phase_6c_harness.py .....                               [ 63%]
+tests/test_fd_fv_phase_6d_harness.py ....                                [ 64%]
+tests/test_fd_fv_phase_6e_harness.py ......                              [ 66%]
+tests/test_fv_weno5.py .............                                     [ 69%]
+tests/test_gpu_native_g3_qualification.py .                              [ 70%]
+tests/test_gpu_native_g4_performance.py .                                [ 70%]
+tests/test_gpu_native_g5_shared_pencil.py .                              [ 70%]
+tests/test_gpu_native_g6_occupancy.py .                                  [ 70%]
+tests/test_gpu_native_g_series_closure.py .                              [ 71%]
+tests/test_infrastructure_admission.py ........                          [ 73%]
+tests/test_mixed_precision.py ....                                       [ 74%]
+tests/test_phase_a_oracles.py .......                                    [ 76%]
+tests/test_phase_b_qualifier.py .....                                    [ 77%]
+tests/test_solver_vertical_slice.py ..............ss                     [ 82%]
+tests/test_weno5_oracle.py ..                                            [ 82%]
+tests/test_weno_js.py ...........................ssssssssssss...sss.     [ 95%]
+tests/test_weno_js_coefficients.py .................                     [100%]
+
+=============================== warnings summary ===============================
+tests/test_burgers.py::test_fullgraph_compile_cpu[burgers_fd_weno5_rhs]
+  /home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/cuda/__init__.py:801: UserWarning: Can't initialize NVML
+    warnings.warn("Can't initialize NVML")
+
+tests/test_burgers.py::test_fullgraph_compile_cpu[burgers_fd_weno5_rhs]
+  /home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)
+    return torch._C._get_cublas_allow_tf32()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_device_agreement.py:47: CUDA is unavailable
+SKIPPED [1] tests/test_device_agreement.py:55: CUDA is unavailable
+SKIPPED [1] tests/test_dveb_abi.py:66: set GRADFLOW_TEST_DVEB_MANIFEST to exercise portable ABI v1
+SKIPPED [3] tests/test_dveb_abi.py:74: set GRADFLOW_TEST_DVEB_MANIFEST to exercise portable ABI v1
+SKIPPED [1] tests/test_dveb_abi.py:90: set the verified DVEB placement model and hash
+SKIPPED [2] tests/test_dveb_abi.py:114: set GRADFLOW_TEST_DVEB_EXECUTABLE to compare the direct runner
+SKIPPED [3] tests/test_dveb_device_abi.py:34: set GRADFLOW_TEST_DVEB_DEVICE_MANIFEST on a CUDA host
+SKIPPED [1] tests/test_dveb_device_abi.py:46: set GRADFLOW_TEST_DVEB_DEVICE_MANIFEST on a CUDA host
+SKIPPED [1] tests/test_dveb_device_abi.py:60: set GRADFLOW_TEST_DVEB_DEVICE_MANIFEST on a CUDA host
+SKIPPED [24] tests/test_euler1d.py:201: CUDA is unavailable
+SKIPPED [2] tests/test_euler1d_fv.py:131: CUDA is unavailable
+SKIPPED [12] tests/test_euler_arbitrary_order.py:252: CUDA is unavailable
+SKIPPED [3] tests/test_euler_arbitrary_order.py:289: CUDA is unavailable
+SKIPPED [1] tests/test_solver_vertical_slice.py:179: CUDA is unavailable
+SKIPPED [1] tests/test_solver_vertical_slice.py:193: CUDA is unavailable
+SKIPPED [12] tests/test_weno_js.py:175: CUDA is unavailable
+SKIPPED [3] tests/test_weno_js.py:211: CUDA is unavailable
+================= 293 passed, 72 skipped, 2 warnings in 44.61s =================
+
+
+Academic A1 evidence, source index, and frozen conclusions verify.
+
+
+Academic A2 evidence, cache endpoints, exclusions, and conclusions verify.
+
+
+Academic A3 inverse, gradient, compiler, and timing evidence verify.
+
+
+Academic A4 payload hashes and release-policy gates verify.

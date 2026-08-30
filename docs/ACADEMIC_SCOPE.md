@@ -148,11 +148,12 @@ product framework work must not delay the bounded paper.
 ## Immediate trunk order
 
 The long FD/FV and GPU-native branches have reached their declared stop
-conditions, and A1--A3 are complete. The remaining first-paper sequence is
+conditions, A1--A3 are complete, and the A4 internal release candidate has
+passed a clean-checkout reproduction. The remaining first-paper sequence is
 now:
 
-1. reproduce the primary result on a second suitable machine, obtain an
-   external numerical-CFD/prior-art audit, and freeze the citable artifact.
+1. reproduce the primary result on a second suitable machine and obtain an
+   external numerical-CFD/prior-art audit of the frozen candidate.
 
 No additional hand-written CUDA schedule, FD/FV phase, DVEB feature, or
 higher-order mixed-precision rescue is required for this sequence. Data-center

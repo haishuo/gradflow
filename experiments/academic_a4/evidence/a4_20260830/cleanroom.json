@@ -1,0 +1,63 @@
+{
+  "schema": "gradflow-academic-a4-cleanroom-v1",
+  "created_utc": "2026-08-30T18:34:51.736767+00:00",
+  "requested_ref": "academic-v0.1.0-rc1",
+  "tested_commit": "99a2a806fdaedb6cc32cdad2d621144d014865de",
+  "clone_mode": "local_no_hardlinks",
+  "network_used": false,
+  "python_executable": "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+  "python": "3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+  "source_tree_clean_before": true,
+  "source_tree_clean_after": true,
+  "commands": [
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "-m",
+        "pytest"
+      ],
+      "returncode": 0,
+      "wall_seconds": 46.162789499998325
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_a1/verify_a1.py",
+        "experiments/academic_a1/evidence/a1_20260830"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.02658636699197814
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_a2/verify_a2.py",
+        "experiments/academic_a2/evidence/a2_20260830"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.036566784998285584
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_a3/verify_a3.py",
+        "experiments/academic_a3/evidence/a3_20260830"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.021602874010568485
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_a4/verify_a4.py",
+        "experiments/academic_a4/evidence/a4_20260830"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.17926670199085493
+    }
+  ],
+  "all_passed": true,
+  "stdout_sha256": "b4cb6553f11211fc5344d2a228689cf960ed97158d8f9142c258b850ab824b18",
+  "stderr_sha256": "79488488398f5f5aed236dd6e9f914599370d04dfe70fda61b8c83bf739b1088"
+}
