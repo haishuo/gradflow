@@ -74,14 +74,13 @@ if (u4c_state_read != (size_t)block0np0) {
 int u4c_state_disp[OPS_MAX_DIM] = {0};
 int u4c_state_size[OPS_MAX_DIM] = {0};
 ops_dat_get_extents(phi_B0, 0, u4c_state_disp, u4c_state_size);
-double *u4c_state_buffer = (double*)malloc(sizeof(double)*u4c_state_size[0]);
-for (int u4c_k = 0; u4c_k < u4c_state_size[0]; ++u4c_k) {
-  const int u4c_logical = u4c_state_disp[0] + u4c_k;
-  const int u4c_periodic = ((u4c_logical % block0np0) + block0np0) % block0np0;
-  u4c_state_buffer[u4c_k] = u4c_state_interior[u4c_periodic];
+if (u4c_state_disp[0] != 0 || u4c_state_size[0] != block0np0) {
+  ops_printf("Unexpected U4-C public OPS state extent\n");
+  free(u4c_state_interior);
+  ops_exit();
+  return 2;
 }
-ops_dat_set_data(phi_B0, 0, (char*)u4c_state_buffer);
-free(u4c_state_buffer);
+ops_dat_set_data(phi_B0, 0, (char*)u4c_state_interior);
 free(u4c_state_interior);
 const int u4c_warmups = getenv("U4C_WARMUPS") ? atoi(getenv("U4C_WARMUPS")) : 5;
 const int u4c_samples = getenv("U4C_SAMPLES") ? atoi(getenv("U4C_SAMPLES")) : 20;

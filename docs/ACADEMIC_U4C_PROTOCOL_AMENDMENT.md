@@ -25,8 +25,9 @@ array for the already-frozen analytic state. That exact array is:
 1. the input to the canonical GradFlow CPU residual;
 2. loaded by each GradFlow CPU and CUDA worker; and
 3. loaded through the public `ops_dat_set_data` interface by each OpenSBLI OPS
-   sequential and CUDA process, with periodic halo bytes filled from the same
-   array before any admitted evaluation.
+   sequential and CUDA process. The existing generated periodic halo exchange
+   then fills halo storage from that byte-identical interior before every
+   admitted evaluation.
 
 Each state is retained and hashed. All qualifications and all timing cells are
 restarted from empty evidence. Sizes, mathematics, lanes, warmups, sample
