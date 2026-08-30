@@ -108,8 +108,20 @@ def main() -> None:
         }
     environment = os.environ.copy()
     environment["PYTHONPATH"] = str(ROOT / "src")
+    excluded_unregistered = []
+    for identifier, worker in document["workers"].items():
+        if "E1_scale" in worker["configuration"]["roles"] and worker["device"] == "cpu":
+            worker["protocol_eligible"] = False
+            worker["exclusion_reason"] = (
+                "unregistered CPU dispatch for a CUDA-only E1_scale configuration"
+            )
+            excluded_unregistered.append(identifier)
+        else:
+            worker["protocol_eligible"] = True
+    document["excluded_unregistered_workers"] = excluded_unregistered
     for configuration in document["configurations"]:
-        for device in ("cpu", "cuda"):
+        devices = ("cuda",) if "E1_scale" in configuration["roles"] else ("cpu", "cuda")
+        for device in devices:
             identifier = key(configuration, device)
             if identifier in document["workers"]:
                 print(f"{identifier}: already recorded", flush=True)
@@ -156,6 +168,7 @@ def main() -> None:
                 "record": payload,
                 "stdout": str(stdout_path.relative_to(arguments.output.parent)),
                 "stderr": str(stderr_path.relative_to(arguments.output.parent)),
+                "protocol_eligible": True,
             }
             arguments.output.write_text(json.dumps(document, indent=2) + "\n")
             status = payload.get("status") if isinstance(payload, dict) else "no-record"
