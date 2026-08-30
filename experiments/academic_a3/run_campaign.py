@@ -18,7 +18,12 @@ from typing import Any
 
 import torch
 
-from problem import (
+ROOT = Path(__file__).resolve().parents[2]
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(HERE))
+
+from problem import (  # noqa: E402
     TRUE_SPEED,
     autograd_inverse,
     evaluate,
@@ -27,8 +32,6 @@ from problem import (
 )
 
 
-ROOT = Path(__file__).resolve().parents[2]
-HERE = Path(__file__).resolve().parent
 FINITE_DIFFERENCE_STEPS = tuple(10.0**-power for power in range(1, 9))
 
 
