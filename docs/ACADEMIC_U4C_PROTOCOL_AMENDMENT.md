@@ -41,3 +41,14 @@ rules remain unchanged.
 
 This amendment removes an unintended input mismatch; it does not tune either
 operator or alter the frozen performance state.
+
+## Sequential OPS thread pin
+
+The first admitted CPU worker exposed that the OPS target named `seq` is linked
+through an OpenMP-capable generated translation and otherwise inherits the
+machine-wide OpenMP thread default. That is not the frozen sequential CPU lane
+and produced discontinuous thread-launch overhead. Every restarted process now
+sets `OMP_NUM_THREADS=1` and `OMP_DYNAMIC=FALSE`. This matches the protocol's
+sequential-OPS lane and GradFlow's already-frozen one-thread CPU policy; it is
+not a post-hoc thread-count search. No observation made without this pin is
+retained.

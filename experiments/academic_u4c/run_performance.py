@@ -311,6 +311,8 @@ def main() -> None:
             "HDF5_INSTALL_PATH": str(hdf5),
             "MPICXX": "g++",
             "NVCCFLAGS": native_flags,
+            "OMP_NUM_THREADS": "1",
+            "OMP_DYNAMIC": "FALSE",
             "PYTHONPATH": os.pathsep.join([str(args.sympy_root.resolve()), str(opensbli)]),
             "LD_LIBRARY_PATH": os.pathsep.join([str(cuda / "lib64"), str(hdf5 / "lib"), environment.get("LD_LIBRARY_PATH", "")]),
         }
