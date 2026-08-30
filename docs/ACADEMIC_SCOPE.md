@@ -83,9 +83,9 @@ Before a paper claim is frozen, GradFlow needs:
    representative orders. Broader geometries are not a first-paper gate.
 3. **Numerical-limit characterization.** The characteristic-Euler
    mixed-precision transfer and critical-point studies are complete, including
-   their negative results. Consolidate the remaining conditioning, roundoff,
-   epsilon-sensitivity, and order-dependent failure record without beginning
-   another precision-policy search.
+   their negative results. A1 has now consolidated coefficient conditioning,
+   roundoff floors, epsilon sensitivity, and order-dependent failure records
+   without beginning another precision-policy search.
 4. **One genuine differentiation use.** Demonstrate a bounded inverse or
    sensitivity problem with an independently checkable target and gradient
    validation.
@@ -140,15 +140,13 @@ product framework work must not delay the bounded paper.
 ## Immediate trunk order
 
 The long FD/FV and GPU-native branches have reached their declared stop
-conditions. The remaining first-paper sequence is now deliberately shorter:
+conditions, and A1 is complete. The remaining first-paper sequence is now:
 
-1. freeze the final claim table and consolidate the order-5--15 numerical-
-   limit record;
-2. execute the formulation-matched arbitrary-order performance matrix with
+1. execute the formulation-matched arbitrary-order performance matrix with
    explicit cold, warm, AOT, transfer, residency, time, memory, and failure
    endpoints;
-3. complete one independently gradient-checked sensitivity or inverse task;
-4. reproduce the primary result on a second suitable machine, obtain an
+2. complete one independently gradient-checked sensitivity or inverse task;
+3. reproduce the primary result on a second suitable machine, obtain an
    external numerical-CFD/prior-art audit, and freeze the citable artifact.
 
 No additional hand-written CUDA schedule, FD/FV phase, DVEB feature, or

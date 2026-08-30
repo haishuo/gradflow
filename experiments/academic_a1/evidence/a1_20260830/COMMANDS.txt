@@ -1,0 +1,8 @@
+# Frozen single-threaded CPU numerical-limit execution
+env PYTHONPATH=src /home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a1/run_numerical_limits.py --output experiments/academic_a1/evidence/a1_20260830/numerical_limits.json
+
+# Deterministic consolidation of immutable source records
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a1/build_consolidation.py --output experiments/academic_a1/evidence/a1_20260830/consolidation.json
+
+# Offline verification
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a1/verify_a1.py experiments/academic_a1/evidence/a1_20260830

@@ -35,14 +35,16 @@ is complete.
   negative characteristic-Euler transfer test;
 - endpoint-explicit FD/FV WENO-JS5 evidence through prepared AOT execution;
 - fixed WENO-5 CPU, ordinary-PyTorch, AOT, DVEB, and native-GPU controls; and
-- the closed reckless-to-correct GPU-native formulation study.
+- the closed reckless-to-correct GPU-native formulation study; and
+- the completed A1 claim, formulation, coefficient-conditioning,
+  roundoff-floor, epsilon-sensitivity, and failure-boundary freeze.
 
 These results are inputs to a paper package, not proof that the package is
 already publishable.
 
 ## Remaining mandatory gates
 
-### A1. Freeze the final claim and numerical-limit matrix
+### A1. Freeze the final claim and numerical-limit matrix — complete
 
 Consolidate the paper's exact formulation contracts and test only the
 remaining order-dependent numerical questions needed to interpret orders
@@ -58,6 +60,12 @@ Deliverables:
 - prospectively frozen thresholds for any genuinely missing cases; and
 - an updated literature comparison with OpenSBLI, PyWENO/PyClaw, HOPE,
   JAX-Fluids, and JAX-Shock.
+
+Completed on 2026-08-30. All new numerical-limit executions were finite and
+conservative; no canonical source or policy changed. See
+`ACADEMIC_A1_RESULTS.md`, `ACADEMIC_A1_CLAIM_MATRIX.md`,
+`ACADEMIC_A1_NUMERICAL_LIMITS.md`, and
+`ACADEMIC_A1_PRIOR_ART_COMPARISON.md`.
 
 ### A2. Run the core arbitrary-order performance matrix
 
@@ -128,14 +136,13 @@ named release gate above. Interesting but nonessential questions are recorded
 as future work. A negative result is complete when its frozen question has
 been answered; it is not an invitation to optimize until it becomes positive.
 
-Under this discipline, the shortest defensible route to GradFlow Academic is:
+Under this discipline, A1 is closed and the shortest remaining route is:
 
 ```text
-A1 numerical/claim freeze
-    -> A2 arbitrary-order performance matrix
+A2 arbitrary-order performance matrix
     -> A3 validated differentiation use
     -> A4 replication, external audit, and release artifact
 ```
 
-A1 and design work for A3 may overlap, but performance remains downstream of
-the relevant correctness gates.
+Design work for A3 may overlap A2, but performance remains downstream of the
+relevant correctness gates.

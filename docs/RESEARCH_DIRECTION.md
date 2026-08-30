@@ -517,3 +517,13 @@ also used approximately half the temporary allocation at moderate/large
 sizes. Extreme-resolution 1-D compiled points failed the frozen correctness
 gate and support no timing claim. See
 `experiments/face_ownership_screen/FACE_OWNERSHIP_SCREEN_RESULTS.md`.
+
+Academic A1 then froze the first-paper claim taxonomy and completed the
+remaining scalar coefficient-conditioning, sampled roundoff-floor, and
+epsilon-sensitivity characterization. Exact construction remains qualified
+through order 15, while basis-dependent condition diagnostics grow sharply
+and useful refinement ends at progressively coarser grids as order rises.
+The scalar epsilon `1e-29` remained below the frozen material-change boundary
+relative to `1e-40` over the tested amplitudes; no default changed. A1 found
+no missing correctness experiment that must precede the A2 arbitrary-order
+performance matrix. See `ACADEMIC_A1_RESULTS.md`.
