@@ -83,7 +83,7 @@ def main() -> None:
         ).stdout
 
         environment = dict(os.environ)
-        environment["PYTHONPATH"] = str(clone / "src")
+        environment["PYTHONPATH"] = os.pathsep.join((str(clone), str(clone / "src")))
         environment["PYTHONDONTWRITEBYTECODE"] = "1"
         commands = [
             [sys.executable, "-m", "pytest"],

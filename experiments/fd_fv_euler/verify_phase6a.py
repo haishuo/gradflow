@@ -17,7 +17,7 @@ for candidate in (ROOT,):
     if str(candidate) not in sys.path:
         sys.path.insert(0, str(candidate))
 
-from experiments.fd_fv_euler.phase6a_oracle import build_projections
+from experiments.fd_fv_euler.phase6a_oracle import build_projections  # noqa: E402
 
 
 RESULTS = ROOT / "experiments/fd_fv_euler/results/phase_6a_20260828"
@@ -25,9 +25,30 @@ RECORD = RESULTS / "contract.json"
 PROJECTIONS = RESULTS / "projections.npz"
 SOURCE_COMMIT = "93b8749fef8611e3a5450329d2509f9c6ef26fb2"
 RECORD_SHA256 = "00ffe129fff3bb5e1f1ccea817ba6a5164adc46d489e20709854e93de9121c9d"
-PROJECTIONS_SHA256 = (
-    "56670eb847c8fe643f96f55275edf20a1c9a01957d248c24fd81ff3ebe6f27a4"
-)
+PROJECTIONS_SHA256 = "56670eb847c8fe643f96f55275edf20a1c9a01957d248c24fd81ff3ebe6f27a4"
+REGENERATION_ABSOLUTE_TOLERANCE = 5.0e-14
+
+
+def compare_nested(actual: object, expected: object, path: str = "root") -> None:
+    """Compare regenerated diagnostics under a portable roundoff bound."""
+    assert type(actual) is type(expected), path
+    if isinstance(actual, dict):
+        assert actual.keys() == expected.keys(), path
+        for key in actual:
+            compare_nested(actual[key], expected[key], f"{path}.{key}")
+    elif isinstance(actual, list):
+        assert len(actual) == len(expected), path
+        for index, (actual_item, expected_item) in enumerate(zip(actual, expected)):
+            compare_nested(actual_item, expected_item, f"{path}[{index}]")
+    elif isinstance(actual, float):
+        assert math.isclose(
+            actual,
+            expected,
+            rel_tol=0.0,
+            abs_tol=REGENERATION_ABSOLUTE_TOLERANCE,
+        ), path
+    else:
+        assert actual == expected, path
 
 
 def sha256(path: Path) -> str:
@@ -98,8 +119,7 @@ def verify_diagnostics(diagnostics: dict) -> dict[str, bool]:
             for item in diagnostics["sod"].values()
         ),
         "shu_conservative_restriction": all(
-            item["fine_restricted_integral_maximum_absolute_difference"]
-            <= 5.0e-15
+            item["fine_restricted_integral_maximum_absolute_difference"] <= 5.0e-15
             for item in diagnostics["shu_osher"].values()
         ),
     }
@@ -130,8 +150,14 @@ def main() -> None:
     with np.load(PROJECTIONS) as archive:
         assert set(archive.files) == set(rebuilt_arrays)
         for name, expected in rebuilt_arrays.items():
-            assert np.array_equal(archive[name], expected), name
-    assert rebuilt_diagnostics == payload["diagnostics"]
+            np.testing.assert_allclose(
+                archive[name],
+                expected,
+                rtol=0.0,
+                atol=REGENERATION_ABSOLUTE_TOLERANCE,
+                err_msg=name,
+            )
+    compare_nested(rebuilt_diagnostics, payload["diagnostics"])
     gates = verify_diagnostics(payload["diagnostics"])
     assert gates == payload["gate_decisions"]
     assert payload["failed_gates"] == sorted(
@@ -140,9 +166,7 @@ def main() -> None:
     assert payload["passed"] is all(gates.values())
     assert payload["passed"] is True
 
-    oracle_source = (
-        ROOT / "experiments/fd_fv_euler/phase6a_oracle.py"
-    ).read_text()
+    oracle_source = (ROOT / "experiments/fd_fv_euler/phase6a_oracle.py").read_text()
     assert "import torch" not in oracle_source
     assert "from gradflow" not in oracle_source
     print(

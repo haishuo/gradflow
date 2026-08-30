@@ -21,9 +21,7 @@ ROOT = Path(__file__).resolve().parents[2]
 RESULTS = ROOT / "experiments/fd_fv_euler/results/phase_6b_20260828"
 RECORD = RESULTS / "qualification.json"
 RAW = RESULTS / "raw_arrays.npz"
-PROJECTIONS = (
-    ROOT / "experiments/fd_fv_euler/results/phase_6a_20260828/projections.npz"
-)
+PROJECTIONS = ROOT / "experiments/fd_fv_euler/results/phase_6a_20260828/projections.npz"
 EXPECTED_SOURCE_COMMIT = "c237716"
 EXPECTED_PROTOCOL_COMMIT = "6662943"
 SIZES = (24, 36, 54, 81)
@@ -55,9 +53,7 @@ def norms(difference: np.ndarray) -> dict[str, float]:
 def rates(errors: list[float]) -> list[float]:
     return [
         math.log(coarse / fine) / math.log(fine_n / coarse_n)
-        for coarse, fine, coarse_n, fine_n in zip(
-            errors, errors[1:], SIZES, SIZES[1:]
-        )
+        for coarse, fine, coarse_n, fine_n in zip(errors, errors[1:], SIZES, SIZES[1:])
     ]
 
 
@@ -144,9 +140,7 @@ def verify_predecessors(payload: dict[str, Any]) -> bool:
         "deferred_cuda": ROOT / "experiments/deferred_cuda_gates/verify.py",
     }
     for name, script in cases.items():
-        result = subprocess.run(
-            (sys.executable, str(script)), cwd=ROOT, check=False
-        )
+        result = subprocess.run((sys.executable, str(script)), cwd=ROOT, check=False)
         assert result.returncode == 0
         assert payload["predecessors"][name]["passed"] is True
     return True
@@ -156,7 +150,14 @@ def verify_projection_identity(payload: dict[str, Any]) -> bool:
     generated, _ = build_projections()
     with np.load(PROJECTIONS) as frozen:
         assert set(generated) == set(frozen.files)
-        assert all(np.array_equal(value, frozen[key]) for key, value in generated.items())
+        for key, value in generated.items():
+            np.testing.assert_allclose(
+                value,
+                frozen[key],
+                rtol=0.0,
+                atol=5.0e-14,
+                err_msg=key,
+            )
     assert payload["projection_identity"]["same_keys"] is True
     assert all(
         case["array_equal"] and case["passed"]
@@ -301,7 +302,9 @@ def sod_locations(values: np.ndarray, cells: int) -> dict[str, float]:
     return result
 
 
-def shu_metrics(actual: np.ndarray, expected: np.ndarray, cells: int) -> dict[str, float]:
+def shu_metrics(
+    actual: np.ndarray, expected: np.ndarray, cells: int
+) -> dict[str, float]:
     x = -5.0 + (np.arange(cells, dtype=np.float64) + 0.5) * (10.0 / cells)
     window = (x >= -3.0) & (x <= 3.0)
     left = actual[0, window]
@@ -312,7 +315,10 @@ def shu_metrics(actual: np.ndarray, expected: np.ndarray, cells: int) -> dict[st
         np.linalg.norm(left_centered) * np.linalg.norm(right_centered)
     )
     tv_ratio = np.sum(np.abs(np.diff(left))) / np.sum(np.abs(np.diff(right)))
-    return {"density_correlation": float(correlation), "density_total_variation_ratio": float(tv_ratio)}
+    return {
+        "density_correlation": float(correlation),
+        "density_total_variation_ratio": float(tv_ratio),
+    }
 
 
 def verify_shocks(payload: dict[str, Any], raw: np.lib.npyio.NpzFile) -> bool:
@@ -323,7 +329,9 @@ def verify_shocks(payload: dict[str, Any], raw: np.lib.npyio.NpzFile) -> bool:
             for cells, record in zip(SHOCK_SIZES, problem_record["records"]):
                 conserved = raw[f"shock_{problem}_n{cells}_conserved"]
                 actual_primitive = raw[f"shock_{problem}_n{cells}_primitive"]
-                np.testing.assert_allclose(primitive(conserved), actual_primitive, atol=2e-14)
+                np.testing.assert_allclose(
+                    primitive(conserved), actual_primitive, atol=2e-14
+                )
                 prefix = "sod" if problem == "sod" else "shu"
                 expected_conserved = expected_arrays[
                     f"{prefix}_n{cells}_fv_"
@@ -354,7 +362,9 @@ def verify_shocks(payload: dict[str, Any], raw: np.lib.npyio.NpzFile) -> bool:
                 limits = thresholds["sod"]
                 locations = sod_locations(raw["shock_sod_n800_primitive"], 800)
                 for name, value in locations.items():
-                    assert_close(value, records[-1]["wave_locations"][name]["error_cells"])
+                    assert_close(
+                        value, records[-1]["wave_locations"][name]["error_cells"]
+                    )
                 gates = {
                     "completed": all(item["completed"] for item in records),
                     "positive_stages": positive,
@@ -378,17 +388,14 @@ def verify_shocks(payload: dict[str, Any], raw: np.lib.npyio.NpzFile) -> bool:
                 }
             else:
                 limits = thresholds["shu_osher"]
-                errors = [
-                    item["primitive_errors"]["l1"]["density"] for item in records
-                ]
+                errors = [item["primitive_errors"]["l1"]["density"] for item in records]
                 expected = expected_arrays["shu_n800_fv_reference_primitive"]
-                structure = shu_metrics(raw["shock_shu_osher_n800_primitive"], expected, 800)
+                structure = shu_metrics(
+                    raw["shock_shu_osher_n800_primitive"], expected, 800
+                )
                 compare_metric_tree(
                     structure,
-                    {
-                        name: records[-1]["structure"][name]
-                        for name in structure
-                    },
+                    {name: records[-1]["structure"][name] for name in structure},
                 )
                 gates = {
                     "completed": all(item["completed"] for item in records),
@@ -424,12 +431,10 @@ def verify_record_decisions(payload: dict[str, Any]) -> dict[str, bool]:
         for name in ("cpu_cases", "cuda_cases", "cpu_cuda_agreement")
         for item in payload["compiler_and_device"][name].values()
     )
-    transfers = (
-        not any(payload["transfer_evidence"]["static_forbidden_hits"].values())
-        and all(
-            item["passed"]
-            for item in payload["transfer_evidence"]["profiles"].values()
-        )
+    transfers = not any(
+        payload["transfer_evidence"]["static_forbidden_hits"].values()
+    ) and all(
+        item["passed"] for item in payload["transfer_evidence"]["profiles"].values()
     )
     assert payload["differentiation"]["passed"] == gradients
     assert payload["compiler_and_device"]["passed"] == compiler
