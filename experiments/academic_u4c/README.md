@@ -5,3 +5,7 @@ U4-B OpenSBLI operator on CUDA, then compares only correctness-admitted,
 mathematically matched OpenSBLI and compiled GradFlow endpoints.
 
 No U4-C timing existed when the protocol was frozen.
+
+The C1 CUDA qualification is complete and passed. Its machine-readable record
+is in `evidence/u4c_c1_20260830/`, with interpretation in
+`docs/ACADEMIC_U4C_C1_RESULTS.md`. Comparative timing remains a separate gate.

@@ -1,0 +1,6 @@
+/home/haishuo/cuda-13.0/bin/nvcc -Xcompiler=-fPIC -O3 -g -std=c++11 -gencode arch=compute_120,code=sm_120 -I/tmp/gradflow-u4b-ops/ops/c/include -I. -c -o ./cuda/opensbli_kernels_cu.o ./cuda/cuda_kernels.cu
+
+
+Building opensbli_cuda
+
+g++ -fopenmp -O3 -fPIC -Wall -g -std=c++11 -fopenmp -Dgnu -I/home/haishuo/cuda-13.0/include -I/tmp/gradflow-u4b-ops/ops/c/include -L/tmp/gradflow-u4b-ops/ops/c/lib/gnu opensbli_ops.cpp  ./cuda/opensbli_kernels_cu.o -L/home/haishuo/cuda-13.0/lib64 -lops_hdf5_seq -L/home/haishuo/miniconda3/envs/gradflow/lib -lhdf5_hl -lhdf5 -lz  -lops_cuda  -L/home/haishuo/cuda-13.0/lib64 -L/home/haishuo/cuda-13.0/lib64/stubs -lnvidia-ml -lcudart -lcurand -o opensbli_cuda

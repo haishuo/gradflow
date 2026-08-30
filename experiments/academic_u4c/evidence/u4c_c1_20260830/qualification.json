@@ -1,0 +1,110 @@
+{
+  "atol": 2e-12,
+  "cases": [
+    {
+      "case": "state_a",
+      "cuda_canonical_max_abs_difference": 2.1316282072803006e-13,
+      "cuda_conservation": {
+        "bound": 1.8878144618162996e-12,
+        "passed": true,
+        "sum": 8.881784197001252e-16,
+        "sum_abs": 265.68626583689127
+      },
+      "cuda_finite": true,
+      "generated_source_sha256": {
+        "opensbli.cpp": "34925dad2d5f7f0d3c87637f6c166aeaa231df75f74da4b8a48ca58227cdf1c7",
+        "opensbli_ops.cpp": "8eed40918d4382f76e84690958893cc010ffd3f2b7dfc42bea80315792e45ee0",
+        "opensbliblock00_kernels.h": "293602b4f2af337d2fc0dbfcb779a3c950f9f4e68bd8383c539c56a0c6ab9fe4"
+      },
+      "passed": true,
+      "seq_conservation": {
+        "bound": 1.8878144618163e-12,
+        "passed": true,
+        "sum": 0.0,
+        "sum_abs": 265.6862658368913
+      },
+      "seq_cuda_max_abs_difference": 7.815970093361102e-14,
+      "seq_finite": true,
+      "size": 64
+    },
+    {
+      "case": "state_b",
+      "cuda_canonical_max_abs_difference": 2.842170943040401e-14,
+      "cuda_conservation": {
+        "bound": 5.499217039771641e-12,
+        "passed": true,
+        "sum": 3.552713678800501e-15,
+        "sum_abs": 773.9459940982827
+      },
+      "cuda_finite": true,
+      "generated_source_sha256": {
+        "opensbli.cpp": "34925dad2d5f7f0d3c87637f6c166aeaa231df75f74da4b8a48ca58227cdf1c7",
+        "opensbli_ops.cpp": "8eed40918d4382f76e84690958893cc010ffd3f2b7dfc42bea80315792e45ee0",
+        "opensbliblock00_kernels.h": "09c4c07f2392a53f756127099308f1fb86d5e7931fecd39ebc772edb7d9d9aef"
+      },
+      "passed": true,
+      "seq_conservation": {
+        "bound": 5.499217039771641e-12,
+        "passed": true,
+        "sum": 0.0,
+        "sum_abs": 773.9459940982827
+      },
+      "seq_cuda_max_abs_difference": 2.842170943040401e-14,
+      "seq_finite": true,
+      "size": 64
+    },
+    {
+      "case": "constant",
+      "cuda_canonical_max_abs_difference": 0.0,
+      "cuda_conservation": {
+        "bound": 0.0,
+        "passed": true,
+        "sum": 0.0,
+        "sum_abs": 0.0
+      },
+      "cuda_finite": true,
+      "generated_source_sha256": {
+        "opensbli.cpp": "5e3c6aeca0e121a2ce6061e94c5bfd027b555af6d5e9f71a9100b29701a77e87",
+        "opensbli_ops.cpp": "744500bcdd8ad991e8023c4af9705ec90dfcd95024fc80870e8d7b0a5e137a4d",
+        "opensbliblock00_kernels.h": "0bf161b92aa35806cf5774d3427b94a2652e9ef085a07dd3576009c82cf3e401"
+      },
+      "passed": true,
+      "seq_conservation": {
+        "bound": 0.0,
+        "passed": true,
+        "sum": 0.0,
+        "sum_abs": 0.0
+      },
+      "seq_cuda_max_abs_difference": 0.0,
+      "seq_finite": true,
+      "size": 64
+    }
+  ],
+  "decision": "cuda_correctness_qualified",
+  "environment": {
+    "cuda_root": "/home/haishuo/cuda-13.0",
+    "cuda_target": "sm_120",
+    "host": "forge",
+    "nvcc": "Build cuda_13.0.r13.0/compiler.36424714_0",
+    "ops_backend": [
+      "seq",
+      "cuda"
+    ],
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39"
+  },
+  "schema": "gradflow.academic_u4c.cuda_qualification.v1",
+  "sources": {
+    "opensbli": {
+      "commit": "e37dc377fa9b27d6bfa6e9da2968b96bcd736f1d",
+      "tree": "0ff053443f6b243b2bd42475f98122306151427d"
+    },
+    "ops": {
+      "commit": "c0af0f124469e5fd856b594a23ff1206c3e9c7a8",
+      "tree": "82c3fd0c0b4724c6e8474e16f730e7560845235f"
+    },
+    "residual_exposer_sha256": "99cdbaf3303ccfaf721f1909ddcd6078e23bc9d634f93af226d53e930c830a3e",
+    "u4b_adapter_sha256": "28b66b27cbe20d8f9a3300e00b610baf136a0a4f31b782d0d3c9d0259d396bff",
+    "u4b_patch_sha256": "9f0022094fc99f14a79dcba7f9eadb444f9f34c54f70b94ba4d104194c85ca0a"
+  },
+  "timing_interpretation_prohibited": true
+}
