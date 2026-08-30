@@ -94,6 +94,15 @@ This does not establish results for larger grids, 3-D Euler, arbitrary order,
 mixed precision, differentiation, or another machine. DVEB is an internal
 compiler control; OpenSBLI remains the independent external baseline.
 
+## Closure
+
+After the evidence and verifier commit, the complete CUDA-visible GradFlow
+regression passed with `355 passed`, `12 skipped`, and no failures in 410.24
+seconds. The skips are the existing opt-in DVEB portable/device ABI tests that
+require separately supplied external manifests or executables; U4-D instead
+retains and verifies its pinned research adapter, complete output arrays, and
+generated-artifact hashes directly.
+
 ## Evidence
 
 Frozen evidence is in

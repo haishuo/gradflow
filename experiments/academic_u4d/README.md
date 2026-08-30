@@ -19,4 +19,5 @@ on both CPU and CUDA; DVEB beats GradFlow on resident CUDA and is descriptively
 fastest in the one-worker transfer and three-process prepared-launch endpoints.
 See `docs/ACADEMIC_U4D_RESULTS.md` and run
 `python experiments/academic_u4d/verify_campaign.py` for the complete results
-and offline evidence verification.
+and offline evidence verification. The final CUDA-visible repository regression
+passed with 355 tests and 12 expected external-artifact skips.
