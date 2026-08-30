@@ -11,6 +11,7 @@ from pathlib import Path
 import statistics
 import subprocess
 import sys
+import tempfile
 import time
 from typing import Any
 
@@ -39,6 +40,9 @@ def main() -> None:
     parser.add_argument("--core", type=Path, required=True)
     parser.add_argument("--aot", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--cache-policy", choices=("inherited", "isolated"), default="inherited"
+    )
     arguments = parser.parse_args()
     if arguments.output.exists():
         raise SystemExit(f"refusing existing output: {arguments.output}")
@@ -51,6 +55,7 @@ def main() -> None:
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "complete": False,
         "repetitions": REPETITIONS,
+        "torchinductor_cache_policy": arguments.cache_policy,
         "configurations": [],
     }
     for order in (5, 15):
@@ -103,17 +108,33 @@ def main() -> None:
                         ]
                         if package is not None:
                             command.extend(("--package", package))
-                        started = time.perf_counter()
-                        completed = subprocess.run(
-                            command,
-                            cwd=ROOT,
-                            env=environment,
-                            check=False,
-                            capture_output=True,
-                            text=True,
-                            timeout=3600,
+                        run_environment = environment.copy()
+                        cache_context = (
+                            tempfile.TemporaryDirectory(
+                                prefix="gradflow_a2_torchinductor_"
+                            )
+                            if arguments.cache_policy == "isolated"
+                            else None
                         )
-                        parent_seconds = time.perf_counter() - started
+                        if cache_context is not None:
+                            run_environment["TORCHINDUCTOR_CACHE_DIR"] = (
+                                cache_context.name
+                            )
+                        started = time.perf_counter()
+                        try:
+                            completed = subprocess.run(
+                                command,
+                                cwd=ROOT,
+                                env=run_environment,
+                                check=False,
+                                capture_output=True,
+                                text=True,
+                                timeout=3600,
+                            )
+                            parent_seconds = time.perf_counter() - started
+                        finally:
+                            if cache_context is not None:
+                                cache_context.cleanup()
                         try:
                             payload = json.loads(
                                 completed.stdout.strip().splitlines()[-1]
@@ -123,6 +144,7 @@ def main() -> None:
                         configuration["records"].append(
                             {
                                 "repetition": repetition,
+                                "torchinductor_cache_policy": arguments.cache_policy,
                                 "returncode": completed.returncode,
                                 "parent_start_to_finish_seconds": parent_seconds,
                                 "worker": payload,
