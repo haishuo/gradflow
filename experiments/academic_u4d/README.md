@@ -7,3 +7,9 @@ contract that OpenSBLI and GradFlow qualified in U4-C.
 The DVEB repository remains unmodified. U4-D builds a pinned detached copy and
 wraps compiler-generated CPU/CUDA launchers with a retained benchmark adapter.
 No U4-D comparative timing existed when the protocol was frozen.
+
+D1 correctness qualification is complete. All six DVEB, OpenSBLI, and GradFlow
+CPU/CUDA lanes passed at the sole U4-C-admitted size, `N=8192`. See
+`docs/ACADEMIC_U4D_D1_RESULTS.md` and run
+`python experiments/academic_u4d/verify_qualification.py` to verify its frozen
+evidence offline. D1 contains no comparative performance claim.

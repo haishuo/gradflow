@@ -1,0 +1,4 @@
+[dveb]   transpile examples/weno5/weno5.dveb -> build/weno5/
+[dveb]   host  g++ 13.3.0      -O3 -std=c++17 -fopenmp -ffp-contract=fast
+[dveb]   cuda  nvcc 13.0.88   -O3 -std=c++17 -arch=sm_120 --fmad=true
+[dveb]   built build/weno5/weno5
