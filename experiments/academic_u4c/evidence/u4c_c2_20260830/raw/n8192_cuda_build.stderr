@@ -1,0 +1,11 @@
+opensbli_ops.cpp: In function ‘int main(int, char**)’:
+opensbli_ops.cpp:49:8: warning: unused variable ‘rkold’ [-Wunused-variable]
+   49 | double rkold[] = {(1.0/4.0), (3.0/20.0), (3.0/5.0)};
+      |        ^~~~~
+opensbli_ops.cpp:50:8: warning: unused variable ‘rknew’ [-Wunused-variable]
+   50 | double rknew[] = {(2.0/3.0), (5.0/12.0), (3.0/5.0)};
+      |        ^~~~~
+In file included from opensbli_ops.cpp:68:
+defdec_data_set.h:15:9: warning: variable ‘phi_RKold_B0’ set but not used [-Wunused-but-set-variable]
+   15 | ops_dat phi_RKold_B0;
+      |         ^~~~~~~~~~~~

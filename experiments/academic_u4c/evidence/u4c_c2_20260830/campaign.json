@@ -1,0 +1,2480 @@
+{
+  "schema": "gradflow.academic_u4c.performance.v1",
+  "created_utc": "2026-08-30T22:08:20.544147+00:00",
+  "complete": true,
+  "protocol_commit": "2106a02",
+  "c1_commit": "7a1f696",
+  "sizes": {
+    "8192": {
+      "status": "complete",
+      "qualification": {
+        "canonical": {
+          "sha256": "d92a1dd5f20cba9533dd25682fd19ca2d39f584b883b9fee3c994f1dd46b3621",
+          "state_sha256": "7def0f1a410959390af68416a01f92d0ec917a23aaf022f5b90d52c366bb5530",
+          "finite": true,
+          "conservation": {
+            "sum": -1.4551915228366852e-11,
+            "sum_abs": 1230821.80464001,
+            "bound": 8.745514923020963e-09,
+            "passed": true
+          }
+        },
+        "worker_metadata": {
+          "gradflow_cpu": {
+            "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+            "status": "complete",
+            "size": 8192,
+            "device": "cpu",
+            "mode": "qualify",
+            "dtype": "float64",
+            "first_call_seconds": 5.1092132839985425,
+            "graph": {
+              "unique_graphs": 1,
+              "graph_break_count": 0
+            },
+            "samples_milliseconds": [],
+            "finite": true,
+            "checksum_float64": 4.547473508864641e-12,
+            "maximum_absolute": 289.6330320595039,
+            "peak_rss_kib": 869060,
+            "peak_cuda_allocated_bytes": null
+          },
+          "gradflow_cuda": {
+            "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+            "status": "complete",
+            "size": 8192,
+            "device": "cuda",
+            "mode": "qualify",
+            "dtype": "float64",
+            "first_call_seconds": 1.4576109040062875,
+            "graph": {
+              "unique_graphs": 1,
+              "graph_break_count": 0
+            },
+            "samples_milliseconds": [],
+            "finite": true,
+            "checksum_float64": -1.8189894035458565e-12,
+            "maximum_absolute": 289.6330320595048,
+            "peak_rss_kib": 862644,
+            "peak_cuda_allocated_bytes": 50528256
+          }
+        },
+        "opensbli_cpu": {
+          "maximum_normalized": 1.130458395266832e-12,
+          "rms_normalized": 2.4567458830409808e-14,
+          "finite": true,
+          "conservation": {
+            "sum": -1.8189894035458565e-12,
+            "sum_abs": 1230821.804640011,
+            "bound": 8.74551492302097e-09,
+            "passed": true
+          },
+          "passed": true,
+          "sha256": "00fb29d9870997dec7c6cd14829fb8e86869ba23432816b1caa8eb5de467276e"
+        },
+        "opensbli_cuda": {
+          "maximum_normalized": 8.415634720319749e-13,
+          "rms_normalized": 2.1026683551910345e-14,
+          "finite": true,
+          "conservation": {
+            "sum": 5.4569682106375694e-12,
+            "sum_abs": 1230821.804640011,
+            "bound": 8.74551492302097e-09,
+            "passed": true
+          },
+          "passed": true,
+          "sha256": "a68e0a41468a5005ac5010a36f3bce11b73cd4d94d0e4c9418794705c7b386c8"
+        },
+        "gradflow_cpu": {
+          "maximum_normalized": 6.280324418149067e-15,
+          "rms_normalized": 2.6611324051688867e-15,
+          "finite": true,
+          "conservation": {
+            "sum": 4.547473508864641e-12,
+            "sum_abs": 1230821.80464001,
+            "bound": 8.745514923020963e-09,
+            "passed": true
+          },
+          "passed": true,
+          "sha256": "ffc7c8e63e50b8581bfc42cc771b80c98aac582b3cb6f57bb991f6dcca67488f"
+        },
+        "gradflow_cuda": {
+          "maximum_normalized": 2.5121297672596267e-14,
+          "rms_normalized": 4.26528140859316e-15,
+          "finite": true,
+          "conservation": {
+            "sum": -1.8189894035458565e-12,
+            "sum_abs": 1230821.80464001,
+            "bound": 8.745514923020963e-09,
+            "passed": true
+          },
+          "passed": true,
+          "sha256": "da53e486527427a4a9e11d664dade74454849725a42de73123a247a2c1b3f54b"
+        },
+        "all_lanes_admitted": true
+      },
+      "preparation": {
+        "opensbli_symbolic_generation_seconds": 0.649621403994388,
+        "u4c_instrumentation_seconds": 0.017673353999271058,
+        "ops_translation_and_sequential_build_seconds": 0.7338471069961088,
+        "cuda_build_seconds": 1.634707695004181,
+        "opensbli_cpu_qualification_process_seconds": 0.004356863006250933,
+        "opensbli_cuda_qualification_process_seconds": 0.16528510399803054,
+        "gradflow_cpu_qualification_process_seconds": 7.9377754159941105,
+        "gradflow_cpu_first_call_seconds": 5.1092132839985425,
+        "gradflow_cuda_qualification_process_seconds": 4.362744465004653,
+        "gradflow_cuda_first_call_seconds": 1.4576109040062875
+      },
+      "timing": {
+        "cpu": {
+          "workers_per_lane": 6,
+          "warmups_per_worker": 5,
+          "samples_per_worker": 20,
+          "randomized_blocks": [
+            {
+              "worker": 0,
+              "order": [
+                "gradflow",
+                "opensbli"
+              ],
+              "records": {
+                "gradflow": {
+                  "stdout": "raw/n8192_cpu_w0_gradflow.stdout",
+                  "stderr": "raw/n8192_cpu_w0_gradflow.stderr"
+                },
+                "opensbli": {
+                  "stdout": "raw/n8192_cpu_w0_opensbli.stdout",
+                  "stderr": "raw/n8192_cpu_w0_opensbli.stderr"
+                }
+              }
+            },
+            {
+              "worker": 1,
+              "order": [
+                "gradflow",
+                "opensbli"
+              ],
+              "records": {
+                "gradflow": {
+                  "stdout": "raw/n8192_cpu_w1_gradflow.stdout",
+                  "stderr": "raw/n8192_cpu_w1_gradflow.stderr"
+                },
+                "opensbli": {
+                  "stdout": "raw/n8192_cpu_w1_opensbli.stdout",
+                  "stderr": "raw/n8192_cpu_w1_opensbli.stderr"
+                }
+              }
+            },
+            {
+              "worker": 2,
+              "order": [
+                "opensbli",
+                "gradflow"
+              ],
+              "records": {
+                "opensbli": {
+                  "stdout": "raw/n8192_cpu_w2_opensbli.stdout",
+                  "stderr": "raw/n8192_cpu_w2_opensbli.stderr"
+                },
+                "gradflow": {
+                  "stdout": "raw/n8192_cpu_w2_gradflow.stdout",
+                  "stderr": "raw/n8192_cpu_w2_gradflow.stderr"
+                }
+              }
+            },
+            {
+              "worker": 3,
+              "order": [
+                "gradflow",
+                "opensbli"
+              ],
+              "records": {
+                "gradflow": {
+                  "stdout": "raw/n8192_cpu_w3_gradflow.stdout",
+                  "stderr": "raw/n8192_cpu_w3_gradflow.stderr"
+                },
+                "opensbli": {
+                  "stdout": "raw/n8192_cpu_w3_opensbli.stdout",
+                  "stderr": "raw/n8192_cpu_w3_opensbli.stderr"
+                }
+              }
+            },
+            {
+              "worker": 4,
+              "order": [
+                "gradflow",
+                "opensbli"
+              ],
+              "records": {
+                "gradflow": {
+                  "stdout": "raw/n8192_cpu_w4_gradflow.stdout",
+                  "stderr": "raw/n8192_cpu_w4_gradflow.stderr"
+                },
+                "opensbli": {
+                  "stdout": "raw/n8192_cpu_w4_opensbli.stdout",
+                  "stderr": "raw/n8192_cpu_w4_opensbli.stderr"
+                }
+              }
+            },
+            {
+              "worker": 5,
+              "order": [
+                "opensbli",
+                "gradflow"
+              ],
+              "records": {
+                "opensbli": {
+                  "stdout": "raw/n8192_cpu_w5_opensbli.stdout",
+                  "stderr": "raw/n8192_cpu_w5_opensbli.stderr"
+                },
+                "gradflow": {
+                  "stdout": "raw/n8192_cpu_w5_gradflow.stdout",
+                  "stderr": "raw/n8192_cpu_w5_gradflow.stderr"
+                }
+              }
+            }
+          ],
+          "worker_records": {
+            "opensbli": [
+              {
+                "samples_milliseconds": [
+                  0.080959,
+                  0.08098,
+                  0.080769,
+                  0.08096,
+                  0.080769,
+                  0.08114,
+                  0.081049,
+                  0.08341,
+                  0.080829,
+                  0.08089,
+                  0.080949,
+                  0.08118,
+                  0.081099,
+                  0.08095,
+                  0.081109,
+                  0.0811,
+                  0.080819,
+                  0.0812,
+                  0.080959,
+                  0.08337
+                ],
+                "process_wall_seconds": 0.006208823004271835,
+                "peak_rss_kib": null
+              },
+              {
+                "samples_milliseconds": [
+                  0.080969,
+                  0.08099,
+                  0.080969,
+                  0.08097,
+                  0.085069,
+                  0.08085,
+                  0.081169,
+                  0.08098,
+                  0.084989,
+                  0.08007,
+                  0.080189,
+                  0.08019,
+                  0.080289,
+                  0.0801,
+                  0.080479,
+                  0.08007,
+                  0.083069,
+                  0.0802,
+                  0.080059,
+                  0.08019
+                ],
+                "process_wall_seconds": 0.006373081996571273,
+                "peak_rss_kib": null
+              },
+              {
+                "samples_milliseconds": [
+                  0.080699,
+                  0.08085,
+                  0.080569,
+                  0.08077,
+                  0.080399,
+                  0.08051,
+                  0.084319,
+                  0.08063,
+                  0.080459,
+                  0.08056,
+                  0.080579,
+                  0.08085,
+                  0.081349,
+                  0.08073,
+                  0.080839,
+                  0.08091,
+                  0.080459,
+                  0.08087,
+                  0.081169,
+                  0.08241
+                ],
+                "process_wall_seconds": 0.005635936002363451,
+                "peak_rss_kib": null
+              },
+              {
+                "samples_milliseconds": [
+                  0.081719,
+                  0.0818,
+                  0.081999,
+                  0.08205,
+                  0.081899,
+                  0.08174,
+                  0.081789,
+                  0.08168,
+                  0.081719,
+                  0.08675,
+                  0.081739,
+                  0.08152,
+                  0.081729,
+                  0.08182,
+                  0.081709,
+                  0.08173,
+                  0.081769,
+                  0.08547,
+                  0.081559,
+                  0.08132
+                ],
+                "process_wall_seconds": 0.006291191995842382,
+                "peak_rss_kib": null
+              },
+              {
+                "samples_milliseconds": [
+                  0.08087,
+                  0.081039,
+                  0.0812,
+                  0.080939,
+                  0.08315,
+                  0.080649,
+                  0.08046,
+                  0.081199,
+                  0.08079,
+                  0.080589,
+                  0.08076,
+                  0.080639,
+                  0.08057,
+                  0.084789,
+                  0.08102,
+                  0.081309,
+                  0.08395,
+                  0.081249,
+                  0.0811,
+                  0.082009
+                ],
+                "process_wall_seconds": 0.006215322995558381,
+                "peak_rss_kib": null
+              },
+              {
+                "samples_milliseconds": [
+                  0.08086,
+                  0.080639,
+                  0.08064,
+                  0.080669,
+                  0.08064,
+                  0.080629,
+                  0.08061,
+                  0.080619,
+                  0.08293,
+                  0.080719,
+                  0.08061,
+                  0.081389,
+                  0.08062,
+                  0.080879,
+                  0.0806,
+                  0.080769,
+                  0.08061,
+                  0.080799,
+                  0.08053,
+                  0.080589
+                ],
+                "process_wall_seconds": 0.005489736999152228,
+                "peak_rss_kib": null
+              }
+            ],
+            "gradflow": [
+              {
+                "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+                "status": "complete",
+                "size": 8192,
+                "device": "cpu",
+                "mode": "resident",
+                "dtype": "float64",
+                "first_call_seconds": 1.9020331480132882,
+                "graph": {
+                  "unique_graphs": 1,
+                  "graph_break_count": 0
+                },
+                "samples_milliseconds": [
+                  0.101309,
+                  0.11143,
+                  0.103999,
+                  0.101169,
+                  0.10045,
+                  0.103519,
+                  0.10014,
+                  0.098279,
+                  0.099189,
+                  0.09852,
+                  0.099609,
+                  0.09851,
+                  0.099959,
+                  0.098139,
+                  0.09936,
+                  0.102219,
+                  0.09938,
+                  0.098449,
+                  0.099839,
+                  0.09803
+                ],
+                "finite": true,
+                "checksum_float64": 4.547473508864641e-12,
+                "maximum_absolute": 289.6330320595039,
+                "peak_rss_kib": 741656,
+                "peak_cuda_allocated_bytes": null,
+                "process_wall_seconds": 4.570944559003692
+              },
+              {
+                "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+                "status": "complete",
+                "size": 8192,
+                "device": "cpu",
+                "mode": "resident",
+                "dtype": "float64",
+                "first_call_seconds": 1.9225760889967205,
+                "graph": {
+                  "unique_graphs": 1,
+                  "graph_break_count": 0
+                },
+                "samples_milliseconds": [
+                  0.100539,
+                  0.111619,
+                  0.10213,
+                  0.102099,
+                  0.10415,
+                  0.099579,
+                  0.099579,
+                  0.10339,
+                  0.098209,
+                  0.09952,
+                  0.099189,
+                  0.098049,
+                  0.10002,
+                  0.098789,
+                  0.1023,
+                  0.099569,
+                  0.098889,
+                  0.1013,
+                  0.097949,
+                  0.09773
+                ],
+                "finite": true,
+                "checksum_float64": 4.547473508864641e-12,
+                "maximum_absolute": 289.6330320595039,
+                "peak_rss_kib": 742012,
+                "peak_cuda_allocated_bytes": null,
+                "process_wall_seconds": 4.61759300599806
+              },
+              {
+                "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+                "status": "complete",
+                "size": 8192,
+                "device": "cpu",
+                "mode": "resident",
+                "dtype": "float64",
+                "first_call_seconds": 1.9168944600096438,
+                "graph": {
+                  "unique_graphs": 1,
+                  "graph_break_count": 0
+                },
+                "samples_milliseconds": [
+                  0.099379,
+                  0.10989,
+                  0.101109,
+                  0.099079,
+                  0.09838,
+                  0.097869,
+                  0.10261,
+                  0.097409,
+                  0.097489,
+                  0.09777,
+                  0.097509,
+                  0.09711,
+                  0.097459,
+                  0.09718,
+                  0.097279,
+                  0.097419,
+                  0.10057,
+                  0.096999,
+                  0.09698,
+                  0.096889
+                ],
+                "finite": true,
+                "checksum_float64": 4.547473508864641e-12,
+                "maximum_absolute": 289.6330320595039,
+                "peak_rss_kib": 742172,
+                "peak_cuda_allocated_bytes": null,
+                "process_wall_seconds": 4.682174805988325
+              },
+              {
+                "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+                "status": "complete",
+                "size": 8192,
+                "device": "cpu",
+                "mode": "resident",
+                "dtype": "float64",
+                "first_call_seconds": 1.9088742539897794,
+                "graph": {
+                  "unique_graphs": 1,
+                  "graph_break_count": 0
+                },
+                "samples_milliseconds": [
+                  0.101319,
+                  0.11091,
+                  0.103249,
+                  0.099819,
+                  0.1032,
+                  0.098469,
+                  0.09873,
+                  0.097359,
+                  0.09863,
+                  0.097399,
+                  0.098189,
+                  0.09725,
+                  0.098629,
+                  0.09795,
+                  0.102269,
+                  0.098039,
+                  0.09852,
+                  0.097739,
+                  0.09856,
+                  0.096979
+                ],
+                "finite": true,
+                "checksum_float64": 4.547473508864641e-12,
+                "maximum_absolute": 289.6330320595039,
+                "peak_rss_kib": 741548,
+                "peak_cuda_allocated_bytes": null,
+                "process_wall_seconds": 4.641885909004486
+              },
+              {
+                "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+                "status": "complete",
+                "size": 8192,
+                "device": "cpu",
+                "mode": "resident",
+                "dtype": "float64",
+                "first_call_seconds": 1.903872480004793,
+                "graph": {
+                  "unique_graphs": 1,
+                  "graph_break_count": 0
+                },
+                "samples_milliseconds": [
+                  0.100679,
+                  0.108799,
+                  0.09937,
+                  0.097229,
+                  0.09648,
+                  0.096729,
+                  0.096229,
+                  0.09568,
+                  0.095359,
+                  0.09577,
+                  0.098779,
+                  0.0955,
+                  0.095859,
+                  0.095659,
+                  0.09519,
+                  0.095149,
+                  0.09538,
+                  0.095279,
+                  0.09535,
+                  0.095199
+                ],
+                "finite": true,
+                "checksum_float64": 4.547473508864641e-12,
+                "maximum_absolute": 289.6330320595039,
+                "peak_rss_kib": 741976,
+                "peak_cuda_allocated_bytes": null,
+                "process_wall_seconds": 4.622846294005285
+              },
+              {
+                "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+                "status": "complete",
+                "size": 8192,
+                "device": "cpu",
+                "mode": "resident",
+                "dtype": "float64",
+                "first_call_seconds": 1.9303782649949426,
+                "graph": {
+                  "unique_graphs": 1,
+                  "graph_break_count": 0
+                },
+                "samples_milliseconds": [
+                  0.09995,
+                  0.110669,
+                  0.101629,
+                  0.09985,
+                  0.099549,
+                  0.10236,
+                  0.098529,
+                  0.097799,
+                  0.09769,
+                  0.097429,
+                  0.09761,
+                  0.097679,
+                  0.098129,
+                  0.09734,
+                  0.097649,
+                  0.10194,
+                  0.098079,
+                  0.097509,
+                  0.09706,
+                  0.097429
+                ],
+                "finite": true,
+                "checksum_float64": 4.547473508864641e-12,
+                "maximum_absolute": 289.6330320595039,
+                "peak_rss_kib": 741912,
+                "peak_cuda_allocated_bytes": null,
+                "process_wall_seconds": 4.639270383995608
+              }
+            ]
+          },
+          "analysis": {
+            "lanes": {
+              "opensbli": {
+                "all_observations": {
+                  "count": 120,
+                  "values": [
+                    0.080959,
+                    0.08098,
+                    0.080769,
+                    0.08096,
+                    0.080769,
+                    0.08114,
+                    0.081049,
+                    0.08341,
+                    0.080829,
+                    0.08089,
+                    0.080949,
+                    0.08118,
+                    0.081099,
+                    0.08095,
+                    0.081109,
+                    0.0811,
+                    0.080819,
+                    0.0812,
+                    0.080959,
+                    0.08337,
+                    0.080969,
+                    0.08099,
+                    0.080969,
+                    0.08097,
+                    0.085069,
+                    0.08085,
+                    0.081169,
+                    0.08098,
+                    0.084989,
+                    0.08007,
+                    0.080189,
+                    0.08019,
+                    0.080289,
+                    0.0801,
+                    0.080479,
+                    0.08007,
+                    0.083069,
+                    0.0802,
+                    0.080059,
+                    0.08019,
+                    0.080699,
+                    0.08085,
+                    0.080569,
+                    0.08077,
+                    0.080399,
+                    0.08051,
+                    0.084319,
+                    0.08063,
+                    0.080459,
+                    0.08056,
+                    0.080579,
+                    0.08085,
+                    0.081349,
+                    0.08073,
+                    0.080839,
+                    0.08091,
+                    0.080459,
+                    0.08087,
+                    0.081169,
+                    0.08241,
+                    0.081719,
+                    0.0818,
+                    0.081999,
+                    0.08205,
+                    0.081899,
+                    0.08174,
+                    0.081789,
+                    0.08168,
+                    0.081719,
+                    0.08675,
+                    0.081739,
+                    0.08152,
+                    0.081729,
+                    0.08182,
+                    0.081709,
+                    0.08173,
+                    0.081769,
+                    0.08547,
+                    0.081559,
+                    0.08132,
+                    0.08087,
+                    0.081039,
+                    0.0812,
+                    0.080939,
+                    0.08315,
+                    0.080649,
+                    0.08046,
+                    0.081199,
+                    0.08079,
+                    0.080589,
+                    0.08076,
+                    0.080639,
+                    0.08057,
+                    0.084789,
+                    0.08102,
+                    0.081309,
+                    0.08395,
+                    0.081249,
+                    0.0811,
+                    0.082009,
+                    0.08086,
+                    0.080639,
+                    0.08064,
+                    0.080669,
+                    0.08064,
+                    0.080629,
+                    0.08061,
+                    0.080619,
+                    0.08293,
+                    0.080719,
+                    0.08061,
+                    0.081389,
+                    0.08062,
+                    0.080879,
+                    0.0806,
+                    0.080769,
+                    0.08061,
+                    0.080799,
+                    0.08053,
+                    0.080589
+                  ],
+                  "minimum": 0.080059,
+                  "q1": 0.08063675,
+                  "median": 0.0809495,
+                  "q3": 0.08152975,
+                  "maximum": 0.08675,
+                  "mean": 0.08128683333333334,
+                  "median_absolute_deviation": 0.0003394999999999926,
+                  "sample_standard_deviation": 0.0011600443944948314
+                },
+                "worker_medians": {
+                  "count": 6,
+                  "values": [
+                    0.08097,
+                    0.0806645,
+                    0.08074999999999999,
+                    0.08173949999999999,
+                    0.0810295,
+                    0.0806395
+                  ],
+                  "minimum": 0.0806395,
+                  "q1": 0.08068587499999999,
+                  "median": 0.08085999999999999,
+                  "q3": 0.081014625,
+                  "maximum": 0.08173949999999999,
+                  "mean": 0.0809655,
+                  "median_absolute_deviation": 0.0001825000000000021,
+                  "sample_standard_deviation": 0.0004114631210691895
+                }
+              },
+              "gradflow": {
+                "all_observations": {
+                  "count": 120,
+                  "values": [
+                    0.101309,
+                    0.11143,
+                    0.103999,
+                    0.101169,
+                    0.10045,
+                    0.103519,
+                    0.10014,
+                    0.098279,
+                    0.099189,
+                    0.09852,
+                    0.099609,
+                    0.09851,
+                    0.099959,
+                    0.098139,
+                    0.09936,
+                    0.102219,
+                    0.09938,
+                    0.098449,
+                    0.099839,
+                    0.09803,
+                    0.100539,
+                    0.111619,
+                    0.10213,
+                    0.102099,
+                    0.10415,
+                    0.099579,
+                    0.099579,
+                    0.10339,
+                    0.098209,
+                    0.09952,
+                    0.099189,
+                    0.098049,
+                    0.10002,
+                    0.098789,
+                    0.1023,
+                    0.099569,
+                    0.098889,
+                    0.1013,
+                    0.097949,
+                    0.09773,
+                    0.099379,
+                    0.10989,
+                    0.101109,
+                    0.099079,
+                    0.09838,
+                    0.097869,
+                    0.10261,
+                    0.097409,
+                    0.097489,
+                    0.09777,
+                    0.097509,
+                    0.09711,
+                    0.097459,
+                    0.09718,
+                    0.097279,
+                    0.097419,
+                    0.10057,
+                    0.096999,
+                    0.09698,
+                    0.096889,
+                    0.101319,
+                    0.11091,
+                    0.103249,
+                    0.099819,
+                    0.1032,
+                    0.098469,
+                    0.09873,
+                    0.097359,
+                    0.09863,
+                    0.097399,
+                    0.098189,
+                    0.09725,
+                    0.098629,
+                    0.09795,
+                    0.102269,
+                    0.098039,
+                    0.09852,
+                    0.097739,
+                    0.09856,
+                    0.096979,
+                    0.100679,
+                    0.108799,
+                    0.09937,
+                    0.097229,
+                    0.09648,
+                    0.096729,
+                    0.096229,
+                    0.09568,
+                    0.095359,
+                    0.09577,
+                    0.098779,
+                    0.0955,
+                    0.095859,
+                    0.095659,
+                    0.09519,
+                    0.095149,
+                    0.09538,
+                    0.095279,
+                    0.09535,
+                    0.095199,
+                    0.09995,
+                    0.110669,
+                    0.101629,
+                    0.09985,
+                    0.099549,
+                    0.10236,
+                    0.098529,
+                    0.097799,
+                    0.09769,
+                    0.097429,
+                    0.09761,
+                    0.097679,
+                    0.098129,
+                    0.09734,
+                    0.097649,
+                    0.10194,
+                    0.098079,
+                    0.097509,
+                    0.09706,
+                    0.097429
+                  ],
+                  "minimum": 0.095149,
+                  "q1": 0.0974265,
+                  "median": 0.09851499999999999,
+                  "q3": 0.1002175,
+                  "maximum": 0.111619,
+                  "mean": 0.09934356666666666,
+                  "median_absolute_deviation": 0.001275499999999992,
+                  "sample_standard_deviation": 0.0033243933489247855
+                },
+                "worker_medians": {
+                  "count": 6,
+                  "values": [
+                    0.09972400000000001,
+                    0.099579,
+                    0.097499,
+                    0.09853999999999999,
+                    0.095725,
+                    0.097939
+                  ],
+                  "minimum": 0.095725,
+                  "q1": 0.097609,
+                  "median": 0.0982395,
+                  "q3": 0.09931925,
+                  "maximum": 0.09972400000000001,
+                  "mean": 0.09816766666666667,
+                  "median_absolute_deviation": 0.0010399999999999993,
+                  "sample_standard_deviation": 0.0014844993319859275
+                }
+              }
+            },
+            "paired_worker_median_ratio_opensbli_over_gradflow": {
+              "count": 6,
+              "values": [
+                0.8119409570414343,
+                0.8100553329517267,
+                0.8282136227038225,
+                0.829505784453014,
+                0.8464821102115435,
+                0.823364543236096
+              ],
+              "minimum": 0.8100553329517267,
+              "q1": 0.8147968535900997,
+              "median": 0.8257890829699592,
+              "q3": 0.8291827440157162,
+              "maximum": 0.8464821102115435,
+              "mean": 0.8249270584329396,
+              "median_absolute_deviation": 0.00878241370578986,
+              "sample_standard_deviation": 0.013331428998657463,
+              "bootstrap_median_95_ci": [
+                0.8109981449965805,
+                0.8379939473322788
+              ]
+            },
+            "decision": "opensbli_win"
+          }
+        },
+        "cuda": {
+          "workers_per_lane": 6,
+          "warmups_per_worker": 5,
+          "samples_per_worker": 20,
+          "randomized_blocks": [
+            {
+              "worker": 0,
+              "order": [
+                "opensbli",
+                "gradflow"
+              ],
+              "records": {
+                "opensbli": {
+                  "stdout": "raw/n8192_cuda_w0_opensbli.stdout",
+                  "stderr": "raw/n8192_cuda_w0_opensbli.stderr"
+                },
+                "gradflow": {
+                  "stdout": "raw/n8192_cuda_w0_gradflow.stdout",
+                  "stderr": "raw/n8192_cuda_w0_gradflow.stderr"
+                }
+              }
+            },
+            {
+              "worker": 1,
+              "order": [
+                "gradflow",
+                "opensbli"
+              ],
+              "records": {
+                "gradflow": {
+                  "stdout": "raw/n8192_cuda_w1_gradflow.stdout",
+                  "stderr": "raw/n8192_cuda_w1_gradflow.stderr"
+                },
+                "opensbli": {
+                  "stdout": "raw/n8192_cuda_w1_opensbli.stdout",
+                  "stderr": "raw/n8192_cuda_w1_opensbli.stderr"
+                }
+              }
+            },
+            {
+              "worker": 2,
+              "order": [
+                "gradflow",
+                "opensbli"
+              ],
+              "records": {
+                "gradflow": {
+                  "stdout": "raw/n8192_cuda_w2_gradflow.stdout",
+                  "stderr": "raw/n8192_cuda_w2_gradflow.stderr"
+                },
+                "opensbli": {
+                  "stdout": "raw/n8192_cuda_w2_opensbli.stdout",
+                  "stderr": "raw/n8192_cuda_w2_opensbli.stderr"
+                }
+              }
+            },
+            {
+              "worker": 3,
+              "order": [
+                "opensbli",
+                "gradflow"
+              ],
+              "records": {
+                "opensbli": {
+                  "stdout": "raw/n8192_cuda_w3_opensbli.stdout",
+                  "stderr": "raw/n8192_cuda_w3_opensbli.stderr"
+                },
+                "gradflow": {
+                  "stdout": "raw/n8192_cuda_w3_gradflow.stdout",
+                  "stderr": "raw/n8192_cuda_w3_gradflow.stderr"
+                }
+              }
+            },
+            {
+              "worker": 4,
+              "order": [
+                "opensbli",
+                "gradflow"
+              ],
+              "records": {
+                "opensbli": {
+                  "stdout": "raw/n8192_cuda_w4_opensbli.stdout",
+                  "stderr": "raw/n8192_cuda_w4_opensbli.stderr"
+                },
+                "gradflow": {
+                  "stdout": "raw/n8192_cuda_w4_gradflow.stdout",
+                  "stderr": "raw/n8192_cuda_w4_gradflow.stderr"
+                }
+              }
+            },
+            {
+              "worker": 5,
+              "order": [
+                "gradflow",
+                "opensbli"
+              ],
+              "records": {
+                "gradflow": {
+                  "stdout": "raw/n8192_cuda_w5_gradflow.stdout",
+                  "stderr": "raw/n8192_cuda_w5_gradflow.stderr"
+                },
+                "opensbli": {
+                  "stdout": "raw/n8192_cuda_w5_opensbli.stdout",
+                  "stderr": "raw/n8192_cuda_w5_opensbli.stderr"
+                }
+              }
+            }
+          ],
+          "worker_records": {
+            "opensbli": [
+              {
+                "samples_milliseconds": [
+                  0.009952000342309475,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.009855999611318111,
+                  0.009855999611318111,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842
+                ],
+                "process_wall_seconds": 0.1597641939879395,
+                "peak_rss_kib": null,
+                "telemetry_before": {
+                  "timestamp": "2026/08/30 22:09:04.040",
+                  "temperature_c": 47.0,
+                  "pstate": "P8",
+                  "sm_clock_mhz": 180.0,
+                  "memory_clock_mhz": 405.0,
+                  "power_w": 13.7,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                },
+                "telemetry_after": {
+                  "timestamp": "2026/08/30 22:09:04.233",
+                  "temperature_c": 48.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 180.0,
+                  "memory_clock_mhz": 13801.0,
+                  "power_w": 16.61,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                }
+              },
+              {
+                "samples_milliseconds": [
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.011264000087976456,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842
+                ],
+                "process_wall_seconds": 0.1477845660119783,
+                "peak_rss_kib": null,
+                "telemetry_before": {
+                  "timestamp": "2026/08/30 22:09:11.364",
+                  "temperature_c": 48.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 47.02,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                },
+                "telemetry_after": {
+                  "timestamp": "2026/08/30 22:09:11.530",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 47.64,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 1.0,
+                  "memory_used_mib": 4.0
+                }
+              },
+              {
+                "samples_milliseconds": [
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010208000428974628,
+                  0.009855999611318111,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.009855999611318111,
+                  0.009727999567985535
+                ],
+                "process_wall_seconds": 0.1417790910054464,
+                "peak_rss_kib": null,
+                "telemetry_before": {
+                  "timestamp": "2026/08/30 22:09:15.086",
+                  "temperature_c": 48.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 46.81,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                },
+                "telemetry_after": {
+                  "timestamp": "2026/08/30 22:09:15.247",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 47.63,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 3.0,
+                  "memory_used_mib": 4.0
+                }
+              },
+              {
+                "samples_milliseconds": [
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.009855999611318111,
+                  0.00979200005531311,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.009855999611318111,
+                  0.010239999741315842
+                ],
+                "process_wall_seconds": 0.141378853993956,
+                "peak_rss_kib": null,
+                "telemetry_before": {
+                  "timestamp": "2026/08/30 22:09:15.266",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 47.63,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 3.0,
+                  "memory_used_mib": 4.0
+                },
+                "telemetry_after": {
+                  "timestamp": "2026/08/30 22:09:15.426",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2497.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 48.22,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 1.0,
+                  "memory_used_mib": 4.0
+                }
+              },
+              {
+                "samples_milliseconds": [
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.009855999611318111,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842
+                ],
+                "process_wall_seconds": 0.1409778959932737,
+                "peak_rss_kib": null,
+                "telemetry_before": {
+                  "timestamp": "2026/08/30 22:09:18.998",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 46.8,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                },
+                "telemetry_after": {
+                  "timestamp": "2026/08/30 22:09:19.158",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 47.52,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 2.0,
+                  "memory_used_mib": 4.0
+                }
+              },
+              {
+                "samples_milliseconds": [
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.009952000342309475,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842,
+                  0.010239999741315842
+                ],
+                "process_wall_seconds": 0.1416519719932694,
+                "peak_rss_kib": null,
+                "telemetry_before": {
+                  "timestamp": "2026/08/30 22:09:26.317",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 46.76,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                },
+                "telemetry_after": {
+                  "timestamp": "2026/08/30 22:09:26.477",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 47.44,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 2.0,
+                  "memory_used_mib": 4.0
+                }
+              }
+            ],
+            "gradflow": [
+              {
+                "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+                "status": "complete",
+                "size": 8192,
+                "device": "cuda",
+                "mode": "resident",
+                "dtype": "float64",
+                "first_call_seconds": 0.24926972200046293,
+                "graph": {
+                  "unique_graphs": 1,
+                  "graph_break_count": 0
+                },
+                "samples_milliseconds": [
+                  0.04387199878692627,
+                  0.055904000997543335,
+                  0.04201599955558777,
+                  0.04009599983692169,
+                  0.037408001720905304,
+                  0.041439998894929886,
+                  0.039135999977588654,
+                  0.03433600068092346,
+                  0.034143999218940735,
+                  0.03292800113558769,
+                  0.0323840007185936,
+                  0.0315839983522892,
+                  0.033344000577926636,
+                  0.031808000057935715,
+                  0.03177599981427193,
+                  0.03126399964094162,
+                  0.0306560005992651,
+                  0.03187200054526329,
+                  0.0306560005992651,
+                  0.031039999797940254
+                ],
+                "finite": true,
+                "checksum_float64": -1.8189894035458565e-12,
+                "maximum_absolute": 289.6330320595048,
+                "peak_rss_kib": 846760,
+                "peak_cuda_allocated_bytes": 262144,
+                "process_wall_seconds": 3.5117613859911216,
+                "telemetry_before": {
+                  "timestamp": "2026/08/30 22:09:04.252",
+                  "temperature_c": 48.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 180.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 16.61,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 2.0,
+                  "memory_used_mib": 4.0
+                },
+                "telemetry_after": {
+                  "timestamp": "2026/08/30 22:09:07.784",
+                  "temperature_c": 48.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 46.8,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                }
+              },
+              {
+                "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+                "status": "complete",
+                "size": 8192,
+                "device": "cuda",
+                "mode": "resident",
+                "dtype": "float64",
+                "first_call_seconds": 0.2500077269942267,
+                "graph": {
+                  "unique_graphs": 1,
+                  "graph_break_count": 0
+                },
+                "samples_milliseconds": [
+                  0.04275200143456459,
+                  0.05491200089454651,
+                  0.04156799986958504,
+                  0.039903998374938965,
+                  0.1371839940547943,
+                  0.0435199998319149,
+                  0.03542400151491165,
+                  0.034143999218940735,
+                  0.03407999873161316,
+                  0.03276799991726875,
+                  0.03167999908328056,
+                  0.0306560005992651,
+                  0.03244800120592117,
+                  0.031936001032590866,
+                  0.03081599995493889,
+                  0.03046399913728237,
+                  0.030368000268936157,
+                  0.031968001276254654,
+                  0.03139200061559677,
+                  0.031199999153614044
+                ],
+                "finite": true,
+                "checksum_float64": -1.8189894035458565e-12,
+                "maximum_absolute": 289.6330320595048,
+                "peak_rss_kib": 847028,
+                "peak_cuda_allocated_bytes": 262144,
+                "process_wall_seconds": 3.500347289998899,
+                "telemetry_before": {
+                  "timestamp": "2026/08/30 22:09:07.826",
+                  "temperature_c": 48.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 46.95,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                },
+                "telemetry_after": {
+                  "timestamp": "2026/08/30 22:09:11.345",
+                  "temperature_c": 48.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 47.02,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                }
+              },
+              {
+                "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+                "status": "complete",
+                "size": 8192,
+                "device": "cuda",
+                "mode": "resident",
+                "dtype": "float64",
+                "first_call_seconds": 0.25243184200371616,
+                "graph": {
+                  "unique_graphs": 1,
+                  "graph_break_count": 0
+                },
+                "samples_milliseconds": [
+                  0.04320000112056732,
+                  0.0541439987719059,
+                  0.048767998814582825,
+                  0.043487999588251114,
+                  0.03903999924659729,
+                  0.037696000188589096,
+                  0.034591998904943466,
+                  0.03385600075125694,
+                  0.0331839993596077,
+                  0.03340800106525421,
+                  0.03276799991726875,
+                  0.03219199925661087,
+                  0.03280000016093254,
+                  0.03235200047492981,
+                  0.0307839997112751,
+                  0.030719999223947525,
+                  0.03142400085926056,
+                  0.03126399964094162,
+                  0.03033600002527237,
+                  0.030688000842928886
+                ],
+                "finite": true,
+                "checksum_float64": -1.8189894035458565e-12,
+                "maximum_absolute": 289.6330320595048,
+                "peak_rss_kib": 846836,
+                "peak_cuda_allocated_bytes": 262144,
+                "process_wall_seconds": 3.4991688410082133,
+                "telemetry_before": {
+                  "timestamp": "2026/08/30 22:09:11.549",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2497.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 47.64,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 2.0,
+                  "memory_used_mib": 4.0
+                },
+                "telemetry_after": {
+                  "timestamp": "2026/08/30 22:09:15.067",
+                  "temperature_c": 48.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 46.81,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                }
+              },
+              {
+                "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+                "status": "complete",
+                "size": 8192,
+                "device": "cuda",
+                "mode": "resident",
+                "dtype": "float64",
+                "first_call_seconds": 0.25031732399656903,
+                "graph": {
+                  "unique_graphs": 1,
+                  "graph_break_count": 0
+                },
+                "samples_milliseconds": [
+                  0.04291199892759323,
+                  0.054368000477552414,
+                  0.041280001401901245,
+                  0.03961599990725517,
+                  0.03836800158023834,
+                  0.03612799942493439,
+                  0.035232000052928925,
+                  0.03376000002026558,
+                  0.033824000507593155,
+                  0.03299200162291527,
+                  0.0331839993596077,
+                  0.03999999910593033,
+                  0.04025600105524063,
+                  0.03478400036692619,
+                  0.03142400085926056,
+                  0.03136000037193298,
+                  0.031072000041604042,
+                  0.031136000528931618,
+                  0.030239999294281006,
+                  0.03046399913728237
+                ],
+                "finite": true,
+                "checksum_float64": -1.8189894035458565e-12,
+                "maximum_absolute": 289.6330320595048,
+                "peak_rss_kib": 846420,
+                "peak_cuda_allocated_bytes": 262144,
+                "process_wall_seconds": 3.5151759879954625,
+                "telemetry_before": {
+                  "timestamp": "2026/08/30 22:09:15.445",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2497.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 48.22,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 2.0,
+                  "memory_used_mib": 4.0
+                },
+                "telemetry_after": {
+                  "timestamp": "2026/08/30 22:09:18.979",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 46.8,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                }
+              },
+              {
+                "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+                "status": "complete",
+                "size": 8192,
+                "device": "cuda",
+                "mode": "resident",
+                "dtype": "float64",
+                "first_call_seconds": 0.2394137800001772,
+                "graph": {
+                  "unique_graphs": 1,
+                  "graph_break_count": 0
+                },
+                "samples_milliseconds": [
+                  0.04569600149989128,
+                  0.05462399870157242,
+                  0.04335999861359596,
+                  0.039583999663591385,
+                  0.03753599897027016,
+                  0.0390079990029335,
+                  0.03651199862360954,
+                  0.03465599939227104,
+                  0.03993599861860275,
+                  0.03510399907827377,
+                  0.032607998698949814,
+                  0.032575998455286026,
+                  0.03331200033426285,
+                  0.03215999901294708,
+                  0.03139200061559677,
+                  0.03094400092959404,
+                  0.031007999554276466,
+                  0.031328000128269196,
+                  0.03062400035560131,
+                  0.031007999554276466
+                ],
+                "finite": true,
+                "checksum_float64": -1.8189894035458565e-12,
+                "maximum_absolute": 289.6330320595048,
+                "peak_rss_kib": 846944,
+                "peak_cuda_allocated_bytes": 262144,
+                "process_wall_seconds": 3.505890846994589,
+                "telemetry_before": {
+                  "timestamp": "2026/08/30 22:09:19.177",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 47.52,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 2.0,
+                  "memory_used_mib": 4.0
+                },
+                "telemetry_after": {
+                  "timestamp": "2026/08/30 22:09:22.702",
+                  "temperature_c": 48.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 46.79,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                }
+              },
+              {
+                "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+                "status": "complete",
+                "size": 8192,
+                "device": "cuda",
+                "mode": "resident",
+                "dtype": "float64",
+                "first_call_seconds": 0.23875425399455708,
+                "graph": {
+                  "unique_graphs": 1,
+                  "graph_break_count": 0
+                },
+                "samples_milliseconds": [
+                  0.0469760000705719,
+                  0.05555199831724167,
+                  0.04320000112056732,
+                  0.04105599969625473,
+                  0.037728000432252884,
+                  0.03683200106024742,
+                  0.03532800078392029,
+                  0.03324799984693527,
+                  0.03283200040459633,
+                  0.03296000137925148,
+                  0.032416000962257385,
+                  0.03276799991726875,
+                  0.03292800113558769,
+                  0.0326399989426136,
+                  0.03174399957060814,
+                  0.030912000685930252,
+                  0.031328000128269196,
+                  0.031136000528931618,
+                  0.030719999223947525,
+                  0.03062400035560131
+                ],
+                "finite": true,
+                "checksum_float64": -1.8189894035458565e-12,
+                "maximum_absolute": 289.6330320595048,
+                "peak_rss_kib": 846924,
+                "peak_cuda_allocated_bytes": 262144,
+                "process_wall_seconds": 3.55839191400446,
+                "telemetry_before": {
+                  "timestamp": "2026/08/30 22:09:22.721",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 46.79,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                },
+                "telemetry_after": {
+                  "timestamp": "2026/08/30 22:09:26.298",
+                  "temperature_c": 49.0,
+                  "pstate": "P0",
+                  "sm_clock_mhz": 2475.0,
+                  "memory_clock_mhz": 14001.0,
+                  "power_w": 46.76,
+                  "power_limit_w": 300.0,
+                  "utilization_percent": 0.0,
+                  "memory_used_mib": 4.0
+                }
+              }
+            ]
+          },
+          "analysis": {
+            "lanes": {
+              "opensbli": {
+                "all_observations": {
+                  "count": 120,
+                  "values": [
+                    0.009952000342309475,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.009855999611318111,
+                    0.009855999611318111,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.011264000087976456,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010208000428974628,
+                    0.009855999611318111,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.009855999611318111,
+                    0.009727999567985535,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.009855999611318111,
+                    0.00979200005531311,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.009855999611318111,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.009855999611318111,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.009952000342309475,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842
+                  ],
+                  "minimum": 0.009727999567985535,
+                  "q1": 0.010239999741315842,
+                  "median": 0.010239999741315842,
+                  "q3": 0.010239999741315842,
+                  "maximum": 0.011264000087976456,
+                  "mean": 0.01021306642020742,
+                  "median_absolute_deviation": 0.0,
+                  "sample_standard_deviation": 0.0001484791277613741
+                },
+                "worker_medians": {
+                  "count": 6,
+                  "values": [
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842,
+                    0.010239999741315842
+                  ],
+                  "minimum": 0.010239999741315842,
+                  "q1": 0.010239999741315842,
+                  "median": 0.010239999741315842,
+                  "q3": 0.010239999741315842,
+                  "maximum": 0.010239999741315842,
+                  "mean": 0.010239999741315842,
+                  "median_absolute_deviation": 0.0,
+                  "sample_standard_deviation": 0.0
+                }
+              },
+              "gradflow": {
+                "all_observations": {
+                  "count": 120,
+                  "values": [
+                    0.04387199878692627,
+                    0.055904000997543335,
+                    0.04201599955558777,
+                    0.04009599983692169,
+                    0.037408001720905304,
+                    0.041439998894929886,
+                    0.039135999977588654,
+                    0.03433600068092346,
+                    0.034143999218940735,
+                    0.03292800113558769,
+                    0.0323840007185936,
+                    0.0315839983522892,
+                    0.033344000577926636,
+                    0.031808000057935715,
+                    0.03177599981427193,
+                    0.03126399964094162,
+                    0.0306560005992651,
+                    0.03187200054526329,
+                    0.0306560005992651,
+                    0.031039999797940254,
+                    0.04275200143456459,
+                    0.05491200089454651,
+                    0.04156799986958504,
+                    0.039903998374938965,
+                    0.1371839940547943,
+                    0.0435199998319149,
+                    0.03542400151491165,
+                    0.034143999218940735,
+                    0.03407999873161316,
+                    0.03276799991726875,
+                    0.03167999908328056,
+                    0.0306560005992651,
+                    0.03244800120592117,
+                    0.031936001032590866,
+                    0.03081599995493889,
+                    0.03046399913728237,
+                    0.030368000268936157,
+                    0.031968001276254654,
+                    0.03139200061559677,
+                    0.031199999153614044,
+                    0.04320000112056732,
+                    0.0541439987719059,
+                    0.048767998814582825,
+                    0.043487999588251114,
+                    0.03903999924659729,
+                    0.037696000188589096,
+                    0.034591998904943466,
+                    0.03385600075125694,
+                    0.0331839993596077,
+                    0.03340800106525421,
+                    0.03276799991726875,
+                    0.03219199925661087,
+                    0.03280000016093254,
+                    0.03235200047492981,
+                    0.0307839997112751,
+                    0.030719999223947525,
+                    0.03142400085926056,
+                    0.03126399964094162,
+                    0.03033600002527237,
+                    0.030688000842928886,
+                    0.04291199892759323,
+                    0.054368000477552414,
+                    0.041280001401901245,
+                    0.03961599990725517,
+                    0.03836800158023834,
+                    0.03612799942493439,
+                    0.035232000052928925,
+                    0.03376000002026558,
+                    0.033824000507593155,
+                    0.03299200162291527,
+                    0.0331839993596077,
+                    0.03999999910593033,
+                    0.04025600105524063,
+                    0.03478400036692619,
+                    0.03142400085926056,
+                    0.03136000037193298,
+                    0.031072000041604042,
+                    0.031136000528931618,
+                    0.030239999294281006,
+                    0.03046399913728237,
+                    0.04569600149989128,
+                    0.05462399870157242,
+                    0.04335999861359596,
+                    0.039583999663591385,
+                    0.03753599897027016,
+                    0.0390079990029335,
+                    0.03651199862360954,
+                    0.03465599939227104,
+                    0.03993599861860275,
+                    0.03510399907827377,
+                    0.032607998698949814,
+                    0.032575998455286026,
+                    0.03331200033426285,
+                    0.03215999901294708,
+                    0.03139200061559677,
+                    0.03094400092959404,
+                    0.031007999554276466,
+                    0.031328000128269196,
+                    0.03062400035560131,
+                    0.031007999554276466,
+                    0.0469760000705719,
+                    0.05555199831724167,
+                    0.04320000112056732,
+                    0.04105599969625473,
+                    0.037728000432252884,
+                    0.03683200106024742,
+                    0.03532800078392029,
+                    0.03324799984693527,
+                    0.03283200040459633,
+                    0.03296000137925148,
+                    0.032416000962257385,
+                    0.03276799991726875,
+                    0.03292800113558769,
+                    0.0326399989426136,
+                    0.03174399957060814,
+                    0.030912000685930252,
+                    0.031328000128269196,
+                    0.031136000528931618,
+                    0.030719999223947525,
+                    0.03062400035560131
+                  ],
+                  "minimum": 0.030239999294281006,
+                  "q1": 0.03139200061559677,
+                  "median": 0.0331839993596077,
+                  "q3": 0.039247999899089336,
+                  "maximum": 0.1371839940547943,
+                  "mean": 0.0366821332834661,
+                  "median_absolute_deviation": 0.00217599980533123,
+                  "sample_standard_deviation": 0.011121220620352897
+                },
+                "worker_medians": {
+                  "count": 6,
+                  "values": [
+                    0.033136000856757164,
+                    0.03260800056159496,
+                    0.03299199976027012,
+                    0.034304000437259674,
+                    0.033983999863266945,
+                    0.03288000077009201
+                  ],
+                  "minimum": 0.03260800056159496,
+                  "q1": 0.03290800051763654,
+                  "median": 0.03306400030851364,
+                  "q3": 0.0337720001116395,
+                  "maximum": 0.034304000437259674,
+                  "mean": 0.03331733370820681,
+                  "median_absolute_deviation": 0.00031999964267015457,
+                  "sample_standard_deviation": 0.0006709832172058943
+                }
+              }
+            },
+            "paired_worker_median_ratio_opensbli_over_gradflow": {
+              "count": 6,
+              "values": [
+                0.30902943857293147,
+                0.3140333527035173,
+                0.3103782679353415,
+                0.29850745134067663,
+                0.30131826102036274,
+                0.3114355079526109
+              ],
+              "minimum": 0.29850745134067663,
+              "q1": 0.3032460554085049,
+              "median": 0.3097038532541365,
+              "q3": 0.3111711979482935,
+              "maximum": 0.3140333527035173,
+              "mean": 0.30745037992090674,
+              "median_absolute_deviation": 0.003030577073927565,
+              "sample_standard_deviation": 0.006129626160521957,
+              "bootstrap_median_95_ci": [
+                0.29991285618051966,
+                0.3127344303280641
+              ]
+            },
+            "decision": "opensbli_win"
+          }
+        }
+      },
+      "generated_source_sha256": {
+        "opensbli.cpp": "c3056d2996e9fdca3f4822ef839ded591e9e7b766177b584eceded349ab90de8",
+        "opensbli_ops.cpp": "5fe6b281ce77c9ceaa2c843ca1dc1d16888552c36a61202f17cc7e94e8be86ad",
+        "opensbliblock00_kernels.h": "5a68d1489a02174390c006ce93fdf7f239f6befd90609e44a93866f35e8d0ca8"
+      }
+    },
+    "131072": {
+      "qualification": {
+        "canonical": {
+          "sha256": "038652bf4853c53ec7b06524cc80398c6fddf9aebdb7f67f0c66afb813c4d78a",
+          "state_sha256": "27660c9eddb1925dea697d0ebaf1fd83cd5c6307a76cf260dbd8632df4c4d8e2",
+          "finite": true,
+          "conservation": {
+            "sum": 8.731149137020111e-11,
+            "sum_abs": 19693135.633272186,
+            "bound": 1.3992814468559932e-07,
+            "passed": true
+          }
+        },
+        "worker_metadata": {
+          "gradflow_cpu": {
+            "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+            "status": "complete",
+            "size": 131072,
+            "device": "cpu",
+            "mode": "qualify",
+            "dtype": "float64",
+            "first_call_seconds": 3.7185577300115256,
+            "graph": {
+              "unique_graphs": 1,
+              "graph_break_count": 0
+            },
+            "samples_milliseconds": [],
+            "finite": true,
+            "checksum_float64": -1.7462298274040222e-10,
+            "maximum_absolute": 289.6341218116286,
+            "peak_rss_kib": 870384,
+            "peak_cuda_allocated_bytes": null
+          },
+          "gradflow_cuda": {
+            "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+            "status": "complete",
+            "size": 131072,
+            "device": "cuda",
+            "mode": "qualify",
+            "dtype": "float64",
+            "first_call_seconds": 1.5516669700009516,
+            "graph": {
+              "unique_graphs": 1,
+              "graph_break_count": 0
+            },
+            "samples_milliseconds": [],
+            "finite": true,
+            "checksum_float64": 2.0372681319713593e-10,
+            "maximum_absolute": 289.6341218116213,
+            "peak_rss_kib": 863748,
+            "peak_cuda_allocated_bytes": 53477376
+          }
+        },
+        "opensbli_cpu": {
+          "maximum_normalized": 1.458034631022752e-10,
+          "rms_normalized": 1.1636608852740346e-12,
+          "finite": true,
+          "conservation": {
+            "sum": 2.9103830456733704e-11,
+            "sum_abs": 19693135.633272134,
+            "bound": 1.3992814468559895e-07,
+            "passed": true
+          },
+          "passed": false,
+          "sha256": "d2c30afd7c44ddded06d7b7f477ebaceb13dbf18ef69d00a0240c1b5e1f5de53"
+        },
+        "opensbli_cuda": {
+          "maximum_normalized": 1.3394625521387515e-10,
+          "rms_normalized": 1.202720746626407e-12,
+          "finite": true,
+          "conservation": {
+            "sum": -8.731149137020111e-11,
+            "sum_abs": 19693135.63327211,
+            "bound": 1.399281446855988e-07,
+            "passed": true
+          },
+          "passed": false,
+          "sha256": "6502c81cbba4e2a222816e460a800fe9eb82be33eb8d437915d4db1cb6a6b6d9"
+        },
+        "gradflow_cpu": {
+          "maximum_normalized": 1.0048481261355974e-13,
+          "rms_normalized": 4.1672100840925897e-14,
+          "finite": true,
+          "conservation": {
+            "sum": -1.7462298274040222e-10,
+            "sum_abs": 19693135.63327218,
+            "bound": 1.3992814468559927e-07,
+            "passed": true
+          },
+          "passed": true,
+          "sha256": "5247303053628e1d8e1b387468a78c96119abe7e7d42f62c92f1e11957ce2414"
+        },
+        "gradflow_cuda": {
+          "maximum_normalized": 5.024240630677987e-13,
+          "rms_normalized": 6.805980645556822e-14,
+          "finite": true,
+          "conservation": {
+            "sum": 2.0372681319713593e-10,
+            "sum_abs": 19693135.63327218,
+            "bound": 1.3992814468559927e-07,
+            "passed": true
+          },
+          "passed": true,
+          "sha256": "10349bd80dc2b28bdc77fef0b8d51dc36d16bf280843550693f28a047d58fdff"
+        },
+        "all_lanes_admitted": false
+      },
+      "preparation": {
+        "opensbli_symbolic_generation_seconds": 0.64970685300068,
+        "u4c_instrumentation_seconds": 0.01798229099949822,
+        "ops_translation_and_sequential_build_seconds": 0.740088875987567,
+        "cuda_build_seconds": 1.6480269140010932,
+        "opensbli_cpu_qualification_process_seconds": 0.010629156007780693,
+        "opensbli_cuda_qualification_process_seconds": 0.16110595400095917,
+        "gradflow_cpu_qualification_process_seconds": 6.527315024999552,
+        "gradflow_cpu_first_call_seconds": 3.7185577300115256,
+        "gradflow_cuda_qualification_process_seconds": 4.449917236997862,
+        "gradflow_cuda_first_call_seconds": 1.5516669700009516
+      },
+      "status": "correctness_excluded"
+    },
+    "1048576": {
+      "qualification": {
+        "canonical": {
+          "sha256": "348ebe017593e7aefe125f440ff45817ff916e8c59ec6fd7891f9805b79eff9f",
+          "state_sha256": "1bd8c225cf298587413f0dc492c4dc3d8131cd281430420470788d46a265390c",
+          "finite": true,
+          "conservation": {
+            "sum": -2.3283064365386963e-10,
+            "sum_abs": 157545084.14845836,
+            "bound": 1.119425150964008e-06,
+            "passed": true
+          }
+        },
+        "worker_metadata": {
+          "gradflow_cpu": {
+            "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+            "status": "complete",
+            "size": 1048576,
+            "device": "cpu",
+            "mode": "qualify",
+            "dtype": "float64",
+            "first_call_seconds": 3.6944770629925188,
+            "graph": {
+              "unique_graphs": 1,
+              "graph_break_count": 0
+            },
+            "samples_milliseconds": [],
+            "finite": true,
+            "checksum_float64": -1.6298145055770874e-09,
+            "maximum_absolute": 289.63413010240765,
+            "peak_rss_kib": 906900,
+            "peak_cuda_allocated_bytes": null
+          },
+          "gradflow_cuda": {
+            "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+            "status": "complete",
+            "size": 1048576,
+            "device": "cuda",
+            "mode": "qualify",
+            "dtype": "float64",
+            "first_call_seconds": 1.558945466997102,
+            "graph": {
+              "unique_graphs": 1,
+              "graph_break_count": 0
+            },
+            "samples_milliseconds": [],
+            "finite": true,
+            "checksum_float64": -1.1641532182693481e-09,
+            "maximum_absolute": 289.63413010246586,
+            "peak_rss_kib": 906900,
+            "peak_cuda_allocated_bytes": 75497472
+          }
+        },
+        "opensbli_cpu": {
+          "maximum_normalized": 1.3432005487188154e-08,
+          "rms_normalized": 4.7102808112909976e-11,
+          "finite": true,
+          "conservation": {
+            "sum": 2.3283064365386963e-10,
+            "sum_abs": 157545084.14845148,
+            "bound": 1.119425150963959e-06,
+            "passed": true
+          },
+          "passed": false,
+          "sha256": "be4fa7ade4e7cff759963a39a2d0d2389329ff6d6a51d0108b00d2f9c76d8ff4"
+        },
+        "opensbli_cuda": {
+          "maximum_normalized": 1.1737429655780373e-08,
+          "rms_normalized": 3.211595580033926e-11,
+          "finite": true,
+          "conservation": {
+            "sum": 9.313225746154785e-10,
+            "sum_abs": 157545084.14845663,
+            "bound": 1.1194251509639957e-06,
+            "passed": true
+          },
+          "passed": false,
+          "sha256": "03abecae5ddb37ad6bdfeed0cb40942bf81ab536b0e39db5ab6b964967e2cbf3"
+        },
+        "gradflow_cpu": {
+          "maximum_normalized": 8.038784778974298e-13,
+          "rms_normalized": 3.3283776090966095e-13,
+          "finite": true,
+          "conservation": {
+            "sum": -1.6298145055770874e-09,
+            "sum_abs": 157545084.14845833,
+            "bound": 1.1194251509640078e-06,
+            "passed": true
+          },
+          "passed": true,
+          "sha256": "e4b00eedee33be356c053901dd7d08c4cc5528d2bf23103a59cbd5eaddc06440"
+        },
+        "gradflow_cuda": {
+          "maximum_normalized": 4.019392389487149e-12,
+          "rms_normalized": 5.41553623768017e-13,
+          "finite": true,
+          "conservation": {
+            "sum": -1.1641532182693481e-09,
+            "sum_abs": 157545084.14845833,
+            "bound": 1.1194251509640078e-06,
+            "passed": true
+          },
+          "passed": true,
+          "sha256": "1c1dd89b2115721b537d9d8d7f4b4c5b674a61e59ef7fbb9e8346de665aea451"
+        },
+        "all_lanes_admitted": false
+      },
+      "preparation": {
+        "opensbli_symbolic_generation_seconds": 0.6438388550013769,
+        "u4c_instrumentation_seconds": 0.016961257002549246,
+        "ops_translation_and_sequential_build_seconds": 0.7394090259913355,
+        "cuda_build_seconds": 1.6319159609993221,
+        "opensbli_cpu_qualification_process_seconds": 0.0618018949899124,
+        "opensbli_cuda_qualification_process_seconds": 0.1687252260016976,
+        "gradflow_cpu_qualification_process_seconds": 6.498833536999882,
+        "gradflow_cpu_first_call_seconds": 3.6944770629925188,
+        "gradflow_cuda_qualification_process_seconds": 4.483425586004159,
+        "gradflow_cuda_first_call_seconds": 1.558945466997102
+      },
+      "status": "correctness_excluded"
+    },
+    "8388608": {
+      "qualification": {
+        "canonical": {
+          "sha256": "112f3349a3711c6731224f84d29d14ba247c4151b9ec8ed95ed12354049a9b10",
+          "state_sha256": "d66ff418462f600cac99f3e076773b1db545ef132a64caa4a968492c1f7c4d4e",
+          "finite": true,
+          "conservation": {
+            "sum": -4.190951585769653e-09,
+            "sum_abs": 1260360674.1536217,
+            "bound": 8.955401214575585e-06,
+            "passed": true
+          }
+        },
+        "worker_metadata": {
+          "gradflow_cpu": {
+            "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+            "status": "complete",
+            "size": 8388608,
+            "device": "cpu",
+            "mode": "qualify",
+            "dtype": "float64",
+            "first_call_seconds": 3.833945379999932,
+            "graph": {
+              "unique_graphs": 1,
+              "graph_break_count": 0
+            },
+            "samples_milliseconds": [],
+            "finite": true,
+            "checksum_float64": -8.381903171539307e-09,
+            "maximum_absolute": 289.6341307112016,
+            "peak_rss_kib": 2619200,
+            "peak_cuda_allocated_bytes": null
+          },
+          "gradflow_cuda": {
+            "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+            "status": "complete",
+            "size": 8388608,
+            "device": "cuda",
+            "mode": "qualify",
+            "dtype": "float64",
+            "first_call_seconds": 1.674209115008125,
+            "graph": {
+              "unique_graphs": 1,
+              "graph_break_count": 0
+            },
+            "samples_milliseconds": [],
+            "finite": true,
+            "checksum_float64": 4.656612873077393e-10,
+            "maximum_absolute": 289.6341307107359,
+            "peak_rss_kib": 2619200,
+            "peak_cuda_allocated_bytes": 251658240
+          }
+        },
+        "opensbli_cpu": {
+          "maximum_normalized": 5.144822247729437e-10,
+          "rms_normalized": 6.959671205948895e-12,
+          "finite": true,
+          "conservation": {
+            "sum": 1.3969838619232178e-08,
+            "sum_abs": 1260360674.1536217,
+            "bound": 8.955401214575585e-06,
+            "passed": true
+          },
+          "passed": false,
+          "sha256": "8ce5c464d354264c442af602ad59b3f5b4aa26250126ebf88d485692b4b47504"
+        },
+        "opensbli_cuda": {
+          "maximum_normalized": 3.9550821029420043e-10,
+          "rms_normalized": 6.335625894528534e-12,
+          "finite": true,
+          "conservation": {
+            "sum": -2.1420419216156006e-08,
+            "sum_abs": 1260360674.1536226,
+            "bound": 8.955401214575592e-06,
+            "passed": true
+          },
+          "passed": false,
+          "sha256": "91121a09de492cdff01d770f664ac192cfe87de86f87f47c68c5e6f632dfeef5"
+        },
+        "gradflow_cpu": {
+          "maximum_normalized": 6.431027809661796e-12,
+          "rms_normalized": 2.6624942894939612e-12,
+          "finite": true,
+          "conservation": {
+            "sum": -8.381903171539307e-09,
+            "sum_abs": 1260360674.1536212,
+            "bound": 8.955401214575582e-06,
+            "passed": true
+          },
+          "passed": true,
+          "sha256": "74709cd3df509c5b05b1d5132d8c2193bb6ab5a0d2333c7533fdac1a23f63862"
+        },
+        "gradflow_cuda": {
+          "maximum_normalized": 3.858616685797078e-11,
+          "rms_normalized": 4.365549731015536e-12,
+          "finite": true,
+          "conservation": {
+            "sum": 4.656612873077393e-10,
+            "sum_abs": 1260360674.1536214,
+            "bound": 8.955401214575584e-06,
+            "passed": true
+          },
+          "passed": true,
+          "sha256": "cf6df884a3011c3525fe3077b9f0bf2efc46ba29b3e401725d94826695a1451c"
+        },
+        "all_lanes_admitted": false
+      },
+      "preparation": {
+        "opensbli_symbolic_generation_seconds": 0.6536856519960565,
+        "u4c_instrumentation_seconds": 0.017336593999061733,
+        "ops_translation_and_sequential_build_seconds": 0.7418714460072806,
+        "cuda_build_seconds": 1.644886853013304,
+        "opensbli_cpu_qualification_process_seconds": 0.4328061320120469,
+        "opensbli_cuda_qualification_process_seconds": 0.3262387589929858,
+        "gradflow_cpu_qualification_process_seconds": 6.729983579003601,
+        "gradflow_cpu_first_call_seconds": 3.833945379999932,
+        "gradflow_cuda_qualification_process_seconds": 4.674822322005639,
+        "gradflow_cuda_first_call_seconds": 1.674209115008125
+      },
+      "status": "correctness_excluded"
+    }
+  },
+  "environment": {
+    "host": "forge",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "python": "3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]",
+    "torch": "2.9.0.dev20250705+cu128",
+    "torch_cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "cuda_target": "sm_120"
+  },
+  "completed_utc": "2026-08-30T22:10:11.914613+00:00"
+}
