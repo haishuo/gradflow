@@ -273,6 +273,7 @@ def main() -> None:
     parser.add_argument("--core", type=Path, required=True)
     parser.add_argument("--aot", type=Path, required=True)
     parser.add_argument("--deployment", type=Path, required=True)
+    parser.add_argument("--deployment-isolated", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     arguments = parser.parse_args()
     if arguments.output.exists():
@@ -280,6 +281,7 @@ def main() -> None:
     campaign = read_json(arguments.core)
     aot = read_json(arguments.aot)
     deployment = read_json(arguments.deployment)
+    deployment_isolated = read_json(arguments.deployment_isolated)
 
     cross_order = []
     for order in ORDERS:
@@ -358,7 +360,13 @@ def main() -> None:
         )
 
     input_paths = tuple(
-        path.resolve() for path in (arguments.core, arguments.aot, arguments.deployment)
+        path.resolve()
+        for path in (
+            arguments.core,
+            arguments.aot,
+            arguments.deployment,
+            arguments.deployment_isolated,
+        )
     )
     inputs = {str(path.relative_to(ROOT)): sha256(path) for path in input_paths}
     source_paths = (
@@ -379,7 +387,8 @@ def main() -> None:
         "complete_inputs": {
             "core": campaign["complete"],
             "aot": aot["complete"],
-            "deployment": deployment["complete"],
+            "deployment_prepared_cache": deployment["complete"],
+            "deployment_isolated_cache": deployment_isolated["complete"],
         },
         "environment": campaign["environment"],
         "core_worker_counts": {
@@ -395,7 +404,8 @@ def main() -> None:
         "characteristic": characteristic,
         "correctness_exclusions": exclusion_rows(campaign),
         "aot": aot_rows,
-        "deployment": deployment["configurations"],
+        "deployment_prepared_cache": deployment["configurations"],
+        "deployment_isolated_cache": deployment_isolated["configurations"],
         "input_sha256": inputs,
         "source_sha256": sources,
     }

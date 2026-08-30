@@ -1,0 +1,23 @@
+# Academic A2 commands executed from /mnt/projects/gradflow
+
+# Core isolated-worker campaign (CUDA-visible execution outside the process sandbox)
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a2/run_campaign.py --output experiments/academic_a2/evidence/a2_20260830/campaign.json
+
+# Fixed-shape scalar float32 64^3 prepared AOT packages. Packages were retained
+# outside the repository at /tmp/gradflow_a2_packages_20260830; package hashes
+# and complete preparation times are recorded in aot.json.
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a2/run_aot.py --output experiments/academic_a2/evidence/a2_20260830/aot.json --package-dir /tmp/gradflow_a2_packages_20260830
+
+# Fresh processes inheriting the prepared persistent TorchInductor cache.
+# This predates the explicit cache-policy field and is labelled prepared-cache,
+# not clean-cache compilation.
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a2/run_deployment.py --core experiments/academic_a2/evidence/a2_20260830/campaign.json --aot experiments/academic_a2/evidence/a2_20260830/aot.json --output experiments/academic_a2/evidence/a2_20260830/deployment.json
+
+# Fresh processes with a separate empty TorchInductor cache per repetition.
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a2/run_deployment.py --cache-policy isolated --core experiments/academic_a2/evidence/a2_20260830/campaign.json --aot experiments/academic_a2/evidence/a2_20260830/aot.json --output experiments/academic_a2/evidence/a2_20260830/deployment_isolated_cache.json
+
+# Deterministic analysis.
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a2/analyze_results.py --core experiments/academic_a2/evidence/a2_20260830/campaign.json --aot experiments/academic_a2/evidence/a2_20260830/aot.json --deployment experiments/academic_a2/evidence/a2_20260830/deployment.json --deployment-isolated experiments/academic_a2/evidence/a2_20260830/deployment_isolated_cache.json --output experiments/academic_a2/evidence/a2_20260830/analysis.json
+
+# Offline verification after SHA256SUMS creation.
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a2/verify_a2.py experiments/academic_a2/evidence/a2_20260830

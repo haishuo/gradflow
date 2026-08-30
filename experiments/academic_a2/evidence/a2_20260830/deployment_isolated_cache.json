@@ -1,0 +1,622 @@
+{
+  "schema": "gradflow-academic-a2-deployment-campaign-v1",
+  "created_utc": "2026-08-30T14:42:43.540699+00:00",
+  "complete": true,
+  "repetitions": 3,
+  "torchinductor_cache_policy": "isolated",
+  "configurations": [
+    {
+      "order": 5,
+      "dimensions": 1,
+      "n": 8192,
+      "lane": "cpu_compiled",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 7.6991048810014036,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 1,
+            "n": 8192,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 5.988766987997224,
+            "execution_and_return_seconds": 4.810387178004021,
+            "finite": true,
+            "checksum_float64": 1.3473072613123804e-06,
+            "maximum_absolute": 0.7855554819107056
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 7.665471375992638,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 1,
+            "n": 8192,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 5.988023066995083,
+            "execution_and_return_seconds": 4.806299182004295,
+            "finite": true,
+            "checksum_float64": 1.3473072613123804e-06,
+            "maximum_absolute": 0.7855554819107056
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 7.640523509006016,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 1,
+            "n": 8192,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 5.954392778992769,
+            "execution_and_return_seconds": 4.823681108988239,
+            "finite": true,
+            "checksum_float64": 1.3473072613123804e-06,
+            "maximum_absolute": 0.7855554819107056
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 7.665471375992638,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 5,
+      "dimensions": 1,
+      "n": 8192,
+      "lane": "cuda_compiled",
+      "eligible": false,
+      "ineligible_reason": "corresponding core compiled lane failed correctness",
+      "records": []
+    },
+    {
+      "order": 5,
+      "dimensions": 1,
+      "n": 8192,
+      "lane": "cuda_aot",
+      "eligible": false,
+      "ineligible_reason": "P1 did not build a 1-D package",
+      "records": []
+    },
+    {
+      "order": 5,
+      "dimensions": 3,
+      "n": 64,
+      "lane": "cpu_compiled",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 11.075132366007892,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 9.341107039988856,
+            "execution_and_return_seconds": 8.20720449500368,
+            "finite": true,
+            "checksum_float64": 1.4077631931286305e-06,
+            "maximum_absolute": 1.4477431774139404
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 11.100246475005406,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 9.369826898997417,
+            "execution_and_return_seconds": 8.244354673006455,
+            "finite": true,
+            "checksum_float64": 1.4077631931286305e-06,
+            "maximum_absolute": 1.4477431774139404
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 11.036585309993825,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 9.305923206993612,
+            "execution_and_return_seconds": 8.19709968600364,
+            "finite": true,
+            "checksum_float64": 1.4077631931286305e-06,
+            "maximum_absolute": 1.4477431774139404
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 11.075132366007892,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 5,
+      "dimensions": 3,
+      "n": 64,
+      "lane": "cuda_compiled",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 7.751715981008601,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_compiled",
+            "after_import_total_seconds": 5.920138806002797,
+            "execution_and_return_seconds": 4.752094963987474,
+            "finite": true,
+            "checksum_float64": 2.079654564113298e-07,
+            "maximum_absolute": 1.4477438926696777
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 7.7267862370063085,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_compiled",
+            "after_import_total_seconds": 5.887728956004139,
+            "execution_and_return_seconds": 4.710989632003475,
+            "finite": true,
+            "checksum_float64": 2.079654564113298e-07,
+            "maximum_absolute": 1.4477438926696777
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 7.890596489000018,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_compiled",
+            "after_import_total_seconds": 6.063461115991231,
+            "execution_and_return_seconds": 4.906415004006703,
+            "finite": true,
+            "checksum_float64": 2.079654564113298e-07,
+            "maximum_absolute": 1.4477438926696777
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 7.751715981008601,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 5,
+      "dimensions": 3,
+      "n": 64,
+      "lane": "cuda_aot",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 1.6596743070113007,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_aot",
+            "after_import_total_seconds": 0.4531927849893691,
+            "execution_and_return_seconds": 0.001764796004863456,
+            "finite": true,
+            "checksum_float64": 2.079654564113298e-07,
+            "maximum_absolute": 1.4477438926696777
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 1.6508855080028297,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_aot",
+            "after_import_total_seconds": 0.45220891399367247,
+            "execution_and_return_seconds": 0.0017726369987940416,
+            "finite": true,
+            "checksum_float64": 2.079654564113298e-07,
+            "maximum_absolute": 1.4477438926696777
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 1.6567374089936493,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_aot",
+            "after_import_total_seconds": 0.45512711399351247,
+            "execution_and_return_seconds": 0.0017707369988784194,
+            "finite": true,
+            "checksum_float64": 2.079654564113298e-07,
+            "maximum_absolute": 1.4477438926696777
+          },
+          "stderr": ""
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 1.6567374089936493,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 15,
+      "dimensions": 1,
+      "n": 8192,
+      "lane": "cpu_compiled",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 19.23019246199692,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 1,
+            "n": 8192,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 17.302599589995225,
+            "execution_and_return_seconds": 16.15472819900606,
+            "finite": true,
+            "checksum_float64": -1.856496965046972e-07,
+            "maximum_absolute": 0.7855166792869568
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 19.191302021004958,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 1,
+            "n": 8192,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 17.278702141004032,
+            "execution_and_return_seconds": 16.093861068002298,
+            "finite": true,
+            "checksum_float64": -1.856496965046972e-07,
+            "maximum_absolute": 0.7855166792869568
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 19.227818016996025,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 1,
+            "n": 8192,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 17.31952112900035,
+            "execution_and_return_seconds": 16.19983904399851,
+            "finite": true,
+            "checksum_float64": -1.856496965046972e-07,
+            "maximum_absolute": 0.7855166792869568
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 19.227818016996025,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 15,
+      "dimensions": 1,
+      "n": 8192,
+      "lane": "cuda_compiled",
+      "eligible": false,
+      "ineligible_reason": "corresponding core compiled lane failed correctness",
+      "records": []
+    },
+    {
+      "order": 15,
+      "dimensions": 1,
+      "n": 8192,
+      "lane": "cuda_aot",
+      "eligible": false,
+      "ineligible_reason": "P1 did not build a 1-D package",
+      "records": []
+    },
+    {
+      "order": 15,
+      "dimensions": 3,
+      "n": 64,
+      "lane": "cpu_compiled",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 59.05660529399756,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 56.388691426007426,
+            "execution_and_return_seconds": 55.242285494998214,
+            "finite": true,
+            "checksum_float64": -2.517227972020919e-05,
+            "maximum_absolute": 1.4483094215393066
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 57.51457345898962,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 54.82734680399881,
+            "execution_and_return_seconds": 53.62603564700112,
+            "finite": true,
+            "checksum_float64": -2.517227972020919e-05,
+            "maximum_absolute": 1.4483094215393066
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 58.742411743995035,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 56.074801979004405,
+            "execution_and_return_seconds": 54.888307493994944,
+            "finite": true,
+            "checksum_float64": -2.517227972020919e-05,
+            "maximum_absolute": 1.4483094215393066
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 58.742411743995035,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 15,
+      "dimensions": 3,
+      "n": 64,
+      "lane": "cuda_compiled",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 71.37983510900813,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_compiled",
+            "after_import_total_seconds": 67.85169678099919,
+            "execution_and_return_seconds": 66.68044541499694,
+            "finite": true,
+            "checksum_float64": 4.542742829016788e-06,
+            "maximum_absolute": 1.4483106136322021
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 71.18319460299972,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_compiled",
+            "after_import_total_seconds": 67.73818650000612,
+            "execution_and_return_seconds": 66.57023088500137,
+            "finite": true,
+            "checksum_float64": 4.542742829016788e-06,
+            "maximum_absolute": 1.4483106136322021
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 70.46666381601244,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_compiled",
+            "after_import_total_seconds": 67.02147219800099,
+            "execution_and_return_seconds": 65.85351518100651,
+            "finite": true,
+            "checksum_float64": 4.852960557855113e-06,
+            "maximum_absolute": 1.4483106136322021
+          },
+          "stderr": "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)\n  return torch._C._get_cublas_allow_tf32()\n"
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 71.18319460299972,
+      "all_checksums_identical": false
+    },
+    {
+      "order": 15,
+      "dimensions": 3,
+      "n": 64,
+      "lane": "cuda_aot",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 1.657710624000174,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_aot",
+            "after_import_total_seconds": 0.4594308959931368,
+            "execution_and_return_seconds": 0.006850352001492865,
+            "finite": true,
+            "checksum_float64": 5.0320509785706236e-06,
+            "maximum_absolute": 1.4483106136322021
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 1.6672398220107425,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_aot",
+            "after_import_total_seconds": 0.4635762279940536,
+            "execution_and_return_seconds": 0.006864822003990412,
+            "finite": true,
+            "checksum_float64": 5.0320509785706236e-06,
+            "maximum_absolute": 1.4483106136322021
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "isolated",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 1.6660926559998188,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_aot",
+            "after_import_total_seconds": 0.4606009389972314,
+            "execution_and_return_seconds": 0.006929280993063003,
+            "finite": true,
+            "checksum_float64": 5.0320509785706236e-06,
+            "maximum_absolute": 1.4483106136322021
+          },
+          "stderr": ""
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 1.6660926559998188,
+      "all_checksums_identical": true
+    }
+  ],
+  "completed_utc": "2026-08-30T14:51:39.185203+00:00"
+}
