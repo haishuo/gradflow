@@ -1,0 +1,13 @@
+# Academic A3 commands executed from /mnt/projects/gradflow
+
+# The initial invocation stopped before creating evidence because the runner
+# had not added src/ to its import path. Commit bfc233d corrected only that
+# startup wiring. The frozen protocol and mathematics were unchanged.
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a3/run_campaign.py --output experiments/academic_a3/evidence/a3_20260830/campaign.json
+
+# The successful retry used the same command. CPU and CUDA compiler workers
+# each received a separate initially empty temporary TORCHINDUCTOR_CACHE_DIR.
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a3/run_campaign.py --output experiments/academic_a3/evidence/a3_20260830/campaign.json
+
+# Offline verification after SHA256SUMS creation.
+/home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a3/verify_a3.py experiments/academic_a3/evidence/a3_20260830
