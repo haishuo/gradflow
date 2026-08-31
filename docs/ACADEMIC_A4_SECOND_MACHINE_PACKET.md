@@ -2,6 +2,11 @@
 
 Status: **ready to execute on a physically distinct machine**.
 
+The prospective Unity/SLURM instantiation is frozen in
+`docs/ACADEMIC_A4_UNITY_PROTOCOL.md`; its controller and submission files are
+under `experiments/academic_a4/unity/`. It uses the designated persistent
+workspace `/work/pi_zchen2_umassd_edu/hshu`, never the login staging directory.
+
 ## Minimum machine
 
 A 64-bit Linux host with Python 3.10 or newer, enough RAM for the test suite,

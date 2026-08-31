@@ -12,6 +12,10 @@ from the report about testing it.
 See `docs/ACADEMIC_A4_PROTOCOL.md` for the frozen independent replication,
 external-review, rights, and data-center value-of-information rules.
 
+The SLURM adapter for the prospective UMass Unity second-machine run is under
+`experiments/academic_a4/unity/` and is governed by
+`docs/ACADEMIC_A4_UNITY_PROTOCOL.md`.
+
 Release candidate 2 extends that contract through U4 and stable-release U5.
 Its amendment is `docs/ACADEMIC_A4_RC2_PROTOCOL.md`, its interpreted result is
 `docs/ACADEMIC_A4_RC2_RESULTS.md`, and its evidence is under
