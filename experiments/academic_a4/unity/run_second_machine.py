@@ -107,9 +107,17 @@ def run_command(
 
 
 def capture_text(command: list[str], cwd: Path) -> dict[str, Any]:
-    completed = subprocess.run(
-        command, cwd=cwd, capture_output=True, text=True, check=False, timeout=60
-    )
+    try:
+        completed = subprocess.run(
+            command, cwd=cwd, capture_output=True, text=True, check=False, timeout=60
+        )
+    except FileNotFoundError as error:
+        return {
+            "command": command,
+            "returncode": 127,
+            "stdout": "",
+            "stderr": str(error),
+        }
     return {
         "command": command,
         "returncode": completed.returncode,
@@ -118,15 +126,21 @@ def capture_text(command: list[str], cwd: Path) -> dict[str, Any]:
     }
 
 
-def environment_record(repo: Path) -> dict[str, Any]:
+def environment_record(repo: Path, execution_context: str) -> dict[str, Any]:
     import torch
 
-    commands = {
+    commands: dict[str, list[str]] = {
         "lscpu": ["lscpu"],
         "nvidia_smi": ["nvidia-smi", "-q"],
-        "slurm_job": ["scontrol", "show", "job", os.environ.get("SLURM_JOB_ID", "")],
         "pip_freeze": [sys.executable, "-m", "pip", "freeze"],
     }
+    if execution_context == "unity_slurm":
+        commands["slurm_job"] = [
+            "scontrol",
+            "show",
+            "job",
+            os.environ.get("SLURM_JOB_ID", ""),
+        ]
     return {
         "captured_utc": utc_now(),
         "hostname": platform.node(),
@@ -146,6 +160,7 @@ def environment_record(repo: Path) -> dict[str, Any]:
             if torch.cuda.is_available()
             else None
         ),
+        "execution_context": execution_context,
         "slurm": {
             key: value
             for key, value in os.environ.items()
@@ -276,6 +291,19 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--execution-context",
+        choices=("unity_slurm", "standalone"),
+        default="unity_slurm",
+    )
+    parser.add_argument(
+        "--workspace-contract",
+        default="/work/pi_zchen2_umassd_edu/hshu",
+    )
+    parser.add_argument(
+        "--protocol",
+        default="docs/ACADEMIC_A4_PROTOCOL.md",
+    )
     arguments = parser.parse_args()
     repo = arguments.repo.resolve()
     output = arguments.output.resolve()
@@ -291,9 +319,9 @@ def main() -> None:
         "status": "running",
         "source_tag": TAG,
         "source_commit": TAG_COMMIT,
-        "protocol": "docs/ACADEMIC_A4_PROTOCOL.md",
-        "workspace_contract": "/work/pi_zchen2_umassd_edu/hshu",
-        "environment": environment_record(repo),
+        "protocol": arguments.protocol,
+        "workspace_contract": arguments.workspace_contract,
+        "environment": environment_record(repo, arguments.execution_context),
         "sentinels": [],
         "a2_workers": [],
     }
