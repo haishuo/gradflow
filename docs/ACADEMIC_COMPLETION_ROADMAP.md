@@ -142,11 +142,13 @@ After A1--A3 stabilize:
 - create a citable release candidate and run a clean-room reproduction; and
 - freeze paper wording only after those checks pass.
 
-The local release-candidate portion completed on 2026-08-30. Tag
-`academic-v0.1.0-rc1` identifies the 1,855-file payload; a clean no-hardlink
-clone passed 293 tests with 72 declared skips and all A1--A4 offline verifiers.
+The original local release candidate completed on 2026-08-30. It is retained
+as `academic-v0.1.0-rc1`. The expanded candidate
+`academic-v0.1.0-rc2` completed on 2026-08-31 after U4 and U5: its 3,192-file
+payload passed a no-hardlink, no-network, CUDA-visible clean-room run with 355
+tests, 12 declared skips, and all 14 offline evidence/payload sentinels.
 Environment, rights, second-machine, and external-review packets are frozen.
-See `ACADEMIC_A4_RESULTS.md`.
+See `ACADEMIC_A4_RC2_RESULTS.md`.
 
 A4 remains open: the second-machine replication and independent
 numerical-CFD/prior-art audit have not occurred. Reference and project-license
@@ -192,7 +194,6 @@ Under this discipline, A1--A3 and U4 are closed locally. The remaining route
 is:
 
 ```text
-A4 rc2 clean-room freeze and updated replication/review packets
 A4 second-machine replication + independent CFD/prior-art audit
 rights/license and public-archive decision
 ```

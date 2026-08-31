@@ -1,0 +1,72 @@
+............................ssssssssssss................................ [ 19%]
+........................................................................ [ 39%]
+........................................................................ [ 58%]
+........................................................................ [ 78%]
+........................................................................ [ 98%]
+.......                                                                  [100%]
+=============================== warnings summary ===============================
+tests/test_burgers.py::test_fullgraph_compile_cpu[burgers_fd_weno5_rhs]
+  /home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)
+    return torch._C._get_cublas_allow_tf32()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_dveb_abi.py:66: set GRADFLOW_TEST_DVEB_MANIFEST to exercise portable ABI v1
+SKIPPED [3] tests/test_dveb_abi.py:74: set GRADFLOW_TEST_DVEB_MANIFEST to exercise portable ABI v1
+SKIPPED [1] tests/test_dveb_abi.py:90: set the verified DVEB placement model and hash
+SKIPPED [2] tests/test_dveb_abi.py:114: set GRADFLOW_TEST_DVEB_EXECUTABLE to compare the direct runner
+SKIPPED [3] tests/test_dveb_device_abi.py:34: set GRADFLOW_TEST_DVEB_DEVICE_MANIFEST on a CUDA host
+SKIPPED [1] tests/test_dveb_device_abi.py:46: set GRADFLOW_TEST_DVEB_DEVICE_MANIFEST on a CUDA host
+SKIPPED [1] tests/test_dveb_device_abi.py:60: set GRADFLOW_TEST_DVEB_DEVICE_MANIFEST on a CUDA host
+355 passed, 12 skipped, 1 warning in 53.88s
+
+
+Academic A1 evidence, source index, and frozen conclusions verify.
+
+
+Academic A2 evidence, cache endpoints, exclusions, and conclusions verify.
+
+
+Academic A3 inverse, gradient, compiler, and timing evidence verify.
+
+
+Academic A4 payload hashes and release-policy gates verify.
+
+
+Academic U4-A evidence and compatibility decisions verify.
+
+
+{
+  "decision": "matched_operator_adapted_qualified",
+  "checksums": "passed",
+  "semantic_gates": "passed",
+  "external_convergence_rates": [
+    5.095708046052657,
+    5.060075486425139,
+    5.03477186862669
+  ]
+}
+
+
+U4-C C1 CUDA qualification evidence verified
+
+
+U4-C C3 endpoint evidence verified
+
+
+U4-C C2 performance evidence verified
+
+
+U4-D D2/D3 three-way campaign evidence verified
+
+
+U4-E E2/E3 three-way campaign evidence verified
+
+
+GradFlow academic U4-F evidence verified
+
+
+GradFlow academic U5 evidence verified
+
+
+Academic A4 rc2 payload hashes and release-policy gates verify.

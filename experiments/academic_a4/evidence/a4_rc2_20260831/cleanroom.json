@@ -1,0 +1,151 @@
+{
+  "schema": "gradflow-academic-a4-cleanroom-v2",
+  "created_utc": "2026-08-31T15:24:36.547837+00:00",
+  "requested_ref": "academic-v0.1.0-rc2",
+  "tested_commit": "c5e8ab81ef5b33a2138b2db33afc538398b6f57f",
+  "clone_mode": "local_no_hardlinks",
+  "network_used": false,
+  "python_executable": "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+  "python": "3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+  "source_tree_clean_before": true,
+  "source_tree_clean_after": true,
+  "commands": [
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "returncode": 0,
+      "wall_seconds": 55.710896832024446
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_a1/verify_a1.py",
+        "experiments/academic_a1/evidence/a1_20260830"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.024956717010354623
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_a2/verify_a2.py",
+        "experiments/academic_a2/evidence/a2_20260830"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03591477102600038
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_a3/verify_a3.py",
+        "experiments/academic_a3/evidence/a3_20260830"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.01990203800960444
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_a4/verify_a4.py",
+        "experiments/academic_a4/evidence/a4_20260830",
+        "--ref",
+        "academic-v0.1.0-rc1"
+      ],
+      "returncode": 0,
+      "wall_seconds": 2.739625708985841
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_u4a/verify_u4a.py",
+        "experiments/academic_u4a/evidence/u4a_20260830"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.01932099199621007
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_u4b/verify_u4b.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.05648578502587043
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_u4c/verify_cuda_qualification.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.0531654350052122
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_u4c/verify_endpoints.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.01906182401580736
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_u4c/verify_performance.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.45761831500567496
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_u4d/verify_campaign.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.02128604002064094
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_u4e/verify_campaign.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.021983776008710265
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_u4f/verify_campaign.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.022861089993966743
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_u5/verify_u5.py",
+        "experiments/academic_u5/evidence/u5_20260831"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.03915651098941453
+    },
+    {
+      "command": [
+        "/home/haishuo/miniconda3/envs/gradflow/bin/python",
+        "experiments/academic_a4/verify_a4_rc2.py",
+        "experiments/academic_a4/evidence/a4_rc2_20260831",
+        "--ref",
+        "academic-v0.1.0-rc2"
+      ],
+      "returncode": 0,
+      "wall_seconds": 5.720875412982423
+    }
+  ],
+  "all_passed": true,
+  "stdout_sha256": "bcd1dcde433a881d753f37d42d6998ff0354e937fca3cbc87d84fc1a67800fe2",
+  "stderr_sha256": "9e2a078724c35cb29f9c1d6c2894d45b03cf53499867de8494fe8e6a0f52d1bf"
+}
