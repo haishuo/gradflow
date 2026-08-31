@@ -111,3 +111,12 @@ full endpoint arrays, randomized orders, automatic schedule metadata,
 telemetry, hashes, commands, and deterministic analysis.  Run
 `python3 experiments/academic_u4e/verify_campaign.py` for offline verification;
 external binaries, CUDA, and the AOT package are not required.
+
+## Closure
+
+After the evidence and verifier commit, the complete CUDA-visible GradFlow
+regression passed with `355 passed`, `12 skipped`, and one PyTorch deprecation
+warning in 53.84 seconds.  The skips are the existing opt-in portable/device
+DVEB ABI tests that require separately supplied external manifests or
+executables; U4-E instead verifies its immutable handoff, ABI adapter, schedule
+metadata, full arrays, and hashes directly.

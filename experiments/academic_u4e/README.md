@@ -20,3 +20,5 @@ resolved winner on both one-thread CPU and CUDA.  The separately reported
 transfer-inclusive and prepared-launch endpoints are descriptive only.  See
 `docs/ACADEMIC_U4E_RESULTS.md` and run
 `python3 experiments/academic_u4e/verify_campaign.py` for offline verification.
+The final CUDA-visible GradFlow regression passed with 355 tests and 12
+expected external-artifact skips.
