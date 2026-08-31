@@ -3,6 +3,10 @@
 Status: **prospective protocol frozen before U4-F implementation, qualification,
 or timing**.
 
+Pre-campaign infrastructure amendment: see
+`ACADEMIC_U4F_PROTOCOL_AMENDMENT.md`. It changes no batch, mathematics,
+tolerance, timing, or decision rule.
+
 Date: 2026-08-31 (UTC)
 
 ## Question
