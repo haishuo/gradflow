@@ -150,9 +150,15 @@ tests, 12 declared skips, and all 14 offline evidence/payload sentinels.
 Environment, rights, second-machine, and external-review packets are frozen.
 See `ACADEMIC_A4_RC2_RESULTS.md`.
 
-A4 remains open: the second-machine replication and independent
-numerical-CFD/prior-art audit have not occurred. Reference and project-license
-questions are explicitly flagged but not legally resolved.
+A4 remains open. The prospectively frozen Unity attempt completed, but the
+allocated Tesla M40 (compute capability 5.2) was below stable PyTorch/Triton's
+supported GPU floor, so its compiled-CUDA and material-usefulness gates could
+not run. This is retained as a negative portability result rather than called
+a modern-GPU replication. The separately frozen Moody RTX 4070 SUPER run is
+the active suitable-machine replication. The independent numerical-CFD/prior-
+art audit has not occurred. Reference and project-license questions are
+explicitly flagged but not legally resolved. See
+`ACADEMIC_A4_UNITY_RESULTS.md` and `ACADEMIC_A4_MOODY_PROTOCOL.md`.
 
 ### U5. Stable-PyTorch replication — complete on Forge
 

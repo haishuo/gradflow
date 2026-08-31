@@ -148,9 +148,13 @@ work is on the first-paper critical path. Academic A1--A3 are complete, and
 the A4 internal release candidate `academic-v0.1.0-rc1` passed a no-hardlink
 clean-checkout reproduction: 293 tests passed, 72 device/fixture gates skipped
 explicitly, and all A1--A4 offline verifiers passed. The remaining paper gates
-are second-machine replication and an independent numerical-CFD/prior-art
-audit. Public release also requires a deliberate project-license decision and
-permission or exclusion for the historical MATLAB and Fortran source bytes.
+are suitable modern-GPU second-machine replication and an independent
+numerical-CFD/prior-art audit. A frozen Unity attempt is a retained negative
+portability result: its allocated Tesla M40 was below PyTorch/Triton's
+supported compute-capability floor. A prospectively frozen Moody RTX 4070
+SUPER run addresses the suitable-machine gate. Public release also requires a
+deliberate project-license decision and permission or exclusion for the
+historical MATLAB and Fortran source bytes.
 See `docs/ACADEMIC_A4_RESULTS.md`, `docs/ACADEMIC_COMPLETION_ROADMAP.md`, and
 `experiments/gpu_native_reformulation/G_SERIES_SYNTHESIS.md`.
 
