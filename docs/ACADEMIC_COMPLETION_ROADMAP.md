@@ -152,13 +152,17 @@ A4 remains open: the second-machine replication and independent
 numerical-CFD/prior-art audit have not occurred. Reference and project-license
 questions are explicitly flagged but not legally resolved.
 
-### U5. Stable-PyTorch replication — pending
+### U5. Stable-PyTorch replication — complete on Forge
 
-The central compiler evidence uses `2.9.0.dev20250705+cu128`. U4-F also found
-an internal Inductor CPU scheduler assertion for every batched shape above
-one. The core numerical/graph/performance cells must be rerun on a selected
-stable PyTorch release before submission. This is a reproduction gate, not an
-opportunity to alter the frozen mathematics or discard unfavorable results.
+The central compiler evidence was replicated prospectively on stable PyTorch
+`2.13.0+cu130`. All registered numerical and graph gates passed; the batched
+CPU scheduler assertion disappeared. Absolute performance changed materially:
+CPU improved, CUDA regressed on the primary arbitrary-order surface, warm AOT
+advantages became unresolved, and the U4-F CUDA transition still favored DVEB
+through batch 16 and PyTorch from batch 64. See
+`ACADEMIC_U5_RESULTS.md`. Stable-release observations must become the paper's
+primary toolchain result; the earlier development build remains a
+version-sensitivity comparison.
 
 ## Explicitly deferred from the first academic artifact
 
@@ -188,7 +192,6 @@ Under this discipline, A1--A3 and U4 are closed locally. The remaining route
 is:
 
 ```text
-U5 stable-PyTorch replication
 A4 rc2 clean-room freeze and updated replication/review packets
 A4 second-machine replication + independent CFD/prior-art audit
 rights/license and public-archive decision

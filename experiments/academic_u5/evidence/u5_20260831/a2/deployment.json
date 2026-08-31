@@ -1,0 +1,622 @@
+{
+  "schema": "gradflow-academic-a2-deployment-campaign-v1",
+  "created_utc": "2026-08-31T14:12:25.534371+00:00",
+  "complete": true,
+  "repetitions": 3,
+  "torchinductor_cache_policy": "inherited",
+  "configurations": [
+    {
+      "order": 5,
+      "dimensions": 1,
+      "n": 8192,
+      "lane": "cpu_compiled",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 5.2955333160061855,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 1,
+            "n": 8192,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 3.8909663000085857,
+            "execution_and_return_seconds": 3.247590108017903,
+            "finite": true,
+            "checksum_float64": 1.759945007506758e-07,
+            "maximum_absolute": 0.7855555415153503
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 4.003532408998581,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 1,
+            "n": 8192,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 2.71478824299993,
+            "execution_and_return_seconds": 2.06585965299746,
+            "finite": true,
+            "checksum_float64": 1.759945007506758e-07,
+            "maximum_absolute": 0.7855555415153503
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 4.006416210002499,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 1,
+            "n": 8192,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 2.715694351005368,
+            "execution_and_return_seconds": 2.0645562529971357,
+            "finite": true,
+            "checksum_float64": 1.759945007506758e-07,
+            "maximum_absolute": 0.7855555415153503
+          },
+          "stderr": ""
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 4.006416210002499,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 5,
+      "dimensions": 1,
+      "n": 8192,
+      "lane": "cuda_compiled",
+      "eligible": false,
+      "ineligible_reason": "corresponding core compiled lane failed correctness",
+      "records": []
+    },
+    {
+      "order": 5,
+      "dimensions": 1,
+      "n": 8192,
+      "lane": "cuda_aot",
+      "eligible": false,
+      "ineligible_reason": "P1 did not build a 1-D package",
+      "records": []
+    },
+    {
+      "order": 5,
+      "dimensions": 3,
+      "n": 64,
+      "lane": "cpu_compiled",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 8.886737396009266,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 7.463117501989473,
+            "execution_and_return_seconds": 6.8130953469953965,
+            "finite": true,
+            "checksum_float64": 9.595216397428885e-06,
+            "maximum_absolute": 1.4477431774139404
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 4.2358179279835895,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 2.9253233179915696,
+            "execution_and_return_seconds": 2.2812582769838627,
+            "finite": true,
+            "checksum_float64": 9.595216397428885e-06,
+            "maximum_absolute": 1.4477431774139404
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 4.249105758004589,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 2.9408331290178467,
+            "execution_and_return_seconds": 2.2880384680174757,
+            "finite": true,
+            "checksum_float64": 9.595216397428885e-06,
+            "maximum_absolute": 1.4477431774139404
+          },
+          "stderr": ""
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 4.249105758004589,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 5,
+      "dimensions": 3,
+      "n": 64,
+      "lane": "cuda_compiled",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 4.860617992992047,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_compiled",
+            "after_import_total_seconds": 2.5376946099859197,
+            "execution_and_return_seconds": 1.8248500149929896,
+            "finite": true,
+            "checksum_float64": -2.239947434645728e-06,
+            "maximum_absolute": 1.4477450847625732
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 4.778078439994715,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_compiled",
+            "after_import_total_seconds": 1.876822218997404,
+            "execution_and_return_seconds": 1.1683563269907609,
+            "finite": true,
+            "checksum_float64": -2.239947434645728e-06,
+            "maximum_absolute": 1.4477450847625732
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 4.779101694992278,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_compiled",
+            "after_import_total_seconds": 1.8756856489926577,
+            "execution_and_return_seconds": 1.1596759699750692,
+            "finite": true,
+            "checksum_float64": -2.239947434645728e-06,
+            "maximum_absolute": 1.4477450847625732
+          },
+          "stderr": ""
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 4.779101694992278,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 5,
+      "dimensions": 3,
+      "n": 64,
+      "lane": "cuda_aot",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 2.7949591519718524,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_aot",
+            "after_import_total_seconds": 1.5440250860119704,
+            "execution_and_return_seconds": 0.002575816004537046,
+            "finite": true,
+            "checksum_float64": -2.239947434645728e-06,
+            "maximum_absolute": 1.4477450847625732
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 2.758472811023239,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_aot",
+            "after_import_total_seconds": 1.5277937719947658,
+            "execution_and_return_seconds": 0.0025870350073091686,
+            "finite": true,
+            "checksum_float64": -2.239947434645728e-06,
+            "maximum_absolute": 1.4477450847625732
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 2.7699104560015257,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 5,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_aot",
+            "after_import_total_seconds": 1.5353586720011663,
+            "execution_and_return_seconds": 0.0026070449966937304,
+            "finite": true,
+            "checksum_float64": -2.239947434645728e-06,
+            "maximum_absolute": 1.4477450847625732
+          },
+          "stderr": ""
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 2.7699104560015257,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 15,
+      "dimensions": 1,
+      "n": 8192,
+      "lane": "cpu_compiled",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 27.42364056801307,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 1,
+            "n": 8192,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 25.76264098699903,
+            "execution_and_return_seconds": 25.128803389990935,
+            "finite": true,
+            "checksum_float64": 4.1979728848673403e-07,
+            "maximum_absolute": 0.7855166792869568
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 5.267615238000872,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 1,
+            "n": 8192,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 3.9478611719969194,
+            "execution_and_return_seconds": 3.30903486997704,
+            "finite": true,
+            "checksum_float64": 4.1979728848673403e-07,
+            "maximum_absolute": 0.7855166792869568
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 5.2129021270084195,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 1,
+            "n": 8192,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 3.896380380989285,
+            "execution_and_return_seconds": 3.2521934699907433,
+            "finite": true,
+            "checksum_float64": 4.1979728848673403e-07,
+            "maximum_absolute": 0.7855166792869568
+          },
+          "stderr": ""
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 5.267615238000872,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 15,
+      "dimensions": 1,
+      "n": 8192,
+      "lane": "cuda_compiled",
+      "eligible": false,
+      "ineligible_reason": "corresponding core compiled lane failed correctness",
+      "records": []
+    },
+    {
+      "order": 15,
+      "dimensions": 1,
+      "n": 8192,
+      "lane": "cuda_aot",
+      "eligible": false,
+      "ineligible_reason": "P1 did not build a 1-D package",
+      "records": []
+    },
+    {
+      "order": 15,
+      "dimensions": 3,
+      "n": 64,
+      "lane": "cpu_compiled",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 108.30408990301657,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 106.02216514400789,
+            "execution_and_return_seconds": 105.3703505579906,
+            "finite": true,
+            "checksum_float64": -1.602954421286995e-05,
+            "maximum_absolute": 1.4483094215393066
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 8.271572024998022,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 6.900514328997815,
+            "execution_and_return_seconds": 6.214700937998714,
+            "finite": true,
+            "checksum_float64": -1.602954421286995e-05,
+            "maximum_absolute": 1.4483094215393066
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 7.527709144982509,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cpu_compiled",
+            "after_import_total_seconds": 6.161005913018016,
+            "execution_and_return_seconds": 5.512686230998952,
+            "finite": true,
+            "checksum_float64": -1.602954421286995e-05,
+            "maximum_absolute": 1.4483094215393066
+          },
+          "stderr": ""
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 8.271572024998022,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 15,
+      "dimensions": 3,
+      "n": 64,
+      "lane": "cuda_compiled",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 12.24812035402283,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_compiled",
+            "after_import_total_seconds": 10.312996633001603,
+            "execution_and_return_seconds": 9.60415851601283,
+            "finite": true,
+            "checksum_float64": -3.4259381607171235e-06,
+            "maximum_absolute": 1.4483106136322021
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 8.062610824010335,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_compiled",
+            "after_import_total_seconds": 5.23511390198837,
+            "execution_and_return_seconds": 4.510276387998601,
+            "finite": true,
+            "checksum_float64": -3.4259381607171235e-06,
+            "maximum_absolute": 1.4483106136322021
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 8.06263584899716,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_compiled",
+            "after_import_total_seconds": 5.233031031995779,
+            "execution_and_return_seconds": 4.514589108992368,
+            "finite": true,
+            "checksum_float64": -3.4259381607171235e-06,
+            "maximum_absolute": 1.4483106136322021
+          },
+          "stderr": ""
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 8.06263584899716,
+      "all_checksums_identical": true
+    },
+    {
+      "order": 15,
+      "dimensions": 3,
+      "n": 64,
+      "lane": "cuda_aot",
+      "eligible": true,
+      "ineligible_reason": null,
+      "records": [
+        {
+          "repetition": 0,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 2.7968552140227985,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_aot",
+            "after_import_total_seconds": 1.5507081169926096,
+            "execution_and_return_seconds": 0.006998209981247783,
+            "finite": true,
+            "checksum_float64": -4.122817330198814e-06,
+            "maximum_absolute": 1.4483108520507812
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 1,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 2.7705846629978623,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_aot",
+            "after_import_total_seconds": 1.5327689650002867,
+            "execution_and_return_seconds": 0.0069690889795310795,
+            "finite": true,
+            "checksum_float64": -4.122817330198814e-06,
+            "maximum_absolute": 1.4483108520507812
+          },
+          "stderr": ""
+        },
+        {
+          "repetition": 2,
+          "torchinductor_cache_policy": "inherited",
+          "returncode": 0,
+          "parent_start_to_finish_seconds": 2.7751471599913202,
+          "worker": {
+            "schema": "gradflow-academic-a2-deployment-worker-v1",
+            "status": "complete",
+            "order": 15,
+            "dimensions": 3,
+            "n": 64,
+            "lane": "cuda_aot",
+            "after_import_total_seconds": 1.5431537840049714,
+            "execution_and_return_seconds": 0.007108557998435572,
+            "finite": true,
+            "checksum_float64": -4.122817330198814e-06,
+            "maximum_absolute": 1.4483108520507812
+          },
+          "stderr": ""
+        }
+      ],
+      "median_parent_start_to_finish_seconds": 2.7751471599913202,
+      "all_checksums_identical": true
+    }
+  ],
+  "completed_utc": "2026-08-31T14:16:37.729180+00:00"
+}
