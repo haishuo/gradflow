@@ -67,6 +67,11 @@ candidate. Its additional authorities are the committed C2/C3, U4-D, E1, and
 U4-E JSON records listed in its manifest. The eventual clean-room rc2 release
 will receive a new export identity rather than silently changing v3.
 
+Paper export v4, `academic-v0.1.0-rc2-paper-v4`, supersedes v3 after U4-F,
+the stable-PyTorch U5 replication, and the rc2 clean-room audit. It makes
+stable PyTorch 2.13 the primary toolchain evidence and retains the earlier
+development build explicitly as a version-sensitivity stratum.
+
 ## Downstream paper contract
 
 The paper repository must:
