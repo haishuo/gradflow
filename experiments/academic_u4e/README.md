@@ -14,3 +14,9 @@ artifact selected the predicted automatic schedules without an override.  See
 `docs/ACADEMIC_U4E_E1_RESULTS.md` and run
 `python3 experiments/academic_u4e/verify_qualification.py` for offline
 verification.  E1 contains no comparative performance claim.
+
+E2/E3 are complete.  Under the frozen resident decision endpoint, DVEB is the
+resolved winner on both one-thread CPU and CUDA.  The separately reported
+transfer-inclusive and prepared-launch endpoints are descriptive only.  See
+`docs/ACADEMIC_U4E_RESULTS.md` and run
+`python3 experiments/academic_u4e/verify_campaign.py` for offline verification.
