@@ -66,7 +66,11 @@ def main() -> None:
             [sys.executable, "experiments/academic_a2/verify_a2.py", "experiments/academic_a2/evidence/a2_20260830"],
             [sys.executable, "experiments/academic_a3/verify_a3.py", "experiments/academic_a3/evidence/a3_20260830"],
             [sys.executable, "experiments/academic_a4/verify_a4.py", "experiments/academic_a4/evidence/a4_20260830", "--ref", "academic-v0.1.0-rc1"],
-            [sys.executable, "experiments/academic_u4a/verify_u4a.py"],
+            [
+                sys.executable,
+                "experiments/academic_u4a/verify_u4a.py",
+                "experiments/academic_u4a/evidence/u4a_20260830",
+            ],
             [sys.executable, "experiments/academic_u4b/verify_u4b.py"],
             [sys.executable, "experiments/academic_u4c/verify_cuda_qualification.py"],
             [sys.executable, "experiments/academic_u4c/verify_endpoints.py"],
@@ -113,4 +117,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
