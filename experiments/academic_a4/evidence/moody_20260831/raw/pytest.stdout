@@ -1,0 +1,334 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0
+rootdir: /mnt/projects/gradflow-a4-moody-20260831/repo
+configfile: pyproject.toml
+testpaths: tests
+collected 367 items
+
+tests/test_academic_a1.py .                                              [  0%]
+tests/test_academic_a2.py .                                              [  0%]
+tests/test_academic_a3.py .                                              [  0%]
+tests/test_academic_a4.py FF                                             [  1%]
+tests/test_academic_u4a.py .                                             [  1%]
+tests/test_burgers.py ..........                                         [  4%]
+tests/test_convergence.py ......                                         [  5%]
+tests/test_deferred_cuda_gate_records.py .                               [  6%]
+tests/test_device_agreement.py .....                                     [  7%]
+tests/test_dveb_abi.py sssssss                                           [  9%]
+tests/test_dveb_device_abi.py sssss                                      [ 10%]
+tests/test_euler1d.py .................................................. [ 24%]
+..................................                                       [ 33%]
+tests/test_euler1d_fv.py ............                                    [ 37%]
+tests/test_euler_arbitrary_order.py .................................... [ 46%]
+..................                                                       [ 51%]
+tests/test_euler_mixed_precision.py ...                                  [ 52%]
+tests/test_face_ownership_screen.py .                                    [ 52%]
+tests/test_fd_fv_phase_2_oracles.py .....                                [ 54%]
+tests/test_fd_fv_phase_4_records.py ....                                 [ 55%]
+tests/test_fd_fv_phase_5a_oracle.py ......                               [ 56%]
+tests/test_fd_fv_phase_5b_qualification.py .                             [ 57%]
+tests/test_fd_fv_phase_5c_harness.py ....                                [ 58%]
+tests/test_fd_fv_phase_5c_initial.py .                                   [ 58%]
+tests/test_fd_fv_phase_5cr.py .                                          [ 58%]
+tests/test_fd_fv_phase_5cr_harness.py ...                                [ 59%]
+tests/test_fd_fv_phase_6a_oracle.py ....                                 [ 60%]
+tests/test_fd_fv_phase_6a_record.py .                                    [ 61%]
+tests/test_fd_fv_phase_6b_harness.py .....                               [ 62%]
+tests/test_fd_fv_phase_6c_harness.py .....                               [ 63%]
+tests/test_fd_fv_phase_6d_harness.py ....                                [ 64%]
+tests/test_fd_fv_phase_6e_harness.py ....FF                              [ 66%]
+tests/test_fv_weno5.py .............                                     [ 70%]
+tests/test_gpu_native_g3_qualification.py .                              [ 70%]
+tests/test_gpu_native_g4_performance.py .                                [ 70%]
+tests/test_gpu_native_g5_shared_pencil.py .                              [ 70%]
+tests/test_gpu_native_g6_occupancy.py .                                  [ 71%]
+tests/test_gpu_native_g_series_closure.py .                              [ 71%]
+tests/test_infrastructure_admission.py ........                          [ 73%]
+tests/test_mixed_precision.py ....                                       [ 74%]
+tests/test_phase_a_oracles.py .......                                    [ 76%]
+tests/test_phase_b_qualifier.py .....                                    [ 77%]
+tests/test_solver_vertical_slice.py ................                     [ 82%]
+tests/test_weno5_oracle.py ..                                            [ 82%]
+tests/test_weno_js.py ..............................................     [ 95%]
+tests/test_weno_js_coefficients.py .................                     [100%]
+
+=================================== FAILURES ===================================
+_____________ test_academic_a4_artifact_and_release_policy_verify ______________
+
+    def test_academic_a4_artifact_and_release_policy_verify() -> None:
+        completed = subprocess.run(
+            (
+                sys.executable,
+                str(ROOT / "experiments" / "academic_a4" / "verify_a4.py"),
+                str(EVIDENCE),
+                "--ref",
+                "academic-v0.1.0-rc1",
+            ),
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+>       assert completed.returncode == 0, completed.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/academic_a4/verify_a4.py", line 109, in <module>
+E             main()
+E           File "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/academic_a4/verify_a4.py", line 55, in main
+E             content = git_content(arguments.ref, item["path"])
+E                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/academic_a4/verify_a4.py", line 25, in git_content
+E             return subprocess.run(
+E                    ^^^^^^^^^^^^^^^
+E           File "/usr/lib/python3.12/subprocess.py", line 571, in run
+E             raise CalledProcessError(retcode, process.args,
+E         subprocess.CalledProcessError: Command '('git', 'show', 'academic-v0.1.0-rc1:.gitignore')' returned non-zero exit status 128.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=('/mnt/projects/gradflow-a4-moody-20260831/venv-pytorch-2.13-cu126/bin/python', '/mnt/projects/g...rocessError: Command \'(\'git\', \'show\', \'academic-v0.1.0-rc1:.gitignore\')\' returned non-zero exit status 128.\n').returncode
+
+tests/test_academic_a4.py:26: AssertionError
+__________________ test_academic_a4_cleanroom_record_verifies __________________
+
+    def test_academic_a4_cleanroom_record_verifies() -> None:
+        completed = subprocess.run(
+            (
+                sys.executable,
+                str(ROOT / "experiments" / "academic_a4" / "verify_cleanroom.py"),
+                str(EVIDENCE),
+            ),
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+>       assert completed.returncode == 0, completed.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/academic_a4/verify_cleanroom.py", line 56, in <module>
+E             main()
+E           File "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/academic_a4/verify_cleanroom.py", line 29, in main
+E             tagged = subprocess.run(
+E                      ^^^^^^^^^^^^^^^
+E           File "/usr/lib/python3.12/subprocess.py", line 571, in run
+E             raise CalledProcessError(retcode, process.args,
+E         subprocess.CalledProcessError: Command '('git', 'rev-list', '-n', '1', 'academic-v0.1.0-rc1')' returned non-zero exit status 128.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=('/mnt/projects/gradflow-a4-moody-20260831/venv-pytorch-2.13-cu126/bin/python', '/mnt/projects/g...ror: Command \'(\'git\', \'rev-list\', \'-n\', \'1\', \'academic-v0.1.0-rc1\')\' returned non-zero exit status 128.\n').returncode
+
+tests/test_academic_a4.py:41: AssertionError
+______________ test_committed_phase6e_initial_aot_record_verifies ______________
+
+    def test_committed_phase6e_initial_aot_record_verifies() -> None:
+        root = Path(__file__).resolve().parents[1]
+        completed = subprocess.run(
+            (
+                sys.executable,
+                str(root / "experiments/fd_fv_euler/verify_phase6e_aot.py"),
+            ),
+            cwd=root,
+            check=False,
+        )
+>       assert completed.returncode == 0
+E       AssertionError: assert 1 == 0
+E        +  where 1 = CompletedProcess(args=('/mnt/projects/gradflow-a4-moody-20260831/venv-pytorch-2.13-cu126/bin/python', '/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/fd_fv_euler/verify_phase6e_aot.py'), returncode=1).returncode
+
+tests/test_fd_fv_phase_6e_harness.py:79: AssertionError
+----------------------------- Captured stdout call -----------------------------
+FD/FV Euler Phase 6A verified: inherited authorities, exact point and cell-average projections, Sod quadrature/balance, Shu--Osher restriction, hashes, and no-timing claim all pass.
+{
+  "arrays": {
+    "shu_osher_order11_n800.npz": {
+      "minimum_density": 0.8000006202115134,
+      "minimum_pressure": 0.9947823707857374
+    },
+    "shu_osher_order15_n800.npz": {
+      "minimum_density": 0.8000006202115134,
+      "minimum_pressure": 0.8961372875483725
+    },
+    "shu_osher_order5_n800.npz": {
+      "minimum_density": 0.8000008920255914,
+      "minimum_pressure": 0.999998106459775
+    },
+    "sod_order11_n800.npz": {
+      "minimum_density": 0.12499982603174842,
+      "minimum_pressure": 0.09999983132713143
+    },
+    "sod_order15_n800.npz": {
+      "minimum_density": 0.12475245176990933,
+      "minimum_pressure": 0.09972455386251511
+    },
+    "sod_order5_n800.npz": {
+      "minimum_density": 0.12499771326182792,
+      "minimum_pressure": 0.09999741534020654
+    }
+  },
+  "checked_hashes": {
+    "qualification.json": "95d3da968fc063d204e13effc8d6190e027e4550a4fe2063462ccbbf170c6b5d",
+    "shu_osher_order11_n800.npz": "37c8e12f7520eb0c329cc1f901109daeeaec163b1deaddb59645a0d2a9c2653a",
+    "shu_osher_order15_n800.npz": "7c44620901be819ebf4a7d262172e7a974c13ec1062cb5c14a8cd7a11ef1421c",
+    "shu_osher_order5_n800.npz": "c8767f5bca98c6a05f41d3b786ab9a41691d2e165abaabf2b5a594150b54bde6",
+    "sod_order11_n800.npz": "e888363b4161bdf53e79de1fbf4c10567532c90a0c0894a6eced56c27b916b02",
+    "sod_order15_n800.npz": "b2bf75b7f9b0c9029819aacb15ba48d2cb9ae27f66e6b3539fe30df93522edea",
+    "sod_order5_n800.npz": "fcea45bb5bd7731981d311fe8f5ed7282379d5ab621ebfb9d47c3fe87ecca939"
+  },
+  "passed": true,
+  "record": "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/euler_boundary_shock/results/phase_b_20260827",
+  "source_commit": "3b64b1a75b0e412fee195b12c341901ff0c1136d"
+}
+Deferred CUDA gates verified: scalar FV agreement/compilation/movement and 24 Euler agreement plus six compiler cases passed on Forge; no performance timing was collected.
+FD/FV Euler Phase 6B verification passed
+FD/FV Euler Phase 6C verification passed
+FD/FV Euler Phase 6D verification passed
+FD/FV Euler Phase 6E Lane A verification passed
+----------------------------- Captured stderr call -----------------------------
+Traceback (most recent call last):
+  File "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/fd_fv_euler/verify_phase6e_aot.py", line 161, in <module>
+    main()
+  File "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/fd_fv_euler/verify_phase6e_aot.py", line 100, in main
+    assert package.is_file()
+           ^^^^^^^^^^^^^^^^^
+AssertionError
+_______________ test_committed_phase6e_device_r1_record_verifies _______________
+
+    def test_committed_phase6e_device_r1_record_verifies() -> None:
+        root = Path(__file__).resolve().parents[1]
+        completed = subprocess.run(
+            (
+                sys.executable,
+                str(root / "experiments/fd_fv_euler/verify_phase6e_device_r1.py"),
+            ),
+            cwd=root,
+            check=False,
+        )
+>       assert completed.returncode == 0
+E       AssertionError: assert 1 == 0
+E        +  where 1 = CompletedProcess(args=('/mnt/projects/gradflow-a4-moody-20260831/venv-pytorch-2.13-cu126/bin/python', '/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/fd_fv_euler/verify_phase6e_device_r1.py'), returncode=1).returncode
+
+tests/test_fd_fv_phase_6e_harness.py:92: AssertionError
+----------------------------- Captured stdout call -----------------------------
+FD/FV Euler Phase 6A verified: inherited authorities, exact point and cell-average projections, Sod quadrature/balance, Shu--Osher restriction, hashes, and no-timing claim all pass.
+{
+  "arrays": {
+    "shu_osher_order11_n800.npz": {
+      "minimum_density": 0.8000006202115134,
+      "minimum_pressure": 0.9947823707857374
+    },
+    "shu_osher_order15_n800.npz": {
+      "minimum_density": 0.8000006202115134,
+      "minimum_pressure": 0.8961372875483725
+    },
+    "shu_osher_order5_n800.npz": {
+      "minimum_density": 0.8000008920255914,
+      "minimum_pressure": 0.999998106459775
+    },
+    "sod_order11_n800.npz": {
+      "minimum_density": 0.12499982603174842,
+      "minimum_pressure": 0.09999983132713143
+    },
+    "sod_order15_n800.npz": {
+      "minimum_density": 0.12475245176990933,
+      "minimum_pressure": 0.09972455386251511
+    },
+    "sod_order5_n800.npz": {
+      "minimum_density": 0.12499771326182792,
+      "minimum_pressure": 0.09999741534020654
+    }
+  },
+  "checked_hashes": {
+    "qualification.json": "95d3da968fc063d204e13effc8d6190e027e4550a4fe2063462ccbbf170c6b5d",
+    "shu_osher_order11_n800.npz": "37c8e12f7520eb0c329cc1f901109daeeaec163b1deaddb59645a0d2a9c2653a",
+    "shu_osher_order15_n800.npz": "7c44620901be819ebf4a7d262172e7a974c13ec1062cb5c14a8cd7a11ef1421c",
+    "shu_osher_order5_n800.npz": "c8767f5bca98c6a05f41d3b786ab9a41691d2e165abaabf2b5a594150b54bde6",
+    "sod_order11_n800.npz": "e888363b4161bdf53e79de1fbf4c10567532c90a0c0894a6eced56c27b916b02",
+    "sod_order15_n800.npz": "b2bf75b7f9b0c9029819aacb15ba48d2cb9ae27f66e6b3539fe30df93522edea",
+    "sod_order5_n800.npz": "fcea45bb5bd7731981d311fe8f5ed7282379d5ab621ebfb9d47c3fe87ecca939"
+  },
+  "passed": true,
+  "record": "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/euler_boundary_shock/results/phase_b_20260827",
+  "source_commit": "3b64b1a75b0e412fee195b12c341901ff0c1136d"
+}
+Deferred CUDA gates verified: scalar FV agreement/compilation/movement and 24 Euler agreement plus six compiler cases passed on Forge; no performance timing was collected.
+FD/FV Euler Phase 6B verification passed
+FD/FV Euler Phase 6C verification passed
+FD/FV Euler Phase 6D verification passed
+FD/FV Euler Phase 6E Lane A verification passed
+FD/FV Euler Phase 6A verified: inherited authorities, exact point and cell-average projections, Sod quadrature/balance, Shu--Osher restriction, hashes, and no-timing claim all pass.
+{
+  "arrays": {
+    "shu_osher_order11_n800.npz": {
+      "minimum_density": 0.8000006202115134,
+      "minimum_pressure": 0.9947823707857374
+    },
+    "shu_osher_order15_n800.npz": {
+      "minimum_density": 0.8000006202115134,
+      "minimum_pressure": 0.8961372875483725
+    },
+    "shu_osher_order5_n800.npz": {
+      "minimum_density": 0.8000008920255914,
+      "minimum_pressure": 0.999998106459775
+    },
+    "sod_order11_n800.npz": {
+      "minimum_density": 0.12499982603174842,
+      "minimum_pressure": 0.09999983132713143
+    },
+    "sod_order15_n800.npz": {
+      "minimum_density": 0.12475245176990933,
+      "minimum_pressure": 0.09972455386251511
+    },
+    "sod_order5_n800.npz": {
+      "minimum_density": 0.12499771326182792,
+      "minimum_pressure": 0.09999741534020654
+    }
+  },
+  "checked_hashes": {
+    "qualification.json": "95d3da968fc063d204e13effc8d6190e027e4550a4fe2063462ccbbf170c6b5d",
+    "shu_osher_order11_n800.npz": "37c8e12f7520eb0c329cc1f901109daeeaec163b1deaddb59645a0d2a9c2653a",
+    "shu_osher_order15_n800.npz": "7c44620901be819ebf4a7d262172e7a974c13ec1062cb5c14a8cd7a11ef1421c",
+    "shu_osher_order5_n800.npz": "c8767f5bca98c6a05f41d3b786ab9a41691d2e165abaabf2b5a594150b54bde6",
+    "sod_order11_n800.npz": "e888363b4161bdf53e79de1fbf4c10567532c90a0c0894a6eced56c27b916b02",
+    "sod_order15_n800.npz": "b2bf75b7f9b0c9029819aacb15ba48d2cb9ae27f66e6b3539fe30df93522edea",
+    "sod_order5_n800.npz": "fcea45bb5bd7731981d311fe8f5ed7282379d5ab621ebfb9d47c3fe87ecca939"
+  },
+  "passed": true,
+  "record": "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/euler_boundary_shock/results/phase_b_20260827",
+  "source_commit": "3b64b1a75b0e412fee195b12c341901ff0c1136d"
+}
+Deferred CUDA gates verified: scalar FV agreement/compilation/movement and 24 Euler agreement plus six compiler cases passed on Forge; no performance timing was collected.
+FD/FV Euler Phase 6B verification passed
+FD/FV Euler Phase 6C verification passed
+FD/FV Euler Phase 6D verification passed
+FD/FV Euler Phase 6E Lane A verification passed
+----------------------------- Captured stderr call -----------------------------
+Traceback (most recent call last):
+  File "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/fd_fv_euler/verify_phase6e_aot.py", line 161, in <module>
+    main()
+  File "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/fd_fv_euler/verify_phase6e_aot.py", line 100, in main
+    assert package.is_file()
+           ^^^^^^^^^^^^^^^^^
+AssertionError
+Traceback (most recent call last):
+  File "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/fd_fv_euler/verify_phase6e_device_r1.py", line 149, in <module>
+    main()
+  File "/mnt/projects/gradflow-a4-moody-20260831/repo/experiments/fd_fv_euler/verify_phase6e_device_r1.py", line 97, in main
+    assert lane_a.returncode == initial_aot.returncode == 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+=============================== warnings summary ===============================
+tests/test_burgers.py: 14 warnings
+  /mnt/projects/gradflow-a4-moody-20260831/venv-pytorch-2.13-cu126/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_dveb_abi.py:66: set GRADFLOW_TEST_DVEB_MANIFEST to exercise portable ABI v1
+SKIPPED [3] tests/test_dveb_abi.py:74: set GRADFLOW_TEST_DVEB_MANIFEST to exercise portable ABI v1
+SKIPPED [1] tests/test_dveb_abi.py:90: set the verified DVEB placement model and hash
+SKIPPED [2] tests/test_dveb_abi.py:114: set GRADFLOW_TEST_DVEB_EXECUTABLE to compare the direct runner
+SKIPPED [3] tests/test_dveb_device_abi.py:34: set GRADFLOW_TEST_DVEB_DEVICE_MANIFEST on a CUDA host
+SKIPPED [1] tests/test_dveb_device_abi.py:46: set GRADFLOW_TEST_DVEB_DEVICE_MANIFEST on a CUDA host
+SKIPPED [1] tests/test_dveb_device_abi.py:60: set GRADFLOW_TEST_DVEB_DEVICE_MANIFEST on a CUDA host
+FAILED tests/test_academic_a4.py::test_academic_a4_artifact_and_release_policy_verify
+FAILED tests/test_academic_a4.py::test_academic_a4_cleanroom_record_verifies
+FAILED tests/test_fd_fv_phase_6e_harness.py::test_committed_phase6e_initial_aot_record_verifies
+FAILED tests/test_fd_fv_phase_6e_harness.py::test_committed_phase6e_device_r1_record_verifies
+====== 4 failed, 351 passed, 12 skipped, 14 warnings in 524.32s (0:08:44) ======

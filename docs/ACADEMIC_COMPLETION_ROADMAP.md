@@ -150,15 +150,22 @@ tests, 12 declared skips, and all 14 offline evidence/payload sentinels.
 Environment, rights, second-machine, and external-review packets are frozen.
 See `ACADEMIC_A4_RC2_RESULTS.md`.
 
-A4 remains open. The prospectively frozen Unity attempt completed, but the
+A4 remains open for independent review and release decisions. The
+prospectively frozen Unity attempt completed, but the
 allocated Tesla M40 (compute capability 5.2) was below stable PyTorch/Triton's
 supported GPU floor, so its compiled-CUDA and material-usefulness gates could
 not run. This is retained as a negative portability result rather than called
-a modern-GPU replication. The separately frozen Moody RTX 4070 SUPER run is
-the active suitable-machine replication. The independent numerical-CFD/prior-
-art audit has not occurred. Reference and project-license questions are
-explicitly flagged but not legally resolved. See
-`ACADEMIC_A4_UNITY_RESULTS.md` and `ACADEMIC_A4_MOODY_PROTOCOL.md`.
+a modern-GPU replication. The separately frozen Moody RTX 4070 SUPER run
+completed the modern-GPU scientific surface: all 36 workers parsed, all
+admission and graph contracts passed, and the bounded binary32 CUDA advantage
+replicated. Its immutable aggregate status remains
+`fail_needs_investigation` because four repository tests assumed an omitted
+rc1 tag or untransported machine-specific AOT packages. Those packet limits
+are retained rather than relabeled as a clean formal pass. The independent
+numerical-CFD/prior-art audit has not occurred. Reference and project-license
+questions are explicitly flagged but not legally resolved. See
+`ACADEMIC_A4_UNITY_RESULTS.md`, `ACADEMIC_A4_MOODY_PROTOCOL.md`, and
+`ACADEMIC_A4_MOODY_RESULTS.md`.
 
 ### U5. Stable-PyTorch replication — complete on Forge
 
@@ -196,11 +203,12 @@ named release gate above. Interesting but nonessential questions are recorded
 as future work. A negative result is complete when its frozen question has
 been answered; it is not an invitation to optimize until it becomes positive.
 
-Under this discipline, A1--A3 and U4 are closed locally. The remaining route
-is:
+Under this discipline, A1--A3 and U4 are closed locally, and the suitable
+modern-GPU scientific replication has completed with the documented packet
+limitation. The remaining route is:
 
 ```text
-A4 second-machine replication + independent CFD/prior-art audit
+independent CFD/prior-art audit
 rights/license and public-archive decision
 ```
 
