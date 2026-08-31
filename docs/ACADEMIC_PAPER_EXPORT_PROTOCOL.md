@@ -33,7 +33,7 @@ universal GPU superiority, or production aerospace readiness.
 
 ## Evidence and export ownership
 
-The export is derived only from these committed authorities:
+The v2 export is derived from these committed authorities:
 
 - `experiments/academic_a1/evidence/a1_20260830/numerical_limits.json`;
 - `experiments/academic_a2/evidence/a2_20260830/analysis.json`; and
@@ -58,6 +58,14 @@ prospectively named export; published exports are not silently overwritten.
 The initial `academic-v0.1.0-rc1` export remains immutable. The
 `academic-v0.1.0-rc1-paper-v2` export adds complete manuscript reporting fields
 without adding or rerunning an experiment.
+
+Paper export v3, `academic-692f822-paper-v3`, extends v2 with the frozen U4-C,
+U4-D, and U4-E matched-control evidence and the normative backend-identity
+policy. It is pinned to exact GradFlow commit
+`692f822ef7fef9770247ac56e3526b0f3ac2436c`; it is not mislabeled as a release
+candidate. Its additional authorities are the committed C2/C3, U4-D, E1, and
+U4-E JSON records listed in its manifest. The eventual clean-room rc2 release
+will receive a new export identity rather than silently changing v3.
 
 ## Downstream paper contract
 
