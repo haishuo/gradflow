@@ -1,0 +1,7 @@
+(cd /mnt/projects/gradflow && /home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a4/build_artifact_index_rc2.py --output experiments/academic_a4/evidence/a4_rc2_20260831/artifact_index.json)
+(cd /mnt/projects/gradflow && /home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a4/verify_a4_rc2.py experiments/academic_a4/evidence/a4_rc2_20260831)
+(cd /mnt/projects/gradflow && git tag -a academic-v0.1.0-rc2 -m "GradFlow academic release candidate 2")
+(cd /mnt/projects/gradflow && /home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a4/run_cleanroom_rc2.py --ref academic-v0.1.0-rc2 --output experiments/academic_a4/evidence/a4_rc2_20260831)
+(cd /mnt/projects/gradflow && /home/haishuo/miniconda3/envs/gradflow/bin/python experiments/academic_a4/verify_cleanroom_rc2.py experiments/academic_a4/evidence/a4_rc2_20260831)
+
+The artifact-index command was first dry-run at payload commit b39fe54 before this command ledger was committed. That uncommitted index was discarded and regenerated from the final clean prospective payload commit.
