@@ -1,0 +1,418 @@
+{
+  "schema": "gradflow.academic_u4e.qualification.v1",
+  "created_utc": "2026-08-31T10:08:17.537614+00:00",
+  "decision": "all_six_lanes_qualified",
+  "timing_interpretation_prohibited": true,
+  "protocol_commit": "4788585cecd3a765e452406e08e4de5788ae7f0b",
+  "size": 8192,
+  "bounds": {
+    "maximum_normalized": 5e-11,
+    "rms_normalized": 5e-12
+  },
+  "canonical": {
+    "state_sha256": "7def0f1a410959390af68416a01f92d0ec917a23aaf022f5b90d52c366bb5530",
+    "rhs_sha256": "d92a1dd5f20cba9533dd25682fd19ca2d39f584b883b9fee3c994f1dd46b3621",
+    "finite": true,
+    "conservation": {
+      "sum": -1.4551915228366852e-11,
+      "sum_abs": 1230821.80464001,
+      "bound": 8.745514923020963e-09,
+      "passed": true
+    }
+  },
+  "qualification": {
+    "dveb_cpu": {
+      "maximum_normalized": 1.5700811045372667e-15,
+      "rms_normalized": 2.4532517258394792e-17,
+      "finite": true,
+      "conservation": {
+        "sum": -1.4551915228366852e-11,
+        "sum_abs": 1230821.80464001,
+        "bound": 8.745514923020963e-09,
+        "passed": true
+      },
+      "passed": true,
+      "sha256": "f38161857e9068edca4867141fdea708ea74cf9d6472575c55abd87649f5526d",
+      "metadata": {
+        "process_seconds": 0.0019177070062141865,
+        "query": {
+          "target": "cpu",
+          "cpu_loop": 2,
+          "cuda_block": 0,
+          "reuse": 2,
+          "launches": 2,
+          "scratch_bytes": 65584,
+          "elements": 8192,
+          "synchronized": 0
+        },
+        "run": {
+          "target": "cpu",
+          "cpu_loop": 2,
+          "cuda_block": 0,
+          "reuse": 2,
+          "launches": 2,
+          "scratch_bytes": 65584,
+          "elements": 8192,
+          "synchronized": 1
+        }
+      },
+      "versus_gradflow_same_device": {
+        "maximum_normalized": 6.280324418149076e-15,
+        "rms_normalized": 2.6612454832733862e-15,
+        "finite": true,
+        "conservation": {
+          "sum": -1.4551915228366852e-11,
+          "sum_abs": 1230821.80464001,
+          "bound": 8.745514923020963e-09,
+          "passed": true
+        },
+        "passed": true
+      }
+    },
+    "dveb_cuda": {
+      "maximum_normalized": 2.5121297672596267e-14,
+      "rms_normalized": 3.615157031501409e-15,
+      "finite": true,
+      "conservation": {
+        "sum": 6.366462912410498e-12,
+        "sum_abs": 1230821.80464001,
+        "bound": 8.745514923020963e-09,
+        "passed": true
+      },
+      "passed": true,
+      "sha256": "7aa38f0d009cede8cdb141f80da809dfb7e48050754e64b28d92768a242a3958",
+      "metadata": {
+        "process_seconds": 0.2624087019939907,
+        "query": {
+          "target": "cuda",
+          "cpu_loop": 0,
+          "cuda_block": 32,
+          "reuse": 2,
+          "launches": 2,
+          "scratch_bytes": 65584,
+          "elements": 8192,
+          "synchronized": 0
+        },
+        "run": {
+          "target": "cuda",
+          "cpu_loop": 0,
+          "cuda_block": 32,
+          "reuse": 2,
+          "launches": 2,
+          "scratch_bytes": 65584,
+          "elements": 8192,
+          "synchronized": 0
+        }
+      },
+      "versus_gradflow_same_device": {
+        "maximum_normalized": 1.2560648836298113e-14,
+        "rms_normalized": 2.7030491138190115e-15,
+        "finite": true,
+        "conservation": {
+          "sum": 6.366462912410498e-12,
+          "sum_abs": 1230821.80464001,
+          "bound": 8.745514923020963e-09,
+          "passed": true
+        },
+        "passed": true
+      }
+    },
+    "opensbli_cpu": {
+      "maximum_normalized": 1.130458395266832e-12,
+      "rms_normalized": 2.4567458830409808e-14,
+      "finite": true,
+      "conservation": {
+        "sum": -1.8189894035458565e-12,
+        "sum_abs": 1230821.804640011,
+        "bound": 8.74551492302097e-09,
+        "passed": true
+      },
+      "passed": true,
+      "sha256": "00fb29d9870997dec7c6cd14829fb8e86869ba23432816b1caa8eb5de467276e",
+      "metadata": {
+        "process_seconds": 0.004030510986922309
+      }
+    },
+    "opensbli_cuda": {
+      "maximum_normalized": 8.415634720319749e-13,
+      "rms_normalized": 2.1026683551910345e-14,
+      "finite": true,
+      "conservation": {
+        "sum": 5.4569682106375694e-12,
+        "sum_abs": 1230821.804640011,
+        "bound": 8.74551492302097e-09,
+        "passed": true
+      },
+      "passed": true,
+      "sha256": "a68e0a41468a5005ac5010a36f3bce11b73cd4d94d0e4c9418794705c7b386c8",
+      "metadata": {
+        "process_seconds": 0.20950065698707476
+      }
+    },
+    "gradflow_cpu": {
+      "maximum_normalized": 6.280324418149067e-15,
+      "rms_normalized": 2.6611324051688867e-15,
+      "finite": true,
+      "conservation": {
+        "sum": 4.547473508864641e-12,
+        "sum_abs": 1230821.80464001,
+        "bound": 8.745514923020963e-09,
+        "passed": true
+      },
+      "passed": true,
+      "sha256": "ffc7c8e63e50b8581bfc42cc771b80c98aac582b3cb6f57bb991f6dcca67488f",
+      "metadata": {
+        "process_seconds": 7.784267644019565,
+        "worker": {
+          "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+          "status": "complete",
+          "size": 8192,
+          "device": "cpu",
+          "mode": "qualify",
+          "dtype": "float64",
+          "first_call_seconds": 4.973990575992502,
+          "graph": {
+            "unique_graphs": 1,
+            "graph_break_count": 0
+          },
+          "samples_milliseconds": [],
+          "finite": true,
+          "checksum_float64": 4.547473508864641e-12,
+          "maximum_absolute": 289.6330320595039,
+          "peak_rss_kib": 868904,
+          "peak_cuda_allocated_bytes": null
+        }
+      }
+    },
+    "gradflow_cuda": {
+      "maximum_normalized": 2.5121297672596267e-14,
+      "rms_normalized": 4.26528140859316e-15,
+      "finite": true,
+      "conservation": {
+        "sum": -1.8189894035458565e-12,
+        "sum_abs": 1230821.80464001,
+        "bound": 8.745514923020963e-09,
+        "passed": true
+      },
+      "passed": true,
+      "sha256": "da53e486527427a4a9e11d664dade74454849725a42de73123a247a2c1b3f54b",
+      "metadata": {
+        "process_seconds": 4.304595156980213,
+        "worker": {
+          "schema": "gradflow.academic_u4c.gradflow_worker.v1",
+          "status": "complete",
+          "size": 8192,
+          "device": "cuda",
+          "mode": "qualify",
+          "dtype": "float64",
+          "first_call_seconds": 1.4508311670215335,
+          "graph": {
+            "unique_graphs": 1,
+            "graph_break_count": 0
+          },
+          "samples_milliseconds": [],
+          "finite": true,
+          "checksum_float64": -1.8189894035458565e-12,
+          "maximum_absolute": 289.6330320595048,
+          "peak_rss_kib": 862676,
+          "peak_cuda_allocated_bytes": 50528256
+        }
+      }
+    },
+    "dveb_cpu_cuda": {
+      "maximum_normalized": 2.5121297672596226e-14,
+      "rms_normalized": 3.614990549587643e-15,
+      "finite": true,
+      "conservation": {
+        "sum": -1.4551915228366852e-11,
+        "sum_abs": 1230821.80464001,
+        "bound": 8.745514923020963e-09,
+        "passed": true
+      },
+      "passed": true
+    }
+  },
+  "preparation": {
+    "handoff_copy_seconds": 0.00014466900029219687,
+    "handoff_verify_and_extract_seconds": 0.002846349001629278,
+    "header_c11_compile_seconds": 0.005802908999612555,
+    "header_c++17_compile_seconds": 0.006217754998942837,
+    "abi_adapter_build_seconds": 0.28082771398476325,
+    "gradflow_cpu_first_call_seconds": 4.973990575992502,
+    "gradflow_cuda_first_call_seconds": 1.4508311670215335
+  },
+  "sources": {
+    "dveb_closure": {
+      "commit": "39bd1c323daa3dbce6421a09dc34dc0cd2109d88",
+      "tree": "3711d334ee48f24717900456f17c6518a1f0bada"
+    },
+    "dveb_handoff_manifest": {
+      "schema": "dveb-gradflow-scalar-handoff-v1",
+      "status": "qualified",
+      "implementation": {
+        "commit": "ba87208832a3f31a0062cbd3093f463f91cd403f",
+        "tree": "9d7c9bea745e1205a04871f7c6d88fad10a82e3e",
+        "compiler_runtime_version": "DVEB pre-1.0 trunk 005",
+        "language_source": "examples/weno5/weno5.dveb",
+        "language_source_sha256": "b4236d640c8429400f44792fae0198b7eed013676444660eb036d99937584ab8",
+        "contraction_policy": "fma",
+        "host_compiler": "g++ 13.3.0",
+        "cuda_compiler": "nvcc 13.0.88",
+        "cuda_arch": "sm_120"
+      },
+      "baseline": {
+        "commit": "bd4bc791b6e8f4a2ba2b0b28ecdb3086a4d3d97c",
+        "tree": "ca0f146b1951e8f02b79c5a7dd37d1dba3bbc44d",
+        "archive": "evidence/trunk005/baseline/baseline-build.tar.gz"
+      },
+      "bundle": {
+        "path": "evidence/trunk005/handoff/weno5-schedule-v1.tar.gz",
+        "sha256": "2342f66416b1b120efd42e0e4ca8838f32cef4c62a13bf43042fb12ef7354ae0"
+      },
+      "artifacts": {
+        "abi_version": 1,
+        "library": {
+          "name": "weno5_schedule_abi_v1.so",
+          "sha256": "9ff9172b1ac712b8bc97ca9523fd114b2637e5d7825259371ba9850459168443"
+        },
+        "header": {
+          "name": "weno5_schedule_abi_v1.h",
+          "sha256": "727a062eb26b1889aca36da38adb4859d818848c2fc33b19906cf313b984e795"
+        },
+        "generated_sources": {
+          "weno5_gen.h": "43049476f5fb4ca01510d63570629f252cc8369f70a940be4c5d0f36940b9a9b",
+          "weno5_host.cpp": "db3d8757078926f0813d890c72955d8e370a774bc1f9c67a3b18e96d5b6e9703",
+          "weno5_kernels.cpp": "418f6ad20f04a29d60be7d7b1428d48245884e952b52ab849943c4229b8c029f",
+          "weno5_kernels.cu": "a15c2d213d6d7c80fce9f17bddb626b26cfb58534bdf809501ca4962a916375e",
+          "weno5_math.inc": "fe43071690ed5a848b94914aa3b0a7e394a189d251f8042e6b0afc42c6800d71",
+          "weno5_schedule.json": "2a42dc79f68f89a7307e5ef7845b3e1cf96a650b8434d40ec70750d52d500203",
+          "cuda-resources.txt": "dbd11dda225654b2edcbf5a9d48260f4e1d02b90aaecd02fb2dbf3a7dfe1ced9"
+        }
+      },
+      "contract": {
+        "dtype": "IEEE float64",
+        "rank": 2,
+        "shape": "[nb, n] interior with caller-owned padded rows",
+        "ghost_width": 3,
+        "boundary": "periodic; caller supplies fresh halos before each run",
+        "equation": "u_t + u_x = 0 semidiscrete RHS",
+        "scheme": "WENO-JS5, global LF alpha=1, 12-scaled indicators, epsilon 1e-29 inside squared weights",
+        "input_output_alias": "forbidden",
+        "supported_n": "positive signed-64-bit extent subject to allocation and CUDA grid limits",
+        "supported_nb": "positive signed-64-bit batch extent subject to allocation and CUDA grid limits"
+      },
+      "ownership": {
+        "context": "DVEB owns one padded host scratch field and, when CUDA is enabled, one padded device scratch field",
+        "host_run": "caller owns padded host input/output; execution is synchronous",
+        "cuda_run": "caller owns padded device or managed input/output and the optional CUDA stream",
+        "cuda_run_allocation": "none",
+        "cuda_run_transfers": "none",
+        "cuda_run_completion": "asynchronous; caller synchronizes or orders subsequent work on the supplied stream",
+        "concurrency": "one context is not concurrently reusable; distinct contexts may execute independently"
+      },
+      "policies": {
+        "cpu_loop": {
+          "auto": "direct shape-aware lowering",
+          "forced": [
+            "collapse",
+            "direct"
+          ]
+        },
+        "cuda_block": {
+          "auto": "largest feasible 32/64/128/256 block with at least two active blocks per SM and two grid waves, otherwise 32",
+          "forced": [
+            32,
+            64,
+            128,
+            256
+          ]
+        },
+        "reuse": {
+          "auto_cpu": "materialize when total_cells*call_cost >= 57344*threads",
+          "auto_cuda": "materialize when total_cells*call_cost >= 1835008",
+          "forced": [
+            "recompute",
+            "materialize"
+          ],
+          "scratch_bytes": "8*nb*(n+2*ghost)",
+          "materialized_launches": 2,
+          "recompute_launches": 1
+        }
+      },
+      "evidence": {
+        "correctness": [
+          "evidence/trunk005/d4-final-correctness.json",
+          "evidence/trunk005/handoff-qualification.json"
+        ],
+        "resident_benchmark": [
+          "evidence/trunk005/final-cpu-raw.json",
+          "evidence/trunk005/final-cuda-raw.json",
+          "evidence/trunk005/final-analysis.json",
+          "evidence/trunk005/D4_RESULTS.md"
+        ],
+        "other_endpoints": "evidence/trunk005/operational-endpoints.json"
+      },
+      "nonclaims": [
+        "This handoff does not establish that DVEB beats OpenSBLI, OPS, GradFlow, or PyTorch.",
+        "Only a separately frozen GradFlow U4-E campaign can make an external comparison.",
+        "The automatic selectors have recorded regret mistakes and are not claimed globally optimal.",
+        "The reusable-intermediate proof currently recognizes only the admitted adjacent pure-call pattern.",
+        "The ABI is a scalar WENO-JS5 handoff, not the portable Shu-Euler ABI v1/v2 and not arbitrary-order WENO."
+      ],
+      "unsupported": [
+        "non-float64 state",
+        "nonperiodic or ghost width other than 3",
+        "input/output alias",
+        "CUDA capability other than sm_120 in this pinned artifact",
+        "concurrent use of one context",
+        "implicit allocation, host/device transfer, halo exchange, or synchronization inside the padded run entry points"
+      ]
+    },
+    "opensbli": {
+      "commit": "e37dc377fa9b27d6bfa6e9da2968b96bcd736f1d",
+      "tree": "0ff053443f6b243b2bd42475f98122306151427d"
+    },
+    "ops": {
+      "commit": "c0af0f124469e5fd856b594a23ff1206c3e9c7a8",
+      "tree": "82c3fd0c0b4724c6e8474e16f730e7560845235f"
+    },
+    "driver_sha256": "cea178fdefa1ced229697e03813448effa88c57cb5f1fc17af17add474626b83"
+  },
+  "handoff": {
+    "bundle_sha256": "2342f66416b1b120efd42e0e4ca8838f32cef4c62a13bf43042fb12ef7354ae0",
+    "members": {
+      "cuda-resources.txt": "dbd11dda225654b2edcbf5a9d48260f4e1d02b90aaecd02fb2dbf3a7dfe1ced9",
+      "weno5_gen.h": "43049476f5fb4ca01510d63570629f252cc8369f70a940be4c5d0f36940b9a9b",
+      "weno5_host.cpp": "db3d8757078926f0813d890c72955d8e370a774bc1f9c67a3b18e96d5b6e9703",
+      "weno5_kernels.cpp": "418f6ad20f04a29d60be7d7b1428d48245884e952b52ab849943c4229b8c029f",
+      "weno5_kernels.cu": "a15c2d213d6d7c80fce9f17bddb626b26cfb58534bdf809501ca4962a916375e",
+      "weno5_math.inc": "fe43071690ed5a848b94914aa3b0a7e394a189d251f8042e6b0afc42c6800d71",
+      "weno5_schedule.json": "2a42dc79f68f89a7307e5ef7845b3e1cf96a650b8434d40ec70750d52d500203",
+      "weno5_schedule_abi_v1.h": "727a062eb26b1889aca36da38adb4859d818848c2fc33b19906cf313b984e795",
+      "weno5_schedule_abi_v1.so": "9ff9172b1ac712b8bc97ca9523fd114b2637e5d7825259371ba9850459168443"
+    },
+    "abi_version": 1
+  },
+  "artifacts": {
+    "work_root": "/tmp/gradflow-u4e",
+    "dveb_executable": "/tmp/gradflow-u4e/handoff/u4e_dveb",
+    "dveb_executable_sha256": "93926573286d4c8ed42995bd055a7a43a23f0540f92816ba6db52d804cde595e",
+    "dveb_library": "/tmp/gradflow-u4e/handoff/extracted/weno5_schedule_abi_v1.so",
+    "dveb_library_sha256": "9ff9172b1ac712b8bc97ca9523fd114b2637e5d7825259371ba9850459168443",
+    "opensbli_root": "/tmp/gradflow-u4d/opensbli",
+    "opensbli_cpu_executable": "/tmp/gradflow-u4d/opensbli/opensbli_seq",
+    "opensbli_cpu_sha256": "6a6184850663533a10378eb8f58ba292fd9f53da94a17eacfbc7e7d4c8eed294",
+    "opensbli_cuda_executable": "/tmp/gradflow-u4d/opensbli/opensbli_cuda",
+    "opensbli_cuda_sha256": "095d1d09bef567ac3e7e45de4043ea195e2809e24ef66a3e852dd53e5f2b98df",
+    "torchinductor_cache": "/tmp/gradflow-u4e/torchinductor_cache"
+  },
+  "environment": {
+    "host": "forge",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "python": "3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]",
+    "torch": "2.9.0.dev20250705+cu128",
+    "torch_cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "cpu_threads": 1
+  }
+}

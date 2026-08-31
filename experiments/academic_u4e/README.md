@@ -8,3 +8,9 @@ unchanged scalar float64 WENO-JS5 `N=8192` contract.
 No U4-E comparative timing existed when the protocol was frozen.  The DVEB
 repository and handoff are read-only; the external decision endpoint uses the
 artifact's automatic policies exactly as selected.
+
+E1 correctness qualification is complete: all six lanes passed, and the DVEB
+artifact selected the predicted automatic schedules without an override.  See
+`docs/ACADEMIC_U4E_E1_RESULTS.md` and run
+`python3 experiments/academic_u4e/verify_qualification.py` for offline
+verification.  E1 contains no comparative performance claim.
