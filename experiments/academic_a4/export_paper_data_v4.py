@@ -66,6 +66,9 @@ def main() -> None:
             "comparison": comparison["a1"],
         },
         "performance_64cube": comparison["a2"]["cross_order_64cube"],
+        "performance_64cube_full": [
+            row for row in a2["cross_order"] if row["dimensions"] == 3
+        ],
         "speedup_ranges": comparison["a2"]["stable_speedup_ranges"],
         "correctness_exclusions": {
             "stable_count": comparison["a2"]["stable_exclusion_count"],
@@ -76,8 +79,17 @@ def main() -> None:
         },
         "scale": a2["scale"],
         "aot": comparison["a2"]["aot"],
+        "aot_full": a2["aot"],
         "deployment": comparison["a2"]["deployment"],
+        "deployment_full": {
+            "prepared_cache": a2["deployment_prepared_cache"],
+            "isolated_cache": a2["deployment_isolated_cache"],
+        },
         "differentiation": comparison["a3"],
+        "differentiation_full": {
+            device: a3["benchmarks"][device]["record"]
+            for device in ("cpu", "cuda")
+        },
         "inverse_problem": {
             "derivative_gate": a3["derivative_gate"],
             "inverse_gate": a3["inverse_gate"],
@@ -152,4 +164,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
