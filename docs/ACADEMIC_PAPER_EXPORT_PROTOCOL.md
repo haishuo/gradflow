@@ -72,6 +72,15 @@ the stable-PyTorch U5 replication, and the rc2 clean-room audit. It makes
 stable PyTorch 2.13 the primary toolchain evidence and retains the earlier
 development build explicitly as a version-sensitivity stratum.
 
+Paper export v5, `academic-33c469b-unity-paper-v5`, extends v4 with the
+prospectively frozen Unity result. Unity's allocated Tesla M40 could execute
+CUDA eager mathematics but could not instantiate the stable TorchInductor
+backend because its compute capability is below Triton's supported floor.
+The export classifies this as a negative legacy-GPU portability observation,
+not completion of the suitable modern-GPU second-machine gate. The separately
+frozen Moody result requires a later immutable export; v5 will not be changed
+in place.
+
 ## Downstream paper contract
 
 The paper repository must:
@@ -82,8 +91,8 @@ The paper repository must:
    specific GradFlow evidence path and release commit;
 4. keep claim status and scope boundaries explicit;
 5. identify GradFlow by repository URL, release tag, and commit; and
-6. treat second-machine replication and independent CFD review as pending
-   until those gates actually close.
+6. treat suitable modern-GPU second-machine replication and independent CFD
+   review as pending until those gates actually close.
 
 An external or mathematically matched low-level comparison is also a blocking
 manuscript gate under `docs/ACADEMIC_EXTERNAL_BASELINE_GATE.md`. An unsupported
@@ -99,5 +108,7 @@ an evidence source.
 Local paper preparation does not close Academic A4. Before submission, a
 physically distinct machine should execute the frozen A4 replication packet,
 and an independent numerical-CFD/WENO reviewer should audit the candidate.
-Unity is a possible future target but is not claimed available or suitable
-until its actual allocation is known.
+The completed Unity attempt is a negative legacy-GPU portability stratum and
+does not close the gate because its allocated Tesla M40 cannot run the frozen
+compiled backend. Moody is the prospectively frozen suitable modern-GPU
+follow-up; its result is not claimed until its immutable record completes.
