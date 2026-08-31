@@ -4,7 +4,7 @@ Status: **ready for an independent reviewer; review not yet performed**.
 
 ## Artifact to review
 
-Review the tagged A4 internal release candidate and begin with:
+Review tagged candidate `academic-v0.1.0-rc2` and begin with:
 
 - `docs/ACADEMIC_SCOPE.md`;
 - `docs/ACADEMIC_A1_CLAIM_MATRIX.md`;
@@ -13,6 +13,9 @@ Review the tagged A4 internal release candidate and begin with:
 - `docs/ACADEMIC_A1_RESULTS.md`;
 - `docs/ACADEMIC_A2_RESULTS.md`;
 - `docs/ACADEMIC_A3_RESULTS.md`; and
+- `docs/ACADEMIC_U4E_RESULTS.md`;
+- `docs/ACADEMIC_U4F_RESULTS.md`;
+- `docs/ACADEMIC_U5_RESULTS.md`;
 - the protocols and machine-readable evidence referenced by those documents.
 
 ## Requested audit
@@ -42,4 +45,3 @@ Please cite exact file paths, claim identifiers, equations, or table rows for
 each finding. The authors will preserve the report, responses, and changes as
 an A4 record. Authorship or endorsement is neither assumed nor requested by
 this audit.
-

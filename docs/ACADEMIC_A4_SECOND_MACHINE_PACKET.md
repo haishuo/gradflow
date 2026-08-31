@@ -12,7 +12,8 @@ useful but not required.
 
 ## Setup
 
-From a clean checkout of the A4 tag, create an isolated environment and install
+From a clean checkout of tag `academic-v0.1.0-rc2`, create an isolated
+environment and install
 the project:
 
 ```bash
@@ -33,11 +34,13 @@ python -m pytest
 python experiments/academic_a1/verify_a1.py experiments/academic_a1/evidence/a1_20260830
 python experiments/academic_a2/verify_a2.py experiments/academic_a2/evidence/a2_20260830
 python experiments/academic_a3/verify_a3.py experiments/academic_a3/evidence/a3_20260830
-python experiments/academic_a4/verify_a4.py experiments/academic_a4/evidence/a4_20260830
+python experiments/academic_u5/verify_u5.py experiments/academic_u5/evidence/u5_20260831
+python experiments/academic_a4/verify_a4_rc2.py experiments/academic_a4/evidence/a4_rc2_20260831 --ref academic-v0.1.0-rc2
 ```
 
 Then execute the prospectively frozen numerical/performance sentinels in
-`docs/ACADEMIC_A4_PROTOCOL.md`. Preserve raw stdout/stderr, exit codes,
+`docs/ACADEMIC_A4_PROTOCOL.md`, using stable PyTorch rather than attempting to
+recreate the historical nightly wheel. Preserve raw stdout/stderr, exit codes,
 wall-clock durations, environment identity, and SHA-256 hashes. Timing workers
 must be fresh isolated processes and retain failed or excluded points.
 
@@ -50,4 +53,3 @@ negative or divergent result is scientifically useful and must not be deleted.
 
 The completed packet should state either `pass`, `pass_with_limitations`, or
 `fail_needs_investigation`, with a reason for every limitation.
-
