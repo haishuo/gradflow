@@ -81,6 +81,17 @@ not completion of the suitable modern-GPU second-machine gate. The separately
 frozen Moody result requires a later immutable export; v5 will not be changed
 in place.
 
+Paper export v6, `academic-3992e06-moody-paper-v6`, extends v5 with the
+prospectively frozen Moody result from GradFlow evidence commit
+`3992e06939005d27b2d99017992e68d383b5034f`. All 36 A2 workers and the A1/A3
+scientific gates completed without admission or graph failure on the distinct
+Ryzen 7 7700/RTX 4070 SUPER system. The export also preserves the controller's
+literal `fail_needs_investigation` status: its general-suite sentinel had four
+failures caused by the tag-restricted packet omitting the older rc1 tag and
+machine-specific Phase 6E AOT artifacts. V6 exports both the usable scientific
+replication and that formal packet limitation; it does not relabel the source
+record or silently repair the prospectively frozen run.
+
 ## Downstream paper contract
 
 The paper repository must:
@@ -91,8 +102,9 @@ The paper repository must:
    specific GradFlow evidence path and release commit;
 4. keep claim status and scope boundaries explicit;
 5. identify GradFlow by repository URL, release tag, and commit; and
-6. treat suitable modern-GPU second-machine replication and independent CFD
-   review as pending until those gates actually close.
+6. distinguish a completed modern-GPU scientific replication from its
+   documented all-sentinels packet limitation, and treat independent CFD
+   review as pending until that external gate closes.
 
 An external or mathematically matched low-level comparison is also a blocking
 manuscript gate under `docs/ACADEMIC_EXTERNAL_BASELINE_GATE.md`. An unsupported
@@ -110,5 +122,6 @@ physically distinct machine should execute the frozen A4 replication packet,
 and an independent numerical-CFD/WENO reviewer should audit the candidate.
 The completed Unity attempt is a negative legacy-GPU portability stratum and
 does not close the gate because its allocated Tesla M40 cannot run the frozen
-compiled backend. Moody is the prospectively frozen suitable modern-GPU
-follow-up; its result is not claimed until its immutable record completes.
+compiled backend. Moody's prospectively frozen suitable modern-GPU follow-up
+has completed and supplies a bounded scientific replication, with the four
+transport-packet sentinel failures retained as an explicit formal limitation.
