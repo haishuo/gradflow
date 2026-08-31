@@ -16,15 +16,15 @@ synchronization. State creation and compilation are outside the clock.
 | lane | median (ms) | minimum (ms) | maximum (ms) |
 |---|---:|---:|---:|
 | OpenSBLI OPS CUDA | `0.043990` | `0.039790` | `0.047490` |
-| compiled GradFlow CUDA | `0.0686995` | `0.064100` | `0.092040` |
+| compiled PyTorch/TorchInductor CUDA | `0.0686995` | `0.064100` | `0.092040` |
 
-The descriptive median ratio `OpenSBLI / GradFlow` was `0.640325`, or about a
+The descriptive median ratio `OpenSBLI / PyTorch` was `0.640325`, or about a
 `1.56x` OpenSBLI advantage. Both returned full arrays passed the frozen C2
 pointwise and conservation gates.
 
 ## AOT preparation and qualification
 
-The fixed-shape float64 GradFlow AOTInductor package built successfully and
+The fixed-shape float64 PyTorch AOTInductor package built successfully and
 passed the same correctness gate (`maximum_normalized=2.51213e-14`,
 `RMS_normalized=4.26528e-15`). Its package was 466,785 bytes with SHA-256
 `fc6337f4bd7abc30779fdaa8229bc437395610d97a73c46dc605ffd12c173baf`.
@@ -44,9 +44,9 @@ checksum of the full RHS is received. Prior artifact construction is excluded.
 | prepared artifact | observations (s) | median (s) |
 |---|---|---:|
 | OpenSBLI native executable | `0.213531`, `0.214370`, `0.214216` | `0.214216` |
-| GradFlow AOTInductor package | `1.467180`, `1.481119`, `1.461569` | `1.467180` |
+| PyTorch AOTInductor package | `1.467180`, `1.481119`, `1.461569` | `1.467180` |
 
-The median ratio `OpenSBLI / GradFlow AOT` was `0.146005`, or about a `6.85x`
+The median ratio `OpenSBLI / PyTorch AOT` was `0.146005`, or about a `6.85x`
 OpenSBLI launch-to-answer advantage. AOT removed JIT compilation from the run,
 but it did not remove Python, PyTorch, CUDA-runtime, package-loading, and tensor
 startup costs. At this small admitted grid those fixed costs dominate the

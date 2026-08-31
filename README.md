@@ -1,7 +1,9 @@
 # GradFlow
 
-GradFlow is restarting as a research project for general, differentiable,
-high-performance finite-difference WENO in ordinary PyTorch.
+GradFlow is a research system for constructing, verifying, differentiating,
+and efficiently executing WENO methods while selecting among correctness-
+admitted mathematics and execution backends. It is not inherently tied to
+PyTorch, DVEB, native code, finite difference, or finite volume.
 
 Project decisions follow one strict precedence rule:
 
@@ -11,22 +13,29 @@ A convenience cannot justify a slower qualified path, and an optimization
 cannot justify wrong or silently altered mathematics. The normative policy is
 recorded in `docs/ENGINEERING_CHARTER.md`.
 
-The current repository contains a validated exact-rational WENO-JS
-constructor and a narrow 3-D Euler characteristic `Solver`, both qualified for
-orders 5 through 15. Their numerical paths are written as readable shifts,
-slicing/indexing, and elementwise tensor
-operations. `conv1d` is an implementation hypothesis to be tested later, not
-the project premise. No handwritten CUDA, Triton, C++, or custom operator is
-part of the canonical package code.
+The current repository contains a validated exact-rational WENO-JS constructor
+and a narrow 3-D Euler characteristic `Solver`, both qualified for orders 5
+through 15. The original canonical seed is written in readable ordinary
+PyTorch shifts, slicing/indexing, and elementwise tensor operations. That
+PyTorch representation—like the older `conv1d` representation—was an
+implementation hypothesis, not the project's identity or a promised
+production backend. DVEB-generated native code and external generated-code
+controls are now part of the measured backend evidence.
 
-The central research question is:
+The original refoundation hypothesis was:
 
 > Can a direct, maintainable PyTorch system construct, verify, differentiate,
 > and efficiently execute arbitrary-order finite-difference WENO schemes—including
 > a realistic WENO-15 case—without bespoke CUDA or Triton engineering?
 
-This remains a research question, not a completed general capability or
-novelty claim. Scalar and characteristic Euler periodic WENO-15 paths are
+That remains one research strand, not the definition of GradFlow. The broader
+system question is whether GradFlow can select the fastest correctness-admitted
+numerical formulation and backend for a declared problem and machine, while
+keeping that machinery invisible unless the user requests an override. See
+`docs/BACKEND_IDENTITY.md`.
+
+The PyTorch strand remains a research question, not a completed general
+capability or novelty claim. Scalar and characteristic Euler periodic WENO-15 paths are
 correctness-qualified. A bounded one-dimensional periodic/transmissive Euler
 path has also passed frozen Sod and Shu--Osher gates at representative orders
 5, 11, and 15, but general equations, multidimensional boundaries, geometry,
@@ -35,9 +44,18 @@ performance, and the target `Solver` surface remain open.
 Phase C found that arbitrary-order symbolic FD-WENO generation, differentiable
 WENO CFD, arbitrary-order PyTorch finite-volume WENO, characteristic GPU WENO,
 and high-level heterogeneous CFD generation are all prior art. GradFlow's
-academic candidate is consequently a narrower matched characterization of one
-exact-generated direct-PyTorch FD-WENO path—not a claim to have invented those
-ingredients. See `docs/LITERATURE_REVIEW_PHASE_C_RESULTS.md`.
+initial direct-PyTorch academic candidate is consequently a narrower matched
+characterization of one exact-generated FD-WENO backend path—not a claim to
+have invented those ingredients or to define GradFlow around that backend.
+See `docs/LITERATURE_REVIEW_PHASE_C_RESULTS.md`.
+
+The prospective U4-E comparison has now rejected PyTorch/TorchInductor as the
+fastest backend for one scalar 1-D float64 WENO-JS5 `N=8192` regime: DVEB was
+the resolved resident winner over both OpenSBLI/OPS and PyTorch/TorchInductor
+on one-thread CPU and CUDA. This is a bounded result, not a universal
+condemnation of PyTorch. Larger or more deeply fused regimes may amortize its
+runtime weight, but that must be measured rather than assumed. See
+`docs/ACADEMIC_U4E_RESULTS.md`.
 
 FD/FV Phase 1 found substantial direct comparative literature and rejects any
 universal “FD versus FV” winner. It freezes a future structured-grid study as
@@ -197,7 +215,9 @@ solver = gradflow.Solver(
 result = solver.run(state, steps=1)
 ```
 
-Direct eager PyTorch remains the zero-configuration path. A hash-qualified
+Direct eager PyTorch is the current zero-configuration path because it has the
+broadest implemented scientific surface, not because it has architectural
+priority. A hash-qualified
 DVEB portable ABI v1 artifact can accept a matching caller-owned CPU state and
 execute the WENO-5 forward step on CPU SIMD/OpenMP or CUDA. Native use is
 restricted to the exact compiled 3-D Euler WENO-5 formulation, positive fixed
@@ -205,6 +225,8 @@ step counts, cubic grids, spacing `10/N`, CFL 0.1, contiguous float32 state,
 and no autograd. Higher-order and float64 requests remain on PyTorch.
 Automatic DVEB dispatch additionally requires an explicitly
 verified bounded placement model; otherwise `auto` falls back to PyTorch.
+That fallback is a present implementation limitation, not the intended final
+selection policy.
 See `docs/SOLVER_VERTICAL_SLICE.md` and `docs/DVEB_ABI_V1.md`.
 
 DVEB portable device ABI v2 is a separate explicit CUDA-resident interface.

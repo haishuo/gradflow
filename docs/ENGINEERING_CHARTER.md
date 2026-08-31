@@ -33,11 +33,15 @@ kernel unless kernel time is itself the declared endpoint.
 
 GradFlow has two related but distinct goals.
 
-The research goal is to determine whether a direct, maintainable PyTorch
-system can construct, verify, differentiate, and efficiently execute
-arbitrary-order finite-difference WENO schemes, including realistic
-characteristic-system and WENO-15 cases, without requiring bespoke CUDA or
-Triton engineering in the canonical scientific source.
+The system research goal is to construct or select a correctness-qualified
+numerical method and execute it through the fastest admitted backend for the
+submitted problem and machine. Direct, maintainable PyTorch is one bounded
+implementation hypothesis within that program: whether it can construct,
+verify, differentiate, and efficiently execute arbitrary-order
+finite-difference WENO without bespoke CUDA or Triton in the scientific seed.
+It is not the identity or presumptive execution backend of GradFlow. Negative
+or regime-limited PyTorch performance results are valid outcomes. The precise
+layer and naming rules are in `BACKEND_IDENTITY.md`.
 
 The product goal is one scientific engine in which a user can select a
 qualified equation family, physical parameters, domain, initial and boundary

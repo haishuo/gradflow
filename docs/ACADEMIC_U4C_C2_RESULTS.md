@@ -29,10 +29,10 @@ claims at those sizes in this campaign.
 
 Times are milliseconds per already-resident WENO-JS5 reconstruction plus
 divergence. Each lane has 120 retained observations from six independent
-workers. Ratios are paired worker medians, `OpenSBLI / GradFlow`; values below
+workers. Ratios are paired worker medians, `OpenSBLI / PyTorch`; values below
 one favor OpenSBLI.
 
-| device | OpenSBLI median | GradFlow median | ratio (95% bootstrap CI) | decision |
+| device | OpenSBLI median | PyTorch/TorchInductor median | ratio (95% bootstrap CI) | decision |
 |---|---:|---:|---:|---|
 | one-thread CPU | `0.0809495` | `0.0985150` | `0.825789` (`0.810998`, `0.837994`) | OpenSBLI win |
 | RTX 5070 Ti CUDA | `0.0102400` | `0.0331840` | `0.309704` (`0.299913`, `0.312734`) | OpenSBLI win |
@@ -44,14 +44,14 @@ PyTorch is competitive in scale but does impose measurable overhead relative
 to generated OPS code, especially on CUDA.
 
 The secondary cross-device ratios are about `7.91x` for OpenSBLI and `2.97x`
-for GradFlow in favor of CUDA. They characterize this operator and consumer
+for PyTorch/TorchInductor in favor of CUDA. They characterize this operator and consumer
 GPU only; they do not establish a general CPU/GPU crossover.
 
 ## Preparation observations
 
 At `N=8192`, OpenSBLI symbolic generation, OPS translation/sequential build,
 and CUDA build took approximately `0.650`, `0.734`, and `1.635` seconds. The
-GradFlow qualification workers observed first compiled calls of `5.109`
+PyTorch/TorchInductor qualification workers observed first compiled calls of `5.109`
 seconds on CPU and `1.458` seconds on CUDA; their complete process endpoints
 were `7.938` and `4.363` seconds. These are one-off preparation observations,
 not stable distributions and not resident timings.

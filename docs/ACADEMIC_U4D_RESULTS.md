@@ -10,22 +10,26 @@ comparison. D1 admitted all six CPU/CUDA implementation lanes before D2/D3
 timing began. `N=8192` is the only reported size because the frozen U4-C bounds
 excluded OpenSBLI at all larger sizes before timing.
 
+Terminology clarification: the frozen machine-readable key `gradflow` denotes
+the repository's PyTorch/TorchInductor implementation. It is not the GradFlow
+system as a whole; see `BACKEND_IDENTITY.md`.
+
 ## Resident operator time
 
 Each cell below is the median of six independent worker medians. Every worker
 retained 20 observations after five warmups; the three implementations were
 randomized within each block. CUDA temperatures remained between 42 and 46 C.
 
-| device | DVEB (ms) | OpenSBLI (ms) | GradFlow (ms) | resolved winner |
+| device | DVEB (ms) | OpenSBLI (ms) | PyTorch/TorchInductor (ms) | resolved winner |
 |---|---:|---:|---:|---|
 | one-thread CPU | `0.19225875` | `0.07879925` | `0.09558975` | OpenSBLI |
 | CUDA | `0.01638400` | `0.00985600` | `0.03257600` | OpenSBLI |
 
 All pairwise decisions satisfied the frozen 5% effect and bootstrap-interval
 rules. On CPU, OpenSBLI was about `2.44x` faster than DVEB and `1.21x` faster
-than GradFlow; GradFlow was about `2.01x` faster than DVEB. On CUDA, OpenSBLI
-was about `1.66x` faster than DVEB and `3.29x` faster than GradFlow. DVEB was
-about `1.99x` faster than GradFlow.
+than PyTorch; PyTorch/TorchInductor was about `2.01x` faster than DVEB. On
+CUDA, OpenSBLI was about `1.66x` faster than DVEB and `3.29x` faster than
+PyTorch. DVEB was about `1.99x` faster than PyTorch/TorchInductor.
 
 ## Pageable transfer-inclusive CUDA
 
@@ -37,10 +41,10 @@ are descriptive distributions and **not** resolved statistical wins.
 |---|---:|---:|---:|
 | DVEB | `0.0387650` | `0.0313290` | `0.0398100` |
 | OpenSBLI | `0.0416995` | `0.0407890` | `0.0539500` |
-| GradFlow | `0.0686295` | `0.0650290` | `0.0876190` |
+| PyTorch/TorchInductor | `0.0686295` | `0.0650290` | `0.0876190` |
 
 The descriptive median ratios were `DVEB/OpenSBLI=0.92963`,
-`DVEB/GradFlow=0.56484`, and `OpenSBLI/GradFlow=0.60760`. All three full
+`DVEB/PyTorch=0.56484`, and `OpenSBLI/PyTorch=0.60760`. All three full
 returned arrays passed the frozen correctness and conservation gates.
 
 ## Preparation and prepared launch
@@ -49,7 +53,7 @@ Observed one-off preparation costs were retained separately. The DVEB compiler
 and its normal native build took `1.657` seconds, followed by `0.259` seconds
 to compile and link the research adapter. OpenSBLI symbolic generation took
 `0.647` seconds, instrumentation `0.017` seconds, CPU translation/build
-`0.739` seconds, and CUDA build `1.644` seconds. GradFlow's observed JIT first
+`0.739` seconds, and CUDA build `1.644` seconds. PyTorch/TorchInductor's observed JIT first
 calls were `5.100` seconds on CPU and `1.452` seconds on CUDA. Its AOT builder
 process took `7.562` seconds; the packaged artifact passed the oracle gate.
 These are individual observations, not timing distributions, and their build
@@ -62,10 +66,10 @@ a finite host checksum of the full RHS. Prior builds are excluded.
 |---|---:|
 | DVEB native executable | `0.196248` |
 | OpenSBLI native executable | `0.213175` |
-| GradFlow AOTInductor package | `1.405700` |
+| PyTorch AOTInductor package | `1.405700` |
 
 The descriptive DVEB/OpenSBLI median ratio was `0.92060`. DVEB took about
-`0.13961` of GradFlow AOT's launch time (about `7.16x` faster), while OpenSBLI
+`0.13961` of PyTorch AOTInductor's launch time (about `7.16x` faster), while OpenSBLI
 took `0.15165` (about `6.59x` faster). Three observations per artifact do not
 support a resolved winner claim.
 
@@ -83,7 +87,7 @@ a defensible niche rather than declaring a universal winner:
   and in prepared native launch-to-answer. This suggests lower framework and
   deployment overhead can compensate for a slower resident kernel at this
   small grid, but the limited endpoint replication forbids a statistical win.
-- DVEB's CPU result is presently poor: both OpenSBLI and compiled GradFlow beat
+- DVEB's CPU result is presently poor: both OpenSBLI and compiled PyTorch beat
   it decisively. The current compiler is therefore not yet a universal
   CPU/CUDA catch-all.
 - The reversal between resident and end-to-end rankings demonstrates why

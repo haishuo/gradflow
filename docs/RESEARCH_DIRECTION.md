@@ -12,13 +12,22 @@ an optimization nor an interface simplification may silently change the
 requested mathematics. The normative gates, promotion rules, and
 technical-debt policy are defined in `ENGINEERING_CHARTER.md`.
 
-## Research question
+## System question and original PyTorch hypothesis
 
-GradFlow's new research question is:
+GradFlow's system-level question is:
+
+> Can GradFlow construct or select a correctness-qualified numerical method
+> and execute it through the fastest admitted backend for the submitted
+> problem and machine, without exposing backend machinery unless the user
+> requests control?
+
+The 2025--2026 refoundation separately posed this PyTorch hypothesis:
 
 > Can a direct, maintainable PyTorch system construct, verify, differentiate, and efficiently execute arbitrary-order finite-difference WENO schemes—including a realistic WENO-15 case—without bespoke CUDA or Triton engineering?
 
-The repository now establishes an exact-rational finite-difference WENO-JS
+The quoted PyTorch question is an implementation research strand, not
+GradFlow's identity or a commitment to select PyTorch. The repository now
+establishes an exact-rational finite-difference WENO-JS
 constructor qualified for orders 5--15 in both a scalar periodic path and one
 3-D Roe-characteristic Euler path. It does not yet answer the full research
 question because general equations, boundaries, geometry, representation
@@ -57,14 +66,17 @@ performance, native lowering, and the broader `Solver` surface remain open.
 6. The former foundational `conv1d` idea is now one candidate representation.
    It must eventually be compared empirically with direct shifts,
    slicing/indexing, generated expressions, and other maintainable
-   ordinary-PyTorch formulations under identical mathematics.
+   ordinary-PyTorch formulations under identical mathematics. PyTorch itself
+   must also compete with qualified native and generated backends; it receives
+   no preference merely because it hosts the canonical seed.
 
 7. DVEB trunk-001 found that TorchInductor fused the direct WENO-5 formulation
    successfully and made the best ordinary-PyTorch variant substantially
    faster than the DVEB implementation on the screened workload. The negative
-   DVEB decision is positive evidence for continuing the PyTorch research
-   direction. It is evidence for that workload and environment, not a
-   universal performance claim.
+   DVEB decision is positive evidence for continuing the PyTorch hypothesis.
+   It is evidence for that workload and environment, not a universal
+   performance claim. Later evidence may reject the same hypothesis in another
+   regime without contradiction.
 
 8. The PyTorch comparator used no handwritten Triton or CUDA. TorchInductor
    generated backend kernels automatically from ordinary PyTorch source. The
@@ -198,8 +210,10 @@ state design targets rather than claims that the current narrow solver already
 implements a general CFD product.
 
 Development is sequenced academic-first under `ACADEMIC_SCOPE.md`. DVEB may
-participate as a comparator or optional backend, but GradFlow's result must
-stand without it. `DVEB_RELATIONSHIP.md` permits GradFlow-motivated DVEB work
+participate as a comparator or optional backend, but an academic claim must
+not depend on treating an internal compiler as an independent external
+baseline. This evidentiary rule does not make PyTorch the identity or default
+backend of GradFlow. `DVEB_RELATIONSHIP.md` permits GradFlow-motivated DVEB work
 only when the capability remains independently justified for DVEB as a general
 language/compiler.
 
@@ -223,15 +237,41 @@ split families.
 
 ## Current representation policy
 
-The canonical source must read as scientific WENO code. For the WENO-5 seed,
+The canonical mathematical seed must read as scientific WENO code. For the WENO-5 seed,
 the implementation uses only ordinary PyTorch periodic shifts, slicing, and
 elementwise operations. It does not select or optimize between representations.
+This makes it a construction, differentiation, and correctness authority; it
+does not make it the preferred execution backend in every regime.
 
 Future representation comparisons must freeze the formulation, correctness
 gate, shapes, dtype, devices, compiler version, and measurement protocol
 before timing. A compiler-generated low-level kernel remains evidence about
 ordinary PyTorch compilation; it does not turn the source into handwritten
 Triton.
+
+## Backend identity and the U4-E PyTorch result
+
+GradFlow is the encompassing system. PyTorch eager, TorchInductor,
+AOTInductor, DVEB CPU/CUDA, and other qualified implementations are candidate
+backends. FD versus FV belongs to the numerical-contract layer and cannot be
+silently changed as though it were merely a backend switch. The normative
+terminology and legacy evidence-key mapping are in `BACKEND_IDENTITY.md`.
+
+The prospective U4-E experiment falsified the competitive-performance form of
+the PyTorch hypothesis for scalar one-dimensional float64 WENO-JS5 at
+`N=8192` on Forge. DVEB was the resolved resident winner: about `1.60x`
+faster than PyTorch/TorchInductor on one-thread CPU and `3.58x` faster on
+CUDA. OpenSBLI/OPS also beat PyTorch on both devices. Compilation and transfer
+were excluded from the resident endpoint, so the CUDA result cannot be
+dismissed as only Python startup; it includes the generated device schedule.
+Prepared launch-to-answer separately exposed substantial framework weight.
+
+This is bounded evidence. PyTorch may become competitive on larger,
+higher-order, multidimensional, batched, differentiated, or more deeply fused
+workloads where overhead is amortized and fusion has a larger surface. Such a
+redemption regime is a hypothesis requiring prospective measurement, not an
+assumption. For the measured U4-E cell, an automatic GradFlow policy should
+select DVEB rather than PyTorch.
 
 ## Matched 3-D deployment evidence
 

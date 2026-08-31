@@ -6,8 +6,13 @@ Date: 2026-08-31 (UTC)
 
 The immutable DVEB Trunk 005 handoff passed bundle and member verification,
 public-header compilation as C11 and C++17, ABI-v1 loading, and the frozen
-scalar WENO-JS5 correctness gate.  The unchanged OpenSBLI/OPS and GradFlow
-lanes were requalified from the same `N=8192` input before any U4-E timing.
+scalar WENO-JS5 correctness gate. The unchanged OpenSBLI/OPS and
+PyTorch/TorchInductor lanes were requalified from the same `N=8192` input
+before any U4-E timing.
+
+Here “GradFlow” in the frozen evidence key means the PyTorch/TorchInductor
+backend, not the encompassing GradFlow system. Human-facing names use the
+backend-specific term below; the hashed evidence keys remain unchanged.
 
 | lane | maximum normalized error | RMS normalized error | conservative |
 |---|---:|---:|---|
@@ -15,8 +20,8 @@ lanes were requalified from the same `N=8192` input before any U4-E timing.
 | DVEB CUDA | `2.5121e-14` | `3.6152e-15` | yes |
 | OpenSBLI CPU | `1.1305e-12` | `2.4567e-14` | yes |
 | OpenSBLI CUDA | `8.4156e-13` | `2.1027e-14` | yes |
-| GradFlow CPU | `6.2803e-15` | `2.6611e-15` | yes |
-| GradFlow CUDA | `2.5121e-14` | `4.2653e-15` | yes |
+| PyTorch/TorchInductor CPU | `6.2803e-15` | `2.6611e-15` | yes |
+| PyTorch/TorchInductor CUDA | `2.5121e-14` | `4.2653e-15` | yes |
 
 Every lane is below the frozen maximum `5e-11` and RMS `5e-12` bounds.  DVEB
 CPU/CUDA agreement also passes those bounds.

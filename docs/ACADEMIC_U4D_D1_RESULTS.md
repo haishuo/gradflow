@@ -11,8 +11,12 @@ No U4-D comparative performance result was inspected before this gate passed.
 
 The pinned DVEB compiler generated its ordinary CPU and CUDA implementations
 from the unmodified scalar `weno5.dveb` source under `DVEB_CONTRACT=fma`.
-All DVEB, OpenSBLI, and GradFlow lanes produced finite, conservative float64
-arrays and passed the frozen U4-C normalized-error bounds at `N=8192`.
+All DVEB, OpenSBLI, and PyTorch/TorchInductor lanes produced finite,
+conservative float64 arrays and passed the frozen U4-C normalized-error bounds
+at `N=8192`.
+
+The frozen evidence keys `gradflow_cpu` and `gradflow_cuda` are legacy aliases
+for the PyTorch/TorchInductor backend, not the GradFlow system as a whole.
 
 | lane | maximum normalized error | RMS normalized error |
 |---|---:|---:|
@@ -20,13 +24,13 @@ arrays and passed the frozen U4-C normalized-error bounds at `N=8192`.
 | DVEB CUDA | `2.5121297672596267e-14` | `3.615157031501409e-15` |
 | OpenSBLI CPU | `1.130458395266832e-12` | `2.4567458830409808e-14` |
 | OpenSBLI CUDA | `8.415634720319749e-13` | `2.1026683551910345e-14` |
-| GradFlow CPU | `6.280324418149067e-15` | `2.6611324051688867e-15` |
-| GradFlow CUDA | `2.5121297672596267e-14` | `4.26528140859316e-15` |
+| PyTorch/TorchInductor CPU | `6.280324418149067e-15` | `2.6611324051688867e-15` |
+| PyTorch/TorchInductor CUDA | `2.5121297672596267e-14` | `4.26528140859316e-15` |
 
 DVEB CPU versus CUDA also passed, with maximum normalized difference
 `2.5121297672596226e-14` and RMS normalized difference
-`3.614990549587643e-15`. Both GradFlow lanes retained one full graph and zero
-graph breaks.
+`3.614990549587643e-15`. Both PyTorch/TorchInductor lanes retained one full
+graph and zero graph breaks.
 
 ## Interpretation
 
