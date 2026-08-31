@@ -44,25 +44,22 @@ already publishable.
 
 ## Remaining mandatory gates
 
-### U4. Independent external baseline — U4-B correctness complete, timing pending
+### U4. Independent external baseline and regime boundary — complete locally
 
-The manuscript audit exposed a separate external-comparison gap after the
-original A1--A4 plan was frozen. U4-A has now source-pinned the candidates and
-frozen the admission rules without running timings. OpenSBLI is the first
-qualification candidate; PyWENO is a building-block comparison, while
-JAX-Fluids and HOPE remain application-level context because their primary
-contracts are finite volume.
+U4-C established a correctness-admitted OpenSBLI/OPS external control at the
+sole admitted scalar binary64 WENO-JS5 size `N=8192`. U4-E prospectively
+requalified DVEB Trunk 005 and found DVEB the resolved resident winner over
+OpenSBLI and PyTorch/TorchInductor on one-thread CPU and CUDA for that cell.
 
-U4-B completed the minimal OpenSBLI scalar adapter. OpenSBLI's native operator
-passed the frozen pointwise, conservation, constant-state, and convergence
-gates with only the precommitted generalization patch. A separately frozen
-timing phase may now attempt to add it to the operator table, but CUDA must
-first pass CPU/CUDA agreement and no U4-B runtime may be interpreted as a
-performance observation.
+U4-F then held each line's `N`, `dx`, formulation, and tolerance fixed while
+batching independent lines. On CUDA, DVEB won batches 1 and 4, batch 16 was
+unresolved, and PyTorch won batches 64, 256, and 1024. This establishes a
+bounded regime transition rather than a universal backend winner. PyTorch's
+CPU compiler failed for every batch above one on the dated development build;
+those cells are explicit exclusions.
 
-See `ACADEMIC_U4A_PROTOCOL.md`, `ACADEMIC_U4A_RESULTS.md`,
-`ACADEMIC_U4B_PROTOCOL.md`, `ACADEMIC_U4B_RESULTS.md`, and
-`ACADEMIC_EXTERNAL_BASELINE_GATE.md`.
+See `ACADEMIC_U4C_C2_RESULTS.md`, `ACADEMIC_U4E_RESULTS.md`, and
+`ACADEMIC_U4F_RESULTS.md`.
 
 ### A1. Freeze the final claim and numerical-limit matrix — complete
 
@@ -155,6 +152,14 @@ A4 remains open: the second-machine replication and independent
 numerical-CFD/prior-art audit have not occurred. Reference and project-license
 questions are explicitly flagged but not legally resolved.
 
+### U5. Stable-PyTorch replication — pending
+
+The central compiler evidence uses `2.9.0.dev20250705+cu128`. U4-F also found
+an internal Inductor CPU scheduler assertion for every batched shape above
+one. The core numerical/graph/performance cells must be rerun on a selected
+stable PyTorch release before submission. This is a reproduction gate, not an
+opportunity to alter the frozen mathematics or discard unfavorable results.
+
 ## Explicitly deferred from the first academic artifact
 
 The following work may be valuable later but is not required to finish the
@@ -179,11 +184,14 @@ named release gate above. Interesting but nonessential questions are recorded
 as future work. A negative result is complete when its frozen question has
 been answered; it is not an invitation to optimize until it becomes positive.
 
-Under this discipline, A1--A3 are closed and the remaining route is:
+Under this discipline, A1--A3 and U4 are closed locally. The remaining route
+is:
 
 ```text
+U5 stable-PyTorch replication
+A4 rc2 clean-room freeze and updated replication/review packets
 A4 second-machine replication + independent CFD/prior-art audit
-U4-C external CUDA correctness + frozen comparative timing
+rights/license and public-archive decision
 ```
 
 Design work for A3 may overlap A2, but performance remains downstream of the

@@ -1,0 +1,60 @@
+/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/backends/cuda/__init__.py:131: UserWarning: This API is going to be deprecated, please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:78.)
+  return torch._C._get_cublas_allow_tf32()
+Traceback (most recent call last):
+  File "/mnt/projects/gradflow/experiments/academic_u4f/pytorch_batch_worker.py", line 110, in <module>
+    main()
+  File "/mnt/projects/gradflow/experiments/academic_u4f/pytorch_batch_worker.py", line 53, in main
+    output = compiled(values)
+             ^^^^^^^^^^^^^^^^
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 776, in compile_wrapper
+    raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/compile_fx.py", line 946, in _compile_fx_inner
+    raise InductorError(e, currentframe()).with_traceback(
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/compile_fx.py", line 930, in _compile_fx_inner
+    mb_compiled_graph = fx_codegen_and_compile(
+                        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/compile_fx.py", line 1616, in fx_codegen_and_compile
+    return scheme.codegen_and_compile(gm, example_inputs, inputs_to_check, graph_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/compile_fx.py", line 1479, in codegen_and_compile
+    compiled_module = graph.compile_to_module()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/graph.py", line 2296, in compile_to_module
+    return self._compile_to_module()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/graph.py", line 2302, in _compile_to_module
+    self.codegen_with_cpp_wrapper() if self.cpp_wrapper else self.codegen()
+                                                             ^^^^^^^^^^^^^^
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/graph.py", line 2237, in codegen
+    self._update_scheduler()
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/graph.py", line 2231, in _update_scheduler
+    self.scheduler = Scheduler(self.operations)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/scheduler.py", line 2040, in __init__
+    self._init(nodes)
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/scheduler.py", line 2118, in _init
+    self.nodes = self.fuse_nodes(self.nodes)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/scheduler.py", line 2636, in fuse_nodes
+    nodes = self.fuse_nodes_once(nodes)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/scheduler.py", line 3182, in fuse_nodes_once
+    fuse_two_nodes(node1, node2)
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/scheduler.py", line 3128, in fuse_two_nodes
+    node3 = self.get_backend(device).fuse(node1, node2)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/codegen/cpp.py", line 4532, in fuse
+    node_to_recomp.recompute_size_and_body(
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/scheduler.py", line 1057, in recompute_size_and_body
+    self._compute_attrs(
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/scheduler.py", line 1025, in _compute_attrs
+    self._sizes, body = self.node.simplify_and_reorder(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/haishuo/miniconda3/envs/gradflow/lib/python3.11/site-packages/torch/_inductor/ir.py", line 4496, in simplify_and_reorder
+    assert all(isinstance(f, Expr) for f in extra_indexing_expr)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch._inductor.exc.InductorError: AssertionError: 
+
+Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
