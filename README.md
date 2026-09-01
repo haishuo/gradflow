@@ -153,7 +153,9 @@ numerical-CFD/prior-art audit. A frozen Unity attempt is a retained negative
 portability result: its allocated Tesla M40 was below PyTorch/Triton's
 supported compute-capability floor. The prospectively frozen Moody RTX 4070
 SUPER run completed all 36 scientific workers without an admission or graph
-failure and reproduced the bounded modern-GPU phase diagram. Its aggregate
+failure and reproduced the bounded binary32 CUDA advantage. Binary64 WENO-15
+reversed from a CPU win on the primary system to a CUDA win on Moody, directly
+demonstrating machine-conditional backend ordering. Its aggregate
 controller status remains limited by four documented transport-packet test
 assumptions rather than a numerical or CUDA failure. Public release also requires a
 deliberate project-license decision and permission or exclusion for the

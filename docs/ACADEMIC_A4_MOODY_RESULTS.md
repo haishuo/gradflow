@@ -18,7 +18,8 @@ standalone machine:
 - stable PyTorch 2.13.0+cu126, commit
   `cf30153c4c131c8164ee7798e5022d810682e2cb`;
 - CUDA runtime 12.6 and NVIDIA driver 570.133.20; and
-- one-thread `OMP`, `MKL`, and `OPENBLAS` environment variables.
+- initial `OMP`, `MKL`, and `OPENBLAS` environment variables set to one; each
+  CPU A2 worker subsequently timed PyTorch intra-op thread counts one and six.
 
 The run began at `2026-08-31T20:26:05.991426+00:00` and completed at
 `2026-08-31T21:43:12.469543+00:00`, an elapsed 4,626.478 seconds. Exact
@@ -36,8 +37,10 @@ The dedicated A1, A2, A3, U5, and rc2 A4 offline verifiers all returned zero.
 All 95 files named by the campaign `SHA256SUMS` verify after import.
 
 At scalar `64^3`, the fastest admitted lanes produced the following median of
-three fresh worker medians. Ratios are properties of Moody and are not pooled
-with Forge observations.
+three fresh worker medians. The selected CPU lane used six PyTorch intra-op
+threads in every row; six threads beat one thread in every contributing eager
+and compiled worker. Ratios are properties of Moody and are not pooled with
+Forge observations.
 
 | Order | dtype | fastest CPU (ms) | fastest CUDA (ms) | CPU/CUDA |
 | ---: | --- | ---: | ---: | ---: |
@@ -48,12 +51,21 @@ with Forge observations.
 | 11 | binary64 | 19.673676 | 5.955424 | 3.303 |
 | 15 | binary64 | 29.556987 | 20.225535 | 1.461 |
 
-Thus, the frozen qualitative proposition replicated on a second modern CUDA
-machine: binary32 resident CUDA was materially faster than the best measured
-CPU lane at every tested order. Binary64 CUDA also won these six bounded
-comparisons, but its advantage narrowed to 1.461 times at WENO-15 on this
-consumer GPU. The result does not predict A100/H100 behavior and does not
-establish universal GPU superiority.
+Thus, the frozen binary32 proposition replicated on a second modern CUDA
+machine: resident CUDA was materially faster than the best measured six-thread
+CPU lane at every tested order. The full CPU/CUDA ordering did not reproduce.
+On the primary RTX 5070 Ti system, binary64 WENO-15 favored CPU by 1.083 times;
+on Moody's RTX 4070 SUPER, it favored CUDA by 1.461 times. This reversal is
+positive evidence that binary64 backend choice is machine- and toolchain-stack
+conditional. It does not isolate a GPU-architecture cause, predict A100/H100
+behavior, or establish universal GPU superiority.
+
+Lane identity also changed. For the matched orders 5, 11, and 15, the primary
+system selected eager CUDA for binary64 orders 5 and 15, whereas Moody selected
+compiled CUDA for all six order/dtype cells. Both systems selected six-thread
+compiled CPU for these cells. Because the systems also differ in GPU, CPU,
+driver, and CUDA wheel/runtime, the observation demonstrates stack-specific
+selection rather than a causal TorchInductor architecture effect.
 
 The A3 differentiation observation also transferred: compiled order-11
 binary64 forward execution was 2.554 ms on CPU and 2.981 ms on CUDA; compiled
@@ -85,8 +97,11 @@ substitution was performed.
 
 This result:
 
-- replicates the registered ordinary-PyTorch numerical and compiler behavior
-  on one physically distinct modern consumer-GPU system;
+- replicates the registered ordinary-PyTorch numerical and graph-capture
+  behavior, plus the bounded binary32 CUDA advantage, on one physically
+  distinct modern consumer-GPU system;
+- records a binary64 WENO-15 CPU/CUDA winner reversal rather than claiming
+  full performance-ordering reproduction;
 - does not replicate the DVEB or OpenSBLI/OPS matched-control lanes;
 - does not qualify data-center binary64 hardware;
 - does not close the independent numerical-CFD/prior-art audit;

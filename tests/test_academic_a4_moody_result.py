@@ -40,3 +40,15 @@ def test_moody_fastest_cuda_wins_registered_cells() -> None:
         for dtype in ("float32", "float64")
     }
     assert all(0.0 < cell["fastest_cuda_over_fastest_cpu"] < 1.0 for cell in cells)
+
+
+def test_moody_cpu_surface_times_one_and_six_threads() -> None:
+    record = json.loads((EVIDENCE / "second_machine.json").read_text())
+    cpu_workers = [worker["record"] for worker in record["a2_workers"] if worker["device"] == "cpu"]
+    assert len(cpu_workers) == 18
+    for worker in cpu_workers:
+        assert set(worker["cpu"]) == {"1", "6"}
+        for lane in ("eager", "compiled"):
+            one = worker["cpu"]["1"]["resident_timing"]["lanes"][lane]["median"]
+            six = worker["cpu"]["6"]["resident_timing"]["lanes"][lane]["median"]
+            assert six < one

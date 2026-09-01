@@ -158,7 +158,9 @@ not run. This is retained as a negative portability result rather than called
 a modern-GPU replication. The separately frozen Moody RTX 4070 SUPER run
 completed the modern-GPU scientific surface: all 36 workers parsed, all
 admission and graph contracts passed, and the bounded binary32 CUDA advantage
-replicated. Its immutable aggregate status remains
+replicated. The complete performance ordering only partially reproduced:
+binary64 WENO-15 changed from a CPU win on the primary system to a CUDA win on
+Moody. Its immutable aggregate status remains
 `fail_needs_investigation` because four repository tests assumed an omitted
 rc1 tag or untransported machine-specific AOT packages. Those packet limits
 are retained rather than relabeled as a clean formal pass. The independent
@@ -204,7 +206,8 @@ as future work. A negative result is complete when its frozen question has
 been answered; it is not an invitation to optimize until it becomes positive.
 
 Under this discipline, A1--A3 and U4 are closed locally, and the suitable
-modern-GPU scientific replication has completed with the documented packet
+modern-GPU scientific campaign has completed with a replicated binary32
+structure, a binary64 WENO-15 winner reversal, and the documented packet
 limitation. The remaining route is:
 
 ```text
