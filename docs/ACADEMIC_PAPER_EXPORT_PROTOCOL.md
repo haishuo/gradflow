@@ -92,6 +92,16 @@ machine-specific Phase 6E AOT artifacts. V6 exports both the usable scientific
 replication and that formal packet limitation; it does not relabel the source
 record or silently repair the prospectively frozen run.
 
+Paper export v7, `academic-f65803e-moody-paper-v7`, supersedes v6 for paper
+rendering without changing a measurement. It restores information that v6's
+summary omitted: each Moody CPU worker timed one and six PyTorch intra-op
+threads, and six threads supplied every selected CPU value. V7 also exports a
+matched primary/Moody disposition. Five of six CPU/CUDA winners reproduced;
+binary64 WENO-15 reversed from CPU on the primary RTX 5070 Ti system to CUDA
+on Moody's RTX 4070 SUPER. The binary32 CUDA advantage and graph/admission
+structure reproduced. This is explicitly partial performance-ordering
+reproduction, not a complete replicated phase diagram.
+
 ## Downstream paper contract
 
 The paper repository must:
